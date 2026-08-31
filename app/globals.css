@@ -1,26 +1,83 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Hyprr brand system — foundation */
+  --color-ink: #17151f;
+  --color-aubergine: #25172f;
+  /* signature */
+  --color-violet: #6947ff;
+  /* expressive */
+  --color-citrus: #ffc84a;
+  --color-lime: #b8f34a;
+  --color-aqua: #45d8c0;
+  --color-coral: #ff735f;
+  --color-sky: #73b7ff;
+  --color-rose: #ffb0c4;
+  /* neutrals */
+  --color-cloud: #fafaf7;
+  --color-line: #e8e6ea;
+  --color-muted: #666274;
+  --color-body: #3d3949;
+  --color-dim: #8e89a0;
+  --color-fog: #9b97a6;
+  --color-mist: #c7c3d2;
+  --color-slate: #8b8797;
+
+  --font-display: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  --font-sans: var(--font-inter), Inter, system-ui, sans-serif;
+  --font-mono: ui-monospace, Menlo, monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@keyframes hy-flow {
+  0% { left: 0; opacity: 0; }
+  8% { opacity: 1; }
+  92% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+@keyframes hy-blink {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+@keyframes hy-drift {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -7px, 0); }
+}
+@keyframes hy-drift-b {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, 6px, 0); }
+}
+@keyframes hy-decide {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(105, 71, 255, 0); }
+  50% { box-shadow: 0 0 0 5px rgba(105, 71, 255, 0.12); }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Base styles live in the base layer so Tailwind utilities (text-ink,
+   text-cloud, …) can override the default link color per element. */
+@layer base {
+  body {
+    margin: 0;
+    background: var(--color-cloud);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: var(--color-violet);
+    text-decoration: none;
+  }
+  a:hover {
+    color: #5238e0;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }
