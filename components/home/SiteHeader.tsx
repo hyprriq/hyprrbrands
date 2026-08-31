@@ -16,24 +16,22 @@ export default function SiteHeader() {
 
   return (
     <>
-      <div className="w-full bg-ink text-cloud text-[12.5px] tracking-[.01em] py-[10px] px-5 text-center">
-        <span className="opacity-[.62]">
-          Client-owned accounts. Client-approved purchases. Documented
-          operations.
-        </span>{" "}
+      <div className="w-full bg-ink text-on-ink-body type-body py-2.5 px-5 text-center">
+        Client-owned accounts. Client-approved purchases. Documented
+        operations.{" "}
         <a
           href="#ownership"
-          className="text-lime hover:text-lime border-b border-lime/40 whitespace-nowrap"
+          className="text-link-on-ink hover:text-link-on-ink whitespace-nowrap"
         >
           How that works
         </a>
       </div>
 
-      <header className="sticky top-0 z-50 bg-cloud/90 backdrop-blur-[14px] border-b border-line">
+      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-[14px] border-b border-line">
         <div className="mx-auto max-w-[1280px] px-[clamp(16px,3vw,40px)] min-h-[72px] flex items-center justify-between gap-4">
           <a
             href="#top"
-            className="font-display font-bold text-[19px] tracking-[-.02em] text-ink hover:text-ink flex-none"
+            className="font-display font-extrabold type-body tracking-[-.02em] text-ink hover:text-ink flex-none"
             onClick={() => setOpen(false)}
           >
             hyprr <span className="font-normal text-muted">brands</span>
@@ -42,7 +40,7 @@ export default function SiteHeader() {
           {/* Desktop navigation */}
           <nav
             aria-label="Primary"
-            className="hidden md:flex items-center gap-[clamp(14px,1.8vw,28px)] text-[14.5px] font-medium py-3"
+            className="hidden md:flex items-center gap-[clamp(14px,1.8vw,28px)] type-meta font-medium py-3"
           >
             {NAV_LINKS.map(([href, label]) => (
               <a
@@ -55,7 +53,7 @@ export default function SiteHeader() {
             ))}
             <a
               href="#talk"
-              className="bg-violet text-white hover:text-white px-[18px] py-3 rounded-xl whitespace-nowrap min-h-11 flex items-center"
+              className="bg-ink text-white hover:text-white px-[18px] py-3 rounded-xl whitespace-nowrap min-h-11 flex items-center"
             >
               Let&apos;s talk
             </a>
@@ -92,7 +90,7 @@ export default function SiteHeader() {
         <nav
           id="mobile-nav"
           aria-label="Primary"
-          className={`md:hidden border-t border-line bg-cloud ${
+          className={`md:hidden border-t border-line bg-white ${
             open ? "block" : "hidden"
           }`}
         >
@@ -101,7 +99,7 @@ export default function SiteHeader() {
               <a
                 key={href}
                 href={href}
-                className="text-ink hover:text-ink text-base font-medium py-3 border-b border-line/70 last:border-b-0"
+                className="text-ink hover:text-ink type-body font-medium py-3 border-b border-line/70 last:border-b-0"
                 onClick={() => setOpen(false)}
               >
                 {label}
@@ -109,7 +107,7 @@ export default function SiteHeader() {
             ))}
             <a
               href="#talk"
-              className="mt-3 mb-2 bg-violet text-white hover:text-white text-base font-semibold px-[18px] py-3 rounded-xl min-h-11 flex items-center justify-center"
+              className="mt-3 mb-2 bg-ink text-white hover:text-white type-body font-semibold px-[18px] py-3 rounded-xl min-h-11 flex items-center justify-center"
               onClick={() => setOpen(false)}
             >
               Let&apos;s talk

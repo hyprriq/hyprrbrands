@@ -3,10 +3,15 @@
 import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 
 /**
- * Scroll-reveal wrapper, ported from the approved baseline's [data-reveal]
- * behavior: fade/slide in on intersection, then fire any [data-draw] progress
- * lines and staggered [data-cost] bars inside. Content is visible without JS
- * and shown immediately under prefers-reduced-motion.
+ * Scroll-reveal per the Visual Build Spec motion section: animates the
+ * wrapper's DIRECT CHILDREN as a stagger (40ms interval, 12px rise, 420ms
+ * cubic-bezier(.16,1,.3,1)) instead of fading the wrapper as a slab.
+ *
+ * Also fires [data-draw] progress lines and [data-cost] bars on entry
+ * (bars honor an optional data-order for draw sequencing — 120ms apart).
+ *
+ * Content is fully visible without JS (children are only hidden after
+ * hydration), and shown immediately under prefers-reduced-motion.
  */
 export default function Reveal({
   id,
@@ -24,20 +29,24 @@ export default function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    const kids = Array.from(el.children) as HTMLElement[];
 
     const fire = () => {
       el.querySelectorAll<HTMLElement>("[data-draw]").forEach((d) => {
         d.style.width = "100%";
       });
       el.querySelectorAll<HTMLElement>("[data-cost]").forEach((c, i) => {
+        const order = c.dataset.order !== undefined ? +c.dataset.order : i;
         setTimeout(() => {
           c.style.width = (c.dataset.w || "50") + "%";
-        }, 90 * i);
+        }, 120 * order);
       });
     };
     const show = () => {
-      el.style.opacity = "1";
-      el.style.transform = "none";
+      kids.forEach((k) => {
+        k.style.opacity = "1";
+        k.style.transform = "none";
+      });
       fire();
     };
 
@@ -49,10 +58,11 @@ export default function Reveal({
       return;
     }
 
-    el.style.opacity = "0";
-    el.style.transform = "translateY(18px)";
-    el.style.transition =
-      "opacity .7s ease, transform .7s cubic-bezier(.4,0,.2,1)";
+    kids.forEach((k, i) => {
+      k.style.opacity = "0";
+      k.style.transform = "translateY(12px)";
+      k.style.transition = `opacity 420ms cubic-bezier(.16,1,.3,1) ${i * 40}ms, transform 420ms cubic-bezier(.16,1,.3,1) ${i * 40}ms`;
+    });
 
     const io = new IntersectionObserver(
       (entries) => {

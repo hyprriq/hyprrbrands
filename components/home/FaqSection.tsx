@@ -49,19 +49,17 @@ export default function FaqSection() {
   return (
     <section id="faq" className="bg-white border-t border-line">
       <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(56px,6vw,96px)] grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-[clamp(24px,4vw,56px)] items-start">
-        <h2 className="font-display font-bold text-[clamp(26px,2.8vw,38px)] leading-[1.06] tracking-[-.028em] m-0">
+        <h2 className="font-display type-h2 text-ink m-0">
           Questions we get asked first.
         </h2>
         <div className="grid gap-0 border-t border-line">
           {FAQS.map((f) => (
             <details key={f.q} className="border-b border-line py-[18px]">
-              <summary className="cursor-pointer text-[16.5px] font-medium list-none flex justify-between gap-4">
+              <summary className="cursor-pointer font-display type-h3 font-semibold list-none flex justify-between gap-4">
                 {f.q}
-                <span className="text-violet">+</span>
+                <span className="text-link">+</span>
               </summary>
-              <p className="text-base leading-[1.6] text-body mt-3 mb-0">
-                {f.a}
-              </p>
+              <p className="type-body text-body mt-3 mb-0">{f.a}</p>
             </details>
           ))}
         </div>

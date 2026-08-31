@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Hyprr Brands — Hyprr Homepage Surface Review. Prepared 31 Aug 2026.">
+<title>Hyprr Homepage Surface Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --paper:#F4F6F8;
+  --surface:#FFFFFF;
+  --sunk:#EAEEF2;
+  --ink:#11151C;
+  --body:#464F5E;
+  --soft:#6A7383;
+  --line:#D8DEE6;
+  --hair:#E7EBF0;
+  --accent:#B93E23;
+  --crit:#B93E23;
+  --warn:#8A6300;
+  --ok:#1C6F4A;
+  --shadow:0 1px 2px rgba(17,21,28,.05), 0 14px 34px -24px rgba(17,21,28,.30);
+  --rail:268px;
+}
+:root:not([data-theme="light"]){
+  @media (prefers-color-scheme: dark){
+    --paper:#0E1116;
+    --surface:#161A21;
+    --sunk:#11151B;
+    --ink:#E9EDF3;
+    --body:#A5AEBD;
+    --soft:#7B8494;
+    --line:#282E38;
+    --hair:#1F242C;
+    --accent:#F0704F;
+    --crit:#F0704F;
+    --warn:#D9A429;
+    --ok:#4FBF8B;
+    --shadow:0 1px 2px rgba(0,0,0,.5), 0 16px 36px -24px rgba(0,0,0,.9);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E1116;
+  --surface:#161A21;
+  --sunk:#11151B;
+  --ink:#E9EDF3;
+  --body:#A5AEBD;
+  --soft:#7B8494;
+  --line:#282E38;
+  --hair:#1F242C;
+  --accent:#F0704F;
+  --crit:#F0704F;
+  --warn:#D9A429;
+  --ok:#4FBF8B;
+  --shadow:0 1px 2px rgba(0,0,0,.5), 0 16px 36px -24px rgba(0,0,0,.9);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font:400 16px/1.62 Archivo,system-ui,-apple-system,"Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{margin:0;font-family:Archivo,system-ui,sans-serif;text-wrap:balance;line-height:1.1;letter-spacing:-.02em}
+p{margin:0}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--accent) 32%,transparent)}
+a:hover{border-bottom-color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+code,.mono{font-family:"Spline Sans Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+
+/* ---------- shell ---------- */
+.shell{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);max-width:1420px;margin:0 auto}
+.rail{
+  position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;
+  background:var(--sunk);border-right:1px solid var(--line);padding:32px 22px 48px;
+}
+.rail .mark{font-weight:800;font-size:17px;letter-spacing:-.035em}
+.rail .mark span{font-weight:400;color:var(--soft)}
+.rail .kind{font-family:"Spline Sans Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin:8px 0 24px;line-height:1.6}
+.rail nav{display:flex;flex-direction:column;gap:1px}
+.rail nav a{
+  display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:baseline;padding:6px 0;
+  font-size:13.5px;line-height:1.35;color:var(--ink);border:0;
+}
+.rail nav a b{font-family:"Spline Sans Mono",monospace;font-size:11px;font-weight:600;color:var(--soft)}
+.rail nav a:hover,.rail nav a:hover b{color:var(--accent)}
+
+main{padding:56px clamp(20px,4vw,68px) 150px;min-width:0}
+.wrap{max-width:900px}
+
+/* ---------- masthead ---------- */
+.masthead{border-bottom:2px solid var(--ink);padding-bottom:28px}
+.masthead h1{font-size:clamp(32px,4.4vw,52px);font-weight:800;max-width:18ch;letter-spacing:-.035em}
+.masthead .dek{margin-top:16px;font-size:18.5px;line-height:1.55;color:var(--body);max-width:62ch}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:22px}
+.tag{font-family:"Spline Sans Mono",monospace;font-size:10.5px;letter-spacing:.04em;padding:4px 9px;border:1px solid var(--line);color:var(--soft);border-radius:3px}
+
+/* ---------- verdict ---------- */
+.verdict{
+  margin-top:30px;background:var(--surface);border:1px solid var(--line);
+  border-radius:14px;padding:26px 28px;box-shadow:var(--shadow);
+}
+.verdict .lbl{font-family:"Spline Sans Mono",monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--soft);display:block;margin-bottom:12px}
+.verdict p{font-size:20px;line-height:1.45;letter-spacing:-.012em;max-width:56ch}
+.verdict p+p{margin-top:.7em;font-size:16.5px;line-height:1.6;color:var(--body);letter-spacing:0}
+.verdict strong{font-weight:700}
+
+/* ---------- sections ---------- */
+section{padding-top:70px;scroll-margin-top:20px}
+section>h2{
+  font-size:clamp(24px,2.8vw,34px);font-weight:700;display:flex;align-items:baseline;gap:15px;
+  padding-bottom:13px;border-bottom:1px solid var(--ink);margin-bottom:24px;letter-spacing:-.03em;
+}
+section>h2 .n{font-family:"Spline Sans Mono",monospace;font-size:15px;font-weight:600;color:var(--accent);flex:none;letter-spacing:0}
+h3{font-size:20px;font-weight:700;margin:38px 0 11px;letter-spacing:-.022em}
+h4{font-family:"Spline Sans Mono",monospace;font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.11em;color:var(--soft);margin:28px 0 11px}
+.lede{font-size:17.5px;line-height:1.58;color:var(--body);max-width:64ch;margin-bottom:20px}
+.p{margin:0 0 1em;max-width:70ch;color:var(--body)}
+.p strong,.lede strong{color:var(--ink);font-weight:600}
+ul,ol{max-width:70ch;padding-left:20px;margin:0 0 1.1em;color:var(--body)}
+li{margin-bottom:.42em}
+li strong{color:var(--ink);font-weight:600}
+
+/* ---------- finding blocks ---------- */
+.find{background:var(--surface);border:1px solid var(--line);border-radius:13px;margin:20px 0;overflow:hidden;box-shadow:var(--shadow)}
+.find>header{display:flex;flex-wrap:wrap;align-items:center;gap:11px;padding:12px 18px;border-bottom:1px solid var(--hair);background:color-mix(in srgb,var(--paper) 60%,var(--surface))}
+.find>header .id{font-family:"Spline Sans Mono",monospace;font-size:11.5px;font-weight:600}
+.find>header .ttl{font-weight:600;font-size:15px}
+.find .body{padding:18px}
+.find .body>p{max-width:68ch;color:var(--body)}
+.find .body>p+p{margin-top:.8em}
+.sev{font-family:"Spline Sans Mono",monospace;font-size:9.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:100px;border:1px solid;white-space:nowrap;margin-left:auto}
+.sev.p0{color:var(--crit);border-color:color-mix(in srgb,var(--crit) 45%,transparent);background:color-mix(in srgb,var(--crit) 10%,transparent)}
+.sev.p1{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 45%,transparent);background:color-mix(in srgb,var(--warn) 11%,transparent)}
+.sev.p2{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 45%,transparent);background:color-mix(in srgb,var(--ok) 11%,transparent)}
+
+.ev{
+  background:var(--sunk);border:1px solid var(--hair);border-radius:9px;
+  padding:13px 15px;margin:14px 0;font-family:"Spline Sans Mono",monospace;
+  font-size:12.2px;line-height:1.65;overflow-x:auto;color:var(--ink);
+}
+.ev .f{color:var(--soft)}
+.fixline{margin-top:14px;padding-top:13px;border-top:1px dashed var(--line);font-size:15px;line-height:1.6;color:var(--body)}
+.fixline b{font-family:"Spline Sans Mono",monospace;font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:5px;font-weight:600}
+.fixline strong{color:var(--ink);font-weight:600}
+
+/* ---------- callouts ---------- */
+.call{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:18px 22px;margin:22px 0;max-width:74ch}
+.call .lbl{font-family:"Spline Sans Mono",monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);display:block;margin-bottom:9px}
+.call p{color:var(--body);font-size:15.5px;line-height:1.62}
+.call p+p{margin-top:.75em}
+.call strong{color:var(--ink);font-weight:600}
+.call.hot{border-color:color-mix(in srgb,var(--crit) 40%,var(--line));background:color-mix(in srgb,var(--crit) 4%,var(--surface))}
+.call.hot .lbl{color:var(--crit)}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto;margin:18px 0 26px;border:1px solid var(--line);border-radius:11px;background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-size:14.2px;min-width:560px}
+th{text-align:left;font-family:"Spline Sans Mono",monospace;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--soft);padding:12px 15px;border-bottom:1px solid var(--ink);white-space:nowrap}
+td{padding:12px 15px;border-bottom:1px solid var(--hair);vertical-align:top;color:var(--body);line-height:1.52}
+td:first-child{color:var(--ink)}
+tr:last-child td{border-bottom:0}
+td code,th code{font-size:12.4px;background:var(--sunk);padding:1px 5px;border-radius:4px;color:var(--ink)}
+td b{color:var(--ink)}
+.num{font-family:"Spline Sans Mono",monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* ---------- swatches ---------- */
+.sw{display:flex;align-items:center;gap:9px}
+.chip{width:26px;height:26px;border-radius:6px;border:1px solid rgba(17,21,28,.14);flex:none}
+.ratio{font-family:"Spline Sans Mono",monospace;font-size:12.5px;font-variant-numeric:tabular-nums}
+.pass{color:var(--ok);font-weight:600}
+.fail{color:var(--crit);font-weight:600}
+
+/* ---------- comparison demo ---------- */
+.demo{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:16px;margin:20px 0 26px}
+.demo .cell{border-radius:13px;overflow:hidden;border:1px solid var(--line)}
+.demo .cap{font-family:"Spline Sans Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:9px 14px;background:var(--sunk);color:var(--soft);border-bottom:1px solid var(--hair)}
+.demo .field{padding:26px 20px 28px;min-height:168px;display:flex;flex-direction:column;justify-content:center}
+.demo .field .k{font-family:"Spline Sans Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:11px;opacity:.85}
+.demo .field .h{font-size:23px;font-weight:700;line-height:1.12;letter-spacing:-.028em;margin-bottom:9px}
+.demo .field .t{font-size:14px;line-height:1.55}
+.f-now{background:#25172F;color:#8e89a0}
+.f-now .k{color:#8e89a0}.f-now .h{color:#FAFAF7}
+.f-next{background:#4E2FD6;color:rgba(255,255,255,.86)}
+.f-next .k{color:#FFC84A}.f-next .h{color:#FFFFFF}
+
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:17px 19px}
+.card h4{margin-top:0}
+.card ul{margin-bottom:0;padding-left:18px;font-size:14.4px}
+
+.rhythm{display:flex;flex-direction:column;gap:3px;margin:18px 0 26px;border:1px solid var(--line);border-radius:11px;overflow:hidden;background:var(--line)}
+.rhythm .band{display:grid;grid-template-columns:34px 1fr auto;gap:12px;align-items:center;padding:11px 15px;font-size:14px}
+.rhythm .band .i{font-family:"Spline Sans Mono",monospace;font-size:11px;color:var(--soft)}
+.rhythm .band .w{font-family:"Spline Sans Mono",monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;opacity:.75}
+.b-white{background:#FFFFFF;color:#11151C}
+.b-tint{background:#F1EFF6;color:#11151C}
+.b-violet{background:#4E2FD6;color:#FFFFFF}
+.b-violet .i,.b-violet .w{color:rgba(255,255,255,.72)}
+.b-ink{background:#17151F;color:#FAFAF7}
+.b-ink .i,.b-ink .w{color:#9B97A6}
+.b-citrus{background:#FFF3D6;color:#11151C}
+.b-lav{background:#EDE8FF;color:#11151C}
+
+@media (max-width:1000px){
+  .shell{grid-template-columns:1fr}
+  .rail{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);padding:22px 20px}
+  .rail nav{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:2px 18px}
+  main{padding:34px 20px 90px}
+  .duo{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="rail">
+  <div class="mark">hyprr <span>brands</span></div>
+  <div class="kind">Homepage surface review<br>Desktop + mobile · 31 Aug 2026<br>Analysis only — no code changed</div>
+  <nav>
+    <a href="#diag"><b>0</b><span>Diagnosis</span></a>
+    <a href="#findings"><b>1</b><span>What is actually wrong</span></a>
+    <a href="#white"><b>2</b><span>The white background question</span></a>
+    <a href="#color"><b>3</b><span>Colour system, rewritten</span></a>
+    <a href="#rhythm"><b>4</b><span>Section rhythm map</span></a>
+    <a href="#scroll"><b>5</b><span>Scroll-stop rebuild</span></a>
+    <a href="#motion"><b>6</b><span>Motion &amp; interaction</span></a>
+    <a href="#mobile"><b>7</b><span>Mobile</span></a>
+    <a href="#imagery"><b>8</b><span>Imagery &amp; visuals</span></a>
+    <a href="#order"><b>9</b><span>Order of work</span></a>
+  </nav>
+</aside>
+
+<main>
+<div class="wrap">
+
+<header class="masthead">
+  <h1>Homepage surface review</h1>
+  <p class="dek">A read of the built homepage against Lemon Squeezy, Pattern and My Amazon Guy — and against Hyprr&rsquo;s own brand guidelines, which the build is currently breaking in four places. Layout stays. Colour, type scale, density, motion and the scroll section change.</p>
+  <div class="tags">
+    <span class="tag">Source: D:\Projects\hyprrbrands</span>
+    <span class="tag">19 sections read</span>
+    <span class="tag">Next 16.3 · Tailwind 4</span>
+    <span class="tag">No code modified</span>
+  </div>
+</header>
+
+<div class="verdict">
+  <span class="lbl">The diagnosis in one paragraph</span>
+  <p>The page isn&rsquo;t suffering from too much padding. It is suffering from <strong>type that is too small and colour that never commits</strong> — and those two together are what read as emptiness.</p>
+  <p>You have a six-colour expressive palette and you are spending it on 7&nbsp;px squares and 22&nbsp;px number chips. Lemon Squeezy takes one purple and floods an entire viewport with it. That is the whole difference. Meanwhile the majority of the page&rsquo;s text sits between 9.5&nbsp;px and 15.5&nbsp;px — your own brand guidelines set a 16&nbsp;px web minimum — so a 1280&nbsp;px column carries about 30% of a 1920&nbsp;px screen in actual ink. Wide container, tiny content, no colour fields. That is the &ldquo;clumsy and empty&rdquo; feeling, and none of it requires a layout change to fix.</p>
+</div>
+
+<section id="diag">
+<h2><span class="n">0</span>Where the three references actually differ from you</h2>
+<p class="lede">You named Lemon Squeezy, Pattern and My Amazon Guy. They have almost nothing in common with each other visually — which is useful, because it isolates the three things they <em>do</em> share, and you are missing all three.</p>
+
+<div class="tw"><table>
+<thead><tr><th style="width:130px">Site</th><th style="width:190px">Background strategy</th><th>What carries the page</th></tr></thead>
+<tbody>
+<tr><td><b>Lemon Squeezy</b></td><td>White → light grey → <b>full-bleed purple</b> → yellow/cream split fields</td><td>A saturated colour field per major idea, headlines running 48–56&nbsp;px, body at 16–18&nbsp;px, and a two-tone body paragraph — first sentence near-black, rest in grey — so every block has an entry point. Roughly 25–35 words per section.</td></tr>
+<tr><td><b>Pattern</b></td><td>White → light neutral → dark image overlays</td><td>Photography and isometric illustration in every other band, plus real client logos and metric cards. Nothing is drawn in CSS.</td></tr>
+<tr><td><b>My Amazon Guy</b></td><td>Warm cream → white, low contrast between them</td><td>A photograph of a named human being in the hero, two loud CTA buttons (yellow and orange), and Trustpilot/Google badges above the fold. Aesthetically the weakest of the three, commercially the most direct.</td></tr>
+<tr><td><b>Hyprr today</b></td><td><code>#FAFAF7</code> → <code>#FFFFFF</code> → one dark <code>#25172F</code></td><td><span class="fail">Nothing.</span> <code>#FAFAF7</code> and <code>#FFFFFF</code> differ by a 1.05:1 contrast ratio — that is not an alternation, it is the same colour twice. No photography, no colour fields, no proof marks. Nineteen sections of CSS-drawn cards on one flat ground.</td></tr>
+</tbody></table></div>
+
+<p class="p">The shared move is <strong>a background that changes hard, at least four times, down the page</strong>. Lemon Squeezy&rsquo;s purple hero isn&rsquo;t decoration — it is a wall you cannot scroll past without registering it. That is the &ldquo;glowing, I want to log in again&rdquo; feeling you described. It is not a gradient, not a glow effect, not an animation. It is a solid rectangle of committed colour.</p>
+
+<div class="call hot">
+<span class="lbl">The uncomfortable part</span>
+<p>Your brand guidelines already say this, on page 9: <strong>&ldquo;Keep roughly 60–70% of each page quiet. Introduce one bold colour moment per screenful.&rdquo;</strong> The build has kept 97% quiet and delivered one bold moment in nineteen sections. And page 4 restricts Violet to &ldquo;CTAs, links, interactive states, selected UI and small brand moments&rdquo; — which the developer has honoured literally, and it is the single rule most responsible for the flatness. <strong>That rule needs amending, not the layout.</strong> Violet stays the interactive colour; a darker sibling becomes a field colour. Section 3 has the exact values.</p>
+</div>
+</section>
+
+<section id="findings">
+<h2><span class="n">1</span>What is actually wrong</h2>
+<p class="lede">Seven findings, read from the source rather than from the screenshots. Each one names the file. Severities: <span class="sev p0" style="margin:0">P0</span> ships badly today · <span class="sev p1" style="margin:0">P1</span> materially hurts the page · <span class="sev p2" style="margin:0">P2</span> polish.</p>
+
+<div class="find">
+  <header><span class="id">F1</span><span class="ttl">The type scale has 14 distinct sizes under 20px — and most of the page is below your own minimum</span><span class="sev p0">P0</span></header>
+  <div class="body">
+    <p>Across <code>components/home/*.tsx</code> the body-range sizes in use are:</p>
+    <div class="ev">9px · 9.5px · 10px · 10.5px · 11px · 11.5px · 12.5px · 13px · 13.5px · 14.5px · 15px · 15.5px · 16px · 16.5px · 19px<br><span class="f">— 15 values where a scale should have four or five.</span></div>
+    <p>Frequency tells the story: <code>text-[12.5px]</code> appears 9 times, <code>text-[10px]</code> 8 times, <code>text-[13.5px]</code> 7 times, <code>text-[10.5px]</code> 7 times. Meanwhile <code>text-base</code> (16px) appears 9 times total across nineteen sections. <strong>The page is mostly set between 10 and 14 pixels.</strong></p>
+    <p>Your brand guidelines, page 12, under NON-NEGOTIABLES: <em>&ldquo;Minimum body size: 16&nbsp;px on web.&rdquo;</em> The build breaks that in roughly forty places. This is the &ldquo;I can&rsquo;t even see what it is&rdquo; complaint, and it is not subjective — it is a spec violation.</p>
+    <div class="fixline"><b>Fix</b>Collapse to a six-step scale and delete every arbitrary value. <strong>11px mono labels (uppercase only) · 15px meta · 17px body · 20px lead · 28/34px H3 · clamp(34px,4vw,60px) H2 · clamp(42px,5.4vw,76px) H1.</strong> Every card body and list item moves to 17px. Nothing that is a sentence is allowed below 16px.</div>
+  </div>
+</div>
+
+<div class="find">
+  <header><span class="id">F2</span><span class="ttl">The scroll section&rsquo;s H2 is rendered at 11.5px grey uppercase</span><span class="sev p0">P0</span></header>
+  <div class="body">
+    <p>In <code>SystemScroll.tsx</code>, the heading &ldquo;How Hyprr builds and operates ecommerce businesses&rdquo; — which your build spec calls <em>&ldquo;the most literal, most crawlable H2 on the page&rdquo;</em> — is styled:</p>
+    <div class="ev">&lt;h2 style=&#123;&#123; fontSize: <b>11.5</b>, letterSpacing: ".16em",<br>&nbsp;&nbsp;textTransform: "uppercase", color: <b>"#8e89a0"</b> &#125;&#125;&gt;</div>
+    <p>Eleven and a half pixels, uppercase, letter-spaced, in mid-grey, on a dark aubergine field. It is the section&rsquo;s title and it reads as a system label. In the screenshot you sent, it is genuinely illegible.</p>
+    <div class="fixline"><b>Fix</b>Promote it to a real heading: <strong>clamp(28px,3.2vw,44px), weight 700, sentence case, in <code>#FFFFFF</code></strong>, sitting above the state content rather than in the utility bar. The &ldquo;STATE 01 / BUILD&rdquo; eyebrow can stay small — an H2 cannot.</div>
+  </div>
+</div>
+
+<div class="find">
+  <header><span class="id">F3</span><span class="ttl">The scroll effect never resolves into a state — it is permanently mid-transition</span><span class="sev p0">P0</span></header>
+  <div class="body">
+    <p><code>SystemScroll.tsx</code> pins for <code>SCROLL_LEN = 320</code> vh and drives every property — colours, grid tracks, opacities — through a continuous <code>lerp</code> against raw scroll progress, with a smoothstep ease. Four states across 320vh means each state owns ~80vh of scroll, and because the interpolation is continuous there is <strong>no dwell</strong>: the moment a state arrives it starts leaving.</p>
+    <p>That is exactly what &ldquo;the effect is not smooth&rdquo; describes. It is not a frame-rate problem. It is that the user never gets a still frame to read, so four states of content register as one long smear. Lemon Squeezy&rsquo;s equivalent moments hold completely still and let you read them.</p>
+    <div class="fixline"><b>Fix</b>Add dwell. Give each state a <strong>hold zone of ~55% of its scroll segment where progress is clamped</strong> and only the remaining 45% animates the handoff. Same 320vh, same code shape — one remap function on <code>p</code> before it reaches <code>paint()</code>. Section 5 has the curve.</div>
+  </div>
+</div>
+
+<div class="find">
+  <header><span class="id">F4</span><span class="ttl">On mobile, the entire visual half of the signature section is display:none</span><span class="sev p0">P0</span></header>
+  <div class="body">
+    <p>Below 900px, <code>applyMode()</code> runs:</p>
+    <div class="ev">if (grid) grid.style.display = <b>"none"</b>;<br>if (rail) rail.style.display = <b>"none"</b>;<br>if (cue)&nbsp; cue.style.display&nbsp; = <b>"none"</b>;</div>
+    <p>The four panels, the progress rail and the scroll cue are all removed. What remains is four stacked text blocks separated by hairlines. In <code>Hero.tsx</code>, the same pattern: the marketplace-listing and storefront-admin fragments are <code>hidden min-[900px]:block</code>, so they never appear on a phone either.</p>
+    <p><strong>This is why the mobile experience reads as &ldquo;a big story or documentary with no effects.&rdquo; It literally is one.</strong> On a phone the homepage is nineteen sections of text with two surviving illustrations. Given that a majority of your traffic will be mobile, this is the most expensive finding in the document.</p>
+    <div class="fixline"><b>Fix</b>Mobile gets its own composition, not a subtraction. The four states become a <strong>horizontally snapping carousel</strong> (<code>scroll-snap-type: x mandatory</code>, one panel per viewport, dot indicators) — no JS scroll-jacking, native momentum, works with a flick. The hero fragments stack as two real cards under the headline instead of disappearing. Detail in section 7.</div>
+  </div>
+</div>
+
+<div class="find">
+  <header><span class="id">F5</span><span class="ttl">The dark section is muddy, and its panel text fails contrast</span><span class="sev p1">P1</span></header>
+  <div class="body">
+    <p>The scroll section sits on Aubergine <code>#25172F</code>. Inactive panels are ink tinted 14% toward a pastel — computed, that is roughly <code>rgb(56,51,55)</code> — carrying text at <code>#8e89a0</code>.</p>
+    <div class="tw"><table>
+      <thead><tr><th>Pair</th><th class="num">Ratio</th><th>Verdict</th></tr></thead>
+      <tbody>
+      <tr><td><code>#8e89a0</code> on tinted panel <code>#383337</code></td><td class="num">3.68:1</td><td><span class="fail">Fails AA</span> for body text (needs 4.5)</td></tr>
+      <tr><td><code>#8e89a0</code> on aubergine <code>#25172F</code></td><td class="num">5.02:1</td><td>Passes, barely — at 12.5px it doesn&rsquo;t feel like it</td></tr>
+      <tr><td><code>#c7c3d2</code> on aubergine</td><td class="num">9.79:1</td><td><span class="pass">Comfortable</span> — this should be the panel text colour</td></tr>
+      </tbody>
+    </table></div>
+    <p>Separately, Aubergine is the problem colour. It is a desaturated purple-brown that reads as <em>dirty</em> next to pastel fills; it is the one hue in the system that has no energy. Compare the two treatments below at the same content:</p>
+    <div class="demo">
+      <div class="cell"><div class="cap">Now — aubergine + tinted ink</div>
+        <div class="field f-now"><div class="k">State 02 / Grow</div><div class="h">Turn the operation into a growth engine.</div><div class="t">Demand · PPC &amp; paid media · Conversion · Marketplace growth · DTC growth</div></div>
+      </div>
+      <div class="cell"><div class="cap">Proposed — violet field, citrus eyebrow</div>
+        <div class="field f-next"><div class="k">State 02 / Grow</div><div class="h">Turn the operation into a growth engine.</div><div class="t">Demand · PPC &amp; paid media · Conversion · Marketplace growth · DTC growth</div></div>
+      </div>
+    </div>
+    <div class="fixline"><b>Fix</b>Retire Aubergine as a large-surface colour. Use <strong>Violet Deep <code>#4E2FD6</code></strong> for the scroll section and <strong>Ink <code>#17151F</code></strong> for the other dark bands. Panel text moves to <code>#C7C3D2</code> minimum.</div>
+  </div>
+</div>
+
+<div class="find">
+  <header><span class="id">F6</span><span class="ttl">The &ldquo;wasted padding&rdquo; is a measure problem, not a padding problem</span><span class="sev p1">P1</span></header>
+  <div class="body">
+    <p>Section padding is actually restrained — <code>py-[clamp(64px,7vw,112px)]</code> is normal for this genre and Lemon Squeezy uses more. The container is <code>max-w-[1280px]</code>, also normal.</p>
+    <p>What is not normal is what happens inside it. In <code>ThreeEngines.tsx</code> the intro paragraph is capped at <code>max-w-[62ch]</code> at 16–18px. In <code>Hero.tsx</code> the supporting copy is capped at <code>max-w-[540px]</code>. So on a 1920px monitor: 1280px container, ~565px of actual text, <strong>and 1355px of nothing</strong>. The eye reads that as a page that failed to fill itself.</p>
+    <p>Your screenshot 2 is the proof — &ldquo;Three engines. One operating partner.&rdquo; runs 1000px wide, then the paragraph beneath it stops at 640px and leaves half the row blank. The heading and the body are on two different grids.</p>
+    <div class="fixline"><b>Fix</b>Three moves, no layout change. <strong>(a)</strong> Raise body type so 62ch occupies more width — 17px minimum, 20px for section ledes. <strong>(b)</strong> Give every section intro a right-hand occupant: a stat, a two-line pull-quote, a channel list, or the section&rsquo;s CTA — so the row is two columns, not one column and a void. <strong>(c)</strong> Tighten the container to <code>1180px</code> so the remaining margin reads as deliberate rather than as leftover.</div>
+  </div>
+</div>
+
+<div class="find">
+  <header><span class="id">F7</span><span class="ttl">Ambient drift on the hero fragments, and one identical fade-up everywhere else</span><span class="sev p2">P2</span></header>
+  <div class="body">
+    <p>Five <code>hy-drift</code> animations run permanently in <code>Hero.tsx</code>, floating cards up and down forever at 55% and 50% opacity. Meanwhile <code>Reveal.tsx</code> applies the same <code>translateY(18px)</code> + fade to nine wrappers. That is the pattern your own build spec flags: <em>&ldquo;Ambient drift on hero fragments is the most common way a serious page starts to feel like a template — one deliberate movement beats five ambient ones.&rdquo;</em></p>
+    <p>The half-transparent fragments are the bigger issue. At <code>opacity-55</code> they read as unfinished rather than as depth, and they are competing with the H1 for attention while saying nothing.</p>
+    <div class="fixline"><b>Fix</b>Delete <code>hy-drift</code> and <code>hy-drift-b</code> entirely. Raise the fragments to full opacity and let z-order and shadow do the layering. Replace the uniform <code>Reveal</code> fade with staggered children inside a section rather than one block-level fade of the whole section. Section 6 lists what replaces it.</div>
+  </div>
+</div>
+</section>
+
+<section id="white">
+<h2><span class="n">2</span>The white background question</h2>
+<p class="lede">You proposed switching to full white with black text. You are two-thirds right, and the third that&rsquo;s wrong matters.</p>
+
+<h3>Right: <code>#FAFAF7</code> should stop being the page ground</h3>
+<p class="p">Cloud <code>#FAFAF7</code> against White <code>#FFFFFF</code> is a <span class="ratio">1.05:1</span> difference. It is invisible. So today every white card sits on a ground that looks identical to it, and the cards only exist because of a 1px <code>#E8E6EA</code> border. That is why the page feels like a wireframe: <strong>the only thing separating content from background is a hairline.</strong> Screenshot 1 versus screenshot 4 in your set shows it — the whiter one does look better, and that is why.</p>
+<p class="p">So yes: <strong>make <code>#FFFFFF</code> the default page ground.</strong> Cards on white then need no border at all — a shadow or a tint does the job, and the page gains depth it currently has none of.</p>
+
+<h3>Wrong: black text, and white everywhere</h3>
+<p class="p">Two corrections.</p>
+<ul>
+<li><strong>Not black — Ink <code>#17151F</code>.</strong> Your guidelines say it explicitly: <em>&ldquo;Avoid pure black; Ink is softer, more premium.&rdquo;</em> Ink on white is <span class="ratio pass">18.05:1</span>. Pure black adds nothing but harshness.</li>
+<li><strong>White everywhere is the same mistake you have now, in a brighter key.</strong> Nineteen white sections is as flat as nineteen cream ones. What Lemon Squeezy actually does is white <em>plus</em> hard colour bands. Remove the white-on-cream mush and replace it with a real alternation.</li>
+</ul>
+
+<div class="call">
+<span class="lbl">What Cloud is still good for</span>
+<p>Don&rsquo;t delete <code>#FAFAF7</code> — repurpose it. It becomes the <strong>quiet band</strong> in the alternation (the section after a colour field, where the eye rests), and it stops being the default. Same token, different job, and it keeps the warmth the brand asked for without flattening the whole page. Where you want a slightly more visible quiet band, <code>#F1EFF6</code> — a neutral tinted 0.01 toward violet — separates from white at 1.14:1 and reads as deliberate.</p>
+</div>
+</section>
+
+<section id="color">
+<h2><span class="n">3</span>The colour system, rewritten</h2>
+<p class="lede">One added token, one demoted token, three changed jobs. Nothing in the brand palette is discarded.</p>
+
+<h3>The one change that fixes the &ldquo;glow&rdquo;</h3>
+<p class="p">Lemon Squeezy&rsquo;s purple is <code>#5423E7</code>. Yours is <code>#6947FF</code>. They look like the same colour. They do not behave like the same colour:</p>
+
+<div class="tw"><table>
+<thead><tr><th style="width:230px">White text on…</th><th class="num" style="width:110px">Ratio</th><th>What that means in practice</th></tr></thead>
+<tbody>
+<tr><td><div class="sw"><span class="chip" style="background:#6947FF"></span><code>#6947FF</code> Hyprr Violet</div></td><td class="num">5.32:1</td><td>Fine on a 44px button. As a full-bleed field it looks washed and slightly grey — white text sits <em>on</em> it rather than <em>in</em> it.</td></tr>
+<tr><td><div class="sw"><span class="chip" style="background:#5423E7"></span><code>#5423E7</code> Lemon Squeezy</div></td><td class="num">7.58:1</td><td>Deep enough to carry a whole viewport. This is the &ldquo;glowing&rdquo; you described — it is depth, not brightness.</td></tr>
+<tr><td><div class="sw"><span class="chip" style="background:#4E2FD6"></span><code>#4E2FD6</code> <b>proposed Violet Deep</b></div></td><td class="num">7.77:1</td><td>Same hue family as your Violet, darker and denser. Reads unmistakably as Hyprr next to <code>#6947FF</code>, and holds a full-bleed section.</td></tr>
+</tbody></table></div>
+
+<p class="p"><strong>Add <code>--color-violet-deep: #4E2FD6</code> to <code>globals.css</code>.</strong> <code>#6947FF</code> keeps every interactive job — buttons, links, focus rings, the &ldquo;You&rdquo; node. <code>#4E2FD6</code> becomes the field colour, used for one or two full-bleed sections and nothing else. That single token is most of the visual gap between your page and Lemon Squeezy&rsquo;s.</p>
+
+<h3>Text tokens — three fail or nearly fail today</h3>
+<div class="tw"><table>
+<thead><tr><th style="width:190px">Token</th><th class="num" style="width:100px">On white</th><th style="width:110px">Status</th><th>Change</th></tr></thead>
+<tbody>
+<tr><td><div class="sw"><span class="chip" style="background:#17151f"></span><code>ink #17151F</code></div></td><td class="num">18.05:1</td><td><span class="pass">Keep</span></td><td>All headings, and all body copy on colour fields.</td></tr>
+<tr><td><div class="sw"><span class="chip" style="background:#3d3949"></span><code>body #3D3949</code></div></td><td class="num">11.17:1</td><td><span class="pass">Keep</span></td><td>Promote — this should be the default body colour everywhere.</td></tr>
+<tr><td><div class="sw"><span class="chip" style="background:#666274"></span><code>muted #666274</code></div></td><td class="num">5.89:1</td><td>Borderline</td><td>Currently used for <em>card body copy</em> in <code>ThreeEngines</code> and elsewhere. Move card copy to <code>body</code>; keep <code>muted</code> for genuine secondary meta only.</td></tr>
+<tr><td><div class="sw"><span class="chip" style="background:#8b8797"></span><code>slate #8B8797</code></div></td><td class="num">3.49:1</td><td><span class="fail">Fails</span></td><td>Labels only, and only at ≥14px semibold. Never a sentence.</td></tr>
+<tr><td><div class="sw"><span class="chip" style="background:#8e89a0"></span><code>dim #8E89A0</code></div></td><td class="num">3.37:1</td><td><span class="fail">Fails</span></td><td>Dark-surface use only, and even there raise to <code>#C7C3D2</code> for anything readable.</td></tr>
+<tr><td><div class="sw"><span class="chip" style="background:#9b97a6"></span><code>fog #9B97A6</code></div></td><td class="num">2.85:1</td><td><span class="fail">Fails</span></td><td>Decorative rules and dividers only.</td></tr>
+</tbody></table></div>
+
+<h3>Expressive colours — stop using them as dots</h3>
+<p class="p">Citrus, Lime and Aqua currently appear as <code>w-[7px] h-[7px]</code> squares, <code>w-1.5 h-1.5</code> bullets and 22px number chips. At that size they are invisible as brand and useless as coding. Every one of them is <strong>AA-strong with Ink on top</strong> — your guidelines confirm it on page 12 — so they can carry surfaces:</p>
+<div class="tw"><table>
+<thead><tr><th style="width:200px">Colour</th><th class="num" style="width:130px">Ink on it</th><th>New job</th></tr></thead>
+<tbody>
+<tr><td><div class="sw"><span class="chip" style="background:#FFC84A"></span><code>Citrus #FFC84A</code></div></td><td class="num">11.70:1</td><td>Build. Highlight spans behind display type. The pastel <code>#FFF3D6</code> becomes a full section band.</td></tr>
+<tr><td><div class="sw"><span class="chip" style="background:#B8F34A"></span><code>Lime #B8F34A</code></div></td><td class="num">13.72:1</td><td>Grow. The single loudest accent on the page — use it once, on the metric or proof moment.</td></tr>
+<tr><td><div class="sw"><span class="chip" style="background:#45D8C0"></span><code>Aqua #45D8C0</code></div></td><td class="num">10.17:1</td><td>Operate. Status marks, healthy-state indicators, the operations panels.</td></tr>
+<tr><td><div class="sw"><span class="chip" style="background:#EDE8FF"></span><code>Lavender #EDE8FF</code></div></td><td class="num">15.12:1</td><td>Already used on &ldquo;Nothing is hidden&rdquo;. Extend it — this is your cheapest full-band tint.</td></tr>
+</tbody></table></div>
+
+<div class="call">
+<span class="lbl">Guideline amendment to sign off</span>
+<p>Page 4 of the guidelines currently says Violet is <strong>&ldquo;accent only.&rdquo;</strong> Amend to: <em>&ldquo;Hyprr Violet <code>#6947FF</code> is the interactive colour — CTAs, links, focus and selected states. Violet Deep <code>#4E2FD6</code> is the field colour — full-bleed brand moments, maximum two per page.&rdquo;</em> Without this amendment the developer is correct to keep building the flat page, and no amount of design direction will change it.</p>
+</div>
+</section>
+
+<section id="rhythm">
+<h2><span class="n">4</span>Section rhythm map</h2>
+<p class="lede">Nineteen sections, in the order they render in <code>app/page.tsx</code>. The layout of each is unchanged — only the ground it sits on. This is the single highest-impact change in the document and it is roughly a day of work.</p>
+
+<div class="rhythm">
+  <div class="band b-white"><span class="i">01</span><span>Hero</span><span class="w">White</span></div>
+  <div class="band b-white"><span class="i">02</span><span>Channels — six marks</span><span class="w">White · hairline top</span></div>
+  <div class="band b-tint"><span class="i">03</span><span>Three engines</span><span class="w">Tint #F1EFF6</span></div>
+  <div class="band b-violet"><span class="i">04</span><span>Scroll states — the signature moment</span><span class="w">Violet Deep #4E2FD6</span></div>
+  <div class="band b-white"><span class="i">05</span><span>Commerce paths</span><span class="w">White</span></div>
+  <div class="band b-tint"><span class="i">06</span><span>Everything connects</span><span class="w">Tint</span></div>
+  <div class="band b-ink"><span class="i">07</span><span>Ownership — the trust argument</span><span class="w">Ink #17151F</span></div>
+  <div class="band b-white"><span class="i">08</span><span>From decision to operation</span><span class="w">White</span></div>
+  <div class="band b-citrus"><span class="i">09</span><span>Built differently — five principles</span><span class="w">Citrus pastel #FFF3D6</span></div>
+  <div class="band b-lav"><span class="i">10</span><span>Nothing is hidden</span><span class="w">Lavender #EDE8FF</span></div>
+  <div class="band b-ink"><span class="i">11</span><span>True cost</span><span class="w">Ink</span></div>
+  <div class="band b-white"><span class="i">12</span><span>Fit — good / not a fit</span><span class="w">White</span></div>
+  <div class="band b-tint"><span class="i">13</span><span>Team — named people</span><span class="w">Tint</span></div>
+  <div class="band b-ink"><span class="i">14</span><span>Proof before promises</span><span class="w">Ink</span></div>
+  <div class="band b-white"><span class="i">15</span><span>Insights</span><span class="w">White</span></div>
+  <div class="band b-white"><span class="i">16</span><span>FAQ</span><span class="w">White</span></div>
+  <div class="band b-tint"><span class="i">17</span><span>How we&rsquo;re paid</span><span class="w">Tint</span></div>
+  <div class="band b-violet"><span class="i">18</span><span>Final CTA</span><span class="w">Violet Deep</span></div>
+  <div class="band b-ink"><span class="i">19</span><span>Footer</span><span class="w">Ink</span></div>
+</div>
+
+<p class="p">Read it as a strip and the page now has a shape: two violet walls bracketing the argument, three ink sections carrying the trust content, two pastel bands for the transparency block, and white for everything that is a list of facts. <strong>No visitor scrolls more than three sections without the ground changing.</strong></p>
+
+<div class="call">
+<span class="lbl">Two constraints on this map</span>
+<p><strong>Only two violet fields.</strong> Scroll states and final CTA. A third stops it meaning anything, and the guidelines&rsquo; &ldquo;one dominant colour per composition&rdquo; rule is doing real work here.</p>
+<p><strong>Alternate weight, not just hue.</strong> A dark section immediately after a violet section reads as two dark sections. The white/tint bands between them are structural, not filler — do not compress them to save scroll depth.</p>
+</div>
+</section>
+
+<section id="scroll">
+<h2><span class="n">5</span>Scroll-stop rebuild</h2>
+<p class="lede">Keeping the pinned mechanic, as agreed. Six changes to <code>SystemScroll.tsx</code>, none of which touch the layout or the state content.</p>
+
+<div class="tw"><table>
+<thead><tr><th style="width:44px">#</th><th style="width:180px">Change</th><th>Specification</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td><b>Add dwell</b></td><td>Remap scroll progress before it reaches <code>paint()</code>. Per state segment: the first 20% and last 25% animate the transition; <strong>the middle 55% is clamped to the state value</strong>. Implementation is one function — <code>const held = clamp01((seg - 0.20) / 0.55)</code> applied per segment rather than a global smoothstep. The section then reads as four still frames with movement between them, which is what the Lemon Squeezy pages you liked actually do.</td></tr>
+<tr><td class="num">2</td><td><b>Field colour</b></td><td>Section background <code>#25172F</code> → <code>#4E2FD6</code>. Active panel keeps its pastel fill (citrus / lime / aqua / white). Inactive panels become <code>rgba(255,255,255,.08)</code> with a <code>rgba(255,255,255,.16)</code> border — translucent white on violet, not tinted ink. Removes the mud entirely.</td></tr>
+<tr><td class="num">3</td><td><b>Type</b></td><td>H2 to <code>clamp(28px,3.2vw,44px)</code> white, sentence case (F2). State heading from <code>clamp(24px,4vh,44px)</code> to <code>clamp(30px,3.4vw,52px)</code> — <strong>switch the unit from <code>vh</code> to <code>vw</code></strong>; the current vh basis is why it collapses to 24px on a 13&Prime; laptop. Chip list from <code>clamp(12.5px,1.7vh,15px)</code> to a flat <code>17px</code>.</td></tr>
+<tr><td class="num">4</td><td><b>Panel content</b></td><td>Today the four panels are near-empty boxes with a caption. Each should carry <strong>one legible artefact</strong>, sized to be readable at a glance: 01 a three-row research shortlist · 02 a listing with a bid/search-term row · 03 <em>a purchase order with the &ldquo;Approved by client&rdquo; line</em> · 04 the four panels resolving into the loop. Panel 03 is the argument of the entire business — it should be the most legible thing in the section.</td></tr>
+<tr><td class="num">5</td><td><b>Rail becomes a control</b></td><td>The <code>01 BUILD / 02 GROW / 03 OPERATE / 04 SYSTEM</code> rail is currently decorative. Make each tick a <strong>button that scrolls to that state&rsquo;s hold zone</strong>. Costs nothing, converts a passive 320vh into something a skimmer can operate, and gives keyboard users a route through the section.</td></tr>
+<tr><td class="num">6</td><td><b>Exit affordance</b></td><td>Add a persistent &ldquo;Skip to commerce paths&rdquo; link in the pinned pane. A 320vh pin with no exit is the most common reason a scroll section is described as clumsy — people feel trapped rather than guided.</td></tr>
+</tbody></table></div>
+
+<div class="call hot">
+<span class="lbl">One thing to verify before shipping any of this</span>
+<p>Your build spec (section N) requires all four states to be in the served HTML with JavaScript disabled, because AI crawlers don&rsquo;t execute JS and this section holds roughly a third of the site&rsquo;s service vocabulary. The current component renders all four in JSX and only <em>styles</em> them imperatively, so it should pass — <strong>but confirm it with JS off before touching the paint loop</strong>, and confirm again after. It is the easiest thing to break while adding dwell.</p>
+</div>
+</section>
+
+<section id="motion">
+<h2><span class="n">6</span>Motion and interaction — without changing the layout</h2>
+<p class="lede">You asked what effects can be added. The answer starts with a subtraction: the page currently has five permanent ambient animations and one repeated fade, which is the exact profile that reads as generated. Delete those, then add six things that mean something.</p>
+
+<div class="duo">
+<div class="card"><h4>Delete</h4><ul>
+<li><code>hy-drift</code> / <code>hy-drift-b</code> — five permanent floats in the hero</li>
+<li><code>opacity-55</code> / <code>opacity-50</code> on the hero fragments</li>
+<li>The uniform <code>Reveal</code> fade applied to whole sections</li>
+<li><code>hy-blink</code> on the scroll cue — a blinking arrow is a 2011 device</li>
+</ul></div>
+<div class="card"><h4>Keep</h4><ul>
+<li>The pinned scroll sequence (rebuilt per section 5)</li>
+<li><code>hy-flow</code> on the replenishment line in Commerce Paths — it explains a process</li>
+<li>Reduced-motion kill switch in <code>globals.css</code> — already correct</li>
+</ul></div>
+</div>
+
+<h4>Add — in priority order</h4>
+<div class="tw"><table>
+<thead><tr><th style="width:52px">#</th><th style="width:190px">Interaction</th><th>Where and why</th></tr></thead>
+<tbody>
+<tr><td class="num">01</td><td><b>Staggered children, not faded blocks</b></td><td>Replace section-level <code>Reveal</code> with a per-child stagger: cards and list items enter at 40ms intervals, 12px rise, 420ms <code>cubic-bezier(.16,1,.3,1)</code>. Same amount of code, ten times more alive, and it makes a three-card row read as a sequence rather than a slab.</td></tr>
+<tr><td class="num">02</td><td><b>Channel row hover</b></td><td>Six marks sit inert. On hover, the mark goes from Ink to full colour and its micro-label slides up 2px. Instantly signals &ldquo;these are real capabilities, not a logo wall&rdquo; — which is exactly what the build spec says that row must communicate.</td></tr>
+<tr><td class="num">03</td><td><b>The &ldquo;You&rdquo; node pulse</b></td><td>Your build spec calls the <code>DECISION → You</code> node &ldquo;the best piece of visual argument on the page.&rdquo; Give it one violet ring pulse on hero entry, once, then stop. <code>hy-decide</code> is already defined in <code>globals.css</code> and appears to be unused — this is what it was written for.</td></tr>
+<tr><td class="num">04</td><td><b>Engine card colour flood</b></td><td>On hover, each of the three engine cards fills with its accent tint (citrus / lime / aqua at ~12%) and its border takes the full accent. 180ms. Turns the flattest row on the page into the most tactile one, and reinforces the colour coding you already decided.</td></tr>
+<tr><td class="num">05</td><td><b>Cost-stack draw</b></td><td>The <code>data-cost</code> bars already stagger via <code>Reveal</code>. Slow them: 700ms each, 120ms apart, with the &ldquo;Build / service&rdquo; segment drawing <em>last</em> so the visitor watches your own fee turn out to be the small one. Same code, better argument.</td></tr>
+<tr><td class="num">06</td><td><b>FAQ accordion easing</b></td><td><code>&lt;details&gt;</code> currently snaps. Animate with <code>interpolate-size: allow-keywords</code> + <code>grid-template-rows</code> transition — no JS, no layout change, and it removes the cheapest-feeling interaction on the page.</td></tr>
+</tbody></table></div>
+
+<p class="p"><strong>What not to add:</strong> parallax, animated counters (your spec bans them — a counting number is an implied earnings claim), section-wide fade-ups, cursor followers, WebGL, autoplay video. Every one would push the page toward the template feeling you are trying to get away from.</p>
+</section>
+
+<section id="mobile">
+<h2><span class="n">7</span>Mobile — from documentary to product</h2>
+<p class="lede">Mobile is not a narrower desktop with the visuals removed, which is what it currently is. Four changes.</p>
+
+<div class="tw"><table>
+<thead><tr><th style="width:170px">Element</th><th style="width:210px">Today (&lt;900px)</th><th>Proposed</th></tr></thead>
+<tbody>
+<tr><td><b>Scroll states</b></td><td>Panels, rail and cue set to <code>display:none</code>. Four text blocks with hairlines.</td><td><strong>Horizontal snap carousel.</strong> <code>scroll-snap-type: x mandatory</code>, one full state per viewport, 88vw cards with a peek of the next, four dots beneath. Native scrolling — no scroll-jacking, no JS pin. The section keeps its violet field and becomes the most engaging part of the mobile page rather than the deadest.</td></tr>
+<tr><td><b>Hero fragments</b></td><td>Listing and storefront cards hidden; operations card flows in-line at 11.5px.</td><td>Show <strong>two</strong> cards stacked under the CTA at full opacity and 15px+ type — the listing and the purchase-order approval. They are the proof of the pitch; hiding them on the device most people will use is backwards.</td></tr>
+<tr><td><b>Section rhythm</b></td><td>Same cream ground for the whole scroll.</td><td>The section&nbsp;4 map applies unchanged on mobile — it matters <em>more</em> on a phone, because colour change is the only cue that you have moved between ideas when only one column is visible.</td></tr>
+<tr><td><b>Type</b></td><td>Clamp minimums as low as 9px; hero H1 floor 38px.</td><td>Raise every clamp floor: body 17px, meta 15px, labels 12px, H2 floor 30px, H1 floor 40px. On a 375px screen a 62ch measure is irrelevant — <strong>size is the only lever you have</strong>, and it is currently set backwards.</td></tr>
+</tbody></table></div>
+
+<div class="call">
+<span class="lbl">The 375px test your build spec already demands</span>
+<p>&ldquo;Verify all four states are reachable, the rail ticks stay usable, and a fast flick does not skip states 2 and 3 entirely.&rdquo; A snap carousel passes all three by construction; a hidden grid passes none of them. This is the cheapest way to close that requirement.</p>
+</div>
+</section>
+
+<section id="imagery">
+<h2><span class="n">8</span>Imagery — and a disagreement about stock</h2>
+<p class="lede">You asked for stock images to make the page more interactive. You need imagery. You do not need stock photography, and buying the obvious kind would be the most damaging single decision available on this page.</p>
+
+<div class="call hot">
+<span class="lbl">Why I&rsquo;m pushing back</span>
+<p>Your own build spec, section F, lists four visual rules and the second is: <strong>&ldquo;No stock photography of people, and no AI-generated faces. Not on the team section, not as ambient imagery. This is the one irreversible mistake available on this page.&rdquo;</strong></p>
+<p>That rule is correct and it is worth defending. You are selling to people who have been burned by ecommerce &ldquo;automation&rdquo; operators, and those operators&rsquo; sites are wallpapered with smiling stock consultants and handshake photos. A stock businessman on hyprrbrands.com puts you in that visual category on sight, and it cannot be undone once a sceptical buyer has made the association. My Amazon Guy gets away with a person in the hero because it is <em>Steven Pope&rsquo;s actual face</em>, and he is the proof. That is founder photography, not stock.</p>
+</div>
+
+<h3>What the page actually needs</h3>
+<p class="p">Pattern is the useful reference here, not Lemon Squeezy — it alternates CSS UI with real photography, and that is why it never feels like a template. Four categories, in order of value:</p>
+
+<div class="tw"><table>
+<thead><tr><th style="width:52px">#</th><th style="width:180px">Asset</th><th>Brief</th></tr></thead>
+<tbody>
+<tr><td class="num">01</td><td><b>Founder / team photography</b><br><span class="mono" style="font-size:11px;color:var(--soft)">Commission</span></td><td>The highest-value image on the site and the one blocker your build spec already flags. One real photograph of one real person, consistent crop, plain background, natural light. A phone in good light beats a studio shoot you keep postponing. Until it exists, ship typographic cards — initials on a colour field — never a silhouette.</td></tr>
+<tr><td class="num">02</td><td><b>Operational still life</b><br><span class="mono" style="font-size:11px;color:var(--soft)">Shoot or licence — objects only</span></td><td>This is the &ldquo;stock&rdquo; you can safely use, because it contains no people and makes no claim. Cartons on a pallet, a barcode label being applied, poly mailers, a tape gun, a prep bench, a stack of cases under warehouse light. Shot tight and warm, used as full-bleed background behind the Ownership or True-cost sections at 20–30% overlay. It says &ldquo;physical goods, real operation&rdquo; — which is precisely the thing that separates you from a marketing agency.</td></tr>
+<tr><td class="num">03</td><td><b>Product / packaging renders</b><br><span class="mono" style="font-size:11px;color:var(--soft)">Create</span></td><td>For the Private Label path card. An unbranded mailer box and a simple carton, photographed or rendered in Hyprr colours. <strong>Must not imply a real client brand</strong> — spec requirement.</td></tr>
+<tr><td class="num">04</td><td><b>Elevated UI artefacts</b><br><span class="mono" style="font-size:11px;color:var(--soft)">Rebuild what exists</span></td><td>You already have these — they are just small, translucent and drifting. Make them the imagery: full opacity, larger, one per section, on a real shadow. A purchase order with an approval line, a replenishment flow, a margin-by-SKU row. These are more distinctive than any photograph you could licence, because nobody else in the category shows their actual work product.</td></tr>
+</tbody></table></div>
+
+<h4>If you do licence stock</h4>
+<p class="p">Search the physical object, never the category. <em>&ldquo;Cardboard cartons stacked on a wooden pallet under warehouse strip lighting&rdquo;</em> returns something usable; <em>&ldquo;ecommerce business&rdquo;</em> returns the exact library your competitors used. Unsplash is fine for category 02 and free for commercial use. Two rules: <strong>no faces, and no screens showing numbers</strong> — a laptop displaying a rising graph is an implied earnings claim and your spec bans those in visuals as firmly as in copy.</p>
+
+<div class="call">
+<span class="lbl">The cheapest credibility asset you are not using</span>
+<p>Not photography — <strong>the six channel marks</strong>. Amazon, Walmart, eBay, TikTok Shop, Shopify, Target already sit in your Channels row as inert grey glyphs. Given colour on hover, correct optical sizing and a micro-label each, that row does more for trust in one screenful than any photograph, and it costs a day. Confirm usage rights per marketplace first — spec item P.05.</p>
+</div>
+</section>
+
+<section id="order">
+<h2><span class="n">9</span>Order of work</h2>
+<p class="lede">Sequenced by visible change per hour. Nothing here alters a layout, adds a section, or changes copy that the build spec has frozen.</p>
+
+<div class="tw"><table>
+<thead><tr><th style="width:52px">Day</th><th style="width:230px">Work</th><th>Why it&rsquo;s in this position</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td><b>Type scale collapse</b> — six steps, delete every arbitrary size, 17px body floor</td><td>Fixes the loudest complaint (&ldquo;I can&rsquo;t see what it is&rdquo;), fixes the density complaint as a side effect, and brings the build back inside its own guidelines. Pure find-and-replace, zero layout risk.</td></tr>
+<tr><td class="num">1</td><td><b>White ground + <code>#4E2FD6</code> token</b></td><td>Two lines in <code>globals.css</code>. Unlocks everything in section 4.</td></tr>
+<tr><td class="num">2</td><td><b>Section rhythm map</b> — nineteen background assignments</td><td>The largest perceived change in the document, and it is one class per section. After this the page stops looking like a wireframe.</td></tr>
+<tr><td class="num">2</td><td><b>Delete ambient motion</b>, raise hero fragments to full opacity</td><td>Ten minutes. Removes the template smell immediately.</td></tr>
+<tr><td class="num">3–4</td><td><b>Scroll-stop rebuild</b> — dwell, violet field, type, panel content, rail buttons, exit link</td><td>The section you flagged as worst. Do it after the type scale so you are not tuning motion against unreadable text.</td></tr>
+<tr><td class="num">5</td><td><b>Mobile carousel + hero fragments</b></td><td>Converts the mobile page from a documentary into a product. Largest audience, currently worst experience.</td></tr>
+<tr><td class="num">6</td><td><b>Interactions 01–06</b> from section 6</td><td>Polish, and only worth doing once the surfaces underneath are right.</td></tr>
+<tr><td class="num">7</td><td><b>Channel marks in colour</b>, cost-stack timing, imagery brief issued</td><td>Photography has the longest lead time — brief it on day 1, integrate whenever it lands.</td></tr>
+</tbody></table></div>
+
+<div class="call">
+<span class="lbl">If only three things happen</span>
+<p><strong>1.</strong> Raise the type — one six-step scale, 17px body floor, nothing that is a sentence below 16px. <strong>2.</strong> Give the page four hard background changes, including one full-bleed <code>#4E2FD6</code> field. <strong>3.</strong> Add dwell to the scroll section and take its H2 off 11.5px.</p>
+<p>Those three are roughly two days of work and they address every complaint in your brief except imagery. Everything else in this document is improvement on top of a page that would, at that point, already be working.</p>
+</div>
+</section>
+
+</div>
+</main>
+</div>
+</body>
+</html>

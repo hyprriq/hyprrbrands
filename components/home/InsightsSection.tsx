@@ -29,18 +29,17 @@ const ARTICLES = [
 
 export default function InsightsSection() {
   return (
-    <section id="insights" className="bg-cloud">
+    <section id="insights" className="bg-white border-t border-line">
       <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(64px,7vw,110px)]">
-        <div className="mb-[clamp(30px,4vw,48px)]">
-          <h2 className="font-display font-bold text-[clamp(30px,3.6vw,52px)] leading-[1.04] tracking-[-.03em] m-0 mb-4">
-            What we&apos;re seeing in{" "}
-            <span className="border-b-4 border-sky pb-0.5">commerce</span>.
+        <Reveal className="mb-[clamp(30px,4vw,48px)]">
+          <h2 className="font-display type-h2 text-ink m-0 mb-4">
+            What we&apos;re seeing in commerce.
           </h2>
-          <p className="text-[clamp(16px,1.2vw,18px)] leading-[1.6] text-body m-0 max-w-[62ch]">
+          <p className="type-lead text-body m-0 max-w-[62ch]">
             Practical research on marketplaces, private label, ecommerce
             operations and the economics behind the business.
           </p>
-        </div>
+        </Reveal>
         <Reveal className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-[clamp(18px,2vw,26px)]">
           {ARTICLES.map((a) => (
             <a
@@ -48,24 +47,18 @@ export default function InsightsSection() {
               href={a.href}
               className="text-ink hover:text-ink bg-white border border-line rounded-2xl p-6 flex flex-col gap-3"
             >
-              <div className="h-[5px] w-11 bg-sky rounded-[3px]" />
-              <div className="text-[11px] tracking-[.14em] uppercase text-muted">
-                {a.tag}
-              </div>
-              <h3 className="font-display font-semibold text-xl leading-[1.25] tracking-[-.02em] m-0">
-                {a.title}
-              </h3>
-              <p className="text-base leading-[1.6] text-body m-0 flex-1">
-                {a.copy}
-              </p>
-              <span className="text-sm font-semibold text-violet">
+              <div className="h-[4px] w-11 bg-ink rounded-[3px]" />
+              <div className="type-label text-label uppercase">{a.tag}</div>
+              <h3 className="font-display type-h3 text-ink m-0">{a.title}</h3>
+              <p className="type-body text-body m-0 flex-1">{a.copy}</p>
+              <span className="type-meta font-semibold text-link">
                 Read article →
               </span>
             </a>
           ))}
         </Reveal>
         <div className="mt-7">
-          <a href="/insights" className="text-[15.5px] font-semibold">
+          <a href="/insights" className="type-body font-semibold">
             All insights →
           </a>
         </div>

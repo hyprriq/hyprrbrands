@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Hyprr Brands — Hyprr Palette Directions. Prepared 31 Aug 2026.">
+<title>Hyprr Palette Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --paper:#F4F6F8; --surface:#FFFFFF; --sunk:#EAEEF2;
+  --ink:#11151C; --body:#464F5E; --soft:#6A7383;
+  --line:#D8DEE6; --hair:#E7EBF0;
+  --accent:#B93E23; --crit:#B93E23; --warn:#8A6300; --ok:#1C6F4A;
+  --shadow:0 1px 2px rgba(17,21,28,.05), 0 14px 34px -24px rgba(17,21,28,.30);
+  --rail:262px;
+}
+:root:not([data-theme="light"]){
+  @media (prefers-color-scheme: dark){
+    --paper:#0E1116; --surface:#161A21; --sunk:#11151B;
+    --ink:#E9EDF3; --body:#A5AEBD; --soft:#7B8494;
+    --line:#282E38; --hair:#1F242C;
+    --accent:#F0704F; --crit:#F0704F; --warn:#D9A429; --ok:#4FBF8B;
+    --shadow:0 1px 2px rgba(0,0,0,.5), 0 16px 36px -24px rgba(0,0,0,.9);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E1116; --surface:#161A21; --sunk:#11151B;
+  --ink:#E9EDF3; --body:#A5AEBD; --soft:#7B8494;
+  --line:#282E38; --hair:#1F242C;
+  --accent:#F0704F; --crit:#F0704F; --warn:#D9A429; --ok:#4FBF8B;
+  --shadow:0 1px 2px rgba(0,0,0,.5), 0 16px 36px -24px rgba(0,0,0,.9);
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:400 16px/1.62 Archivo,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{margin:0;font-family:Archivo,system-ui,sans-serif;text-wrap:balance;line-height:1.1;letter-spacing:-.022em}
+p{margin:0}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--accent) 32%,transparent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+code,.mono{font-family:"Spline Sans Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+
+.shell{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);max-width:1460px;margin:0 auto}
+.rail{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:var(--sunk);
+  border-right:1px solid var(--line);padding:32px 22px 48px}
+.rail .mark{font-weight:800;font-size:17px;letter-spacing:-.035em}
+.rail .mark span{font-weight:400;color:var(--soft)}
+.rail .kind{font-family:"Spline Sans Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin:8px 0 24px;line-height:1.6}
+.rail nav{display:flex;flex-direction:column;gap:1px}
+.rail nav a{display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:baseline;padding:6px 0;
+  font-size:13.5px;line-height:1.35;color:var(--ink);border:0}
+.rail nav a b{font-family:"Spline Sans Mono",monospace;font-size:11px;font-weight:600;color:var(--soft)}
+.rail nav a:hover,.rail nav a:hover b{color:var(--accent)}
+.rail .sw-mini{display:flex;gap:3px;margin-top:3px;grid-column:2}
+.rail .sw-mini i{width:13px;height:13px;border-radius:3px;display:block}
+
+main{padding:56px clamp(20px,4vw,68px) 150px;min-width:0}
+.wrap{max-width:940px}
+
+.masthead{border-bottom:2px solid var(--ink);padding-bottom:28px}
+.masthead h1{font-size:clamp(32px,4.4vw,52px);font-weight:800;max-width:17ch;letter-spacing:-.035em}
+.masthead .dek{margin-top:16px;font-size:18.5px;line-height:1.55;color:var(--body);max-width:62ch}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:22px}
+.tag{font-family:"Spline Sans Mono",monospace;font-size:10.5px;letter-spacing:.04em;padding:4px 9px;border:1px solid var(--line);color:var(--soft);border-radius:3px}
+
+.verdict{margin-top:30px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px 28px;box-shadow:var(--shadow)}
+.verdict .lbl{font-family:"Spline Sans Mono",monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--soft);display:block;margin-bottom:12px}
+.verdict p{font-size:20px;line-height:1.45;letter-spacing:-.012em;max-width:56ch}
+.verdict p+p{margin-top:.7em;font-size:16.5px;line-height:1.6;color:var(--body);letter-spacing:0}
+
+section{padding-top:70px;scroll-margin-top:20px}
+section>h2{font-size:clamp(24px,2.8vw,34px);font-weight:700;display:flex;align-items:baseline;gap:15px;
+  padding-bottom:13px;border-bottom:1px solid var(--ink);margin-bottom:24px;letter-spacing:-.03em}
+section>h2 .n{font-family:"Spline Sans Mono",monospace;font-size:15px;font-weight:600;color:var(--accent);flex:none;letter-spacing:0}
+h3{font-size:20px;font-weight:700;margin:36px 0 11px;letter-spacing:-.022em}
+h4{font-family:"Spline Sans Mono",monospace;font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.11em;color:var(--soft);margin:26px 0 11px}
+.lede{font-size:17.5px;line-height:1.58;color:var(--body);max-width:64ch;margin-bottom:20px}
+.p{margin:0 0 1em;max-width:70ch;color:var(--body)}
+.p strong,.lede strong{color:var(--ink);font-weight:600}
+ul,ol{max-width:70ch;padding-left:20px;margin:0 0 1.1em;color:var(--body)}
+li{margin-bottom:.42em}
+li strong{color:var(--ink);font-weight:600}
+
+.call{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:18px 22px;margin:22px 0;max-width:74ch}
+.call .lbl{font-family:"Spline Sans Mono",monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);display:block;margin-bottom:9px}
+.call p{color:var(--body);font-size:15.5px;line-height:1.62}
+.call p+p{margin-top:.75em}
+.call strong{color:var(--ink);font-weight:600}
+.call.hot{border-color:color-mix(in srgb,var(--crit) 40%,var(--line));background:color-mix(in srgb,var(--crit) 4%,var(--surface))}
+.call.hot .lbl{color:var(--crit)}
+.call.win{border-color:color-mix(in srgb,var(--ok) 40%,var(--line));background:color-mix(in srgb,var(--ok) 5%,var(--surface))}
+.call.win .lbl{color:var(--ok)}
+
+.tw{overflow-x:auto;margin:18px 0 26px;border:1px solid var(--line);border-radius:11px;background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-size:14.2px;min-width:560px}
+th{text-align:left;font-family:"Spline Sans Mono",monospace;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--soft);padding:12px 15px;border-bottom:1px solid var(--ink);white-space:nowrap}
+td{padding:12px 15px;border-bottom:1px solid var(--hair);vertical-align:top;color:var(--body);line-height:1.52}
+td:first-child{color:var(--ink)}
+tr:last-child td{border-bottom:0}
+td code{font-size:12.4px;background:var(--sunk);padding:1px 5px;border-radius:4px;color:var(--ink)}
+td b{color:var(--ink)}
+.num{font-family:"Spline Sans Mono",monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+.good{color:var(--ok);font-weight:600}
+.bad{color:var(--crit);font-weight:600}
+.mid{color:var(--warn);font-weight:600}
+.sw{display:flex;align-items:center;gap:9px}
+.chip{width:24px;height:24px;border-radius:6px;border:1px solid rgba(17,21,28,.16);flex:none}
+
+/* ---------- direction blocks ---------- */
+.dir{margin:26px 0 8px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surface);box-shadow:var(--shadow)}
+.dir>header{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:15px 20px;border-bottom:1px solid var(--hair)}
+.dir>header .code{font-family:"Spline Sans Mono",monospace;font-size:12px;font-weight:600;color:var(--soft)}
+.dir>header h3{margin:0;font-size:21px}
+.dir>header .ref{font-size:13.5px;color:var(--soft);margin-left:auto}
+.dir .inner{padding:20px}
+
+.rails{display:flex;flex-wrap:wrap;gap:0;border-radius:10px;overflow:hidden;margin-bottom:18px;border:1px solid var(--hair)}
+.rails .s{flex:1 1 88px;min-width:88px;padding:14px 11px 12px;display:flex;flex-direction:column;gap:3px;min-height:78px;justify-content:flex-end}
+.rails .s .nm{font-size:11.5px;font-weight:600;line-height:1.2}
+.rails .s .hx{font-family:"Spline Sans Mono",monospace;font-size:10px;opacity:.8}
+
+/* mock hero */
+.mock{border-radius:12px;overflow:hidden;border:1px solid var(--hair);margin-bottom:16px}
+.mock .top{display:flex;align-items:center;gap:10px;padding:11px 16px;font-size:12px}
+.mock .top .logo{font-weight:800;letter-spacing:-.03em;font-size:14px}
+.mock .top .nav{margin-left:auto;display:flex;gap:13px;font-size:11.5px;opacity:.8}
+.mock .top .btn{padding:5px 12px;border-radius:8px;font-size:11.5px;font-weight:600}
+.mock .stage{padding:28px 22px 30px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}
+.mock .eb{font-family:"Spline Sans Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.mock .eb i{width:7px;height:7px;border-radius:2px;display:inline-block}
+.mock h4.hl{font-family:Archivo;font-size:27px;font-weight:800;line-height:1.06;letter-spacing:-.035em;margin:0 0 11px;max-width:15ch;text-transform:none}
+.mock .sub{font-size:13.5px;line-height:1.55;max-width:40ch;margin-bottom:16px}
+.mock .btns{display:flex;gap:9px;flex-wrap:wrap}
+.mock .b1,.mock .b2{padding:9px 16px;border-radius:10px;font-size:12.5px;font-weight:600}
+.mock .panel{width:186px;border-radius:11px;padding:13px;font-size:11px;display:grid;gap:8px}
+.mock .panel .pl{font-family:"Spline Sans Mono",monospace;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;opacity:.75}
+.mock .panel .row{display:flex;justify-content:space-between;gap:8px;padding:6px 8px;border-radius:6px;font-size:10.5px}
+@media (max-width:640px){.mock .stage{grid-template-columns:1fr}.mock .panel{width:100%}}
+
+.verdictgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:13px;margin-top:4px}
+.vg{border:1px solid var(--hair);border-radius:10px;padding:13px 15px;background:color-mix(in srgb,var(--paper) 55%,var(--surface))}
+.vg .k{font-family:"Spline Sans Mono",monospace;font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--soft);margin-bottom:6px}
+.vg .v{font-size:14px;line-height:1.5;color:var(--body)}
+.vg .v strong{color:var(--ink);font-weight:600}
+
+.hues{display:flex;gap:2px;margin:14px 0 22px;border-radius:9px;overflow:hidden;border:1px solid var(--hair)}
+.hues .h{flex:1;min-height:64px;display:flex;flex-direction:column;justify-content:flex-end;padding:8px 7px;color:#11151C}
+.hues .h .d{font-family:"Spline Sans Mono",monospace;font-size:10px;font-weight:600}
+.hues .h .n2{font-size:10.5px;font-weight:600}
+.hues .h.odd{outline:2px solid var(--crit);outline-offset:-2px}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="rail">
+  <div class="mark">hyprr <span>brands</span></div>
+  <div class="kind">Palette directions<br>Alternatives to violet · 31 Aug 2026<br>Companion to the surface review</div>
+  <nav>
+    <a href="#agree"><b>0</b><span>You&rsquo;re right — here&rsquo;s the proof</span></a>
+    <a href="#test"><b>1</b><span>The test any option must pass</span></a>
+    <a href="#a"><b>A</b><span>Ink &amp; Engines</span><span class="sw-mini"><i style="background:#17151F"></i><i style="background:#FFC84A"></i><i style="background:#B8F34A"></i><i style="background:#45D8C0"></i></span></a>
+    <a href="#b"><b>B</b><span>Pine &amp; Lime</span><span class="sw-mini"><i style="background:#0D3626"></i><i style="background:#B8F34A"></i><i style="background:#E6F0EA"></i></span></a>
+    <a href="#c"><b>C</b><span>Petrol &amp; Citrus</span><span class="sw-mini"><i style="background:#08424C"></i><i style="background:#FFC84A"></i><i style="background:#45D8C0"></i></span></a>
+    <a href="#d"><b>D</b><span>Oxblood &amp; Signal</span><span class="sw-mini"><i style="background:#5A1420"></i><i style="background:#FFC84A"></i><i style="background:#F5E7E7"></i></span></a>
+    <a href="#pick"><b>2</b><span>The recommendation</span></a>
+    <a href="#type"><b>3</b><span>One note on the fonts</span></a>
+  </nav>
+</aside>
+
+<main>
+<div class="wrap">
+
+<header class="masthead">
+  <h1>Palette directions</h1>
+  <p class="dek">Four alternatives to a violet primary, each with a named reference, verified contrast against Hyprr&rsquo;s existing accents, and an honest note on how guessable it is. Companion to the surface review — everything else in that document stands regardless of which of these you pick.</p>
+  <div class="tags">
+    <span class="tag">4 directions</span>
+    <span class="tag">Contrast verified</span>
+    <span class="tag">Expressive palette retained</span>
+    <span class="tag">No layout change</span>
+  </div>
+</header>
+
+<div class="verdict">
+  <span class="lbl">Short answer</span>
+  <p>You&rsquo;re right, and for a better reason than the one you gave. <strong>Violet isn&rsquo;t just common — it is structurally the wrong primary for the palette you already own.</strong></p>
+  <p>It is the only colour in your system with no relatives. And when you try to use it as a large field, it is the only candidate that <em>cannot</em> carry your own accents at readable contrast. That is a measurable defect, not a matter of taste — the numbers are in section 0.</p>
+</div>
+
+<section id="agree">
+<h2><span class="n">0</span>Why violet is the wrong primary — two hard reasons</h2>
+
+<h3>1. Violet is an orphan in your own palette</h3>
+<p class="p">Plotted by hue, the Hyprr expressive palette clusters into two families — warm (Coral, Citrus) and cool-green (Lime, Aqua, Sky). Violet sits alone with nothing next to it:</p>
+
+<div class="hues">
+  <div class="h" style="background:#FF735F"><div class="n2">Coral</div><div class="d">7°</div></div>
+  <div class="h" style="background:#FFC84A"><div class="n2">Citrus</div><div class="d">42°</div></div>
+  <div class="h" style="background:#B8F34A"><div class="n2">Lime</div><div class="d">81°</div></div>
+  <div class="h" style="background:#45D8C0"><div class="n2">Aqua</div><div class="d">170°</div></div>
+  <div class="h" style="background:#73B7FF"><div class="n2">Sky</div><div class="d">211°</div></div>
+  <div class="h odd" style="background:#6947FF;color:#fff"><div class="n2">Violet</div><div class="d">251°</div></div>
+  <div class="h" style="background:#FFB0C4"><div class="n2">Rose</div><div class="d">345°</div></div>
+</div>
+
+<p class="p">Between Sky at 211&deg; and Rose at 345&deg; there is a 134&deg; gap, and Violet is stranded in the middle of it. Every other colour has a neighbour. <strong>This is why the page feels like &ldquo;something is missing&rdquo; even when nothing is technically wrong</strong> — your primary and your accents are not from the same world, so the accents read as decoration rather than as a system.</p>
+<p class="p">There is a second tell hiding in the neutrals. Ink <code>#17151F</code> has a hue of <strong>252&deg;</strong> — it is a violet-tinted near-black. So violet isn&rsquo;t just the accent; it is quietly in the greys too. Change the primary and the neutral should follow it, or the page will keep carrying a purple cast you can&rsquo;t point at.</p>
+
+<h3>2. Violet cannot carry your own accents as a field</h3>
+<p class="p">This is the part that settles it. Take each candidate field colour and measure your accents sitting on top of it:</p>
+
+<div class="tw"><table>
+<thead><tr>
+  <th style="width:210px">Field colour</th>
+  <th class="num">White</th><th class="num">Lime</th><th class="num">Citrus</th><th class="num">Aqua</th><th class="num">Coral</th>
+</tr></thead>
+<tbody>
+<tr><td><div class="sw"><span class="chip" style="background:#4E2FD6"></span><b>Violet Deep</b> <code>#4E2FD6</code></div></td>
+  <td class="num good">7.77</td><td class="num mid">5.91</td><td class="num mid">5.04</td><td class="num bad">4.38</td><td class="num bad">2.91</td></tr>
+<tr><td><div class="sw"><span class="chip" style="background:#17151F"></span>Ink <code>#17151F</code></div></td>
+  <td class="num good">18.05</td><td class="num good">13.72</td><td class="num good">11.70</td><td class="num good">10.17</td><td class="num good">6.76</td></tr>
+<tr><td><div class="sw"><span class="chip" style="background:#0D3626"></span>Pine <code>#0D3626</code></div></td>
+  <td class="num good">13.35</td><td class="num good">10.15</td><td class="num good">8.66</td><td class="num good">7.53</td><td class="num good">5.00</td></tr>
+<tr><td><div class="sw"><span class="chip" style="background:#08424C"></span>Petrol <code>#08424C</code></div></td>
+  <td class="num good">11.09</td><td class="num good">8.43</td><td class="num good">7.19</td><td class="num good">6.25</td><td class="num mid">4.16</td></tr>
+<tr><td><div class="sw"><span class="chip" style="background:#5A1420"></span>Oxblood <code>#5A1420</code></div></td>
+  <td class="num good">13.50</td><td class="num good">10.26</td><td class="num good">8.75</td><td class="num good">7.61</td><td class="num good">5.06</td></tr>
+</tbody></table></div>
+
+<p class="p">Violet Deep is the <strong>worst field in the set on four of five accents.</strong> Aqua on it fails AA outright at 4.38; Coral at 2.91 is unusable. Which means a violet-drenched section can only ever be violet-and-white — you lose the multi-colour identity your brand brief specifically asked for, in the exact place you were trying to show it off.</p>
+
+<div class="call win">
+<span class="lbl">Where this leaves us</span>
+<p>My earlier recommendation of a deeper violet field was the right <em>mechanic</em> — commit a saturated ground instead of a 44px button — applied to the wrong <em>hue</em>. The mechanic still holds for every option below. <strong>Keep the argument, change the colour.</strong></p>
+</div>
+</section>
+
+<section id="test">
+<h2><span class="n">1</span>The test each option has to pass</h2>
+<p class="lede">Five filters. Anything that fails two is out, however good it looks in isolation.</p>
+<div class="tw"><table>
+<thead><tr><th style="width:52px">#</th><th style="width:190px">Filter</th><th>Why it&rsquo;s here</th></tr></thead>
+<tbody>
+<tr><td class="num">01</td><td><b>Carries the accents</b></td><td>Must hold Citrus, Lime and Aqua at ≥4.5:1 as a field. This is what makes the multi-colour identity possible rather than aspirational.</td></tr>
+<tr><td class="num">02</td><td><b>Survives the marketplace row</b></td><td>Amazon orange, Walmart blue, Shopify green and Target red all appear on your homepage. A primary that fights or duplicates one of them makes the channel strip look accidental.</td></tr>
+<tr><td class="num">03</td><td><b>Reads checkable, not hyped</b></td><td>You sell to people burned by ecommerce operators. Bright, high-energy palettes read as the thing they are fleeing. Depth reads as an institution.</td></tr>
+<tr><td class="num">04</td><td><b>Fails the guessability test</b></td><td>Two levels. First: could someone guess it from &ldquo;ecommerce agency&rdquo;? Second, and the one that actually catches people: could they guess it from <em>&ldquo;ecommerce agency that isn&rsquo;t SaaS purple&rdquo;</em>? That second guess is where most rebrands land, and it is still a reflex.</td></tr>
+<tr><td class="num">05</td><td><b>Cheap to switch to</b></td><td>Every option below is a token change in <code>globals.css</code>. None requires a logo change, a layout change, or a copy change.</td></tr>
+</tbody></table></div>
+</section>
+
+<!-- ============ DIRECTION A ============ -->
+<section id="a">
+<h2><span class="n">A</span>Ink &amp; Engines</h2>
+<p class="lede">The option that isn&rsquo;t a new colour at all. Stop having a primary. Let the three engines <em>be</em> the colour system, on a near-black connective ground.</p>
+
+<div class="dir">
+  <header>
+    <span class="code">DIR-A</span>
+    <h3>Ink &amp; Engines</h3>
+    <span class="ref">Reference lane: <b>Mailchimp full-palette</b> × <b>Vercel monochrome ground</b></span>
+  </header>
+  <div class="inner">
+    <div class="rails">
+      <div class="s" style="background:#17151F;color:#FAFAF7"><div class="nm">Ink — field</div><div class="hx">#17151F</div></div>
+      <div class="s" style="background:#FFFFFF;color:#11151C"><div class="nm">White — ground</div><div class="hx">#FFFFFF</div></div>
+      <div class="s" style="background:#FFC84A;color:#17151F"><div class="nm">Citrus — Build</div><div class="hx">#FFC84A</div></div>
+      <div class="s" style="background:#B8F34A;color:#17151F"><div class="nm">Lime — Grow</div><div class="hx">#B8F34A</div></div>
+      <div class="s" style="background:#45D8C0;color:#17151F"><div class="nm">Aqua — Operate</div><div class="hx">#45D8C0</div></div>
+      <div class="s" style="background:#F2F1EE;color:#11151C"><div class="nm">Bone — rest</div><div class="hx">#F2F1EE</div></div>
+    </div>
+
+    <div class="mock">
+      <div class="top" style="background:#17151F;color:#FAFAF7">
+        <span class="logo">hyprr <span style="opacity:.55;font-weight:400">brands</span></span>
+        <span class="nav"><span>Build</span><span>Grow</span><span>Operate</span><span>How we work</span></span>
+        <span class="btn" style="background:#FFC84A;color:#17151F">Let&rsquo;s talk</span>
+      </div>
+      <div class="stage" style="background:#17151F;color:#C7C3D2">
+        <div>
+          <div class="eb" style="color:#8E89A0"><i style="background:#FFC84A"></i>Build<i style="background:#B8F34A"></i>Grow<i style="background:#45D8C0"></i>Operate</div>
+          <h4 class="hl" style="color:#FFFFFF">You own the business. We run the <span style="color:#B8F34A">operation</span>.</h4>
+          <p class="sub" style="color:#C7C3D2">Hyprr builds, grows and operates ecommerce businesses across Amazon, Walmart and Shopify.</p>
+          <div class="btns">
+            <span class="b1" style="background:#FFC84A;color:#17151F">Let&rsquo;s talk</span>
+            <span class="b2" style="border:1px solid rgba(250,250,247,.32);color:#FAFAF7">See how we work</span>
+          </div>
+        </div>
+        <div class="panel" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);color:#C7C3D2">
+          <div class="pl">Commerce operating system</div>
+          <div class="row" style="background:rgba(255,200,74,.14)"><span>PRODUCT</span><span style="color:#FFC84A">Shortlisted</span></div>
+          <div class="row" style="background:rgba(184,243,74,.14)"><span>DECISION</span><span style="color:#B8F34A">Awaiting you</span></div>
+          <div class="row" style="background:rgba(69,216,192,.14)"><span>OPERATIONS</span><span style="color:#45D8C0">Managed</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="verdictgrid">
+      <div class="vg"><div class="k">What it says</div><div class="v"><strong>&ldquo;This is an operating system, and colour tells you which part you&rsquo;re in.&rdquo;</strong> Citrus = Build, Lime = Grow, Aqua = Operate, everywhere on the site, forever.</div></div>
+      <div class="vg"><div class="k">Why it&rsquo;s strong here</div><div class="v">Your components <em>already assign these three colours to the three engines</em>. The system exists in the code; it&rsquo;s just being rendered as 7px dots. This makes it the identity.</div></div>
+      <div class="vg"><div class="k">Guessability</div><div class="v"><strong>Very low.</strong> Nobody predicts &ldquo;tri-colour engine-coded system on ink&rdquo; from &ldquo;ecommerce agency.&rdquo; It passes both levels of the test.</div></div>
+      <div class="vg"><div class="k">The risk</div><div class="v">Needs discipline. Three colours used loosely becomes confetti. Every use must map to an engine — no decorative Citrus in a Grow section, ever.</div></div>
+      <div class="vg"><div class="k">Marketplace row</div><div class="v"><strong>Cleanest of the four.</strong> An ink ground makes Amazon, Walmart, Shopify and Target marks read as themselves without competing.</div></div>
+      <div class="vg"><div class="k">Cost to switch</div><div class="v"><strong>Near zero.</strong> No new token. Demote Violet to link/focus only, retint Ink&rsquo;s hue off 252&deg;, and apply the section rhythm map.</div></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============ DIRECTION B ============ -->
+<section id="b">
+<h2><span class="n">B</span>Pine &amp; Lime</h2>
+<p class="lede">A deep forest ground with your existing Lime as the single hot signal. The most emotionally warm of the four, and the one with the strongest real-world precedent.</p>
+
+<div class="dir">
+  <header>
+    <span class="code">DIR-B</span>
+    <h3>Pine &amp; Lime</h3>
+    <span class="ref">Reference lane: <b>Wise</b> (acid-green on deep forest)</span>
+  </header>
+  <div class="inner">
+    <div class="rails">
+      <div class="s" style="background:#0D3626;color:#FFFFFF"><div class="nm">Pine — field</div><div class="hx">#0D3626</div></div>
+      <div class="s" style="background:#B8F34A;color:#0D3626"><div class="nm">Lime — signal</div><div class="hx">#B8F34A</div></div>
+      <div class="s" style="background:#FFFFFF;color:#11151C"><div class="nm">White — ground</div><div class="hx">#FFFFFF</div></div>
+      <div class="s" style="background:#E6F0EA;color:#11151C"><div class="nm">Pine tint — rest</div><div class="hx">#E6F0EA</div></div>
+      <div class="s" style="background:#FFC84A;color:#17151F"><div class="nm">Citrus — 2nd</div><div class="hx">#FFC84A</div></div>
+      <div class="s" style="background:#141A17;color:#FFFFFF"><div class="nm">Ink, retinted</div><div class="hx">#141A17</div></div>
+    </div>
+
+    <div class="mock">
+      <div class="top" style="background:#0D3626;color:#E6F0EA">
+        <span class="logo">hyprr <span style="opacity:.6;font-weight:400">brands</span></span>
+        <span class="nav"><span>Build</span><span>Grow</span><span>Operate</span><span>How we work</span></span>
+        <span class="btn" style="background:#B8F34A;color:#0D3626">Let&rsquo;s talk</span>
+      </div>
+      <div class="stage" style="background:#0D3626;color:#C3D6CB">
+        <div>
+          <div class="eb" style="color:#8FAF9C"><i style="background:#FFC84A"></i>Build<i style="background:#B8F34A"></i>Grow<i style="background:#45D8C0"></i>Operate</div>
+          <h4 class="hl" style="color:#FFFFFF">You own the business. We run the <span style="color:#B8F34A">operation</span>.</h4>
+          <p class="sub" style="color:#C3D6CB">Hyprr builds, grows and operates ecommerce businesses across Amazon, Walmart and Shopify.</p>
+          <div class="btns">
+            <span class="b1" style="background:#B8F34A;color:#0D3626">Let&rsquo;s talk</span>
+            <span class="b2" style="border:1px solid rgba(230,240,234,.36);color:#E6F0EA">See how we work</span>
+          </div>
+        </div>
+        <div class="panel" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.17);color:#C3D6CB">
+          <div class="pl">Commerce operating system</div>
+          <div class="row" style="background:rgba(255,255,255,.06)"><span>PRODUCT</span><span style="color:#FFC84A">Shortlisted</span></div>
+          <div class="row" style="background:rgba(184,243,74,.16)"><span>DECISION</span><span style="color:#B8F34A">Awaiting you</span></div>
+          <div class="row" style="background:rgba(255,255,255,.06)"><span>OPERATIONS</span><span style="color:#45D8C0">Managed</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="verdictgrid">
+      <div class="vg"><div class="k">What it says</div><div class="v"><strong>&ldquo;Money, and people who are careful with it.&rdquo;</strong> Deep green is the colour of institutions that hold other people&rsquo;s capital — which is exactly the objection your homepage is built to answer.</div></div>
+      <div class="vg"><div class="k">Why the reference matters</div><div class="v">Wise runs almost this exact pairing and is a fintech people trust with money without feeling sold to. It is proof the combination reads serious rather than startup-y.</div></div>
+      <div class="vg"><div class="k">Guessability</div><div class="v"><strong>Medium.</strong> This is the honest weak point. &ldquo;Not purple, so green because growth/money&rdquo; is a plausible second guess. The saving grace is the <em>depth</em> — most who go green go bright, and bright green is Shopify&rsquo;s.</div></div>
+      <div class="vg"><div class="k">The risk</div><div class="v">Shopify adjacency. You sell Shopify services, and a green brand next to a Shopify mark can read as &ldquo;Shopify partner&rdquo; rather than as Hyprr. Depth and the Citrus counterweight are what prevent that.</div></div>
+      <div class="vg"><div class="k">Marketplace row</div><div class="v">Good, with one caveat — put the channel strip on white, never on the pine field, so Shopify&rsquo;s green isn&rsquo;t sitting in your green.</div></div>
+      <div class="vg"><div class="k">Cost to switch</div><div class="v"><strong>Low.</strong> Two new tokens (Pine, Pine tint), retint Ink to <code>#141A17</code>, Lime is promoted from bullet to hero. Violet becomes link-only or is retired.</div></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============ DIRECTION C ============ -->
+<section id="c">
+<h2><span class="n">C</span>Petrol &amp; Citrus</h2>
+<p class="lede">Deep marine teal with amber as the counterweight. The most &ldquo;operations&rdquo; of the four — freight, ports, control rooms — and the least used by anyone in your category.</p>
+
+<div class="dir">
+  <header>
+    <span class="code">DIR-C</span>
+    <h3>Petrol &amp; Citrus</h3>
+    <span class="ref">Reference lane: <b>industrial / marine signage</b>, not a software brand</span>
+  </header>
+  <div class="inner">
+    <div class="rails">
+      <div class="s" style="background:#08424C;color:#FFFFFF"><div class="nm">Petrol — field</div><div class="hx">#08424C</div></div>
+      <div class="s" style="background:#FFC84A;color:#08424C"><div class="nm">Citrus — signal</div><div class="hx">#FFC84A</div></div>
+      <div class="s" style="background:#45D8C0;color:#08424C"><div class="nm">Aqua — status</div><div class="hx">#45D8C0</div></div>
+      <div class="s" style="background:#FFFFFF;color:#11151C"><div class="nm">White — ground</div><div class="hx">#FFFFFF</div></div>
+      <div class="s" style="background:#E2EFF1;color:#11151C"><div class="nm">Petrol tint</div><div class="hx">#E2EFF1</div></div>
+      <div class="s" style="background:#121B1D;color:#FFFFFF"><div class="nm">Ink, retinted</div><div class="hx">#121B1D</div></div>
+    </div>
+
+    <div class="mock">
+      <div class="top" style="background:#08424C;color:#D6E8EB">
+        <span class="logo">hyprr <span style="opacity:.6;font-weight:400">brands</span></span>
+        <span class="nav"><span>Build</span><span>Grow</span><span>Operate</span><span>How we work</span></span>
+        <span class="btn" style="background:#FFC84A;color:#08424C">Let&rsquo;s talk</span>
+      </div>
+      <div class="stage" style="background:#08424C;color:#B7D2D7">
+        <div>
+          <div class="eb" style="color:#8FB6BD"><i style="background:#FFC84A"></i>Build<i style="background:#B8F34A"></i>Grow<i style="background:#45D8C0"></i>Operate</div>
+          <h4 class="hl" style="color:#FFFFFF">You own the business. We run the <span style="color:#FFC84A">operation</span>.</h4>
+          <p class="sub" style="color:#B7D2D7">Hyprr builds, grows and operates ecommerce businesses across Amazon, Walmart and Shopify.</p>
+          <div class="btns">
+            <span class="b1" style="background:#FFC84A;color:#08424C">Let&rsquo;s talk</span>
+            <span class="b2" style="border:1px solid rgba(214,232,235,.36);color:#D6E8EB">See how we work</span>
+          </div>
+        </div>
+        <div class="panel" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.17);color:#B7D2D7">
+          <div class="pl">Commerce operating system</div>
+          <div class="row" style="background:rgba(255,255,255,.06)"><span>PRODUCT</span><span style="color:#FFC84A">Shortlisted</span></div>
+          <div class="row" style="background:rgba(255,200,74,.16)"><span>DECISION</span><span style="color:#FFC84A">Awaiting you</span></div>
+          <div class="row" style="background:rgba(255,255,255,.06)"><span>OPERATIONS</span><span style="color:#45D8C0">Managed</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="verdictgrid">
+      <div class="vg"><div class="k">What it says</div><div class="v"><strong>&ldquo;There is a control room behind this.&rdquo;</strong> Petrol and amber is the palette of instrumentation and freight — physical goods moving, being watched. Which is literally the business.</div></div>
+      <div class="vg"><div class="k">Why it&rsquo;s strong here</div><div class="v">It anchors Aqua perfectly — same hue family, so your status colour finally belongs to something. And amber-on-teal is a genuine complementary pair, so the page has tension without a third idea.</div></div>
+      <div class="vg"><div class="k">Guessability</div><div class="v"><strong>Lowest of the four.</strong> Nobody arrives at deep petrol from &ldquo;ecommerce agency&rdquo; at either level of the test. This is the most distinctive option on the page.</div></div>
+      <div class="vg"><div class="k">The risk</div><div class="v">Cool and slightly clinical. Your brief asks for &ldquo;data-driven but human&rdquo; — this nails the first half and needs the copy, photography and Citrus to carry the second. Get the imagery wrong and it goes cold.</div></div>
+      <div class="vg"><div class="k">Marketplace row</div><div class="v">Good. Far enough from Walmart&rsquo;s blue to avoid confusion, and no marketplace owns teal.</div></div>
+      <div class="vg"><div class="k">Cost to switch</div><div class="v"><strong>Low.</strong> Two tokens plus an Ink retint. Citrus is promoted from number-chip to primary CTA.</div></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============ DIRECTION D ============ -->
+<section id="d">
+<h2><span class="n">D</span>Oxblood &amp; Signal</h2>
+<p class="lede">Deep burgundy. The authority option — legal, institutional, checkable. The boldest of the four and the one that most changes what Hyprr feels like.</p>
+
+<div class="dir">
+  <header>
+    <span class="code">DIR-D</span>
+    <h3>Oxblood &amp; Signal</h3>
+    <span class="ref">Reference lane: <b>financial press / institutional</b> — FT, Economist, university presses</span>
+  </header>
+  <div class="inner">
+    <div class="rails">
+      <div class="s" style="background:#5A1420;color:#FFFFFF"><div class="nm">Oxblood — field</div><div class="hx">#5A1420</div></div>
+      <div class="s" style="background:#FFC84A;color:#5A1420"><div class="nm">Citrus — signal</div><div class="hx">#FFC84A</div></div>
+      <div class="s" style="background:#FFFFFF;color:#11151C"><div class="nm">White — ground</div><div class="hx">#FFFFFF</div></div>
+      <div class="s" style="background:#F5E7E7;color:#11151C"><div class="nm">Oxblood tint</div><div class="hx">#F5E7E7</div></div>
+      <div class="s" style="background:#45D8C0;color:#17151F"><div class="nm">Aqua — status</div><div class="hx">#45D8C0</div></div>
+      <div class="s" style="background:#1C1416;color:#FFFFFF"><div class="nm">Ink, retinted</div><div class="hx">#1C1416</div></div>
+    </div>
+
+    <div class="mock">
+      <div class="top" style="background:#5A1420;color:#EBD5D7">
+        <span class="logo">hyprr <span style="opacity:.6;font-weight:400">brands</span></span>
+        <span class="nav"><span>Build</span><span>Grow</span><span>Operate</span><span>How we work</span></span>
+        <span class="btn" style="background:#FFC84A;color:#5A1420">Let&rsquo;s talk</span>
+      </div>
+      <div class="stage" style="background:#5A1420;color:#D9BCBF">
+        <div>
+          <div class="eb" style="color:#B08C90"><i style="background:#FFC84A"></i>Build<i style="background:#B8F34A"></i>Grow<i style="background:#45D8C0"></i>Operate</div>
+          <h4 class="hl" style="color:#FFFFFF">You own the business. We run the <span style="color:#FFC84A">operation</span>.</h4>
+          <p class="sub" style="color:#D9BCBF">Hyprr builds, grows and operates ecommerce businesses across Amazon, Walmart and Shopify.</p>
+          <div class="btns">
+            <span class="b1" style="background:#FFC84A;color:#5A1420">Let&rsquo;s talk</span>
+            <span class="b2" style="border:1px solid rgba(235,213,215,.36);color:#EBD5D7">See how we work</span>
+          </div>
+        </div>
+        <div class="panel" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.17);color:#D9BCBF">
+          <div class="pl">Commerce operating system</div>
+          <div class="row" style="background:rgba(255,255,255,.06)"><span>PRODUCT</span><span style="color:#FFC84A">Shortlisted</span></div>
+          <div class="row" style="background:rgba(255,200,74,.16)"><span>DECISION</span><span style="color:#FFC84A">Awaiting you</span></div>
+          <div class="row" style="background:rgba(255,255,255,.06)"><span>OPERATIONS</span><span style="color:#45D8C0">Managed</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="verdictgrid">
+      <div class="vg"><div class="k">What it says</div><div class="v"><strong>&ldquo;We are an institution, and we publish our terms.&rdquo;</strong> The most direct visual answer to a buyer who has been burned — it looks like something with a registered entity number.</div></div>
+      <div class="vg"><div class="k">Why it&rsquo;s strong here</div><div class="v">Your differentiators are contractual: client-owned accounts, recorded approvals, published fee mechanics, ungated documents. Oxblood is the palette of documents.</div></div>
+      <div class="vg"><div class="k">Guessability</div><div class="v"><strong>Low</strong>, with one caution: burgundy plus a display serif plus ruled columns lands in the saturated &ldquo;editorial&rdquo; lane. Keep the type grotesque and it stays distinctive.</div></div>
+      <div class="vg"><div class="k">The risk</div><div class="v"><strong>The biggest personality change of the four.</strong> It reads older and more conservative. Your brief says &ldquo;memorable and energetic&rdquo; — this trades energy for gravity. Defensible, but be sure it&rsquo;s the trade you want.</div></div>
+      <div class="vg"><div class="k">Marketplace row</div><div class="v">Watch Target. Both are red-family; keep the strip on white and set Target in type if the mark reads as competing.</div></div>
+      <div class="vg"><div class="k">Cost to switch</div><div class="v"><strong>Low technically, high in brand terms.</strong> Same two-token change, but this is the one your guidelines document would need genuinely rewriting for, not just amending.</div></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="pick">
+<h2><span class="n">2</span>The recommendation</h2>
+
+<div class="tw"><table>
+<thead><tr><th style="width:150px">Direction</th><th class="num" style="width:96px">Carries accents</th><th class="num" style="width:106px">Distinctive</th><th class="num" style="width:96px">Trust read</th><th class="num" style="width:96px">Switch cost</th><th>Verdict</th></tr></thead>
+<tbody>
+<tr><td><b>A · Ink &amp; Engines</b></td><td class="num good">Best</td><td class="num good">High</td><td class="num good">High</td><td class="num good">Lowest</td><td><b>Recommended.</b> Uses what you already built and needs no new brand colour.</td></tr>
+<tr><td><b>C · Petrol &amp; Citrus</b></td><td class="num good">Good</td><td class="num good">Highest</td><td class="num good">High</td><td class="num good">Low</td><td>The strongest option if you want a real primary. Coldest personality.</td></tr>
+<tr><td><b>B · Pine &amp; Lime</b></td><td class="num good">Good</td><td class="num mid">Medium</td><td class="num good">Highest</td><td class="num good">Low</td><td>Warmest and most trusted. Slight Shopify adjacency, slightly guessable.</td></tr>
+<tr><td><b>D · Oxblood</b></td><td class="num good">Good</td><td class="num good">High</td><td class="num good">Highest</td><td class="num mid">Brand rewrite</td><td>Right if Hyprr should feel like an institution. Loses energy.</td></tr>
+<tr><td>Violet Deep <span style="color:var(--soft)">(previous)</span></td><td class="num bad">Worst</td><td class="num bad">Low</td><td class="num mid">Medium</td><td class="num good">Lowest</td><td>Withdrawn — fails filter 01 and filter 04.</td></tr>
+</tbody></table></div>
+
+<div class="call win">
+<span class="lbl">What I&rsquo;d do</span>
+<p><strong>Direction A, with Petrol held in reserve.</strong> Here is the case: the three-engine colour coding is already in your components — <code>ThreeEngines.tsx</code> assigns Citrus to Build, Lime to Grow, Aqua to Operate, and <code>SystemScroll.tsx</code> carries the same mapping through all four states. <em>The system is built. It is just being rendered at 7 pixels.</em></p>
+<p>Making that the identity means colour on your site carries information instead of decoration — a visitor learns within two sections that amber means Build and teal means Operate, and every page after that is faster to read. No competitor in your category does this, because none of them has a three-engine model to code. <strong>It is the one palette decision that is downstream of your actual business rather than of a mood board.</strong></p>
+<p>And it is the cheapest to reverse. If in three months it feels too austere, adding Petrol as a field colour on top of a working engine-coded system is a two-token change. Going the other way is not.</p>
+</div>
+
+<h4>What changes in <code>globals.css</code> for Direction A</h4>
+<div class="tw"><table>
+<thead><tr><th style="width:190px">Token</th><th style="width:150px">Now</th><th>Change</th></tr></thead>
+<tbody>
+<tr><td><code>--color-violet</code></td><td><code>#6947FF</code></td><td><b>Keep the value, shrink the job.</b> Links, focus rings and the &ldquo;You&rdquo; decision node only. Never a section field, never a primary button.</td></tr>
+<tr><td><code>--color-ink</code></td><td><code>#17151F</code> <span style="color:var(--soft)">hue 252&deg;</span></td><td>Retint to <code>#17171A</code> — same lightness, saturation dropped from 19% to 6%, so the neutrals stop carrying a purple cast. White on it is still 17.89:1.</td></tr>
+<tr><td><code>--color-aubergine</code></td><td><code>#25172F</code></td><td><b>Retire.</b> Replaced by Ink on every dark surface, including the scroll section.</td></tr>
+<tr><td><code>--color-cloud</code></td><td><code>#FAFAF7</code></td><td>Demote from page ground to rest-band only; White becomes the ground. Or replace with Bone <code>#F2F1EE</code>, which actually separates from white.</td></tr>
+<tr><td>Primary CTA</td><td>Violet fill</td><td><b>Citrus <code>#FFC84A</code> with Ink text</b> — 11.70:1, and it is the one button colour nobody else in the category uses.</td></tr>
+<tr><td>New: engine roles</td><td>—</td><td>Formalise <code>--engine-build: #FFC84A</code>, <code>--engine-grow: #B8F34A</code>, <code>--engine-operate: #45D8C0</code>. Every colour use on the site resolves to one of these or to a neutral.</td></tr>
+</tbody></table></div>
+
+<p class="p"><strong>Everything in the surface review still applies unchanged.</strong> Type scale, dwell on the scroll section, mobile carousel, killing the ambient drift, the section rhythm map — all of it. Only the field colours in the rhythm map swap: the two Violet Deep bands become Ink, and the two ink bands become Citrus-pastel and Lavender-replacement tints.</p>
+</section>
+
+<section id="type">
+<h2><span class="n">3</span>One note on the fonts, since the brand is open</h2>
+<p class="p">You asked me to check the skills. There is one thing in there worth telling you even though you didn&rsquo;t ask: <strong>Space Grotesk and Inter are both on impeccable&rsquo;s reflex-reject font list</strong> — the training-data defaults that create monoculture. You are running both.</p>
+<p class="p">The same document says the reject list applies to <em>new</em> choices, and that when a brand has already committed, identity preservation wins. So this is not a recommendation to change them. It is a flag: <strong>if you are reopening the palette anyway, the fonts are the other half of &ldquo;why does this look like every other site&rdquo;</strong>, and changing both at once costs barely more than changing one.</p>
+<div class="call">
+<span class="lbl">If you want to look</span>
+<p>Keep the grotesque register — it is right for the business. Look at <b>Archivo</b> (what this document is set in), <b>Söhne</b>, <b>Founders Grotesk</b>, <b>Diatype</b>, <b>Neue Haas Grotesk</b>, or <b>Aeonik</b> for display; pair with a single well-drawn text face rather than a second grotesque. And a proper mono for the operational labels — the build currently falls back to <code>ui-monospace</code>, which renders differently on every machine and is why the mono labels look inconsistent between your screenshots.</p>
+<p><strong>Do this second, not first.</strong> The palette decision changes what the page feels like; the font decision refines it. Doing both in the same week means you cannot tell which one worked.</p>
+</div>
+</section>
+
+</div>
+</main>
+</div>
+</body>
+</html>

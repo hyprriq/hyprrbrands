@@ -1,63 +1,65 @@
 import Reveal from "./Reveal";
 
+/**
+ * Built differently — five principles about how the operation is built,
+ * so the section earns the Build band ground.
+ */
 export default function Principles() {
   return (
-    <section className="bg-white border-t border-line">
+    <section className="bg-build-band">
       <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(64px,7vw,110px)]">
-        <div className="mb-[clamp(30px,4vw,48px)]">
-          <h2 className="font-display font-bold text-[clamp(30px,3.6vw,52px)] leading-[1.04] tracking-[-.03em] m-0 mb-4">
-            Built <span className="text-violet">differently</span>.
+        <Reveal className="mb-[clamp(30px,4vw,48px)]">
+          <h2 className="font-display type-h2 text-ink m-0 mb-4">
+            Built differently.
           </h2>
-          <p className="text-[clamp(16px,1.2vw,18px)] leading-[1.6] text-body m-0 max-w-[62ch]">
+          <p className="type-lead text-body m-0 max-w-[62ch]">
             The operating model is the product. These are the terms it runs on.
           </p>
-        </div>
-        <Reveal className="bg-ink text-cloud rounded-3xl p-[clamp(24px,3vw,44px)]">
+        </Reveal>
+        <Reveal className="bg-ink text-white rounded-3xl p-[clamp(24px,3vw,44px)]">
           <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-0">
-            <div className="py-[22px] pr-6 border-b border-cloud/10">
-              <div className="font-mono text-[10.5px] tracking-[.1em] text-dim mb-3">
+            <div className="py-[22px] pr-6 border-b border-line-on-ink">
+              <div className="type-label text-on-ink-mute mb-3">
                 PRINCIPLE 01
               </div>
-              <div className="font-display font-semibold text-[19px] tracking-[-.02em]">
-                Client-owned accounts
-              </div>
+              <div className="type-body font-bold">Client-owned accounts</div>
             </div>
-            <div className="py-[22px] px-6 border-b border-cloud/10">
-              <div className="font-mono text-[10.5px] tracking-[.1em] text-dim mb-3">
+            <div className="py-[22px] px-6 border-b border-line-on-ink">
+              <div className="type-label text-on-ink-mute mb-3">
                 PRINCIPLE 02
               </div>
-              <div className="font-display font-semibold text-[19px] tracking-[-.02em]">
+              <div className="type-body font-bold">
                 Client-approved purchases
               </div>
             </div>
-            <div className="py-[22px] pl-6 border-b border-cloud/10">
-              <div className="font-mono text-[10.5px] tracking-[.1em] text-dim mb-3">
+            <div className="py-[22px] pl-6 border-b border-line-on-ink">
+              <div className="type-label text-on-ink-mute mb-3">
                 PRINCIPLE 03
               </div>
-              <div className="font-display font-semibold text-[19px] tracking-[-.02em]">
+              <div className="type-body font-bold">
                 Direct vendor → client invoicing
               </div>
             </div>
             <div className="pt-[22px] pr-6">
-              <div className="font-mono text-[10.5px] tracking-[.1em] text-dim mb-3">
+              <div className="type-label text-on-ink-mute mb-3">
                 PRINCIPLE 04
               </div>
-              <div className="font-display font-semibold text-[19px] tracking-[-.02em]">
+              <div className="type-body font-bold">
                 Realised-margin economics
               </div>
             </div>
             <div className="pt-[22px] px-6">
-              <div className="font-mono text-[10.5px] tracking-[.1em] text-dim mb-3">
+              <div className="type-label text-on-ink-mute mb-3">
                 PRINCIPLE 05
               </div>
-              <div className="font-display font-semibold text-[19px] tracking-[-.02em] text-coral">
+              <div className="type-body font-bold text-white">
                 No guaranteed outcomes
               </div>
             </div>
             <div className="pt-[22px] pl-6 flex items-end">
               <a
                 href="/vs-automation"
-                className="text-[15px] font-semibold text-cloud hover:text-cloud border-b border-cloud/30 pb-[3px]"
+                className="type-body font-semibold text-link-on-ink hover:text-link-on-ink"
               >
                 Why we&apos;re not an automation company →
               </a>
