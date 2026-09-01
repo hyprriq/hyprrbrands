@@ -86,6 +86,31 @@
   letter-spacing: -0.036em;
 }
 
+/* Scroll-section state chip lists — single column below 1200px so they
+   read as a list rather than a scattered grid */
+.state-chips {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 8px 20px;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--color-on-ink-body);
+}
+@media (max-width: 1199px) {
+  .state-chips {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* The pinned scroll section reserves its height BEFORE hydration so the
+   applyMode() height assignment corrects rather than establishes it
+   (prevents a large layout shift high in the page). */
+@media (min-width: 901px) and (prefers-reduced-motion: no-preference) {
+  #system {
+    min-height: 320vh;
+  }
+}
+
 /* kept: hy-flow explains a process; hy-decide fires once on the "You" node */
 @keyframes hy-flow {
   0% { left: 0; opacity: 0; }
@@ -112,6 +137,15 @@
   }
   a:focus-visible {
     outline: 2px solid var(--color-link);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+  /* On ink fields the link violet is 2.4:1 — focus rings there use the
+     on-ink link colour instead. */
+  #system :is(a, button):focus-visible,
+  .bg-ink :is(a, button, summary):focus-visible,
+  footer :is(a, button):focus-visible {
+    outline: 2px solid var(--color-link-on-ink);
     outline-offset: 3px;
     border-radius: 3px;
   }

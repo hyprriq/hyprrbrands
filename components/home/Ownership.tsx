@@ -6,8 +6,22 @@ import Reveal from "./Reveal";
  */
 export default function Ownership() {
   return (
-    <section id="ownership" className="bg-ink text-white">
-      <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(64px,7vw,112px)]">
+    <section
+      id="ownership"
+      className="relative isolate overflow-hidden bg-ink text-white"
+    >
+      {/* Media slot V5 (fill later): full-bleed operational still life —
+          cartons on a pallet, 16:9 source crop. The image mounts here as an
+          absolutely-positioned cover layer; the 72% ink overlay keeps type
+          contrast at spec. Empty, it renders as plain ink — zero CLS. */}
+      <div
+        data-media-slot="ownership-bg"
+        aria-hidden="true"
+        className="absolute inset-0 overflow-hidden pointer-events-none"
+      >
+        <div className="absolute inset-0 bg-ink/72" />
+      </div>
+      <div className="relative mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(64px,7vw,112px)]">
         <Reveal className="mb-[clamp(36px,5vw,60px)]">
           <h2 className="font-display type-h2 text-white m-0 mb-4">
             You own it.

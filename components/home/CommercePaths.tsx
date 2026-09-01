@@ -77,17 +77,15 @@ export default function CommercePaths() {
         {/* 02 — Private label (Build) */}
         <Reveal className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-[clamp(28px,4vw,56px)] items-center py-[clamp(36px,5vw,60px)] border-b border-line">
           <div className="grid gap-3.5 order-0">
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(120px,1fr))] gap-3.5">
-              <div
-                className={`aspect-[4/5] rounded-[14px] border border-build ${placeholderTile} flex items-end p-3`}
-              >
-                <span className="type-label text-label">product sample</span>
-              </div>
-              <div
-                className={`aspect-[4/5] rounded-[14px] border border-build ${placeholderTile} flex items-end p-3`}
-              >
-                <span className="type-label text-label">packaging</span>
-              </div>
+            {/* Media slot V7 (fill later): unbranded mailer + kraft carton,
+                4:3 — aspect ratio reserved so the photo drops in with zero
+                relayout. */}
+            <div
+              data-media-slot="private-label-product"
+              className={`aspect-[4/3] rounded-[14px] border border-build ${placeholderTile} flex items-end gap-4 p-3`}
+            >
+              <span className="type-label text-label">product sample</span>
+              <span className="type-label text-label">packaging</span>
             </div>
             <div className="border border-line bg-white rounded-[14px] p-4 grid gap-2.5">
               <div className="flex justify-between type-meta">

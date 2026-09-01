@@ -39,10 +39,12 @@ const BANDS: [number, number, number][] = [
   [255, 255, 255],
 ];
 // Translucent white on ink, resolved to solids for interpolation.
-const INACTIVE: [number, number, number] = [37, 37, 40]; // white 6% over ink
-const INACTIVE_BORDER: [number, number, number] = [61, 61, 64]; // white 16% over ink
+const INACTIVE: [number, number, number] = [35, 35, 37]; // white 5% over ink
+const INACTIVE_BORDER: [number, number, number] = [74, 74, 76]; // white 22% over ink
 const INK: [number, number, number] = [23, 23, 26];
-const MUTE: [number, number, number] = [142, 137, 160]; // --color-on-ink-mute
+// Inactive panel text: --color-on-ink-body (8.86:1 on the panel). Panels are
+// NEVER de-emphasised with container opacity — colour only.
+const MUTE: [number, number, number] = [199, 195, 210];
 
 // [col1, col2, row1, row2] per state — interpolated continuously
 const GRID = [
@@ -125,7 +127,6 @@ export default function SystemScroll() {
       const grid = q("[data-grid]");
       const rail = q("[data-rail]");
       const dots = q("[data-dots]");
-      const skip = q("[data-skip]");
       const copywrap = q("[data-copywrap]");
       const copies = qa("[data-copy]");
 
@@ -139,21 +140,26 @@ export default function SystemScroll() {
         if (stage) {
           stage.style.display = "grid";
           stage.style.padding = "0 clamp(20px,3vw,40px)";
+          stage.style.flex = "1 1 0%";
+          stage.style.minHeight = "320px";
         }
         if (grid) grid.style.display = "grid";
         if (rail) rail.style.display = "block";
         if (dots) dots.style.display = "none";
-        if (skip) skip.style.display = "inline-flex";
         if (copywrap) {
           copywrap.style.display = "block";
           copywrap.style.position = "relative";
-          copywrap.style.minHeight = "clamp(240px,38vh,460px)";
+          copywrap.style.height = "100%";
+          copywrap.style.minHeight = "0";
           copywrap.style.overflowX = "visible";
           copywrap.style.scrollSnapType = "";
         }
         copies.forEach((el) => {
           el.style.position = "absolute";
           el.style.inset = "0";
+          el.style.display = "flex";
+          el.style.flexDirection = "column";
+          el.style.justifyContent = "center";
           el.style.flex = "";
           el.style.width = "";
           el.style.scrollSnapAlign = "";
@@ -170,14 +176,16 @@ export default function SystemScroll() {
         if (stage) {
           stage.style.display = "block";
           stage.style.padding = "0";
+          stage.style.flex = "none";
+          stage.style.minHeight = "0";
         }
         if (grid) grid.style.display = "none";
         if (rail) rail.style.display = "none";
         if (dots) dots.style.display = "flex";
-        if (skip) skip.style.display = "none";
         if (copywrap) {
           copywrap.style.display = "flex";
           copywrap.style.position = "static";
+          copywrap.style.height = "auto";
           copywrap.style.minHeight = "0";
           copywrap.style.overflowX = "auto";
           copywrap.style.scrollSnapType = "x mandatory";
@@ -188,6 +196,7 @@ export default function SystemScroll() {
         copies.forEach((el) => {
           el.style.position = "static";
           el.style.inset = "auto";
+          el.style.display = "block";
           el.style.opacity = "1";
           el.style.transform = "none";
           el.style.pointerEvents = "auto";
@@ -208,14 +217,16 @@ export default function SystemScroll() {
         if (stage) {
           stage.style.display = "block";
           stage.style.padding = "0 20px 8px";
+          stage.style.flex = "none";
+          stage.style.minHeight = "0";
         }
         if (grid) grid.style.display = "none";
         if (rail) rail.style.display = "none";
         if (dots) dots.style.display = "none";
-        if (skip) skip.style.display = "none";
         if (copywrap) {
           copywrap.style.display = "block";
           copywrap.style.position = "static";
+          copywrap.style.height = "auto";
           copywrap.style.minHeight = "0";
           copywrap.style.overflowX = "visible";
           copywrap.style.scrollSnapType = "";
@@ -223,6 +234,7 @@ export default function SystemScroll() {
         copies.forEach((el, i) => {
           el.style.position = "static";
           el.style.inset = "auto";
+          el.style.display = "block";
           el.style.opacity = "1";
           el.style.transform = "none";
           el.style.pointerEvents = "auto";
@@ -274,7 +286,6 @@ export default function SystemScroll() {
         el.style.borderColor = mix(INACTIVE_BORDER, a, act);
         el.style.boxShadow =
           act > 0.01 ? "inset 0 3px 0 0 " + rgba(act) : "none";
-        el.style.opacity = (0.62 + 0.38 * Math.max(act, conv)).toFixed(3);
         const num = el.querySelector<HTMLElement>("[data-num]");
         if (num) num.style.color = act > 0.4 ? rgba(1) : "inherit";
       });
@@ -300,10 +311,12 @@ export default function SystemScroll() {
         );
       }
 
+      // Ticks distinguish by colour + weight only — never opacity.
       qa("[data-tick]").forEach((el) => {
         const n = +el.dataset.tick!;
-        el.style.color = n <= lead ? "#FFFFFF" : "#8E89A0";
-        el.style.opacity = n === lead ? "1" : n < lead ? ".75" : ".55";
+        el.style.color =
+          n === lead ? "#FFFFFF" : n < lead ? "#C7C3D2" : "#8E89A0";
+        el.style.fontWeight = n === lead ? "600" : "500";
       });
     };
 
@@ -400,9 +413,9 @@ export default function SystemScroll() {
     justifyContent: "space-between",
     gap: 12,
     overflow: "hidden",
-    background: "rgb(255 255 255 / .06)",
-    color: "#8E89A0",
-    border: "1px solid rgb(255 255 255 / .16)",
+    background: "rgb(255 255 255 / .05)",
+    color: "#C7C3D2",
+    border: "1px solid rgb(255 255 255 / .22)",
     padding: "clamp(12px,1.8vh,20px)",
   };
   const copyBase: React.CSSProperties = { padding: "30px 0" };
@@ -415,21 +428,13 @@ export default function SystemScroll() {
     color: "#FFFFFF",
     margin: "0 0 14px",
   };
-  const stateList: React.CSSProperties = {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit,minmax(170px,1fr))",
-    gap: "8px 20px",
-    fontSize: 17,
-    lineHeight: 1.5,
-    color: "#C7C3D2",
-  };
   const artRow: React.CSSProperties = {
     display: "flex",
     justifyContent: "space-between",
     gap: 10,
     fontSize: 15,
     lineHeight: 1.45,
-    borderTop: "1px solid rgb(127 127 127 / .25)",
+    borderTop: "1px solid var(--color-line-on-ink)",
     paddingTop: 7,
   };
 
@@ -448,15 +453,15 @@ export default function SystemScroll() {
           flexDirection: "column",
         }}
       >
-        {/* Heading + stage travel as ONE vertically-centered cluster so the
-            H2 stays attached to the content it titles at any pane height. */}
+        {/* Three-row pinned composition: H2 (none) / stage (flex 1) / rail
+            (none). The stage grows to fill the pane instead of floating in
+            it as a capped island. */}
         <div
           data-mid="1"
           style={{
             flex: 1,
             display: "flex",
             flexDirection: "column",
-            justifyContent: "center",
             minHeight: 0,
             padding: "clamp(18px,3vh,34px) 0 clamp(8px,1.6vh,18px)",
           }}
@@ -467,12 +472,8 @@ export default function SystemScroll() {
             width: "100%",
             margin: "0 auto",
             padding: "0 clamp(20px,3vw,40px)",
-            display: "flex",
-            alignItems: "flex-end",
-            justifyContent: "space-between",
-            gap: 18,
-            flexWrap: "wrap",
             marginBottom: "clamp(16px,3.2vh,44px)",
+            flex: "none",
           }}
         >
           <h2
@@ -481,27 +482,21 @@ export default function SystemScroll() {
           >
             How Hyprr builds and operates ecommerce businesses
           </h2>
-          <a
-            data-skip="1"
-            href="#paths"
-            className="type-meta text-on-ink-body hover:text-white"
-            style={{ display: "inline-flex", alignItems: "center", gap: 6, flex: "none", paddingBottom: 6 }}
-          >
-            Skip to commerce paths ↓
-          </a>
         </div>
 
         <div
           data-stage="1"
           style={{
+            flex: "1 1 0%",
+            minHeight: 320,
             maxWidth: 1280,
             width: "100%",
             margin: "0 auto",
             padding: "0 clamp(20px,3vw,40px)",
             display: "block",
-            gridTemplateColumns: ".86fr 1.14fr",
+            gridTemplateColumns: "1fr 1.1fr",
             gap: "clamp(24px,4vw,56px)",
-            alignItems: "center",
+            alignItems: "stretch",
           }}
         >
           <div data-copywrap="1" style={{ position: "static" }}>
@@ -513,7 +508,7 @@ export default function SystemScroll() {
                 Build the right commerce{" "}
                 <span style={{ color: "#FFC84A" }}>foundation</span>.
               </h3>
-              <div style={stateList}>
+              <div className="state-chips">
                 <div>Product research</div>
                 <div>Supplier research</div>
                 <div>Brand development</div>
@@ -530,7 +525,7 @@ export default function SystemScroll() {
                 Turn the operation into a{" "}
                 <span style={{ color: "#B8F34A" }}>growth engine</span>.
               </h3>
-              <div style={stateList}>
+              <div className="state-chips">
                 <div>Ecommerce growth</div>
                 <div>Marketplace growth</div>
                 <div>DTC growth</div>
@@ -558,7 +553,7 @@ export default function SystemScroll() {
               >
                 Orders, inventory, listings, cases, reporting.
               </p>
-              <div style={stateList}>
+              <div className="state-chips">
                 <div>Marketplace management</div>
                 <div>Shopify management</div>
                 <div>Inventory coordination</div>
@@ -611,9 +606,9 @@ export default function SystemScroll() {
               gridTemplateColumns: "1.55fr 1fr",
               gridTemplateRows: "1.55fr 1fr",
               gap: 14,
-              height: "clamp(260px,50vh,600px)",
+              height: "100%",
+              minHeight: 320,
               position: "relative",
-              margin: "18px 0",
             }}
           >
             {/* 01 — research shortlist */}
@@ -651,7 +646,7 @@ export default function SystemScroll() {
             </div>
 
             {/* 02 — listing with bid and search-term rows */}
-            <div data-panel="1" style={{ ...panelBase, opacity: 0.62 }}>
+            <div data-panel="1" style={panelBase}>
               <div style={{ display: "flex", justifyContent: "space-between", gap: 8 }}>
                 <div className="type-label">LISTING</div>
                 <div data-num="1" className="type-label">
@@ -678,7 +673,7 @@ export default function SystemScroll() {
             </div>
 
             {/* 03 — the purchase order: the argument of the business */}
-            <div data-panel="2" style={{ ...panelBase, opacity: 0.62 }}>
+            <div data-panel="2" style={panelBase}>
               <div style={{ display: "flex", justifyContent: "space-between", gap: 8 }}>
                 <div className="type-label">PURCHASE ORDER</div>
                 <div data-num="2" className="type-label">
@@ -701,7 +696,7 @@ export default function SystemScroll() {
             </div>
 
             {/* 04 — the system */}
-            <div data-panel="3" style={{ ...panelBase, opacity: 0.62 }}>
+            <div data-panel="3" style={panelBase}>
               <div style={{ display: "flex", justifyContent: "space-between", gap: 8 }}>
                 <div
                   style={{
@@ -844,7 +839,8 @@ export default function SystemScroll() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(4,1fr)",
+              gridTemplateColumns: "repeat(4,1fr) auto",
+              alignItems: "center",
               gap: 8,
             }}
           >
@@ -864,12 +860,21 @@ export default function SystemScroll() {
                     textAlign: "left",
                     textTransform: "uppercase",
                     color: "#8E89A0",
+                    fontWeight: 500,
                   }}
                 >
                   {label}
                 </button>
               )
             )}
+            <a
+              data-skip="1"
+              href="#paths"
+              className="type-meta text-on-ink-body hover:text-white"
+              style={{ justifySelf: "end", whiteSpace: "nowrap" }}
+            >
+              Skip to commerce paths ↓
+            </a>
           </div>
         </div>
       </div>

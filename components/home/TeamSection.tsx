@@ -27,8 +27,12 @@ export default function TeamSection() {
         <Reveal className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-[clamp(20px,2.4vw,30px)]">
           {CARDS.map((c) => (
             <div key={c.n}>
+              {/* Media slot V8 (fill later): 1:1 portrait — aspect ratio
+                  reserved so photography drops in with zero relayout. Until
+                  then: engine-colour field, never a silhouette or face. */}
               <div
-                className={`w-full h-[320px] rounded-2xl ${c.field} flex items-end justify-between p-5`}
+                data-media-slot={`portrait-${c.n}`}
+                className={`w-full aspect-square rounded-2xl ${c.field} flex items-end justify-between p-5`}
               >
                 <span className="type-label text-ink uppercase">
                   Portrait to follow

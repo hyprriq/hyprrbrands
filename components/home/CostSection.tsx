@@ -18,8 +18,21 @@ const BARS: { label: string; w: number; color: string; order: number }[] = [
 
 export default function CostSection() {
   return (
-    <section id="cost" className="bg-ink text-white">
-      <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(64px,7vw,112px)] grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-[clamp(30px,5vw,64px)] items-center">
+    <section
+      id="cost"
+      className="relative isolate overflow-hidden bg-ink text-white"
+    >
+      {/* Media slot V6 (fill later): full-bleed prep-bench still life,
+          21:9 source crop, mounted as an absolute cover layer under a 78%
+          ink overlay. Empty, it renders as plain ink — zero CLS. */}
+      <div
+        data-media-slot="cost-bg"
+        aria-hidden="true"
+        className="absolute inset-0 overflow-hidden pointer-events-none"
+      >
+        <div className="absolute inset-0 bg-ink/78" />
+      </div>
+      <div className="relative mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(64px,7vw,112px)] grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-[clamp(30px,5vw,64px)] items-center">
         <div>
           <h2 className="font-display type-h2 text-white m-0 mb-5">
             What does an ecommerce business actually cost?
