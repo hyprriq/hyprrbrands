@@ -27,7 +27,7 @@ export default function EverythingConnects() {
           </p>
         </Reveal>
 
-        <Reveal className="bg-white border border-line rounded-[20px] p-[clamp(20px,2.6vw,34px)]">
+        <Reveal className="bg-white border border-line rounded-lg p-[clamp(20px,2.6vw,34px)]">
           <div className="h-0.5 bg-line rounded-sm overflow-hidden mb-6">
             <div
               data-draw="1"
@@ -37,7 +37,7 @@ export default function EverythingConnects() {
           <ol className="list-none m-0 p-0 grid grid-cols-[repeat(auto-fit,minmax(112px,1fr))] gap-[clamp(12px,1.4vw,18px)]">
             {STEPS.map((s) => (
               <li key={s.num} className="grid gap-2">
-                <span className={`w-2 h-2 rounded-[2px] ${s.dot}`} />
+                <span className={`w-2 h-2 rounded-full ${s.dot}`} />
                 <span className="type-label text-label">{s.num}</span>
                 <span
                   className={

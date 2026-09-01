@@ -53,7 +53,7 @@ export default function SiteHeader() {
             ))}
             <a
               href="#talk"
-              className="bg-ink text-white hover:text-white px-[18px] py-3 rounded-xl whitespace-nowrap min-h-11 flex items-center"
+              className="bg-field text-white hover:text-white px-[18px] py-3 rounded-md whitespace-nowrap min-h-11 flex items-center"
             >
               Let&apos;s talk
             </a>
@@ -62,7 +62,7 @@ export default function SiteHeader() {
           {/* Mobile menu trigger */}
           <button
             type="button"
-            className="md:hidden flex flex-col items-center justify-center gap-[5px] w-11 h-11 -mr-2 rounded-lg"
+            className="md:hidden flex flex-col items-center justify-center gap-[5px] w-11 h-11 -mr-2 rounded-sm"
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -107,7 +107,7 @@ export default function SiteHeader() {
             ))}
             <a
               href="#talk"
-              className="mt-3 mb-2 bg-ink text-white hover:text-white type-body font-semibold px-[18px] py-3 rounded-xl min-h-11 flex items-center justify-center"
+              className="mt-3 mb-2 bg-field text-white hover:text-white type-body font-semibold px-[18px] py-3 rounded-md min-h-11 flex items-center justify-center"
               onClick={() => setOpen(false)}
             >
               Let&apos;s talk

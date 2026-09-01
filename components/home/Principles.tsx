@@ -28,21 +28,21 @@ export default function Principles() {
             The operating model is the product. These are the terms it runs on.
           </p>
         </Reveal>
-        <Reveal className="bg-ink text-white rounded-3xl p-[clamp(24px,3vw,44px)]">
+        <Reveal className="bg-field text-white rounded-lg p-[clamp(24px,3vw,44px)]">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-7">
             {PRINCIPLES.map((title, i) => (
               <div key={title} className="py-[22px]">
-                <div className="type-label text-on-ink-mute mb-3">
+                <div className="type-label text-on-field-mute mb-3">
                   PRINCIPLE {String(i + 1).padStart(2, "0")}
                 </div>
                 <div className="type-body font-bold">{title}</div>
               </div>
             ))}
           </div>
-          <div className="mt-4 border-t border-line-on-ink pt-6">
+          <div className="mt-4 border-t border-line-on-field pt-6">
             <a
               href="/vs-automation"
-              className="type-body font-semibold text-link-on-ink hover:text-link-on-ink"
+              className="type-body font-semibold text-link-on-field hover:text-link-on-field"
             >
               Why we&apos;re not an automation company →
             </a>

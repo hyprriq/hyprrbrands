@@ -19,7 +19,7 @@ export default function FitSection() {
           </p>
         </Reveal>
         <Reveal className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[clamp(16px,2vw,24px)]">
-          <div className="bg-white border border-line border-l-[3px] border-l-ok rounded-2xl p-[clamp(22px,2.4vw,30px)]">
+          <div className="bg-white border border-line border-l-[3px] border-l-ok rounded-md p-[clamp(22px,2.4vw,30px)]">
             <div className="type-label text-label uppercase mb-5">Good fit</div>
             <div className="grid gap-3.5 type-body text-body">
               <div>Realistic capital</div>
@@ -28,7 +28,7 @@ export default function FitSection() {
               <div>Willingness to own the business</div>
             </div>
           </div>
-          <div className="bg-white border border-line border-l-[3px] border-l-crit rounded-2xl p-[clamp(22px,2.4vw,30px)]">
+          <div className="bg-white border border-line border-l-[3px] border-l-crit rounded-md p-[clamp(22px,2.4vw,30px)]">
             <div className="type-label text-label uppercase mb-5">
               Not a fit
             </div>

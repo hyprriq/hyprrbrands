@@ -47,9 +47,12 @@ const FAQS: { q: string; a: ReactNode }[] = [
 
 export default function FaqSection() {
   return (
-    <section id="faq" className="bg-white border-t border-line">
-      <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(56px,6vw,96px)] grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-[clamp(24px,4vw,56px)] items-start">
-        <h2 className="font-display type-h2 text-ink m-0">
+    <section
+      id="faq"
+      className="bg-white border-t border-line [scroll-margin-top:calc(var(--stack-top)+8px)]"
+    >
+      <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(56px,6vw,96px)] grid grid-cols-1 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] gap-[clamp(24px,4vw,56px)] items-start">
+        <h2 className="font-display type-h2 text-ink m-0 lg:sticky lg:top-[calc(var(--stack-top))] lg:self-start">
           Questions we get asked first.
         </h2>
         <div className="grid gap-0 border-t border-line">

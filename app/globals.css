@@ -8,12 +8,28 @@
   --color-ink-raised: #22222a; /* raised surface on ink */
 
   /* ---- engine colours — THE identity ----------------------- */
+  /* Three tiers per engine:
+     engine — marks, dots, rules, <=40px
+     field  — card and panel surfaces, 120-600px
+     band   — full-bleed section grounds and small tiles */
   --color-build: #ffc84a; /* Citrus */
   --color-grow: #b8f34a; /* Lime */
   --color-operate: #45d8c0; /* Aqua */
+  --color-build-field: #ffe3a3; /* ink 14.28:1, body 8.92:1 */
+  --color-grow-field: #ddf2ac; /* ink 14.80:1, body 9.24:1 */
+  --color-operate-field: #b6e7dc; /* ink 13.16:1, body 8.22:1 */
   --color-build-band: #fff3d6;
   --color-grow-band: #eef9d9;
   --color-operate-band: #e0f4f0;
+
+  /* ---- Petrol — the dark FIELD (Ink stays the text colour) -- */
+  --color-field: #0a4e5c; /* the dark ground */
+  --color-field-raised: #0e5e6e; /* raised panels on the field */
+  --color-on-field: #ffffff; /* 9.30:1 */
+  --color-on-field-body: #cfe6ea; /* 7.16:1 */
+  --color-on-field-mute: #9cc2c9; /* 4.86:1 — labels only */
+  --color-line-on-field: rgb(255 255 255 / 0.18);
+  --color-link-on-field: #c4b5ff; /* 5.05:1, clear of the engines */
 
   /* ---- text on light --------------------------------------- */
   --color-body: #3d3949; /* default body — 11.17:1 */
@@ -45,6 +61,12 @@
   --font-display: var(--font-archivo), Archivo, system-ui, sans-serif;
   --font-sans: var(--font-archivo), Archivo, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+
+  /* ---- radius scale — the ONLY four values on the page ------ */
+  --radius-sm: 8px; /* chips, small marks, inline tags, inputs */
+  --radius-md: 16px; /* buttons, small cards, art panels, list rows */
+  --radius-lg: 28px; /* section cards, the stack cards, large panels */
+  --radius-xl: 40px; /* full-bleed feature blocks only */
 }
 
 /* ---- six-step type scale — the only text sizes on the page ---- */
@@ -80,7 +102,7 @@
   letter-spacing: -0.032em;
 }
 @utility type-h1 {
-  font-size: clamp(42px, 5.4vw, 76px);
+  font-size: clamp(42px, 5.4vw, 66px);
   font-weight: 800;
   line-height: 1.02;
   letter-spacing: -0.036em;
@@ -91,7 +113,7 @@
    card surface (ink text on the engine-band cards). */
 .state-chips {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 8px 20px;
   font-size: 17px;
   line-height: 1.5;
@@ -112,26 +134,51 @@
 :root {
   --stack-top: 96px; /* sticky header 72px + 24px breathing room */
 }
+/* Static is the safe base state at every size. Sticky switches on only
+   when the viewport is tall enough (>=560px) to show a whole card —
+   a card taller than (viewport - stack-top) would otherwise pin with
+   its own bottom permanently below the fold. */
 #system [data-stack] > article {
-  position: sticky;
-  border-radius: 24px;
+  position: static;
+  border-radius: var(--radius-lg);
   padding: clamp(24px, 2.6vw, 44px);
-  min-height: min(60vh, 520px);
+  min-height: auto;
   display: grid;
   align-items: center;
   box-shadow: 0 -10px 40px -18px rgb(0 0 0 / 0.55);
 }
-#system [data-stack] > article:nth-child(1) {
-  top: calc(var(--stack-top) + 0px);
+@media (min-width: 900px) {
+  #system [data-stack] > article {
+    min-height: min(60vh, 520px);
+  }
 }
-#system [data-stack] > article:nth-child(2) {
-  top: calc(var(--stack-top) + 18px);
+@media (min-height: 560px) {
+  #system [data-stack] > article {
+    position: sticky;
+  }
+  #system [data-stack] > article:nth-child(1) {
+    top: calc(var(--stack-top) + 0px);
+  }
+  #system [data-stack] > article:nth-child(2) {
+    top: calc(var(--stack-top) + 18px);
+  }
+  #system [data-stack] > article:nth-child(3) {
+    top: calc(var(--stack-top) + 36px);
+  }
+  #system [data-stack] > article:nth-child(4) {
+    top: calc(var(--stack-top) + 54px);
+  }
 }
-#system [data-stack] > article:nth-child(3) {
-  top: calc(var(--stack-top) + 36px);
-}
-#system [data-stack] > article:nth-child(4) {
-  top: calc(var(--stack-top) + 54px);
+/* Below 900px each card is single-column and the art panel would add
+   ~215px; condense it to its accent bar + one-line summary (the detail
+   rows restate the chip list beside them, so nothing is lost). */
+@media (max-width: 899px) {
+  #system [data-card-art] > div:not(:last-child) {
+    display: none;
+  }
+  #system [data-card-art] {
+    padding: 14px 16px;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   #system [data-stack] > article {
@@ -180,12 +227,16 @@
     outline-offset: 3px;
     border-radius: 3px;
   }
-  /* On ink fields the link violet is 2.4:1 — focus rings there use the
-     on-ink link colour instead. */
-  #system :is(a, button):focus-visible,
-  .bg-ink :is(a, button, summary):focus-visible,
-  footer :is(a, button):focus-visible {
+  /* On dark fields the link violet is too low-contrast for a focus
+     ring — dark-ground rings use the on-field link colour instead. */
+  .bg-ink :is(a, button, summary):focus-visible {
     outline: 2px solid var(--color-link-on-ink);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+  .bg-field :is(a, button, summary):focus-visible,
+  footer :is(a, button):focus-visible {
+    outline: 2px solid var(--color-link-on-field);
     outline-offset: 3px;
     border-radius: 3px;
   }

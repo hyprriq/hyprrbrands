@@ -66,7 +66,7 @@ export default function ThreeEngines() {
             <div
               key={e.id}
               id={e.id}
-              className={`relative bg-white border border-t-4 ${e.accent} rounded-[14px] pt-[clamp(20px,2.2vw,28px)] px-[clamp(20px,2.2vw,28px)] pb-[clamp(22px,2.4vw,30px)] scroll-mt-[90px] flex flex-col transition-colors duration-[180ms]`}
+              className={`relative bg-white border border-t-4 ${e.accent} rounded-md pt-[clamp(20px,2.2vw,28px)] px-[clamp(20px,2.2vw,28px)] pb-[clamp(22px,2.4vw,30px)] scroll-mt-[90px] flex flex-col transition-colors duration-[180ms]`}
             >
               <h3 className="font-display type-h3 text-ink m-0 mb-2">
                 {e.title}
@@ -89,22 +89,22 @@ export default function ThreeEngines() {
         <Reveal className="mt-[clamp(22px,2.6vw,32px)] border-t border-line pt-5">
           <div className="flex items-center gap-[clamp(10px,1.6vw,18px)] flex-wrap type-label text-label uppercase">
             <span className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-[2px] bg-build" />
+              <span className="w-2 h-2 rounded-full bg-build" />
               Build
             </span>
             <span className="text-muted">→</span>
             <span className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-[2px] bg-grow" />
+              <span className="w-2 h-2 rounded-full bg-grow" />
               Grow
             </span>
             <span className="text-muted">→</span>
             <span className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-[2px] bg-operate" />
+              <span className="w-2 h-2 rounded-full bg-operate" />
               Operate
             </span>
             <span className="text-muted">→</span>
             <span className="flex items-center gap-2 text-ink font-semibold">
-              <span className="w-2 h-2 rounded-[2px] bg-ink" />
+              <span className="w-2 h-2 rounded-full bg-ink" />
               Next decision ↺
             </span>
           </div>

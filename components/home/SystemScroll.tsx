@@ -12,17 +12,17 @@
 
 const CARD_META = [
   {
-    surface: "bg-build-band",
+    surface: "bg-build-field",
     accent: "border-t-build",
     eyebrow: "STATE 01 / BUILD",
   },
   {
-    surface: "bg-grow-band",
+    surface: "bg-grow-field",
     accent: "border-t-grow",
     eyebrow: "STATE 02 / GROW",
   },
   {
-    surface: "bg-operate-band",
+    surface: "bg-operate-field",
     accent: "border-t-operate",
     eyebrow: "STATE 03 / OPERATE",
   },
@@ -39,7 +39,7 @@ const artRow =
 
 export default function SystemScroll() {
   return (
-    <section id="system" className="bg-ink">
+    <section id="system" className="bg-field">
       <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(64px,7vw,110px)]">
         <h2 className="font-display type-h2 text-white m-0 mb-[clamp(28px,4vw,52px)] max-w-[24ch]">
           How Hyprr builds and operates ecommerce businesses
@@ -50,7 +50,7 @@ export default function SystemScroll() {
           <article data-card="0" className={`${CARD_META[0].surface} text-ink`}>
             <div className="grid min-[900px]:grid-cols-[1.1fr_1fr] gap-[clamp(24px,3vw,48px)] items-center">
               <div>
-                <p className={`type-label text-label m-0 mb-3`}>
+                <p className={`type-label text-muted m-0 mb-3`}>
                   {CARD_META[0].eyebrow}
                 </p>
                 <h3 className="font-display type-h3 text-ink m-0 mb-4">
@@ -66,7 +66,7 @@ export default function SystemScroll() {
                 </div>
               </div>
               <div
-                className={`bg-white border border-line border-t-4 ${CARD_META[0].accent} rounded-2xl p-5 grid gap-3`}
+                data-card-art className={`bg-white border border-line border-t-4 ${CARD_META[0].accent} rounded-md p-5 grid gap-3`}
               >
                 <div className={artHeader}>
                   <span>RESEARCH SHORTLIST</span>
@@ -97,7 +97,7 @@ export default function SystemScroll() {
           <article data-card="1" className={`${CARD_META[1].surface} text-ink`}>
             <div className="grid min-[900px]:grid-cols-[1.1fr_1fr] gap-[clamp(24px,3vw,48px)] items-center">
               <div>
-                <p className={`type-label text-label m-0 mb-3`}>
+                <p className={`type-label text-muted m-0 mb-3`}>
                   {CARD_META[1].eyebrow}
                 </p>
                 <h3 className="font-display type-h3 text-ink m-0 mb-4">
@@ -113,7 +113,7 @@ export default function SystemScroll() {
                 </div>
               </div>
               <div
-                className={`bg-white border border-line border-t-4 ${CARD_META[1].accent} rounded-2xl p-5 grid gap-3`}
+                data-card-art className={`bg-white border border-line border-t-4 ${CARD_META[1].accent} rounded-md p-5 grid gap-3`}
               >
                 <div className={artHeader}>
                   <span>LISTING</span>
@@ -144,7 +144,7 @@ export default function SystemScroll() {
           <article data-card="2" className={`${CARD_META[2].surface} text-ink`}>
             <div className="grid min-[900px]:grid-cols-[1.1fr_1fr] gap-[clamp(24px,3vw,48px)] items-center">
               <div>
-                <p className={`type-label text-label m-0 mb-3`}>
+                <p className={`type-label text-muted m-0 mb-3`}>
                   {CARD_META[2].eyebrow}
                 </p>
                 <h3 className="font-display type-h3 text-ink m-0 mb-4">
@@ -162,7 +162,7 @@ export default function SystemScroll() {
                 </div>
               </div>
               <div
-                className={`bg-white border border-line border-t-4 ${CARD_META[2].accent} rounded-2xl p-5 grid gap-3`}
+                data-card-art className={`bg-white border border-line border-t-4 ${CARD_META[2].accent} rounded-md p-5 grid gap-3`}
               >
                 <div className={artHeader}>
                   <span>PURCHASE ORDER</span>
@@ -189,7 +189,7 @@ export default function SystemScroll() {
           <article data-card="3" className={`${CARD_META[3].surface} text-ink`}>
             <div className="grid min-[900px]:grid-cols-[1.1fr_1fr] gap-[clamp(24px,3vw,48px)] items-center">
               <div>
-                <p className={`type-label text-label m-0 mb-3`}>
+                <p className={`type-label text-muted m-0 mb-3`}>
                   {CARD_META[3].eyebrow}
                 </p>
                 <h3 className="font-display type-h3 text-ink m-0 mb-4">
@@ -202,13 +202,13 @@ export default function SystemScroll() {
                 </div>
                 <a
                   href="#talk"
-                  className="inline-flex items-center bg-ink text-white hover:text-white type-body font-semibold px-[22px] py-[13px] rounded-[14px]"
+                  className="inline-flex items-center bg-field text-white hover:text-white type-body font-semibold px-[22px] py-[13px] rounded-md"
                 >
                   Talk to the team that runs it
                 </a>
               </div>
               <div
-                className={`bg-bone border border-line border-t-4 ${CARD_META[3].accent} rounded-2xl p-5 grid gap-3`}
+                data-card-art className={`bg-bone border border-line border-t-4 ${CARD_META[3].accent} rounded-md p-5 grid gap-3`}
               >
                 <div className={artHeader}>
                   <span>COMMERCE SYSTEM</span>
@@ -217,28 +217,28 @@ export default function SystemScroll() {
                 <div className="grid gap-2">
                   <div className={`${artRow} border-t-0 pt-0`}>
                     <span className="flex items-center gap-2.5">
-                      <span className="w-2 h-2 rounded-[2px] bg-build" />
+                      <span className="w-2 h-2 rounded-full bg-build" />
                       Build
                     </span>
                     <span aria-hidden="true">↓</span>
                   </div>
                   <div className={artRow}>
                     <span className="flex items-center gap-2.5">
-                      <span className="w-2 h-2 rounded-[2px] bg-grow" />
+                      <span className="w-2 h-2 rounded-full bg-grow" />
                       Grow
                     </span>
                     <span aria-hidden="true">↓</span>
                   </div>
                   <div className={artRow}>
                     <span className="flex items-center gap-2.5">
-                      <span className="w-2 h-2 rounded-[2px] bg-operate" />
+                      <span className="w-2 h-2 rounded-full bg-operate" />
                       Operate
                     </span>
                     <span aria-hidden="true">↓</span>
                   </div>
                   <div className={`${artRow} font-semibold`}>
                     <span className="flex items-center gap-2.5">
-                      <span className="w-2 h-2 rounded-[2px] bg-ink" />
+                      <span className="w-2 h-2 rounded-full bg-ink" />
                       Next decision ↺
                     </span>
                   </div>

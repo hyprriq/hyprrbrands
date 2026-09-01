@@ -45,9 +45,9 @@ export default function InsightsSection() {
             <a
               key={a.href}
               href={a.href}
-              className="text-ink hover:text-ink bg-white border border-line rounded-2xl p-6 flex flex-col gap-3"
+              className="text-ink hover:text-ink bg-white border border-line rounded-md p-6 flex flex-col gap-3"
             >
-              <div className="h-[4px] w-11 bg-ink rounded-[3px]" />
+              <div className="h-[4px] w-11 bg-ink rounded-full" />
               <div className="type-label text-label uppercase">{a.tag}</div>
               <h3 className="font-display type-h3 text-ink m-0">{a.title}</h3>
               <p className="type-body text-body m-0 flex-1">{a.copy}</p>

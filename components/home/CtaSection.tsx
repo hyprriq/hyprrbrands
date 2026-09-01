@@ -4,38 +4,38 @@
  */
 export default function CtaSection() {
   return (
-    <section id="talk" className="bg-ink text-white">
+    <section id="talk" className="bg-field text-white">
       <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(70px,8vw,124px)] grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-[clamp(32px,5vw,68px)] items-center">
         <div>
           <h2 className="font-display type-h2 text-white m-0 mb-[22px]">
             Ready to build, grow and operate your ecommerce business?
           </h2>
-          <p className="type-lead text-on-ink-body m-0 mb-8 max-w-[48ch]">
+          <p className="type-lead text-on-field-body m-0 mb-8 max-w-[48ch]">
             Tell us where you are, what you&apos;re trying to build and what
             needs to happen next.
           </p>
           <div className="flex gap-3.5 flex-wrap">
             <a
               href="/apply"
-              className="bg-build text-ink hover:text-ink type-body font-semibold px-7 py-4 rounded-[14px] min-h-12 flex items-center"
+              className="bg-build text-ink hover:text-ink type-body font-semibold px-7 py-4 rounded-md min-h-12 flex items-center"
             >
               Let&apos;s talk
             </a>
             <a
               href="#how"
-              className="text-white hover:text-white type-body font-semibold px-6 py-4 rounded-[14px] border border-white/30 min-h-12 flex items-center"
+              className="text-white hover:text-white type-body font-semibold px-6 py-4 rounded-md border border-white/30 min-h-12 flex items-center"
             >
               See how we work
             </a>
           </div>
         </div>
-        <div className="border border-line-on-ink rounded-[20px] p-[clamp(22px,2.4vw,30px)] bg-ink-raised">
-          <div className="type-label text-on-ink-mute uppercase mb-[22px]">
+        <div className="border border-line-on-field rounded-lg p-[clamp(22px,2.4vw,30px)] bg-field-raised">
+          <div className="type-label text-on-field-mute uppercase mb-[22px]">
             What happens next
           </div>
-          <div className="grid gap-[18px] type-body text-on-ink-body">
+          <div className="grid gap-[18px] type-body text-on-field-body">
             <div className="flex gap-3.5">
-              <span className="type-label text-on-ink-mute pt-[3px] flex-none">
+              <span className="type-label text-on-field-mute pt-[3px] flex-none">
                 01
               </span>
               <span>
@@ -43,13 +43,13 @@ export default function CtaSection() {
               </span>
             </div>
             <div className="flex gap-3.5">
-              <span className="type-label text-on-ink-mute pt-[3px] flex-none">
+              <span className="type-label text-on-field-mute pt-[3px] flex-none">
                 02
               </span>
               <span>We come to the call with a view, not a questionnaire.</span>
             </div>
             <div className="flex gap-3.5">
-              <span className="type-label text-on-ink-mute pt-[3px] flex-none">
+              <span className="type-label text-on-field-mute pt-[3px] flex-none">
                 03
               </span>
               <span>

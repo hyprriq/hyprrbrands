@@ -47,7 +47,7 @@ export default function CommercePaths() {
               Explore wholesale →
             </a>
           </div>
-          <div className="bg-bone border border-line rounded-[20px] p-[clamp(18px,2vw,26px)]">
+          <div className="bg-bone border border-line rounded-lg p-[clamp(18px,2vw,26px)]">
             <div className="type-label text-label uppercase mb-[18px]">
               Order and replenishment flow
             </div>
@@ -64,7 +64,7 @@ export default function CommercePaths() {
               ].map(([label, text]) => (
                 <div
                   key={label}
-                  className="border border-line bg-white rounded-xl p-3.5"
+                  className="border border-line bg-white rounded-md p-3.5"
                 >
                   <div className="type-label text-label mb-2">{label}</div>
                   <div className="type-body font-medium">{text}</div>
@@ -82,12 +82,12 @@ export default function CommercePaths() {
                 relayout. */}
             <div
               data-media-slot="private-label-product"
-              className={`aspect-[4/3] rounded-[14px] border border-build ${placeholderTile} flex items-end gap-4 p-3`}
+              className={`aspect-[4/3] rounded-md border border-build ${placeholderTile} flex items-end gap-4 p-3`}
             >
               <span className="type-label text-label">product sample</span>
               <span className="type-label text-label">packaging</span>
             </div>
-            <div className="border border-line bg-white rounded-[14px] p-4 grid gap-2.5">
+            <div className="border border-line bg-white rounded-md p-4 grid gap-2.5">
               <div className="flex justify-between type-meta">
                 <span className="text-muted">Opportunity</span>
                 <span className="font-medium">Validated</span>
@@ -160,14 +160,14 @@ export default function CommercePaths() {
               Explore DTC →
             </a>
           </div>
-          <div className="bg-white border border-line rounded-[20px] overflow-hidden shadow-[0_30px_70px_-44px_rgba(23,23,26,.4)]">
+          <div className="bg-white border border-line rounded-lg overflow-hidden shadow-[0_30px_70px_-44px_rgba(23,23,26,.4)]">
             <div className="flex items-center gap-2.5 px-4 py-[13px] border-b border-line">
               <div className="flex gap-[5px] flex-none">
                 <span className="w-[9px] h-[9px] rounded-full bg-line" />
                 <span className="w-[9px] h-[9px] rounded-full bg-line" />
                 <span className="w-[9px] h-[9px] rounded-full bg-line" />
               </div>
-              <div className="flex-1 min-w-0 bg-bone rounded-[7px] type-meta text-muted px-2.5 py-[5px] overflow-hidden text-ellipsis whitespace-nowrap">
+              <div className="flex-1 min-w-0 bg-bone rounded-sm type-meta text-muted px-2.5 py-[5px] overflow-hidden text-ellipsis whitespace-nowrap">
                 yourbrand.com / collections
               </div>
             </div>
@@ -176,7 +176,7 @@ export default function CommercePaths() {
                 {["Everyday Set", "Refill Duo", "Starter Kit"].map((name) => (
                   <div key={name}>
                     <div
-                      className={`aspect-square rounded-xl border border-line ${placeholderTile} flex items-end p-2`}
+                      className={`aspect-square rounded-md border border-line ${placeholderTile} flex items-end p-2`}
                     >
                       <span className="type-label text-label">product</span>
                     </div>
@@ -185,10 +185,10 @@ export default function CommercePaths() {
                 ))}
               </div>
               <div className="mt-[18px] flex gap-2.5 flex-wrap items-center">
-                <div className="bg-ink text-white type-meta font-semibold px-4 py-[11px] rounded-[10px]">
+                <div className="bg-field text-white type-meta font-semibold px-4 py-[11px] rounded-sm">
                   Add to cart
                 </div>
-                <div className="border border-operate type-meta font-medium px-4 py-[11px] rounded-[10px] text-ink">
+                <div className="border border-operate type-meta font-medium px-4 py-[11px] rounded-sm text-ink">
                   Subscribe &amp; save
                 </div>
               </div>

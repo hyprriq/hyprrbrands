@@ -11,7 +11,6 @@ import Principles from "@/components/home/Principles";
 import Transparency from "@/components/home/Transparency";
 import CostSection from "@/components/home/CostSection";
 import FitSection from "@/components/home/FitSection";
-import TeamSection from "@/components/home/TeamSection";
 import ProofSection from "@/components/home/ProofSection";
 import InsightsSection from "@/components/home/InsightsSection";
 import FaqSection from "@/components/home/FaqSection";
@@ -36,7 +35,6 @@ export default function Home() {
         <Transparency />
         <CostSection />
         <FitSection />
-        <TeamSection />
         <ProofSection />
         <InsightsSection />
         <FaqSection />

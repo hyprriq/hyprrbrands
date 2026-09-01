@@ -18,7 +18,7 @@ export default function PricingBand() {
         <div className="flex justify-start gap-3.5 flex-wrap">
           <a
             href="/pricing"
-            className="bg-ink text-white hover:text-white type-body font-semibold px-6 py-[15px] rounded-[14px] min-h-12 flex items-center"
+            className="bg-field text-white hover:text-white type-body font-semibold px-6 py-[15px] rounded-md min-h-12 flex items-center"
           >
             View pricing →
           </a>

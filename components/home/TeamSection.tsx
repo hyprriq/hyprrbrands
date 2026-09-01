@@ -33,7 +33,7 @@ export default function TeamSection() {
                   or face. */}
               <div
                 data-media-slot={`portrait-${c.n}`}
-                className={`w-full aspect-[4/5] rounded-2xl ${c.field} flex items-end justify-between p-5`}
+                className={`w-full aspect-[4/5] rounded-md ${c.field} flex items-end justify-between p-5`}
               >
                 <span className="type-label text-label uppercase">
                   Portrait to follow

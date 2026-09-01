@@ -28,7 +28,7 @@ export default function Transparency() {
         </Reveal>
         <Reveal className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-[clamp(16px,2vw,24px)] mb-[clamp(28px,4vw,40px)]">
           {CARDS.map(([label, text]) => (
-            <div key={label} className="bg-white rounded-[14px] p-[22px]">
+            <div key={label} className="bg-white rounded-md p-[22px]">
               <div className="type-label text-label mb-2.5">{label}</div>
               <div className="type-body text-body">{text}</div>
             </div>
@@ -37,13 +37,13 @@ export default function Transparency() {
         <div className="flex gap-3.5 flex-wrap">
           <a
             href="/pricing"
-            className="bg-ink text-white hover:text-white type-body font-semibold px-6 py-[15px] rounded-[14px] min-h-12 flex items-center"
+            className="bg-field text-white hover:text-white type-body font-semibold px-6 py-[15px] rounded-md min-h-12 flex items-center"
           >
             See how we charge
           </a>
           <a
             href="/documents"
-            className="text-ink hover:text-ink type-body font-semibold px-[22px] py-[15px] rounded-[14px] border border-line bg-white min-h-12 flex items-center"
+            className="text-ink hover:text-ink type-body font-semibold px-[22px] py-[15px] rounded-md border border-line bg-white min-h-12 flex items-center"
           >
             View our documents
           </a>

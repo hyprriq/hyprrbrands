@@ -37,7 +37,7 @@ export default function Channels() {
                 alt={c.name}
                 width={46}
                 height={46}
-                className="w-[46px] h-[46px] flex-none rounded-[10px] object-contain grayscale group-hover:grayscale-0 transition-[filter] duration-[180ms]"
+                className="w-[46px] h-[46px] flex-none rounded-sm object-contain grayscale group-hover:grayscale-0 transition-[filter] duration-[180ms]"
               />
               <span className="type-meta text-muted transition-transform duration-[180ms] group-hover:-translate-y-[2px]">
                 {c.name}
