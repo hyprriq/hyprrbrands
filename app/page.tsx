@@ -4,6 +4,7 @@ import Channels from "@/components/home/Channels";
 import ThreeEngines from "@/components/home/ThreeEngines";
 import SystemScroll from "@/components/home/SystemScroll";
 import CommercePaths from "@/components/home/CommercePaths";
+import FullyManaged from "@/components/home/FullyManaged";
 import EverythingConnects from "@/components/home/EverythingConnects";
 import Ownership from "@/components/home/Ownership";
 import HowWeWork from "@/components/home/HowWeWork";
@@ -12,7 +13,6 @@ import Transparency from "@/components/home/Transparency";
 import CostSection from "@/components/home/CostSection";
 import FitSection from "@/components/home/FitSection";
 import ProofSection from "@/components/home/ProofSection";
-import InsightsSection from "@/components/home/InsightsSection";
 import FaqSection from "@/components/home/FaqSection";
 import PricingBand from "@/components/home/PricingBand";
 import CtaSection from "@/components/home/CtaSection";
@@ -28,6 +28,7 @@ export default function Home() {
         <ThreeEngines />
         <SystemScroll />
         <CommercePaths />
+        <FullyManaged />
         <EverythingConnects />
         <Ownership />
         <HowWeWork />
@@ -36,7 +37,6 @@ export default function Home() {
         <CostSection />
         <FitSection />
         <ProofSection />
-        <InsightsSection />
         <FaqSection />
         <PricingBand />
         <CtaSection />

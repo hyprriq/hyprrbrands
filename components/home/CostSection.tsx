@@ -38,15 +38,14 @@ export default function CostSection() {
             What does an ecommerce business actually cost?
           </h2>
           <p className="type-lead text-on-field-body m-0 mb-[30px] max-w-[46ch]">
-            The number is rarely just the service fee. The calculator breaks
-            down every component before the first sale.
+            The service fee is rarely the biggest line. Before the first sale you
+            may also be funding inventory, freight, duties, testing,
+            photography, trademarks, prep and insurance. The calculator breaks
+            down every component so you can see the real number before you
+            commit to any of it — including us.
           </p>
-          <a
-            href="/true-cost"
-            className="bg-build text-ink hover:text-ink type-body font-semibold px-[26px] py-4 rounded-md min-h-12 inline-flex items-center"
-          >
-            Calculate the real cost →
-          </a>
+          {/* CTA "Calculate the real cost →" returns when /true-cost is
+              live — no dead CTAs (Build Spec J). */}
         </div>
         <Reveal className="border border-line-on-field rounded-lg p-[clamp(20px,2.4vw,30px)] bg-field-raised">
           <div className="flex justify-between items-center mb-[22px] gap-3 flex-wrap">

@@ -1,12 +1,23 @@
 import Reveal from "./Reveal";
+import { isLive } from "@/lib/site-map";
 
 const placeholderTile =
   "bg-[repeating-linear-gradient(135deg,#EDEBE6_0_8px,#FFFFFF_8px_16px)]";
 
+/** Manifest-aware path CTA: a link once the service page is live. */
+function PathCta({ slug, label }: { slug: string; label: string }) {
+  return isLive(slug) ? (
+    <a href={slug} className="type-body font-semibold">
+      {label}
+    </a>
+  ) : (
+    <span className="type-body font-semibold text-muted">{label}</span>
+  );
+}
+
 /**
- * Commerce paths on White. Wholesale and Private label carry the Build
- * accent; Shopify/DTC carries Operate. hy-flow stays on the replenishment
- * line — it explains a process.
+ * Commercial paths — A.08. Three engagements; chips are deliverables,
+ * not pages. hy-flow stays on the replenishment line.
  */
 export default function CommercePaths() {
   return (
@@ -17,7 +28,7 @@ export default function CommercePaths() {
         </h2>
         <p className="type-lead text-body m-0 max-w-[60ch]">
           Three ways to work with Hyprr. Each one can be built from scratch or
-          taken over from an existing operation.
+          taken over from an operation that already exists.
         </p>
       </Reveal>
 
@@ -25,32 +36,32 @@ export default function CommercePaths() {
         {/* 01 — Wholesale (Build) */}
         <Reveal className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-[clamp(28px,4vw,56px)] items-center pb-[clamp(36px,5vw,60px)] border-b border-line">
           <div>
-            <div className="type-label text-label mb-3.5">01</div>
+            <p className="type-label text-label m-0 mb-3.5">01</p>
             <h3 className="font-display type-h3 text-ink m-0 mb-1.5">
-              Wholesale ecommerce on Amazon and Walmart
+              Amazon and Walmart wholesale management
             </h3>
             <p className="type-body text-body m-0 mb-[22px] max-w-[46ch]">
-              Build or take over an existing marketplace operation, with
-              purchasing and inventory run against real margin.
+              Build a wholesale operation — or take over one that already
+              exists — around products and suppliers that make commercial
+              sense. We source, buy in your name, list, price, advertise and
+              run the account day to day.
             </p>
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-x-5 gap-y-2 type-body text-body mb-[26px]">
-              <div>Research</div>
-              <div>Sourcing</div>
-              <div>Account setup</div>
-              <div>Listings</div>
-              <div>Purchasing</div>
-              <div>Inventory</div>
-              <div>Operations</div>
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-x-5 gap-y-2 type-body text-body mb-[26px]">
+              <div>Product &amp; supplier research</div>
+              <div>Supplier outreach</div>
+              <div>Purchase orders</div>
+              <div>Listings &amp; pricing</div>
+              <div>Inventory &amp; replenishment</div>
+              <div>Marketplace PPC</div>
+              <div>Account health</div>
               <div>Reporting</div>
             </div>
-            <a href="/wholesale" className="type-body font-semibold">
-              Explore wholesale →
-            </a>
+            <PathCta slug="/wholesale-ecommerce" label="Explore wholesale →" />
           </div>
           <div className="bg-bone border border-line rounded-lg p-[clamp(18px,2vw,26px)]">
-            <div className="type-label text-label uppercase mb-[18px]">
+            <p className="type-label text-label uppercase m-0 mb-[18px]">
               Order and replenishment flow
-            </div>
+            </p>
             <div className="relative mb-[18px]">
               <div className="h-px bg-[linear-gradient(90deg,rgba(255,200,74,.2),rgba(255,200,74,.75),rgba(255,200,74,.2))]" />
               <div className="absolute top-[-3px] left-0 w-[7px] h-[7px] rounded-full bg-build [animation:hy-flow_6s_linear_infinite]" />
@@ -66,7 +77,7 @@ export default function CommercePaths() {
                   key={label}
                   className="border border-line bg-white rounded-md p-3.5"
                 >
-                  <div className="type-label text-label mb-2">{label}</div>
+                  <p className="type-label text-label m-0 mb-2">{label}</p>
                   <div className="type-body font-medium">{text}</div>
                 </div>
               ))}
@@ -77,9 +88,6 @@ export default function CommercePaths() {
         {/* 02 — Private label (Build) */}
         <Reveal className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-[clamp(28px,4vw,56px)] items-center py-[clamp(36px,5vw,60px)] border-b border-line">
           <div className="grid gap-3.5 order-0">
-            {/* Media slot V7 (fill later): unbranded mailer + kraft carton,
-                4:3 — aspect ratio reserved so the photo drops in with zero
-                relayout. */}
             <div
               data-media-slot="private-label-product"
               className={`aspect-[4/3] rounded-md border border-build ${placeholderTile} flex items-end gap-4 p-3`}
@@ -112,53 +120,53 @@ export default function CommercePaths() {
             </div>
           </div>
           <div>
-            <div className="type-label text-label mb-3.5">02</div>
+            <p className="type-label text-label m-0 mb-3.5">02</p>
             <h3 className="font-display type-h3 text-ink m-0 mb-1.5">
-              Private label ecommerce from product research to launch
+              Private label, from product research to launch
             </h3>
             <p className="type-body text-body m-0 mb-[22px] max-w-[46ch]">
-              From product opportunity to launch — then the ongoing operation
-              behind it.
+              Start with the product, not the logo. We research the
+              opportunity, check the numbers, source and develop it, build the
+              brand, and take it through marketplace launch — then keep
+              operating it. If the numbers don&apos;t work, we say so before
+              you buy inventory.
             </p>
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-x-5 gap-y-2 type-body text-body mb-[26px]">
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-x-5 gap-y-2 type-body text-body mb-[26px]">
               <div>Product research</div>
-              <div>Validation</div>
+              <div>Validation &amp; economics</div>
               <div>Supplier sourcing</div>
-              <div>Product development</div>
-              <div>Manufacturing</div>
-              <div>Brand</div>
+              <div>Samples &amp; QC</div>
+              <div>Brand &amp; packaging</div>
+              <div>Listings &amp; A+ content</div>
               <div>Marketplace launch</div>
-              <div>Ongoing operations</div>
+              <div>PPC setup &amp; management</div>
             </div>
-            <a href="/private-label" className="type-body font-semibold">
-              Explore private label →
-            </a>
+            <PathCta slug="/private-label" label="Explore private label →" />
           </div>
         </Reveal>
 
-        {/* 03 — Shopify / DTC (Operate) */}
+        {/* 03 — Shopify / DTC */}
         <Reveal className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-[clamp(28px,4vw,56px)] items-center pt-[clamp(36px,5vw,60px)]">
           <div>
-            <div className="type-label text-label mb-3.5">03</div>
+            <p className="type-label text-label m-0 mb-3.5">03</p>
             <h3 className="font-display type-h3 text-ink m-0 mb-1.5">
-              Shopify and DTC ecommerce growth
+              Shopify and DTC growth
             </h3>
             <p className="type-body text-body m-0 mb-[22px] max-w-[46ch]">
-              Build the direct channel on validated products, then optimise it
-              as an operating asset.
+              Take a validated product or an existing brand direct. We build
+              the site and the customer journey around the brand, then run it
+              as an operating channel rather than a website project.
             </p>
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-x-5 gap-y-2 type-body text-body mb-[26px]">
-              <div>Shopify</div>
-              <div>Storefront</div>
-              <div>Conversion</div>
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-x-5 gap-y-2 type-body text-body mb-[26px]">
+              <div>Ecommerce website development</div>
+              <div>Conversion structure</div>
               <div>Merchandising</div>
-              <div>DTC growth</div>
-              <div>Operations</div>
-              <div>Ongoing optimization</div>
+              <div>Creative direction</div>
+              <div>Paid media &amp; acquisition</div>
+              <div>CRO &amp; analytics</div>
+              <div>Ongoing optimisation</div>
             </div>
-            <a href="/shopify-dtc" className="type-body font-semibold">
-              Explore DTC →
-            </a>
+            <PathCta slug="/shopify-dtc" label="Explore DTC →" />
           </div>
           <div className="bg-white border border-line rounded-lg overflow-hidden shadow-[0_30px_70px_-44px_rgba(23,23,26,.4)]">
             <div className="flex items-center gap-2.5 px-4 py-[13px] border-b border-line">

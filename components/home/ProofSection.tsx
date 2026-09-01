@@ -1,18 +1,19 @@
 import Reveal from "./Reveal";
 
 /**
- * Proof before promises. Explicit 2/4 columns so seven items plus the
- * section CTA fill a 4x2 grid exactly — no orphaned dark cells. Numbers
- * carry the engine palette (cycling in threes); labels stay white.
+ * Proof before promises — A.18. Seven checkable things (numbers
+ * neutral per the contrast patch), and the eighth tile is the section
+ * CTA. It points at /how-we-work — the page that carries the operating
+ * model — until /documents is live, when it switches to the documents.
  */
-const ITEMS: { label: string; color: string }[] = [
-  { label: "Operating model", color: "text-on-field-mute" },
-  { label: "Client ownership", color: "text-on-field-mute" },
-  { label: "Approval workflow", color: "text-on-field-mute" },
-  { label: "Documented process", color: "text-on-field-mute" },
-  { label: "Transparent pricing", color: "text-on-field-mute" },
-  { label: "Reporting", color: "text-on-field-mute" },
-  { label: "Research methodology", color: "text-on-field-mute" },
+const ITEMS = [
+  "The operating model, published",
+  "Sample agreements, ungated",
+  "A recorded approval on every purchase",
+  "Named people with verifiable work history",
+  "The fee structure and how it is calculated",
+  "A real reporting sample, not a mockup",
+  "Reference calls, not written testimonials",
 ];
 
 export default function ProofSection() {
@@ -24,26 +25,26 @@ export default function ProofSection() {
             Proof before promises.
           </h2>
           <p className="type-lead text-on-field-body m-0 max-w-[62ch]">
-            We publish the model rather than claims. Case results will appear
-            here as client work becomes publishable.
+            We are new. We are not going to borrow someone else&apos;s results
+            or dress a projection up as a track record. Case studies will
+            appear here as client work becomes publishable. Until then, here
+            is what you can check.
           </p>
         </Reveal>
         <Reveal className="grid grid-cols-2 md:grid-cols-4 gap-px bg-line-on-field border border-line-on-field rounded-md overflow-hidden">
           {ITEMS.map((item, i) => (
-            <div key={item.label} className="bg-field-raised p-6">
-              <div className={`type-body font-bold ${item.color} mb-3`}>
+            <div key={item} className="bg-field-raised p-6">
+              <div className="type-body font-bold text-on-field-mute mb-3">
                 {String(i + 1).padStart(2, "0")}
               </div>
-              <div className="type-body font-medium text-white">
-                {item.label}
-              </div>
+              <div className="type-body font-medium text-white">{item}</div>
             </div>
           ))}
           <a
-            href="/documents"
+            href="/how-we-work"
             className="bg-operate-field p-6 flex items-end type-body font-semibold text-ink hover:text-ink"
           >
-            Read the documents →
+            See the operating model →
           </a>
         </Reveal>
       </div>

@@ -1,18 +1,23 @@
 import Image from "next/image";
 
+/**
+ * Commerce channels — A.04. Each mark carries a micro-label naming what
+ * Hyprr does there: six crawlable service phrases, and the thing that
+ * stops the row reading as a logo wall. Marks are ink-neutral
+ * (grayscale) at rest and take their brand colour on hover.
+ *
+ * P.04: every micro-label must be true on launch day — eBay, TikTok
+ * Shop and Target are the three to verify with the business.
+ */
 const CHANNELS = [
-  { name: "Amazon", src: "/channels/amazon.jpeg" },
-  { name: "Walmart", src: "/channels/walmart.jpeg" },
-  { name: "eBay", src: "/channels/ebay.jpeg" },
-  { name: "TikTok Shop", src: "/channels/tiktok.svg" },
-  { name: "Shopify", src: "/channels/shopify.png" },
-  { name: "Target", src: "/channels/target.png" },
+  { name: "Amazon", src: "/channels/amazon.jpeg", label: "Wholesale, private label, PPC" },
+  { name: "Walmart", src: "/channels/walmart.jpeg", label: "Marketplace management" },
+  { name: "eBay", src: "/channels/ebay.jpeg", label: "Listings and operations" },
+  { name: "TikTok Shop", src: "/channels/tiktok.svg", label: "Social commerce" },
+  { name: "Shopify", src: "/channels/shopify.png", label: "Storefront and DTC" },
+  { name: "Target", src: "/channels/target.png", label: "Marketplace" },
 ];
 
-/**
- * Channel marks: ink-neutral (grayscale) at rest, full brand colour on
- * hover; micro-label rises 2px, 180ms. White ground, hairline top.
- */
 export default function Channels() {
   return (
     <section className="bg-white border-t border-line">
@@ -21,17 +26,20 @@ export default function Channels() {
           <p className="type-label text-label uppercase m-0 mb-2">
             Commerce channels
           </p>
-          <h2 className="font-display type-h2 text-ink m-0 max-w-[24ch]">
-            We build and operate across the channels ecommerce businesses
-            actually sell on.
+          <h2 className="font-display type-h2 text-ink m-0 mb-3 max-w-[20ch]">
+            We operate where your customers already buy.
           </h2>
+          <p className="type-body text-muted m-0 max-w-[52ch]">
+            Marketplaces and storefronts, built and run under one operation
+            rather than six disconnected ones.
+          </p>
         </div>
         <ul
           aria-label="Channels Hyprr builds and operates on"
-          className="list-none m-0 p-0 flex flex-wrap items-start justify-start gap-x-[clamp(14px,2.2vw,30px)] gap-y-3 min-w-0"
+          className="list-none m-0 p-0 grid grid-cols-2 sm:grid-cols-3 gap-x-[clamp(18px,2.4vw,36px)] gap-y-5 min-w-0"
         >
           {CHANNELS.map((c) => (
-            <li key={c.name} className="group flex flex-col items-center gap-1.5 min-w-0">
+            <li key={c.name} className="group flex flex-col items-start gap-1.5 min-w-0">
               <Image
                 src={c.src}
                 alt={c.name}
@@ -39,8 +47,8 @@ export default function Channels() {
                 height={46}
                 className="w-[46px] h-[46px] flex-none rounded-sm object-contain grayscale group-hover:grayscale-0 transition-[filter] duration-[180ms]"
               />
-              <span className="type-meta text-muted transition-transform duration-[180ms] group-hover:-translate-y-[2px]">
-                {c.name}
+              <span className="type-label text-label transition-transform duration-[180ms] group-hover:-translate-y-[2px]">
+                {c.label}
               </span>
             </li>
           ))}

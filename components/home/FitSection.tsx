@@ -13,19 +13,19 @@ export default function FitSection() {
             Built for operators, founders and brands ready to build properly.
           </h2>
           <p className="type-lead text-body m-0 max-w-[62ch]">
-            Existing ecommerce businesses · brands expanding marketplaces ·
-            founders developing private-label products · businesses building
-            DTC channels.
+            Existing ecommerce businesses · brands adding marketplaces · founders
+            developing private-label products · businesses building a direct
+            channel.
           </p>
         </Reveal>
         <Reveal className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[clamp(16px,2vw,24px)]">
           <div className="bg-white border border-line border-l-[3px] border-l-ok rounded-md p-[clamp(22px,2.4vw,30px)]">
             <div className="type-label text-label uppercase mb-5">Good fit</div>
             <div className="grid gap-3.5 type-body text-body">
-              <div>Realistic capital</div>
-              <div>Willingness to make decisions</div>
-              <div>Long-term operating mindset</div>
-              <div>Willingness to own the business</div>
+              <div>Capital that matches the plan</div>
+              <div>Willing to make decisions</div>
+              <div>A long-term operating mindset</div>
+              <div>Wants to own the business</div>
             </div>
           </div>
           <div className="bg-white border border-line border-l-[3px] border-l-crit rounded-md p-[clamp(22px,2.4vw,30px)]">
@@ -33,19 +33,16 @@ export default function FitSection() {
               Not a fit
             </div>
             <div className="grid gap-3.5 type-body text-body">
-              <div>Passive-income expectations</div>
-              <div>Guaranteed-return expectations</div>
-              <div>Unwillingness to approve purchases</div>
-              <div>Looking for someone else to own the risk</div>
+              <div>Expecting passive income</div>
+              <div>Expecting guaranteed returns</div>
+              <div>Unwilling to approve purchases</div>
+              <div>Wants someone else to carry the risk</div>
             </div>
           </div>
         </Reveal>
-        <div className="mt-7 flex gap-[22px] flex-wrap items-center">
-          <a href="/fit" className="type-body font-semibold">
-            Who we say no to →
-          </a>
-          <a href="/vs-automation" className="type-body font-semibold">
-            Not an automation company →
+        <div className="mt-7">
+          <a href="/how-we-work" className="type-body font-semibold">
+            How we work →
           </a>
         </div>
       </div>

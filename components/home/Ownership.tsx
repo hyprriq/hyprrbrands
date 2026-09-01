@@ -46,9 +46,9 @@ export default function Ownership() {
               {[
                 "Owns the business",
                 "Owns the inventory",
-                "Controls capital",
-                "Owns marketplace accounts",
-                "Approves purchases",
+                "Controls the capital and the bank account",
+                "Owns the marketplace accounts",
+                "Approves purchases before they are placed",
               ].map((item) => (
                 <div key={item} className="flex gap-3 text-on-field-body">
                   <span className="text-grow">·</span>
@@ -61,11 +61,11 @@ export default function Ownership() {
             <div className="type-label text-on-field-body uppercase mb-5">Hyprr</div>
             <div className="grid gap-3.5 type-body">
               {[
-                "Researches opportunities",
+                "Researches the opportunities",
                 "Builds the operation",
                 "Executes the work",
-                "Manages day-to-day operations",
-                "Reports performance and recommends next actions",
+                "Manages it day to day",
+                "Reports what happened and recommends what is next",
               ].map((item) => (
                 <div key={item} className="flex gap-3 text-on-field-body">
                   <span className="text-on-field-body">·</span>
@@ -99,16 +99,18 @@ export default function Ownership() {
               We can <span className="text-operate">run the work</span>.
             </h3>
             <p className="type-body text-on-field-body m-0 mb-6 max-w-[46ch]">
-              You control the business and the capital. Hyprr can take
-              responsibility for the execution, management and ongoing
-              operation required to move it forward.
+              You control the business and the capital. We take responsibility
+              for the execution and the ongoing operation — research,
+              sourcing, listings, purchasing, launch, advertising, inventory,
+              account health and reporting. Every material purchase still
+              comes to you before it is placed.
             </p>
             <div className="flex gap-2.5 flex-wrap type-meta text-on-field-body">
               <span className="border border-line-on-field rounded-sm px-3 py-[7px]">
-                Managed ecommerce
+                Fully managed operation
               </span>
               <span className="border border-line-on-field rounded-sm px-3 py-[7px]">
-                Full-service execution
+                Named accountable people
               </span>
               <span className="border border-line-on-field rounded-sm px-3 py-[7px]">
                 Ongoing management
@@ -140,7 +142,7 @@ export default function Ownership() {
             <div className="grid grid-cols-[34px_1fr] gap-4 items-center pt-[18px]">
               <span className="type-label text-on-field-mute">04</span>
               <span className="font-display font-bold type-body text-white">
-                Optimization ↺
+                Optimisation ↺
               </span>
             </div>
           </Reveal>

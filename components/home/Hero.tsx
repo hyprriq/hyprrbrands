@@ -25,22 +25,25 @@ export default function Hero() {
           Operate
         </div>
         <h1 className="font-display type-h1 text-ink m-0 mb-6 max-w-[18ch]">
-          We don&apos;t advise on ecommerce. We run it.
+          You own the business. We{" "}
+          <span className="bg-operate-band px-2 rounded-sm">run the operation</span>.
         </h1>
         <p className="type-lead text-body m-0 mb-[34px] max-w-[540px]">
-          Hyprr builds, grows and operates ecommerce businesses across
-          wholesale, private label and DTC — combining strategy, execution and
-          ongoing management.
+          Hyprr builds, grows and operates ecommerce businesses across Amazon,
+          Walmart, Shopify and the other channels you sell on — wholesale,
+          private label and DTC. We handle the research, sourcing, listings,
+          launch, advertising and daily operations. You keep the accounts, the
+          inventory and the final call on what gets bought.
         </p>
         <div className="flex items-center gap-3 flex-wrap">
           <a
-            href="#talk"
+            href="/contact"
             className="bg-field text-white hover:text-white type-body font-semibold px-[26px] py-4 rounded-md min-h-12 flex items-center"
           >
             Let&apos;s talk
           </a>
           <a
-            href="#how"
+            href="/how-we-work"
             className="text-ink hover:text-ink type-body font-semibold px-[22px] py-4 rounded-md border border-line min-h-12 flex items-center"
           >
             See how we work

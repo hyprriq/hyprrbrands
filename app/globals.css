@@ -45,6 +45,7 @@
 
   /* ---- interactive ----------------------------------------- */
   --color-link: #6947ff; /* links + focus ONLY, never a field */
+  --color-link-on-bone: #6240fa; /* 4.85:1 on bone (base violet is 4.47) */
   --color-link-on-ink: #a38dff; /* 6.65:1 on ink */
 
   /* ---- semantic (separate from the engine colours) --------- */

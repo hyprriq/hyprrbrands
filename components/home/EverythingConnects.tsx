@@ -23,7 +23,8 @@ export default function EverythingConnects() {
           </h2>
           <p className="type-lead text-body m-0 max-w-[62ch]">
             Build, growth and operations are one commercial system. Every stage
-            produces the input for the next.
+            produces the input the next one runs on — which is why we would
+            rather not take just one of them.
           </p>
         </Reveal>
 

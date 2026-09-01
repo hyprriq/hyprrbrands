@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Archivo, JetBrains_Mono } from "next/font/google";
+import { SITE_ORIGIN } from "@/lib/site-map";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -17,15 +18,26 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_ORIGIN),
   title: "Hyprr Brands | Ecommerce Operations, Wholesale, Private Label & DTC",
   description:
-    "Hyprr builds, grows and operates ecommerce businesses across Amazon, Walmart, private label and Shopify/DTC — combining strategy, execution and ongoing management.",
+    "Hyprr builds, grows and operates ecommerce businesses on Amazon, Walmart and Shopify — wholesale, private label and DTC. You own the accounts and the inventory. We run the operation.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "You own the business. We run the operation.",
+    description:
+      "Ecommerce operations across Amazon, Walmart and Shopify — wholesale, private label and DTC.",
+    type: "website",
+    url: "/",
+    siteName: "Hyprr Brands",
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="en"
+      lang="en-US"
       className={`${archivo.variable} ${jetbrains.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>

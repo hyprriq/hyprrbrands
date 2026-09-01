@@ -1,11 +1,26 @@
 import Reveal from "./Reveal";
 
-const PRINCIPLES = [
-  "Client-owned accounts",
-  "Client-approved purchases",
-  "Direct vendor → client invoicing",
-  "Realised-margin economics",
-  "No guaranteed outcomes",
+const PRINCIPLES: [string, string][] = [
+  [
+    "Client-owned accounts.",
+    "Your Seller Central and Walmart accounts stay in your name. We work through permissioned access, never shared credentials.",
+  ],
+  [
+    "Client-approved purchases.",
+    "No purchase order goes out without your recorded approval. It is a step in the process, not a line in a document.",
+  ],
+  [
+    "Direct vendor-to-client invoicing.",
+    "Suppliers invoice you directly. We do not buy stock in our own name and resell it to you.",
+  ],
+  [
+    "Realised-margin economics.",
+    "Where a performance fee applies, it is calculated on margin actually realised after goods sell — not on gross sales, and not on the capital you deploy.",
+  ],
+  [
+    "No guaranteed outcomes.",
+    "We don't promise sales, profit or returns. We promise an operation you can check.",
+  ],
 ];
 
 /**
@@ -30,21 +45,22 @@ export default function Principles() {
         </Reveal>
         <Reveal className="bg-ink text-white rounded-lg p-[clamp(24px,3vw,44px)]">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-7">
-            {PRINCIPLES.map((title, i) => (
+            {PRINCIPLES.map(([title, body], i) => (
               <div key={title} className="py-[22px]">
-                <div className="type-label text-on-ink-mute mb-3">
+                <p className="type-label text-on-ink-mute m-0 mb-3">
                   PRINCIPLE {String(i + 1).padStart(2, "0")}
-                </div>
-                <div className="type-body font-bold">{title}</div>
+                </p>
+                <div className="type-body font-bold mb-2">{title}</div>
+                <p className="type-body text-on-ink-body m-0">{body}</p>
               </div>
             ))}
           </div>
           <div className="mt-4 border-t border-line-on-ink pt-6">
             <a
-              href="/vs-automation"
+              href="/how-we-work"
               className="type-body font-semibold text-link-on-ink hover:text-link-on-ink"
             >
-              Why we&apos;re not an automation company →
+              See the operating model →
             </a>
           </div>
         </Reveal>

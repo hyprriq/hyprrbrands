@@ -8,22 +8,22 @@ const STEPS = [
   {
     num: "01",
     title: "Commercial read",
-    copy: "Margin, channel and demand reality.",
+    copy: "We look at the numbers before the ideas — margin, channel economics, demand, and what the account can realistically carry.",
   },
   {
     num: "02",
     title: "Plan with owners",
-    copy: "Named people against each outcome — ours and yours.",
+    copy: "A written plan with named people against each outcome, ours and yours, and the order things happen in.",
   },
   {
     num: "03",
     title: "Execute",
-    copy: "Done-for-you build and growth work, shipped in sprints.",
+    copy: "We do the build and growth work — sourcing, listings, site, launch, advertising — in defined pieces with dates on them, not an open-ended retainer.",
   },
   {
     num: "04",
     title: "Operate & report",
-    copy: "We stay on the account and report on the work.",
+    copy: "We stay on the account. You get a regular record of what was bought, what sold, what changed, and what we recommend next.",
   },
 ];
 
@@ -74,7 +74,7 @@ export default function HowWeWork() {
             <div className="type-body font-semibold text-ink">Improve ↻</div>
           </div>
           <div className="mt-[26px]">
-            <a href="/how-it-works" className="type-body font-semibold">
+            <a href="/how-we-work" className="type-body font-semibold">
               See how we work →
             </a>
           </div>

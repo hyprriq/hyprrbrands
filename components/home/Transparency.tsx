@@ -1,21 +1,35 @@
 import Reveal from "./Reveal";
 
+/**
+ * Nothing important is hidden — A.14. The CONTRACTS row is CUT per the
+ * spec's own commitment rule: it requires at least one real, ungated
+ * document live at /documents, which does not exist yet (P.02).
+ * Restore the row when the document ships. The documents CTA is
+ * likewise held back until /documents is live.
+ */
 const CARDS = [
-  ["PRICING", "Published structure."],
-  ["OWNERSHIP", "The client owns the business and inventory."],
-  ["PURCHASING", "Material purchases require client approval."],
-  ["CONTRACTS", "Sample documents are available."],
+  [
+    "FEES",
+    "The fee structure is explained in full — how it is calculated, and what it is calculated on.",
+  ],
+  [
+    "OWNERSHIP",
+    "You own the business, the inventory and the marketplace accounts.",
+  ],
+  [
+    "PURCHASING",
+    "Material purchases need your approval before they are placed.",
+  ],
   [
     "PERFORMANCE",
-    "Performance-based fees are tied to realised margin where applicable.",
+    "Performance fees are tied to realised margin, where they apply at all.",
   ],
-  ["CLAIMS", "No guaranteed returns."],
+  [
+    "CLAIMS",
+    "No guaranteed returns, and no earnings figures anywhere on this site.",
+  ],
 ];
 
-/**
- * Nothing is hidden — a section about the operation running in the open,
- * on the Operate band.
- */
 export default function Transparency() {
   return (
     <section className="bg-white border-t border-line">
@@ -28,24 +42,21 @@ export default function Transparency() {
         </Reveal>
         <Reveal className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-[clamp(16px,2vw,24px)] mb-[clamp(28px,4vw,40px)]">
           {CARDS.map(([label, text]) => (
-            <div key={label} className="bg-white border border-line rounded-md p-[22px]">
-              <div className="type-label text-label mb-2.5">{label}</div>
+            <div
+              key={label}
+              className="bg-white border border-line rounded-md p-[22px]"
+            >
+              <p className="type-label text-label m-0 mb-2.5">{label}</p>
               <div className="type-body text-body">{text}</div>
             </div>
           ))}
         </Reveal>
         <div className="flex gap-3.5 flex-wrap">
           <a
-            href="/pricing"
+            href="/how-we-work#fees"
             className="bg-field text-white hover:text-white type-body font-semibold px-6 py-[15px] rounded-md min-h-12 flex items-center"
           >
-            See how we charge
-          </a>
-          <a
-            href="/documents"
-            className="text-ink hover:text-ink type-body font-semibold px-[22px] py-[15px] rounded-md border border-line bg-white min-h-12 flex items-center"
-          >
-            View our documents
+            See how we&apos;re paid
           </a>
         </div>
       </div>

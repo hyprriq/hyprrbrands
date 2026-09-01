@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Hyprr Brands — Mobile Layout Critique. Mobile layout review at 360px with type scale, spacing and visual slots.">
+<title>Mobile Layout Critique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --paper:#F4F6F8; --surface:#FFFFFF; --sunk:#EAEEF2;
+  --ink:#11151C; --body:#464F5E; --soft:#6A7383;
+  --line:#D8DEE6; --hair:#E7EBF0;
+  --accent:#B93E23; --crit:#B93E23; --warn:#8A6300; --ok:#1C6F4A;
+  --shadow:0 1px 2px rgba(17,21,28,.05), 0 14px 34px -24px rgba(17,21,28,.30);
+  --rail:264px;
+}
+:root:not([data-theme="light"]){
+  @media (prefers-color-scheme: dark){
+    --paper:#0E1116; --surface:#161A21; --sunk:#11151B;
+    --ink:#E9EDF3; --body:#A5AEBD; --soft:#7B8494;
+    --line:#282E38; --hair:#1F242C;
+    --accent:#F0704F; --crit:#F0704F; --warn:#D9A429; --ok:#4FBF8B;
+    --shadow:0 1px 2px rgba(0,0,0,.5), 0 16px 36px -24px rgba(0,0,0,.9);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E1116; --surface:#161A21; --sunk:#11151B;
+  --ink:#E9EDF3; --body:#A5AEBD; --soft:#7B8494;
+  --line:#282E38; --hair:#1F242C;
+  --accent:#F0704F; --crit:#F0704F; --warn:#D9A429; --ok:#4FBF8B;
+  --shadow:0 1px 2px rgba(0,0,0,.5), 0 16px 36px -24px rgba(0,0,0,.9);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:400 16px/1.62 Archivo,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{margin:0;font-family:Archivo,system-ui,sans-serif;text-wrap:balance;line-height:1.1;letter-spacing:-.022em}
+p{margin:0}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--accent) 32%,transparent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+code,.mono{font-family:"Spline Sans Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+
+.shell{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);max-width:1460px;margin:0 auto}
+.rail{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:var(--sunk);
+  border-right:1px solid var(--line);padding:32px 22px 48px}
+.rail .mark{font-weight:800;font-size:17px;letter-spacing:-.035em}
+.rail .mark span{font-weight:400;color:var(--soft)}
+.rail .kind{font-family:"Spline Sans Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin:8px 0 22px;line-height:1.6}
+.rail nav{display:flex;flex-direction:column;gap:1px}
+.rail nav a{display:grid;grid-template-columns:24px 1fr;gap:8px;align-items:baseline;padding:6px 0;
+  font-size:13.5px;line-height:1.35;color:var(--ink);border:0}
+.rail nav a b{font-family:"Spline Sans Mono",monospace;font-size:11px;font-weight:600;color:var(--soft)}
+.rail nav a:hover,.rail nav a:hover b{color:var(--accent)}
+.rail .grp{font-family:"Spline Sans Mono",monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);margin:18px 0 5px;padding-left:32px}
+
+main{padding:56px clamp(20px,4vw,68px) 150px;min-width:0}
+.wrap{max-width:940px}
+
+.masthead{border-bottom:2px solid var(--ink);padding-bottom:28px}
+.masthead h1{font-size:clamp(32px,4.4vw,52px);font-weight:800;max-width:17ch;letter-spacing:-.035em}
+.masthead .dek{margin-top:16px;font-size:18.5px;line-height:1.55;color:var(--body);max-width:62ch}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:22px}
+.tag{font-family:"Spline Sans Mono",monospace;font-size:10.5px;letter-spacing:.04em;padding:4px 9px;border:1px solid var(--line);color:var(--soft);border-radius:3px}
+
+.verdict{margin-top:30px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px 28px;box-shadow:var(--shadow)}
+.verdict .lbl{font-family:"Spline Sans Mono",monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--soft);display:block;margin-bottom:12px}
+.verdict p{font-size:19px;line-height:1.48;letter-spacing:-.01em;max-width:58ch}
+.verdict p+p{margin-top:.7em;font-size:16.5px;line-height:1.6;color:var(--body);letter-spacing:0}
+
+section{padding-top:70px;scroll-margin-top:20px}
+section>h2{font-size:clamp(24px,2.8vw,34px);font-weight:700;display:flex;align-items:baseline;gap:15px;
+  padding-bottom:13px;border-bottom:1px solid var(--ink);margin-bottom:24px;letter-spacing:-.03em}
+section>h2 .n{font-family:"Spline Sans Mono",monospace;font-size:15px;font-weight:600;color:var(--accent);flex:none;letter-spacing:0}
+h3{font-size:20px;font-weight:700;margin:36px 0 11px;letter-spacing:-.022em}
+h4{font-family:"Spline Sans Mono",monospace;font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.11em;color:var(--soft);margin:26px 0 11px}
+.lede{font-size:17.5px;line-height:1.58;color:var(--body);max-width:64ch;margin-bottom:20px}
+.p{margin:0 0 1em;max-width:70ch;color:var(--body)}
+.p strong,.lede strong{color:var(--ink);font-weight:600}
+ul,ol{max-width:70ch;padding-left:20px;margin:0 0 1.1em;color:var(--body)}
+li{margin-bottom:.42em}
+li strong{color:var(--ink);font-weight:600}
+
+pre{background:var(--sunk);border:1px solid var(--hair);border-radius:11px;padding:17px 19px;overflow-x:auto;
+  font-family:"Spline Sans Mono",monospace;font-size:12.4px;line-height:1.68;margin:16px 0 24px;color:var(--ink);white-space:pre-wrap}
+pre .c{color:var(--soft)}
+pre .k{color:var(--accent)}
+pre.prompt{background:var(--surface);border:2px solid var(--accent);font-size:12.8px}
+
+.call{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:18px 22px;margin:22px 0;max-width:74ch}
+.call .lbl{font-family:"Spline Sans Mono",monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);display:block;margin-bottom:9px}
+.call p{color:var(--body);font-size:15.5px;line-height:1.62}
+.call p+p{margin-top:.75em}
+.call strong{color:var(--ink);font-weight:600}
+.call.hot{border-color:color-mix(in srgb,var(--crit) 40%,var(--line));background:color-mix(in srgb,var(--crit) 4%,var(--surface))}
+.call.hot .lbl{color:var(--crit)}
+.call.win{border-color:color-mix(in srgb,var(--ok) 40%,var(--line));background:color-mix(in srgb,var(--ok) 5%,var(--surface))}
+.call.win .lbl{color:var(--ok)}
+
+.tw{overflow-x:auto;margin:18px 0 26px;border:1px solid var(--line);border-radius:11px;background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-size:14.2px;min-width:600px}
+th{text-align:left;font-family:"Spline Sans Mono",monospace;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--soft);padding:12px 15px;border-bottom:1px solid var(--ink);white-space:nowrap}
+td{padding:12px 15px;border-bottom:1px solid var(--hair);vertical-align:top;color:var(--body);line-height:1.52}
+td:first-child{color:var(--ink)}
+tr:last-child td{border-bottom:0}
+td code{font-size:12.4px;background:var(--sunk);padding:1px 5px;border-radius:4px;color:var(--ink)}
+td b{color:var(--ink)}
+.num{font-family:"Spline Sans Mono",monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+.sev{font-family:"Spline Sans Mono",monospace;font-size:9.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;padding:3px 8px;border-radius:100px;border:1px solid;white-space:nowrap;display:inline-block}
+.sev.p0{color:var(--crit);border-color:color-mix(in srgb,var(--crit) 45%,transparent);background:color-mix(in srgb,var(--crit) 10%,transparent)}
+.sev.p1{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 45%,transparent);background:color-mix(in srgb,var(--warn) 11%,transparent)}
+.sev.p2{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 45%,transparent);background:color-mix(in srgb,var(--ok) 11%,transparent)}
+.good{color:var(--ok);font-weight:600}
+.bad{color:var(--crit);font-weight:600}
+.mid{color:var(--warn);font-weight:600}
+
+/* overflow demo */
+.ovd{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:20px 0 26px}
+.ovc{border:1px solid var(--line);border-radius:13px;overflow:hidden;background:var(--surface)}
+.ovc .cap{font-family:"Spline Sans Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:9px 14px;background:var(--sunk);color:var(--soft);border-bottom:1px solid var(--hair);display:flex;justify-content:space-between;gap:8px}
+.phone{background:#EDEBE6;padding:14px 0;position:relative;overflow:hidden}
+.phone .col{padding:0 12px;position:relative}
+.phone .edge{position:absolute;top:0;bottom:0;right:0;width:2px;background:var(--crit);opacity:.7}
+.phone h5{margin:0;font-family:Archivo;font-weight:800;letter-spacing:-.032em;line-height:1.05;color:#17171A;white-space:nowrap}
+.phone h5.wrap{white-space:normal;letter-spacing:-.028em}
+.phone .sub{font-size:11px;line-height:1.5;color:#3D3949;margin-top:8px}
+
+/* scale strip */
+.scale{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface);margin:18px 0 26px}
+.scale .row{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:13px 17px;border-bottom:1px solid var(--hair);align-items:baseline}
+.scale .row:last-child{border-bottom:0}
+.scale .k{font-family:"Spline Sans Mono",monospace;font-size:11px;color:var(--soft);letter-spacing:.04em}
+.scale .s{color:var(--ink);font-family:Archivo;line-height:1.15;letter-spacing:-.02em}
+
+.slots{border:1px solid var(--line);border-radius:12px;background:var(--surface);margin:18px 0 26px;overflow:hidden}
+.tier{font-family:"Spline Sans Mono",monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;padding:9px 17px;background:var(--sunk);color:var(--soft);border-bottom:1px solid var(--hair)}
+.slot{display:grid;grid-template-columns:52px 1fr;gap:14px;padding:15px 17px;border-bottom:1px solid var(--hair)}
+.slot:last-child{border-bottom:0}
+.slot .n4{font-family:"Spline Sans Mono",monospace;font-size:11px;color:var(--soft);padding-top:2px}
+.slot .t{font-weight:600;font-size:15.5px;color:var(--ink);margin-bottom:4px}
+.slot .d{font-size:14.5px;line-height:1.55;color:var(--body)}
+.slot .m{font-family:"Spline Sans Mono",monospace;font-size:10.5px;color:var(--soft);margin-top:6px;letter-spacing:.04em}
+
+@media (max-width:1040px){
+  .shell{grid-template-columns:1fr}
+  .rail{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);padding:22px 20px}
+  .rail nav{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:2px 18px}
+  .rail .grp{grid-column:1/-1;padding-left:0}
+  main{padding:34px 20px 90px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="rail">
+  <div class="mark">hyprr <span>brands</span></div>
+  <div class="kind">Mobile layout critique<br>360px Android · 1 Sep 2026<br>Read from the components</div>
+  <nav>
+    <a href="#diag"><b>0</b><span>The diagnosis</span></a>
+    <a href="#find"><b>1</b><span>Findings</span></a>
+    <a href="#over"><b>2</b><span>The overflow</span></a>
+    <div class="grp">What to change</div>
+    <a href="#scale"><b>3</b><span>Mobile type scale</span></a>
+    <a href="#space"><b>4</b><span>Spacing &amp; layout</span></a>
+    <a href="#vis"><b>5</b><span>Space for visuals</span></a>
+    <div class="grp">Hand to the dev</div>
+    <a href="#prompt"><b>6</b><span>The fix prompt</span></a>
+  </nav>
+</aside>
+
+<main>
+<div class="wrap">
+
+<header class="masthead">
+  <h1>Mobile layout critique</h1>
+  <p class="dek">Read from the components rather than the screenshots alone. Measurements assume a 360&nbsp;px CSS-width Android, which is what the screenshots show and what most of your traffic will use.</p>
+  <div class="tags">
+    <span class="tag">9 components read</span>
+    <span class="tag">360px viewport</span>
+    <span class="tag">19 breakpoint uses total</span>
+    <span class="tag">No code changed</span>
+  </div>
+</header>
+
+<div class="verdict">
+  <span class="lbl">The diagnosis</span>
+  <p><strong>There is no mobile design. There is a fluid desktop design that mobile falls out of.</strong></p>
+  <p>Across nine components there are <b>19 responsive breakpoints in total</b> — nine at 900&nbsp;px, seven at 1180&nbsp;px, three <code>md:</code>. Everything else is <code>clamp()</code> plus <code>auto-fit</code>. On a phone every clamp sits at its <em>floor</em>, and those floors were chosen three weeks ago to fix the opposite problem: text that was too small on desktop. <strong>So the same decision that fixed desktop broke mobile.</strong> Desktop was 12&nbsp;px where it needed 17. Mobile is 42&nbsp;px where it needs 34.</p>
+  <p>The result is a hero that runs <b>1,494&nbsp;px — nearly two full phone screens</b> — before section two begins, a headline that overflows the viewport, and 2,280&nbsp;px of pure section padding across the page.</p>
+</div>
+
+<section id="diag">
+<h2><span class="n">0</span>First impression, two seconds</h2>
+<div class="tw"><table>
+<thead><tr><th style="width:200px">Question</th><th>Answer</th></tr></thead>
+<tbody>
+<tr><td><b>What draws the eye first?</b></td><td>The H1. Correct — and it is now unmissable, which is the fix working.</td></tr>
+<tr><td><b>What is the emotional read?</b></td><td><span class="bad">Enlarged.</span> Not broken, not ugly — it reads like a desktop page someone zoomed into. Every element is one size step too big for the column it sits in.</td></tr>
+<tr><td><b>Can the user reach the point?</b></td><td>Slowly. Two screens of hero, then a channel row, then a section heading, before any argument is made. On desktop that is one screenful.</td></tr>
+<tr><td><b>Is anything visibly broken?</b></td><td><span class="bad">Yes.</span> &ldquo;Everything connects<b>.</b>&rdquo; has its full stop cut off by the right edge, and the page scrolls sideways. Section 2.</td></tr>
+</tbody></table></div>
+
+<h4>What works</h4>
+<ul>
+<li><strong>Type is legible.</strong> Nothing is below 15&nbsp;px. The original complaint is genuinely fixed, on both breakpoints.</li>
+<li><strong>The section rhythm reads.</strong> White → bone → ink alternation is visible and does its job on a phone, which is where it matters most.</li>
+<li><strong>Engine colour coding survives.</strong> The citrus top-rule on the Build card and the coloured dots in the node list are doing exactly what the palette decision intended.</li>
+<li><strong>The hero card stack is a real composition</strong>, not the old <code>display:none</code>. Three artefacts, full opacity, readable.</li>
+<li><strong>Touch targets pass.</strong> CTAs use <code>min-h-12</code> (48&nbsp;px).</li>
+</ul>
+</section>
+
+<section id="find">
+<h2><span class="n">1</span>Findings</h2>
+<div class="tw"><table>
+<thead><tr><th style="width:44px">#</th><th style="width:210px">Finding</th><th style="width:80px">Sev</th><th>Evidence and fix</th></tr></thead>
+<tbody>
+<tr><td class="num">M1</td><td><b>No mobile breakpoint layer</b></td><td><span class="sev p0">P0</span></td><td>19 breakpoints across 9 components, none below 900&nbsp;px except three <code>md:</code>. The page has no design below tablet — only clamp floors. <b>Add a <code>max-width: 640px</code> layer</b> that overrides the six type utilities and the section spacing. This is one block in <code>globals.css</code>, not a per-component rewrite.</td></tr>
+<tr><td class="num">M2</td><td><b>Horizontal overflow</b></td><td><span class="sev p0">P0</span></td><td>&ldquo;Everything connects.&rdquo; at the 34&nbsp;px h2 floor measures <b>332&nbsp;px</b> against <b>312&nbsp;px</b> of usable width. It is clipped, not wrapped, which means a sibling is widening the row. Breaks the build spec&rsquo;s &ldquo;no horizontal overflow at 375&rdquo;. Section 2 has the diagnostic.</td></tr>
+<tr><td class="num">M3</td><td><b>No wrap safety on headings</b></td><td><span class="sev p0">P0</span></td><td><code>globals.css</code> <code>@layer base</code> contains rules for <code>body</code>, <code>a</code>, <code>summary</code> and <code>details</code> — and <b>nothing for headings at all</b>. No <code>text-wrap: balance</code>, no <code>overflow-wrap</code>, no <code>hyphens</code>. Only the H1 has <code>text-balance</code>, inline. Every other heading is one long word away from this bug.</td></tr>
+<tr><td class="num">M4</td><td><b>Hero is 1,494px tall</b></td><td><span class="sev p0">P0</span></td><td>Nearly two phone screens before section two: 82 announcement + 72 header + 48 pad + 129 H1 + 182 lead + 56 CTA + 45 labels + 700 for three stacked cards + 44 pad. <b>Target ≈ 900&nbsp;px.</b> Section 4 has the reductions.</td></tr>
+<tr><td class="num">M5</td><td><b>Channel marks are mixed formats with baked-in backgrounds</b></td><td><span class="sev p1">P1</span></td><td><code>amazon.jpeg</code>, <code>walmart.jpeg</code>, <code>ebay.jpeg</code> are JPEGs — no alpha channel, so each carries an opaque rectangle. <code>grayscale</code> then renders Amazon and Walmart as flat grey blocks. TikTok is an SVG (transparent, heavy black) and dominates the row; eBay nearly vanishes. <b>Re-source all six as SVG or transparent PNG</b> and normalise by optical weight.</td></tr>
+<tr><td class="num">M6</td><td><b>Equal bounding boxes, not equal optical size</b></td><td><span class="sev p1">P1</span></td><td><code>width={46} height={46}</code> with <code>object-contain</code> on every mark. The build spec (F) explicitly requires &ldquo;consistent optical sizing (<b>not</b> equal bounding boxes)&rdquo; — a wide wordmark like eBay and a square glyph like Target cannot share a box and look balanced. Set per-mark heights.</td></tr>
+<tr><td class="num">M7</td><td><b>Channel row wraps 4 + 2, left-aligned</b></td><td><span class="sev p1">P1</span></td><td><code>flex flex-wrap justify-start</code> gives a ragged orphan row. The build spec requires <b>3×2 at 375</b>. Use an explicit <code>grid-cols-3</code> below 640&nbsp;px.</td></tr>
+<tr><td class="num">M8</td><td><b>Hero CTAs collide at 360px</b></td><td><span class="sev p1">P1</span></td><td>Two buttons totalling roughly 355&nbsp;px in 312&nbsp;px of column, in a <code>flex gap-3 flex-wrap</code>. They sit edge-to-edge with no breathing room. <b>Stack full-width below 480&nbsp;px</b>, primary first.</td></tr>
+<tr><td class="num">M9</td><td><b>Operations card is half empty</b></td><td><span class="sev p1">P1</span></td><td>The ink card&rsquo;s label/value pairs are left-aligned in a full-width box because <code>text-right</code> is gated behind <code>min-[1180px]:</code>. On mobile it reads as a black rectangle with content hugging one edge. Make it a two-column label/value row on mobile.</td></tr>
+<tr><td class="num">M10</td><td><b>2,280px of section padding</b></td><td><span class="sev p2">P2</span></td><td><code>py-[clamp(60px,7vw,104px)]</code> → 60&nbsp;px top and bottom on every one of 19 sections. That is <b>2.9 phone screens of nothing</b>. Drop the floor to 44&nbsp;px and recover 608&nbsp;px.</td></tr>
+<tr><td class="num">M11</td><td><b>Copy has not been updated to the build spec</b></td><td><span class="sev p1">P1</span></td><td>Out of scope for layout, but visible: the H1 is still &ldquo;We don&rsquo;t advise on ecommerce. We run it.&rdquo; — which the build spec flags as a blocker because it contradicts the ownership section. The channels sub-line is still the market-claim version with no micro-labels, and the nav still carries &ldquo;Pricing&rdquo; pointing at an anchor. <b>Separate ticket, but it should not ship like this.</b></td></tr>
+</tbody></table></div>
+</section>
+
+<section id="over">
+<h2><span class="n">2</span>The overflow — how to find it in one line</h2>
+<p class="lede">The heading is clipped rather than wrapped, which means its containing block is wider than the viewport. Something on the page is establishing a min-content width above 360&nbsp;px.</p>
+
+<div class="ovd">
+  <div class="ovc"><div class="cap"><span>Now — 34px floor</span><span class="bad">332px in 312px</span></div>
+    <div class="phone"><div class="col"><div class="edge"></div>
+      <h5 style="font-size:19px">Everything connects.</h5>
+      <div class="sub">The full stop is past the right edge, and the page scrolls sideways.</div>
+    </div></div>
+  </div>
+  <div class="ovc"><div class="cap"><span>Fixed — 28px + wrap safety</span><span class="good">fits, 2 lines</span></div>
+    <div class="phone"><div class="col">
+      <h5 class="wrap" style="font-size:16px">Everything connects.</h5>
+      <div class="sub">Reads as a heading, sits inside the column, wraps if the copy ever changes.</div>
+    </div></div>
+  </div>
+</div>
+
+<pre><span class="c">// Paste in the mobile browser console (or DevTools device mode at 360px).</span>
+<span class="c">// Lists every element whose right edge crosses the viewport.</span>
+[...document.querySelectorAll(<span class="k">'*'</span>)]
+  .filter(el =&gt; el.getBoundingClientRect().right &gt; document.documentElement.clientWidth + 1)
+  .map(el =&gt; ({ el, w: Math.round(el.getBoundingClientRect().width) }));</pre>
+
+<p class="p"><strong>The usual suspects, in order of likelihood in this codebase:</strong> a grid or flex child without <code>min-width: 0</code> (children default to <code>min-width: auto</code>, so a long unbreakable string forces the track wider); a <code>whitespace-nowrap</code> that has outlived its purpose; a fixed <code>max-w-[…]</code> inside an already-padded container; or the scroll carousel&rsquo;s <code>88vw</code> children escaping their <code>overflow-x</code> wrapper. Fix the container first, then reduce the type — <strong>doing only the type reduction hides the bug rather than fixing it</strong>, and it will resurface the next time a heading gets longer.</p>
+</section>
+
+<section id="scale">
+<h2><span class="n">3</span>Mobile type scale — what to reduce, and to what</h2>
+<p class="lede">One override block below 640&nbsp;px. Sizes chosen for characters-per-line, not by feel: a display heading wants 17–24 characters, body wants 35–45.</p>
+
+<div class="tw"><table>
+<thead><tr><th style="width:120px">Token</th><th class="num" style="width:100px">Desktop max</th><th class="num" style="width:110px">Mobile now</th><th class="num" style="width:110px">Mobile fix</th><th class="num" style="width:110px">Chars/line</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td><code>type-h1</code></td><td class="num">76px</td><td class="num bad">42px</td><td class="num good">34px</td><td class="num">15.3 → <b>19.3</b></td><td>At 42&nbsp;px the H1 gets 15 characters a line and runs to 3–4 lines. 34&nbsp;px is still a commanding headline and reads in two.</td></tr>
+<tr><td><code>type-h2</code></td><td class="num">58px</td><td class="num bad">34px</td><td class="num good">28px</td><td class="num">18.8 → <b>23.2</b></td><td>Fixes the overflow with margin to spare, and stops every section heading eating a third of the screen.</td></tr>
+<tr><td><code>type-h3</code></td><td class="num">32px</td><td class="num mid">24px</td><td class="num good">21px</td><td class="num">26.0 → <b>30.4</b></td><td>Card titles. 24&nbsp;px competes with the section H2 at 28.</td></tr>
+<tr><td><code>type-lead</code></td><td class="num">22px</td><td class="num bad">19px</td><td class="num good">17px</td><td class="num">32.8 → <b>37.6</b></td><td>The hero&rsquo;s 46-word paragraph is 6 lines at 19&nbsp;px and 5 at 17. Biggest single vertical saving in the hero.</td></tr>
+<tr><td><code>type-body</code></td><td class="num">17px</td><td class="num">17px</td><td class="num good">16px</td><td class="num">36.7 → <b>40.0</b></td><td><b>Floor — do not go below.</b> 16&nbsp;px is the brand guidelines&rsquo; web minimum and the reason the desktop fix was needed.</td></tr>
+<tr><td><code>type-meta</code></td><td class="num">15px</td><td class="num">15px</td><td class="num">15px</td><td class="num">—</td><td>Unchanged. Captions and chips are already right.</td></tr>
+<tr><td><code>type-label</code></td><td class="num">12px</td><td class="num">12px</td><td class="num">11.5px</td><td class="num">—</td><td>Uppercase mono only, never a sentence. Keep the <code>.11em</code> tracking.</td></tr>
+</tbody></table></div>
+
+<div class="scale">
+  <div class="row"><span class="k">h1 · 34px</span><span class="s" style="font-size:34px;font-weight:800;letter-spacing:-.032em">You own the business.</span></div>
+  <div class="row"><span class="k">h2 · 28px</span><span class="s" style="font-size:28px;font-weight:800;letter-spacing:-.028em">Everything connects.</span></div>
+  <div class="row"><span class="k">h3 · 21px</span><span class="s" style="font-size:21px;font-weight:700;letter-spacing:-.018em">Build</span></div>
+  <div class="row"><span class="k">lead · 17px</span><span class="s" style="font-size:17px;font-weight:400;letter-spacing:0;line-height:1.55">Hyprr builds, grows and operates ecommerce businesses.</span></div>
+  <div class="row"><span class="k">body · 16px</span><span class="s" style="font-size:16px;font-weight:400;letter-spacing:0;line-height:1.6">Wholesale ecommerce on Amazon and Walmart, private label.</span></div>
+  <div class="row"><span class="k">label · 11.5px</span><span class="s mono" style="font-size:11.5px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;font-family:'Spline Sans Mono',monospace">Commerce channels</span></div>
+</div>
+
+<div class="call hot">
+<span class="lbl">The rule that keeps this from swinging back</span>
+<p>This is the second time the type scale has moved, in opposite directions, and the reason is that <strong>a single <code>clamp()</code> was being asked to serve two designs</strong>. Its floor is the mobile design and its maximum is the desktop design, and tuning one moves the other.</p>
+<p><strong>Stop using clamp floors as the mobile size.</strong> Keep <code>clamp()</code> for the fluid range above 640&nbsp;px, and set explicit mobile values in a <code>max-width: 640px</code> block. Two designs, two sets of numbers, neither one hostage to the other.</p>
+</div>
+</section>
+
+<section id="space">
+<h2><span class="n">4</span>Spacing and layout reductions</h2>
+<div class="tw"><table>
+<thead><tr><th style="width:200px">What</th><th class="num" style="width:110px">Now</th><th class="num" style="width:110px">Fix</th><th>Effect</th></tr></thead>
+<tbody>
+<tr><td>Section vertical padding</td><td class="num">60px</td><td class="num good">44px</td><td>Saves <b>608&nbsp;px</b> across 19 sections — three quarters of a phone screen.</td></tr>
+<tr><td>Section horizontal padding</td><td class="num">24px</td><td class="num good">20px</td><td>Gains 8&nbsp;px of column. Small, but it is 2.5% more measure on every line of the page.</td></tr>
+<tr><td>Card padding</td><td class="num">20px</td><td class="num good">18px</td><td>Cards stop feeling like boxes inside boxes.</td></tr>
+<tr><td>Hero top padding</td><td class="num">48px</td><td class="num good">28px</td><td>The announcement bar and header already give 154&nbsp;px of air above the eyebrow.</td></tr>
+<tr><td>H1 bottom margin</td><td class="num">24px</td><td class="num good">16px</td><td>Headline and its supporting line should read as one unit.</td></tr>
+<tr><td>Lead bottom margin</td><td class="num">34px</td><td class="num good">24px</td><td>—</td></tr>
+<tr><td>Hero CTA row</td><td>side by side</td><td class="num good">stacked, full width</td><td>Removes the edge collision; primary gets a full 320&nbsp;px target.</td></tr>
+<tr><td>Hero card stack</td><td>3 cards, ~700px</td><td class="num good">2 cards, ~420px</td><td>Drop the storefront-admin fragment on mobile. Keep the operating-system card and the purchase-order approval — those two carry the argument.</td></tr>
+<tr><td>Channel grid</td><td>flex-wrap 4+2</td><td class="num good">grid-cols-3</td><td>3×2, even, per the build spec.</td></tr>
+<tr><td>Engine card list gap</td><td class="num">10px</td><td class="num">10px</td><td>Correct already — it only looks large because the type around it is oversized.</td></tr>
+</tbody></table></div>
+<p class="p"><strong>Net effect on the hero:</strong> 1,494&nbsp;px → roughly <b>900&nbsp;px</b>. Section two starts just past one screen instead of just past two.</p>
+</section>
+
+<section id="vis">
+<h2><span class="n">5</span>Space for visuals — mobile needs different crops</h2>
+<p class="lede">On a phone an image band is worth more than on desktop, because it is the only thing that breaks a single-column text scroll. But a desktop crop does not survive the trip.</p>
+
+<div class="call hot">
+<span class="lbl">The crop problem</span>
+<p>A 16:9 image on a 360&nbsp;px screen is <strong>202&nbsp;px tall</strong> — a stripe, not a photograph. Every full-bleed slot needs a <b>portrait source below 640&nbsp;px</b>, art-directed with <code>&lt;picture&gt;</code>, not the same file scaled down. Reserve the aspect ratio in CSS so nothing shifts when it loads.</p>
+</div>
+
+<div class="slots">
+  <div class="tier">Full-bleed bands — the scroll breakers</div>
+  <div class="slot"><div class="n4">MV1</div><div>
+    <div class="t">Ownership section — behind the trust argument</div>
+    <div class="d">Cartons on a pallet under warehouse lighting, ink overlay 72%. This is the section that says you own the inventory; showing inventory behind it is the strongest pairing on the page.</div>
+    <div class="m">Section 07 · mobile 4:5 (288×360) · desktop 16:9 · <code>&lt;picture&gt;</code> art direction</div>
+  </div></div>
+  <div class="slot"><div class="n4">MV2</div><div>
+    <div class="t">True cost — behind the cost stack</div>
+    <div class="d">Prep bench: tape gun, poly mailers, a barcode label part-applied. Ink overlay 78% so the bars stay readable.</div>
+    <div class="m">Section 11 · mobile 4:5 · desktop 21:9</div>
+  </div></div>
+</div>
+
+<div class="slots">
+  <div class="tier">Inline slots</div>
+  <div class="slot"><div class="n4">MV3</div><div>
+    <div class="t">Private label path card</div>
+    <div class="d">Unbranded mailer and kraft carton. On mobile this sits above the card copy, not beside it — a 4:3 image at full column width, 240&nbsp;px tall.</div>
+    <div class="m">Section 05 · 4:3 · full column width</div>
+  </div></div>
+  <div class="slot"><div class="n4">MV4</div><div>
+    <div class="t">Team — one up, not three</div>
+    <div class="d">A 3-up portrait grid on a 320&nbsp;px column gives 96&nbsp;px faces, which is worse than no photograph. <strong>One card per row at full width</strong>, 1:1, with the name and role beneath at <code>type-h3</code>.</div>
+    <div class="m">Section 13 · 1:1 · one per row below 640px</div>
+  </div></div>
+</div>
+
+<div class="call win">
+<span class="lbl">What to do before any photography exists</span>
+<p>Build the slots now with a neutral ink-tinted placeholder and the aspect ratio reserved. That does three things: the layout is final so nothing shifts later, CLS stays clean, and <strong>you can see immediately whether the page needs the image at all</strong> — on mobile, several of these bands may work better as a colour field than as a photograph, and you will only know once the rhythm is right.</p>
+<p>Do not add placeholder people, silhouettes, or generated faces at any point.</p>
+</div>
+</section>
+
+<!-- ============ PROMPT ============ -->
+<section id="prompt">
+<h2><span class="n">6</span>The fix prompt</h2>
+<p class="lede">Copy the whole block to the coding agent. Scoped so desktop cannot regress.</p>
+
+<pre class="prompt">Fix the mobile layout of the Hyprr homepage. Target: 360px CSS width Android.
+Do NOT change any desktop behaviour above 640px, any copy string, the section
+rhythm map, the palette, or the scroll section's pinned logic.
+
+CONTEXT
+There is currently no mobile design — only 19 breakpoints across 9 components,
+none below 900px except three md:. Everything else is clamp() + auto-fit, so on
+a phone every clamp sits at its floor. Those floors were tuned to fix small text
+on desktop, which made mobile oversized. The hero is 1494px tall (two phone
+screens) and a heading overflows the viewport.
+
+FIX 1 — Add a mobile type layer (P0)
+In app/globals.css, after the six @utility type-* definitions, add ONE block.
+Do not edit the existing clamp values — they serve desktop.
+  @media (max-width: 640px) {
+    .type-h1    { font-size: 34px;   letter-spacing: -.032em; line-height: 1.06; }
+    .type-h2    { font-size: 28px;   letter-spacing: -.028em; line-height: 1.10; }
+    .type-h3    { font-size: 21px;   letter-spacing: -.018em; line-height: 1.2;  }
+    .type-lead  { font-size: 17px;   line-height: 1.55; }
+    .type-body  { font-size: 16px;   line-height: 1.6;  }
+    .type-label { font-size: 11.5px; }
+  }
+16px is a hard floor for anything that is a sentence — brand guideline, do not
+go below it.
+
+FIX 2 — Add heading wrap safety (P0)
+@layer base currently has NO heading rules at all. Add:
+  h1, h2, h3, h4 { text-wrap: balance; overflow-wrap: break-word; }
+  p, li { text-wrap: pretty; }
+Then remove the now-redundant inline `text-balance` from the Hero h1.
+
+FIX 3 — Find and fix the horizontal overflow (P0)
+"Everything connects." is clipped rather than wrapped, so a sibling is widening
+the row. Do NOT just shrink the text — that hides it.
+Diagnose at 360px with:
+  [...document.querySelectorAll('*')]
+    .filter(el => el.getBoundingClientRect().right >
+                  document.documentElement.clientWidth + 1)
+Then fix the container. Most likely: a grid/flex child missing `min-width: 0`
+(children default to min-width:auto). Add `min-w-0` to the grid items in
+EverythingConnects' <ol> and to any flex child holding long text.
+Acceptance: document.documentElement.scrollWidth === clientWidth at 360, 375, 390, 412.
+
+FIX 4 — Mobile spacing layer (P0)
+Reduce below 640px only:
+  - section vertical padding  60px -> 44px  (every py-[clamp(60px,...)])
+  - section horizontal padding 24px -> 20px
+  - card padding               20px -> 18px
+  - Hero pt                    48px -> 28px
+  - Hero h1 margin-bottom      24px -> 16px
+  - Hero lead margin-bottom    34px -> 24px
+Target: hero total height <= 950px at 360px (currently 1494px).
+
+FIX 5 — Hero mobile composition (P1)
+  - Stack the two CTAs full-width below 480px, primary first, gap 10px.
+    Remove the side-by-side flex-wrap at that width.
+  - Drop the STOREFRONT ADMIN fragment on mobile (keep it >=900px).
+    Keep the commerce-operating-system card and the OPERATIONS card.
+  - The OPERATIONS card currently left-aligns label/value pairs in a full-width
+    box because text-right is gated behind min-[1180px]. On mobile make each row
+    a two-column `flex justify-between` so the value sits right.
+
+FIX 6 — Channel row (P1)
+  - Below 640px use an explicit `grid grid-cols-3` (3x2), not flex-wrap.
+    Current 4+2 leaves a ragged orphan row.
+  - Re-source amazon/walmart/ebay as SVG or transparent PNG. They are .jpeg
+    today, which cannot hold alpha, so `grayscale` renders them as opaque grey
+    blocks while the TikTok SVG stays heavy black. The row has no visual parity.
+  - Replace the uniform width={46} height={46} with per-mark optical sizing:
+    give each mark a max-height and let width be auto, tuned by eye so a wide
+    wordmark (eBay) and a square glyph (Target) read at the same weight.
+    The build spec requires "consistent optical sizing, not equal bounding boxes."
+
+FIX 7 — Visual slots, mobile crops (P1)
+Add empty aspect-ratio-reserved slots with a neutral ink-tinted placeholder.
+Use <picture> so mobile gets a portrait source, not a squashed landscape one:
+  - Ownership (07)      mobile 4:5, desktop 16:9, ink overlay 72%
+  - True cost (11)      mobile 4:5, desktop 21:9, ink overlay 78%
+  - CommercePaths card 2  4:3, full column width, above the copy on mobile
+  - Team (13)           1:1, ONE per row below 640px (a 3-up grid gives 96px
+                        faces, which is worse than no photo)
+No placeholder people, silhouettes or generated faces.
+
+CONSTRAINTS
+- Do not touch any clamp() maximum. Desktop must render identically.
+- Do not change copy. (The H1 and channel sub-line are wrong per the build spec,
+  but that is a separate ticket.)
+- Every new size goes in the max-width:640px layer, not inline per component.
+
+ACCEPTANCE
+1. No horizontal scroll at 360 / 375 / 390 / 412px.
+2. No heading clipped at any of those widths.
+3. Hero height <= 950px at 360px.
+4. Nothing that is a sentence renders below 16px.
+5. Channel row is 3x2, evenly weighted, all six marks visible at similar weight.
+6. Desktop screenshots at 1440 and 1920 are pixel-identical to before.
+7. Lighthouse mobile CLS does not regress; all slots reserve their ratio.
+8. Touch targets stay >= 44px.</pre>
+</section>
+
+</div>
+</main>
+</div>
+</body>
+</html>

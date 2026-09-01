@@ -57,12 +57,11 @@ export default function SystemScroll() {
                   Build the right commerce <span>foundation</span>.
                 </h3>
                 <div className="state-chips">
-                  <div>Product research</div>
-                  <div>Supplier research</div>
-                  <div>Brand development</div>
+                  <div>Product &amp; supplier research</div>
+                  <div>Brand &amp; packaging</div>
+                  <div>Storefront build</div>
                   <div>Marketplace setup</div>
-                  <div>Shopify / DTC setup</div>
-                  <div>Listings and creative</div>
+                  <div>Listings &amp; content</div>
                 </div>
               </div>
               <div
@@ -87,7 +86,7 @@ export default function SystemScroll() {
                   </div>
                 </div>
                 <div className="type-meta font-medium">
-                  Product → brand → store → marketplace
+                  Research → supplier → listing → live
                 </div>
               </div>
             </div>
@@ -104,12 +103,11 @@ export default function SystemScroll() {
                   Turn the operation into a <span>growth engine</span>.
                 </h3>
                 <div className="state-chips">
-                  <div>Ecommerce growth</div>
-                  <div>Marketplace growth</div>
-                  <div>DTC growth</div>
+                  <div>Demand &amp; keyword research</div>
                   <div>PPC &amp; paid media</div>
                   <div>Conversion</div>
-                  <div>Channel expansion</div>
+                  <div>Marketplace growth</div>
+                  <div>DTC growth</div>
                 </div>
               </div>
               <div
@@ -151,12 +149,12 @@ export default function SystemScroll() {
                   Keep it running <span>every single day</span>.
                 </h3>
                 <p className="type-body text-body m-0 mb-4 max-w-[44ch]">
-                  Orders, inventory, listings, cases, reporting.
+                  Orders, inventory, listings, cases — and the report at the end of it.
                 </p>
                 <div className="state-chips">
+                  <div>Order &amp; inventory management</div>
                   <div>Marketplace management</div>
                   <div>Shopify management</div>
-                  <div>Inventory coordination</div>
                   <div>Account health</div>
                   <div>Reporting</div>
                 </div>
@@ -179,7 +177,7 @@ export default function SystemScroll() {
                   </div>
                 </div>
                 <div className="type-meta font-medium">
-                  Orders → inventory → reporting
+                  Purchase → inventory → orders → report
                 </div>
               </div>
             </div>
@@ -196,12 +194,12 @@ export default function SystemScroll() {
                   Three engines, one system of record.
                 </h3>
                 <div className="type-body text-body grid gap-1.5 mb-5">
-                  <div>Build informs growth.</div>
-                  <div>Growth exposes operational limits.</div>
-                  <div>Operations feed the next build.</div>
+                  <div>Build decides what the operation sells.</div>
+                  <div>Growth exposes where the operation strains.</div>
+                  <div>Operations produce the record the next decision is made on.</div>
                 </div>
                 <a
-                  href="#talk"
+                  href="/contact"
                   className="inline-flex items-center bg-field text-white hover:text-white type-body font-semibold px-[22px] py-[13px] rounded-md"
                 >
                   Talk to the team that runs it

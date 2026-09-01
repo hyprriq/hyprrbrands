@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Hyprr Brands — Scroll Section Critique. Post-build review of the pinned #system section.">
+<title>Scroll Section Critique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --paper:#F4F6F8; --surface:#FFFFFF; --sunk:#EAEEF2;
+  --ink:#11151C; --body:#464F5E; --soft:#6A7383;
+  --line:#D8DEE6; --hair:#E7EBF0;
+  --accent:#B93E23; --crit:#B93E23; --warn:#8A6300; --ok:#1C6F4A;
+  --shadow:0 1px 2px rgba(17,21,28,.05), 0 14px 34px -24px rgba(17,21,28,.30);
+  --rail:266px;
+}
+:root:not([data-theme="light"]){
+  @media (prefers-color-scheme: dark){
+    --paper:#0E1116; --surface:#161A21; --sunk:#11151B;
+    --ink:#E9EDF3; --body:#A5AEBD; --soft:#7B8494;
+    --line:#282E38; --hair:#1F242C;
+    --accent:#F0704F; --crit:#F0704F; --warn:#D9A429; --ok:#4FBF8B;
+    --shadow:0 1px 2px rgba(0,0,0,.5), 0 16px 36px -24px rgba(0,0,0,.9);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E1116; --surface:#161A21; --sunk:#11151B;
+  --ink:#E9EDF3; --body:#A5AEBD; --soft:#7B8494;
+  --line:#282E38; --hair:#1F242C;
+  --accent:#F0704F; --crit:#F0704F; --warn:#D9A429; --ok:#4FBF8B;
+  --shadow:0 1px 2px rgba(0,0,0,.5), 0 16px 36px -24px rgba(0,0,0,.9);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:400 16px/1.62 Archivo,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{margin:0;font-family:Archivo,system-ui,sans-serif;text-wrap:balance;line-height:1.1;letter-spacing:-.022em}
+p{margin:0}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--accent) 32%,transparent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+code,.mono{font-family:"Spline Sans Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+
+.shell{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);max-width:1460px;margin:0 auto}
+.rail{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:var(--sunk);
+  border-right:1px solid var(--line);padding:32px 22px 48px}
+.rail .mark{font-weight:800;font-size:17px;letter-spacing:-.035em}
+.rail .mark span{font-weight:400;color:var(--soft)}
+.rail .kind{font-family:"Spline Sans Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin:8px 0 22px;line-height:1.6}
+.rail nav{display:flex;flex-direction:column;gap:1px}
+.rail nav a{display:grid;grid-template-columns:24px 1fr;gap:8px;align-items:baseline;padding:6px 0;
+  font-size:13.5px;line-height:1.35;color:var(--ink);border:0}
+.rail nav a b{font-family:"Spline Sans Mono",monospace;font-size:11px;font-weight:600;color:var(--soft)}
+.rail nav a:hover,.rail nav a:hover b{color:var(--accent)}
+.rail .grp{font-family:"Spline Sans Mono",monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);margin:18px 0 5px;padding-left:32px}
+
+main{padding:56px clamp(20px,4vw,68px) 150px;min-width:0}
+.wrap{max-width:940px}
+
+.masthead{border-bottom:2px solid var(--ink);padding-bottom:28px}
+.masthead h1{font-size:clamp(32px,4.4vw,52px);font-weight:800;max-width:17ch;letter-spacing:-.035em}
+.masthead .dek{margin-top:16px;font-size:18.5px;line-height:1.55;color:var(--body);max-width:62ch}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:22px}
+.tag{font-family:"Spline Sans Mono",monospace;font-size:10.5px;letter-spacing:.04em;padding:4px 9px;border:1px solid var(--line);color:var(--soft);border-radius:3px}
+
+.verdict{margin-top:30px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px 28px;box-shadow:var(--shadow)}
+.verdict .lbl{font-family:"Spline Sans Mono",monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--soft);display:block;margin-bottom:12px}
+.verdict p{font-size:19px;line-height:1.48;letter-spacing:-.01em;max-width:58ch}
+.verdict p+p{margin-top:.7em;font-size:16.5px;line-height:1.6;color:var(--body);letter-spacing:0}
+
+section{padding-top:70px;scroll-margin-top:20px}
+section>h2{font-size:clamp(24px,2.8vw,34px);font-weight:700;display:flex;align-items:baseline;gap:15px;
+  padding-bottom:13px;border-bottom:1px solid var(--ink);margin-bottom:24px;letter-spacing:-.03em}
+section>h2 .n{font-family:"Spline Sans Mono",monospace;font-size:15px;font-weight:600;color:var(--accent);flex:none;letter-spacing:0}
+h3{font-size:20px;font-weight:700;margin:36px 0 11px;letter-spacing:-.022em}
+h4{font-family:"Spline Sans Mono",monospace;font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.11em;color:var(--soft);margin:26px 0 11px}
+.lede{font-size:17.5px;line-height:1.58;color:var(--body);max-width:64ch;margin-bottom:20px}
+.p{margin:0 0 1em;max-width:70ch;color:var(--body)}
+.p strong,.lede strong{color:var(--ink);font-weight:600}
+ul,ol{max-width:70ch;padding-left:20px;margin:0 0 1.1em;color:var(--body)}
+li{margin-bottom:.42em}
+li strong{color:var(--ink);font-weight:600}
+
+pre{background:var(--sunk);border:1px solid var(--hair);border-radius:11px;padding:17px 19px;overflow-x:auto;
+  font-family:"Spline Sans Mono",monospace;font-size:12.4px;line-height:1.68;margin:16px 0 24px;color:var(--ink);white-space:pre-wrap}
+pre .c{color:var(--soft)}
+pre .k{color:var(--accent)}
+pre.prompt{background:var(--surface);border:2px solid var(--accent);white-space:pre-wrap;font-size:12.8px}
+
+.call{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:18px 22px;margin:22px 0;max-width:74ch}
+.call .lbl{font-family:"Spline Sans Mono",monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);display:block;margin-bottom:9px}
+.call p{color:var(--body);font-size:15.5px;line-height:1.62}
+.call p+p{margin-top:.75em}
+.call strong{color:var(--ink);font-weight:600}
+.call.hot{border-color:color-mix(in srgb,var(--crit) 40%,var(--line));background:color-mix(in srgb,var(--crit) 4%,var(--surface))}
+.call.hot .lbl{color:var(--crit)}
+.call.win{border-color:color-mix(in srgb,var(--ok) 40%,var(--line));background:color-mix(in srgb,var(--ok) 5%,var(--surface))}
+.call.win .lbl{color:var(--ok)}
+
+.tw{overflow-x:auto;margin:18px 0 26px;border:1px solid var(--line);border-radius:11px;background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-size:14.2px;min-width:600px}
+th{text-align:left;font-family:"Spline Sans Mono",monospace;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--soft);padding:12px 15px;border-bottom:1px solid var(--ink);white-space:nowrap}
+td{padding:12px 15px;border-bottom:1px solid var(--hair);vertical-align:top;color:var(--body);line-height:1.52}
+td:first-child{color:var(--ink)}
+tr:last-child td{border-bottom:0}
+td code{font-size:12.4px;background:var(--sunk);padding:1px 5px;border-radius:4px;color:var(--ink)}
+td b{color:var(--ink)}
+.num{font-family:"Spline Sans Mono",monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+.sev{font-family:"Spline Sans Mono",monospace;font-size:9.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;padding:3px 8px;border-radius:100px;border:1px solid;white-space:nowrap;display:inline-block}
+.sev.p0{color:var(--crit);border-color:color-mix(in srgb,var(--crit) 45%,transparent);background:color-mix(in srgb,var(--crit) 10%,transparent)}
+.sev.p1{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 45%,transparent);background:color-mix(in srgb,var(--warn) 11%,transparent)}
+.sev.p2{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 45%,transparent);background:color-mix(in srgb,var(--ok) 11%,transparent)}
+.good{color:var(--ok);font-weight:600}
+.bad{color:var(--crit);font-weight:600}
+
+/* panel demo */
+.pdemo{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px;margin:20px 0 26px}
+.pdemo .cell{border-radius:13px;overflow:hidden;border:1px solid var(--line)}
+.pdemo .cap{font-family:"Spline Sans Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:9px 14px;background:var(--sunk);color:var(--soft);border-bottom:1px solid var(--hair);display:flex;justify-content:space-between;gap:8px}
+.pdemo .field{background:#17171A;padding:20px;display:grid;gap:12px}
+.pnl{border-radius:14px;padding:14px;display:grid;gap:9px;border:1px solid rgb(255 255 255 / .16);background:rgb(255 255 255 / .06)}
+.pnl .h{display:flex;justify-content:space-between;font-family:"Spline Sans Mono",monospace;font-size:10px;letter-spacing:.12em}
+.pnl .r{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;border-top:1px solid rgb(255 255 255 / .12);padding-top:6px}
+.pnl.now{opacity:.62;color:#8E89A0}
+.pnl.now .r{border-top-color:rgb(127 127 127 / .25)}
+.pnl.fix{opacity:1;color:#C7C3D2;background:rgb(255 255 255 / .05);border-color:rgb(255 255 255 / .12)}
+.pnl.fix .h{color:#8E89A0}
+.pnl.fix .r b{color:#FFFFFF;font-weight:600}
+.pnl.act{opacity:1;background:#FFF3D6;color:#17171A;border-color:#FFC84A;box-shadow:inset 0 3px 0 0 #FFC84A}
+.pnl.act .h{color:#8A6300}
+.pnl.act .r{border-top-color:rgb(23 23 26 / .18)}
+.pnl.act .r b{font-weight:600}
+
+/* viewport diagram */
+.vp{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:20px 0 26px}
+.vpc{border:1px solid var(--line);border-radius:13px;overflow:hidden;background:var(--surface)}
+.vpc .cap{font-family:"Spline Sans Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:9px 14px;background:var(--sunk);color:var(--soft);border-bottom:1px solid var(--hair)}
+.vpc .box{background:#17171A;height:230px;position:relative;padding:10px}
+.vpc .void{background:repeating-linear-gradient(45deg,rgb(185 62 35 / .30) 0 6px,transparent 6px 12px);border:1px dashed rgb(240 112 79 / .6);border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:"Spline Sans Mono",monospace;font-size:9.5px;color:#F0704F;letter-spacing:.08em}
+.vpc .blk{background:rgb(255 255 255 / .09);border:1px solid rgb(255 255 255 / .18);border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:"Spline Sans Mono",monospace;font-size:9.5px;color:#C7C3D2;letter-spacing:.08em}
+.vpc .hd{background:#FFC84A;border-radius:4px;color:#17171A;display:flex;align-items:center;padding:0 8px;font-family:"Spline Sans Mono",monospace;font-size:9.5px;font-weight:600;letter-spacing:.06em}
+.vpc .stack{display:grid;height:100%;gap:6px}
+
+.slot{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:15px 17px;border-bottom:1px solid var(--hair)}
+.slot:last-child{border-bottom:0}
+.slot .n4{font-family:"Spline Sans Mono",monospace;font-size:11px;color:var(--soft);padding-top:2px}
+.slot .t{font-weight:600;font-size:15.5px;color:var(--ink);margin-bottom:4px}
+.slot .d{font-size:14.5px;line-height:1.55;color:var(--body)}
+.slot .m{font-family:"Spline Sans Mono",monospace;font-size:10.5px;color:var(--soft);margin-top:6px;letter-spacing:.04em}
+.slots{border:1px solid var(--line);border-radius:12px;background:var(--surface);margin:18px 0 26px;overflow:hidden}
+.tier{font-family:"Spline Sans Mono",monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;padding:9px 17px;background:var(--sunk);color:var(--soft);border-bottom:1px solid var(--hair)}
+
+@media (max-width:1040px){
+  .shell{grid-template-columns:1fr}
+  .rail{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);padding:22px 20px}
+  .rail nav{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:2px 18px}
+  .rail .grp{grid-column:1/-1;padding-left:0}
+  main{padding:34px 20px 90px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="rail">
+  <div class="mark">hyprr <span>brands</span></div>
+  <div class="kind">Scroll section critique<br>Post-build pass · 31 Aug 2026<br>Read from SystemScroll.tsx</div>
+  <nav>
+    <a href="#imp"><b>0</b><span>Overall impression</span></a>
+    <a href="#works"><b>1</b><span>What works</span></a>
+    <a href="#root"><b>2</b><span>The root cause</span></a>
+    <a href="#find"><b>3</b><span>Findings</span></a>
+    <a href="#a11y"><b>4</b><span>Accessibility</span></a>
+    <div class="grp">Hand to the dev</div>
+    <a href="#prompt"><b>5</b><span>The fix prompt</span></a>
+    <div class="grp">Visuals</div>
+    <a href="#vis"><b>6</b><span>Where visuals go</span></a>
+    <a href="#shot"><b>7</b><span>Shot list</span></a>
+  </nav>
+</aside>
+
+<main>
+<div class="wrap">
+
+<header class="masthead">
+  <h1>Scroll section critique</h1>
+  <p class="dek">A post-build review of the pinned <code>#system</code> section against the shipped code, not the screenshot alone. The spec was implemented faithfully — dwell, engine colours, the promoted H2, the carousel, the rail buttons are all there. Three specific mechanisms are undoing the work.</p>
+  <div class="tags">
+    <span class="tag">SystemScroll.tsx · 30.4 KB</span>
+    <span class="tag">Viewport ~1875×852</span>
+    <span class="tag">State 01 / Build</span>
+    <span class="tag">No code changed</span>
+  </div>
+</header>
+
+<div class="verdict">
+  <span class="lbl">Overall impression</span>
+  <p>The build is <strong>85% right and reads as 40% right</strong>, because three mechanisms are cancelling out everything that was done well.</p>
+  <p>A blanket <code>opacity: 0.62</code> drops the three inactive panels to <b>2.58:1</b> — they are not &ldquo;dimmed&rdquo;, they are unreadable. A fixed-height composition sits as an island in a 100&nbsp;vh pane, so on a wide-short laptop roughly <b>55% of the section is empty</b>. And the skip link floats mid-right with nothing to anchor it. None of these are design decisions that failed — they are three implementation details, each about five lines.</p>
+</div>
+
+<section id="imp">
+<h2><span class="n">0</span>First impression, two seconds</h2>
+<div class="tw"><table>
+<thead><tr><th style="width:200px">Question</th><th>Answer</th></tr></thead>
+<tbody>
+<tr><td><b>What draws the eye first?</b></td><td>The citrus panel — correct, that is the active state and it should win. <span class="good">Working as designed.</span></td></tr>
+<tr><td><b>What draws it second?</b></td><td>The H2, which is now large and white. <span class="good">Fixed from the 11.5&nbsp;px version.</span></td></tr>
+<tr><td><b>What is the emotional read?</b></td><td><span class="bad">Unfinished.</span> Not because of the content — because two large voids frame a small cluster, and three of the four panels look like they failed to load.</td></tr>
+<tr><td><b>Is the purpose clear?</b></td><td>Partly. You can read state 01. You cannot tell there are four states, because the rail is not visible in this frame and the three grey panels do not read as &ldquo;the next three chapters&rdquo; — they read as broken.</td></tr>
+</tbody></table></div>
+</section>
+
+<section id="works">
+<h2><span class="n">1</span>What works — do not touch these</h2>
+<ul>
+<li><strong>The H2 promotion.</strong> From 11.5&nbsp;px grey uppercase to <code>type-h2</code> white. This was the worst single defect in the original and it is gone.</li>
+<li><strong>The dwell function.</strong> Implemented exactly as specced, with the correct <code>EDGE</code>/<code>HOLD</code> maths. The state genuinely holds now.</li>
+<li><strong>Panel artefacts.</strong> Research shortlist, listing with PPC bid and search terms, purchase order with the approval line, the commerce-system loop. All four carry real content instead of a caption.</li>
+<li><strong>Three modes, honestly separated.</strong> <code>pinned</code> / <code>carousel</code> / <code>stacked</code>, with reduced-motion routed to stacked and the SSR markup being the readable baseline. This is better engineering than the spec asked for.</li>
+<li><strong>Rail ticks are real <code>&lt;button&gt;</code>s</strong> with a working <code>jumpTo</code>, including a sensible fallback for carousel mode.</li>
+<li><strong>The type utilities.</strong> <code>type-label</code> through <code>type-h1</code> are in <code>globals.css</code> as real utilities. The six-step scale is now enforceable rather than aspirational.</li>
+</ul>
+<div class="call win">
+<span class="lbl">Worth saying plainly</span>
+<p>The developer did not miss the brief. Every item below is a <strong>finishing</strong> problem — the kind that only appears once the structure is right, which is why it could not have been caught earlier.</p>
+</div>
+</section>
+
+<section id="root">
+<h2><span class="n">2</span>The root cause: a fixed-height island in a fluid pane</h2>
+<p class="lede">One structural mistake explains most of what looks wrong.</p>
+
+<pre><span class="c">// SystemScroll.tsx — the pane is 100vh, but its contents are capped</span>
+copywrap.style.minHeight = <span class="k">"clamp(240px,38vh,460px)"</span>;   <span class="c">// copy column</span>
+grid:      height:        <span class="k">"clamp(260px,50vh,600px)"</span>;   <span class="c">// panel grid</span>
+grid:      margin:        <span class="k">"18px 0"</span>;</pre>
+
+<p class="p">The pinned pane is <code>height: 100vh</code>. On a 852&nbsp;px-tall viewport the section fills about 774&nbsp;px below the header. The content inside caps at <b>50&nbsp;vh ≈ 426&nbsp;px</b> for the grid, and the H2 cluster adds roughly 165&nbsp;px. That leaves <strong>~180&nbsp;px of dead space</strong>, split above and below by the <code>justifyContent: center</code> on <code>[data-mid]</code> — which is exactly the two voids in the screenshot.</p>
+
+<div class="vp">
+  <div class="vpc"><div class="cap">Now — island in a 100vh pane</div>
+    <div class="box"><div class="stack" style="grid-template-rows:auto 1fr auto 1fr">
+      <div class="hd" style="height:26px">H2 — How Hyprr builds and operates…</div>
+      <div class="void">DEAD ~90px</div>
+      <div class="blk" style="height:74px">copy + 4 panels — capped at 50vh</div>
+      <div class="void">DEAD ~90px</div>
+    </div></div>
+  </div>
+  <div class="vpc"><div class="cap">Fixed — composition fills the pane</div>
+    <div class="box"><div class="stack" style="grid-template-rows:auto 1fr auto">
+      <div class="hd" style="height:26px">H2 — How Hyprr builds and operates…</div>
+      <div class="blk">copy + 4 panels — <b style="color:#FFC84A;margin-left:5px">flex: 1, min 0</b></div>
+      <div class="blk" style="height:26px;background:rgb(255 200 74 / .16);color:#FFC84A">rail · 01 Build 02 Grow 03 Operate 04 System</div>
+    </div></div>
+  </div>
+</div>
+
+<p class="p"><strong>The fix is not &ldquo;add more padding&rdquo; — it is to stop capping.</strong> The grid and the copy column should be <code>flex: 1; min-height: 0</code> inside the pane so the composition grows to fill whatever height it is given, with the H2 pinned top and the rail pinned bottom. Panels then scale with the viewport instead of floating in it, which also makes them read as the primary object rather than as a thumbnail.</p>
+</section>
+
+<section id="find">
+<h2><span class="n">3</span>Findings</h2>
+
+<div class="tw"><table>
+<thead><tr><th style="width:44px">#</th><th style="width:215px">Finding</th><th style="width:80px">Severity</th><th>Recommendation</th></tr></thead>
+<tbody>
+<tr><td class="num">S1</td><td><b>Blanket opacity makes three panels unreadable</b><br><code>opacity: (0.62 + 0.38 * max(act,conv))</code></td><td><span class="sev p0">P0</span></td><td>Opacity on a container multiplies <em>both</em> its background and its text against the page. Inactive panel text lands at <b>2.58:1</b>, its border at <b>1.32:1</b>. <b>Never de-emphasise with container opacity.</b> Hold panels at <code>opacity: 1</code> and de-emphasise by interpolating the <em>text colour</em> only — which the paint loop already does via <code>mix(MUTE, INK, act)</code>. Set inactive text to <code>#C7C3D2</code> (8.86:1) and let the background tint carry the state.</td></tr>
+<tr><td class="num">S2</td><td><b>Fixed-height island</b><br>50&nbsp;vh grid in a 100&nbsp;vh pane</td><td><span class="sev p0">P0</span></td><td>Section 2. Replace both caps with <code>flex: 1; min-height: 0</code>; keep a <code>min-height</code> floor only for very short viewports.</td></tr>
+<tr><td class="num">S3</td><td><b>Rail not visible in the frame</b></td><td><span class="sev p0">P0</span></td><td>The rail is the only thing that tells a visitor there are four states and that they can jump. It is <code>display:none</code> in SSR and only enabled in <code>pinned</code>. It must be <b>bottom-anchored inside the pane</b> and visible from the first frame of the pin — not below the fold, not after hydration.</td></tr>
+<tr><td class="num">S4</td><td><b>Skip link is orphaned</b><br><code>alignItems: flex-end</code> on the H2 row</td><td><span class="sev p1">P1</span></td><td>It baseline-aligns to the bottom of a two-line H2, so it floats in mid-air on the right with nothing beside it. Move it to the <b>rail row</b>, right-aligned opposite the ticks. That is where a user looks for section navigation, and it stops it competing with the heading.</td></tr>
+<tr><td class="num">S5</td><td><b>Rail ticks compound opacity again</b><br><code>opacity: .55</code> + <code>#8E89A0</code></td><td><span class="sev p1">P1</span></td><td>Same mistake as S1 at smaller scale. Upcoming ticks land near <b>2.9:1</b>. Drop the opacity; distinguish by colour and weight only — <code>#FFFFFF</code> 600 for current, <code>#C7C3D2</code> 500 for visited, <code>#8E89A0</code> 500 for upcoming.</td></tr>
+<tr><td class="num">S6</td><td><b>Copy column is the narrower half</b><br><code>.86fr 1.14fr</code></td><td><span class="sev p1">P1</span></td><td>The words explaining the state get less room than the illustration of it. With a two-column chip list inside, the copy reads as sparse fragments. Go to <b><code>1fr 1.1fr</code></b> and force the chip list to a single column below 1200&nbsp;px so it reads as a list, not a scattered grid.</td></tr>
+<tr><td class="num">S7</td><td><b>Section has no SSR height</b></td><td><span class="sev p1">P1</span></td><td><code>&lt;section&gt;</code> renders auto-height, then <code>applyMode()</code> sets <code>320vh</code> after hydration. That is a large layout shift on a section high in the page. Set <code>minHeight: "320vh"</code> in the inline style for the pinned breakpoint via CSS, and let JS only <em>correct</em> it.</td></tr>
+<tr><td class="num">S8</td><td><b>Hardcoded greys bypass the tokens</b><br><code>rgb(127 127 127 / .25)</code></td><td><span class="sev p2">P2</span></td><td>The <code>artRow</code> divider and several literals sit outside the token system that was just installed. Route them through <code>--color-line-on-ink</code>. Small, but this is how a fresh token system rots in the first month.</td></tr>
+<tr><td class="num">S9</td><td><b>Grey strip under the header</b></td><td><span class="sev p2">P2</span></td><td>A ~24&nbsp;px light band sits between the header and the ink field. It reads as a rendering artefact. Check the preceding section&rsquo;s bottom padding and the announcement bar — the ink section should butt straight against whatever is above it.</td></tr>
+</tbody></table></div>
+
+<h3>The panel problem, shown</h3>
+<div class="pdemo">
+  <div class="cell"><div class="cap"><span>Now — opacity .62</span><span class="bad">2.58:1</span></div>
+    <div class="field">
+      <div class="pnl now"><div class="h"><span>LISTING</span><span>02</span></div>
+        <div class="r"><span>Everyday Set — 2pk</span><b>Live</b></div>
+        <div class="r"><span>PPC bid</span><b>Set by client</b></div>
+        <div class="r"><span>Search terms</span><b>Mapped</b></div></div>
+      <div class="pnl now"><div class="h"><span>PURCHASE ORDER</span><span>03</span></div>
+        <div class="r"><span>Everyday Set — 2pk</span><b>Restock</b></div>
+        <div class="r"><span>Approved by client</span><b>✓</b></div></div>
+    </div>
+  </div>
+  <div class="cell"><div class="cap"><span>Fixed — colour, not opacity</span><span class="good">8.86:1</span></div>
+    <div class="field">
+      <div class="pnl fix"><div class="h"><span>LISTING</span><span>02</span></div>
+        <div class="r"><span>Everyday Set — 2pk</span><b>Live</b></div>
+        <div class="r"><span>PPC bid</span><b>Set by client</b></div>
+        <div class="r"><span>Search terms</span><b>Mapped</b></div></div>
+      <div class="pnl act"><div class="h"><span>PURCHASE ORDER</span><span>03</span></div>
+        <div class="r"><span>Everyday Set — 2pk</span><b>Restock</b></div>
+        <div class="r"><span>Approved by client</span><b>✓</b></div></div>
+    </div>
+  </div>
+</div>
+<p class="p" style="margin-top:-10px;font-size:15px">The right-hand pair shows the same two panels with opacity removed: one inactive (readable, clearly secondary) and one active. <strong>The hierarchy is still obvious — it is carried by fill and colour rather than by transparency</strong>, and nothing looks broken.</p>
+</section>
+
+<section id="a11y">
+<h2><span class="n">4</span>Accessibility</h2>
+<div class="tw"><table>
+<thead><tr><th style="width:270px">Pair</th><th class="num" style="width:96px">Ratio</th><th style="width:80px">Needs</th><th>Verdict</th></tr></thead>
+<tbody>
+<tr><td>Inactive panel text (composited)</td><td class="num bad">2.58</td><td class="num">4.5</td><td><span class="bad">Fail</span> — the S1 defect</td></tr>
+<tr><td>Inactive panel border vs page</td><td class="num bad">1.32</td><td class="num">3.0</td><td><span class="bad">Fail</span> — panel edges disappear</td></tr>
+<tr><td>Inactive <code>artRow</code> divider</td><td class="num bad">1.20</td><td class="num">3.0</td><td><span class="bad">Fail</span></td></tr>
+<tr><td>Upcoming rail tick</td><td class="num bad">~2.9</td><td class="num">4.5</td><td><span class="bad">Fail</span> — the S5 defect</td></tr>
+<tr><td>Panel text at <code>opacity:1</code>, <code>#8E89A0</code></td><td class="num">4.54</td><td class="num">4.5</td><td>Passes by 0.04 — too close. Use <code>#C7C3D2</code>.</td></tr>
+<tr><td><code>#C7C3D2</code> on panel, opacity 1</td><td class="num good">8.86</td><td class="num">4.5</td><td><span class="good">Pass</span> — the recommendation</td></tr>
+<tr><td>H2 white on ink</td><td class="num good">17.89</td><td class="num">3.0</td><td><span class="good">Pass</span></td></tr>
+<tr><td>Active panel: ink on <code>#FFF3D6</code></td><td class="num good">16.22</td><td class="num">4.5</td><td><span class="good">Pass</span></td></tr>
+</tbody></table></div>
+<p class="p"><strong>Also check:</strong> rail ticks are <code>&lt;button&gt;</code>s but need a visible <code>:focus-visible</code> ring on the ink field — the global focus style uses <code>--color-link</code> <code>#6947FF</code>, which is 2.4:1 against ink and will be nearly invisible there. Use <code>--color-link-on-ink</code> <code>#A38DFF</code> for focus rings on dark sections.</p>
+</section>
+
+<!-- ============ PROMPT ============ -->
+<section id="prompt">
+<h2><span class="n">5</span>The fix prompt</h2>
+<p class="lede">Copy this whole block to the coding agent. It is scoped so the working parts cannot be regressed.</p>
+
+<pre class="prompt">Fix the pinned #system section in components/home/SystemScroll.tsx.
+Do NOT change: any copy string, the four states, the dwell() remap, the three
+modes (pinned/carousel/stacked), the SSR/no-JS baseline, or any other file
+except globals.css where noted.
+
+CONTEXT
+The section is structurally correct but three mechanisms undo it: blanket
+container opacity destroys contrast, fixed-height content leaves the pinned
+pane half empty, and the rail/skip link are misplaced.
+
+FIX 1 — Remove all container opacity (P0)
+- In paint(), delete `el.style.opacity = (0.62 + 0.38 * Math.max(act, conv))`
+  on [data-panel]. Panels stay at opacity 1 always.
+- De-emphasise inactive panels by colour only. Set the inactive text colour to
+  #C7C3D2 (8.86:1) and interpolate toward #17171A as `act` rises — the existing
+  `mix(MUTE, INK, act)` call does this; just change MUTE from #8E89A0 to #C7C3D2.
+- Keep the background interpolation (INACTIVE -> BANDS[n]) exactly as is.
+- Raise the inactive panel background from rgb(255 255 255 / .06) to
+  rgb(255 255 255 / .05) and the border from /.16 to /.22 so the edge reads
+  at 3:1 without opacity.
+- In the rail ticks, delete `el.style.opacity`. Distinguish by colour + weight:
+  current #FFFFFF weight 600, visited #C7C3D2 weight 500, upcoming #8E89A0
+  weight 500.
+- Replace the hardcoded `rgb(127 127 127 / .25)` in artRow with
+  `var(--color-line-on-ink)`.
+
+FIX 2 — Make the composition fill the pane (P0)
+The pane is 100vh but the content caps at 50vh, leaving ~180px of dead space
+split above and below. Restructure the pinned pane as a three-row flex column:
+  row 1  H2 block            flex: none
+  row 2  stage (copy + grid) flex: 1, min-height: 0
+  row 3  rail                flex: none
+- Remove `copywrap.style.minHeight = "clamp(240px,38vh,460px)"`.
+  Use `height: 100%` with `min-height: 0`.
+- Remove the grid's `height: "clamp(260px,50vh,600px)"` and `margin: "18px 0"`.
+  Use `height: 100%; min-height: 0`.
+- Keep a single floor on the stage: `min-height: 320px` for very short viewports.
+- Remove `justifyContent: "center"` from [data-mid]; the flex rows now do the work.
+- Panels must scale with the pane. Verify at 1440x900, 1920x1080 and 1280x720.
+
+FIX 3 — Reposition the skip link (P1)
+Move the "Skip to commerce paths ↓" anchor out of the H2 flex row and into the
+rail row, right-aligned opposite the four ticks. Remove `alignItems: "flex-end"`
+from the H2 row (the H2 is then the only child and needs no alignment).
+
+FIX 4 — Rail always visible in pinned mode (P1)
+The rail must be visible from the first frame of the pin, bottom-anchored inside
+the 100vh pane, never below the fold. Confirm applyMode() sets it to
+display:block before first paint, not after.
+
+FIX 5 — Column ratio and chip list (P1)
+- Change the stage from `.86fr 1.14fr` to `1fr 1.1fr`.
+- The state chip list currently uses repeat(auto-fit, minmax(170px,1fr)) which
+  gives a scattered 2-column grid. Below 1200px force a single column.
+
+FIX 6 — Stop the hydration layout shift (P1)
+The section renders auto-height then jumps to 320vh after hydration. Add a CSS
+media rule (not inline JS) so the pinned height applies before hydration:
+  @media (min-width:901px) and (prefers-reduced-motion:no-preference) {
+    #system { min-height: 320vh; }
+  }
+Let applyMode() only correct it, never establish it.
+
+FIX 7 — Focus rings on dark (P1)
+The global :focus-visible uses --color-link #6947FF, which is 2.4:1 on ink.
+Add a rule so any focusable element inside a .on-ink section (or #system)
+uses --color-link-on-ink #A38DFF.
+
+FIX 8 — Visual slots (do now, fill later)
+Add empty, styled, aspect-ratio-reserved containers so imagery can drop in
+without a relayout. Each gets width+height attributes or aspect-ratio to
+prevent CLS, and renders a neutral ink-tinted placeholder until filled:
+  - #ownership   : full-bleed background slot, 16:9, ink overlay 72%
+  - #cost        : full-bleed background slot, 21:9, ink overlay 78%
+  - CommercePaths card 2 : inline slot, 4:3
+  - TeamSection  : 1:1 portrait slots, 3 up
+Do NOT add any placeholder people, silhouettes, or generated faces.
+
+ACCEPTANCE
+1. No `opacity` on [data-panel] or [data-tick] anywhere.
+2. Inactive panel text >= 4.5:1 against its own panel; panel border >= 3:1.
+3. At 1920x1080 and 1440x900 the composition fills the pinned pane; no gap
+   above or below the content larger than the H2's own bottom margin.
+4. Rail and skip link both visible at the first frame of the pin.
+5. JS disabled: all four states present and readable.
+6. prefers-reduced-motion: all four states stacked and readable, no animation.
+7. 375px: carousel snaps, four dots track, no horizontal overflow.
+8. No new hardcoded colour literals; everything routes through the tokens.
+9. Lighthouse CLS on the homepage does not regress.</pre>
+
+<div class="call">
+<span class="lbl">Order to apply them</span>
+<p>Fix 1 first and look at it — that alone will change how the section reads, because three of the four panels come back. Then Fix 2, which is the bigger structural edit. Fixes 3&ndash;7 are twenty minutes together. Fix 8 is independent and can be done any time.</p>
+</div>
+</section>
+
+<!-- ============ VISUALS ============ -->
+<section id="vis">
+<h2><span class="n">6</span>Where the visuals go</h2>
+<p class="lede">You have no photography yet, so the plan is in tiers: what to build today with zero assets, what to licence cheaply, and what to commission. The slots in Fix 8 mean the later tiers drop in without a rebuild.</p>
+
+<div class="slots">
+  <div class="tier">Tier 0 — build this week, no assets needed, highest value</div>
+  <div class="slot"><div class="n4">V1</div><div>
+    <div class="t">The four scroll panels — already your best visual</div>
+    <div class="d">Once Fix 1 and Fix 2 land, these are large, legible, colour-coded artefacts of your actual work product. No competitor in the category shows a purchase order awaiting client approval. <strong>This is the signature image of the business and it costs nothing.</strong></div>
+    <div class="m">Section 04 · already built · just needs the fixes</div>
+  </div></div>
+  <div class="slot"><div class="n4">V2</div><div>
+    <div class="t">Channel marks in colour on hover</div>
+    <div class="d">Six inert grey glyphs become six live capabilities. More trust per screenful than any photograph, and it is a day of work. Confirm marketplace logo usage rights first.</div>
+    <div class="m">Section 02 · Channels.tsx · confirm rights (spec P.05)</div>
+  </div></div>
+  <div class="slot"><div class="n4">V3</div><div>
+    <div class="t">The ownership split diagram</div>
+    <div class="d">Two columns, one line between them, on the ink field. Client side and Hyprr side. Pure type and rule — no icons. It is the strongest argument on the page and it should look like a legal exhibit, not a features grid.</div>
+    <div class="m">Section 07 · Ownership.tsx</div>
+  </div></div>
+  <div class="slot"><div class="n4">V4</div><div>
+    <div class="t">The cost stack</div>
+    <div class="d">A single horizontal bar, relative widths only, no axis or values. Neutral greys except &ldquo;Build / service&rdquo; in Citrus, drawn last. Already specced; just needs the timing.</div>
+    <div class="m">Section 11 · CostSection.tsx</div>
+  </div></div>
+</div>
+
+<div class="slots">
+  <div class="tier">Tier 1 — licence or shoot, objects only, no people</div>
+  <div class="slot"><div class="n4">V5</div><div>
+    <div class="t">Ownership section — full-bleed background</div>
+    <div class="d">Cartons stacked on a wooden pallet under warehouse strip lighting, shot slightly from below. Ink overlay at 72% so the type stays at 17:1. Says &ldquo;physical goods, real operation&rdquo; behind the sentence about who owns the inventory. This is the single most persuasive pairing available to you.</div>
+    <div class="m">Section 07 · 16:9 slot · ink overlay 72% · no faces, no screens</div>
+  </div></div>
+  <div class="slot"><div class="n4">V6</div><div>
+    <div class="t">True cost section — full-bleed background</div>
+    <div class="d">A prep bench: tape gun, poly mailers, a barcode label part-applied, a box cutter. Tight and warm, shallow depth. Behind the section that argues your fee is one line among many, it makes the other lines feel real.</div>
+    <div class="m">Section 11 · 21:9 slot · ink overlay 78%</div>
+  </div></div>
+  <div class="slot"><div class="n4">V7</div><div>
+    <div class="t">Private label path card — inline</div>
+    <div class="d">An unbranded mailer and a plain kraft carton on a seamless ground, lit in the engine colours. Must not imply a real client brand. This can be shot on a desk with a phone and a window.</div>
+    <div class="m">Section 05 · CommercePaths card 2 · 4:3 slot</div>
+  </div></div>
+</div>
+
+<div class="slots">
+  <div class="tier">Tier 2 — commission, longest lead time, launch blocker</div>
+  <div class="slot"><div class="n4">V8</div><div>
+    <div class="t">Team portraits</div>
+    <div class="d">One real photograph of one real person beats three placeholders. Consistent crop, plain background, natural light. <strong>A phone in good light on a Tuesday beats a studio shoot you keep postponing.</strong> Until then: initials on an engine-colour field, name set large — never a silhouette, never a generated face.</div>
+    <div class="m">Section 13 · 1:1 slots, 3 up · commission on day 1</div>
+  </div></div>
+</div>
+
+<div class="call hot">
+<span class="lbl">The two rules that do not bend</span>
+<p><strong>No faces you did not photograph.</strong> No stock people, no AI-generated portraits, not even as ambient background. Your best-qualified buyer has been burned by operators whose sites look exactly like that, and the association cannot be undone.</p>
+<p><strong>No screens showing numbers.</strong> A laptop with a rising graph, a phone with a sales figure, a dashboard with revenue — all are implied earnings claims and all are banned by your own build spec, in visuals as firmly as in copy.</p>
+</div>
+</section>
+
+<section id="shot">
+<h2><span class="n">7</span>Shot list — hand this to whoever shoots or sources</h2>
+<div class="tw"><table>
+<thead><tr><th style="width:52px">Ref</th><th style="width:200px">Shot</th><th style="width:130px">Treatment</th><th>Search terms if licensing</th></tr></thead>
+<tbody>
+<tr><td class="num">V5</td><td>Cartons on a wooden pallet, warehouse strip lighting, low angle</td><td>16:9 · ink 72%</td><td>&ldquo;cardboard cartons stacked wooden pallet warehouse strip lighting&rdquo; · &ldquo;shrink wrapped pallet distribution centre&rdquo;</td></tr>
+<tr><td class="num">V6</td><td>Prep bench: tape gun, poly mailers, barcode label part-applied</td><td>21:9 · ink 78%</td><td>&ldquo;packing station tape dispenser polymailer close up&rdquo; · &ldquo;barcode label applied to box hands cropped&rdquo;</td></tr>
+<tr><td class="num">V7</td><td>Unbranded mailer + kraft carton, seamless ground</td><td>4:3 · lit warm</td><td>Shoot this — licensed versions always carry a visible brand</td></tr>
+<tr><td class="num">V8</td><td>Team portraits, plain ground, natural light</td><td>1:1 · consistent crop</td><td>Commission only. Never licence.</td></tr>
+</tbody></table></div>
+<p class="p"><strong>The search rule:</strong> search the physical object, never the category. &ldquo;Cardboard cartons on a pallet&rdquo; returns something usable; &ldquo;ecommerce business&rdquo; returns the exact library your competitors used. Unsplash is fine for V5 and V6 and free for commercial use — verify the licence on each file, and reject anything with a recognisable face, a visible brand, or a screen showing a figure.</p>
+
+<div class="call win">
+<span class="lbl">Sequence</span>
+<p><strong>This week:</strong> Fix 1 and 2, then V1 and V2 — the section starts working and the channel row starts earning trust. <strong>Next week:</strong> V3, V4 and the Fix 8 slots, so the page is complete without photography. <strong>In parallel from day one:</strong> book V8. It has the longest lead time and it is the only one that blocks launch.</p>
+</div>
+</section>
+
+</div>
+</main>
+</div>
+</body>
+</html>
