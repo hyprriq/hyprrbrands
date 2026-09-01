@@ -24,7 +24,7 @@ export default function Hero() {
           <span className="w-[7px] h-[7px] rounded-[2px] bg-operate ml-1.5" />
           Operate
         </div>
-        <h1 className="font-display type-h1 text-ink m-0 mb-6 max-w-[15ch] text-balance">
+        <h1 className="font-display type-h1 text-ink m-0 mb-6 max-w-[15ch]">
           We don&apos;t advise on ecommerce. We run it.
         </h1>
         <p className="type-lead text-body m-0 mb-[34px] max-w-[540px]">

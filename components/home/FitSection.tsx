@@ -9,7 +9,7 @@ export default function FitSection() {
     <section id="fit" className="bg-white">
       <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(64px,7vw,110px)]">
         <Reveal className="mb-[clamp(30px,4vw,48px)]">
-          <h2 className="font-display type-h2 text-ink m-0 mb-[18px] max-w-[32ch] text-balance">
+          <h2 className="font-display type-h2 text-ink m-0 mb-[18px] max-w-[32ch]">
             Built for operators, founders and brands ready to build properly.
           </h2>
           <p className="type-lead text-body m-0 max-w-[62ch]">

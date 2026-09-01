@@ -19,7 +19,8 @@ import { useEffect, useRef } from "react";
  *   keeps that stacked list.
  */
 
-const SCROLL_LEN = 320; // vh
+// The section's 320vh scroll length and ALL pinned geometry live in
+// app/globals.css (the #system media block) — a single source of truth.
 
 const N = 4; // states
 const HOLD = 0.55; // share of each segment held still
@@ -113,7 +114,12 @@ export default function SystemScroll() {
     const currentMode = (): Mode => {
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
         return "stacked";
-      if (window.matchMedia("(max-width: 900px)").matches) return "carousel";
+      // Width sanity check: some embedded webviews / headless renderers
+      // report width 0, which would wrongly match (max-width: 900px) and
+      // strand the section in carousel mode on a desktop layout.
+      const w =
+        window.innerWidth || document.documentElement.clientWidth || 0;
+      if (w > 0 && w <= 900) return "carousel";
       return "pinned";
     };
 
@@ -131,47 +137,58 @@ export default function SystemScroll() {
       const copies = qa("[data-copy]");
 
       if (m === "pinned") {
-        wrap.style.height = SCROLL_LEN + "vh";
+        // Pinned GEOMETRY is owned by the CSS media block in globals.css —
+        // here we only CLEAR inline values another mode may have left, so
+        // the stylesheet governs. Never set pinned geometry from JS.
+        wrap.style.height = "";
         if (pane) {
-          pane.style.position = "sticky";
-          pane.style.height = "100vh";
-          pane.style.overflow = "hidden";
+          pane.style.position = "";
+          pane.style.height = "";
+          pane.style.overflow = "";
         }
         if (stage) {
-          stage.style.display = "grid";
+          stage.style.display = "";
           stage.style.padding = "0 clamp(20px,3vw,40px)";
-          stage.style.flex = "1 1 0%";
-          stage.style.minHeight = "320px";
+          stage.style.flex = "";
+          stage.style.minHeight = "";
         }
-        if (grid) grid.style.display = "grid";
-        if (rail) rail.style.display = "block";
-        if (dots) dots.style.display = "none";
+        if (grid) grid.style.display = "";
+        if (rail) rail.style.display = "";
+        if (dots) dots.style.display = "";
         if (copywrap) {
-          copywrap.style.display = "block";
-          copywrap.style.position = "relative";
-          copywrap.style.height = "100%";
-          copywrap.style.minHeight = "0";
-          copywrap.style.overflowX = "visible";
+          copywrap.style.display = "";
+          copywrap.style.position = "";
+          copywrap.style.height = "";
+          copywrap.style.minHeight = "";
+          copywrap.style.overflowX = "";
           copywrap.style.scrollSnapType = "";
+          copywrap.style.gap = "";
+          copywrap.style.padding = "";
+          copywrap.style.scrollPaddingInline = "";
         }
         copies.forEach((el) => {
-          el.style.position = "absolute";
-          el.style.inset = "0";
-          el.style.display = "flex";
-          el.style.flexDirection = "column";
-          el.style.justifyContent = "center";
+          el.style.position = "";
+          el.style.inset = "";
+          el.style.display = "";
+          el.style.flexDirection = "";
+          el.style.justifyContent = "";
+          el.style.opacity = "";
+          el.style.transform = "";
+          el.style.pointerEvents = "";
           el.style.flex = "";
           el.style.width = "";
           el.style.scrollSnapAlign = "";
-          el.style.padding = "0";
-          el.style.borderTop = "none";
+          el.style.padding = "";
+          el.style.borderTop = "";
         });
       } else if (m === "carousel") {
-        wrap.style.height = "auto";
+        // Below 901px the pinned CSS media block is inactive, so clearing
+        // the inline values yields normal static flow.
+        wrap.style.height = "";
         if (pane) {
-          pane.style.position = "static";
-          pane.style.height = "auto";
-          pane.style.overflow = "visible";
+          pane.style.position = "";
+          pane.style.height = "";
+          pane.style.overflow = "";
         }
         if (stage) {
           stage.style.display = "block";
@@ -207,12 +224,13 @@ export default function SystemScroll() {
           el.style.borderTop = "none";
         });
       } else {
-        // stacked — reduced motion and the no-JS baseline
-        wrap.style.height = "auto";
+        // stacked — reduced motion; the pinned CSS media block excludes
+        // reduced-motion, so clearing the inline values is sufficient.
+        wrap.style.height = "";
         if (pane) {
-          pane.style.position = "static";
-          pane.style.height = "auto";
-          pane.style.overflow = "visible";
+          pane.style.position = "";
+          pane.style.height = "";
+          pane.style.overflow = "";
         }
         if (stage) {
           stage.style.display = "block";
@@ -418,22 +436,10 @@ export default function SystemScroll() {
     border: "1px solid rgb(255 255 255 / .22)",
     padding: "clamp(12px,1.8vh,20px)",
   };
-  const copyBase: React.CSSProperties = { padding: "30px 0" };
-  const stateHeading: React.CSSProperties = {
-    fontFamily: "var(--font-display)",
-    fontSize: "clamp(24px,2.2vw,32px)",
-    fontWeight: 700,
-    lineHeight: 1.15,
-    letterSpacing: "-.02em",
-    color: "#FFFFFF",
-    margin: "0 0 14px",
-  };
   const artRow: React.CSSProperties = {
     display: "flex",
     justifyContent: "space-between",
     gap: 10,
-    fontSize: 15,
-    lineHeight: 1.45,
     borderTop: "1px solid var(--color-line-on-ink)",
     paddingTop: 7,
   };
@@ -447,7 +453,6 @@ export default function SystemScroll() {
       <div
         data-pane="1"
         style={{
-          position: "static",
           color: "#FFFFFF",
           display: "flex",
           flexDirection: "column",
@@ -487,24 +492,21 @@ export default function SystemScroll() {
         <div
           data-stage="1"
           style={{
-            flex: "1 1 0%",
-            minHeight: 320,
             maxWidth: 1280,
             width: "100%",
             margin: "0 auto",
             padding: "0 clamp(20px,3vw,40px)",
-            display: "block",
             gridTemplateColumns: "1fr 1.1fr",
             gap: "clamp(24px,4vw,56px)",
             alignItems: "stretch",
           }}
         >
-          <div data-copywrap="1" style={{ position: "static" }}>
-            <div data-copy="0" style={copyBase}>
+          <div data-copywrap="1">
+            <div data-copy="0">
               <div className="type-label" style={{ color: "#FFC84A", marginBottom: 12 }}>
                 STATE 01 / BUILD
               </div>
-              <h3 style={stateHeading}>
+              <h3 className="font-display type-h3" style={{ color: "#FFFFFF", margin: "0 0 14px" }}>
                 Build the right commerce{" "}
                 <span style={{ color: "#FFC84A" }}>foundation</span>.
               </h3>
@@ -517,11 +519,11 @@ export default function SystemScroll() {
                 <div>Listings and creative</div>
               </div>
             </div>
-            <div data-copy="1" style={copyBase}>
+            <div data-copy="1">
               <div className="type-label" style={{ color: "#B8F34A", marginBottom: 12 }}>
                 STATE 02 / GROW
               </div>
-              <h3 style={stateHeading}>
+              <h3 className="font-display type-h3" style={{ color: "#FFFFFF", margin: "0 0 14px" }}>
                 Turn the operation into a{" "}
                 <span style={{ color: "#B8F34A" }}>growth engine</span>.
               </h3>
@@ -534,22 +536,17 @@ export default function SystemScroll() {
                 <div>Channel expansion</div>
               </div>
             </div>
-            <div data-copy="2" style={copyBase}>
+            <div data-copy="2">
               <div className="type-label" style={{ color: "#45D8C0", marginBottom: 12 }}>
                 STATE 03 / OPERATE
               </div>
-              <h3 style={stateHeading}>
+              <h3 className="font-display type-h3" style={{ color: "#FFFFFF", margin: "0 0 14px" }}>
                 Keep it running{" "}
                 <span style={{ color: "#45D8C0" }}>every single day</span>.
               </h3>
               <p
-                style={{
-                  fontSize: 17,
-                  lineHeight: 1.55,
-                  color: "#C7C3D2",
-                  margin: "0 0 14px",
-                  maxWidth: 440,
-                }}
+                className="type-body"
+                style={{ color: "#C7C3D2", margin: "0 0 14px", maxWidth: 440 }}
               >
                 Orders, inventory, listings, cases, reporting.
               </p>
@@ -561,20 +558,14 @@ export default function SystemScroll() {
                 <div>Reporting</div>
               </div>
             </div>
-            <div data-copy="3" style={copyBase}>
+            <div data-copy="3">
               <div className="type-label" style={{ color: "#FFFFFF", marginBottom: 12 }}>
                 STATE 04 / COMMERCE SYSTEM
               </div>
-              <h3 style={stateHeading}>Three engines, one system of record.</h3>
+              <h3 className="font-display type-h3" style={{ color: "#FFFFFF", margin: "0 0 14px" }}>Three engines, one system of record.</h3>
               <div
-                style={{
-                  display: "grid",
-                  gap: 6,
-                  fontSize: 17,
-                  lineHeight: 1.5,
-                  color: "#C7C3D2",
-                  marginBottom: 18,
-                }}
+                className="type-body"
+                style={{ display: "grid", gap: 6, color: "#C7C3D2", marginBottom: 18 }}
               >
                 <div>Build informs growth.</div>
                 <div>Growth exposes operational limits.</div>
@@ -582,12 +573,11 @@ export default function SystemScroll() {
               </div>
               <a
                 href="#talk"
+                className="type-body font-semibold"
                 style={{
                   display: "inline-block",
                   background: "#FFC84A",
                   color: "#17171A",
-                  fontWeight: 600,
-                  fontSize: 17,
                   padding: "13px 22px",
                   borderRadius: 14,
                 }}
@@ -602,12 +592,10 @@ export default function SystemScroll() {
             data-grid="1"
             ref={gridRef}
             style={{
-              display: "grid",
               gridTemplateColumns: "1.55fr 1fr",
               gridTemplateRows: "1.55fr 1fr",
               gap: 14,
-              height: "100%",
-              minHeight: 320,
+              minWidth: 0,
               position: "relative",
             }}
           >
@@ -627,20 +615,20 @@ export default function SystemScroll() {
                 </div>
               </div>
               <div style={{ display: "grid", gap: 7 }}>
-                <div style={{ ...artRow, borderTop: "none", paddingTop: 0 }}>
+                <div className="type-meta" style={{ ...artRow, borderTop: "none", paddingTop: 0 }}>
                   <span>Opportunity 01</span>
                   <span style={{ fontWeight: 600 }}>Validated</span>
                 </div>
-                <div style={artRow}>
+                <div className="type-meta" style={artRow}>
                   <span>Opportunity 02</span>
                   <span style={{ fontWeight: 600 }}>Shortlisted</span>
                 </div>
-                <div style={artRow}>
+                <div className="type-meta" style={artRow}>
                   <span>Opportunity 03</span>
                   <span style={{ fontWeight: 600 }}>Passed</span>
                 </div>
               </div>
-              <div style={{ fontSize: 15, fontWeight: 500, lineHeight: 1.4 }}>
+              <div className="type-meta font-medium">
                 Product → brand → store → marketplace
               </div>
             </div>
@@ -654,20 +642,20 @@ export default function SystemScroll() {
                 </div>
               </div>
               <div style={{ display: "grid", gap: 7 }}>
-                <div style={{ ...artRow, borderTop: "none", paddingTop: 0 }}>
+                <div className="type-meta" style={{ ...artRow, borderTop: "none", paddingTop: 0 }}>
                   <span>Everyday Set — 2pk</span>
                   <span style={{ fontWeight: 600 }}>Live</span>
                 </div>
-                <div style={artRow}>
+                <div className="type-meta" style={artRow}>
                   <span>PPC bid</span>
                   <span style={{ fontWeight: 600 }}>Set by client</span>
                 </div>
-                <div style={artRow}>
+                <div className="type-meta" style={artRow}>
                   <span>Search terms</span>
                   <span style={{ fontWeight: 600 }}>Mapped</span>
                 </div>
               </div>
-              <div style={{ fontSize: 15, fontWeight: 500, lineHeight: 1.4 }}>
+              <div className="type-meta font-medium">
                 Demand → paid media → conversion
               </div>
             </div>
@@ -681,16 +669,16 @@ export default function SystemScroll() {
                 </div>
               </div>
               <div style={{ display: "grid", gap: 7 }}>
-                <div style={{ ...artRow, borderTop: "none", paddingTop: 0 }}>
+                <div className="type-meta" style={{ ...artRow, borderTop: "none", paddingTop: 0 }}>
                   <span>Everyday Set — 2pk</span>
                   <span style={{ fontWeight: 600 }}>Restock</span>
                 </div>
-                <div style={{ ...artRow, fontWeight: 700 }}>
+                <div className="type-meta" style={{ ...artRow, fontWeight: 700 }}>
                   <span>Approved by client</span>
                   <span aria-hidden="true">✓</span>
                 </div>
               </div>
-              <div style={{ fontSize: 15, fontWeight: 500, lineHeight: 1.4 }}>
+              <div className="type-meta font-medium">
                 Orders → inventory → reporting
               </div>
             </div>
@@ -714,7 +702,7 @@ export default function SystemScroll() {
                   04
                 </div>
               </div>
-              <div style={{ fontSize: 15, fontWeight: 500, lineHeight: 1.4 }}>
+              <div className="type-meta font-medium">
                 Build ↓ Grow ↓ Operate ↓ Next decision
               </div>
             </div>
@@ -762,10 +750,10 @@ export default function SystemScroll() {
                       />
                     )}
                     <div
+                      className="type-body"
                       style={{
                         fontFamily: "var(--font-display)",
                         fontWeight: 700,
-                        fontSize: 17,
                         letterSpacing: "-.01em",
                         color,
                       }}
@@ -814,7 +802,6 @@ export default function SystemScroll() {
         <div
           data-rail="1"
           style={{
-            display: "none",
             maxWidth: 1280,
             width: "100%",
             margin: "0 auto",

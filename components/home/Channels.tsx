@@ -16,15 +16,15 @@ const CHANNELS = [
 export default function Channels() {
   return (
     <section className="bg-white border-t border-line">
-      <div className="mx-auto max-w-[1280px] px-[clamp(24px,4vw,56px)] py-[clamp(20px,2.4vw,28px)] grid grid-cols-[repeat(auto-fit,minmax(300px,auto))] gap-[clamp(16px,3vw,40px)] items-center justify-between">
+      <div className="mx-auto max-w-[1280px] px-[clamp(24px,4vw,56px)] py-[clamp(32px,4vw,64px)] grid grid-cols-[repeat(auto-fit,minmax(300px,auto))] gap-[clamp(16px,3vw,40px)] items-center justify-between">
         <div>
-          <h2 className="type-label text-label uppercase m-0 mb-2">
+          <p className="type-label text-label uppercase m-0 mb-2">
             Commerce channels
-          </h2>
-          <div className="type-body text-muted">
+          </p>
+          <h2 className="font-display type-h2 text-ink m-0 max-w-[24ch]">
             We build and operate across the channels ecommerce businesses
             actually sell on.
-          </div>
+          </h2>
         </div>
         <ul
           aria-label="Channels Hyprr builds and operates on"
