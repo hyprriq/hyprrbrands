@@ -22,13 +22,10 @@ export default function Ownership() {
         <div className="absolute inset-0 bg-ink/72" />
       </div>
       <div className="relative mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(64px,7vw,112px)]">
-        <Reveal className="mb-[clamp(36px,5vw,60px)]">
-          <h2 className="font-display type-h2 text-white m-0 mb-4">
-            You own it.
-            <br />
-            You approve it.
-            <br />
-            We <span className="text-operate">operate</span> it.
+        <Reveal className="mb-[clamp(36px,5vw,60px)] grid lg:grid-cols-[1.1fr_1fr] gap-[clamp(24px,4vw,64px)] items-end">
+          <h2 className="font-display type-h2 text-white m-0 max-w-[24ch]">
+            You own it. You approve it. We{" "}
+            <span className="text-operate">operate</span> it.
           </h2>
           <p className="type-lead text-on-ink-body m-0 max-w-[46ch]">
             The business stays yours. Accounts, inventory and capital sit with

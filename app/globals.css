@@ -87,14 +87,15 @@
 }
 
 /* Scroll-section state chip lists — single column below 1200px so they
-   read as a list rather than a scattered grid */
+   read as a list rather than a scattered grid. Colour inherits from the
+   card surface (ink text on the engine-band cards). */
 .state-chips {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
   gap: 8px 20px;
   font-size: 17px;
   line-height: 1.5;
-  color: var(--color-on-ink-body);
+  color: var(--color-body);
 }
 @media (max-width: 1199px) {
   .state-chips {
@@ -102,62 +103,40 @@
   }
 }
 
-/* The pinned scroll section: ALL pinned geometry lives here, in the same
-   media query that reserves the height, so the reservation and the pin can
-   never disagree (a JS-only pin left a 320vh void whenever the JS branch
-   didn't run). JavaScript only paints state; it never establishes pinned
-   geometry. If JS fails entirely, this renders a correct static pin. */
-#system [data-rail] {
-  display: none; /* JS-driven control; shown by the pinned media block */
+/* The signature section is a sticky card stack — pure CSS, no JS.
+   min-height (NEVER height) sets the scroll distance between cards;
+   taller content just makes a card taller, so clipping is impossible.
+   No ancestor of [data-stack] may have overflow hidden/clip, or sticky
+   silently stops working. The staggered top offsets leave each previous
+   card's edge visible — that IS the progress indicator. */
+:root {
+  --stack-top: 96px; /* sticky header 72px + 24px breathing room */
 }
-/* Stacked baseline (no-JS, narrow, reduced-motion): readable list */
-#system [data-copy] {
-  padding: 30px 0;
+#system [data-stack] > article {
+  position: sticky;
+  border-radius: 24px;
+  padding: clamp(24px, 2.6vw, 44px);
+  min-height: min(60vh, 520px);
+  display: grid;
+  align-items: center;
+  box-shadow: 0 -10px 40px -18px rgb(0 0 0 / 0.55);
 }
-#system [data-copy] + [data-copy] {
-  border-top: 1px solid var(--color-line-on-ink);
+#system [data-stack] > article:nth-child(1) {
+  top: calc(var(--stack-top) + 0px);
 }
-@media (min-width: 901px) and (prefers-reduced-motion: no-preference) {
-  #system {
-    min-height: 320vh;
-  }
-  #system > [data-pane] {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-  #system [data-stage] {
-    flex: 1 1 0%;
-    min-height: 0;
-    display: grid;
-  }
-  #system [data-grid] {
-    display: grid;
-    min-width: 0;
-  }
-  #system [data-rail] {
-    display: block;
-    flex: none;
-  }
-  #system [data-dots] {
-    display: none;
-  }
-  #system [data-copywrap] {
-    position: relative;
-    height: 100%;
-    min-height: 0;
-  }
-  #system [data-copy] {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0;
-    border-top: 0;
+#system [data-stack] > article:nth-child(2) {
+  top: calc(var(--stack-top) + 18px);
+}
+#system [data-stack] > article:nth-child(3) {
+  top: calc(var(--stack-top) + 36px);
+}
+#system [data-stack] > article:nth-child(4) {
+  top: calc(var(--stack-top) + 54px);
+}
+@media (prefers-reduced-motion: reduce) {
+  #system [data-stack] > article {
+    position: static;
+    margin-bottom: 20px;
   }
 }
 

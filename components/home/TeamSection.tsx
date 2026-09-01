@@ -6,9 +6,9 @@ import Reveal from "./Reveal";
  * with a large set number — never a silhouette, never a generated face.
  */
 const CARDS = [
-  { n: "01", field: "bg-build" },
-  { n: "02", field: "bg-grow" },
-  { n: "03", field: "bg-operate" },
+  { n: "01", field: "bg-build-band" },
+  { n: "02", field: "bg-grow-band" },
+  { n: "03", field: "bg-operate-band" },
 ];
 
 export default function TeamSection() {
@@ -27,17 +27,18 @@ export default function TeamSection() {
         <Reveal className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-[clamp(20px,2.4vw,30px)]">
           {CARDS.map((c) => (
             <div key={c.n}>
-              {/* Media slot V8 (fill later): 1:1 portrait — aspect ratio
-                  reserved so photography drops in with zero relayout. Until
-                  then: engine-colour field, never a silhouette or face. */}
+              {/* Media slot V8 (fill later): 4:5 portrait frame — aspect
+                  ratio reserved so photography drops in with zero relayout.
+                  Until then: a calm engine-band field, never a silhouette
+                  or face. */}
               <div
                 data-media-slot={`portrait-${c.n}`}
-                className={`w-full aspect-square rounded-2xl ${c.field} flex items-end justify-between p-5`}
+                className={`w-full aspect-[4/5] rounded-2xl ${c.field} flex items-end justify-between p-5`}
               >
-                <span className="type-label text-ink uppercase">
+                <span className="type-label text-label uppercase">
                   Portrait to follow
                 </span>
-                <span className="font-display font-extrabold text-ink type-h2">
+                <span className="font-display font-bold text-ink type-h3">
                   {c.n}
                 </span>
               </div>

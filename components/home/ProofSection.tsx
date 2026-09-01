@@ -1,13 +1,18 @@
 import Reveal from "./Reveal";
 
-const ITEMS = [
-  "Operating model",
-  "Client ownership",
-  "Approval workflow",
-  "Documented process",
-  "Transparent pricing",
-  "Reporting",
-  "Research methodology",
+/**
+ * Proof before promises. Explicit 2/4 columns so seven items plus the
+ * section CTA fill a 4x2 grid exactly — no orphaned dark cells. Numbers
+ * carry the engine palette (cycling in threes); labels stay white.
+ */
+const ITEMS: { label: string; color: string }[] = [
+  { label: "Operating model", color: "text-build" },
+  { label: "Client ownership", color: "text-build" },
+  { label: "Approval workflow", color: "text-build" },
+  { label: "Documented process", color: "text-grow" },
+  { label: "Transparent pricing", color: "text-grow" },
+  { label: "Reporting", color: "text-operate" },
+  { label: "Research methodology", color: "text-operate" },
 ];
 
 export default function ProofSection() {
@@ -23,15 +28,23 @@ export default function ProofSection() {
             here as client work becomes publishable.
           </p>
         </Reveal>
-        <Reveal className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-px bg-line-on-ink border border-line-on-ink rounded-[18px] overflow-hidden">
+        <Reveal className="grid grid-cols-2 md:grid-cols-4 gap-px bg-line-on-ink border border-line-on-ink rounded-[18px] overflow-hidden">
           {ITEMS.map((item, i) => (
-            <div key={item} className="bg-ink-raised p-6">
-              <div className="type-label text-on-ink-mute mb-3">
+            <div key={item.label} className="bg-ink-raised p-6">
+              <div className={`type-body font-bold ${item.color} mb-3`}>
                 {String(i + 1).padStart(2, "0")}
               </div>
-              <div className="type-body font-medium text-white">{item}</div>
+              <div className="type-body font-medium text-white">
+                {item.label}
+              </div>
             </div>
           ))}
+          <a
+            href="/documents"
+            className="bg-ink-raised p-6 flex items-end type-body font-semibold text-link-on-ink hover:text-link-on-ink"
+          >
+            Read the documents →
+          </a>
         </Reveal>
       </div>
     </section>

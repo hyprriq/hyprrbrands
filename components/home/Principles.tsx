@@ -1,8 +1,20 @@
 import Reveal from "./Reveal";
 
+const PRINCIPLES = [
+  "Client-owned accounts",
+  "Client-approved purchases",
+  "Direct vendor → client invoicing",
+  "Realised-margin economics",
+  "No guaranteed outcomes",
+];
+
 /**
  * Built differently — five principles about how the operation is built,
  * so the section earns the Build band ground.
+ *
+ * Layout rule: the grid uses EXPLICIT column counts (1/2/3) because the
+ * items carry per-position styling — auto-fit decides its own column
+ * count at runtime and broke the padding rhythm at four columns.
  */
 export default function Principles() {
   return (
@@ -17,53 +29,23 @@ export default function Principles() {
           </p>
         </Reveal>
         <Reveal className="bg-ink text-white rounded-3xl p-[clamp(24px,3vw,44px)]">
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-0">
-            <div className="py-[22px] pr-6 border-b border-line-on-ink">
-              <div className="type-label text-on-ink-mute mb-3">
-                PRINCIPLE 01
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-7">
+            {PRINCIPLES.map((title, i) => (
+              <div key={title} className="py-[22px]">
+                <div className="type-label text-on-ink-mute mb-3">
+                  PRINCIPLE {String(i + 1).padStart(2, "0")}
+                </div>
+                <div className="type-body font-bold">{title}</div>
               </div>
-              <div className="type-body font-bold">Client-owned accounts</div>
-            </div>
-            <div className="py-[22px] px-6 border-b border-line-on-ink">
-              <div className="type-label text-on-ink-mute mb-3">
-                PRINCIPLE 02
-              </div>
-              <div className="type-body font-bold">
-                Client-approved purchases
-              </div>
-            </div>
-            <div className="py-[22px] pl-6 border-b border-line-on-ink">
-              <div className="type-label text-on-ink-mute mb-3">
-                PRINCIPLE 03
-              </div>
-              <div className="type-body font-bold">
-                Direct vendor → client invoicing
-              </div>
-            </div>
-            <div className="pt-[22px] pr-6">
-              <div className="type-label text-on-ink-mute mb-3">
-                PRINCIPLE 04
-              </div>
-              <div className="type-body font-bold">
-                Realised-margin economics
-              </div>
-            </div>
-            <div className="pt-[22px] px-6">
-              <div className="type-label text-on-ink-mute mb-3">
-                PRINCIPLE 05
-              </div>
-              <div className="type-body font-bold text-white">
-                No guaranteed outcomes
-              </div>
-            </div>
-            <div className="pt-[22px] pl-6 flex items-end">
-              <a
-                href="/vs-automation"
-                className="type-body font-semibold text-link-on-ink hover:text-link-on-ink"
-              >
-                Why we&apos;re not an automation company →
-              </a>
-            </div>
+            ))}
+          </div>
+          <div className="mt-4 border-t border-line-on-ink pt-6">
+            <a
+              href="/vs-automation"
+              className="type-body font-semibold text-link-on-ink hover:text-link-on-ink"
+            >
+              Why we&apos;re not an automation company →
+            </a>
           </div>
         </Reveal>
       </div>
