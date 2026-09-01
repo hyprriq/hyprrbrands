@@ -27,14 +27,14 @@
   --color-field-raised: #0e5e6e; /* raised panels on the field */
   --color-on-field: #ffffff; /* 9.30:1 */
   --color-on-field-body: #cfe6ea; /* 7.16:1 */
-  --color-on-field-mute: #9cc2c9; /* 4.86:1 — labels only */
+  --color-on-field-mute: #b6d6dc; /* field 6.04, raised 4.79 */
   --color-line-on-field: rgb(255 255 255 / 0.18);
-  --color-link-on-field: #c4b5ff; /* 5.05:1, clear of the engines */
+  --color-link-on-field: #d6cdff; /* field 6.22, raised 4.93 */
 
   /* ---- text on light --------------------------------------- */
   --color-body: #3d3949; /* default body — 11.17:1 */
   --color-muted: #5a5668; /* secondary meta — 7.08:1 */
-  --color-label: #6e6a7c; /* labels >=14px semibold */
+  --color-label: #615d6e; /* passes 4.5 on every ground incl. field tints */
   --color-line: #e4e2e8;
 
   /* ---- text on ink ----------------------------------------- */

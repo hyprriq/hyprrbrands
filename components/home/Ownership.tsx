@@ -58,7 +58,7 @@ export default function Ownership() {
             </div>
           </div>
           <div className="border border-line-on-field rounded-md p-[clamp(20px,2.2vw,28px)] bg-field-raised">
-            <div className="type-label text-operate uppercase mb-5">Hyprr</div>
+            <div className="type-label text-on-field-body uppercase mb-5">Hyprr</div>
             <div className="grid gap-3.5 type-body">
               {[
                 "Researches opportunities",
@@ -68,7 +68,7 @@ export default function Ownership() {
                 "Reports performance and recommends next actions",
               ].map((item) => (
                 <div key={item} className="flex gap-3 text-on-field-body">
-                  <span className="text-operate">·</span>
+                  <span className="text-on-field-body">·</span>
                   {item}
                 </div>
               ))}

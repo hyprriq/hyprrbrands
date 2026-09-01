@@ -99,23 +99,23 @@ export default function Hero() {
         </div>
 
         {/* Fragment 3 — operations: in-flow on mobile, side card on wide desktop */}
-        <div className="relative w-full mt-4 order-3 min-[900px]:hidden z-[1] bg-field text-white rounded-md p-3.5 shadow-[0_18px_40px_-28px_rgba(23,23,26,.7)]">
-          <div className="type-label text-on-field-mute mb-[11px]">OPERATIONS</div>
+        <div className="relative w-full mt-4 order-3 min-[900px]:hidden z-[1] bg-ink text-white rounded-md p-3.5 shadow-[0_18px_40px_-28px_rgba(23,23,26,.7)]">
+          <div className="type-label text-on-ink-mute mb-[11px]">OPERATIONS</div>
           <div className="grid gap-[11px] type-meta">
             <div>
-              <div className="type-label text-on-field-mute">Orders</div>
+              <div className="type-label text-on-ink-mute">Orders</div>
               <div>Routed</div>
             </div>
             <div>
-              <div className="type-label text-on-field-mute">Inventory</div>
+              <div className="type-label text-on-ink-mute">Inventory</div>
               <div className="text-operate">Healthy</div>
             </div>
             <div>
-              <div className="type-label text-on-field-mute">Cases</div>
+              <div className="type-label text-on-ink-mute">Cases</div>
               <div>2 open</div>
             </div>
             <div>
-              <div className="type-label text-on-field-mute">Replenishment</div>
+              <div className="type-label text-on-ink-mute">Replenishment</div>
               <div>Next review</div>
             </div>
           </div>

@@ -185,7 +185,7 @@ export default function CommercePaths() {
                 ))}
               </div>
               <div className="mt-[18px] flex gap-2.5 flex-wrap items-center">
-                <div className="bg-field text-white type-meta font-semibold px-4 py-[11px] rounded-sm">
+                <div className="bg-ink text-white type-meta font-semibold px-4 py-[11px] rounded-sm">
                   Add to cart
                 </div>
                 <div className="border border-operate type-meta font-medium px-4 py-[11px] rounded-sm text-ink">

@@ -6,13 +6,13 @@ import Reveal from "./Reveal";
  * carry the engine palette (cycling in threes); labels stay white.
  */
 const ITEMS: { label: string; color: string }[] = [
-  { label: "Operating model", color: "text-build" },
-  { label: "Client ownership", color: "text-build" },
-  { label: "Approval workflow", color: "text-build" },
-  { label: "Documented process", color: "text-grow" },
-  { label: "Transparent pricing", color: "text-grow" },
-  { label: "Reporting", color: "text-operate" },
-  { label: "Research methodology", color: "text-operate" },
+  { label: "Operating model", color: "text-on-field-mute" },
+  { label: "Client ownership", color: "text-on-field-mute" },
+  { label: "Approval workflow", color: "text-on-field-mute" },
+  { label: "Documented process", color: "text-on-field-mute" },
+  { label: "Transparent pricing", color: "text-on-field-mute" },
+  { label: "Reporting", color: "text-on-field-mute" },
+  { label: "Research methodology", color: "text-on-field-mute" },
 ];
 
 export default function ProofSection() {
@@ -41,7 +41,7 @@ export default function ProofSection() {
           ))}
           <a
             href="/documents"
-            className="bg-field-raised p-6 flex items-end type-body font-semibold text-link-on-field hover:text-link-on-field"
+            className="bg-operate-field p-6 flex items-end type-body font-semibold text-ink hover:text-ink"
           >
             Read the documents →
           </a>

@@ -34,7 +34,7 @@ export default function EverythingConnects() {
               className="h-full w-0 bg-[linear-gradient(90deg,#FFC84A,#B8F34A_45%,#45D8C0)] transition-[width] duration-[1800ms] ease-[cubic-bezier(.4,0,.2,1)]"
             />
           </div>
-          <ol className="list-none m-0 p-0 grid grid-cols-[repeat(auto-fit,minmax(112px,1fr))] gap-[clamp(12px,1.4vw,18px)]">
+          <ol className="list-none m-0 p-0 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-[clamp(12px,1.4vw,18px)]">
             {STEPS.map((s) => (
               <li key={s.num} className="grid gap-2">
                 <span className={`w-2 h-2 rounded-full ${s.dot}`} />

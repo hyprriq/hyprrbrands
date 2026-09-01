@@ -50,7 +50,7 @@ export default function SystemScroll() {
           <article data-card="0" className={`${CARD_META[0].surface} text-ink`}>
             <div className="grid min-[900px]:grid-cols-[1.1fr_1fr] gap-[clamp(24px,3vw,48px)] items-center">
               <div>
-                <p className={`type-label text-muted m-0 mb-3`}>
+                <p className={`type-label text-label m-0 mb-3`}>
                   {CARD_META[0].eyebrow}
                 </p>
                 <h3 className="font-display type-h3 text-ink m-0 mb-4">
@@ -97,7 +97,7 @@ export default function SystemScroll() {
           <article data-card="1" className={`${CARD_META[1].surface} text-ink`}>
             <div className="grid min-[900px]:grid-cols-[1.1fr_1fr] gap-[clamp(24px,3vw,48px)] items-center">
               <div>
-                <p className={`type-label text-muted m-0 mb-3`}>
+                <p className={`type-label text-label m-0 mb-3`}>
                   {CARD_META[1].eyebrow}
                 </p>
                 <h3 className="font-display type-h3 text-ink m-0 mb-4">
@@ -144,7 +144,7 @@ export default function SystemScroll() {
           <article data-card="2" className={`${CARD_META[2].surface} text-ink`}>
             <div className="grid min-[900px]:grid-cols-[1.1fr_1fr] gap-[clamp(24px,3vw,48px)] items-center">
               <div>
-                <p className={`type-label text-muted m-0 mb-3`}>
+                <p className={`type-label text-label m-0 mb-3`}>
                   {CARD_META[2].eyebrow}
                 </p>
                 <h3 className="font-display type-h3 text-ink m-0 mb-4">
@@ -189,7 +189,7 @@ export default function SystemScroll() {
           <article data-card="3" className={`${CARD_META[3].surface} text-ink`}>
             <div className="grid min-[900px]:grid-cols-[1.1fr_1fr] gap-[clamp(24px,3vw,48px)] items-center">
               <div>
-                <p className={`type-label text-muted m-0 mb-3`}>
+                <p className={`type-label text-label m-0 mb-3`}>
                   {CARD_META[3].eyebrow}
                 </p>
                 <h3 className="font-display type-h3 text-ink m-0 mb-4">
