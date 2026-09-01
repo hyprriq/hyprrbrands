@@ -147,7 +147,7 @@ export default function SystemScroll() {
         if (copywrap) {
           copywrap.style.display = "block";
           copywrap.style.position = "relative";
-          copywrap.style.minHeight = "clamp(220px,34vw,330px)";
+          copywrap.style.minHeight = "clamp(240px,38vh,460px)";
           copywrap.style.overflowX = "visible";
           copywrap.style.scrollSnapType = "";
         }
@@ -448,18 +448,31 @@ export default function SystemScroll() {
           flexDirection: "column",
         }}
       >
-        {/* Section heading — promoted to the h2 step, above the state content */}
+        {/* Heading + stage travel as ONE vertically-centered cluster so the
+            H2 stays attached to the content it titles at any pane height. */}
+        <div
+          data-mid="1"
+          style={{
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            minHeight: 0,
+            padding: "clamp(18px,3vh,34px) 0 clamp(8px,1.6vh,18px)",
+          }}
+        >
         <div
           style={{
             maxWidth: 1280,
             width: "100%",
             margin: "0 auto",
-            padding: "clamp(18px,3vh,34px) clamp(20px,3vw,40px) clamp(8px,1.6vh,18px)",
+            padding: "0 clamp(20px,3vw,40px)",
             display: "flex",
             alignItems: "flex-end",
             justifyContent: "space-between",
             gap: 18,
             flexWrap: "wrap",
+            marginBottom: "clamp(16px,3.2vh,44px)",
           }}
         >
           <h2
@@ -481,7 +494,6 @@ export default function SystemScroll() {
         <div
           data-stage="1"
           style={{
-            flex: 1,
             maxWidth: 1280,
             width: "100%",
             margin: "0 auto",
@@ -599,7 +611,7 @@ export default function SystemScroll() {
               gridTemplateColumns: "1.55fr 1fr",
               gridTemplateRows: "1.55fr 1fr",
               gap: 14,
-              height: "clamp(240px,44vh,430px)",
+              height: "clamp(260px,50vh,600px)",
               position: "relative",
               margin: "18px 0",
             }}
@@ -770,6 +782,7 @@ export default function SystemScroll() {
               </div>
             </div>
           </div>
+        </div>
         </div>
 
         {/* Carousel dot indicators (mobile) */}
