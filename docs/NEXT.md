@@ -157,7 +157,38 @@ real footage. Founder video is wide open, it is the densest proof available, and
 
 ---
 
-## 3 · PROMPT_11_ABOUT_SHIPS.md — small, and it is only parked by one commit
+## 3 · PROMPT_13_SERVICE_PAGE_VISUALS_AND_MOBILE.md — owner review of production
+
+Six findings from `/wholesale-ecommerce` and `/private-label`, **all six in
+`components/pages/ServicePage.tsx`, which drives all ten service pages.** That is the leverage —
+each fix is written once and lands ten times. Fixing any of them per-page is the mistake.
+
+- **A · The hero has no visual slot on any service page.** Single column, `max-w-[18ch]` H1,
+  roughly half the fold empty above 1440px. Ships as a type-and-token "at a glance" panel built
+  from fields that already exist in `ServicePageData`; the tier-2 diagram replaces it later. Not a
+  placeholder — content that stands alone and gets upgraded.
+- **B · The mobile catalogue artefact responds by showing everything** — five rows × eight fields
+  is ~35 label/value lines. The fix is editorial: the artefact's argument is the *status* column,
+  everything else is texture. Three rows, three fields, rest behind a disclosure, and a caption
+  that says the point instead of making the reader infer it.
+- **C · "What … actually involves" is 298–337 words in one column with no structural break** on
+  every one of the ten pages. Do not cut it — it is load-bearing for the informational SERP and
+  GEO extraction. Break it with subheads, wider spacing and the page's second visual.
+- **D · The `sequence` artefact goes horizontal scroll-snap below 900px**, as the owner suggested.
+- **E · Every Build page dead-ends, and this one is worth the most.** `/private-label` is a launch
+  page with no expression of what follows. The link exists but sits in `related` styled
+  identically to a sibling service — a sibling link and a next-step are not the same thing.
+  **Build → Grow → Operate is the spine of the whole company** and no service page expresses it as
+  a progression; ten pages each present themselves as a terminus. New `nextStep` block, and the
+  next-engine entry comes *out* of `related` so it is not offered twice at different weights.
+- **F ·** All new `ServicePageData` fields optional so the other nine build before their copy lands.
+
+**A, B and D need nothing from me — ship those first.** C and E need copy I am writing now:
+subheads matched to the existing paragraph breaks on all ten pages, and `nextStep` copy for each.
+
+---
+
+## 4 · PROMPT_11_ABOUT_SHIPS.md — small, and it is only parked by one commit
 
 `/about` is listed as parked pending role, prior employer and LinkedIn. That was true until
 `f42d764`, which landed after your push and removed it — those are now **optional fields that
@@ -173,7 +204,7 @@ nothing to resolve to.
 
 ---
 
-## 4 · `/insights` — the audit side owes you content, not a ticket
+## 5 · `/insights` — the audit side owes you content, not a ticket
 
 Nothing to build until articles exist, and writing them is my job, not yours. Four are specified
 in the keyword map's §7 objection cluster — the account-ownership question, the automation
