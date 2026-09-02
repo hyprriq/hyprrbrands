@@ -3,34 +3,30 @@ import { pagesByEngine, SITE_MAP, isLive } from "@/lib/site-map";
 
 /**
  * Footer — A.23, rendered from the site manifest so its columns match
- * the service architecture in section D exactly. Every service name is
- * VISIBLE (the entity's service list must be crawlable text), but only
- * live pages render as links — planned pages are plain text until they
- * ship. Company/legal entries behave the same way.
+ * the service architecture in section D exactly. A4 (2 Sep audit):
+ * only live pages render at all — every footer entry is a working
+ * link, and the columns grow as pages ship. The machine-readable
+ * "these are our services" claim lives in the Organization schema,
+ * not in unlinked footer text.
  */
-function FooterItem({
-  slug,
-  title,
-}: {
-  slug: string;
-  title: string;
-}) {
-  return isLive(slug) ? (
+function FooterItem({ slug, title }: { slug: string; title: string }) {
+  return (
     <a href={slug} className="text-on-field-body hover:text-white">
       {title}
     </a>
-  ) : (
-    <span className="text-on-field-mute">{title}</span>
   );
 }
 
 export default function SiteFooter() {
-  const build = pagesByEngine("build");
-  const grow = pagesByEngine("grow");
-  const operate = pagesByEngine("operate");
-  const company = SITE_MAP.filter((p) => p.group === "company");
-  const resources = SITE_MAP.filter((p) => p.group === "support");
-  const legal = SITE_MAP.filter((p) => p.group === "legal");
+  // isLive resolves anchor aliases (/shopify-dtc#growth) to the page
+  // that carries them, so DTC growth appears once /shopify-dtc ships.
+  const live = (p: { slug: string }) => isLive(p.slug);
+  const build = pagesByEngine("build").filter(live);
+  const grow = pagesByEngine("grow").filter(live);
+  const operate = pagesByEngine("operate").filter(live);
+  const company = SITE_MAP.filter((p) => p.group === "company" && live(p));
+  const resources = SITE_MAP.filter((p) => p.group === "support" && live(p));
+  const legal = SITE_MAP.filter((p) => p.group === "legal" && live(p));
 
   return (
     <footer className="bg-field text-on-field-body border-t border-line-on-field">
@@ -62,10 +58,11 @@ export default function SiteFooter() {
               {pages.map((p) => (
                 <FooterItem key={p.slug} slug={p.slug} title={p.title} />
               ))}
-              {title === "Operate" && (
-                <span className="text-on-field-mute">
-                  Reporting &amp; performance
-                </span>
+              {title === "Operate" && isLive("/ecommerce-operations") && (
+                <FooterItem
+                  slug="/ecommerce-operations#reporting"
+                  title="Reporting & performance"
+                />
               )}
             </div>
           </div>

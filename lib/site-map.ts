@@ -33,8 +33,12 @@ export const SITE_MAP: SitePage[] = [
       "Sourcing, purchasing, listings and account setup for Amazon and Walmart wholesale operations",
   },
   {
+    // A1: "& brand building" dropped everywhere — "private label brand
+    // building agency" is a measured rejected keyword (returns
+    // white-label resellers and personal-branding studios), and the
+    // page does not lead with brand building. One string, one source.
     slug: "/private-label",
-    title: "Private label & brand building",
+    title: "Private label",
     engine: "build",
     group: "service",
     status: "live",

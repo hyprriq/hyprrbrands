@@ -262,7 +262,7 @@ export default function Page() {
                 href="/documents"
                 className="text-ink hover:text-ink font-medium type-body"
               >
-                /documents →
+                Read the documents →
               </a>
             ) : (
               <span className="font-mono type-label text-label normal-case tracking-normal">

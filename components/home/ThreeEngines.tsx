@@ -1,5 +1,5 @@
 import Reveal from "./Reveal";
-import { pagesByEngine, type Engine } from "@/lib/site-map";
+import { isLive, pagesByEngine, type Engine } from "@/lib/site-map";
 
 /**
  * A.05 introduction + A.06 engine cards. The three cards are the site
@@ -88,7 +88,7 @@ export default function ThreeEngines() {
                 <ul className="list-none m-0 mb-6 p-0 grid gap-2.5 flex-1">
                   {services.map((s) => (
                     <li key={s.slug} className="type-body">
-                      {s.status === "live" ? (
+                      {isLive(s.slug) ? (
                         <a href={s.slug} className="text-body hover:text-ink">
                           {s.title}
                         </a>
@@ -98,8 +98,19 @@ export default function ThreeEngines() {
                     </li>
                   ))}
                   {card.engine === "operate" && (
-                    <li className="type-body text-body">
-                      Reporting &amp; performance
+                    <li className="type-body">
+                      {isLive("/ecommerce-operations") ? (
+                        <a
+                          href="/ecommerce-operations#reporting"
+                          className="text-body hover:text-ink"
+                        >
+                          Reporting &amp; performance
+                        </a>
+                      ) : (
+                        <span className="text-body">
+                          Reporting &amp; performance
+                        </span>
+                      )}
                     </li>
                   )}
                 </ul>

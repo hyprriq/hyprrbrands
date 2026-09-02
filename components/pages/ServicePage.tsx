@@ -866,13 +866,14 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
           </div>
         </section>
 
-        {/* 9 · Bone: evidence, not claims */}
-        <section className="bg-bone">
+        {/* 9 · Petrol: evidence, not claims — same ground as the
+            homepage's proof section (2 Sep consistency ruling) */}
+        <section className="bg-field text-white">
           <div className={`${CONTAINER} ${SECTION_PAD}`}>
-            <h3 className="font-display type-h3 text-ink m-0">
+            <h3 className="font-display type-h3 text-white m-0">
               Evidence, not claims
             </h3>
-            <p className="type-body text-body mt-3 mb-0 max-w-[60ch]">
+            <p className="type-body text-on-field-body mt-3 mb-0 max-w-[60ch]">
               No figures at soft launch. The evidence on this page is the
               paperwork the engagement runs on, readable before you speak to
               anyone.
@@ -885,18 +886,18 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
               ].map((k) => (
                 <div
                   key={k}
-                  className="flex-[1_1_220px] bg-white border border-line rounded-md px-5 py-[18px] flex justify-between gap-3 items-center"
+                  className="flex-[1_1_220px] bg-field-raised rounded-md px-5 py-[18px] flex justify-between gap-3 items-center"
                 >
-                  <b className="text-ink type-body">{k}</b>
+                  <b className="text-white type-body">{k}</b>
                   {isLive("/documents") ? (
                     <a
                       href="/documents"
-                      className="font-mono type-label text-label normal-case tracking-normal hover:text-ink"
+                      className="font-mono type-label text-on-field-mute normal-case tracking-normal hover:text-white"
                     >
-                      /documents →
+                      Read →
                     </a>
                   ) : (
-                    <span className="font-mono type-label text-label normal-case tracking-normal">
+                    <span className="font-mono type-label text-on-field-mute normal-case tracking-normal">
                       publishing soon
                     </span>
                   )}
@@ -949,7 +950,7 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
               href="/how-we-work#fees"
               className="flex-none text-ink hover:text-ink type-body font-medium"
             >
-              Full fee mechanic → /how-we-work#fees
+              Full fee mechanic →
             </a>
           </div>
         </div>
@@ -1002,19 +1003,14 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
                       className={`w-2.5 h-2.5 rounded-full ${ENGINE_META[r.engine].dot}`}
                     />
                     {isLive(r.slug) ? (
-                      <a
-                        href={r.slug}
-                        className="text-ink hover:text-ink"
-                      >
+                      <a href={r.slug} className="text-ink hover:text-ink">
                         {r.name}
                       </a>
                     ) : (
                       r.name
                     )}
                   </span>
-                  <span className="font-mono type-label text-label normal-case tracking-normal">
-                    {r.slug.split("#")[0]}
-                  </span>
+                  {isLive(r.slug) && <span className="text-label">→</span>}
                 </div>
               ))}
             </div>
@@ -1038,7 +1034,7 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
                   </a>
                 ) : (
                   <span className="font-mono type-label text-label normal-case tracking-normal">
-                    publishing with /insights
+                    publishing soon
                   </span>
                 )}
               </div>

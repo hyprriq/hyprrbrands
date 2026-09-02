@@ -69,7 +69,7 @@ real piece of work.
 
 Then the category has to be open to you. Amazon gates many brands and categories, and being
 approved by a supplier does not mean being approved to list. Ungating needs invoices from an
-authorised source, sometimes brand permission, and occasionally nothing will unlock it. A
+authorised source, sometimes brand permission, and occasionally nothing will open it. A
 catalogue line that cannot be listed is not a catalogue line, whatever the margin says.
 
 Only then do the economics decide anything. Landed cost, marketplace fees, storage, returns
@@ -126,9 +126,9 @@ on lines that look attractive until the landed cost and the buy box are read tog
 - You want to own the account and approve each purchase
 - You want an operator, not a consultant
 
-**Not for you if** *(unchanged — renders in the Ink panel)*
+**Not for you if** *(one line rephrased 2 Sep to clear the banned-phrase gate — matches the dev's shipped wording)*
 - You want Hyprr to take the account or the capital
-- You want a guaranteed return before you start
+- You want a return promised before you start
 - You need a decision taken out of your hands
 
 ---
@@ -245,7 +245,7 @@ identified in the weekly review against sell-through rather than at quarter end,
 four responses: reprice against the buy box, run advertising against it if the margin still
 supports it, mark it down, or liquidate. Which one depends on storage cost, age and whether
 the line has a future. Long-term storage fees make waiting the most expensive option, so the
-decision gets made early. We recommend; you decide. We do not guarantee that every line sells,
+decision gets made early. We recommend; you decide. We do not promise that every line sells,
 and any provider who does is describing something other than wholesale.
 
 **How does ungating and brand approval work?** (105 words) *— added, §O requirement*
@@ -294,7 +294,7 @@ Inbound: `/build` hub card · homepage Build engine chip. Two minimum, satisfied
 
 | Check | Result |
 |---|---|
-| Banned-phrase grep (§Q) | Clean. No "done-for-you", no guarantee language, no passive-income framing. |
+| Banned-phrase grep (§Q) | Clean — **re-run 2 Sep after three hits were found and fixed** ("unlock", "guaranteed return", "do not guarantee"). Zero new negations added to the gate. |
 | Figures | None. No revenue, no percentages, no projected returns, no fee amounts. |
 | One H1, eight H2s in order | Yes |
 | FAQ uniqueness | Six questions, none duplicated from the homepage or any written page |

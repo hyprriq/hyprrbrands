@@ -64,8 +64,12 @@ const HUBS: Record<
 export default function HubPage({ engine }: { engine: Exclude<Engine, null> }) {
   const hub = HUBS[engine];
   // Anchor aliases (DTC growth → /shopify-dtc#growth) are list entries,
-  // not pages — they carry no card of their own.
-  const services = pagesByEngine(engine).filter((s) => !s.slug.includes("#"));
+  // not pages — they carry no card of their own. A3: cards render only
+  // for live pages, so every card is a working link; the hub grows as
+  // pages ship.
+  const services = pagesByEngine(engine).filter(
+    (s) => !s.slug.includes("#") && s.status === "live"
+  );
 
   return (
     <SitePageShell>
@@ -116,28 +120,17 @@ export default function HubPage({ engine }: { engine: Exclude<Engine, null> }) {
                 key={s.slug}
                 className="border border-line rounded-md p-[22px] grid gap-2.5 content-start hover:border-ink transition-colors"
               >
-                <div className="flex justify-between items-center">
-                  <span className={`w-3 h-3 rounded-full ${hub.dot}`} />
-                  <span className="font-mono type-label text-label normal-case tracking-normal">
-                    {s.slug}
-                  </span>
-                </div>
+                <span className={`w-3 h-3 rounded-full ${hub.dot}`} />
                 <b className="text-ink type-lead font-bold leading-snug tracking-[-.01em]">
                   {s.title}
                 </b>
                 <span className="type-meta text-body">{s.oneLine}.</span>
-                {s.status === "live" ? (
-                  <a
-                    href={s.slug}
-                    className="text-ink hover:text-ink font-medium type-meta mt-1"
-                  >
-                    Read the page →
-                  </a>
-                ) : (
-                  <span className="font-mono type-label text-label normal-case tracking-normal mt-1">
-                    page publishing soon
-                  </span>
-                )}
+                <a
+                  href={s.slug}
+                  className="text-ink hover:text-ink font-medium type-meta mt-1"
+                >
+                  Read the page →
+                </a>
               </div>
             ))}
           </div>

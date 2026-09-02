@@ -96,6 +96,76 @@ needs no new content, so they go first.
  10  404                     Already built. Reskin to match.
 
 ======================================================================
+STEP 6 UPDATE — added 2 Sep, after the report-back
+======================================================================
+
+**Do not author content for the remaining eight pages. It is written.**
+
+`docs/content/` now holds finished content for all ten service pages, the three hubs,
+`/true-cost`, `/about`, the `/contact` addition, the four legal pages and `/documents`.
+Start at `docs/content/README.md`. Each file's field names already match the design's
+`F.<family>` object, so populating a `.ts` data file is transcription, not authoring.
+
+Each page carries: primary keyword (and the rejected one with its measured reason), title and
+meta inside §L limits, the eight H2 bodies, 4–6 FAQ answers at 75–120 words each, internal
+links per §22, and a checks table. This replaces the placeholder content written for
+`/private-label` — swap that file's strings for the real ones.
+
+**Two content files were corrected on 2 Sep** after your banned-phrase catch: three hits in
+`wholesale-ecommerce.md` ("unlock", "guaranteed return", "do not guarantee") and one in
+`marketplace-growth.md`. All rephrased rather than allowlisted. **Your instinct there was
+right** — a gate whose allowlist grows every time someone writes a sentence stops being a gate.
+
+**GAP 2 variant assignments, for the three pages without one:**
+  /ecommerce-website-development -> shopify variant, journey chain replaced by the
+                                    infrastructure stack: product → store → CMS → payments →
+                                    ERP/operations → marketplaces → analytics
+  /marketplace-growth            -> wholesale variant, catalogue table replaced by the
+                                    optimisation loop
+  /shopify-management            -> operations variant, store-scoped
+No eighth composition.
+
+**`/shopify-dtc` carries a `#growth` section** absorbing the dropped page. Content is in
+`shopify-dtc.md` under that heading.
+
+======================================================================
+CHROMA — ruling, and the acceptance criterion was wrong
+======================================================================
+
+**You are right and the target was mine to fix.** Measured on the live service page, section
+grounds by share of painted area:
+
+  service page   White 48.5% · Bone 28.0% · Petrol 14.9% · build-field 8.6%  -> 0.0193
+  homepage       White 43.0% · Petrol 29.1% · Bone  9.6% · build-band  4.6%  -> 0.0297
+
+The 0.030 floor was calibrated on a page with **twice the Petrol coverage and a third of the
+Bone**. The service spine — thirteen sections, two of them Petrol, one tint — cannot reach it
+without adding roughly two more full dark sections, which would break the alternation rule.
+The number was borrowed from one page type and applied to another without re-deriving it.
+Your diagnosis was correct: the tint is present at 0.087 and is doing its job.
+
+**Corrected target for service pages: >= 0.018.** Current 0.0193 passes. Homepage stays at
+0.030.
+
+**One change, and it is a consistency fix rather than decoration.** The homepage renders
+"Proof before promises" on Petrol; the service page renders its proof/evidence section on Bone.
+That inconsistency is in my spec, not your build. Move it:
+
+  Proof / evidence section:  Bone -> Petrol
+
+Adjacency holds — What's fully managed (White) sits between it and What stays yours (Petrol),
+and How we're paid (White) follows it. Side effect: chroma to roughly 0.022. Do not chase the
+number beyond that.
+
+**Standing rule this is the third instance of:** a threshold or token validated in one context
+and applied to another. Band tints validated for contrast but not for area. On-field tokens
+validated against the field but not the raised surface. Now a chroma floor calibrated on the
+homepage. **Any number in a spec applies only to the surface it was measured on.** Re-derive
+before reusing.
+
+======================================================================
+
+======================================================================
 CARRY THESE — they are invariants, not preferences
 ======================================================================
 - Petrol #0A4E5C is a section ground. A dark panel inside a light or band section is Ink.
