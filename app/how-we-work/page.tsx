@@ -9,7 +9,7 @@ import { breadcrumbLd, webPageLd } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "How We Work | You Decide, We Execute | Hyprr Brands",
   description:
-    "You decide. We execute. What happens in an engagement, who decides, what gets written down, and how we are paid — the mechanic, no figures.",
+    "You decide. We execute. What happens in an engagement, who decides, what gets written down, and how we are paid — published fees, the mechanic and a worked example.",
   alternates: { canonical: "/how-we-work" },
   ...ogImageMeta("how-we-work"),
 };
@@ -18,8 +18,8 @@ export const metadata: Metadata = {
  * /how-we-work — Template 3: White → Bone → Petrol (#fees) → White →
  * Petrol CTA; the two Petrol sections are separated by a White one.
  * The four-step sequence is numbered because it is a real sequence;
- * numbers appear nowhere else on the page. #fees keeps the cleared
- * mechanic copy from the content ticket rather than a placeholder.
+ * numbers appear nowhere else on the page. #fees publishes the fee
+ * tables per docs/content/fees-and-pricing.md (owner-cleared 2 Sep).
  */
 const STEPS = [
   {
@@ -64,10 +64,10 @@ const COMMITMENTS: [string, string][] = [
 ];
 
 const FEE_RULES = [
-  "Fees are stated before the engagement, not discovered in it",
-  "No fee is tied to a projected return",
+  "Every fee is published before the conversation, not quoted after it",
+  "30% at every band — a larger fee buys more work, never a better split",
+  "No fee on your capital, no fee on your ad spend, no markup on anything we buy for you",
   "Every material purchase is approved by you and recorded",
-  "The fee structure is explained in full before anything is signed",
 ];
 
 const NO_TO = [
@@ -91,7 +91,7 @@ export default function Page() {
             path: "/how-we-work",
             title: "How We Work | You Decide, We Execute | Hyprr Brands",
             description:
-              "You decide. We execute. What happens in an engagement, who decides, what gets written down, and how we are paid — the mechanic, no figures.",
+              "You decide. We execute. What happens in an engagement, who decides, what gets written down, and how we are paid — published fees, the mechanic and a worked example.",
           }),
           breadcrumbLd([
             { name: "Home", path: "/" },
@@ -182,7 +182,9 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Petrol: #fees — the section people arrive for */}
+      {/* Petrol: #fees — the section people arrive for. Figures
+          published per docs/content/fees-and-pricing.md (owner-cleared
+          2 Sep); every figure here traces to that file. */}
       <section
         id="fees"
         className="bg-field text-white [scroll-margin-top:100px]"
@@ -191,12 +193,153 @@ export default function Page() {
           <h2 className="font-display type-h2 text-white m-0 max-w-[16ch] text-balance">
             How we are paid
           </h2>
-          <div className="flex flex-wrap gap-x-12 gap-y-8 mt-8">
+          <div className="max-w-[68ch] grid gap-3.5 mt-8">
+            <p className="type-lead text-on-field-body m-0">
+              A fee to build the operation, and a share of the margin the
+              business realises after goods actually sell. The fees are
+              published below. The split does not change with the fee.
+            </p>
+            <p className="type-body text-on-field-body m-0">
+              <strong className="text-white">
+                The split is 30%, at every band.
+              </strong>{" "}
+              A larger build fee buys more work — more catalogue, more
+              channels, more people on the account. It never buys a better
+              split, and a smaller one never costs you a worse one. The
+              number is the same whichever band you are in.
+            </p>
+          </div>
+
+          {/* Table 1 · Wholesale bands */}
+          <div className="mt-8 overflow-x-auto border border-line-on-field rounded-md max-w-[820px]">
+            <table className="w-full min-w-[520px] border-collapse type-meta">
+              <thead>
+                <tr className="border-b border-line-on-field">
+                  <th className="text-left p-3.5 font-mono type-label text-on-field-mute uppercase">
+                    Band
+                  </th>
+                  <th className="text-left p-3.5 font-mono type-label text-on-field-mute uppercase">
+                    Monthly deployment
+                  </th>
+                  <th className="text-left p-3.5 font-mono type-label text-on-field-mute uppercase">
+                    Build fee
+                  </th>
+                  <th className="text-left p-3.5 font-mono type-label text-on-field-mute uppercase">
+                    Margin share
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {(
+                  [
+                    ["Launch", "Up to $25,000/mo", "$2,499", "30%"],
+                    ["Scale", "$25,000 – $100,000/mo", "$4,599", "30%"],
+                    ["Enterprise", "Above $100,000/mo", "$7,999", "30%"],
+                  ] as const
+                ).map(([band, dep, fee, share]) => (
+                  <tr
+                    key={band}
+                    className="border-b border-line-on-field last:border-b-0"
+                  >
+                    <th className="text-left p-3.5 text-white font-semibold">
+                      {band}
+                    </th>
+                    <td className="p-3.5 text-on-field-body">{dep}</td>
+                    <td className="p-3.5 text-white font-semibold font-mono">
+                      {fee}
+                    </td>
+                    <td className="p-3.5 text-white font-semibold font-mono">
+                      {share}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="type-meta text-on-field-body mt-3.5 mb-0 max-w-[68ch]">
+            The band is set by the capital you plan to deploy monthly,
+            because that is what determines catalogue size, purchase-order
+            volume and how many people the account needs. It is a scope
+            input, not a performance promise. The split is 30% in all three.
+          </p>
+
+          {/* Table 2 · Add-ons */}
+          <div className="mt-7 overflow-x-auto border border-line-on-field rounded-md max-w-[820px]">
+            <table className="w-full min-w-[520px] border-collapse type-meta">
+              <tbody>
+                {(
+                  [
+                    [
+                      "Second marketplace — adding Walmart to an Amazon operation, or the reverse",
+                      "$1,999",
+                    ],
+                    [
+                      "Account takeover — an existing Amazon or Walmart account, audited and brought onto our operating cycle",
+                      "$1,499",
+                    ],
+                    [
+                      "Account takeover, complex — suspended, restricted, or with unresolved account-health history",
+                      "$2,999",
+                    ],
+                  ] as const
+                ).map(([what, fee]) => (
+                  <tr
+                    key={fee}
+                    className="border-b border-line-on-field last:border-b-0"
+                  >
+                    <td className="p-3.5 text-on-field-body">{what}</td>
+                    <td className="p-3.5 text-white font-semibold font-mono whitespace-nowrap">
+                      {fee}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Table 3 · Private label — $14,999 ships only here, with
+              its anti-scam caption adjacent. Never render it alone. */}
+          <div className="mt-7 overflow-x-auto border border-line-on-field rounded-md max-w-[820px]">
+            <table className="w-full min-w-[520px] border-collapse type-meta">
+              <tbody>
+                <tr className="border-b border-line-on-field">
+                  <td className="p-3.5 text-on-field-body">
+                    Private label build — research and validation through
+                    supplier, sample, packaging, compliance, listing and
+                    launch
+                  </td>
+                  <td className="p-3.5 text-white font-semibold font-mono whitespace-nowrap">
+                    $14,999
+                  </td>
+                </tr>
+                <tr>
+                  <td className="p-3.5 text-on-field-body">
+                    Margin share on the operation afterwards
+                  </td>
+                  <td className="p-3.5 text-white font-semibold whitespace-nowrap">
+                    30%, stepping down as below
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="type-meta text-on-field-body mt-3.5 mb-0 max-w-[68ch]">
+            $14,999 is a build fee for defined work, and it is the only money
+            that reaches Hyprr in the build phase. Inventory, samples,
+            freight, trademark, testing and compliance are paid by you,
+            directly to the supplier or the agency providing them, at the
+            price they invoice.{" "}
+            <strong className="text-white">
+              Hyprr takes no margin, no commission and no rebate anywhere in
+              that chain, and never holds your funds.
+            </strong>{" "}
+            Every product gets a written verdict before money is committed,
+            and a verdict of &quot;no&quot; is a normal outcome — you keep
+            the rest of the budget.
+          </p>
+
+          <div className="flex flex-wrap gap-x-12 gap-y-8 mt-10">
             <div className="flex-[1_1_320px] max-w-[60ch] grid gap-3.5">
-              <p className="type-lead text-on-field-body m-0">
-                A fee to build the operation, and — where it applies — a share
-                of the margin the business realises after goods actually sell.
-              </p>
               <p className="type-body text-on-field-body m-0">
                 <strong className="text-white">
                   What it is calculated on:
@@ -216,14 +359,46 @@ export default function Page() {
                 sold, no performance fee has accrued on them.
               </p>
               <p className="type-body text-on-field-body m-0">
-                There is no monthly retainer, and no fee calculated on the
-                capital you deploy. If the margin isn&apos;t there, neither is
-                our share of it.
+                No fee is calculated on tax you collect and remit. VAT, GST
+                and sales tax come out of the settlement before the share is
+                worked out.
               </p>
-              <p className="type-meta text-on-field-mute m-0">
-                No pricing figures are published while engagements are
-                individually scoped, and no earnings figures appear anywhere
-                on this site.
+              <p className="type-body text-on-field-body m-0">
+                <strong className="text-white">
+                  The share steps down as the operation matures.
+                </strong>{" "}
+                30% through month 12, 25% in months 13 to 24, 20% from month
+                25 onward, counted from the first sale rather than from
+                signature. The work that earns the higher share is
+                front-loaded, so the fee is too.
+              </p>
+              <p className="type-body text-on-field-body m-0">
+                <strong className="text-white">
+                  Six months minimum, then monthly on 30 days&apos; notice.
+                </strong>{" "}
+                Six months is how long it takes for a wholesale catalogue to
+                produce a readable result. After that there is no lock-in and
+                no exit fee.
+              </p>
+              <p className="type-body text-on-field-body m-0">
+                <strong className="text-white">
+                  No fee is calculated on the capital you deploy, and no fee
+                  is calculated on your ad spend.
+                </strong>{" "}
+                Both of those are the models that pay an agency more for
+                recommending you spend more. Where a monthly minimum applies
+                it is credited against the margin share, not added to it —
+                see the minimum below.
+              </p>
+              <p className="type-body text-on-field-body m-0">
+                <strong className="text-white">
+                  A monthly minimum of $500 applies to ongoing operating
+                  engagements, credited against the margin share.
+                </strong>{" "}
+                In a month where 30% of realised margin exceeds $500, the
+                minimum is invisible — you pay the share and nothing else. In
+                a month where it does not, the difference is what keeps a
+                named person on the account. It is a floor, not a second fee.
               </p>
             </div>
             <div className="flex-[1_1_280px] grid content-start">
@@ -238,6 +413,57 @@ export default function Page() {
               ))}
             </div>
           </div>
+
+          {/* Worked example — the label sentence lives in the SAME block
+              as the numbers; it is what makes the arithmetic legal. */}
+          <div className="mt-10 border border-line-on-field rounded-md p-[clamp(20px,2.5vw,30px)] max-w-[820px] grid gap-3.5">
+            <p className="type-body text-white font-semibold m-0">
+              A worked example. These are arbitrary round numbers chosen to
+              show the calculation — they are not a projection, a typical
+              result, or a figure from any client.
+            </p>
+            <p className="type-body text-on-field-body m-0">
+              A catalogue line sells 400 units in a month at $30. Settlement
+              total after marketplace fees and returns is $9,000, and no VAT
+              or sales tax was remitted by you on those sales, so net
+              settlement is also $9,000. Landed cost is $18 a unit, so cost
+              of goods on the units that sold is $7,200. Advertising
+              attributable to that line is $600.
+            </p>
+            <p className="font-mono type-meta text-white m-0">
+              Realised margin = $9,000 − $7,200 − $600 = $1,200
+              <br />
+              Hyprr&apos;s share at 30% = $360
+            </p>
+            <p className="type-body text-on-field-body m-0">
+              On a UK account the first line would read differently: if
+              £1,500 of VAT sat inside that settlement, it comes out before
+              anything else does, and the share is worked out on what is
+              left.
+            </p>
+            <p className="type-body text-on-field-body m-0">
+              If those 400 units had not sold, the margin would be zero and
+              so would the share — the stock is still yours, and no fee has
+              accrued on it.
+            </p>
+            <p className="font-mono type-meta text-on-field-body m-0 border-t border-line-on-field pt-3.5">
+              Realised margin = Net settlement total − (Landed cost × units
+              shipped) + (Landed cost × units refunded)
+              <br />
+              Net settlement total = Settlement total − any VAT, GST or sales
+              tax remitted by you on those sales
+            </p>
+            <p className="type-meta text-on-field-body m-0">
+              The refund term is the part worth reading twice: a refunded
+              unit gives its cost of goods back into the calculation, so
+              Hyprr is not paid on a sale that reversed.
+            </p>
+          </div>
+
+          <p className="type-meta text-on-field-body mt-8 mb-0 max-w-[68ch]">
+            No earnings figures appear anywhere on this site. We do not
+            publish what clients made, and we will not project what you will.
+          </p>
         </div>
       </section>
 

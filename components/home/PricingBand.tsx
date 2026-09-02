@@ -13,10 +13,10 @@ export default function PricingBand() {
             How we&apos;re paid.
           </h2>
           <p className="type-body text-body m-0 max-w-[52ch]">
-            A fee to build the operation, and — where it applies — a share of
-            the margin the business realises after goods actually sell. No
-            monthly retainer. No fee on the capital you deploy. If the margin
-            isn&apos;t there, neither is our share of it.
+            A published build fee from $2,499, and 30% of the margin the
+            business realises after goods actually sell. The split is 30% at
+            every band. No fee on the capital you deploy. No fee on your ad
+            spend.
           </p>
         </div>
         <div className="flex justify-start gap-3.5 flex-wrap">

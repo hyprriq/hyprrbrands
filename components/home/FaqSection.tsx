@@ -40,11 +40,13 @@ const FAQS: { q: string; a: ReactNode }[] = [
     q: "How does Hyprr charge?",
     a: (
       <>
-        A fee to build the operation, and — where it applies — a share of the
-        margin the business realises after goods actually sell. There is no
-        monthly retainer, and no fee calculated on the capital you deploy. The
-        full structure, including how realised margin is calculated, is set
-        out on the <a href="/how-we-work#fees">How we work page</a>.
+        A build fee, published, and a 30% share of the margin the business
+        realises after goods actually sell. The split is 30% at every band —
+        a larger build fee buys more work, never a better split. No fee is
+        calculated on the capital you deploy or on your ad spend. A $500
+        monthly minimum applies to operating engagements and is credited
+        against the share. Full figures and a worked example are on the{" "}
+        <a href="/how-we-work#fees">How we work page</a>.
       </>
     ),
   },

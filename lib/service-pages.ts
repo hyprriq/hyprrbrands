@@ -121,8 +121,11 @@ export interface ServicePageData {
   managedLead?: string;
   managed: [string, string][];
 
-  /** 100–200 words, no figures. The full mechanic lives at /how-we-work#fees. */
+  /** Fee paragraphs. The full mechanic lives at /how-we-work#fees. */
   fees: string[];
+  /** Published band table (wholesale) — header + rows, rendered
+   *  inside its own overflow container. */
+  feesTable?: { header: string[]; rows: string[][]; note?: string };
   /** Noun for "Questions about X" when it differs from `short`. */
   faqShort?: string;
   /** Answers 100–150 words, unique to this page. */

@@ -1080,12 +1080,60 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
             How we&apos;re paid for this
           </h2>
           <div className="flex flex-wrap gap-x-12 gap-y-6 mt-6 items-start">
-            <div className="flex-[1_1_320px] max-w-[60ch] grid gap-3.5">
+            <div className="flex-[1_1_320px] min-w-0 max-w-[68ch] grid gap-3.5">
               {data.fees.map((p, i) => (
                 <p key={i} className="type-body text-body m-0">
                   {p}
                 </p>
               ))}
+              {data.feesTable && (
+                <>
+                  <div className="overflow-x-auto border border-line rounded-md">
+                    <table className="w-full min-w-[480px] border-collapse type-meta">
+                      <thead>
+                        <tr className="border-b border-line bg-bone/50">
+                          {data.feesTable.header.map((h) => (
+                            <th
+                              key={h}
+                              className="text-left p-3.5 font-mono type-label text-label uppercase"
+                            >
+                              {h}
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {data.feesTable.rows.map((row, i) => (
+                          <tr
+                            key={i}
+                            className="border-b border-line/60 last:border-b-0"
+                          >
+                            {row.map((cell, j) => (
+                              <td
+                                key={j}
+                                className={`p-3.5 ${
+                                  j === 0
+                                    ? "text-ink font-semibold"
+                                    : j >= 2
+                                      ? "text-ink font-semibold font-mono"
+                                      : "text-body"
+                                }`}
+                              >
+                                {cell}
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  {data.feesTable.note && (
+                    <p className="type-body text-body m-0">
+                      {data.feesTable.note}
+                    </p>
+                  )}
+                </>
+              )}
             </div>
             <a
               href="/how-we-work#fees"

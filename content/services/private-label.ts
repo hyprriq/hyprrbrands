@@ -17,7 +17,7 @@ const data: ServicePageData = {
 
   h1: "Amazon private label: research, sourcing and launch",
   answer:
-    "Hyprr decides with you whether a product deserves to exist, then takes it to market: research, validation, supplier and sample, packaging and compliance, listing and launch. Every product gets a written verdict before money is committed. You fund inventory, testing and trademark; the brand, the listings and the supplier relationships are yours.",
+    "Hyprr decides with you whether a product deserves to exist, then takes it to market on Amazon and Walmart: research, validation, supplier and sample, packaging and compliance, listing and launch. Every product gets a written verdict before money is committed. You fund inventory, testing and trademark; the brand, the listings and the supplier relationships are yours.",
   disqualifier:
     "Not for you if you are looking for a product to be picked for you without a verdict you can read.",
 
@@ -50,7 +50,7 @@ const data: ServicePageData = {
     "A product verdict sheet — Approve, Review or Reject — with the reasoning",
     "Supplier, sample and QC coordinated on your behalf",
     "Packaging, compliance and listing built to launch",
-    "Launch run and handed into ongoing operation",
+    "Launch run on Amazon, Walmart or both, and handed into ongoing operation",
   ],
   artefact: {
     kind: "verdict",
@@ -61,7 +61,7 @@ const data: ServicePageData = {
       ["Reviews", "approve"],
       ["Search behaviour", "review"],
       ["Category structure", "approve"],
-      ["Marketplace fit", "approve"],
+      ["Marketplace fit — Amazon and Walmart, separately", "approve"],
       ["DTC potential", "reject"],
     ],
   },
@@ -93,7 +93,7 @@ const data: ServicePageData = {
     {
       days: "Days 61–90",
       title: "Compliance and build",
-      body: "Compliance gates cleared and recorded one by one. Production order placed against your approval. Listing, imagery and A+ content built while the goods are in transit. Launch plan and advertising structure ready before inventory lands, so nothing waits.",
+      body: "Compliance gates cleared and recorded one by one. Production order placed against your approval. Listing, imagery and A+ content built while the goods are in transit. Launch plan and advertising structure ready before inventory lands, so nothing waits. The launch surface is decided here on the verdict sheet's marketplace-fit axis rather than by default: Amazon first for most categories, Walmart first where the category is under-served there and the review moat on Amazon is unreachable for a new brand, and both where the catalogue and the inventory support two listings from day one.",
     },
   ],
   hwwTitle: "Compliance gates · drawn as stops",
@@ -134,8 +134,11 @@ const data: ServicePageData = {
     ["Operation", "handover"],
   ],
 
+  // $14,999 ships only here, adjacent to the itemised scope and the
+  // zero-markup pass-through sentence — never alone, never in the
+  // hero, the meta description or a card.
   fees: [
-    "Private label runs as a build engagement into an operating one. The build is scoped and priced before it starts; the ongoing operation is paid on realised margin, the same mechanic as every other Hyprr service. No part of either is calculated on what you spend on inventory, testing or advertising — you pay those directly to the people providing them, and we never take a position in that chain.",
+    "The private label build is $14,999, and it is the only money that reaches Hyprr during the build. Inventory, samples, freight, duties, testing, certification, trademark and advertising are paid by you, directly to the supplier, lab, attorney or marketplace, at the price they invoice — Hyprr takes no margin, no commission and no rebate anywhere in that chain. After launch the operation is paid on realised margin at 30%, the same split as every other Hyprr service and the same at every band.",
   ],
   faqs: [
     {
@@ -153,6 +156,10 @@ const data: ServicePageData = {
     {
       q: "What happens after launch?",
       a: "The product moves from a build engagement into an operating one, and the work changes shape: replenishment against sell-through, listing and content maintenance, advertising managed against margin, account health, and weekly reporting. That transition is a specific handover with a document behind it, not a drift. If you would rather run it yourself from that point, the handover is the same either way — everything is already in your name.",
+    },
+    {
+      q: "Do you launch private label products on Walmart as well as Amazon?",
+      a: "Yes, and the choice is made at research rather than assumed. Marketplace fit is one of the axes on the verdict sheet, assessed for Amazon and Walmart separately, because the same product can be a clear approve on one and a reject on the other. Amazon has the demand; Walmart has thinner competition in a lot of categories and a review moat a new brand can actually cross. Most launches start on Amazon, some start on Walmart because that is where the product has a route, and some run both from day one. The catalogue, the brand and the accounts are yours on either.",
     },
     {
       q: "Which categories do you decline, and why?",
