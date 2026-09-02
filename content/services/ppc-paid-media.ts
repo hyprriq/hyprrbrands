@@ -8,14 +8,14 @@ import type { ServicePageData } from "@/lib/service-pages";
 const data: ServicePageData = {
   slug: "/ppc-paid-media",
   engine: "grow",
-  serviceType: "Amazon and Walmart PPC management",
+  serviceType: "Amazon & Walmart PPC management",
   name: "PPC & paid media",
   short: "PPC and paid media",
   metaTitle: "Amazon & Walmart PPC Management | Judged on Margin",
   metaDescription:
     "Advertising run inside the operation that also controls inventory, pricing and listings — and reported on contribution margin, not ACoS alone.",
 
-  h1: "Amazon and Walmart PPC, run inside the operation",
+  h1: "Amazon & Walmart PPC, run inside the operation",
   answer:
     "Hyprr runs advertising as part of the operation, not beside it. Bids, search terms, budgets and creative are managed against inventory, listing quality, pricing and margin, because each one changes what advertising can do. The ad accounts are yours, the spend is yours to approve, and the reporting shows the whole stack, not ACoS alone.",
   disqualifier:
@@ -28,7 +28,7 @@ const data: ServicePageData = {
     "Bids, search terms, budgets and creative are the visible work, and they matter. But each one is downstream of something the advertiser usually cannot see. A bid is only correct relative to the margin on that line — and margin moves with landed cost, fee changes and returns. A budget is only correct relative to inventory cover; spending into a line with three weeks of stock buys a stockout, and a stockout costs ranking that takes months to rebuild. Creative only converts if the listing behind it converts. And price position decides whether the traffic you bought reaches a buy box you hold.",
     "So an advertising agency working from an ads dashboard is optimising one layer of a six-layer stack, with no visibility of the five that constrain it. It will produce an efficient-looking account and a business that is not better off. That is not incompetence; it is a scope problem, and it is structural.",
     "The work itself, once that is understood: campaign structure built around the catalogue rather than around ad types. Bids set against margin per line, not against rank. Search terms harvested and negated on a fixed weekly cadence, which is unglamorous and is most of the actual gain. Budgets capped by inventory cover and approved by you. Creative tested where conversion is the read, not clicks.",
-    "Amazon and Walmart both, plus off-platform where a product genuinely warrants it — and honestly, most do not until the marketplace channel is saturated.",
+    "Amazon — in the US and UK — and Walmart in the US, plus off-platform where a product genuinely warrants it — and honestly, most do not until the marketplace channel is saturated.",
     "The reporting difference is the whole point. You get the stack: spend, sales, ACoS, and then contribution margin after cost of goods, fees and returns, per line, alongside inventory cover and buy box share on the same page. What it cost, what it made, and whether it should have run at all.",
   ],
 
@@ -148,8 +148,8 @@ const data: ServicePageData = {
       a: "You do, at the budget level, and the budgets are capped by inventory cover before they reach you. Day-to-day bid and search-term work happens inside those caps without asking, because waiting a week to negate a wasteful term costs more than the autonomy is worth. Anything that changes total spend comes to you. The card is yours and the platform bills you directly.",
     },
     {
-      q: "Do you manage Amazon and Walmart advertising?",
-      a: "Both, and they are managed as separate accounts with separate logic rather than mirrored. Walmart's advertising has a thinner competitive set in many categories, which changes what a bid is worth, and its campaign types and reporting are not Amazon's. Off-platform — paid social, search — where a product genuinely warrants it, though for most marketplace businesses the marketplace channel is not yet saturated enough to justify it.",
+      q: "Do you manage advertising on Amazon and on Walmart?",
+      a: "Both — Amazon Ads in the US and UK, and Walmart Connect in the US — managed as separate accounts with separate logic rather than mirrored. Walmart's advertising has a thinner competitive set in many categories, which changes what a bid is worth, and its campaign types and reporting are not Amazon's. Off-platform — paid social, search — where a product genuinely warrants it, though for most marketplace businesses the marketplace channel is not yet saturated enough to justify it.",
     },
     {
       q: "What if advertising and inventory disagree?",

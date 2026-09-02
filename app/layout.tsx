@@ -23,12 +23,12 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_ORIGIN),
   title: "Ecommerce Operations Agency | Hyprr Brands",
   description:
-    "Hyprr builds, grows and operates ecommerce businesses on Amazon, Walmart and Shopify. You own the accounts and the inventory. We run the operation.",
+    "Hyprr builds, grows and operates ecommerce businesses on Amazon US & UK, Walmart US and Shopify. You own the accounts and the inventory. We run the operation.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "You own the business. We run the operation.",
     description:
-      "Ecommerce operations across Amazon, Walmart and Shopify — wholesale, private label and DTC.",
+      "Ecommerce operations across Amazon US & UK, Walmart US and Shopify — wholesale, private label and DTC.",
     type: "website",
     url: "/",
     siteName: "Hyprr Brands",

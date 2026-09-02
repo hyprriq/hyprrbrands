@@ -14,11 +14,11 @@ const data: ServicePageData = {
   short: "wholesale ecommerce",
   metaTitle: "Amazon Wholesale Management Service | Hyprr Brands",
   metaDescription:
-    "We source, buy and operate wholesale catalogues on Amazon and Walmart. You own the account and approve every purchase. Read the operating model first.",
+    "We source, buy and operate wholesale catalogues on Amazon US & UK and Walmart US. You own the account and approve every purchase. Read the operating model first.",
 
   h1: "Amazon & Walmart wholesale management",
   answer:
-    "Hyprr runs a wholesale ecommerce business on your behalf: sourcing brands and suppliers, working the economics of each catalogue line, recommending what to buy, and operating listings, purchasing and replenishment on Amazon and Walmart. You approve every purchase. The seller account, the inventory and the capital stay in your name throughout.",
+    "Hyprr runs a wholesale ecommerce business on your behalf: sourcing brands and suppliers, working the economics of each catalogue line, recommending what to buy, and operating listings, purchasing and replenishment on Amazon in the US and UK, and Walmart in the US. You approve every purchase. The seller account, the inventory and the capital stay in your name throughout.",
   disqualifier:
     "Not for you if you want us to hold the account, the capital or the final purchase decision.",
 
@@ -168,7 +168,7 @@ const data: ServicePageData = {
     {
       days: "Days 61–90",
       title: "Listings and purchasing",
-      body: "Approved lines are listed on Amazon and Walmart, priced against the buy box, and inbound. The weekly cadence starts: purchase orders raised for approval on Monday, listings and cases Wednesday, report Friday. By day 90 the business is running the loop rather than being set up.",
+      body: "Approved lines are listed on the marketplaces in scope — Amazon US, Amazon UK, Walmart US — priced against the buy box, and inbound. The weekly cadence starts: purchase orders raised for approval on Monday, listings and cases Wednesday, report Friday. By day 90 the business is running the loop rather than being set up.",
     },
   ],
   hwwTitle: "Weekly operating calendar · from day 90",
@@ -228,12 +228,12 @@ const data: ServicePageData = {
       ["Scale", "$25,000 – $100,000/mo", "$4,599", "30%"],
       ["Enterprise", "Above $100,000/mo", "$7,999", "30%"],
     ],
-    note: "The split is 30% in all three. A larger build fee buys more work — more catalogue, more channels, more people on the account. It never buys a better split. Adding Walmart to an Amazon operation, or the reverse, is $1,999. Taking over an existing account is $1,499, or $2,999 where there is account-health history to resolve first.",
+    note: "The split is 30% in all three. A larger build fee buys more work — more catalogue, more channels, more people on the account. It never buys a better split. Adding Walmart to an Amazon operation, or the reverse, is $1,999. Taking over an existing account is $1,499, or $2,999 where there is account-health history to resolve first. Fees are in USD.",
   },
   faqs: [
     {
-      q: "Who holds the Amazon and Walmart seller accounts?",
-      a: "You do. The accounts are registered to your business entity, with your bank details and your tax information, and they stay that way for the life of the engagement and after it. Hyprr works inside them through the permissioned service-provider access both marketplaces provide for exactly this purpose — we are granted specific rights by you, and you can revoke them from your own account settings without involving us. We do not hold your login credentials. If the arrangement ends, nothing needs to be transferred, because nothing was ever in our name.",
+      q: "Who holds the Amazon and the Walmart seller accounts?",
+      a: "You do. The accounts are registered to your business entity, with your bank details and your tax information, and they stay that way for the life of the engagement and after it. Hyprr works inside them through the permissioned service-provider access both marketplaces provide for exactly this purpose — we are granted specific rights by you, and you can revoke them from your own account settings without involving us. We do not hold your login credentials. This is the same on Amazon US, Amazon UK and Walmart US. If the arrangement ends, nothing needs to be transferred, because nothing was ever in our name.",
     },
     {
       q: "Can Hyprr buy inventory without my approval?",

@@ -204,7 +204,7 @@ const data: ServicePageData = {
     },
     {
       q: "How does this differ from marketplace growth?",
-      a: "Scope. This page is cross-channel: marketplaces, your own store, and the sequencing between them, with the constraint reads that span both. Marketplace growth is Amazon and Walmart specifically — listings, ranking, buy box, review velocity, channel expansion inside those two rulebooks. If your business is marketplace-only, that page is the more precise answer. If you run both a store and marketplaces and the question is which gets the next pound, this one is.",
+      a: "Scope. This page is cross-channel: marketplaces, your own store, and the sequencing between them, with the constraint reads that span both. Marketplace growth is the marketplaces specifically — Amazon in the US and UK, and Walmart in the US — listings, ranking, buy box, review velocity, channel expansion inside those rulebooks. If your business is marketplace-only, that page is the more precise answer. If you run both a store and marketplaces and the question is which gets the next pound, this one is.",
     },
   ],
 

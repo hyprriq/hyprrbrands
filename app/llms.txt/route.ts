@@ -15,7 +15,7 @@ export function GET() {
   const lines: string[] = [
     "# Hyprr Brands",
     "",
-    "> Ecommerce operations agency. We build, grow and operate Amazon, Walmart and Shopify",
+    "> Ecommerce operations agency. We build, grow and operate Amazon (US and UK), Walmart (US) and Shopify",
     "> businesses on behalf of the people who own them. The client owns the accounts, the",
     "> inventory and the capital, and approves every material purchase.",
     "",
@@ -37,6 +37,7 @@ export function GET() {
     `- [True cost calculator](${SITE_ORIGIN}/true-cost): what launching a product costs, from your own inputs`,
     "",
     "## Notes",
+    "- Clients are in the US, UK, Europe and the Middle East, selling on Amazon US, Amazon UK and Walmart US.",
     "- Hyprr publishes no earnings claims, income figures or projected returns.",
     ""
   );

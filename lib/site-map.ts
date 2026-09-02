@@ -30,7 +30,7 @@ export const SITE_MAP: SitePage[] = [
     status: "live",
     priority: 3,
     oneLine:
-      "Sourcing, purchasing, listings and account setup for Amazon and Walmart wholesale operations",
+      "Sourcing, purchasing, listings and account setup for wholesale operations on Amazon US & UK and Walmart US",
   },
   {
     // A1: "& brand building" dropped everywhere — "private label brand
@@ -83,7 +83,7 @@ export const SITE_MAP: SitePage[] = [
     status: "live",
     priority: 8,
     oneLine:
-      "Listings, content, ranking, buy box and channel expansion on Amazon and Walmart",
+      "Listings, content, ranking, buy box and channel expansion on Amazon US & UK and Walmart US",
   },
   {
     // Dropped as a standalone page (1 Sep): it duplicated /shopify-dtc
@@ -105,7 +105,7 @@ export const SITE_MAP: SitePage[] = [
     status: "live",
     priority: 12,
     oneLine:
-      "Amazon and Walmart advertising plus off-platform paid acquisition, judged on margin",
+      "Amazon US & UK and Walmart US advertising plus off-platform paid acquisition, judged on margin",
   },
   {
     slug: "/ecommerce-operations",
@@ -125,7 +125,7 @@ export const SITE_MAP: SitePage[] = [
     status: "live",
     priority: 4,
     oneLine:
-      "Day-to-day Amazon and Walmart account operation and account health",
+      "Day-to-day account operation and account health on Amazon US & UK and Walmart US",
   },
   {
     slug: "/shopify-management",

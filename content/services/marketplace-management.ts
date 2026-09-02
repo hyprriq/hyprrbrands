@@ -10,17 +10,17 @@ import type { ServicePageData } from "@/lib/service-pages";
 const data: ServicePageData = {
   slug: "/marketplace-management",
   engine: "operate",
-  serviceType: "Amazon and Walmart seller account management",
+  serviceType: "Amazon & Walmart seller account management",
   name: "Marketplace management",
   short: "marketplace management",
   faqShort: "seller account management",
   metaTitle: "Amazon & Walmart Seller Account Management | You Own It",
   metaDescription:
-    "Day-to-day account health, compliance and execution on Amazon and Walmart — under permissioned access in your account. We never hold your credentials.",
+    "Day-to-day account health, compliance and execution on Amazon US & UK and Walmart US — under permissioned access in your account. We never hold your credentials.",
 
-  h1: "Amazon and Walmart seller account management",
+  h1: "Amazon & Walmart seller account management",
   answer:
-    "Hyprr manages your Amazon and Walmart seller accounts for health, compliance and execution: listings, cases, inventory review, policy and account health, worked daily. Access is permissioned under your account; credentials are never shared. Amazon and Walmart are run as two marketplaces with different rules, not one page with the name swapped.",
+    "Hyprr manages your seller accounts — Amazon in the US and UK, and Walmart in the US — for health, compliance and execution: listings, cases, inventory review, policy and account health, worked daily. Access is permissioned under your account; credentials are never shared. Each marketplace is run on its own rules, not one page with the name swapped.",
   disqualifier:
     "Not for you if you want to hand over your login and hear from us quarterly.",
   heroObjection: {
@@ -30,7 +30,7 @@ const data: ServicePageData = {
   },
 
   involvesLead:
-    "Marketplace management is account health, compliance and execution, in that order. Amazon and Walmart share a catalogue and little else.",
+    "Marketplace management is account health, compliance and execution, in that order. The marketplaces share a catalogue and little else.",
   involvesBody: [
     "Account health first, because everything else is contingent on it. Policy notifications, performance metrics, intellectual property complaints, listing suppressions, and the slow-moving indicators that precede a suspension. These are monitored daily rather than reviewed monthly, because the gap between a warning and an enforcement is often days, and the cost of missing it is the whole business rather than a bad month.",
     "Compliance second. Category requirements, listing rules, restricted claims, and the marketplace's own moving definitions of what is acceptable. Most account problems are not fraud — they are a listing written eighteen months ago under rules that have since changed.",
@@ -56,7 +56,7 @@ const data: ServicePageData = {
     "Account health monitored daily on both marketplaces, with alerts escalated to you the same day",
     "Policy and compliance reviewed against current rules, not the rules the listing was written under",
     "Cases opened, worked and escalated with clocks tracked",
-    "Amazon and Walmart run as separate operations against a shared catalogue",
+    "Each marketplace run as a separate operation against a shared catalogue",
   ],
   artefact: {
     kind: "split",

@@ -17,7 +17,7 @@ const data: ServicePageData = {
 
   h1: "Amazon private label: research, sourcing and launch",
   answer:
-    "Hyprr decides with you whether a product deserves to exist, then takes it to market on Amazon and Walmart: research, validation, supplier and sample, packaging and compliance, listing and launch. Every product gets a written verdict before money is committed. You fund inventory, testing and trademark; the brand, the listings and the supplier relationships are yours.",
+    "Hyprr decides with you whether a product deserves to exist, then takes it to market on Amazon in the US and UK, or Walmart in the US: research, validation, supplier and sample, packaging and compliance, listing and launch. Every product gets a written verdict before money is committed. You fund inventory, testing and trademark; the brand, the listings and the supplier relationships are yours.",
   disqualifier:
     "Not for you if you are looking for a product to be picked for you without a verdict you can read.",
 
@@ -61,7 +61,7 @@ const data: ServicePageData = {
       ["Reviews", "approve"],
       ["Search behaviour", "review"],
       ["Category structure", "approve"],
-      ["Marketplace fit — Amazon and Walmart, separately", "approve"],
+      ["Marketplace fit — assessed per marketplace, separately", "approve"],
       ["DTC potential", "reject"],
     ],
   },
@@ -159,7 +159,7 @@ const data: ServicePageData = {
     },
     {
       q: "Do you launch private label products on Walmart as well as Amazon?",
-      a: "Yes, and the choice is made at research rather than assumed. Marketplace fit is one of the axes on the verdict sheet, assessed for Amazon and Walmart separately, because the same product can be a clear approve on one and a reject on the other. Amazon has the demand; Walmart has thinner competition in a lot of categories and a review moat a new brand can actually cross. Most launches start on Amazon, some start on Walmart because that is where the product has a route, and some run both from day one. The catalogue, the brand and the accounts are yours on either.",
+      a: "Yes, and the choice is made at research rather than assumed. Marketplace fit is one of the axes on the verdict sheet, assessed separately for Amazon US, Amazon UK and Walmart US, because the same product can be a clear approve on one and a reject on the other. Amazon has the demand; Walmart has thinner competition in a lot of categories and a review moat a new brand can actually cross. Most launches start on Amazon, some start on Walmart because that is where the product has a route, and some run both from day one. The catalogue, the brand and the accounts are yours on either.",
     },
     {
       q: "Which categories do you decline, and why?",

@@ -29,9 +29,9 @@ export default function Hero() {
           <span className="bg-operate-band px-2 rounded-sm">run the operation</span>.
         </h1>
         <p className="type-lead text-body m-0 mb-[34px] max-w-[540px]">
-          Hyprr builds, grows and operates ecommerce businesses across Amazon,
-          Walmart, Shopify and the other channels you sell on — wholesale,
-          private label and DTC. We handle the research, sourcing, listings,
+          Hyprr builds, grows and operates ecommerce businesses across Amazon in
+          the US and UK, Walmart in the US, Shopify and the other channels you
+          sell on — wholesale, private label and DTC. We handle the research, sourcing, listings,
           launch, advertising and daily operations. You keep the accounts, the
           inventory and the final call on what gets bought.
         </p>

@@ -14,19 +14,19 @@ const FAQS: { q: string; a: ReactNode }[] = [
   },
   {
     q: "Which ecommerce channels do you work across?",
-    a: "Amazon and Walmart for marketplace wholesale and private label, Shopify for direct-to-consumer, and eBay, TikTok Shop and Target as additional channels where the catalogue and margin support them. Most engagements start on one channel and add a second once the first is stable.",
+    a: "Amazon in the US and UK, and Walmart in the US, for marketplace wholesale and private label; Shopify for direct-to-consumer; and eBay, TikTok Shop and Target as additional US channels where the catalogue and margin support them. We work with sellers in the US, UK, Europe and the Middle East. Most engagements start on one channel and add a second once the first is stable.",
   },
   {
     q: "Do you build private label brands and Shopify stores as well as wholesale?",
     a: "Yes. Private label runs from product research and validation through supplier sourcing, samples, brand and packaging, to marketplace launch and the operation afterwards. Shopify and DTC work covers the website build, conversion structure, merchandising, paid acquisition and ongoing optimisation.",
   },
   {
-    q: "Do you run Amazon and Walmart advertising?",
-    a: "Yes. PPC and paid media are part of how we grow an account, not a separate service you buy on its own. We manage bids, search terms, budgets and creative, and we judge advertising on contribution margin rather than on ad spend or ACoS in isolation.",
+    q: "Do you run advertising on Amazon and on Walmart?",
+    a: "Yes — Amazon Ads in the US and UK, and Walmart Connect in the US. PPC and paid media are part of how we grow an account, not a separate service you buy on its own. We manage bids, search terms, budgets and creative, and we judge advertising on contribution margin rather than on ad spend or ACoS in isolation.",
   },
   {
     q: "Who owns the seller account when Hyprr runs it?",
-    a: "You do. Your Amazon Seller Central and Walmart Marketplace accounts are registered in your name and stay there. We operate through permissioned access granted to us as a service provider, which is how marketplace provider access is designed to work. We do not hold your login credentials, and if we stop working together the account is unaffected because it was never ours.",
+    a: "You do. Your Amazon Seller Central (US and UK) and Walmart Marketplace (US) accounts are registered in your name and stay there. We operate through permissioned access granted to us as a service provider, which is how marketplace provider access is designed to work. We do not hold your login credentials, and if we stop working together the account is unaffected because it was never ours.",
   },
   {
     q: "Who owns the inventory and the capital?",

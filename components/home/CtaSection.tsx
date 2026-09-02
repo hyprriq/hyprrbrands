@@ -99,6 +99,9 @@ export default function CtaSection() {
                 <span>{text}</span>
               </div>
             ))}
+            <p className="type-meta text-on-field-mute m-0 pt-1.5 border-t border-line-on-field">
+              We work across US, UK, European and Gulf time zones.
+            </p>
           </div>
         </div>
       </div>

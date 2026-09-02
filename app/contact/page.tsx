@@ -100,6 +100,10 @@ export default function Page() {
                 </a>
               </div>
               <div className="type-meta text-on-field-body">
+                We work with clients across US, UK, European and Gulf time
+                zones — a working week that includes Sunday is not a problem.
+              </div>
+              <div className="type-meta text-on-field-body">
                 Or directly:{" "}
                 <a
                   href="mailto:hello@hyprrbrands.com"

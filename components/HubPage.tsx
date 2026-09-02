@@ -105,7 +105,7 @@ const HUBS: Record<
  *  manifest one-liners, which serve metadata. */
 const PROBLEMS: Record<string, string> = {
   "/wholesale-ecommerce":
-    "Buying and operating a catalogue on Amazon and Walmart.",
+    "Buying and operating a catalogue on Amazon in the US and UK, and Walmart in the US.",
   "/private-label":
     "Deciding whether a product deserves to exist, then launching it.",
   "/shopify-dtc": "Turning a product into a direct customer journey.",
@@ -117,7 +117,7 @@ const PROBLEMS: Record<string, string> = {
   "/ppc-paid-media": "Advertising connected to inventory, pricing and margin.",
   "/ecommerce-operations": "The daily operating desk.",
   "/marketplace-management":
-    "Account health, compliance and execution on Amazon and Walmart.",
+    "Account health, compliance and execution — Amazon US & UK, Walmart US.",
   "/shopify-management": "Running the storefront after launch.",
 };
 

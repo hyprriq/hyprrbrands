@@ -10,16 +10,16 @@ import type { ServicePageData } from "@/lib/service-pages";
 const data: ServicePageData = {
   slug: "/marketplace-growth",
   engine: "grow",
-  serviceType: "Amazon and Walmart marketplace growth",
+  serviceType: "Amazon & Walmart marketplace growth",
   name: "Marketplace growth",
   short: "marketplace growth",
   metaTitle: "Amazon & Walmart Marketplace Growth Agency | Hyprr Brands",
   metaDescription:
-    "Listings, ranking, buy box and review velocity worked as one loop across Amazon and Walmart — one catalogue, two rulebooks, one operation.",
+    "Listings, ranking, buy box and review velocity worked as one loop across Amazon US & UK and Walmart US — one catalogue, two rulebooks, one operation.",
 
-  h1: "Amazon and Walmart marketplace growth",
+  h1: "Amazon & Walmart marketplace growth",
   answer:
-    "Hyprr grows marketplace sales by working listings, content, ranking, buy box and review velocity as a single loop across Amazon and Walmart. One catalogue, run against two different rulebooks, by the same people who see your inventory and margin. The accounts stay yours and every growth action is proposed before it runs.",
+    "Hyprr grows marketplace sales by working listings, content, ranking, buy box and review velocity as a single loop across Amazon in the US and UK, and Walmart in the US. One catalogue, run against two different rulebooks, by the same people who see your inventory and margin. The accounts stay yours and every growth action is proposed before it runs.",
   disqualifier:
     "Not for you if you want a ranking promised before anyone has read your listings.",
 
@@ -32,7 +32,7 @@ const data: ServicePageData = {
     "Ranking follows relevance and conversion, not effort. A listing ranks because customers who saw it bought it, so the work is conversion first and visibility second — the opposite of the usual order.",
     "Buy box is the one that surprises people. On a shared listing you can hold ranking and still not sell, because price, fulfilment method, seller metrics and stock position decide who the button belongs to. Growth work that ignores buy box share is growth work measuring the wrong thing.",
     "Review velocity compounds and cannot be rushed honestly. It comes from selling, from the marketplace's own request mechanisms, and from a product that does not disappoint. Anything faster than that is a policy risk that costs more than it gains.",
-    "Channel expansion — one catalogue across Amazon and Walmart. The catalogue is shared; almost nothing else is. Different content rules, different advertising, different case handling, different policy thresholds, and Walmart's smaller traffic often converts differently because the competitive set is thinner. Treating it as an Amazon copy is how it underperforms.",
+    "Channel expansion — one catalogue across Amazon US, Amazon UK and Walmart US. The catalogue is shared; almost nothing else is. Different content rules, different advertising, different case handling, different policy thresholds, and Walmart's smaller traffic often converts differently because the competitive set is thinner. Treating it as an Amazon copy is how it underperforms.",
   ],
 
   visual: {

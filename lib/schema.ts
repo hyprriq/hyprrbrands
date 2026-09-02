@@ -24,8 +24,14 @@ export function organizationLd() {
     name: "Hyprr Brands",
     url: `${SITE_ORIGIN}/`,
     description:
-      "Ecommerce operations agency. Hyprr builds, grows and operates Amazon, Walmart and Shopify businesses on behalf of the people who own them. The client owns the accounts, the inventory and the capital, and approves every material purchase.",
+      "Ecommerce operations agency. Hyprr builds, grows and operates Amazon (US and UK), Walmart (US) and Shopify businesses on behalf of the people who own them. Clients are in the US, UK, Europe and the Middle East. The client owns the accounts, the inventory and the capital, and approves every material purchase.",
     email: "hello@hyprrbrands.com",
+    areaServed: [
+      "United States",
+      "United Kingdom",
+      "European Union",
+      "Middle East",
+    ],
   };
 }
 
@@ -87,7 +93,9 @@ export function serviceLd(service: {
     url: `${SITE_ORIGIN}${service.path}`,
     description: service.description,
     provider: { "@id": ORG_ID },
-    areaServed: "US",
+    // Marketplaces are US and UK; client regions live on the
+    // Organization node.
+    areaServed: ["US", "GB"],
   };
 }
 

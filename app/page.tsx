@@ -29,7 +29,7 @@ export default function Home() {
             path: "/",
             title: "Ecommerce Operations Agency | Hyprr Brands",
             description:
-              "Hyprr builds, grows and operates ecommerce businesses on Amazon, Walmart and Shopify. You own the accounts and the inventory. We run the operation.",
+              "Hyprr builds, grows and operates ecommerce businesses on Amazon US & UK, Walmart US and Shopify. You own the accounts and the inventory. We run the operation.",
           }),
         ]}
       />

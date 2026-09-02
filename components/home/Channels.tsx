@@ -31,7 +31,9 @@ export default function Channels() {
           </h2>
           <p className="type-body text-muted m-0 max-w-[52ch]">
             Marketplaces and storefronts, built and run under one operation
-            rather than six disconnected ones.
+            rather than six disconnected ones. We work with sellers in the
+            US, UK, Europe and the Middle East, selling on US and UK
+            marketplaces.
           </p>
         </div>
         <ul

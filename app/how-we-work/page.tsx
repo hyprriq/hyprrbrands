@@ -261,6 +261,7 @@ export default function Page() {
             because that is what determines catalogue size, purchase-order
             volume and how many people the account needs. It is a scope
             input, not a performance promise. The split is 30% in all three.
+            Fees are in USD.
           </p>
 
           {/* Table 2 · Add-ons */}

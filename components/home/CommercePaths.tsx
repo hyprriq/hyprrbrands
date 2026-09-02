@@ -38,7 +38,7 @@ export default function CommercePaths() {
           <div>
             <p className="type-label text-label m-0 mb-3.5">01</p>
             <h3 className="font-display type-h3 text-ink m-0 mb-1.5">
-              Amazon and Walmart wholesale management
+              Amazon & Walmart wholesale management
             </h3>
             <p className="type-body text-body m-0 mb-[22px] max-w-[46ch]">
               Build a wholesale operation — or take over one that already
