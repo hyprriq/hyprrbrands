@@ -36,15 +36,27 @@ Primary keyword and the rejected one with its measured reason · title and meta 
 schema note · the eight H2s in fixed order with real body copy · 4–6 unique FAQ answers ·
 internal links per §22 · a checks table.
 
-## Blocked on the owner — five items, flagged in place not written around
+## Nothing is blocked — owner ruling, 2 Sep
 
-1. **The fee mechanic.** Every page's H2 7 links `/how-we-work#fees`, which is a placeholder.
-2. **The three ownership clauses.** Repeated on `/wholesale-ecommerce` and
-   `/marketplace-management`. They are claims about the client agreement.
-3. **One real document.** `/documents` ships with one row or the homepage CONTRACTS row stays cut.
-4. **The founder paragraph** on `/about`. 120–180 words, first person. Cannot be written for you.
-5. **One real person** — name, role, accountability, prior employer, LinkedIn. `/about` should
-   not launch with placeholder names.
+**Build the site first. Compliance and agreements come after, and are not website work.** All five
+former blockers are resolved, deferred or reclassified. Nothing in `docs/content/` waits on a
+lawyer, a document or a LinkedIn URL.
+
+| Former blocker | Resolution |
+|---|---|
+| **1 · The fee mechanic** | **Resolved.** Figures published — `fees-and-pricing.md`, shipped by PROMPT_9. |
+| **2 · The three ownership clauses** | **Ship them.** They are statements of how Hyprr operates and the owner has decided them. Making the agreement match is an agreement-stage task, not a launch gate — the copy is not waiting on the contract, the contract is waiting on the drafting. Recorded in `AGREEMENTS_LATER.md`. |
+| **3 · One real document** | **Deferred.** `/documents` does not ship — route out of nav, sitemap and manifest, list built from an empty data array so it appears the day a document is added. Homepage CONTRACTS row stays cut. |
+| **4 · The founder paragraph** | **Drafted.** Written from positions the owner has already stated, marked as a draft to edit rather than a finished statement. Ships as-is; improves in two minutes whenever he touches it. |
+| **5 · One real person** | **Ship one card — Gautam Naidu.** `priorEmployer` and `linkedin` are optional fields that render only when present, so the card is correct today and complete the day either is added. |
+
+**The rule this establishes:** where owner data is missing, the field is **optional and omitted**,
+never a placeholder and never a launch gate. A page that renders correctly with less information
+is worth more than a page that waits for all of it.
+
+**What actually does still hold up a page:** something being *wrong*, not something being
+*absent*. Absent is a design problem with a good answer. Wrong is a bug. That distinction is the
+whole of the current queue.
 
 ## Two design changes required
 

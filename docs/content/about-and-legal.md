@@ -17,13 +17,28 @@ is the mistake that already cost the homepage team section.
 **Lead — 45 words**
 > Hyprr is an ecommerce operations business. We buy, list, advertise and run marketplace and store businesses on behalf of the people who own them. This page is who is accountable for what, and the facts you can check.
 
-### Why Hyprr exists — founder point of view, 150 words, first person
-> ⚠️ **Owner input required.** This is the one section on the site that cannot be written for
-> you. It should be 120–180 words, in the first person, and it should say something a
-> competitor could not copy — what you saw in this category that made a different structure
-> worth building. The strongest version names a specific thing that went wrong somewhere and
-> what you concluded from it. Do not write a mission statement; the rest of the site is already
-> doing that job better.
+### Why Hyprr exists — founder point of view, 155 words, first person
+
+**Ship this draft.** It is written from positions Gautam has already stated, so it is his argument
+rather than an invention — but it is a draft to be edited, not a finished statement, and it will
+read better once he has changed a sentence or two in his own words. **It does not block the page.**
+
+> I started Hyprr because of how this category charges. Most firms running Amazon accounts take a
+> share of the money you deploy — you wire the capital, you buy the stock, and the fee lands
+> whether or not any of it sold. The incentive that creates is obvious once you have seen it up
+> close: more buying is better for them, and it is not always better for you.
+>
+> So we built the opposite. We are paid on margin the business actually realises after goods
+> sell. If the stock sits, we do not get paid on it.
+>
+> The second thing is account safety. Where protecting the account and protecting this month's
+> margin conflict, we protect the account and take the smaller fee. I would rather hold back a
+> purchase order than explain a suspension.
+
+**Editing notes for the owner, not for the page:** the strongest single improvement is replacing
+the general "once you have seen it up close" with a specific thing that went wrong somewhere and
+what you concluded from it. That is the sentence a competitor cannot copy. Two minutes of editing
+is worth more here than anywhere else on the site.
 
 ### People — no photographs
 Card fields, in order: **name** (first and last — first-name-only reads as a testimonial) ·
@@ -40,9 +55,23 @@ otherwise no colour. Identical treatment on all cards.
 > they will go here. Until then the names, the roles and the profiles are the substance, and
 > those are checkable now.
 
-> ⚠️ **Blocked on owner:** at least one real name, role, accountability, prior employer and
-> LinkedIn URL. **One real card beats three empty ones.** The page should not launch with
-> placeholder names.
+**Ship one card now — Gautam Naidu.** Name, role as accountability, and what he handles are all
+known and true. `priorEmployer` and `linkedin` are **optional fields that render only when
+present**, so the card is complete on the day either one is added and correct before then.
+
+```ts
+{
+  name: "Gautam Naidu",
+  role: "Runs the operation",              // accountability, not a job title
+  handles: "Client engagements end to end — what gets bought, which accounts we take on, and the call on any purchase that could put an account at risk.",
+  priorEmployer: undefined,                 // renders only when set
+  linkedin: undefined,                      // renders only when set
+}
+```
+
+**No placeholder names, and no second card until there is a second real person.** One real card
+beats three empty ones — that rule stands. What changes is that one real card exists today, so
+the page is not blocked.
 
 ### Operating philosophy — three principles *(design)*
 - **You decide, we execute** — Every material decision is the client's, in writing.
@@ -94,15 +123,20 @@ boring: readable typography, strong navigation, version/date where appropriate. 
 
 ---
 
-## /documents — blocked, ship with one
+## /documents — not shipping in v1. Route out, no placeholder.
 
-Design renders six rows. **Ship one.** §O: *"Ship with one real document rather than six
-placeholders."* Render the list from a data array so it grows.
+**Owner decision: deferred.** `/documents` does not launch, is not in the nav, and is not in the
+sitemap or the manifest. A "coming soon" page on a trust route is worse than no route — it makes
+a promise and then stalls on it, in the one place the site is asking to be believed.
 
-**First document: the reporting template** — the structure of the weekly operating report, the
-sections, the fields, what gets shown. Service-agnostic, no client data, no legal exposure, and
-it is what a sceptical buyer most wants to see before a call. It is also already described on
-`/ecommerce-operations#reporting`, so the two reinforce each other.
+**Build the list from a data array anyway.** When the array is empty the route and every link to
+it do not render; when the first document is added the route, the nav item and the homepage
+CONTRACTS row all appear together with no further code. That is a ten-minute affordance now
+instead of a re-plumb later.
 
-**The homepage CONTRACTS row returns the day it ships** — it was cut under A.14's own rule
-because no document exists.
+**The homepage CONTRACTS row stays cut**, under A.14's own rule.
+
+**Whenever the deferral lifts, the first document is the reporting template** — the structure of
+the weekly operating report, its sections and fields. It contains no client data, needs no
+clients, and is described already on `/ecommerce-operations#reporting`. Recorded here so the
+decision does not have to be made again.

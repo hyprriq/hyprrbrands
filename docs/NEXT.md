@@ -27,6 +27,20 @@
 > components/ content/ lib/` keep the two lanes separate, which is the whole point of the split.
 
 
+> ### Owner ruling, 2 Sep — read this before the queue
+>
+> **Site first. Compliance and agreements after.** The client meets compliance at agreement
+> stage, not on a service page. Every former owner-blocker is now resolved, deferred or
+> reclassified — see the bottom of this file — and `docs/AGREEMENTS_LATER.md` holds the deferred
+> work so none of it re-enters the queue.
+>
+> **Missing owner data is never a launch gate.** The field is optional and omitted; the page
+> renders correctly without it and completes the day it arrives. No placeholders.
+>
+> **What holds a page up is something being wrong, not something being absent.** Everything left
+> in this queue is a bug: a false sentence, a formula that overcharges, a channel claim that is
+> untrue for half the market, or markup that is missing entirely.
+
 Baseline moved twice while this was being written. **`b3c78be` shipped step 6 — all ten
 service pages are live from `content/services/*.ts`.** Prompt 7 landed at `f7fef9c`. Two of the
 four tickets in the previous version of this file are done.
@@ -162,27 +176,47 @@ applies only to the surface it was measured on.**
 
 ---
 
-## Still blocked on the owner — not dev work
+## Nothing is blocked — owner ruling, 2 Sep
 
-Two of the five cleared on 2 Sep. Three remain, and they are narrower than they were.
+**Build the site first. Compliance and agreements come after.** Every former blocker is resolved,
+deferred or reclassified, and none of them stops a page shipping.
 
-| # | Blocker | Status |
-|---|---|---|
-| 1 | **The fee mechanic** | **CLEARED.** Figures in `docs/content/fees-and-pricing.md`, ticket is PROMPT_9. |
-| 2 | **Walmart on private label** | **CLEARED.** Content patched; PROMPT_9 §D. |
-| 3 | **Registered entity — state and file number** | **Still open.** Name resolved: legal entity *Hyprr Retail LLC*, trading as *Hyprr Brands*. State and file number outstanding, so §M's `/#organization` node cannot carry them and PROMPT_6 ships without `legalName` / registration. |
-| 4 | **One real person** | **Half open.** Name given: Gautam Naidu. Still needed: role title, one verifiable prior, and a live LinkedIn URL for `sameAs`. An unlinked name is not an E-E-A-T signal — §M wants a `Person` node that resolves to something. |
-| 5 | **One real ungated document** | **Deferred by the owner** pending first clients. See the note below — the deferral may be removable. |
+| Former blocker | Resolution |
+|---|---|
+| Fee mechanic | **Resolved.** Figures in `docs/content/fees-and-pricing.md`, shipped by PROMPT_9. |
+| Walmart on private label | **Resolved.** Content patched; PROMPT_9 §D re-transcribes it. |
+| Three ownership clauses | **Ship them.** Decided policy. The agreement has to match the site when it is drafted, not the other way round. → `AGREEMENTS_LATER.md` |
+| One real ungated document | **Deferred.** `/documents` does not ship — out of nav, sitemap and manifest, list built from an empty array so it appears the day a document is added. Homepage CONTRACTS row stays cut. |
+| Founder paragraph on `/about` | **Drafted** from positions the owner has stated, marked as a draft to edit. Ships as-is. |
+| One real person | **Ship one card — Gautam Naidu.** `priorEmployer` and `linkedin` are optional fields rendering only when present. |
+| Entity state and file number | **Not a gate.** PROMPT_6 ships `/#organization` without `legalName` and registration; the footer verification strip renders the fields it has. One-line follow-up whenever they arrive. |
+| GDPR / privacy upgrade / Art. 27 | **Out of the build queue entirely.** → `AGREEMENTS_LATER.md` |
 
-**On the document deferral.** The blocker was read as "we have no client results to show." The
-artefact §O actually asks for is the **blank monthly reporting template** — the structure, the
-field names, the reconciliation columns — which needs zero clients because it contains no client
-data. It is the strongest single trust asset available at this stage precisely because it is
-empty: it shows what will be reported before there is anything to report.
+### The rule this establishes, and it applies to every page
 
-If it stays deferred, **`/documents` comes out of the nav rather than shipping as a
-"coming soon" page.** A trust route that promises and then stalls is worse than a route that
-does not exist — and `CtaSection` step 03 currently promises sample documents, which is why
-PROMPT_9 §B has a fallback for it.
+**Where owner data is missing, the field is optional and omitted — never a placeholder, never a
+launch gate.** A page that renders correctly with less information is worth more than a page
+waiting for all of it.
 
-`/about` and `/insights` stay unshipped until 3 and 4 land. That is still correct.
+**What still holds a page up is something being *wrong*, not something being *absent*.** Absent is
+a design problem with a good answer. Wrong is a bug. Everything left in this queue is the second
+kind:
+
+- three live sentences that contradict the prices now being published (PROMPT_9 §A)
+- a fee formula that overcharges UK clients by 5% of gross (PROMPT_10 §A)
+- a channel claim that is false for half the marketplace scope (PROMPT_10 §B)
+- thirteen pages telling every platform to expect a share image that does not exist (PROMPT_8 B1)
+- no JSON-LD anywhere (PROMPT_6)
+
+None of those need anything from the owner.
+
+---
+
+## Still needed from the owner — but nothing waits on it
+
+- **Entity state and file number** — adds `legalName` and registration to schema and the footer.
+- **Role, one prior, LinkedIn URL** — completes the `/about` card and enables `Person` schema.
+- **Two minutes editing the founder paragraph** — the biggest quality gain available for the
+  smallest effort anywhere on the site.
+- **A keyword data source** — blocks the UK and Walmart clusters, both unmeasured. Neither is in
+  the build queue.

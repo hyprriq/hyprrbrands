@@ -133,28 +133,17 @@ UK-priced page is ever written.
 
 ---
 
-## D · Privacy and consent — EU and UK visitors change the requirement
+## D · Privacy and consent — OUT OF THIS TICKET
 
-The site has `/privacy` with no mention of GDPR or UK GDPR, and it collects personal data through
-the contact form and (after PROMPT_9) a third-party booking flow.
+**Removed 2 Sep on owner ruling: site first, compliance after.** Moved in full to
+`docs/AGREEMENTS_LATER.md`.
 
-Once the site is **deliberately marketed** to the EU and UK — which is now the stated position —
-GDPR Art. 3(2) applies on the offering-goods-or-services limb. This is not the passive-traffic
-case; intentional targeting is the exact trigger.
+`/privacy` exists and is not empty. Upgrading it to name lawful basis, processors, retention and
+data-subject rights is real work that will need doing once the site is taking enquiries — it is
+not a launch gate and it is not dev work in this ticket. The Art. 27 representative question is a
+counsel question.
 
-**In scope for a dev ticket:**
-- `/privacy` states the lawful basis for the contact form and the booking flow, names the
-  processors (the scheduler, the email provider, the analytics if any), states retention, and lists
-  the data-subject rights.
-- If any non-essential cookie or analytics script exists, consent must be **opt-in and prior**, and
-  the current implementation needs checking rather than assuming.
-- The booking form's four qualifying questions become a personal-data collection point with a
-  named processor. Cal.com's DPA and EU data-residency option are worth using over Calendly's for
-  this reason as well as the pricing one.
-
-**Explicitly out of scope for the dev and flagged to the owner:** whether a UK/EU representative
-under Art. 27 is required, and the DPA chain with each processor. That is a counsel question, and
-it is now on the blocker list rather than buried here.
+**Do not implement anything from this section.** It is here only so the reference does not dangle.
 
 ---
 
@@ -181,11 +170,10 @@ already written is the compliant version in all four regions.
 | 1 | `grep -rn "Amazon and Walmart" app/ components/ content/` returns zero |
 | 2 | `grep -rni "walmart uk\|walmart marketplace uk\|walmart in the uk" .` returns zero |
 | 3 | The published margin formula contains the net-settlement line, on the page and in `llms.txt` if the formula appears there |
-| 4 | `/privacy` names lawful basis, processors, retention and data-subject rights |
-| 5 | The four client regions appear on the homepage and in `areaServed` |
-| 6 | No `hreflang` tags were added |
-| 7 | Fee tables carry the USD line |
-| 8 | Banned-phrase gate still clean |
+| 4 | The four client regions appear on the homepage and in `areaServed` |
+| 5 | No `hreflang` tags were added |
+| 6 | Fee tables carry the USD line |
+| 7 | Banned-phrase gate still clean |
 
 ---
 
