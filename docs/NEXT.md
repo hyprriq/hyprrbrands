@@ -31,7 +31,7 @@ Baseline moved twice while this was being written. **`b3c78be` shipped step 6 �
 service pages are live from `content/services/*.ts`.** Prompt 7 landed at `f7fef9c`. Two of the
 four tickets in the previous version of this file are done.
 
-**Three tickets are open, and one of them is new.**
+**Four tickets are open, and two of them are new.**
 
 ---
 
@@ -77,7 +77,37 @@ authoring. `docs/content/private-label.md` is current.
 
 ---
 
-## 2 · PROMPT_8_SHARE_CARDS_GEO_A11Y.md
+## 2 · PROMPT_10_GEOGRAPHIC_SCOPE.md — new, and §A is a correctness bug
+
+Owner confirmed the market on 2 Sep: **clients in the US, UK, Middle East and EU; selling on US
+and UK marketplaces.** The site was built against a narrower reading and two of the findings are
+bugs rather than copy.
+
+**§A — the realised-margin formula has no tax term.** On a US-only book that is a no-op, because
+marketplace-facilitator laws mean US sales tax never reaches the seller's settlement. On Amazon UK
+it is not: Amazon remits proceeds **including VAT** and the seller owes it to HMRC, so taking 30%
+of settlement total overcharges by `30% × 20/120` = **5% of gross sales**. On a £40,000/month
+account that is £2,000 a month of the client's money, and it surfaces in the first VAT quarter, in
+front of the client's accountant, on the one page whose whole argument is that the arithmetic can
+be checked. Corrected formula is in `docs/content/fees-and-pricing.md`.
+
+**§B — "Amazon and Walmart" is a US-only sentence and it is in 16 files**, including the hero, the
+FAQ, `layout.tsx` and `llms.txt`. Walmart has no UK operation. The canonical replacement is
+*"Amazon in the US and UK, and Walmart in the US"* — and the ticket is explicit that this is not a
+find-and-replace, because the obvious careless output ("Amazon UK and Walmart UK") is a checkably
+false claim about a marketplace, which is worse than the vague sentence it replaces.
+
+**§C/§D** — zero occurrences of `UK`, `Europe` or `GDPR` anywhere in the tree, while the site is
+now deliberately marketed to both. §C is four insertions, not a localisation project, and
+explicitly rules out `hreflang`. §D is the privacy and consent work that GDPR Art. 3(2) triggers
+once EU targeting is intentional.
+
+Ordered after PROMPT_9 only because §A edits the same fee mechanic. If PROMPT_9 slips, §B and §C
+are independent and can go first.
+
+---
+
+## 3 · PROMPT_8_SHARE_CARDS_GEO_A11Y.md
 
 Nine findings. Now larger than it was, because it applies to thirteen live routes rather than
 five.
@@ -90,7 +120,9 @@ Founder-led LinkedIn distribution is the marketing plan, and this is the asset i
 It is also the answer to "the site needs visuals" — one visual, thirteen times, generated from
 type and existing tokens with no photography. The spec is in the prompt.
 
-**B2:** `/llms.txt` is 404 and §N requires it. The robots.txt is genuinely well done — every AI
+**B2:** `/llms.txt` — **check this before working it.** `app/llms.txt/route.ts` now exists in the
+tree, so step 6 appears to have shipped it. If so, B2 is done and what remains is auditing its
+channel list against PROMPT_10 §B rather than building it. §N requires it. The robots.txt is genuinely well done — every AI
 crawler explicitly allowed, sitemap declared — so this is the missing companion, not a
 correction.
 
@@ -100,7 +132,7 @@ this, so it is bringing two pages up to the existing standard.
 
 ---
 
-## 3 · PROMPT_6_SCHEMA_AND_METADATA.md
+## 4 · PROMPT_6_SCHEMA_AND_METADATA.md
 
 There is **no JSON-LD anywhere on the site**. §M specifies the graph and §N depends on it.
 

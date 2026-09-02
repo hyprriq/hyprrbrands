@@ -27,12 +27,47 @@ pay." Both readings cost the conversation.
 
 ---
 
-## §Q compliance — the two phrases that cannot ship
+## §Q compliance — the phrase, not the offer
+
+**The offer is fully managed and the site says so.** That was never in dispute, and nothing in
+this file narrows the scope of what Hyprr does. §Q's objection is to four specific words, not to
+the proposition they describe.
 
 | Requested | Ruling | Use instead |
 |---|---|---|
-| **"done for you" / "done-for-you"** | **Blocked.** Explicitly on the §Q Never-use list, and caught by the CI banned-phrase gate (`done.for.you`). The dev rephrased two instances of this pattern last week. It is also the exact phrase pattern on the `is amazon automation a scam` SERP — Trustpilot at #1, an r/Scams thread describing a $30,000 done-for-you loss, CNBC on an FTC action. | **"Fully managed"** — the §Q primary term. Also: "we run the operation", "you stay in the decisions, out of the day". |
+| **"fully managed"** | **Approved — it is the §Q primary term.** Use it freely, next to the figures, in the H2s, in the nav copy. It is the strongest available description of the offer and it carries no enforcement history. | — |
+| **"done for you" / "done-for-you"** | **Blocked, as a string.** On the §Q Never-use list and caught by the CI gate (`done.for.you`). It is also the exact phrase on the `is amazon automation a scam` SERP — Trustpilot at #1, an r/Scams thread describing a $30,000 done-for-you loss, CNBC on an FTC action. The visitor arriving from that SERP has been trained to read those four words as the tell. | **"Fully managed"**, "we run the operation", "you stay in the decisions, out of the day". |
 | **"no monthly retainer"** *(currently live)* | **Now false** if a $500 monthly minimum exists. See the minimum ruling below. | Replaced verbatim in the copy blocks below. |
+
+**The two phrases are not interchangeable to the buyer even though they are to us.** "Fully
+managed" is what a agency says. "Done for you" is what a business-opportunity seller says. Same
+service, opposite signal, and the second one is the phrase in the enforcement actions.
+
+---
+
+## What is fixed on the site, and what is configured on the call
+
+The stated intent is to say less on the site and give options on the call. That is right, and it
+already matches the model — but the line has to fall in one specific place or it becomes the bait
+pattern the whole positioning is built against.
+
+| | Published on the site — fixed | Configured on the call |
+|---|---|---|
+| **Fee** | The build fee for each band. The 30% split. The $500 minimum. The step-down. The term. | Nothing. **No fee is discovered on the call that was not on the page.** |
+| **Scope** | What the engagement covers at a category level, and what is explicitly excluded. | How much catalogue, which marketplace first, how many SKUs, what the ramp looks like, whether a second marketplace is in scope now or later. |
+| **Service level** | That service level scales with deployment. | Which tier applies — Standard, Priority or Dedicated. **The 30% is identical in all three**, which is what makes discussing tiers safe. |
+
+**The version that works:** price is published and fixed, scope is configured. A visitor sees
+$2,499 + 30% and knows that is the whole commercial picture before they book.
+
+**The version that destroys the positioning:** $2,499 on the page, and the call reveals it is
+$2,499 *plus* things. That is the pattern this site is positioned against, and it is the one
+thing that would make a published price worse than no price at all. A buyer who feels a number
+moved on them does not come back.
+
+So "less on the website" applies to **scope detail**, never to **cost**. Scope detail is genuinely
+better on a call — it depends on their catalogue and nobody can write it in advance. Cost does not
+depend on their catalogue, so there is no reason to hold it back and every reason not to.
 
 ---
 
@@ -187,21 +222,55 @@ money is committed, and a verdict of "no" is a normal outcome — you keep the r
 > not a projection, a typical result, or a figure from any client.**
 >
 > A catalogue line sells 400 units in a month at $30. Settlement total after marketplace fees and
-> returns is $9,000. Landed cost is $18 a unit, so cost of goods on the units that sold is $7,200.
+> returns is $9,000, and no VAT or sales tax was remitted by you on those sales, so net settlement
+> is also $9,000. Landed cost is $18 a unit, so cost of goods on the units that sold is $7,200.
 > Advertising attributable to that line is $600.
 >
 > Realised margin = $9,000 − $7,200 − $600 = **$1,200**
 > Hyprr's share at 30% = **$360**
+>
+> On a UK account the first line would read differently: if £1,500 of VAT sat inside that
+> settlement, it comes out before anything else does, and the share is worked out on what is
+> left.
 >
 > If those 400 units had not sold, the margin would be zero and so would the share — the stock is
 > still yours, and no fee has accrued on it.
 
 **Formula, published as written:**
 
-`Realised margin = Settlement total − (Landed cost × units shipped) + (Landed cost × units refunded)`
+`Realised margin = Net settlement total − (Landed cost × units shipped) + (Landed cost × units refunded)`
+
+`Net settlement total = Settlement total − any VAT, GST or sales tax remitted by you on those sales`
 
 The refund term is the part worth reading twice: a refunded unit gives its cost of goods back into
 the calculation, so Hyprr is not paid on a sale that reversed.
+
+> ### ⚠️ The tax term is a correction, not a detail — read this before publishing the formula
+>
+> The formula as it stood in the business plan has **no tax term**, and on a US-only book that is
+> invisible: US marketplace-facilitator laws make Amazon and Walmart the deemed collector, so US
+> sales tax never lands in the seller's settlement and there is nothing to subtract.
+>
+> **It stops being invisible the moment a client sells on Amazon UK.** For a VAT-registered seller
+> above the deemed-supplier thresholds, Amazon UK remits the sale proceeds **including VAT**, and
+> the seller then owes that VAT to HMRC. Settlement total is therefore a gross figure containing
+> money that was never the client's.
+>
+> Charging 30% of a VAT-inclusive settlement overcharges by **30% × 20/120 = 5% of gross sales**.
+> On a UK account turning over £40,000 a month that is £2,000 a month of the client's money, and
+> it would be found in the first VAT quarter — by the client's accountant, in a business whose
+> entire pitch is that the fee arithmetic can be checked. This is the single worst place on the
+> site for an arithmetic error and it was one geography away from shipping.
+>
+> The same term covers EU OSS/IOSS for a client selling into the EU, and any US state where the
+> seller rather than the marketplace remits. **Publish the net-settlement line even for a
+> US-only client** — it costs one sentence, it is correct in every geography, and "we do not take
+> a share of your VAT" is a sentence competitors charging on revenue cannot say.
+
+**Add to `FEE_RULES` or to the mechanic block, 24 words:**
+
+> No fee is calculated on tax you collect and remit. VAT, GST and sales tax come out of the
+> settlement before the share is worked out.
 
 ---
 
