@@ -1,0 +1,460 @@
+<title>Inner Page Design Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --ground:#FFFFFF; --raised:#FAFAF9; --bone:#EDEBE6;
+  --ink:#17171A; --body:#3D3949; --muted:#5A5668; --label:#615D6E;
+  --line:#E4E2E8; --line-soft:#EFEDF1;
+  --build:#FFC84A; --grow:#B8F34A; --operate:#45D8C0;
+  --bf:#FFE3A3; --gf:#DDF2AC; --of:#B6E7DC;
+  --petrol:#0A4E5C; --crit:#B93E23; --warn:#8A6300; --ok:#1C6F4A; --link:#6947FF;
+  --shadow:0 1px 2px rgb(23 23 26/.05), 0 10px 30px -20px rgb(23 23 26/.35);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --ground:#121216; --raised:#1A1A20; --bone:#22222A;
+  --ink:#F5F4F7; --body:#C7C3D2; --muted:#9E99AC; --label:#8E89A0;
+  --line:#2C2C35; --line-soft:#24242B;
+  --crit:#FF8A6B; --warn:#E8B54A; --ok:#5FD3A0; --link:#A38DFF;
+  --shadow:0 1px 2px rgb(0 0 0/.4), 0 10px 30px -20px rgb(0 0 0/.9);
+}}
+:root[data-theme="dark"]{
+  --ground:#121216; --raised:#1A1A20; --bone:#22222A;
+  --ink:#F5F4F7; --body:#C7C3D2; --muted:#9E99AC; --label:#8E89A0;
+  --line:#2C2C35; --line-soft:#24242B;
+  --crit:#FF8A6B; --warn:#E8B54A; --ok:#5FD3A0; --link:#A38DFF;
+  --shadow:0 1px 2px rgb(0 0 0/.4), 0 10px 30px -20px rgb(0 0 0/.9);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--body);
+ font-family:Archivo,system-ui,sans-serif;font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto;padding:0 clamp(20px,4vw,32px)}
+h1,h2,h3,h4{color:var(--ink);text-wrap:balance;margin:0}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+.eyebrow{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11.5px;font-weight:600;
+ letter-spacing:.13em;text-transform:uppercase;color:var(--label)}
+
+header.top{background:#0A4E5C;color:#fff;padding:clamp(42px,6vw,68px) 0 clamp(30px,4vw,44px)}
+header.top .eyebrow{color:#A7D8DE;margin-bottom:18px}
+header.top h1{color:#fff;font-size:clamp(32px,4.8vw,52px);font-weight:800;letter-spacing:-.032em;line-height:1.03;max-width:16ch}
+header.top p{color:#D7EAEC;max-width:60ch;margin:18px 0 0;font-size:clamp(16.5px,1.5vw,18.5px)}
+.engines{display:flex;height:5px;max-width:900px;margin:26px auto 0}
+.engines i{flex:1}
+.engines i:nth-child(1){background:var(--build)}
+.engines i:nth-child(2){background:var(--grow)}
+.engines i:nth-child(3){background:var(--operate)}
+
+main{padding:clamp(38px,5vw,58px) 0 80px}
+section{margin:0 0 clamp(44px,5vw,64px)}
+section>h2{font-size:clamp(21px,2.3vw,27px);font-weight:800;letter-spacing:-.02em;
+ padding-bottom:12px;border-bottom:2px solid var(--ink);margin-bottom:24px}
+h3{font-size:clamp(17.5px,1.9vw,20px);font-weight:700;letter-spacing:-.012em;margin:28px 0 10px}
+h4{font-size:15.5px;font-weight:700;margin:20px 0 8px}
+p{margin:0 0 15px}p:last-child{margin-bottom:0}
+ul,ol{margin:0 0 15px;padding-left:20px}li{margin-bottom:7px}li::marker{color:var(--muted)}
+code{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.87em;background:var(--bone);
+ padding:1.5px 5px;border-radius:4px;color:var(--ink)}
+a{color:var(--link)}a:focus-visible{outline:2px solid var(--link);outline-offset:3px;border-radius:3px}
+
+.card{background:var(--raised);border:1px solid var(--line);border-radius:14px;
+ padding:clamp(18px,2.2vw,24px);margin:0 0 16px;box-shadow:var(--shadow);border-left:4px solid var(--sev,var(--line))}
+.card[data-k="stop"]{--sev:var(--crit)}
+.card[data-k="warn"]{--sev:var(--warn)}
+.card[data-k="good"]{--sev:var(--ok)}
+.card[data-k="add"]{--sev:var(--operate)}
+.card h3{margin-top:0}
+.chip{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10.5px;font-weight:600;
+ letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:5px;
+ color:var(--ground);background:var(--sev,var(--muted));display:inline-block;margin-bottom:9px}
+
+.tw{overflow-x:auto;margin:0 0 18px;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:14.3px}
+th,td{padding:9px 13px;text-align:left;border-bottom:1px solid var(--line-soft);vertical-align:top}
+th{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10.5px;font-weight:600;letter-spacing:.1em;
+ text-transform:uppercase;color:var(--label);background:var(--raised);border-bottom:1px solid var(--line);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.n,td.mono{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:13px;white-space:nowrap}
+.bad{color:var(--crit);font-weight:600}.good{color:var(--ok);font-weight:600}
+s.sw{display:inline-block;width:11px;height:11px;border-radius:3px;text-decoration:none;
+ border:1px solid rgb(0 0 0/.15);vertical-align:-1px;margin-right:5px}
+
+.stack{display:grid;gap:2px;margin:16px 0;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.stack div{padding:9px 14px;font-size:14px;display:flex;justify-content:space-between;gap:14px;align-items:baseline}
+.stack div span:last-child{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11.5px;
+ letter-spacing:.06em;text-transform:uppercase;opacity:.75;flex:none}
+.call{border-left:3px solid var(--operate);padding:3px 0 3px 16px;margin:20px 0;font-size:15.8px}
+.call b{color:var(--ink)}
+footer{border-top:1px solid var(--line);padding-top:22px;margin-top:12px;font-size:14px;color:var(--muted)}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="eyebrow">Hyprr Brands · inner-page design brief · v2 · 1 Sep 2026</div>
+    <h1>Inner page design brief</h1>
+    <p>The architecture in V1 is sound and most of it survives intact. This adds the live
+       design system it was missing, assigns ground and colour per page, places the visual
+       slots, and adds the two layers it has nothing on: mobile and conversion.</p>
+  </div>
+  <div class="engines"><i></i><i></i><i></i></div>
+</header>
+
+<main class="wrap">
+
+<section>
+  <h2>Verdict</h2>
+  <p><b>Use it.</b> The organising principle in §30 — <i>don't design twelve service pages,
+     design twelve business problems</i> — is the right call and it is better articulated than
+     anything I had written. Three other judgements in it are correct and worth protecting:</p>
+  <ul>
+    <li><b>§2, tabs are not the page architecture.</b> Right, and for the right reason: tabs
+      hide content from the initial structure, which costs both comprehension and crawlability.
+      The qualification in §32 — tabs only where the user is choosing between genuinely
+      different states, like New Build vs Takeover — is the correct exception.</li>
+    <li><b>§26, don't chase fake Google features.</b> Rare and correct.</li>
+    <li><b>§22, the service relationship map.</b> Two named siblings and an insight per page is
+      the anti-orphan problem actually solved rather than described.</li>
+  </ul>
+  <p>One section has to be replaced wholesale before this goes to a designer, and two layers
+     are missing. Everything below is that work.</p>
+</section>
+
+<section>
+  <h2>How to read the two documents</h2>
+  <p>Design gets <b>both files</b>. The architecture PDF carries the diagrams — the node
+     sequences, the shell tree, the hub structures, the linking map, the URL tree — and this
+     brief does not reproduce them. <b>Read this brief first</b>, then work from the PDF with
+     the corrections below applied.</p>
+  <p>Verdict on all thirty-two PDF sections. One is void, four need a correction, one is your
+     decision, and the remaining twenty-six stand exactly as written.</p>
+  <div class="tw"><table>
+    <thead><tr><th style="width:52px">§</th><th style="width:230px">Section</th><th style="width:118px">Verdict</th><th>Correction</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td>The fundamental rule</td><td class="good">Use</td><td>—</td></tr>
+      <tr><td class="n">2</td><td>Don't use tabs as architecture</td><td class="good">Use</td><td>Keep the §32 exception: tabs only for genuinely different states, e.g. New Build vs Takeover.</td></tr>
+      <tr><td class="n">3</td><td>Universal inner-page shell</td><td class="good">Use</td><td>Matches build-spec §O. Fixed, not open.</td></tr>
+      <tr><td class="n">4</td><td>Max content per page</td><td style="color:var(--warn);font-weight:600">Change</td><td>1,800–2,800 is a <b>ceiling the FAQ absorbs</b>, not a floor the body must reach.</td></tr>
+      <tr><td class="n">5–10</td><td>Page families A–E</td><td class="good">Use</td><td>The visual concepts and node sequences are the best part of the document. Slot placement is in this brief.</td></tr>
+      <tr><td class="n">11</td><td>Hubs are not service pages</td><td class="good">Use</td><td>Ground assignment for hubs is in this brief.</td></tr>
+      <tr><td class="n">12–14</td><td>/how-we-work · /documents · /true-cost</td><td class="good">Use</td><td>—</td></tr>
+      <tr><td class="n">15</td><td>/about</td><td class="good">Use</td><td>Note only: it assumes photography that does not exist yet. Same blocker that removed the homepage team section.</td></tr>
+      <tr><td class="n">16–18</td><td>/insights · article · /contact</td><td class="good">Use</td><td>§18 is the strongest conversion block in the document. Do not simplify it.</td></tr>
+      <tr><td class="n">19</td><td>/faq</td><td style="color:var(--crit);font-weight:600">Decide</td><td>Not in the twenty-page sitemap, and it risks the FAQ duplication §O forbids. If it ships: no question on it may appear on any service page.</td></tr>
+      <tr><td class="n">20</td><td>Legal pages</td><td style="color:var(--warn);font-weight:600">Change</td><td>Flat URLs — <code>/privacy</code>, not <code>/legal/privacy</code>.</td></tr>
+      <tr><td class="n">21–22</td><td>Internal linking · relationship map</td><td class="good">Use</td><td>—</td></tr>
+      <tr><td class="n">23–27</td><td>SEO · technical · schema · fake features · GEO</td><td class="good">Use</td><td>—</td></tr>
+      <tr><td class="n">28</td><td><b>Visual system</b></td><td class="bad">Ignore</td><td><b>Void. Wrong typefaces, wrong colour map, no Petrol.</b> Replaced by the system in this brief.</td></tr>
+      <tr><td class="n">29</td><td>Page-family personality</td><td style="color:var(--warn);font-weight:600">Change</td><td>The personalities are right; it has no colour discipline behind them. Take grounds and tints from this brief.</td></tr>
+      <tr><td class="n">30</td><td>Most important principle</td><td class="good">Use</td><td>The organising idea of the whole document.</td></tr>
+      <tr><td class="n">31</td><td>Final URL architecture</td><td style="color:var(--warn);font-weight:600">Change</td><td>It is a <b>hierarchy diagram, not a URL structure</b> — service URLs are flat. Legal flat too.</td></tr>
+      <tr><td class="n">32</td><td>One paragraph for the designer</td><td class="good">Use</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+  <div class="call"><b>What this brief adds that the PDF has nothing on:</b> the live design
+    system, ground and colour assigned per section, visual slots placed on the spine, mobile,
+    and conversion. Those five are additive — nothing in them contradicts the architecture.</div>
+</section>
+
+<section>
+  <h2>The one thing that must change</h2>
+
+  <div class="card" data-k="stop">
+    <span class="chip">Replace entirely</span>
+    <h3>§28 “Visual system” describes a different website</h3>
+    <p>It specifies <b>Space Grotesk + Inter</b> and a colour map reading
+       <i>“Violet anchor; Mint = Build; Lime = Growth; Aqua = Technology; Citrus = Opportunity;
+       Coral = Action; Sky = Insights.”</i> None of that is the live site. Space Grotesk and Inter
+       were replaced by Archivo and JetBrains Mono; violet was demoted to links and focus states
+       only; and every engine mapping in that line is wrong.</p>
+    <div class="tw"><table>
+      <thead><tr><th>§28 says</th><th>Live build</th></tr></thead>
+      <tbody>
+        <tr><td>Space Grotesk + Inter</td><td>Archivo (display + text) + JetBrains Mono (labels, data)</td></tr>
+        <tr><td>Violet anchor</td><td class="bad">Violet is links and focus only. The dark field is Petrol <code>#0A4E5C</code></td></tr>
+        <tr><td>Mint = Build</td><td><s class="sw" style="background:#FFC84A"></s>Citrus <code>#FFC84A</code> = Build</td></tr>
+        <tr><td>Lime = Growth</td><td><s class="sw" style="background:#B8F34A"></s>Lime <code>#B8F34A</code> = Grow &nbsp;<span class="good">— the only one right</span></td></tr>
+        <tr><td>Aqua = Technology</td><td><s class="sw" style="background:#45D8C0"></s>Aqua <code>#45D8C0</code> = Operate</td></tr>
+        <tr><td>Citrus = Opportunity</td><td>Citrus is Build. There is no “Opportunity” colour.</td></tr>
+        <tr><td>Coral · Sky · Mint</td><td>Reserved in the brand, unused on the site. Do not introduce them.</td></tr>
+      </tbody>
+    </table></div>
+    <p>A designer building from §28 produces a site in the wrong typeface with the wrong colour
+       language, and the homepage that shipped last week becomes the odd one out. <b>Delete §28
+       and use the system below.</b> Everything else in the document stands.</p>
+  </div>
+</section>
+
+<section>
+  <h2>The live design system — this replaces §28</h2>
+  <div class="tw"><table>
+    <thead><tr><th>System</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>Typography</td><td><b>Archivo</b> variable — display and text. <b>JetBrains Mono</b> — labels, data, artefact UI. Two families, nothing else.</td></tr>
+      <tr><td>Type scale</td><td>Six steps only: label 12 · meta 15 · body 17 · lead clamp(19,1.4vw,22) · h3 clamp(24,2.2vw,32) · h2 clamp(34,4vw,58) · h1 clamp(42,5.4vw,66). <b>17px body floor</b>; nothing that is a sentence below 16px.</td></tr>
+      <tr><td>Grounds</td><td><s class="sw" style="background:#fff"></s>White · <s class="sw" style="background:#EDEBE6"></s>Bone <code>#EDEBE6</code> · <s class="sw" style="background:#0A4E5C"></s>Petrol <code>#0A4E5C</code> · engine bands</td></tr>
+      <tr><td>Dark surfaces</td><td>A dark <b>section ground</b> is Petrol. A dark <b>panel inside</b> a light or band section is Ink <code>#17171A</code>. Never mix.</td></tr>
+      <tr><td>Engine tiers</td><td><b>engine</b> — marks, rules, dots ≤40px · <b>field</b> <s class="sw" style="background:#FFE3A3"></s><code>#FFE3A3</code> <s class="sw" style="background:#DDF2AC"></s><code>#DDF2AC</code> <s class="sw" style="background:#B6E7DC"></s><code>#B6E7DC</code> — panels 120–600px · <b>band</b> <code>#FFF3D6</code> <code>#EEF9D9</code> <code>#E0F4F0</code> — full-bleed grounds</td></tr>
+      <tr><td>Alternation</td><td>Never two coloured bands adjacent. Never two dark sections adjacent. A band must be justified by its engine or it is White/Bone.</td></tr>
+      <tr><td>Controls</td><td>A CTA is a control, not a surface — exempt from ground rules. Primary = Petrol on light grounds, Citrus on the Petrol field. One primary per screenful.</td></tr>
+      <tr><td>Aqua on Petrol</td><td>Same hue family. Aqua is a mark at ≥12px on Petrol and <b>never a text colour</b> there.</td></tr>
+      <tr><td>Radius</td><td>Exactly four: <b>8 · 16 · 28 · 40</b></td></tr>
+      <tr><td>Grids</td><td>Explicit column counts wherever position carries styling. <code>auto-fit</code> has caused four separate bugs on this project.</td></tr>
+      <tr><td>Chroma budget</td><td>The homepage measures 0.0303 area-weighted chroma against a 0.030 floor. <b>Neutralising a surface requires naming what gains colour in exchange.</b></td></tr>
+    </tbody>
+  </table></div>
+  <div class="call"><b>Colour discipline, restated from §28's one good line.</b> Expressive colour
+    creates recognition, not decoration. If you cannot say which engine a colour instance belongs
+    to, it should be a neutral.</div>
+</section>
+
+<section>
+  <h2>Ground and colour, assigned — service page</h2>
+  <p>The eight-H2 spine from §3 and build-spec §O is fixed. This assigns a ground to each
+     section so the page has rhythm and the alternation rule is satisfied by construction.
+     Read the right column as the reason, not decoration.</p>
+
+  <div class="stack">
+    <div style="background:#fff;color:#17171A"><span>Breadcrumb · Hero · Direct answer</span><span>White</span></div>
+    <div style="background:#EDEBE6;color:#17171A"><span>Primary visual / service model</span><span>Bone</span></div>
+    <div style="background:#fff;color:#17171A"><span>H2 · What the service actually involves</span><span>White</span></div>
+    <div style="background:#FFE3A3;color:#17171A"><span>H2 · What you get</span><span>Engine field tint</span></div>
+    <div style="background:#fff;color:#17171A"><span>H2 · Who this is for — and who it isn't</span><span>White + Ink panel</span></div>
+    <div style="background:#EDEBE6;color:#17171A"><span>H2 · How we work: the first 90 days</span><span>Bone</span></div>
+    <div style="background:#0A4E5C;color:#fff"><span>H2 · What stays yours</span><span>Petrol</span></div>
+    <div style="background:#fff;color:#17171A"><span>H2 · What's fully managed</span><span>White</span></div>
+    <div style="background:#EDEBE6;color:#17171A"><span>H2 · Proof / evidence</span><span>Bone</span></div>
+    <div style="background:#fff;color:#17171A"><span>H2 · How we're paid for this</span><span>White</span></div>
+    <div style="background:#fff;color:#17171A"><span>H2 · Questions about [service]</span><span>White</span></div>
+    <div style="background:#EDEBE6;color:#17171A"><span>Related services · Related insight</span><span>Bone</span></div>
+    <div style="background:#0A4E5C;color:#fff"><span>CTA</span><span>Petrol</span></div>
+  </div>
+
+  <p>Two decisions in that sequence are doing real work:</p>
+  <ul>
+    <li><b>“What you get” carries the page's own engine tint.</b> Build pages get
+      <code>#FFE3A3</code>, Grow pages <code>#DDF2AC</code>, Operate pages <code>#B6E7DC</code>.
+      This is where the colour code earns its keep — a visitor who has seen the homepage already
+      knows what the tint means, and the deliverables block is the section they came for.</li>
+    <li><b>“What stays yours” is the Petrol field.</b> Ownership is the differentiator and the
+      whole positioning. It gets the same treatment on every service page that it gets on the
+      homepage, so the argument is recognisably the same one.</li>
+    <li>The <b>“who it isn't for”</b> half sits in an Ink panel inside a white section. The
+      refusal is the most persuasive block on the page; a dark panel gives it weight without
+      spending a section ground on it.</li>
+  </ul>
+
+  <h3>Hub pages</h3>
+  <p>Each hub takes its own engine <b>band</b> as the hero ground — <code>#FFF3D6</code> for
+     <code>/build</code>, <code>#EEF9D9</code> for <code>/grow</code>, <code>#E0F4F0</code> for
+     <code>/operate</code> — then White for the four service cards and Petrol for the CTA. Under
+     400 words, so one band is the whole colour budget. A hub that competes with its own service
+     pages dilutes them.</p>
+
+  <h3>The other page types</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Page</th><th>Grounds</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td><code>/how-we-work</code></td><td>White → Bone → Petrol (<code>#fees</code>) → White → Petrol CTA</td><td>Most-linked page on the site. The fee mechanic gets the dark field because it is the section people arrive for.</td></tr>
+      <tr><td><code>/about</code></td><td>White throughout, Bone for the people grid</td><td>§15 is right that this moves away from the documentary register. Keep colour almost out of it — faces are the colour.</td></tr>
+      <tr><td><code>/documents</code></td><td>White only</td><td>A document room. One accent on the row hover. Anything more makes it look like a lead-gen page, which is the one thing it must not look like.</td></tr>
+      <tr><td><code>/true-cost</code></td><td>White, Bone for the input panel, Ink for the running total</td><td>The total is the only dark object on the page, so the eye returns to it as inputs change.</td></tr>
+      <tr><td><code>/insights</code> · article</td><td>White, Bone for the featured slot</td><td>Editorial. No engine colour — an article is not engine-scoped.</td></tr>
+      <tr><td><code>/contact</code></td><td>White form, Petrol “what happens next” panel</td><td>The three-step reassurance in §18 is the strongest CRO block in the document. Give it the field.</td></tr>
+      <tr><td>Legal</td><td>White only</td><td>§20 is right — deliberately boring.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>Visual slots, placed</h2>
+  <p>V1 names a visual concept per family but not where each one sits. This maps them onto the
+     spine. Every one of these is buildable from type, CSS and the homepage's existing art-panel
+     component — <b>none needs photography</b>, which is deliberate.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Family</th><th>Primary visual (Bone)</th><th>Inside “What you get”</th><th>Inside “How we work”</th></tr></thead>
+    <tbody>
+      <tr><td><b>Wholesale</b><br><span class="mono" style="font-size:12px">also mktpl-mgmt, ops</span></td><td>The Operating Desk — catalogue table: Brand · SKU · Supplier · Cost · MOQ · Lead time · Margin · Status</td><td>Approval gate: Research → Economics → Recommendation → <b>Approve / Review / Do not buy</b> → PO</td><td>Day 0 baseline → Day 30 supplier → Day 60 listings → Day 90 cadence, as a weekly operating calendar</td></tr>
+      <tr><td><b>Private label</b></td><td>From Product to Brand — the vertical gated sequence, idea → research → validation → sample → packaging → listing → launch</td><td>Product verdict sheet: <b>APPROVE / REVIEW / REJECT</b></td><td>Compliance gates drawn as <b>stops</b>, not steps: liability · testing · certification · importer · IP</td></tr>
+      <tr><td><b>Shopify / DTC</b><br><span class="mono" style="font-size:12px">also web-dev</span></td><td>Customer journey, horizontal: ad → landing → product → cart → checkout → customer → repeat</td><td>Storefront layers, interactive</td><td>Build → test → launch → document → handover → operate</td></tr>
+      <tr><td><b>Grow</b></td><td>Growth control panel — demand · conversion · inventory · margin · capacity as questions, not scores</td><td>Optimisation loop: listing → traffic → conversion → ranking → buy box → data</td><td>Sequencing growth against operational capacity</td></tr>
+      <tr><td><b>PPC</b></td><td>The two-way stack: inventory ↕ listing ↕ price ↕ advertising ↕ conversion ↕ margin</td><td>Bids · search terms · budgets · creative</td><td>Why ACoS alone is a poor measure</td></tr>
+      <tr><td><b>Operations</b></td><td>The daily operating desk — POs, inventory, orders, cases, listings, account health, reporting</td><td>Reporting sample at the <code>#reporting</code> anchor</td><td><b>Signature block:</b> what happens when something goes wrong — signal → escalate → assess → client decision → execute → document → report</td></tr>
+      <tr><td><b>Marketplace mgmt</b></td><td>Control room in operational <b>states</b>: account health monitored · listings active · cases open · inventory review · policy clear</td><td>Amazon vs Walmart split — what is shared, what genuinely differs</td><td>Permissioned access model — why credentials are never shared</td></tr>
+    </tbody>
+  </table></div>
+  <div class="call"><b>No figures in any of them.</b> No revenue, no growth percentages, no
+    projected returns, no axis values. Soft launch, every page. The states and labels above are
+    deliberately qualitative for that reason — “Restock”, “Approved by client”, “Policy clear”
+    carry more credibility than an invented number anyway.</div>
+</section>
+
+<section>
+  <h2>Missing layer 1 — mobile</h2>
+  <p>V1 has essentially nothing on mobile, and these pages will take the majority of their
+     traffic from search on phones. The homepage was designed desktop-first and cost four rounds
+     of rework; the service pages should not repeat it.</p>
+  <div class="card" data-k="add">
+    <h4>Every horizontal visual needs a named mobile form</h4>
+    <p>The catalogue table, the customer journey, the Amazon/Walmart split and the control panel
+       are all horizontal compositions. Specify the mobile version explicitly rather than letting
+       it fall out of the CSS:</p>
+    <ul>
+      <li>Catalogue table → stacked cards, one row per card, label-value pairs</li>
+      <li>Horizontal journey → vertical with the connector rotated, never a scroll-snap carousel</li>
+      <li>Split-screen comparison → stacked with a two-state toggle</li>
+      <li>Control panel → single column, one metric per row</li>
+    </ul>
+  </div>
+  <div class="card" data-k="add">
+    <h4>The sticky section nav from §2 must be gated</h4>
+    <p>A sticky element taller than <code>innerHeight − offset</code> hides its own bottom
+       permanently and cannot be scrolled to. On this project that exact bug shipped once
+       already. The section nav is sticky only above 900px and only when the viewport is tall
+       enough; below that it is a collapsed “jump to” control or it is absent.</p>
+  </div>
+  <div class="card" data-k="add">
+    <h4>Above the fold on mobile</h4>
+    <p>Breadcrumb, H1 naming the service, the first sentence of the sixty-word answer, one
+       primary CTA. Nothing else. A 1,800–2,800 word page has one chance to say what it is.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Missing layer 2 — conversion</h2>
+  <p>V1 covers SEO and GEO thoroughly and says almost nothing about what makes the page convert.
+     Four additions, all structural rather than cosmetic.</p>
+
+  <div class="card" data-k="add">
+    <h4>Three CTA moments, not one</h4>
+    <p>A closing CTA alone on a 2,000-word page wastes the two points where intent actually
+       peaks. Place the same primary — <b>Let's talk</b>, identical label every time — after
+       <b>What you get</b> (they now know the scope), after <b>the first 90 days</b> (they now
+       trust the process), and at the close. Secondary <b>See how we work</b> stays a
+       text-with-arrow, never a second button beside the primary.</p>
+  </div>
+
+  <div class="card" data-k="add">
+    <h4>Move the refusal higher, or mirror it</h4>
+    <p>“Who this is for — and who it isn't” sits at position 3 of 8, roughly halfway down. On a
+       trust-led page the refusal is the highest-converting block there is — it is the one thing
+       a competitor cannot copy without meaning it. Keep the H2 where the spine puts it, but
+       mirror <b>one line of the disqualification in the hero</b>, directly under the sixty-word
+       answer. A visitor who self-selects out in the first screen was never going to convert, and
+       one who reads it and stays has already qualified themselves.</p>
+  </div>
+
+  <div class="card" data-k="add">
+    <h4>Mobile sticky CTA bar</h4>
+    <p>Appears after 50% scroll depth, one button, dismissible, never covering the FAQ
+       accordions. This is the single highest-yield CRO element available on a long mobile page
+       and it costs one component.</p>
+  </div>
+
+  <div class="card" data-k="good">
+    <h4>Keep <code>/contact</code> exactly as §18 specifies</h4>
+    <p>Qualification fields, the “what are you looking to build” radio set, “what have you
+       already tried”, then the three-step <i>what happens next</i>. That is a better contact
+       page than most agencies ship and it should not be simplified into a name-and-email form.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Three conflicts to resolve before this goes out</h2>
+
+  <div class="card" data-k="warn">
+    <h3>1 · The §31 URL tree will be read as nesting</h3>
+    <p>It draws <code>/wholesale-ecommerce</code> indented under <code>/build</code>, and
+      <code>/privacy</code> under a <code>/legal</code> parent. Sections 5–10 give flat URLs
+      (<code>URL: /wholesale-ecommerce</code>) and build-spec §J confirms flat, so the tree is a
+      <b>hierarchy diagram, not a URL structure</b> — but a developer will implement it literally.
+      Label it as hierarchy, and keep legal pages flat: <code>/privacy</code>
+      <code>/terms</code> <code>/accessibility</code> <code>/earnings-claims</code>, not
+      <code>/legal/…</code>.</p>
+  </div>
+
+  <div class="card" data-k="warn">
+    <h3>2 · <code>/faq</code> is a new page and a duplication risk</h3>
+    <p>§19 adds it; build-spec §J's twenty-page sitemap does not contain it. Build-spec §O is
+      explicit that FAQ blocks must never repeat across pages, because duplicate FAQ content is a
+      self-inflicted problem. If <code>/faq</code> ships, the rule is: <b>no question on
+      <code>/faq</code> may appear on any service page or the homepage.</b> It aggregates the
+      questions that belong to no single service. If that leaves it thin, it should not exist.</p>
+  </div>
+
+  <div class="card" data-k="warn">
+    <h3>3 · Word count versus visual density</h3>
+    <p>§4 targets 1,800–2,800 words per service page. §32 asks for “maximum useful information
+      with minimum visual density, not maximum words.” Those pull against each other, and a
+      designer will feel it on the first layout. The resolution: <b>the word target is a ceiling
+      the FAQ absorbs, not a floor the body must reach.</b> §4 already allocates 400–600 words to
+      the FAQ — roughly a quarter — and FAQ is the cheapest place to be thorough without making
+      the page feel long. Write the body to the shortest length that covers §O's requirements and
+      let the FAQ carry the depth.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Update — the keyword map changed the page count</h2>
+  <p><span class="eyebrow">Added 1 Sep, after Keyword Map v2</span></p>
+  <p>Twenty-one live SERPs were read directly. Three things in that map change what design
+     builds, and they are settled decisions, not open questions.</p>
+  <div class="card" data-k="warn">
+    <h3>Ten service pages, not eleven — <code>/dtc-growth</code> is not built</h3>
+    <p>Measured: it duplicates <code>/shopify-dtc</code> (tribe.studio, darkroomagency and
+       forgedigitalmarketing rank on both terms) and its SERP rewards “best X agencies”
+       roundups rather than service pages. The chip and footer entry stay and point at
+       <code>/shopify-dtc#growth</code>, so the twelve-service taxonomy is untouched.
+       <b>Design consequence:</b> the Shopify / DTC storefront-craft variant now covers
+       <code>/shopify-dtc</code> and <code>/ecommerce-website-development</code> only, and
+       <code>/shopify-dtc</code> gains a growth section with its own anchor.</p>
+  </div>
+  <div class="card" data-k="warn">
+    <h3><code>/ecommerce-operations</code> is a conversion page, not an acquisition page</h3>
+    <p>Its natural primary term belongs to the homepage, and the obvious alternative resolves
+       to offshore back-office outsourcing at $7–$42/hour. It stays a full service page on the
+       standard template — it simply will not arrive from search. <b>Design consequence:</b>
+       none to the template; it means this page's job is to convert a visitor already on the
+       site, so the CTA moments matter more here than the hero does.</p>
+  </div>
+  <div class="card" data-k="add">
+    <h3>Two pages carry a measured objection that the design has to hold</h3>
+    <p>On <code>amazon seller account management</code>, Google's own AI Overview cites Reddit
+       advising readers <b>not</b> to hand an account to third-party management. On
+       <code>who owns my amazon seller account agency</code>, the top Reddit answer is
+       “don't trust any agencies”. That objection is now above every competitor in Google's
+       voice. <b>Design consequence:</b> on <code>/marketplace-management</code> and
+       <code>/wholesale-ecommerce</code>, “What stays yours” — the Petrol section — is not a
+       reassurance block, it is the <b>rebuttal to a stated objection</b>. It should be the
+       most designed section on those two pages, and it should be reachable from the hero.</p>
+  </div>
+  <div class="call"><b>Nothing else in this brief changes.</b> The templates, grounds, tints,
+    slot placements, mobile rules and conversion layer all stand.</div>
+</section>
+
+<section>
+  <h2>What design decides, and what is already fixed</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Fixed — do not reopen</th><th>Design's call</th></tr></thead>
+    <tbody>
+      <tr><td>The eight H2s and their order</td><td>How each section is composed</td></tr>
+      <tr><td>The eleven service URLs and the sitemap</td><td>The signature visual per family</td></tr>
+      <tr><td>Typefaces, type scale, radius scale</td><td>Layout, grid and rhythm within a section</td></tr>
+      <tr><td>Ground alternation and the engine colour code</td><td>Where inside a section the accent lands</td></tr>
+      <tr><td>Petrol as the dark field, Ink as the nested panel</td><td>Motion, hover and transition behaviour</td></tr>
+      <tr><td>No figures, no stock people, no generated faces</td><td>How an artefact is drawn — table, panel, sequence</td></tr>
+      <tr><td>One H1, one primary CTA label</td><td>Everything not in the left column</td></tr>
+    </tbody>
+  </table></div>
+  <div class="call"><b>Deliverable back:</b> a layout specification, not finished visuals — four
+    templates and the family variants, section by section, with the mobile form of every
+    horizontal composition named. The homepage was built in code directly from a written spec and
+    it worked; do the same here.</div>
+</section>
+
+<footer>
+  Supersedes the earlier design brief. Reads alongside
+  <span class="mono">Hyprr_Homepage_Build_Spec_V1_FINAL.md</span> §D, §J and §O, which remain the
+  content and URL source of truth. Design-system values verified against
+  <span class="mono">app/globals.css</span> and the live build on 1 Sep 2026.
+</footer>
+</main>

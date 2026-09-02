@@ -30,27 +30,43 @@ a single manifest so it always shows exactly what exists:
 
 ROUTES — exactly these slugs, no variations, no trailing slashes, no /services/ prefix
 
-  Services (11)   /wholesale-ecommerce  /private-label  /shopify-dtc
+  Services (10)   /wholesale-ecommerce  /private-label  /shopify-dtc
                   /ecommerce-website-development  /ecommerce-growth  /marketplace-growth
-                  /dtc-growth  /ppc-paid-media  /ecommerce-operations
+                  /ppc-paid-media  /ecommerce-operations
                   /marketplace-management  /shopify-management
+
+  /dtc-growth is NOT built. Owner decision, 1 Sep, on measured evidence: it duplicates
+  /shopify-dtc (tribe.studio, darkroomagency and forgedigitalmarketing rank on both terms)
+  and its SERP rewards "best X agencies" roundups rather than service pages. The chip and
+  footer entry stay and point at /shopify-dtc#growth. Ten service pages, twelve service
+  names — the taxonomy in section D is unchanged.
   Hubs (3)        /build  /grow  /operate
   Company (4)     /how-we-work  /about  /insights  (+ /insights/[slug])  /contact
   Support (2)     /documents  /true-cost
   Legal (4)       /privacy  /terms  /accessibility  /earnings-claims
 
-  Note: eleven services, not twelve. Section D's preamble says twelve because
-  "Reporting & performance" is a chip, but the spec states it is a capability inside
-  /ecommerce-operations and must NOT get a page. Link that chip to
-  /ecommerce-operations#reporting.
+  Note: TEN service pages, twelve service names. Two chips are anchors, not pages —
+  "Reporting & performance" -> /ecommerce-operations#reporting and
+  "DTC growth" -> /shopify-dtc#growth. Both were tested against live SERPs and confirmed:
+  the reporting term returns SaaS only, the DTC growth term returns roundups.
 
-BUILD ORDER (from section J, driven by which homepage CTAs currently point where)
+BUILD ORDER — section J's priority column is SUPERSEDED by Hyprr_Keyword_Map_v2.md §6.
+Use this order. Two of section J's top four assumptions did not survive live SERP checks.
+
   1  /contact            the primary CTA, four placements
   2  /how-we-work        five homepage CTAs point here, plus the #fees anchor
-  3  /documents          design-mandated, and the transparency claim is false without it
+  3  /documents          design-mandated; the transparency claim is false without it
   4  /true-cost          design-mandated
   5  /about  /build  /grow  /operate   thin but real; hubs under 400 words
-  then the service pages in J's priority order.
+
+  Then the service pages in THIS order:
+     1  /wholesale-ecommerce            2  /ecommerce-growth   (was 9 — has an AI Overview
+     3  /private-label                     with a built-in agency-comparison block)
+     4  /marketplace-growth             5  /shopify-dtc
+     6  /ecommerce-website-development  7  /marketplace-management  (was 4 — its planned
+     8  /shopify-management                primary returns Amazon Web Services)
+     9  /ppc-paid-media  (Reddit ranks #1 with 73 answers; build for on-site visitors)
+    10  /ecommerce-operations            (conversion page, not an acquisition page)
 
 WHAT TO IMPLEMENT NOW (this ticket — routing only, no page content)
 
@@ -83,6 +99,7 @@ ACCEPTANCE
   3. Every live page has exactly one self-referencing canonical, absolute URL.
   4. Nav and footer contain no hardcoded service list — both read from lib/site-map.ts.
      Grep for the slugs: each must appear once, in the manifest.
+  4b. /dtc-growth appears nowhere as a route. The chip resolves to /shopify-dtc#growth.
   5. "Pricing" appears nowhere in the nav.
   6. /vs-automation appears nowhere in the codebase.
   7. Trailing-slash behaviour is consistent and enforced by one config value.

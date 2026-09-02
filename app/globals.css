@@ -267,3 +267,55 @@
     transition: none !important;
   }
 }
+
+/* ---- Inner-page service template ------------------------------- */
+
+/* Section nav: sticky ONLY at >=900px AND when the viewport is tall
+   enough to show it whole above the fold — the design gates it. */
+.service-nav {
+  position: static;
+}
+@media (min-width: 900px) and (min-height: 600px) {
+  .service-nav {
+    position: sticky;
+    top: 72px;
+    z-index: 20;
+  }
+}
+
+/* CSS-only two-state tabs (the §32 exception — New build vs Takeover,
+   and the Amazon vs Walmart split on mobile). Radios drive :has();
+   content for both states stays in the served HTML. */
+.cc-tabs > input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.cc-tabs [data-tab-panel] {
+  display: none;
+}
+.cc-tabs:has(> input:nth-of-type(1):checked) [data-tab-panel="a"],
+.cc-tabs:has(> input:nth-of-type(2):checked) [data-tab-panel="b"] {
+  display: grid;
+}
+.cc-tabs [data-tab-label] {
+  color: var(--color-label);
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+.cc-tabs:has(> input:nth-of-type(1):checked) [data-tab-label="a"],
+.cc-tabs:has(> input:nth-of-type(2):checked) [data-tab-label="b"] {
+  color: var(--color-ink);
+  border-bottom-color: var(--color-ink);
+}
+/* No :has() support (or CSS off): show both states stacked. */
+@supports not selector(:has(input)) {
+  .cc-tabs [data-tab-panel] {
+    display: grid;
+  }
+}
+
+/* Mobile sticky CTA bar: dismiss is a checkbox, no scroll listener. */
+.cta-bar-dismiss:has(> input:checked) {
+  display: none;
+}

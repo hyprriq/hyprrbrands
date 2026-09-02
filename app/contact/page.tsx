@@ -1,68 +1,91 @@
 import type { Metadata } from "next";
 import SitePageShell from "@/components/SitePageShell";
+import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact | Hyprr Brands",
   description:
-    "Tell us where you are, what you are trying to build, and what you have already tried. No pressure to sign, and no deadline attached to the conversation.",
+    "Tell us what you're trying to build. The more context you give, the more useful the first conversation is — we read everything before we reply.",
   alternates: { canonical: "/contact" },
 };
 
-/** Contact — the primary CTA's destination. */
+/**
+ * /contact — Template 4, exactly as §18: White form, Petrol "what
+ * happens next" beside it on desktop, below it on mobile. No closing
+ * CTA band — the page is the CTA. One primary control: Send.
+ */
+const NEXT: [string, string, string][] = [
+  [
+    "01",
+    "We review the context",
+    "Someone reads what you wrote, looks at your accounts if you shared them, and prepares.",
+  ],
+  [
+    "02",
+    "We come prepared",
+    "The first conversation starts from your situation, not from a pitch.",
+  ],
+  [
+    "03",
+    "We tell you whether Hyprr is a fit",
+    "And if it isn't, we say so and point you somewhere useful.",
+  ],
+];
+
 export default function Page() {
   return (
     <SitePageShell>
       <section className="bg-white">
-        <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] pt-[clamp(48px,6vw,88px)] pb-[clamp(48px,6vw,96px)] grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-[clamp(32px,5vw,72px)] items-start">
-          <div>
-            <h1 className="font-display type-h1 text-ink m-0 mb-5 max-w-[16ch]">
-              If it&apos;s a fit, let&apos;s talk.
-            </h1>
-            <p className="type-lead text-body m-0 mb-8 max-w-[52ch]">
-              Tell us where you are, what you are trying to build, and what
-              you have already tried. We will look at the situation before we
-              recommend a path. No pressure to sign, and no deadline attached
-              to the conversation.
-            </p>
-            <div className="grid gap-3 type-body">
-              <a
-                href="mailto:hello@hyprrbrands.com"
-                className="font-semibold"
-              >
-                hello@hyprrbrands.com
-              </a>
-              <a href="tel:+18338906367" className="font-semibold">
-                +1 (833) 890-6367
-              </a>
-            </div>
-          </div>
-          <div className="border border-line rounded-lg p-[clamp(22px,2.4vw,30px)] bg-bone">
-            <p className="type-label text-label uppercase m-0 mb-5">
-              What happens next
-            </p>
-            <div className="grid gap-4 type-body text-body">
-              <div className="flex gap-3.5">
-                <span className="type-label text-label pt-[3px] flex-none">
-                  01
-                </span>
-                <span>
-                  You send context — channels, products, capital, and what is
-                  stuck.
-                </span>
+        <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(40px,6vw,72px)]">
+          <h1 className="font-display type-h1 text-ink m-0 max-w-[16ch] text-balance">
+            Tell us what you&apos;re trying to build.
+          </h1>
+          <p className="type-lead text-body m-0 mt-[18px] max-w-[52ch]">
+            The more context you give, the more useful the first conversation
+            is. We read everything before we reply.
+          </p>
+
+          <div className="flex flex-wrap gap-x-14 gap-y-10 mt-10 items-start">
+            <ContactForm />
+
+            {/* Petrol: what happens next — the conversion block */}
+            <div className="flex-[1_1_300px] max-w-[420px] bg-field text-white rounded-lg p-[clamp(24px,3vw,36px)] grid gap-[22px] content-start">
+              <div className="font-mono type-label text-on-field-mute uppercase">
+                What happens next
               </div>
-              <div className="flex gap-3.5">
-                <span className="type-label text-label pt-[3px] flex-none">
-                  02
-                </span>
-                <span>We come to the call with a view, not a questionnaire.</span>
+              {NEXT.map(([n, title, desc]) => (
+                <div
+                  key={n}
+                  className="grid grid-cols-[32px_1fr] gap-3.5 items-start"
+                >
+                  <span className="font-mono type-label text-on-field-mute pt-1">
+                    {n}
+                  </span>
+                  <div className="grid gap-1">
+                    <b className="type-lead font-bold leading-tight tracking-[-.01em]">
+                      {title}
+                    </b>
+                    <span className="text-on-field-body type-meta">{desc}</span>
+                  </div>
+                </div>
+              ))}
+              <div className="border-t border-line-on-field pt-[18px] type-meta text-on-field-body">
+                Prefer to read first?{" "}
+                <a
+                  href="/how-we-work"
+                  className="text-white hover:text-white font-semibold"
+                >
+                  How we work →
+                </a>
               </div>
-              <div className="flex gap-3.5">
-                <span className="type-label text-label pt-[3px] flex-none">
-                  03
-                </span>
-                <span>
-                  You get a written plan and the sample documents to review.
-                </span>
+              <div className="type-meta text-on-field-body">
+                Or directly:{" "}
+                <a
+                  href="mailto:hello@hyprrbrands.com"
+                  className="text-white hover:text-white font-semibold"
+                >
+                  hello@hyprrbrands.com
+                </a>
               </div>
             </div>
           </div>

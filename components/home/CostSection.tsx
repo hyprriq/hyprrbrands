@@ -44,8 +44,12 @@ export default function CostSection() {
             down every component so you can see the real number before you
             commit to any of it — including us.
           </p>
-          {/* CTA "Calculate the real cost →" returns when /true-cost is
-              live — no dead CTAs (Build Spec J). */}
+          <a
+            href="/true-cost"
+            className="inline-flex items-center mt-6 bg-build text-ink hover:text-ink type-body font-semibold px-6 py-3.5 rounded-md min-h-12"
+          >
+            Calculate the real cost →
+          </a>
         </div>
         <Reveal className="border border-line-on-field rounded-lg p-[clamp(20px,2.4vw,30px)] bg-field-raised">
           <div className="flex justify-between items-center mb-[22px] gap-3 flex-wrap">

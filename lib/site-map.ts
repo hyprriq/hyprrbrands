@@ -27,7 +27,7 @@ export const SITE_MAP: SitePage[] = [
     title: "Wholesale ecommerce",
     engine: "build",
     group: "service",
-    status: "planned",
+    status: "live",
     priority: 3,
     oneLine:
       "Sourcing, purchasing, listings and account setup for Amazon and Walmart wholesale operations",
@@ -37,7 +37,7 @@ export const SITE_MAP: SitePage[] = [
     title: "Private label & brand building",
     engine: "build",
     group: "service",
-    status: "planned",
+    status: "live",
     priority: 5,
     oneLine:
       "Product research and validation through supplier sourcing, brand, packaging and marketplace launch",
@@ -82,7 +82,10 @@ export const SITE_MAP: SitePage[] = [
       "Listings, content, ranking, buy box and channel expansion on Amazon and Walmart",
   },
   {
-    slug: "/dtc-growth",
+    // Dropped as a standalone page (1 Sep): it duplicated /shopify-dtc
+    // and its SERP rewards roundups over service pages. The name stays
+    // in every service list; the link is an anchor on the Shopify page.
+    slug: "/shopify-dtc#growth",
     title: "DTC growth",
     engine: "grow",
     group: "service",
@@ -219,7 +222,7 @@ export const SITE_MAP: SitePage[] = [
     title: "True cost calculator",
     engine: null,
     group: "support",
-    status: "planned",
+    status: "live",
     priority: 2,
     oneLine:
       "Every cost component before a first sale, computed from your own inputs",
@@ -231,7 +234,7 @@ export const SITE_MAP: SitePage[] = [
     title: "Privacy policy",
     engine: null,
     group: "legal",
-    status: "planned",
+    status: "live",
     priority: 20,
     oneLine: "",
   },
@@ -240,7 +243,7 @@ export const SITE_MAP: SitePage[] = [
     title: "Terms of service",
     engine: null,
     group: "legal",
-    status: "planned",
+    status: "live",
     priority: 20,
     oneLine: "",
   },
@@ -249,7 +252,7 @@ export const SITE_MAP: SitePage[] = [
     title: "Accessibility",
     engine: null,
     group: "legal",
-    status: "planned",
+    status: "live",
     priority: 20,
     oneLine: "",
   },
@@ -258,13 +261,14 @@ export const SITE_MAP: SitePage[] = [
     title: "Earnings claims policy",
     engine: null,
     group: "legal",
-    status: "planned",
+    status: "live",
     priority: 20,
     oneLine: "",
   },
 ];
 
-export const livePages = () => SITE_MAP.filter((p) => p.status === "live");
+export const livePages = () =>
+  SITE_MAP.filter((p) => p.status === "live" && !p.slug.includes("#"));
 
 export const pagesByEngine = (engine: Engine) =>
   SITE_MAP.filter((p) => p.engine === engine && p.group === "service");
@@ -272,8 +276,10 @@ export const pagesByEngine = (engine: Engine) =>
 export const pageFor = (slug: string) =>
   SITE_MAP.find((p) => p.slug === slug);
 
-export const isLive = (slug: string) =>
-  SITE_MAP.some((p) => p.slug === slug && p.status === "live");
+export const isLive = (slug: string) => {
+  const base = slug.split("#")[0];
+  return SITE_MAP.some((p) => p.slug.split("#")[0] === base && p.status === "live");
+};
 
 /** The production origin. Flip to https://hyprrbrands.com when the
  *  custom domain is connected — canonicals must match the serving host. */

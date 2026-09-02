@@ -56,10 +56,16 @@ STEP 2 — chip count changes (fewer children, no layout work)
      Build   Wholesale ecommerce · Private label & brand building · Shopify / DTC ·
              Ecommerce website development
      Grow    Ecommerce growth · Marketplace growth · DTC growth · PPC & paid media
+             NOTE: "DTC growth" is a chip but NOT a page — link it to /shopify-dtc#growth.
+             The keyword map found it duplicates /shopify-dtc (same incumbents rank on
+             both) and its SERP rewards roundups over service pages. Ten service pages,
+             not eleven. The twelve-service taxonomy is unchanged; two chips are anchors.
      Operate Ecommerce operations · Marketplace management · Shopify management ·
              Reporting & performance
   The fourth Operate chip is a DESCRIPTOR, not a page — link it to
   /ecommerce-operations#reporting or leave it unlinked. Do not create a page for it.
+  (Measured: `ecommerce performance reporting services` returns reporting SaaS only —
+  supermetrics, databox, netsuite. Zero service pages rank. Confirmed, not assumed.)
   The design's fifth slot is dropped, not padded.
 
   Scroll states 02 and 03 go from six chips to five, per section G.
@@ -102,8 +108,8 @@ ACCEPTANCE
 3.  "Done-for-you" describing Hyprr: zero occurrences.
 4.  document.querySelectorAll('h1').length === 1
 5.  Heading outline has no skipped levels and no H4.
-6.  Twelve engine chips total (4/4/4); eleven are links, "Reporting & performance" is not a
-    page link.
+6.  Twelve engine chips total (4/4/4). TEN point at service pages; "DTC growth" points at
+    /shopify-dtc#growth and "Reporting & performance" at /ecommerce-operations#reporting.
 7.  The A.09 section exists, has four columns at desktop, two at 768, one at 375, and no icons.
 8.  Contrast sweep from the prompt-5 patch still returns failCount 0 at 1512x900 and 375x667.
     New copy changes string lengths, which changes wrapping, which can change what paints.

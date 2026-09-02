@@ -1,115 +1,167 @@
 import SitePageShell from "@/components/SitePageShell";
+import Link from "next/link";
 import { pagesByEngine, pageFor, type Engine } from "@/lib/site-map";
 
 /**
- * Hub page template — Build Spec section O: H1 naming the engine, a
- * sixty-word definition, the four service cards with one-line
- * definitions from D, one section on how the engine connects to the
- * other two, one CTA. Under 400 words; a hub that competes with its
- * own service pages dilutes them. Service cards link only when the
- * page is live in the manifest.
+ * Hub page template — design system HubPage: the engine band hero is
+ * the whole colour budget, the §11 hub diagram is a wrapping chain
+ * inside it, service cards state the business problem, and the page
+ * stays under 400 words. Not a service page: no H2 spine, no FAQ, no
+ * proof section — it links down, it does not compete.
+ *
+ * GAP 1: the Grow hub has THREE service cards. DTC growth is an
+ * anchored section on /shopify-dtc; its manifest entry is the
+ * #growth alias, which hub cards exclude.
  */
 const HUBS: Record<
   Exclude<Engine, null>,
-  { title: string; accent: string; definition: string; connects: string }
+  {
+    name: string;
+    band: string;
+    dot: string;
+    h1: string;
+    lead: string;
+    nodes: string[];
+    servicesTitle: string;
+  }
 > = {
   build: {
-    title: "Build",
-    accent: "border-t-build",
-    definition:
-      "Build is where the operation gets stood up: deciding what is worth selling, finding the supplier who can deliver it, and putting the store, listings and marketplace accounts around it. Wholesale on Amazon and Walmart, private label from research to launch, and Shopify for the direct channel — each built to be operated, not just launched.",
-    connects:
-      "Build decides what the operation sells. Growth then works that catalogue for demand and conversion, and Operations keeps the account healthy and produces the record the next build decision is made on.",
+    name: "Build",
+    band: "bg-build-band",
+    dot: "bg-build",
+    h1: "Build an ecommerce business that is yours to keep",
+    lead: "Four ways to build: buy and operate a catalogue, take a product to market as a brand, build a direct customer journey, or build the commerce infrastructure underneath. Each is a different business problem with the same ownership rules.",
+    nodes: ["Wholesale", "Private label", "Shopify / DTC", "Website development"],
+    servicesTitle: "Four ways to build",
   },
   grow: {
-    title: "Grow",
-    accent: "border-t-grow",
-    definition:
-      "Grow is demand, advertising and conversion, run across marketplaces and your own store. Listings and content that rank, PPC judged on contribution margin rather than ad spend, and conversion work on the direct channel. Growth is planned against what the operation can actually carry — stock, cash and account health — not against a traffic target.",
-    connects:
-      "Growth runs on what Build stood up, and it exposes where the operation strains — which is exactly what Operations exists to absorb, and what the next build decision learns from.",
+    name: "Grow",
+    band: "bg-grow-band",
+    dot: "bg-grow",
+    h1: "Grow demand without breaking the economics",
+    lead: "Demand, acquisition, conversion, channel, margin — in that order. Growth that the operation cannot fulfil is not growth.",
+    nodes: ["Demand", "Acquisition", "Conversion", "Channel", "Margin"],
+    servicesTitle: "Three ways to grow",
   },
   operate: {
-    title: "Operate",
-    accent: "border-t-operate",
-    definition:
-      "Operate is the daily work: purchase orders raised for your approval, replenishment against sell-through, inventory and stranded-stock checks, orders, returns and open cases, account health, and the monthly report that shows margin by SKU. It is the part of ecommerce nobody advertises and the part that decides whether the business holds.",
-    connects:
-      "Operations keep what Build created and Grow accelerated actually running — and they produce the record every next decision is made on. That record is the system the three engines share.",
+    name: "Operate",
+    band: "bg-operate-band",
+    dot: "bg-operate",
+    h1: "Keep the machine running every day",
+    lead: "Purchase, inventory, order, account, report, next decision. Operations is a desk with a cadence and a written path for when something goes wrong.",
+    nodes: [
+      "Purchase",
+      "Inventory",
+      "Order",
+      "Account",
+      "Report",
+      "Next decision",
+    ],
+    servicesTitle: "Three ways to operate",
   },
 };
 
 export default function HubPage({ engine }: { engine: Exclude<Engine, null> }) {
   const hub = HUBS[engine];
-  const services = pagesByEngine(engine);
-  const others = (["build", "grow", "operate"] as const).filter(
-    (e) => e !== engine
-  );
+  // Anchor aliases (DTC growth → /shopify-dtc#growth) are list entries,
+  // not pages — they carry no card of their own.
+  const services = pagesByEngine(engine).filter((s) => !s.slug.includes("#"));
 
   return (
     <SitePageShell>
-      <section className="bg-white">
-        <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] pt-[clamp(48px,6vw,88px)] pb-[clamp(40px,5vw,72px)]">
-          <p className="type-label text-label uppercase mb-3">
-            One of the three engines
-          </p>
-          <h1 className="font-display type-h1 text-ink m-0 mb-5">
-            {hub.title}
+      {/* Engine band hero: the whole colour budget */}
+      <section className={hub.band}>
+        <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(40px,6vw,80px)]">
+          <nav
+            aria-label="Breadcrumb"
+            className="font-mono type-label text-label normal-case tracking-normal flex gap-2"
+          >
+            <Link href="/" className="text-label hover:text-ink">
+              Home
+            </Link>
+            <span>/</span>
+            <span className="text-ink">{hub.name}</span>
+          </nav>
+          <h1 className="font-display type-h1 text-ink m-0 mt-4 max-w-[16ch] text-balance">
+            {hub.h1}
           </h1>
-          <p className="type-lead text-body m-0 max-w-[62ch]">
-            {hub.definition}
+          <p className="type-lead text-body m-0 mt-5 max-w-[56ch]">
+            {hub.lead}
           </p>
-        </div>
-      </section>
-
-      <section className="bg-bone border-t border-line">
-        <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(40px,5vw,72px)]">
-          <h2 className="font-display type-h3 text-ink m-0 mb-6">
-            The {hub.title} services
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-[clamp(14px,2vw,22px)]">
-            {services.map((s) => (
-              <div
-                key={s.slug}
-                className={`bg-white border border-line border-t-4 ${hub.accent} rounded-md p-6`}
-              >
-                <div className="type-body font-bold text-ink mb-1.5">
-                  {s.status === "live" ? (
-                    <a href={s.slug} className="text-ink hover:text-ink">
-                      {s.title} →
-                    </a>
-                  ) : (
-                    s.title
-                  )}
-                </div>
-                <p className="type-meta text-body m-0">{s.oneLine}</p>
+          {/* §11 hub diagram — horizontal chain, wrapping on mobile */}
+          <div className="flex flex-wrap gap-2 items-center mt-9">
+            {hub.nodes.map((n, i) => (
+              <div key={n} className="flex gap-2 items-center">
+                <span className="bg-white border border-ink/15 rounded-sm px-3.5 py-2.5 font-semibold text-ink type-meta">
+                  {n}
+                </span>
+                {i < hub.nodes.length - 1 && (
+                  <span className="text-ink">→</span>
+                )}
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-white border-t border-line">
+      {/* White: the service cards — each states the business problem */}
+      <section className="bg-white">
         <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(40px,5vw,72px)]">
-          <h2 className="font-display type-h3 text-ink m-0 mb-4">
-            How {hub.title} connects to{" "}
-            {others.map((e) => HUBS[e].title).join(" and ")}
+          <h2 className="font-display type-h3 text-ink m-0">
+            {hub.servicesTitle}
           </h2>
-          <p className="type-body text-body m-0 mb-8 max-w-[62ch]">
-            {hub.connects}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
+            {services.map((s) => (
+              <div
+                key={s.slug}
+                className="border border-line rounded-md p-[22px] grid gap-2.5 content-start hover:border-ink transition-colors"
+              >
+                <div className="flex justify-between items-center">
+                  <span className={`w-3 h-3 rounded-full ${hub.dot}`} />
+                  <span className="font-mono type-label text-label normal-case tracking-normal">
+                    {s.slug}
+                  </span>
+                </div>
+                <b className="text-ink type-lead font-bold leading-snug tracking-[-.01em]">
+                  {s.title}
+                </b>
+                <span className="type-meta text-body">{s.oneLine}.</span>
+                {s.status === "live" ? (
+                  <a
+                    href={s.slug}
+                    className="text-ink hover:text-ink font-medium type-meta mt-1"
+                  >
+                    Read the page →
+                  </a>
+                ) : (
+                  <span className="font-mono type-label text-label normal-case tracking-normal mt-1">
+                    page publishing soon
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Petrol: CTA */}
+      <section className="bg-field text-white">
+        <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(48px,6vw,80px)]">
+          <p className="font-display type-h2 text-white m-0 max-w-[16ch] text-balance">
+            Not sure which page is yours?
           </p>
-          <div className="flex gap-3.5 flex-wrap">
+          <div className="flex gap-[22px] items-center mt-7 flex-wrap">
             <a
               href="/contact"
-              className="bg-field text-white hover:text-white type-body font-semibold px-[26px] py-4 rounded-md min-h-12 inline-flex items-center"
+              className="bg-build text-ink hover:text-ink type-body font-bold px-[22px] py-3.5 rounded-md min-h-12 inline-flex items-center"
             >
               Let&apos;s talk
             </a>
             <a
               href="/how-we-work"
-              className="text-ink hover:text-ink type-body font-semibold px-[22px] py-4 rounded-md border border-line min-h-12 inline-flex items-center"
+              className="text-white hover:text-white type-body font-medium"
             >
-              See how we work
+              See how we work →
             </a>
           </div>
         </div>
@@ -122,7 +174,7 @@ export function hubMetadata(engine: Exclude<Engine, null>) {
   const hub = HUBS[engine];
   const page = pageFor(`/${engine}`)!;
   return {
-    title: `${hub.title} | Hyprr Brands`,
+    title: `${hub.name} | Hyprr Brands`,
     description: page.oneLine,
     alternates: { canonical: `/${engine}` },
   };

@@ -1,185 +1,288 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import SitePageShell from "@/components/SitePageShell";
+import { isLive } from "@/lib/site-map";
 
 export const metadata: Metadata = {
   title: "How we work | Hyprr Brands",
   description:
-    "The operating cycle, the approval gate, who we say no to, and how the fee structure is calculated — no figures, the mechanic in full.",
+    "You decide. We execute. What happens in an engagement, who decides, what gets written down, and how we are paid — the mechanic, no figures.",
   alternates: { canonical: "/how-we-work" },
 };
 
 /**
- * How we work — the page five homepage CTAs point at. Carries the
- * operating cycle, the approval gate, the fit filter ("who we say no
- * to") and the "not an automation company" argument folded in per the
- * Build Spec section J resolution, plus the #fees mechanic. Soft
- * launch: no figures, no earnings claims.
+ * /how-we-work — Template 3: White → Bone → Petrol (#fees) → White →
+ * Petrol CTA; the two Petrol sections are separated by a White one.
+ * The four-step sequence is numbered because it is a real sequence;
+ * numbers appear nowhere else on the page. #fees keeps the cleared
+ * mechanic copy from the content ticket rather than a placeholder.
  */
 const STEPS = [
   {
     n: "01",
-    t: "Commercial read",
-    d: "We look at the numbers before the ideas — margin, channel economics, demand, and what the account can realistically carry. If the numbers don't work, we say so before you buy inventory.",
+    title: "Commercial read",
+    desc: "We read your situation and tell you whether Hyprr is a fit before anything is signed.",
   },
   {
     n: "02",
-    t: "Plan with owners",
-    d: "A written plan with named people against each outcome, ours and yours, and the order things happen in.",
+    title: "Plan with owners",
+    desc: "A written plan, each decision assigned to you or to us.",
   },
   {
     n: "03",
-    t: "Execute",
-    d: "We do the build and growth work — sourcing, listings, site, launch, advertising — in defined pieces with dates on them, not an open-ended retainer.",
+    title: "Execute",
+    desc: "We do the work under your accounts, with your approval on every material purchase.",
   },
   {
     n: "04",
-    t: "Operate & report",
-    d: "We stay on the account. You get a regular record of what was bought, what sold, what changed, and what we recommend next.",
+    title: "Operate & report",
+    desc: "A fixed cadence, a written report, and a next decision every cycle.",
   },
+];
+
+const COMMITMENTS: [string, string][] = [
+  [
+    "You decide",
+    "Every material decision in the engagement is yours, made on a written recommendation you can read and challenge. We bring the research, the economics and a clear verdict; you bring the yes or the no, and the record shows which was which. A decision made without you is a breach of the model, not a time-saver.",
+  ],
+  [
+    "We execute",
+    "Once a decision is made, the work is ours: sourcing, listings, purchasing, advertising, cases, reporting. We do it under your accounts, in defined pieces with dates on them, and the weekly record shows what was done and what it changed. You stay in the decisions and out of the day.",
+  ],
+  [
+    "Every material purchase is recorded",
+    "No material purchase order goes out without your recorded approval. Suppliers invoice you directly; we do not buy stock in our own name and resell it to you. The practical effect is that you always know where your capital is, and the paper trail of every buying decision belongs to you.",
+  ],
+  [
+    "What happens when something goes wrong",
+    "There is a written path from signal to report: the problem is escalated the day it is detected, assessed with options attached, decided by you, executed by us, documented, and carried into the weekly report. Problems are part of operating; an undocumented problem is the only kind we treat as a failure. The path is the same whether the issue is a stranded shipment, a policy warning or a supplier who stopped answering.",
+  ],
+];
+
+const FEE_RULES = [
+  "Fees are stated before the engagement, not discovered in it",
+  "No fee is tied to a projected return",
+  "Every material purchase is approved by you and recorded",
+  "The fee structure is explained in full before anything is signed",
+];
+
+const NO_TO = [
+  "Anyone who wants the account held in Hyprr's name",
+  "Anyone who needs a return promised to start",
+  "Anyone who wants decisions taken without them",
+];
+
+const NO_GUARANTEE = [
+  "Revenue, growth or ranking outcomes",
+  "Marketplace policy decisions we do not control",
+  "That every product idea survives validation",
 ];
 
 export default function Page() {
   return (
     <SitePageShell>
+      {/* White: hero + the four-step sequence */}
       <section className="bg-white">
-        <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] pt-[clamp(48px,6vw,88px)] pb-[clamp(40px,5vw,64px)]">
-          <h1 className="font-display type-h1 text-ink m-0 mb-5 max-w-[18ch]">
-            How we work.
+        <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(40px,6vw,72px)]">
+          <nav
+            aria-label="Breadcrumb"
+            className="font-mono type-label text-label normal-case tracking-normal flex gap-2"
+          >
+            <Link href="/" className="text-label hover:text-ink">
+              Home
+            </Link>
+            <span>/</span>
+            <span className="text-ink">How we work</span>
+          </nav>
+          <h1 className="font-display type-h1 text-ink m-0 mt-[18px] max-w-[14ch] text-balance">
+            You decide. We execute.
           </h1>
-          <p className="type-lead text-body m-0 max-w-[62ch]">
-            Hyprr builds, grows and operates ecommerce businesses that stay
-            owned by their clients. You keep the accounts, the inventory and
-            the final call on what gets bought; we take responsibility for the
-            research, the build and the daily operation. This page sets out
-            the cycle, the approval gate, who the model fits, and how we are
-            paid.
+          <p className="type-lead text-body m-0 mt-5 max-w-[56ch]">
+            Every engagement runs the same way, whatever the service. This
+            page is the documentary version: what happens, who decides, what
+            gets written down, and how we are paid.
           </p>
-        </div>
-      </section>
-
-      <section className="bg-bone border-t border-line">
-        <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(40px,5vw,72px)]">
-          <h2 className="font-display type-h2 text-ink m-0 mb-8">
-            The operating cycle
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-7">
+          <div className="flex flex-wrap gap-3 mt-10">
             {STEPS.map((s) => (
-              <div key={s.n} className="py-2">
-                <div className="type-label text-label mb-3">{s.n}</div>
-                <h3 className="font-display type-h3 text-ink m-0 mb-2.5">
-                  {s.t}
-                </h3>
-                <p className="type-body text-body m-0">{s.d}</p>
+              <div
+                key={s.n}
+                className="flex-[1_1_200px] border-t-2 border-ink pt-4 grid gap-2 content-start"
+              >
+                <span className="font-mono type-label text-label tracking-[.08em]">
+                  {s.n}
+                </span>
+                <b className="text-ink type-lead font-bold leading-snug tracking-[-.01em]">
+                  {s.title}
+                </b>
+                <span className="type-meta text-body">{s.desc}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-white border-t border-line">
+      {/* Bone: the operating commitments */}
+      <section className="bg-bone">
         <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(40px,5vw,72px)]">
-          <h2 className="font-display type-h2 text-ink m-0 mb-4">
-            The approval gate
+          <h2 className="font-display type-h2 text-ink m-0 max-w-[18ch] text-balance">
+            What we commit to in writing
           </h2>
-          <p className="type-body text-body m-0 mb-4 max-w-[62ch]">
-            No material purchase order goes out without your recorded
-            approval. We research the opportunity, model the landed cost and
-            margin, and give you a written recommendation with a clear
-            verdict — but the decision, and the record of it, are yours. Your
-            marketplace accounts stay registered in your name and we work
-            through permissioned access, never shared credentials. Suppliers
-            invoice you directly; we do not buy stock in our own name and
-            resell it to you.
-          </p>
-          <p className="type-body text-body m-0 max-w-[62ch]">
-            This is also why we are not an automation company. Automation
-            operators buy in their own name, hold the account, and promise a
-            passive result. Everything in our model runs the other way: your
-            ownership, your approvals, our work — documented.
-          </p>
-        </div>
-      </section>
-
-      <section className="bg-bone border-t border-line">
-        <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(40px,5vw,72px)]">
-          <h2 className="font-display type-h2 text-ink m-0 mb-4">
-            Who we say no to
-          </h2>
-          <p className="type-body text-body m-0 mb-6 max-w-[62ch]">
-            The model works for operators, founders and brands who want to own
-            a business and make its decisions. It does not work for everyone,
-            and saying so up front saves both sides a bad engagement.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-[clamp(14px,2vw,22px)] max-w-[900px]">
-            <div className="bg-white border border-line border-l-[3px] border-l-ok rounded-md p-6">
-              <p className="type-label text-label uppercase m-0 mb-4">
-                Good fit
-              </p>
-              <div className="grid gap-3 type-body text-body">
-                <div>Capital that matches the plan</div>
-                <div>Willing to make decisions</div>
-                <div>A long-term operating mindset</div>
-                <div>Wants to own the business</div>
+          <div className="flex flex-wrap gap-2 mt-7">
+            {COMMITMENTS.map(([title, body]) => (
+              <div
+                key={title}
+                className="flex-[1_1_280px] bg-white border border-line rounded-md p-[22px] grid gap-2 content-start"
+              >
+                <b className="text-ink type-lead font-bold leading-snug tracking-[-.01em]">
+                  {title}
+                </b>
+                <p className="type-meta text-body m-0">{body}</p>
               </div>
+            ))}
+            <div className="flex-[1_1_280px] bg-white border border-line rounded-md p-[22px] grid gap-2 content-start">
+              <b className="text-ink type-lead font-bold leading-snug tracking-[-.01em]">
+                Who we say no to
+              </b>
+              <p className="type-meta text-body m-0">
+                Named plainly, below on this page — because saying it up front
+                saves both sides a bad engagement.
+              </p>
             </div>
-            <div className="bg-white border border-line border-l-[3px] border-l-crit rounded-md p-6">
-              <p className="type-label text-label uppercase m-0 mb-4">
-                Not a fit
+            <div className="flex-[1_1_280px] bg-white border border-line rounded-md p-[22px] grid gap-2 content-start">
+              <b className="text-ink type-lead font-bold leading-snug tracking-[-.01em]">
+                What we don&apos;t guarantee
+              </b>
+              <p className="type-meta text-body m-0">
+                Also below, in the same list form the agreement uses. If a
+                promise is not in writing, we are not making it.
               </p>
-              <div className="grid gap-3 type-body text-body">
-                <div>Expecting passive income</div>
-                <div>Expecting guaranteed returns</div>
-                <div>Unwilling to approve purchases</div>
-                <div>Wants someone else to carry the risk</div>
-              </div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Petrol: #fees — the section people arrive for */}
       <section
         id="fees"
-        className="bg-field text-white [scroll-margin-top:calc(var(--stack-top)+8px)]"
+        className="bg-field text-white [scroll-margin-top:100px]"
       >
         <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(48px,6vw,88px)]">
-          <h2 className="font-display type-h2 text-white m-0 mb-4">
-            How we&apos;re paid
+          <h2 className="font-display type-h2 text-white m-0 max-w-[16ch] text-balance">
+            How we are paid
           </h2>
-          <div className="max-w-[62ch] grid gap-4">
-            <p className="type-lead text-on-field-body m-0">
-              A fee to build the operation, and — where it applies — a share
-              of the margin the business realises after goods actually sell.
-            </p>
-            <p className="type-body text-on-field-body m-0">
-              <strong className="text-white">What it is calculated on:</strong>{" "}
-              realised margin means the margin left after the goods have sold
-              and the marketplace has settled — sale proceeds less the cost of
-              goods, freight, duties, marketplace fees and advertising
-              attributable to those goods. It is not calculated on gross
-              sales, on projected sales, or on the capital you deploy.
-            </p>
-            <p className="type-body text-on-field-body m-0">
-              <strong className="text-white">How it is calculated:</strong>{" "}
-              the share applies only to margin actually realised in the
-              period, reconciled against your own settlement data — which you
-              hold, because the accounts are yours. If goods have not sold,
-              no performance fee has accrued on them.
-            </p>
-            <p className="type-body text-on-field-body m-0">
-              There is no monthly retainer, and no fee calculated on the
-              capital you deploy. If the margin isn&apos;t there, neither is
-              our share of it.
-            </p>
-            <p className="type-meta text-on-field-mute m-0">
-              No pricing figures are published while engagements are
-              individually scoped. We do not publish earnings figures, and we
-              do not guarantee sales, profit or returns.
-            </p>
+          <div className="flex flex-wrap gap-x-12 gap-y-8 mt-8">
+            <div className="flex-[1_1_320px] max-w-[60ch] grid gap-3.5">
+              <p className="type-lead text-on-field-body m-0">
+                A fee to build the operation, and — where it applies — a share
+                of the margin the business realises after goods actually sell.
+              </p>
+              <p className="type-body text-on-field-body m-0">
+                <strong className="text-white">
+                  What it is calculated on:
+                </strong>{" "}
+                realised margin means the margin left after the goods have
+                sold and the marketplace has settled — sale proceeds less the
+                cost of goods, freight, duties, marketplace fees and
+                advertising attributable to those goods. It is not calculated
+                on gross sales, on projected sales, or on the capital you
+                deploy.
+              </p>
+              <p className="type-body text-on-field-body m-0">
+                <strong className="text-white">How it is calculated:</strong>{" "}
+                the share applies only to margin actually realised in the
+                period, reconciled against your own settlement data — which
+                you hold, because the accounts are yours. If goods have not
+                sold, no performance fee has accrued on them.
+              </p>
+              <p className="type-body text-on-field-body m-0">
+                There is no monthly retainer, and no fee calculated on the
+                capital you deploy. If the margin isn&apos;t there, neither is
+                our share of it.
+              </p>
+              <p className="type-meta text-on-field-mute m-0">
+                No pricing figures are published while engagements are
+                individually scoped, and no earnings figures appear anywhere
+                on this site.
+              </p>
+            </div>
+            <div className="flex-[1_1_280px] grid content-start">
+              {FEE_RULES.map((r) => (
+                <div
+                  key={r}
+                  className="flex gap-3.5 items-start py-3.5 border-b border-line-on-field font-medium type-body"
+                >
+                  <span className="flex-none w-3.5 h-3.5 rounded-full bg-operate mt-1.5" />
+                  {r}
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="mt-8">
+        </div>
+      </section>
+
+      {/* White: who we say no to · what we don't guarantee · documents */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(40px,5vw,72px)]">
+          <div className="flex flex-wrap gap-x-12 gap-y-8">
+            <div className="flex-[1_1_300px] grid gap-3 content-start">
+              <h2 className="font-display type-h3 text-ink m-0">
+                Who we say no to
+              </h2>
+              {NO_TO.map((n) => (
+                <div
+                  key={n}
+                  className="flex gap-3.5 py-3 border-b border-line/60 text-ink type-body"
+                >
+                  <span className="flex-none w-3 h-3 rounded-[2px] bg-ink mt-2" />
+                  {n}
+                </div>
+              ))}
+            </div>
+            <div className="flex-[1_1_300px] grid gap-3 content-start">
+              <h2 className="font-display type-h3 text-ink m-0">
+                What we don&apos;t guarantee
+              </h2>
+              {NO_GUARANTEE.map((n) => (
+                <div
+                  key={n}
+                  className="flex gap-3.5 py-3 border-b border-line/60 text-ink type-body"
+                >
+                  <span className="flex-none w-3 h-3 rounded-[2px] bg-ink mt-2" />
+                  {n}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="mt-10 border border-line rounded-md px-6 py-5 flex justify-between gap-4 flex-wrap items-center">
+            <span className="text-ink font-semibold type-body">
+              Read the paperwork this page describes
+            </span>
+            {isLive("/documents") ? (
+              <a
+                href="/documents"
+                className="text-ink hover:text-ink font-medium type-body"
+              >
+                /documents →
+              </a>
+            ) : (
+              <span className="font-mono type-label text-label normal-case tracking-normal">
+                document room publishing soon
+              </span>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Petrol: CTA */}
+      <section className="bg-field text-white">
+        <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(48px,6vw,80px)]">
+          <p className="font-display type-h2 text-white m-0 max-w-[16ch] text-balance">
+            Tell us what you&apos;re trying to build.
+          </p>
+          <div className="flex gap-[22px] items-center mt-7 flex-wrap">
             <a
               href="/contact"
-              className="bg-build text-ink hover:text-ink type-body font-semibold px-[26px] py-4 rounded-md min-h-12 inline-flex items-center"
+              className="bg-build text-ink hover:text-ink type-body font-bold px-[22px] py-3.5 rounded-md min-h-12 inline-flex items-center"
             >
               Let&apos;s talk
             </a>
