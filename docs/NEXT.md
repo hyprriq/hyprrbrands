@@ -18,91 +18,69 @@
 > **Report back into the repo.** A commit message naming what shipped and what you disagreed
 > with is enough. Production is audited directly, so there is no need to describe what you
 > built — only what you decided.
+>
+> **Commit by path, not `git add -A`** — added 2 Sep after both sides did it within a minute of
+> each other. `b3c78be` swept in three `docs/` files written by the audit side mid-transcription;
+> the audit side's next commit swept back a `Hyprr_Brands_Guidelines.pdf` and a `package.json`
+> change that were sitting untracked in the tree. Nothing was lost and nothing needs undoing, but
+> the commit messages now describe work neither side did. `git add docs/` and `git add app/
+> components/ content/ lib/` keep the two lanes separate, which is the whole point of the split.
 
 
-Baseline confirmed against `2c071ef`: thirteen routes live, zero dead links, contrast clean at
-both viewports. The manifest is doing its job — every anomaly below is content, metadata or
-markup, none is structural.
+Baseline moved twice while this was being written. **`b3c78be` shipped step 6 — all ten
+service pages are live from `content/services/*.ts`.** Prompt 7 landed at `f7fef9c`. Two of the
+four tickets in the previous version of this file are done.
 
-**Five tickets are open.** **The order matters more than the contents**, because two of them
-multiply by page count if the eight remaining service pages land first.
-
-**New on 2 Sep: PROMPT_9 — the fee mechanic is unblocked.** It moves to position 2 for one
-reason: it removes three *false statements* that are live in production right now, and until it
-lands, every service page's fee section links to a placeholder. It is not a feature ticket. See
-below.
-
----
-
-## 1 · PROMPT_7_SITE_AUDIT_FIXES.md — do this first, it is small
-
-Naming, URL-paths-as-visible-text, unlinked cards, footer scope, and a path leaking into
-anchor text.
-
-**Why first, and it is the only reason:** every one of the five multiplies. The service label
-appears in the chip, the footer, the hub card and the manifest — fixing that in two pages costs
-minutes and in ten pages costs an afternoon. Same for the URL-in-card-corner, which is in every
-service card and every related-services block.
-
-Rationale for the naming call specifically, since it changes a §D string: `private label brand
-building agency` was tested and returns white-label reseller agencies, personal-branding
-studios and a map pack of design studios. It is a measured rejected keyword, not merely unused,
-and nothing in the page's H1, sixty-word answer or any H2 is about brand building. The service
-name becomes "Private label". The H1 stays long and descriptive — that is correct.
+**Three tickets are open, and one of them is new.**
 
 ---
 
-## 2 · PROMPT_9_FEES_BOOKACALL_WALMART.md — the retractions are the urgent half
+## 1 · PROMPT_9_FEES_BOOKACALL_WALMART.md — first, and section A is the reason
 
-Owner resolved the fee mechanic on 2 Sep. Figures are specified in
+Owner cleared the fee mechanic on 2 Sep. Figures are specified in
 `docs/content/fees-and-pricing.md`; the ticket is `docs/PROMPT_9_FEES_BOOKACALL_WALMART.md`.
 
-**Why this jumps ahead of step 6.** Three sentences currently live on the site stop being true
-the moment a $500 monthly minimum exists — "There is no monthly retainer", "If the margin isn't
-there, neither is our share of it", and "No pricing figures are published while engagements are
-individually scoped". A false claim on the one section a sceptical buyer reads hardest is worth
-more damage than eight unbuilt pages. **Section A of the ticket is the retractions and it can
-ship on its own** if the tables need longer.
+**Why this is first, ahead of schema and share cards.** Three sentences are live in production
+right now and stop being true the moment a $500 monthly minimum exists. Verified against the
+tree at `b3c78be`:
 
-It also unblocks the `→ /how-we-work#fees` link that every one of the twelve written service
-pages ends its fee section with. Step 6 lands those pages; landing them into a placeholder
-wastes the link.
+```
+app/how-we-work/page.tsx:198   "There is no monthly retainer, and no fee calculated on the..."
+app/how-we-work/page.tsx:203   "No pricing figures are published while engagements are..."
+components/home/PricingBand.tsx:19   "...isn't there, neither is our share of it."
+```
 
-Three other things ride along: the homepage `CtaSection` becomes bookable (env-var'd, with a
-`/contact` fallback so an unset scheduler cannot ship a dead button), Walmart is named
-explicitly on `/private-label`, and `FEE_RULES` is replaced.
+A false claim in the fee section — the one place a sceptical buyer reads hardest, and the one
+place this business is asking to be trusted — is worth more damage than anything else in the
+queue. **Section A of the ticket is those three retractions and nothing else. It can ship on its
+own** if the tables need longer.
 
-**Read `docs/content/fees-and-pricing.md` before the ticket.** It carries the reasoning for
-publishing figures at all, the FTC line between a price list and an earnings claim, and the two
-constraints that are easy to get wrong: `$14,999` never renders alone, and the worked example's
-"arbitrary round numbers" label must sit in the same block as the numbers.
+It also unblocks the `→ /how-we-work#fees` link that all ten now-live service pages end their fee
+section with. Ten pages currently point at a placeholder.
 
----
+Three things ride along: the homepage `CtaSection` becomes bookable (env-var'd, with a `/contact`
+fallback so an unset scheduler cannot ship a dead button), Walmart is named on `/private-label`,
+and `FEE_RULES` is replaced.
 
-## 3 · Step 6 — GREENLIT. Run it.
+**Read `docs/content/fees-and-pricing.md` before the ticket.** It carries the reasoning the
+figures depend on — the line between a price list and an earnings claim, why publishing beats
+gating on this specific SERP, and the two things easy to get wrong: `$14,999` never renders
+alone, and the worked example's "arbitrary round numbers" label must sit in the same rendered
+block as the numbers.
 
-The gate is cleared. Two things before you start:
+### One thing step 6 did not pick up
 
-**Content is written — do not author it.** `docs/content/` holds finished content for all ten
-service pages plus the hubs, `/true-cost`, `/about`, `/contact` and legal. Start at
-`docs/content/README.md`. Field names already match the design's `F.<family>` objects, so a
-data file is transcription. This also replaces the ~700 words of placeholder content on
-`/private-label` — swap those strings for the real ones.
-
-**Reading convention:** in those files, a line of the form `→ /some-path` is a *link
-instruction*, not copy. The anchor text is the human phrase before the arrow. `Full fee
-mechanic → /how-we-work#fees` currently renders the path inside the anchor on
-`/private-label`; that is B5 in prompt 7 and it will recur eight times if the convention is not
-read this way.
-
-Your proposed scoping — `content/services/` plus the three GAP 2 pages — is right and does not
-collide with prompt 7 if 7 lands first.
+`content/services/private-label.ts` has **zero** occurrences of "Walmart";
+`wholesale-ecommerce.ts` has six. The private-label content file was patched after step 6 was
+already transcribing, so §D of the ticket is a re-transcription of five specific fields, not new
+authoring. `docs/content/private-label.md` is current.
 
 ---
 
-## 4 · PROMPT_8_SHARE_CARDS_GEO_A11Y.md — parallel with step 6, different files
+## 2 · PROMPT_8_SHARE_CARDS_GEO_A11Y.md
 
-Nine findings, none touching `content/services/`.
+Nine findings. Now larger than it was, because it applies to thirteen live routes rather than
+five.
 
 **B1 is the largest visual gap on the site and it has not been looked at.** Every page sets
 `twitter:card = summary_large_image` and has no `og:image` and no `twitter:image`. That is worse
@@ -112,8 +90,8 @@ Founder-led LinkedIn distribution is the marketing plan, and this is the asset i
 It is also the answer to "the site needs visuals" — one visual, thirteen times, generated from
 type and existing tokens with no photography. The spec is in the prompt.
 
-**B2:** `/llms.txt` is 404 and §N requires it. Your robots.txt is genuinely well done — every
-AI crawler explicitly allowed, sitemap declared — so this is the missing companion, not a
+**B2:** `/llms.txt` is 404 and §N requires it. The robots.txt is genuinely well done — every AI
+crawler explicitly allowed, sitemap declared — so this is the missing companion, not a
 correction.
 
 **B3** touches the homepage and `/how-we-work` only: five H2s are a heading straight into a grid
@@ -122,15 +100,16 @@ this, so it is bringing two pages up to the existing standard.
 
 ---
 
-## 5 · PROMPT_6_SCHEMA_AND_METADATA.md — last, deliberately
+## 3 · PROMPT_6_SCHEMA_AND_METADATA.md
 
 There is **no JSON-LD anywhere on the site**. §M specifies the graph and §N depends on it.
 
-Scheduled last only so the Service schema covers all ten pages in one pass rather than two now
-and eight later. If step 6 slips, do prompt 6 first — it is not blocked by anything.
+This was scheduled last so the Service schema could cover all ten pages in one pass. **That
+condition is now met** — step 6 shipped them — so the only thing still holding it back is that
+`/#organization` cannot carry `legalName` or registration details until the entity blocker
+clears. Ship it without those and add them in a one-line follow-up; do not wait.
 
-Corrected titles and descriptions for every page are in the `docs/content/` files; four meta
-descriptions are currently over length and four hub titles are under 30 characters.
+Corrected titles and descriptions for every page are in the `docs/content/` files.
 
 ---
 
