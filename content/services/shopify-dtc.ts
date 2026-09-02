@@ -31,6 +31,8 @@ const data: ServicePageData = {
     "Hyprr builds them together, then either hands over with documentation or keeps operating it. Both are real options and the handover is a specific step with a runbook, not an implied one.",
   ],
 
+  involvesSubheads: ["The journey, not the theme", "After the store is live"],
+
   visual: {
     kind: "journey",
     title: "The customer journey",
@@ -63,6 +65,8 @@ const data: ServicePageData = {
     ],
   },
 
+  artefactNote:
+    "Read bottom to top: the storefront is the last layer, not the first. Most DTC problems that present as design problems are merchandising or acquisition problems one layer down.",
   fitFor: [
     "You have a product or brand that deserves a direct relationship with its customers",
     "You want to own the store, the code and the data",
@@ -121,6 +125,8 @@ const data: ServicePageData = {
   ],
   yoursOutro:
     "The store is on your Shopify account, the domain is registered to you, the ad and email accounts are yours with us added as users, and the customer list is exportable at any time.",
+  managedLead:
+    "The store is operated rather than delivered. Merchandising and conversion work continue after launch, because a storefront that is not being changed is quietly getting worse.",
   managed: [
     ["Storefront", "built · maintained"],
     ["Merchandising", "ongoing"],
@@ -163,13 +169,26 @@ const data: ServicePageData = {
     ],
   },
 
+  nextStep: {
+    engine: "grow",
+    h3: "A store that converts still has to be fed.",
+    body: "Once the journey works, the constraint moves to acquisition and repeat purchase — which channels pay back, what a customer is worth the second time, and where growth stops being profitable. That is the Grow side.",
+    links: [
+      { label: "Ecommerce growth", href: "/ecommerce-growth" },
+      { label: "The Grow engine", href: "/grow" },
+    ],
+  },
   related: [
     {
       name: "Ecommerce website development",
       slug: "/ecommerce-website-development",
       engine: "build",
     },
-    { name: "Ecommerce growth", slug: "/ecommerce-growth", engine: "grow" },
+    {
+      name: "Shopify management",
+      slug: "/shopify-management",
+      engine: "operate",
+    },
   ],
   insight: "DTC versus marketplace: which one first",
 };

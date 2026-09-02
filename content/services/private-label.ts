@@ -33,6 +33,8 @@ const data: ServicePageData = {
     "You fund inventory, testing, certification, trademark and advertising directly. Hyprr does the research, the coordination, the build and the launch.",
   ],
 
+  involvesSubheads: ["Deciding before spending", "Where launches fail"],
+
   visual: {
     kind: "sequence",
     title: "From product to brand · gated sequence",
@@ -126,6 +128,8 @@ const data: ServicePageData = {
   ],
   yoursOutro:
     "The trademark is filed in your name from the start, not transferred later. The supplier knows you as the client. If we stop working together, the brand does not change hands.",
+  managedLead:
+    "A private label build is a sequence with gates, not a set of parallel tasks, so each item below has to clear before the next one starts. Nothing proceeds while the gate above it is open.",
   managed: [
     ["Research & verdict", "per product"],
     ["Supplier & sample", "coordinated"],
@@ -165,9 +169,26 @@ const data: ServicePageData = {
     },
   ],
 
+  nextStep: {
+    engine: "grow",
+    h3: "Launch is the start of the operation, not the end of it.",
+    body: "A launched product is a business that now has to be grown — listings and advertising judged against margin, replenishment against sell-through, and reviews earned within policy. That work is the Grow side, and nothing is handed over between them.",
+    links: [
+      { label: "Marketplace growth", href: "/marketplace-growth" },
+      { label: "The Grow engine", href: "/grow" },
+    ],
+  },
   related: [
-    { name: "Shopify / DTC", slug: "/shopify-dtc", engine: "build" },
-    { name: "Marketplace growth", slug: "/marketplace-growth", engine: "grow" },
+    {
+      name: "Shopify / DTC",
+      slug: "/shopify-dtc",
+      engine: "build",
+    },
+    {
+      name: "Wholesale ecommerce",
+      slug: "/wholesale-ecommerce",
+      engine: "build",
+    },
   ],
   insight: "The real cost of a private label product",
 };

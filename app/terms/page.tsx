@@ -5,7 +5,7 @@ import LegalPage from "@/components/LegalPage";
 export const metadata: Metadata = {
   title: "Terms of Service | Hyprr Brands",
   description:
-    "The terms that apply to using this website. Engagement terms live in the written agreement each client signs.",
+    "The terms that apply to using this website. Engagement terms live in the written agreement each client signs, and not on this page.",
   alternates: { canonical: "/terms" },
   ...ogImageMeta("terms"),
 };
@@ -14,7 +14,7 @@ export default function Page() {
   return (
     <LegalPage
       path="/terms"
-      description="The terms that apply to using this website. Engagement terms live in the written agreement each client signs."
+      description="The terms that apply to using this website. Engagement terms live in the written agreement each client signs, and not on this page."
       title="Terms of service" version="v0.1 · 2 September 2026 · under owner review">
       <p>
         These terms cover the use of this website. The terms of an actual

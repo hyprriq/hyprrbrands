@@ -88,55 +88,115 @@ function Visual({ visual, dot }: { visual: ServiceVisual; dot: string }) {
               </div>
             ))}
           </div>
-          {/* Mobile: stacked cards, one row per card, label–value pairs */}
+          {/* Mobile — prompt 13 B: reduce the argument, not the
+              responsiveness. One row per tone (the approved / marginal /
+              refused triad carries the point), three fields showing, the
+              rest behind a closed disclosure. */}
           <div className="min-[900px]:hidden grid gap-3">
-            {visual.rows.map((r, i) => (
-              <div
-                key={i}
-                className="bg-white border border-line rounded-md p-4 grid gap-2 type-meta"
-              >
-                <div className="flex justify-between items-center pb-2 border-b border-line/60">
-                  <b className="text-ink font-mono">{r.cells[0]}</b>
-                  <span className="flex gap-2 items-center font-semibold text-ink">
-                    <span
-                      className={`w-2.5 h-2.5 rounded-full ${TONE_DOT[r.tone]}`}
-                    />
-                    {r.status}
-                  </span>
-                </div>
-                {r.cells.slice(1).map((v, j) => (
-                  <div key={j} className="flex justify-between gap-3">
-                    <span className="font-mono type-label text-label uppercase">
-                      {visual.cols[j + 1]}
-                    </span>
-                    <span className="text-ink font-mono">{v}</span>
+            {(["ok", "warn", "crit"] as const)
+              .map((tone) => visual.rows.find((r) => r.tone === tone))
+              .filter((r): r is NonNullable<typeof r> => Boolean(r))
+              .map((r, i) => {
+                const last = r.cells[r.cells.length - 1];
+                const hidden = r.cells.slice(1, -1);
+                return (
+                  <div
+                    key={i}
+                    className="bg-white border border-line rounded-md p-4 grid gap-2 type-meta"
+                  >
+                    <div className="flex justify-between items-center pb-2 border-b border-line/60">
+                      <b className="text-ink font-mono">{r.cells[0]}</b>
+                      <span className="flex gap-2 items-center font-semibold text-ink">
+                        <span
+                          className={`w-2.5 h-2.5 rounded-full ${TONE_DOT[r.tone]}`}
+                        />
+                        {r.status}
+                      </span>
+                    </div>
+                    <div className="flex justify-between gap-3">
+                      <span className="font-mono type-label text-label uppercase">
+                        {visual.cols[visual.cols.length - 2]}
+                      </span>
+                      <span className="text-ink font-mono">{last}</span>
+                    </div>
+                    {hidden.length > 0 && (
+                      <details>
+                        <summary className="cursor-pointer font-mono type-label text-label normal-case tracking-normal">
+                          Full line
+                        </summary>
+                        <div className="grid gap-1.5 pt-2">
+                          {hidden.map((v, j) => (
+                            <div key={j} className="flex justify-between gap-3">
+                              <span className="font-mono type-label text-label uppercase">
+                                {visual.cols[j + 1]}
+                              </span>
+                              <span className="text-ink font-mono">{v}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </details>
+                    )}
                   </div>
-                ))}
-              </div>
-            ))}
+                );
+              })}
+            {visual.mobileCaption && (
+              <p className="type-meta text-body m-0">{visual.mobileCaption}</p>
+            )}
           </div>
         </>
       );
     case "sequence":
       return (
-        <div className="grid max-w-[560px]">
-          {visual.steps.map(([label, gate], i) => (
-            <div key={label} className="grid grid-cols-[28px_1fr] gap-4">
-              <div className="flex flex-col items-center">
-                <span className={`w-3 h-3 rounded-full ${dot} mt-[22px] flex-none`} />
-                {i < visual.steps.length - 1 && (
-                  <span className="w-[2px] flex-1 bg-line mt-1.5" />
-                )}
+        <>
+          {/* Desktop: the vertical gated sequence, unchanged */}
+          <div className="hidden min-[900px]:grid max-w-[560px]">
+            {visual.steps.map(([label, gate], i) => (
+              <div key={label} className="grid grid-cols-[28px_1fr] gap-4">
+                <div className="flex flex-col items-center">
+                  <span className={`w-3 h-3 rounded-full ${dot} mt-[22px] flex-none`} />
+                  {i < visual.steps.length - 1 && (
+                    <span className="w-[2px] flex-1 bg-line mt-1.5" />
+                  )}
+                </div>
+                <div className="bg-white border border-line rounded-md px-5 py-4 mb-2.5 flex justify-between gap-3 items-center">
+                  <b className="text-ink type-body">{label}</b>
+                  <span className="font-mono type-label text-label uppercase">
+                    {gate}
+                  </span>
+                </div>
               </div>
-              <div className="bg-white border border-line rounded-md px-5 py-4 mb-2.5 flex justify-between gap-3 items-center">
-                <b className="text-ink type-body">{label}</b>
-                <span className="font-mono type-label text-label uppercase">
-                  {gate}
-                </span>
-              </div>
+            ))}
+          </div>
+          {/* Mobile — prompt 13 D: horizontal scroll-snap, numbers kept
+              visible as the how-many-remain affordance, right-edge fade,
+              no arrow buttons. */}
+          <div className="min-[900px]:hidden relative">
+            <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-2 [-webkit-overflow-scrolling:touch]">
+              {visual.steps.map(([label, gate], i) => (
+                <div
+                  key={label}
+                  className="snap-start [scroll-snap-stop:always] flex-none min-w-[78vw] max-w-[320px] bg-white border border-line rounded-md px-5 py-4 grid gap-2"
+                >
+                  <div className="flex justify-between items-center">
+                    <span className="font-mono type-label text-label">
+                      {String(i + 1).padStart(2, "0")} /{" "}
+                      {String(visual.steps.length).padStart(2, "0")}
+                    </span>
+                    <span className={`w-3 h-3 rounded-full ${dot}`} />
+                  </div>
+                  <b className="text-ink type-body">{label}</b>
+                  <span className="font-mono type-label text-label uppercase">
+                    {gate}
+                  </span>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-bone to-transparent"
+            />
+          </div>
+        </>
       );
     case "journey":
       return (
@@ -541,6 +601,36 @@ function HwwInsert({ hww }: { hww: ServiceHww }) {
 
 /* ------------------------------ page ------------------------------- */
 
+/** Hero "at a glance" panel — prompt 13 A. Type and tokens only, no
+ *  image: content that stands on its own and gets upgraded to the
+ *  tier-2 diagram later, not a placeholder for a missing asset. */
+function AtAGlance({ data }: { data: ServicePageData }) {
+  const e = ENGINE_META[data.engine];
+  const rows: [string, string][] = [
+    ["Engine", e.hub],
+    ["Marketplaces", "Amazon US & UK · Walmart US"],
+    ["You hold", data.yours.slice(0, 4).join(" · ")],
+    ["First 90 days", data.phases.map((p) => p.title).join(" → ")],
+  ];
+  return (
+    <div
+      className={`bg-white border border-line border-t-[3px] ${e.topRule} rounded-lg p-[clamp(20px,2.2vw,26px)] grid gap-3 content-start`}
+    >
+      <p className="font-mono type-label text-label uppercase m-0">
+        At a glance
+      </p>
+      {rows.map(([k, v]) => (
+        <div key={k} className="grid gap-0.5 py-2 border-t border-line/60">
+          <span className="font-mono type-label text-label uppercase">
+            {k}
+          </span>
+          <span className="type-meta text-ink font-medium">{v}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function ServicePage({ data }: { data: ServicePageData }) {
   const e = ENGINE_META[data.engine];
   const sentences = data.answer.match(/[^.]+\./g) ?? [data.answer];
@@ -595,60 +685,73 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
               </li>
             </ol>
           </nav>
-          <h1 className="font-display type-h1 text-ink m-0 mt-4 max-w-[18ch] text-balance">
-            {data.h1}
-          </h1>
-          {/* Mobile above the fold: first sentence + one CTA */}
-          <p className="type-lead text-body m-0 mt-5 max-w-[62ch] min-[900px]:hidden">
-            {answerFirst}
-          </p>
-          <a
-            href="/contact"
-            className="min-[900px]:hidden bg-field text-white hover:text-white type-body font-semibold px-[22px] py-3.5 rounded-md min-h-12 flex items-center justify-center mt-5"
-          >
-            Let&apos;s talk
-          </a>
-          <p className="type-lead text-body m-0 mt-6 max-w-[62ch] max-[899px]:mt-7 max-[899px]:hidden">
-            {data.answer}
-          </p>
-          <p className="type-body text-body m-0 mt-6 max-w-[62ch] min-[900px]:hidden">
-            {sentences.slice(1).join(" ").trim()}
-          </p>
-          <p className="type-body text-ink font-medium mt-4 mb-0 max-w-[62ch] flex gap-2.5 items-start">
-            <span className="flex-none w-3 h-3 rounded-[2px] bg-ink mt-1.5" />
-            <span>{data.disqualifier}</span>
-          </p>
-          {data.heroObjection && (
-            <p className="type-body text-body mt-4 mb-0 max-w-[62ch]">
-              {data.heroObjection.text}{" "}
+          <div className="min-[900px]:flex min-[900px]:gap-[clamp(32px,4vw,64px)] min-[900px]:items-start">
+            <div className="min-w-0 flex-1">
+              <h1 className="font-display type-h1 text-ink m-0 mt-4 max-w-[18ch] text-balance">
+                {data.h1}
+              </h1>
+              {/* Mobile above the fold: first sentence + one CTA */}
+              <p className="type-lead text-body m-0 mt-5 max-w-[62ch] min-[900px]:hidden">
+                {answerFirst}
+              </p>
               <a
-                href={`#${data.heroObjection.anchor}`}
-                className="text-ink hover:text-ink font-semibold whitespace-nowrap"
+                href="/contact"
+                className="min-[900px]:hidden bg-field text-white hover:text-white type-body font-semibold px-[22px] py-3.5 rounded-md min-h-12 flex items-center justify-center mt-5"
               >
-                {data.heroObjection.anchorLabel} →
+                Let&apos;s talk
               </a>
-            </p>
-          )}
-          <div className="hidden min-[900px]:flex gap-[22px] items-center mt-7 flex-wrap">
-            <a
-              href="/contact"
-              className="bg-field text-white hover:text-white type-body font-semibold px-[22px] py-3.5 rounded-md min-h-12 inline-flex items-center"
-            >
-              Let&apos;s talk
-            </a>
-            <a
-              href="/how-we-work"
-              className="text-ink hover:text-ink type-body font-medium"
-            >
-              See how we work →
-            </a>
+              <p className="type-lead text-body m-0 mt-6 max-w-[62ch] max-[899px]:mt-7 max-[899px]:hidden">
+                {data.answer}
+              </p>
+              <p className="type-body text-body m-0 mt-6 max-w-[62ch] min-[900px]:hidden">
+                {sentences.slice(1).join(" ").trim()}
+              </p>
+              {/* Mobile: the panel sits below the answer, above the rest.
+                  It never stacks above the H1. */}
+              <div className="min-[900px]:hidden mt-6">
+                <AtAGlance data={data} />
+              </div>
+              <p className="type-body text-ink font-medium mt-4 mb-0 max-w-[62ch] flex gap-2.5 items-start">
+                <span className="flex-none w-3 h-3 rounded-[2px] bg-ink mt-1.5" />
+                <span>{data.disqualifier}</span>
+              </p>
+              {data.heroObjection && (
+                <p className="type-body text-body mt-4 mb-0 max-w-[62ch]">
+                  {data.heroObjection.text}{" "}
+                  <a
+                    href={`#${data.heroObjection.anchor}`}
+                    className="text-ink hover:text-ink font-semibold whitespace-nowrap"
+                  >
+                    {data.heroObjection.anchorLabel} →
+                  </a>
+                </p>
+              )}
+              <div className="hidden min-[900px]:flex gap-[22px] items-center mt-7 flex-wrap">
+                <a
+                  href="/contact"
+                  className="bg-field text-white hover:text-white type-body font-semibold px-[22px] py-3.5 rounded-md min-h-12 inline-flex items-center"
+                >
+                  Let&apos;s talk
+                </a>
+                <a
+                  href="/how-we-work"
+                  className="text-ink hover:text-ink type-body font-medium"
+                >
+                  See how we work →
+                </a>
+              </div>
+              <a
+                href="/how-we-work"
+                className="min-[900px]:hidden text-ink hover:text-ink type-body font-medium inline-block mt-5"
+              >
+                See how we work →
+              </a>
+            </div>
+            {/* Desktop: the at-a-glance panel fills the fold's right half */}
+            <div className="hidden min-[900px]:block flex-none w-[clamp(300px,30vw,400px)] mt-4">
+              <AtAGlance data={data} />
+            </div>
           </div>
-          <a
-            href="/how-we-work"
-            className="min-[900px]:hidden text-ink hover:text-ink type-body font-medium inline-block mt-5"
-          >
-            See how we work →
-          </a>
         </div>
       </section>
 
@@ -707,14 +810,26 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
             What {data.short} actually involves
           </h2>
           <div className="flex flex-wrap gap-x-12 gap-y-8 mt-7 items-start">
-            <div className="flex-[1_1_320px] max-w-[62ch] grid gap-3.5">
+            {/* 58ch + gap-5 + subheads before ¶3 and ¶5: three movements
+                rather than one block (prompt 13 C). */}
+            <div className="flex-[1_1_320px] max-w-[58ch] grid gap-5">
               <p className="type-body text-ink font-medium m-0">
                 {data.involvesLead}
               </p>
               {data.involvesBody.map((p, i) => (
-                <p key={i} className="type-body text-body m-0">
-                  {p}
-                </p>
+                <div key={i} className="grid gap-5">
+                  {data.involvesSubheads?.[0] && i === 2 && (
+                    <h3 className="font-display type-h3 text-ink m-0 mt-1">
+                      {data.involvesSubheads[0]}
+                    </h3>
+                  )}
+                  {data.involvesSubheads?.[1] && i === 4 && (
+                    <h3 className="font-display type-h3 text-ink m-0 mt-1">
+                      {data.involvesSubheads[1]}
+                    </h3>
+                  )}
+                  <p className="type-body text-body m-0">{p}</p>
+                </div>
               ))}
             </div>
             {data.comparison && (
@@ -1019,6 +1134,8 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
               paperwork the engagement runs on, readable before you speak to
               anyone.
             </p>
+            {/* Decision 2 refinement: the label renders once per
+                section, not once per tile. */}
             <div className="flex flex-wrap gap-2 mt-5">
               {[
                 "Sample agreement",
@@ -1030,21 +1147,23 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
                   className="flex-[1_1_220px] bg-field-raised rounded-md px-5 py-[18px] flex justify-between gap-3 items-center"
                 >
                   <b className="text-white type-body">{k}</b>
-                  {isLive("/documents") ? (
+                  {isLive("/documents") && (
                     <a
                       href="/documents"
                       className="font-mono type-label text-on-field-mute normal-case tracking-normal hover:text-white"
                     >
                       Read →
                     </a>
-                  ) : (
-                    <span className="font-mono type-label text-on-field-mute normal-case tracking-normal">
-                      publishing soon
-                    </span>
                   )}
                 </div>
               ))}
             </div>
+            {!isLive("/documents") && (
+              <p className="font-mono type-label text-on-field-mute normal-case tracking-normal mt-3.5 mb-0">
+                publishing soon — the document room opens with the first
+                real document
+              </p>
+            )}
           </div>
         </section>
 
@@ -1086,54 +1205,6 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
                   {p}
                 </p>
               ))}
-              {data.feesTable && (
-                <>
-                  <div className="overflow-x-auto border border-line rounded-md">
-                    <table className="w-full min-w-[480px] border-collapse type-meta">
-                      <thead>
-                        <tr className="border-b border-line bg-bone/50">
-                          {data.feesTable.header.map((h) => (
-                            <th
-                              key={h}
-                              className="text-left p-3.5 font-mono type-label text-label uppercase"
-                            >
-                              {h}
-                            </th>
-                          ))}
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {data.feesTable.rows.map((row, i) => (
-                          <tr
-                            key={i}
-                            className="border-b border-line/60 last:border-b-0"
-                          >
-                            {row.map((cell, j) => (
-                              <td
-                                key={j}
-                                className={`p-3.5 ${
-                                  j === 0
-                                    ? "text-ink font-semibold"
-                                    : j >= 2
-                                      ? "text-ink font-semibold font-mono"
-                                      : "text-body"
-                                }`}
-                              >
-                                {cell}
-                              </td>
-                            ))}
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                  {data.feesTable.note && (
-                    <p className="type-body text-body m-0">
-                      {data.feesTable.note}
-                    </p>
-                  )}
-                </>
-              )}
             </div>
             <a
               href="/how-we-work#fees"
@@ -1193,9 +1264,39 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
         </section>
       )}
 
-      {/* 12 · Bone: related */}
+      {/* 12 · Bone: what comes next + related. The nextStep block is
+          the engine progression (Build → Grow → Operate → the
+          reporting loop) — kicker takes the NEXT engine's colour as a
+          dot, never as text on Bone. */}
       <section className="bg-bone">
         <div className={`${CONTAINER} py-[clamp(40px,5vw,64px)]`}>
+          {data.nextStep && (
+            <div className="mb-[clamp(28px,4vw,44px)] max-w-[62ch]">
+              <p className="font-mono type-label text-label uppercase m-0 mb-3 flex items-center gap-2.5">
+                <span
+                  className={`w-2.5 h-2.5 rounded-full ${ENGINE_META[data.nextStep.engine].dot}`}
+                />
+                What comes next
+              </p>
+              <h3 className="font-display type-h3 text-ink m-0 mb-3">
+                {data.nextStep.h3}
+              </h3>
+              <p className="type-body text-body m-0 mb-4">
+                {data.nextStep.body}
+              </p>
+              <div className="flex gap-[22px] flex-wrap">
+                {data.nextStep.links.map((l) => (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    className="text-ink hover:text-ink type-body font-semibold"
+                  >
+                    {l.label} →
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
           <div className="flex flex-wrap gap-x-12 gap-y-6">
             <div className="flex-[1_1_320px] grid gap-2 content-start">
               <div className="font-mono type-label text-label uppercase mb-1.5">

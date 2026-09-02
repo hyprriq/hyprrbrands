@@ -32,6 +32,8 @@ const HUBS: Record<
     connects: string[];
     /** Rendered after the connects paragraphs, with an inline link. */
     connectsLink?: { before: string; href: string; label: string };
+    /** B1: each hub links to the other two by name, in body copy. */
+    hubLinks: { before: string; links: { label: string; href: string }[] };
   }
 > = {
   build: {
@@ -45,6 +47,13 @@ const HUBS: Record<
     nodes: ["Wholesale", "Private label", "Shopify / DTC", "Website development"],
     servicesTitle: "Four ways to build",
     connectsTitle: "How Build connects to Grow and Operate",
+    hubLinks: {
+      before: "The demand side of that work lives in",
+      links: [
+        { label: "Grow", href: "/grow" },
+        { label: "Operate", href: "/operate" },
+      ],
+    },
     connects: [
       "Build decides what the business sells and through what. That decision sets the ceiling on everything after it: a catalogue bought at the wrong landed cost cannot be advertised into profit, and a product that failed validation cannot be operated into demand. Most of what looks like a growth problem in year two was a build decision in month two.",
       "Which is why the same people carry it forward. The economics read that approved a catalogue line becomes the margin floor that growth work respects. The compliance gates cleared at launch become the account health the operations desk monitors. Handing a build to one firm and its consequences to another is how businesses end up with three providers and nobody accountable for the arithmetic.",
@@ -61,6 +70,13 @@ const HUBS: Record<
     nodes: ["Demand", "Acquisition", "Conversion", "Channel", "Margin"],
     servicesTitle: "Three ways to grow",
     connectsTitle: "How Grow connects to Build and Operate",
+    hubLinks: {
+      before: "The operation that absorbs growth is",
+      links: [
+        { label: "Operate", href: "/operate" },
+        { label: "Build", href: "/build" },
+      ],
+    },
     connects: [
       "Growth is constrained on both sides. What was built decides what can be grown — a catalogue with no margin headroom cannot be advertised into one. What is operated decides how fast — inventory cover, fulfilment capacity and case volume all cap the rate at which more demand is a good idea rather than a problem.",
       "So growth work here is mostly sequencing: identifying which constraint is currently binding, releasing it if that is cheaper than working around it, and taking the next action only when the operation can absorb it. That includes stopping. A growth action that would break fulfilment or push a line below its margin floor does not run, and the recommendation to wait is one we can afford to make because the fee follows realised margin rather than activity.",
@@ -76,8 +92,8 @@ const HUBS: Record<
     band: "bg-operate-band",
     dot: "bg-operate",
     title: "Operate an Ecommerce Business | Hyprr Brands",
-    meta: "Purchase, inventory, order, account, report, next decision. A desk with a cadence and a written path for when something goes wrong.",
-    h1: "Keep the machine running every day",
+    meta: "Purchasing, inventory, orders, account health and reporting. Four ways to keep an ecommerce operation running, and which one fits where you are.",
+    h1: "Operate: the work that keeps it selling",
     lead: "Purchase, inventory, order, account, report, next decision. Operations is a desk with a cadence and a written path for when something goes wrong.",
     nodes: [
       "Purchase",
@@ -89,15 +105,17 @@ const HUBS: Record<
     ],
     servicesTitle: "Three ways to operate",
     connectsTitle: "How Operate connects to Build and Grow",
+    hubLinks: {
+      before: "What the desk runs was stood up in",
+      links: [
+        { label: "Build", href: "/build" },
+        { label: "Grow", href: "/grow" },
+      ],
+    },
     connects: [
       "Operations is where the other two are proved or disproved. A build's decisions show up as the desk's daily reality — the supplier terms, the compliance obligations, the platform's maintenance cost. A growth action's consequences arrive here within days: more orders, more cases, less cover.",
       "That is also why the reporting cadence matters more than it sounds. The weekly report is not an update, it is the input to the next build and growth decision — what sold, what stalled, what needs a decision from you. A business where operations reports upward into the same people making the growth calls compounds. One where they are separate providers spends its meetings reconciling versions of the same week.",
     ],
-    connectsLink: {
-      before: "Reporting detail is at",
-      href: "/ecommerce-operations#reporting",
-      label: "the weekly report sample",
-    },
   },
 };
 
@@ -227,6 +245,23 @@ export default function HubPage({ engine }: { engine: Exclude<Engine, null> }) {
                 {p}
               </p>
             ))}
+            <p className="type-body text-body m-0">
+              {hub.hubLinks.before}{" "}
+              <a
+                href={hub.hubLinks.links[0].href}
+                className="text-ink hover:text-ink font-semibold"
+              >
+                {hub.hubLinks.links[0].label}
+              </a>
+              , and the rest of the engine in{" "}
+              <a
+                href={hub.hubLinks.links[1].href}
+                className="text-ink hover:text-ink font-semibold"
+              >
+                {hub.hubLinks.links[1].label}
+              </a>
+              .
+            </p>
             {hub.connectsLink && (
               <p className="type-body text-body m-0">
                 {hub.connectsLink.before}{" "}

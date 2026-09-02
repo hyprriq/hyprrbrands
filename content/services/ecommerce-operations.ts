@@ -36,6 +36,8 @@ const data: ServicePageData = {
     "What this is not is software. There is no dashboard that raises a purchase order, argues a case or notices that a listing quietly went inactive.",
   ],
 
+  involvesSubheads: ["The daily cadence", "When something goes wrong"],
+
   visual: {
     kind: "table",
     title: "The daily operating desk",
@@ -150,6 +152,8 @@ const data: ServicePageData = {
   ],
   yoursOutro:
     "We work under permissioned access you grant and can revoke. We do not hold credentials, we cannot move money, and we cannot place a purchase order without your approval. The records are generated in your accounts, not ours.",
+  managedLead:
+    "These four run every working day whether or not anything is wrong, which is the point — most operational damage comes from the day nobody looked, not from the day something broke.",
   managed: [
     ["Purchase orders", "daily · approved"],
     ["Inventory", "daily"],
@@ -182,6 +186,15 @@ const data: ServicePageData = {
     },
   ],
 
+  nextStep: {
+    engine: "operate",
+    h3: "The cadence ends in a decision, not a dashboard.",
+    body: "Every cycle closes with a written read on what the period actually made and what to do differently — the same reconciliation the fee is calculated from, which is why the arithmetic is checkable rather than asserted.",
+    links: [
+      { label: "How the reporting works", href: "/how-we-work#reporting" },
+      { label: "How we are paid", href: "/how-we-work#fees" },
+    ],
+  },
   related: [
     {
       name: "Marketplace management",
@@ -192,6 +205,11 @@ const data: ServicePageData = {
       name: "Shopify management",
       slug: "/shopify-management",
       engine: "operate",
+    },
+    {
+      name: "Ecommerce growth",
+      slug: "/ecommerce-growth",
+      engine: "grow",
     },
   ],
   insight: "The operating model: how the desk actually runs",

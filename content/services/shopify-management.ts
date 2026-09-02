@@ -34,6 +34,8 @@ const data: ServicePageData = {
     "The difference from a web agency retainer is the direction of initiative. A retainer waits to be asked. An operation notices that a collection has been out of season for three weeks, that a third of the app stack is unused, and that page speed has degraded since March.",
   ],
 
+  involvesSubheads: ["What a retainer misses", "Maintenance nobody asks for"],
+
   visual: {
     kind: "table",
     title: "The store desk · store-scoped",
@@ -152,6 +154,8 @@ const data: ServicePageData = {
   ],
   yoursOutro:
     "We are collaborators on your Shopify account, added and removable by you. Apps are installed under your account and billed to you. Nothing we build requires us to keep running.",
+  managedLead:
+    "The difference from a retainer is direction of initiative, and this list is what that looks like: work that happens because the calendar says so, not because someone raised a ticket.",
   managed: [
     ["Catalogue", "weekly"],
     ["Merchandising", "ongoing"],
@@ -184,12 +188,30 @@ const data: ServicePageData = {
     },
   ],
 
+  nextStep: {
+    engine: "operate",
+    h3: "An operation you can audit from the outside.",
+    body: "The monthly read covers what was maintained, what was noticed without being asked, and what it made after costs — which is the difference between an operation and a queue of tickets someone worked through.",
+    links: [
+      { label: "How the reporting works", href: "/how-we-work#reporting" },
+      { label: "How we are paid", href: "/how-we-work#fees" },
+    ],
+  },
   related: [
-    { name: "Shopify / DTC", slug: "/shopify-dtc", engine: "build" },
+    {
+      name: "Shopify / DTC",
+      slug: "/shopify-dtc",
+      engine: "build",
+    },
     {
       name: "Ecommerce website development",
       slug: "/ecommerce-website-development",
       engine: "build",
+    },
+    {
+      name: "Ecommerce operations",
+      slug: "/ecommerce-operations",
+      engine: "operate",
     },
   ],
   insight: "Store ownership: code, data, accounts",

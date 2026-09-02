@@ -72,22 +72,30 @@ export default function Page() {
 
       <section className="bg-white">
         <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] pb-[clamp(40px,5vw,72px)]">
-          <h2 className="font-display type-h3 text-ink m-0">
-            Every input, explained
-          </h2>
-          <div className="flex flex-wrap gap-x-8 gap-y-2 mt-5">
-            {TRUE_COST_INPUTS.map((d, i) => (
-              <div
-                key={d.label}
-                className="flex-[1_1_300px] grid gap-1.5 py-3.5 border-b border-line/60"
-              >
-                <b className="text-ink type-body">
-                  {String(i + 1).padStart(2, "0")} · {d.label}
-                </b>
-                <p className="type-meta text-body m-0">{d.explain}</p>
+          {(
+            [
+              ["What you spend before launch", 0, 5],
+              ["What you spend to launch", 5, 8],
+              ["What you spend to keep selling", 8, 10],
+            ] as const
+          ).map(([group, from, to]) => (
+            <div key={group} className="mb-8 last:mb-0">
+              <h2 className="font-display type-h3 text-ink m-0">{group}</h2>
+              <div className="flex flex-wrap gap-x-8 gap-y-2 mt-4">
+                {TRUE_COST_INPUTS.slice(from, to).map((d, i) => (
+                  <div
+                    key={d.label}
+                    className="flex-[1_1_300px] grid gap-1.5 py-3.5 border-b border-line/60"
+                  >
+                    <h3 className="text-ink type-body font-bold m-0">
+                      {String(from + i + 1).padStart(2, "0")} · {d.label}
+                    </h3>
+                    <p className="type-meta text-body m-0">{d.explain}</p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </section>
 

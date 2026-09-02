@@ -32,6 +32,8 @@ const data: ServicePageData = {
     "The reporting difference is the whole point. You get the stack: spend, sales, ACoS, and then contribution margin after cost of goods, fees and returns, per line, alongside inventory cover and buy box share on the same page. What it cost, what it made, and whether it should have run at all.",
   ],
 
+  involvesSubheads: ["Judged on margin, not ACoS", "When advertising is the wrong answer"],
+
   visual: {
     kind: "stack",
     title: "The two-way stack",
@@ -61,6 +63,8 @@ const data: ServicePageData = {
     ],
   },
 
+  artefactNote:
+    "Four levers, and only the first is what most agencies mean by PPC management. The other three are why advertising sits inside the operation rather than beside it — a bid change is worth nothing if the inventory behind it runs out.",
   fitFor: [
     "You already sell and want advertising to earn its place",
     "You want spend approved, not discovered",
@@ -126,6 +130,8 @@ const data: ServicePageData = {
   ],
   yoursOutro:
     "The ad accounts are registered to your business and billed to your card. We are users on them, added by you and removable by you. The search term history — years of it, and genuinely valuable — stays in your account.",
+  managedLead:
+    "Advertising is operated weekly because the things that break it — a stockout, a price change, a lost buy box — move weekly. Budgets are capped against inventory rather than against a target spend.",
   managed: [
     ["Campaign structure", "built · maintained"],
     ["Bids", "weekly"],
@@ -157,6 +163,15 @@ const data: ServicePageData = {
     },
   ],
 
+  nextStep: {
+    engine: "operate",
+    h3: "Advertising is the fastest way to find an operations problem.",
+    body: "Spend rises and the stockouts, the pricing errors and the case backlog all surface at once. Running ads inside the operation means the budget is capped by what the business can actually ship, not by a target.",
+    links: [
+      { label: "Marketplace management", href: "/marketplace-management" },
+      { label: "The Operate engine", href: "/operate" },
+    ],
+  },
   related: [
     { name: "Marketplace growth", slug: "/marketplace-growth", engine: "grow" },
     { name: "Ecommerce growth", slug: "/ecommerce-growth", engine: "grow" },

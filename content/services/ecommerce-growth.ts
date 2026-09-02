@@ -64,6 +64,8 @@ const data: ServicePageData = {
       "A percentage-of-spend fee makes spending more the agency's best outcome. A retainer makes activity the agency's best outcome. Neither is dishonest, but both put the agency's interest a step away from the client's. A fee on realised margin puts them in the same place: if the growth action did not make money, neither did we.",
   },
 
+  involvesSubheads: ["Finding the binding constraint", "Knowing when to stop"],
+
   visual: {
     kind: "panel",
     title: "Growth control panel · questions, not scores",
@@ -107,6 +109,8 @@ const data: ServicePageData = {
     items: ["Listing", "Traffic", "Conversion", "Ranking", "Buy box", "Data"],
   },
 
+  artefactNote:
+    "The loop has no entry point marked, deliberately. Growth work starts wherever the binding constraint is — often conversion or margin rather than traffic — and the sequence only matters once you know which one it is.",
   whenToHire: {
     title: "When to hire a growth agency",
     body: [
@@ -177,6 +181,8 @@ const data: ServicePageData = {
   ],
   yoursOutro:
     "Every growth action is proposed with its margin and capacity read attached, and approved by you before it runs. Nothing scales without a decision.",
+  managedLead:
+    "Growth work runs continuously rather than in campaigns, so the list below is a cadence rather than a scope. What changes month to month is which constraint is binding, not which of these we are doing.",
   managed: [
     ["Listing optimisation", "ongoing"],
     ["Traffic & ranking", "operated"],
@@ -208,6 +214,15 @@ const data: ServicePageData = {
     },
   ],
 
+  nextStep: {
+    engine: "operate",
+    h3: "Growth you cannot fulfil is not growth.",
+    body: "Every growth action lands on an operation that has to absorb it — more orders, more stock, more cases, more that can go wrong. The daily desk is what keeps the result from unwinding, and it is why we will recommend waiting.",
+    links: [
+      { label: "Ecommerce operations", href: "/ecommerce-operations" },
+      { label: "The Operate engine", href: "/operate" },
+    ],
+  },
   related: [
     { name: "Marketplace growth", slug: "/marketplace-growth", engine: "grow" },
     { name: "PPC & paid media", slug: "/ppc-paid-media", engine: "grow" },

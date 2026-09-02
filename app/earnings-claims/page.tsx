@@ -5,7 +5,7 @@ import LegalPage from "@/components/LegalPage";
 export const metadata: Metadata = {
   title: "Earnings Claims Policy | Hyprr Brands",
   description:
-    "Hyprr publishes no earnings figures and promises no results. This page is the policy behind that, in writing.",
+    "Hyprr publishes no earnings figures and promises no results. This page is the policy behind that, in writing, and what it commits us to.",
   alternates: { canonical: "/earnings-claims" },
   ...ogImageMeta("earnings-claims"),
 };
@@ -14,7 +14,7 @@ export default function Page() {
   return (
     <LegalPage
       path="/earnings-claims"
-      description="Hyprr publishes no earnings figures and promises no results. This page is the policy behind that, in writing."
+      description="Hyprr publishes no earnings figures and promises no results. This page is the policy behind that, in writing, and what it commits us to."
       title="Earnings claims policy"
       version="v0.1 · 2 September 2026"
     >

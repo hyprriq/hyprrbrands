@@ -60,7 +60,7 @@ export const OG_PAGES: Record<string, OgPage> = {
   },
   operate: {
     path: "/operate",
-    title: "Keep the machine running every day",
+    title: "Operate: the work that keeps it selling",
     engine: "operate",
   },
   about: {

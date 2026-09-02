@@ -35,6 +35,8 @@ const data: ServicePageData = {
     "Handover. A documented step with a runbook, an architecture note and a walkthrough — so that another developer can pick it up, whether or not that developer is us.",
   ],
 
+  involvesSubheads: ["Built for an operation", "What we do not take on"],
+
   visual: {
     kind: "stack",
     title: "The infrastructure stack",
@@ -68,6 +70,8 @@ const data: ServicePageData = {
     ],
   },
 
+  artefactNote:
+    "Each layer is only maintained while the operation above it is running. Open them in order and the point emerges: this is a build defined by what happens after it, which is why we do not take standalone website projects.",
   fitFor: [
     "You are building or running an operation and the store is part of it",
     "You want to own the code, the accounts and the data",
@@ -129,6 +133,8 @@ const data: ServicePageData = {
   ],
   yoursOutro:
     "Nothing we build is licensed to you. There is no proprietary framework you would lose access to, and no part of the stack requires us to keep running.",
+  managedLead:
+    "A build is scoped and finite; everything after it is only maintained if we are also running the operation. If we are not, the work below ends cleanly at handover.",
   managed: [
     ["Storefront build", "scoped"],
     ["Integrations", "maintained if operating"],
@@ -160,8 +166,21 @@ const data: ServicePageData = {
     },
   ],
 
+  nextStep: {
+    engine: "grow",
+    h3: "A built storefront is infrastructure, not demand.",
+    body: "The site being fast and correct does not by itself bring anyone to it. What follows is the demand and conversion work the build was scoped to support — and if that work is not happening, the build was the wrong purchase.",
+    links: [
+      { label: "Ecommerce growth", href: "/ecommerce-growth" },
+      { label: "The Grow engine", href: "/grow" },
+    ],
+  },
   related: [
-    { name: "Shopify / DTC", slug: "/shopify-dtc", engine: "build" },
+    {
+      name: "Shopify / DTC",
+      slug: "/shopify-dtc",
+      engine: "build",
+    },
     {
       name: "Shopify management",
       slug: "/shopify-management",

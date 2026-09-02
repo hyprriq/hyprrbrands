@@ -193,6 +193,49 @@ export default function Page() {
         </div>
       </section>
 
+      {/* White: company facts — §M's verification strip. A field with
+          no value renders nothing: no label, no dash, no reserved row.
+          Registered-in and file number join the block the day the
+          filing completes, with no code change. */}
+      <section className="bg-white border-t border-line">
+        <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(36px,4vw,56px)]">
+          <h2 className="font-display type-h3 text-ink m-0">Company facts</h2>
+          <div className="mt-4 max-w-[52ch] grid">
+            {(
+              [
+                ["Legal entity", "Hyprr Retail LLC", null],
+                ["Trading as", "Hyprr Brands", null],
+                ["Get in touch", "The contact page", "/contact"],
+              ] as const
+            ).map(([k, v, href]) => (
+              <div
+                key={k}
+                className="flex justify-between gap-4 py-3 border-t border-line/60"
+              >
+                <span className="font-mono type-label text-label uppercase self-center">
+                  {k}
+                </span>
+                {href ? (
+                  <a
+                    href={href}
+                    className="type-body text-ink hover:text-ink font-medium"
+                  >
+                    {v} →
+                  </a>
+                ) : (
+                  <span className="type-body text-ink font-medium">{v}</span>
+                )}
+              </div>
+            ))}
+          </div>
+          <p className="type-meta text-body mt-4 mb-0 max-w-[52ch]">
+            These are the facts worth checking before a conversation, not
+            after one. The registration details go here as soon as the filing
+            is complete, in the same place.
+          </p>
+        </div>
+      </section>
+
       {/* Petrol: CTA */}
       <section className="bg-field text-white">
         <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(48px,6vw,80px)]">

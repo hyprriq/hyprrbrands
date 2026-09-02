@@ -35,6 +35,8 @@ const data: ServicePageData = {
     "Channel expansion — one catalogue across Amazon US, Amazon UK and Walmart US. The catalogue is shared; almost nothing else is. Different content rules, different advertising, different case handling, different policy thresholds, and Walmart's smaller traffic often converts differently because the competitive set is thinner. Treating it as an Amazon copy is how it underperforms.",
   ],
 
+  involvesSubheads: ["One catalogue, two rulebooks", "Ranking without discounting"],
+
   visual: {
     kind: "loop",
     title: "The optimisation loop",
@@ -72,6 +74,8 @@ const data: ServicePageData = {
     ],
   },
 
+  artefactNote:
+    "One catalogue, two rulebooks. The same product needs different content, different ranking work and different advertising on each marketplace — and the split is where most single-channel agencies stop being useful.",
   fitFor: [
     "You already sell on at least one marketplace and want the catalogue working harder",
     "You want the same people seeing inventory, margin and rank",
@@ -130,6 +134,8 @@ const data: ServicePageData = {
   ],
   yoursOutro:
     "We work through permissioned access in your accounts, never with your credentials. If we stop, the listings we rebuilt stay rebuilt, in your catalogue, under your name.",
+  managedLead:
+    "Ranking, buy box and reviews move on their own schedules, so these are worked at different intervals rather than reviewed together once a month. The intervals are the deliverable.",
   managed: [
     ["Listings and content", "ongoing"],
     ["Ranking work", "weekly"],
@@ -161,13 +167,26 @@ const data: ServicePageData = {
     },
   ],
 
+  nextStep: {
+    engine: "operate",
+    h3: "Ranking is worth nothing on a suspended account.",
+    body: "The work that wins the buy box and the work that keeps the account sellable are different jobs on different clocks. Account health, policy and cases run daily underneath everything on this page.",
+    links: [
+      { label: "Marketplace management", href: "/marketplace-management" },
+      { label: "The Operate engine", href: "/operate" },
+    ],
+  },
   related: [
     {
-      name: "Marketplace management",
-      slug: "/marketplace-management",
-      engine: "operate",
+      name: "Ecommerce growth",
+      slug: "/ecommerce-growth",
+      engine: "grow",
     },
-    { name: "Ecommerce growth", slug: "/ecommerce-growth", engine: "grow" },
+    {
+      name: "Wholesale ecommerce",
+      slug: "/wholesale-ecommerce",
+      engine: "build",
+    },
   ],
   insight: "Amazon/Walmart growth: one catalogue, two rulebooks",
 };

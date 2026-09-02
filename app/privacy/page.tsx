@@ -3,9 +3,9 @@ import { ogImageMeta } from "@/lib/og-pages";
 import LegalPage from "@/components/LegalPage";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Hyprr Brands",
+  title: "Privacy Policy | Hyprr Brands Ecommerce",
   description:
-    "What this site collects, what the contact form is used for, and how to reach us about your data.",
+    "What this site collects, what the contact form is used for, how long anything is kept, and how to reach us about your data.",
   alternates: { canonical: "/privacy" },
   ...ogImageMeta("privacy"),
 };
@@ -14,7 +14,7 @@ export default function Page() {
   return (
     <LegalPage
       path="/privacy"
-      description="What this site collects, what the contact form is used for, and how to reach us about your data."
+      description="What this site collects, what the contact form is used for, how long anything is kept, and how to reach us about your data."
       title="Privacy policy" version="v0.1 · 2 September 2026 · under owner review">
       <p>
         This policy covers hyprrbrands.vercel.app, operated by Hyprr Retail

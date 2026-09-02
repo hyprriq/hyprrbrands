@@ -10,7 +10,7 @@ import { breadcrumbLd, webPageLd } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "How We Work | You Decide, We Execute | Hyprr Brands",
   description:
-    "You decide. We execute. What happens in an engagement, who decides, what gets written down, and how we are paid — the mechanic, what it is calculated on, and a worked example.",
+    "You decide. We execute. What happens in an engagement, who decides, what gets written down, and how we are paid — the mechanic and a worked example.",
   alternates: { canonical: "/how-we-work" },
   ...ogImageMeta("how-we-work"),
 };
@@ -94,7 +94,7 @@ export default function Page() {
             path: "/how-we-work",
             title: "How We Work | You Decide, We Execute | Hyprr Brands",
             description:
-              "You decide. We execute. What happens in an engagement, who decides, what gets written down, and how we are paid — the mechanic, what it is calculated on, and a worked example.",
+              "You decide. We execute. What happens in an engagement, who decides, what gets written down, and how we are paid — the mechanic and a worked example.",
           }),
           breadcrumbLd([
             { name: "Home", path: "/" },
@@ -124,9 +124,16 @@ export default function Page() {
           <p className="type-lead text-body m-0 mt-5 max-w-[56ch]">
             Every engagement runs the same way, whatever the service. This
             page is the documentary version: what happens, who decides, what
-            gets written down, and how we are paid.
+            gets written down, and how we are paid. Who does this work is on{" "}
+            <a href="/about" className="text-ink hover:text-ink font-semibold">
+              the About page
+            </a>
+            .
           </p>
-          <div className="flex flex-wrap gap-3 mt-10">
+          <div
+            id="reporting"
+            className="flex flex-wrap gap-3 mt-10 [scroll-margin-top:100px]"
+          >
             {STEPS.map((s) => (
               <div
                 key={s.n}
@@ -394,6 +401,14 @@ export default function Page() {
           <p className="type-meta text-on-field-body mt-8 mb-0 max-w-[68ch]">
             No earnings figures appear anywhere on this site. We do not
             publish what clients made, and we will not project what you will.
+            That is a written policy, not a preference —{" "}
+            <a
+              href="/earnings-claims"
+              className="text-on-field-body hover:text-white underline"
+            >
+              the earnings claims policy
+            </a>
+            .
           </p>
         </div>
       </section>

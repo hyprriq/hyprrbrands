@@ -71,9 +71,9 @@ export default function Page() {
 
             {/* Petrol: what happens next — the conversion block */}
             <div className="flex-[1_1_300px] max-w-[420px] bg-field text-white rounded-lg p-[clamp(24px,3vw,36px)] grid gap-[22px] content-start">
-              <div className="font-mono type-label text-on-field-mute uppercase">
+              <h2 className="font-mono type-label text-on-field-mute uppercase m-0 font-semibold">
                 What happens next
-              </div>
+              </h2>
               {NEXT.map(([n, title, desc]) => (
                 <div
                   key={n}
@@ -98,6 +98,16 @@ export default function Page() {
                 >
                   How we work →
                 </a>
+              </div>
+              <div className="type-meta text-on-field-body">
+                Who you will be talking to is on{" "}
+                <a
+                  href="/about"
+                  className="text-white hover:text-white font-semibold"
+                >
+                  the About page
+                </a>
+                .
               </div>
               <div className="type-meta text-on-field-body">
                 We work with clients across US, UK, European and Gulf time

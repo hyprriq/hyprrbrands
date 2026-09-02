@@ -3,9 +3,9 @@ import { ogImageMeta } from "@/lib/og-pages";
 import LegalPage from "@/components/LegalPage";
 
 export const metadata: Metadata = {
-  title: "Accessibility | Hyprr Brands",
+  title: "Accessibility Statement | Hyprr Brands",
   description:
-    "The accessibility standard this site is built to, what that means in practice, and how to report a problem.",
+    "The accessibility standard this site is built to, what that means in practice, and how to report a problem you find on any page.",
   alternates: { canonical: "/accessibility" },
   ...ogImageMeta("accessibility"),
 };
@@ -14,7 +14,7 @@ export default function Page() {
   return (
     <LegalPage
       path="/accessibility"
-      description="The accessibility standard this site is built to, what that means in practice, and how to report a problem."
+      description="The accessibility standard this site is built to, what that means in practice, and how to report a problem you find on any page."
       title="Accessibility" version="v0.1 · 2 September 2026">
       <p>
         This site is built to WCAG 2.1 AA as a working target, and the

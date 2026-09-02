@@ -17,6 +17,8 @@ export type ServiceVisual =
       title: string;
       cols: string[];
       rows: { cells: string[]; status: string; tone: Tone }[];
+      /** Mobile-only caption under the reduced stack (prompt 13 B). */
+      mobileCaption?: string;
     }
   | { kind: "sequence"; title: string; steps: [string, string][] } // Private label
   | { kind: "journey"; title: string; nodes: [string, string][] } // Shopify / DTC
@@ -79,6 +81,9 @@ export interface ServicePageData {
   involvesLead: string;
   /** 250–400 words as paragraphs. */
   involvesBody: string[];
+  /** Short H3s before paragraphs 3 and 5 — three movements, not one
+   *  block (prompt 13 C). Copy from the drop; do not write these. */
+  involvesSubheads?: string[];
   /** §32 exception — the only tabbed control on a service page. */
   toggle?: {
     a: { label: string; items: string[] };
@@ -123,9 +128,6 @@ export interface ServicePageData {
 
   /** Fee paragraphs. The full mechanic lives at /how-we-work#fees. */
   fees: string[];
-  /** Published band table (wholesale) — header + rows, rendered
-   *  inside its own overflow container. */
-  feesTable?: { header: string[]; rows: string[][]; note?: string };
   /** Noun for "Questions about X" when it differs from `short`. */
   faqShort?: string;
   /** Answers 100–150 words, unique to this page. */
@@ -133,6 +135,14 @@ export interface ServicePageData {
   /** Anchored subsection after the FAQ (e.g. /shopify-dtc#growth). */
   extraSection?: { id: string; title: string; body: string[] };
 
+  /** The engine progression — renders above the related grid, kicker
+   *  in the NEXT engine's colour (prompt 14 B2 / 13 E). */
+  nextStep?: {
+    engine: EngineKey;
+    h3: string;
+    body: string;
+    links: { label: string; href: string }[];
+  };
   related: { name: string; slug: string; engine: EngineKey }[];
   /** Insight title — rendered as text until /insights is live. */
   insight: string;
@@ -140,12 +150,20 @@ export interface ServicePageData {
 
 export const ENGINE_META: Record<
   EngineKey,
-  { hub: string; hubUrl: string; dot: string; fieldClass: string; bandClass: string }
+  {
+    hub: string;
+    hubUrl: string;
+    dot: string;
+    topRule: string;
+    fieldClass: string;
+    bandClass: string;
+  }
 > = {
   build: {
     hub: "Build",
     hubUrl: "/build",
     dot: "bg-build",
+    topRule: "border-t-build",
     fieldClass: "bg-build-field",
     bandClass: "bg-build-band",
   },
@@ -153,6 +171,7 @@ export const ENGINE_META: Record<
     hub: "Grow",
     hubUrl: "/grow",
     dot: "bg-grow",
+    topRule: "border-t-grow",
     fieldClass: "bg-grow-field",
     bandClass: "bg-grow-band",
   },
@@ -160,6 +179,7 @@ export const ENGINE_META: Record<
     hub: "Operate",
     hubUrl: "/operate",
     dot: "bg-operate",
+    topRule: "border-t-operate",
     fieldClass: "bg-operate-field",
     bandClass: "bg-operate-band",
   },

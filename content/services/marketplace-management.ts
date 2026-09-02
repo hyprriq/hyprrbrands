@@ -16,7 +16,7 @@ const data: ServicePageData = {
   faqShort: "seller account management",
   metaTitle: "Amazon & Walmart Seller Account Management | You Own It",
   metaDescription:
-    "Day-to-day account health, compliance and execution on Amazon US & UK and Walmart US — under permissioned access in your account. We never hold your credentials.",
+    "Day-to-day account health, compliance and execution under permissioned access in your own account. We never hold your credentials.",
 
   h1: "Amazon & Walmart seller account management",
   answer:
@@ -39,6 +39,8 @@ const data: ServicePageData = {
     "The catalogue is shared. Almost nothing else is.",
     "Access. Both marketplaces provide permissioned service-provider access designed exactly for this. We are granted specific rights by you, from your account. We do not use your login. You can revoke it yourself without involving us.",
   ],
+
+  involvesSubheads: ["Keeping the account sellable", "Cases and clocks"],
 
   visual: {
     kind: "states",
@@ -82,6 +84,8 @@ const data: ServicePageData = {
     ],
   },
 
+  artefactNote:
+    "The same two columns, doing a different job here: this is not what grows on each marketplace but what can suspend you on each. The rules diverge more on compliance than they do on ranking.",
   fitFor: [
     "You sell on Amazon, Walmart or both and nobody watches account health daily",
     "You want the account to stay yours in every sense",
@@ -147,6 +151,8 @@ const data: ServicePageData = {
   // about how the engagement actually operates — confirm before launch.
   yoursOutro:
     "You register the account. Your bank details, your tax information. We are added as a user with specific permissions, by you, from inside your own account settings — and you can remove us the same way in under a minute without contacting us. We never hold your credentials, and we are never the registered seller. If we stop working together, nothing transfers, because nothing was ever ours.",
+  managedLead:
+    "This is the work that keeps an account sellable, and almost none of it is visible when it is going well. The cadence exists so that a policy change is found by us in a sweep rather than by you in a suspension.",
   managed: [
     ["Account health", "daily, both marketplaces"],
     ["Policy and compliance", "reviewed against current rules"],
@@ -178,6 +184,15 @@ const data: ServicePageData = {
     },
   ],
 
+  nextStep: {
+    engine: "operate",
+    h3: "What a quiet month should look like in writing.",
+    body: "Account health work is mostly invisible when it is going well, so the reporting is what makes it checkable — what was swept, what was found, what was opened and closed, and what changed in the rules.",
+    links: [
+      { label: "How the reporting works", href: "/how-we-work#reporting" },
+      { label: "How we are paid", href: "/how-we-work#fees" },
+    ],
+  },
   related: [
     {
       name: "Wholesale ecommerce",

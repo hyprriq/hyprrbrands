@@ -15,7 +15,7 @@ const data: ServicePageData = {
   short: "wholesale ecommerce",
   metaTitle: "Amazon Wholesale Management Service | Hyprr Brands",
   metaDescription:
-    "We source, buy and operate wholesale catalogues on Amazon US & UK and Walmart US. You own the account and approve every purchase. Read the operating model first.",
+    "We source, buy and operate wholesale catalogues on Amazon and Walmart. You own the account and approve every purchase. Read the operating model first.",
 
   h1: "Amazon & Walmart wholesale management",
   answer:
@@ -56,9 +56,13 @@ const data: ServicePageData = {
     },
   },
 
+  involvesSubheads: ["Where the margin actually is", "What we refuse to buy"],
+
   visual: {
     kind: "table",
     title: "The wholesale operating desk · catalogue",
+    mobileCaption:
+      "Three lines from a live catalogue view. Not every line gets bought.",
     cols: [
       "Brand",
       "SKU",
@@ -254,13 +258,26 @@ const data: ServicePageData = {
     },
   ],
 
+  nextStep: {
+    engine: "grow",
+    h3: "A catalogue that sells is the start, not the finish.",
+    body: "Once lines are live and replenishing, the work changes shape: which listings earn the buy box, where advertising is worth running, and which lines to stop buying. That is the Grow side, and it is the same desk.",
+    links: [
+      { label: "Marketplace growth", href: "/marketplace-growth" },
+      { label: "The Grow engine", href: "/grow" },
+    ],
+  },
   related: [
+    {
+      name: "Private label",
+      slug: "/private-label",
+      engine: "build",
+    },
     {
       name: "Marketplace management",
       slug: "/marketplace-management",
       engine: "operate",
     },
-    { name: "Marketplace growth", slug: "/marketplace-growth", engine: "grow" },
   ],
   insight:
     "Amazon account ownership: why the seller account should never be the agency's",

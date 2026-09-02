@@ -43,7 +43,12 @@ export default function Principles() {
             The operating model is the product, and these are the terms it
             runs on. They are not values on a wall: each one is a working
             rule you can check against the agreement, the approval records
-            and the weekly report — and hold us to when it matters.
+            and the weekly report — and hold us to when it matters. Who is
+            accountable for them is on{" "}
+            <a href="/about" className="text-ink hover:text-ink font-semibold">
+              the About page
+            </a>
+            .
           </p>
         </Reveal>
         <Reveal className="bg-ink text-white rounded-lg p-[clamp(24px,3vw,44px)]">
