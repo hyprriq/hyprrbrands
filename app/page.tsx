@@ -1,4 +1,6 @@
 import SiteHeader from "@/components/home/SiteHeader";
+import JsonLd from "@/components/JsonLd";
+import { webPageLd } from "@/lib/schema";
 import Hero from "@/components/home/Hero";
 import Channels from "@/components/home/Channels";
 import ThreeEngines from "@/components/home/ThreeEngines";
@@ -21,6 +23,16 @@ import SiteFooter from "@/components/home/SiteFooter";
 export default function Home() {
   return (
     <>
+      <JsonLd
+        nodes={[
+          webPageLd({
+            path: "/",
+            title: "Ecommerce Operations Agency | Hyprr Brands",
+            description:
+              "Hyprr builds, grows and operates ecommerce businesses on Amazon, Walmart and Shopify. You own the accounts and the inventory. We run the operation.",
+          }),
+        ]}
+      />
       <SiteHeader />
       <main id="main" tabIndex={-1}>
         <Hero />

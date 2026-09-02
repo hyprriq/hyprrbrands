@@ -10,6 +10,7 @@ import type { ServicePageData } from "@/lib/service-pages";
 const data: ServicePageData = {
   slug: "/ecommerce-growth",
   engine: "grow",
+  serviceType: "Ecommerce growth management",
   name: "Ecommerce growth",
   short: "ecommerce growth",
   metaTitle: "Ecommerce Growth Agency | Growth the Operation Can Deliver",

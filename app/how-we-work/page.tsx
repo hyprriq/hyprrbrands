@@ -3,9 +3,11 @@ import { ogImageMeta } from "@/lib/og-pages";
 import Link from "next/link";
 import SitePageShell from "@/components/SitePageShell";
 import { isLive } from "@/lib/site-map";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbLd, webPageLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "How we work | Hyprr Brands",
+  title: "How We Work | You Decide, We Execute | Hyprr Brands",
   description:
     "You decide. We execute. What happens in an engagement, who decides, what gets written down, and how we are paid — the mechanic, no figures.",
   alternates: { canonical: "/how-we-work" },
@@ -83,6 +85,20 @@ const NO_GUARANTEE = [
 export default function Page() {
   return (
     <SitePageShell>
+      <JsonLd
+        nodes={[
+          webPageLd({
+            path: "/how-we-work",
+            title: "How We Work | You Decide, We Execute | Hyprr Brands",
+            description:
+              "You decide. We execute. What happens in an engagement, who decides, what gets written down, and how we are paid — the mechanic, no figures.",
+          }),
+          breadcrumbLd([
+            { name: "Home", path: "/" },
+            { name: "How we work", path: "/how-we-work" },
+          ]),
+        ]}
+      />
       {/* White: hero + the four-step sequence */}
       <section className="bg-white">
         <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(40px,6vw,72px)]">

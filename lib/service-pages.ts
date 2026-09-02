@@ -60,6 +60,8 @@ export type ServiceHww =
 export interface ServicePageData {
   slug: string;
   engine: EngineKey;
+  /** Schema.org Service.serviceType — from the content files' schema notes. */
+  serviceType: string;
   name: string;
   /** lower-case, mid-sentence form: "Questions about {short}" */
   short: string;

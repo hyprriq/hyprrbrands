@@ -8,6 +8,7 @@ import type { ServicePageData } from "@/lib/service-pages";
 const data: ServicePageData = {
   slug: "/private-label",
   engine: "build",
+  serviceType: "Private label product development",
   name: "Private label",
   short: "private label",
   metaTitle: "Amazon Private Label Agency | Research to Launch | Hyprr",

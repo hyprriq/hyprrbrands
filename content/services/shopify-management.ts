@@ -10,6 +10,7 @@ import type { ServicePageData } from "@/lib/service-pages";
 const data: ServicePageData = {
   slug: "/shopify-management",
   engine: "operate",
+  serviceType: "Shopify store management",
   name: "Shopify management",
   short: "Shopify store management",
   metaTitle: "Shopify Store Management Services | Run, Not Rented",

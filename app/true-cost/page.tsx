@@ -5,6 +5,8 @@ import SitePageShell from "@/components/SitePageShell";
 import TrueCostCalculator from "@/components/TrueCostCalculator";
 import { TRUE_COST_INPUTS } from "@/lib/true-cost";
 import { isLive } from "@/lib/site-map";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbLd, webPageLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "The True Cost of Launching a Product | Hyprr Brands",
@@ -22,6 +24,20 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <SitePageShell>
+      <JsonLd
+        nodes={[
+          webPageLd({
+            path: "/true-cost",
+            title: "The True Cost of Launching a Product | Hyprr Brands",
+            description:
+              "Ten inputs, one total, and an explanation of every line. It calculates what you will spend. It does not project what you might make.",
+          }),
+          breadcrumbLd([
+            { name: "Home", path: "/" },
+            { name: "True cost", path: "/true-cost" },
+          ]),
+        ]}
+      />
       <section className="bg-white">
         <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] pt-[clamp(40px,6vw,72px)] pb-[clamp(24px,3vw,40px)]">
           <nav aria-label="Breadcrumb">

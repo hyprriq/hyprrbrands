@@ -2,6 +2,8 @@ import SitePageShell from "@/components/SitePageShell";
 import Link from "next/link";
 import { pagesByEngine, type Engine } from "@/lib/site-map";
 import { ogImageMeta } from "@/lib/og-pages";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbLd, webPageLd } from "@/lib/schema";
 
 /**
  * Hub page template — design system HubPage: the engine band hero is
@@ -131,6 +133,19 @@ export default function HubPage({ engine }: { engine: Exclude<Engine, null> }) {
 
   return (
     <SitePageShell>
+      <JsonLd
+        nodes={[
+          webPageLd({
+            path: `/${engine}`,
+            title: hub.title,
+            description: hub.meta,
+          }),
+          breadcrumbLd([
+            { name: "Home", path: "/" },
+            { name: hub.name, path: `/${engine}` },
+          ]),
+        ]}
+      />
       {/* Engine band hero: the whole colour budget */}
       <section className={hub.band}>
         <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(40px,6vw,80px)]">

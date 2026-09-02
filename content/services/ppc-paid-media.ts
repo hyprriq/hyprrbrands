@@ -8,6 +8,7 @@ import type { ServicePageData } from "@/lib/service-pages";
 const data: ServicePageData = {
   slug: "/ppc-paid-media",
   engine: "grow",
+  serviceType: "Amazon and Walmart PPC management",
   name: "PPC & paid media",
   short: "PPC and paid media",
   metaTitle: "Amazon & Walmart PPC Management | Judged on Margin",

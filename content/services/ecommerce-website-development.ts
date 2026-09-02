@@ -11,6 +11,7 @@ import type { ServicePageData } from "@/lib/service-pages";
 const data: ServicePageData = {
   slug: "/ecommerce-website-development",
   engine: "build",
+  serviceType: "Ecommerce website development",
   name: "Ecommerce website development",
   short: "ecommerce website development",
   metaTitle: "Ecommerce Website Development | For Operations We Run",

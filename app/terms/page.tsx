@@ -12,7 +12,10 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <LegalPage title="Terms of service" version="v0.1 · 2 September 2026 · under owner review">
+    <LegalPage
+      path="/terms"
+      description="The terms that apply to using this website. Engagement terms live in the written agreement each client signs."
+      title="Terms of service" version="v0.1 · 2 September 2026 · under owner review">
       <p>
         These terms cover the use of this website. The terms of an actual
         engagement with Hyprr Retail LLC are set out in the written

@@ -12,7 +12,10 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <LegalPage title="Accessibility" version="v0.1 · 2 September 2026">
+    <LegalPage
+      path="/accessibility"
+      description="The accessibility standard this site is built to, what that means in practice, and how to report a problem."
+      title="Accessibility" version="v0.1 · 2 September 2026">
       <p>
         This site is built to WCAG 2.1 AA as a working target, and the
         checks run against every release rather than once at launch.

@@ -13,6 +13,8 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <LegalPage
+      path="/earnings-claims"
+      description="Hyprr publishes no earnings figures and promises no results. This page is the policy behind that, in writing."
       title="Earnings claims policy"
       version="v0.1 · 2 September 2026"
     >

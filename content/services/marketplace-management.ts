@@ -10,6 +10,7 @@ import type { ServicePageData } from "@/lib/service-pages";
 const data: ServicePageData = {
   slug: "/marketplace-management",
   engine: "operate",
+  serviceType: "Amazon and Walmart seller account management",
   name: "Marketplace management",
   short: "marketplace management",
   faqShort: "seller account management",

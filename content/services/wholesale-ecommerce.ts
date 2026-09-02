@@ -9,6 +9,7 @@ import type { ServicePageData } from "@/lib/service-pages";
 const data: ServicePageData = {
   slug: "/wholesale-ecommerce",
   engine: "build",
+  serviceType: "Amazon wholesale management",
   name: "Wholesale ecommerce",
   short: "wholesale ecommerce",
   metaTitle: "Amazon Wholesale Management Service | Hyprr Brands",

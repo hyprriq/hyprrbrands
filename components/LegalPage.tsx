@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 import SitePageShell from "@/components/SitePageShell";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbLd, webPageLd } from "@/lib/schema";
 
 /**
  * Legal pages — White only, the article type stack with a version and
@@ -8,14 +10,27 @@ import SitePageShell from "@/components/SitePageShell";
 export default function LegalPage({
   title,
   version,
+  path,
+  description,
   children,
 }: {
   title: string;
   version: string;
+  path: string;
+  description: string;
   children: ReactNode;
 }) {
   return (
     <SitePageShell>
+      <JsonLd
+        nodes={[
+          webPageLd({ path, title, description }),
+          breadcrumbLd([
+            { name: "Home", path: "/" },
+            { name: title, path },
+          ]),
+        ]}
+      />
       <section className="bg-white">
         <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(40px,6vw,72px)]">
           <h1 className="font-display type-h1 text-ink m-0 max-w-[18ch] text-balance">

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Archivo, JetBrains_Mono } from "next/font/google";
 import { SITE_ORIGIN } from "@/lib/site-map";
+import JsonLd from "@/components/JsonLd";
+import { organizationLd, websiteLd } from "@/lib/schema";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -19,9 +21,9 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_ORIGIN),
-  title: "Hyprr Brands | Ecommerce Operations, Wholesale, Private Label & DTC",
+  title: "Ecommerce Operations Agency | Hyprr Brands",
   description:
-    "Hyprr builds, grows and operates ecommerce businesses on Amazon, Walmart and Shopify — wholesale, private label and DTC. You own the accounts and the inventory. We run the operation.",
+    "Hyprr builds, grows and operates ecommerce businesses on Amazon, Walmart and Shopify. You own the accounts and the inventory. We run the operation.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "You own the business. We run the operation.",
@@ -49,6 +51,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${archivo.variable} ${jetbrains.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <JsonLd nodes={[organizationLd(), websiteLd()]} />
         <a href="#main" className="skip-link">
           Skip to content
         </a>

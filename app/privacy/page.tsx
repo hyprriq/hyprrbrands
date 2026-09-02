@@ -12,7 +12,10 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <LegalPage title="Privacy policy" version="v0.1 · 2 September 2026 · under owner review">
+    <LegalPage
+      path="/privacy"
+      description="What this site collects, what the contact form is used for, and how to reach us about your data."
+      title="Privacy policy" version="v0.1 · 2 September 2026 · under owner review">
       <p>
         This policy covers hyprrbrands.vercel.app, operated by Hyprr Retail
         LLC. It is written to be read, and it describes what actually

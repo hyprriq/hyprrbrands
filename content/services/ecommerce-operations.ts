@@ -11,6 +11,7 @@ import type { ServicePageData } from "@/lib/service-pages";
 const data: ServicePageData = {
   slug: "/ecommerce-operations",
   engine: "operate",
+  serviceType: "Ecommerce operations management",
   name: "Ecommerce operations",
   short: "ecommerce operations",
   metaTitle: "Outsourced Ecommerce Operations | The Daily Desk | Hyprr",

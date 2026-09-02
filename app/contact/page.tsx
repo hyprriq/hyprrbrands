@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { ogImageMeta } from "@/lib/og-pages";
 import SitePageShell from "@/components/SitePageShell";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbLd, webPageLd } from "@/lib/schema";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact | Hyprr Brands",
+  title: "Contact Hyprr Brands | Start a Conversation",
   description:
-    "Tell us what you're trying to build. The more context you give, the more useful the first conversation is — we read everything before we reply.",
+    "Tell us what you are trying to build. We read the context, come prepared, and tell you whether Hyprr is a fit — including when we are not.",
   alternates: { canonical: "/contact" },
   ...ogImageMeta("contact"),
 };
@@ -37,6 +39,23 @@ const NEXT: [string, string, string][] = [
 export default function Page() {
   return (
     <SitePageShell>
+      <JsonLd
+        nodes={[
+          {
+            ...webPageLd({
+              path: "/contact",
+              title: "Contact Hyprr Brands | Start a Conversation",
+              description:
+                "Tell us what you are trying to build. We read the context, come prepared, and tell you whether Hyprr is a fit — including when we are not.",
+            }),
+            "@type": "ContactPage",
+          },
+          breadcrumbLd([
+            { name: "Home", path: "/" },
+            { name: "Contact", path: "/contact" },
+          ]),
+        ]}
+      />
       <section className="bg-white">
         <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(40px,6vw,72px)]">
           <h1 className="font-display type-h1 text-ink m-0 max-w-[16ch] text-balance">

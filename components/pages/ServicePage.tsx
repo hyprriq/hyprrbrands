@@ -3,6 +3,8 @@ import Link from "next/link";
 import SitePageShell from "@/components/SitePageShell";
 import { isLive } from "@/lib/site-map";
 import { ogImageMeta } from "@/lib/og-pages";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbLd, faqLd, serviceLd, webPageLd } from "@/lib/schema";
 import {
   ENGINE_META,
   SERVICE_SECTIONS,
@@ -546,6 +548,29 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
 
   return (
     <SitePageShell>
+      <JsonLd
+        nodes={[
+          webPageLd({
+            path: data.slug,
+            title: data.metaTitle,
+            description: data.metaDescription,
+          }),
+          breadcrumbLd([
+            { name: "Home", path: "/" },
+            { name: e.hub, path: e.hubUrl },
+            { name: data.name, path: data.slug },
+          ]),
+          serviceLd({
+            name: data.name,
+            serviceType: data.serviceType,
+            path: data.slug,
+            description: data.metaDescription,
+          }),
+          // FAQPage only because the FAQ below renders these exact
+          // strings — schema text and visible text are the same object.
+          faqLd(data.faqs),
+        ]}
+      />
       {/* 1 · White: breadcrumb · hero · direct answer */}
       <section className="bg-white">
         <div

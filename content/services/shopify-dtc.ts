@@ -8,6 +8,7 @@ import type { ServicePageData } from "@/lib/service-pages";
 const data: ServicePageData = {
   slug: "/shopify-dtc",
   engine: "build",
+  serviceType: "DTC and Shopify store build and operation",
   name: "Shopify / DTC",
   short: "Shopify and DTC",
   metaTitle: "DTC & Shopify Ecommerce Agency | Build and Run | Hyprr",

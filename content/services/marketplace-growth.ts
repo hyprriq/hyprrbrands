@@ -10,6 +10,7 @@ import type { ServicePageData } from "@/lib/service-pages";
 const data: ServicePageData = {
   slug: "/marketplace-growth",
   engine: "grow",
+  serviceType: "Amazon and Walmart marketplace growth",
   name: "Marketplace growth",
   short: "marketplace growth",
   metaTitle: "Amazon & Walmart Marketplace Growth Agency | Hyprr Brands",
