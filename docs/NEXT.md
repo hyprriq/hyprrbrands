@@ -41,138 +41,106 @@
 > in this queue is a bug: a false sentence, a formula that overcharges, a channel claim that is
 > untrue for half the market, or markup that is missing entirely.
 
-Baseline moved twice while this was being written. **`b3c78be` shipped step 6 — all ten
-service pages are live from `content/services/*.ts`.** Prompt 7 landed at `f7fef9c`. Two of the
-four tickets in the previous version of this file are done.
+> ### Owner sequencing, 2 Sep — this governs the order below
+>
+> **Finish every page first — design and content. Then one change pass covering pricing, visuals
+> and SEO together.** The change work is parked in `docs/CHANGES_PASS.md` and does not enter this
+> queue until `/about` and `/insights` are live.
+>
+> This is the right order: design and SEO changes both operate *on* pages, so doing them before
+> the last two exist means doing them twice — an internal-link audit run before `/insights` lands
+> is an audit of the wrong graph.
+>
+> **Two pages remain. That is the whole of the current queue.**
+>
+> One exception noted in `CHANGES_PASS.md`: a wrong *price* is live and commercial rather than
+> structural, so if any published figure is actually wrong it comes out on its own rather than
+> waiting for the pass. Everything else waits.
 
-**Four tickets are open, and two of them are new.**
-
----
-
-## 1 · PROMPT_9_FEES_BOOKACALL_WALMART.md — first, and section A is the reason
-
-Owner cleared the fee mechanic on 2 Sep. Figures are specified in
-`docs/content/fees-and-pricing.md`; the ticket is `docs/PROMPT_9_FEES_BOOKACALL_WALMART.md`.
-
-**Why this is first, ahead of schema and share cards.** Three sentences are live in production
-right now and stop being true the moment a $500 monthly minimum exists. Verified against the
-tree at `b3c78be`:
-
-```
-app/how-we-work/page.tsx:198   "There is no monthly retainer, and no fee calculated on the..."
-app/how-we-work/page.tsx:203   "No pricing figures are published while engagements are..."
-components/home/PricingBand.tsx:19   "...isn't there, neither is our share of it."
-```
-
-A false claim in the fee section — the one place a sceptical buyer reads hardest, and the one
-place this business is asking to be trusted — is worth more damage than anything else in the
-queue. **Section A of the ticket is those three retractions and nothing else. It can ship on its
-own** if the tables need longer.
-
-It also unblocks the `→ /how-we-work#fees` link that all ten now-live service pages end their fee
-section with. Ten pages currently point at a placeholder.
-
-Three things ride along: the homepage `CtaSection` becomes bookable (env-var'd, with a `/contact`
-fallback so an unset scheduler cannot ship a dead button), Walmart is named on `/private-label`,
-and `FEE_RULES` is replaced.
-
-**Read `docs/content/fees-and-pricing.md` before the ticket.** It carries the reasoning the
-figures depend on — the line between a price list and an earnings claim, why publishing beats
-gating on this specific SERP, and the two things easy to get wrong: `$14,999` never renders
-alone, and the worked example's "arbitrary round numbers" label must sit in the same rendered
-block as the numbers.
-
-### One thing step 6 did not pick up
-
-`content/services/private-label.ts` has **zero** occurrences of "Walmart";
-`wholesale-ecommerce.ts` has six. The private-label content file was patched after step 6 was
-already transcribing, so §D of the ticket is a re-transcription of five specific fields, not new
-authoring. `docs/content/private-label.md` is current.
+The audit cycle is **closed**. Six tickets shipped and verified on production: `f7fef9c`
+(prompt 7) · `b3c78be` (step 6) · `3491a0f` (prompt 8) · `bb427b9` (prompt 6) · `0e80289`
+(prompt 9) · `fb04046` (prompt 10).
 
 ---
 
-## 2 · PROMPT_10_GEOGRAPHIC_SCOPE.md — new, and §A is a correctness bug
+## Audit verdict on the five flagged decisions — all five upheld
 
-Owner confirmed the market on 2 Sep: **clients in the US, UK, Middle East and EU; selling on US
-and UK marketplaces.** The site was built against a narrower reading and two of the findings are
-bugs rather than copy.
+Checked against the tree, not taken on trust. **Two of the five were my acceptance criteria being
+wrong, not your work**, and both are corrected below so they do not misfire again.
 
-**§A — the realised-margin formula has no tax term.** On a US-only book that is a no-op, because
-marketplace-facilitator laws mean US sales tax never reaches the seller's settlement. On Amazon UK
-it is not: Amazon remits proceeds **including VAT** and the seller owes it to HMRC, so taking 30%
-of settlement total overcharges by `30% × 20/120` = **5% of gross sales**. On a £40,000/month
-account that is £2,000 a month of the client's money, and it surfaces in the first VAT quarter, in
-front of the client's accountant, on the one page whose whole argument is that the arithmetic can
-be checked. Corrected formula is in `docs/content/fees-and-pricing.md`.
+**1 · "and" → "&" in H1s and serviceTypes — upheld, and my check was the defect.**
+My first instinct was that this evaded acceptance #1 rather than satisfying it, because a string
+match on `Amazon and Walmart` is trivially defeated by an ampersand. It does not, and the evidence
+is in the bodies: `wholesale-ecommerce`, `marketplace-growth`, `marketplace-management` and
+`ppc-paid-media` each carry "Walmart in the US" and "in the US and UK" in body copy. That is
+§B rule 3 followed exactly — geography in the body, head terms untouched. Diluting an H1 to
+"Amazon US & UK, Walmart US wholesale management" would have cost the term and read badly.
 
-**§B — "Amazon and Walmart" is a US-only sentence and it is in 16 files**, including the hero, the
-FAQ, `layout.tsx` and `llms.txt`. Walmart has no UK operation. The canonical replacement is
-*"Amazon in the US and UK, and Walmart in the US"* — and the ticket is explicit that this is not a
-find-and-replace, because the obvious careless output ("Amazon UK and Walmart UK") is a checkably
-false claim about a marketplace, which is worse than the vague sentence it replaces.
+**The check was wrong and is replaced.** A string match cannot test a claim. The correct check:
+*every page naming Walmart states a geography for it somewhere in the body.* Use that one.
 
-**§C/§D** — zero occurrences of `UK`, `Europe` or `GDPR` anywhere in the tree, while the site is
-now deliberately marketed to both. §C is four insertions, not a localisation project, and
-explicitly rules out `hreflang`. §D is the privacy and consent work that GDPR Art. 3(2) triggers
-once EU targeting is intentional.
+**2 · Two FAQ questions reworded — upheld.** "Do you run Amazon and Walmart advertising?" →
+"Do you run advertising on Amazon and on Walmart?" The question string carried the conjunction
+that implied a shared footprint, so rewording the question rather than only the answer is the
+correct depth of fix. This one I would have missed.
 
-Ordered after PROMPT_9 only because §A edits the same fee mechanic. If PROMPT_9 slips, §B and §C
-are independent and can go first.
+**3 · Table headers `on-field-mute`, not the suggested Aqua accent — upheld, and my suggestion was
+worse.** Re-measured independently: `#b6d6dc` on `#0a4e5c` is **6.04:1**, and `type-label` is 12px
+/ 600, so the threshold is 4.5:1. Passes with room. There is no raised surface anywhere in the
+rebuilt `#fees` section, so the 4.79:1 raised case never arises. Mark-not-text is the right law
+here and chroma is 0.0412 without the accent — the accent would have been decoration solving a
+problem that did not exist.
 
----
+**4 · `$14,999` three times rather than acceptance #3's "exactly once" — upheld, my criterion was
+stale.** It was written before `private-label.md` was patched to publish the figure too, so
+"exactly once" described a tree that no longer existed by the time you read it. What the rule
+actually protects is **adjacency, not scarcity**: the figure must never appear without the
+itemised scope and the zero-markup sentence beside it. Verified — `how-we-work` has it in the
+table cell with its caption directly below, and `private-label.ts` has it inside the fee body that
+carries the pass-through sentence in the same paragraph. **Corrected criterion: every occurrence
+of `$14,999` has the scope and pass-through adjacent. Count is not the test.**
 
-## 3 · PROMPT_8_SHARE_CARDS_GEO_A11Y.md
+**5 · Prompt 6 FIX 3 declined as superseded by the chroma ruling — upheld.** Consistent with the
+standing rule that a number validated on one surface does not transfer to another.
 
-Nine findings. Now larger than it was, because it applies to thirteen live routes rather than
-five.
+### The generalisation worth keeping
 
-**B1 is the largest visual gap on the site and it has not been looked at.** Every page sets
-`twitter:card = summary_large_image` and has no `og:image` and no `twitter:image`. That is worse
-than omitting the tags: every platform is told to expect a large image and renders a text stub.
-Founder-led LinkedIn distribution is the marketing plan, and this is the asset it runs on.
-
-It is also the answer to "the site needs visuals" — one visual, thirteen times, generated from
-type and existing tokens with no photography. The spec is in the prompt.
-
-**B2:** `/llms.txt` — **check this before working it.** `app/llms.txt/route.ts` now exists in the
-tree, so step 6 appears to have shipped it. If so, B2 is done and what remains is auditing its
-channel list against PROMPT_10 §B rather than building it. §N requires it. The robots.txt is genuinely well done — every AI
-crawler explicitly allowed, sitemap declared — so this is the missing companion, not a
-correction.
-
-**B3** touches the homepage and `/how-we-work` only: five H2s are a heading straight into a grid
-with no prose between. §27 requires each section to stand alone. The service pages already do
-this, so it is bringing two pages up to the existing standard.
+Three of my five acceptance criteria this cycle tested a **string** when they meant to test a
+**claim**. A grep is a good gate for a banned phrase, because there the string *is* the thing. It
+is a bad gate for "this page is truthful about geography", because any rewording satisfies it
+while the claim survives. **Where the ticket cares about meaning, the check names the meaning and
+a person reads the hits.**
 
 ---
 
-## 4 · PROMPT_6_SCHEMA_AND_METADATA.md
+## 1 · PROMPT_11_ABOUT_SHIPS.md — small, and it is only parked by one commit
 
-There is **no JSON-LD anywhere on the site**. §M specifies the graph and §N depends on it.
+`/about` is listed as parked pending role, prior employer and LinkedIn. That was true until
+`f42d764`, which landed after your push and removed it — those are now **optional fields that
+render only when present**, the founder paragraph is drafted and shippable, and the content file
+has been rewritten with both ⚠️ blocks gone.
 
-This was scheduled last so the Service schema could cover all ten pages in one pass. **That
-condition is now met** — step 6 shipped them — so the only thing still holding it back is that
-`/#organization` cannot carry `legalName` or registration details until the entity blocker
-clears. Ship it without those and add them in a one-line follow-up; do not wait.
+`/about` is now the only page in the manifest with finished content and no route. The ticket is
+short and the content is written.
 
-Corrected titles and descriptions for every page are in the `docs/content/` files.
+**Correctly still parked:** `/documents` (owner-deferred), the homepage CONTRACTS row,
+photographs, and the `Person` JSON-LD node — a `Person` with no `sameAs` is an assertion with
+nothing to resolve to.
 
 ---
 
-## Chroma — ruled, you were right
+## 2 · `/insights` — the audit side owes you content, not a ticket
 
-Answered in the updated `PROMPT_5_INNER_PAGES.md`; pull it. Short version: the 0.030 floor was
-calibrated on the homepage, which measures 29.1% Petrol and 9.6% Bone. The service page is
-14.9% Petrol and 28.0% Bone — the spine cannot reach 0.030 without two more dark sections,
-which breaks alternation. **Corrected service-page target: ≥ 0.018. Current 0.0193 passes.**
+Nothing to build until articles exist, and writing them is my job, not yours. Four are specified
+in the keyword map's §7 objection cluster — the account-ownership question, the automation
+question, the fee-model comparison, and the true-cost piece — and the map's own finding is that
+these will out-traffic all ten service pages combined, because the informational SERPs are the
+ones a new domain can actually enter.
 
-One change, and it is a consistency fix rather than decoration: the homepage renders "Proof
-before promises" on Petrol while the service page renders its proof section on Bone. Move it to
-Petrol. Adjacency holds. Chroma goes to roughly 0.022 as a side effect — do not chase further.
-
-That criterion being wrong was mine, and it is the third time this session a number validated
-in one context has been applied to another. The rule now in the ticket: **any number in a spec
-applies only to the surface it was measured on.**
+**I am writing these next.** They will land in `docs/content/insights/` with a ticket. Do not
+build `/insights` with placeholder cards in the meantime — §A.19's rule stands: four cards linking
+to nothing is worse than removing the section, and a dead "Read article →" is the first broken
+promise a careful visitor finds.
 
 ---
 
