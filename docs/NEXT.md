@@ -41,39 +41,52 @@
 > in this queue is a bug: a false sentence, a formula that overcharges, a channel claim that is
 > untrue for half the market, or markup that is missing entirely.
 
-> ### PHASE 1 CLOSE-OUT — one bundle, send it all at once
+> ### PHASE 1 REMAINDER — `docs/PROMPT_16_PHASE1_REMAINDER.md`
 >
-> **`docs/PROMPT_15_PHASE1_CLOSEOUT.md` is the master ticket and it supersedes `PROMPT_13` and
-> `PROMPT_14`.** Work from its step order; those two stay in the repo as the detail behind steps 3
-> and 4. When its step 9 acceptance passes on production, the website is done.
+> **`afd57a1` closed most of `PROMPT_15`.** PROMPT_16 is reconciled against it and covers only what
+> is left, so nothing already shipped is touched twice. **PROMPT_15 is superseded.**
 >
-> Nine steps: links working and a link checker in CI · manifest verified both directions · inner
-> pages designed in full · all 22 titles and metas plus the body copy drop · five visuals per inner
-> page · mobile · logo and header sizing · and a definition of done that runs as CI gates rather
-> than a promise.
+> Four things remain: the 22 keyword metas · visual slots 3, 4 and 5 · logo and header sizing ·
+> and four CI gate scripts.
 
-## The four files that make up the bundle
+## Shipped in `afd57a1` — closed, do not revisit
 
-| File | What |
-|---|---|
-| **`PROMPT_15_PHASE1_CLOSEOUT.md`** | The master. Step order, and the acceptance gate. |
-| **`PHASE1_METADATA_FINAL.md`** | All 22 titles and metas. **Every count computed with `len()`.** Titles 30–60, metas 120–158, zero banned phrases, zero rejected-keyword leaks, three known collisions broken — 78%→55%, 72%→38%, 71%→33%. |
-| **`PHASE1_VISUAL_MAP.md`** | Five visual slots per page. Slot 3's diagram assigned per page, slot 4's sentence per page. All type-and-token — no photography, no generated imagery, no asset pipeline. |
-| **`content/service-page-copy-drop.md`** | `managedLead` ×9 · `artefactNote` ×6 · `nextStep` ×10 · `involvesSubheads` ×10 · `related` fixes · `/about` facts block. |
+Prompt 14 Batch A in full and prompt 13 A/B/D. `/operate` differentiated with zero shared clauses.
+"Publishing soon" deduped. `/about` at three inbound links with a facts block rendering only
+populated rows. Hub-to-hub links in body copy and `/operate`'s self-referential link gone.
+`nextStep` on all ten with duplicates removed from `related`. `/ecommerce-operations` from zero
+related entries to three. `managedLead` and `artefactNote` at **10/10**. `involvesSubheads` on all
+ten. `feesTable` deleted. `/contact` has a real H2, `/true-cost` has three. Legal pages have
+breadcrumbs and cross-links, `/earnings-claims` has its inbound. Both dead components deleted.
+Hero at-a-glance panel on all ten, mobile tables reduced, sequence scroll-snaps at 375.
 
-### Three things that make this bundle different from the last three
+## What remains
 
-**Metadata is counted, not asserted.** Every previous count in `docs/content/*.md` was wrong — I
-wrote "written to §L limits" without computing it. The ticket tells the dev to ignore those
-annotations entirely and use the counted table.
+**1 · The 22 keyword metas — not yet shipped.** The seven that landed were `PROMPT_14 §C`, which
+were **length corrections, not keyword work**. `PHASE1_METADATA_FINAL.md` supersedes them. Verified
+still live in the tree and still colliding: `marketplace-management` and `wholesale-ecommerce` share
+"Amazon … Management" at 78%. The new strings take that to 55%, and the other two collisions to 38%
+and 33%.
 
-**Five visuals per page needs no new assets.** Two of the five slots already exist as content and
-are being upgraded; only three are net-new, and all are inline SVG from existing tokens. That is
-why "3 to 5 visuals per inner page" is a smaller job than it sounds.
+**2 · Visual slots 3, 4 and 5**, with one sequencing rule the chroma number produced: the white hero
+panel cost **0.0012** on wholesale (0.0226 → 0.0214). Slots 3 and 5 are also light. **Slot 4 is the
+Petrol band, and it must ship in the same commit as slot 3 or before it** — three more light
+surfaces alone could cross the 0.018 floor. Cheaper to sequence right than to fix after measuring.
 
-**"No more errors" is built as CI gates.** A link checker, a two-way manifest check and a counted
-metadata gate. The next mistake fails a build instead of reaching production — which is the only
-version of that promise that holds.
+**3 · Logo and header.** Confirmed unchanged: wordmark at **17px** in a 72px header. The brand
+guidelines call it "unmistakable" and require clear space of one "h" height, which the markup has
+none of.
+
+**4 · Four CI gate scripts** — links (including **anchor resolution**), manifest both directions,
+metadata measured from served HTML, and the copy gate. This is what makes "no more errors"
+structural.
+
+### Owning the `#reporting` miss
+
+The dev found that my ten `nextStep` links pointed at an anchor that did not exist, and added
+`id="reporting"`. **Third time this session I asserted without checking** — character counts, six
+subheads, now an anchor. The anchor check in `check-links.mjs` is the fix; the pattern is that a
+gate beats a promise every time.
 
 ---
 
