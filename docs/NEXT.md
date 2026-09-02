@@ -16,67 +16,40 @@
 
 ---
 
-## PHASE 1 IS CLOSED
+## SHIPPED
 
-`cd92930` shipped PROMPT_16 and CI run #1 passed. 22 routes · 22 titles in 30–60 and metas in
-120–158 measured from served HTML · contrast failCount 0 at four viewports · chroma 0.0210–0.0247 on
-service pages and 0.0302 on the homepage · four CI gates green in GitHub Actions.
+`cd92930` PROMPT_16 · `752e848` PROMPT_17 + 18 as one refactor. **25 routes.** All gates green in CI,
+production verified.
 
-**The gates are the durable part.** `check-links` resolves anchors, so the `#reporting` class of
-error now fails a build rather than reaching production.
+`/documents` is live with real content — a sample verdict sheet ending in Reject and a sample
+landed-cost model ending in Do not buy. `/scale` and `/where-we-work` live. Five archetypes with
+five distinct hero figures. The chooser on four pages.
 
 ---
 
-## The phase 2 queue — three tickets, in this order
+## 1 · `PROMPT_19_IMAGE_PIPELINE.md` — buildable now, not blocked on the photos
 
-### 1 · `PROMPT_17_PHASE2.md` — start with §1, it is the highest-impact item on the site
+Source: `docs/VISUAL_PRODUCTION_PLAN.md`. **Static photographic images from the owner's real
+products — no 3D, no animation.**
 
-Ten items. Evidence is `docs/CLIENT_REVIEW_NEW_SELLER.md`, a read of the live pages in the persona
-of a first-time seller with $50k. **Read that before starting.**
+**Read §0 of the ticket first.** Your own chroma numbers surface a problem that would otherwise be
+found at image six rather than image one: service pages are now **0.0193–0.0235** against the 0.018
+floor, and the refactor's new light surfaces cost about 0.002. Six photographs per page are six more
+light surfaces. The mitigation belongs in the image component from the start, not as a later fix.
 
-**§1 · The chooser.** A first-time buyer cannot tell whether they need wholesale or private label,
-and neither page tries to help. Ship this alone if you want a quick win — it is archetype-independent
-and it is the single biggest reason a qualified visitor leaves.
+Build steps 1–3 — the optional `images` field, the build-time WebP pipeline, and an alt-text gate —
+**with no images present.** Then wire `/private-label` only, re-measure chroma, and stop.
 
-**§2 · Jargon inline.** `buy box` is used as *"the buy box decides whether you sell at that price at
-all"* and never explained. `landed cost` is defined 800 words after first use. `private label` is
-never defined on its own page.
+**Your three flags from `752e848` are all correct and need no changes** — the disclosure instead of
+deletion is better than what the ticket asked for, and worth doing whenever a ticket says delete and
+the content is sound.
 
-**§3 · Money.** Not a reinstated price list — a worked example with real arithmetic and a stated
-minimum. Also: `/how-we-work` publishes the step-down and **neither service page mentions it.**
+---
 
-**§4–§5 · Proof and a second CTA.** No client, result, person, year or volume anywhere. Both CTAs
-are "Let's talk" and the pages sell judgement without ever showing a verdict.
+## 2 · Content-depth pass — audit side
 
-**§6 · Visuals to 5–6 per page** with alt text, word-based filenames, dimensions and lazy loading.
-
-**§7 `/scale` · §9 `/where-we-work`** — new pages, independent of the refactor, build whenever.
-
-**§8 · The connected stack** — a visitor currently cannot tell that ads, social, content or CRO
-exist at all.
-
-**§10 · AI visibility** — entity work. The honest limit is stated in the ticket.
-
-### 2 · `PROMPT_18_PAGE_ARCHETYPES.md` — ships with 17, one refactor of `ServicePage.tsx`
-
-Owner ruling: every business model is separate, so the pages should not all be one shape. **Right
-diagnosis, and the answer is five archetypes rather than ten bespoke designs.**
-
-Two independent measurements agree the pages are too alike: the persona could not choose between
-wholesale and private label *because* the pages are structurally identical, and the site review
-measured H1 similarity at 78% on one pair and 72% on two others.
-
-**Trading loop · Gated project · Build-then-run · Cadence desk · Constraint and lever.** The eight-H2
-spine, the ids, the frame and the chroma rules stay identical — archetypes differentiate the middle
-of the page only.
-
-The ticket carries the exact interleaving of 17 and 18 so `ServicePage.tsx` is touched once.
-
-### 3 · Content depth — audit side, not dev
-
-Flagged in the last report and correctly left in my lane: **phase copy is 30–65 words against the
-100–150 spec.** The timeline structure is ready for it. Landing in `docs/content/` with the
-archetype-specific copy.
+Mine, not yours: phase copy at 30–65 words against the 100–150 spec · the chooser's capital lines ·
+`/scale` and `/where-we-work` bodies · the archetype-specific copy. Landing in `docs/content/`.
 
 ---
 
