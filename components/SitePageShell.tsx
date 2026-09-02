@@ -7,7 +7,9 @@ export default function SitePageShell({ children }: { children: ReactNode }) {
   return (
     <>
       <SiteHeader />
-      <main className="flex-1">{children}</main>
+      <main id="main" tabIndex={-1} className="flex-1">
+        {children}
+      </main>
       <SiteFooter />
     </>
   );

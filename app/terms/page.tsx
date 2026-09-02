@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ogImageMeta } from "@/lib/og-pages";
 import LegalPage from "@/components/LegalPage";
 
 export const metadata: Metadata = {
@@ -6,6 +7,7 @@ export const metadata: Metadata = {
   description:
     "The terms that apply to using this website. Engagement terms live in the written agreement each client signs.",
   alternates: { canonical: "/terms" },
+  ...ogImageMeta("terms"),
 };
 
 export default function Page() {

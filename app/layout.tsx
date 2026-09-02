@@ -30,8 +30,16 @@ export const metadata: Metadata = {
     type: "website",
     url: "/",
     siteName: "Hyprr Brands",
+    images: [
+      {
+        url: "/og/home",
+        width: 1200,
+        height: 630,
+        alt: "You own the business. We run the operation.",
+      },
+    ],
   },
-  twitter: { card: "summary_large_image" },
+  twitter: { card: "summary_large_image", images: ["/og/home"] },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -40,7 +48,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en-US"
       className={`${archivo.variable} ${jetbrains.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <a href="#main" className="skip-link">
+          Skip to content
+        </a>
+        {children}
+      </body>
     </html>
   );
 }

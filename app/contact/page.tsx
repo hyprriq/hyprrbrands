@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ogImageMeta } from "@/lib/og-pages";
 import SitePageShell from "@/components/SitePageShell";
 import ContactForm from "@/components/ContactForm";
 
@@ -7,6 +8,7 @@ export const metadata: Metadata = {
   description:
     "Tell us what you're trying to build. The more context you give, the more useful the first conversation is — we read everything before we reply.",
   alternates: { canonical: "/contact" },
+  ...ogImageMeta("contact"),
 };
 
 /**

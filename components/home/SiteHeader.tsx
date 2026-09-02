@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { isLive, pagesByEngine, type Engine } from "@/lib/site-map";
 
@@ -26,6 +27,7 @@ const COMPANY: [string, string][] = [
 
 export default function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
   const companyLive = COMPANY.filter(([slug]) => isLive(slug));
 
   return (
@@ -53,7 +55,7 @@ export default function SiteHeader() {
 
           {/* Desktop navigation */}
           <nav
-            aria-label="Primary"
+            aria-label="Main"
             className="hidden md:flex items-center gap-[clamp(14px,1.8vw,28px)] type-meta font-medium py-3"
           >
             {ENGINES.map(({ engine, label, hub }) => {
@@ -64,7 +66,8 @@ export default function SiteHeader() {
                 <div key={hub} className="relative group">
                   <a
                     href={hub}
-                    className="text-ink hover:text-ink whitespace-nowrap"
+                    aria-current={pathname === hub ? "page" : undefined}
+                    className={`text-ink hover:text-ink whitespace-nowrap ${pathname === hub ? "font-semibold underline underline-offset-8" : ""}`}
                   >
                     {label}
                   </a>
@@ -90,7 +93,8 @@ export default function SiteHeader() {
               <a
                 key={slug}
                 href={slug}
-                className="text-ink hover:text-ink whitespace-nowrap"
+                aria-current={pathname === slug ? "page" : undefined}
+                className={`text-ink hover:text-ink whitespace-nowrap ${pathname === slug ? "font-semibold underline underline-offset-8" : ""}`}
               >
                 {label}
               </a>
@@ -133,7 +137,7 @@ export default function SiteHeader() {
         {/* Mobile navigation panel */}
         <nav
           id="mobile-nav"
-          aria-label="Primary"
+          aria-label="Main"
           className={`md:hidden border-t border-line bg-white ${
             open ? "block" : "hidden"
           }`}
@@ -146,6 +150,7 @@ export default function SiteHeader() {
               <a
                 key={href}
                 href={href}
+                aria-current={pathname === href ? "page" : undefined}
                 className="text-ink hover:text-ink type-body font-medium py-3 border-b border-line/70 last:border-b-0"
                 onClick={() => setOpen(false)}
               >

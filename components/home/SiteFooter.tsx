@@ -30,7 +30,7 @@ export default function SiteFooter() {
 
   return (
     <footer className="bg-field text-on-field-body border-t border-line-on-field">
-      <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] pt-[clamp(48px,5vw,72px)] pb-9 grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-[clamp(24px,3vw,40px)]">
+      <nav aria-label="Footer" className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] pt-[clamp(48px,5vw,72px)] pb-9 grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-[clamp(24px,3vw,40px)]">
         <div className="min-w-[200px]">
           <div className="font-display font-extrabold type-body text-white tracking-[-.02em] mb-2">
             hyprr <span className="font-normal text-on-field-mute">brands</span>
@@ -100,7 +100,7 @@ export default function SiteFooter() {
             ))}
           </div>
         </div>
-      </div>
+      </nav>
       <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] pt-6 pb-11 type-meta flex justify-between gap-[18px] flex-wrap border-t border-line-on-field">
         <span>© 2026 Hyprr Retail LLC</span>
         <div className="flex gap-5 flex-wrap">

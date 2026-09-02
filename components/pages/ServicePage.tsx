@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import SitePageShell from "@/components/SitePageShell";
 import { isLive } from "@/lib/site-map";
+import { ogImageMeta } from "@/lib/og-pages";
 import {
   ENGINE_META,
   SERVICE_SECTIONS,
@@ -550,19 +551,24 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
         <div
           className={`${CONTAINER} pt-[clamp(28px,4vw,56px)] pb-[clamp(32px,4vw,56px)]`}
         >
-          <nav
-            aria-label="Breadcrumb"
-            className="font-mono type-label text-label normal-case tracking-normal flex gap-2 flex-wrap"
-          >
-            <Link href="/" className="text-label hover:text-ink">
-              Home
-            </Link>
-            <span>/</span>
-            <a href={e.hubUrl} className="text-label hover:text-ink">
-              {e.hub}
-            </a>
-            <span>/</span>
-            <span className="text-ink">{data.name}</span>
+          <nav aria-label="Breadcrumb">
+            <ol className="font-mono type-label text-label normal-case tracking-normal flex gap-2 flex-wrap list-none m-0 p-0">
+              <li>
+                <Link href="/" className="text-label hover:text-ink">
+                  Home
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li>
+                <a href={e.hubUrl} className="text-label hover:text-ink">
+                  {e.hub}
+                </a>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li aria-current="page" className="text-ink">
+                {data.name}
+              </li>
+            </ol>
           </nav>
           <h1 className="font-display type-h1 text-ink m-0 mt-4 max-w-[18ch] text-balance">
             {data.h1}
@@ -623,7 +629,7 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
 
       {/* Section nav — sticky ≥900px when the viewport shows it whole */}
       <nav
-        aria-label="Page sections"
+        aria-label="On this page"
         className="service-nav hidden min-[900px]:block bg-white/95 backdrop-blur-lg border-y border-line"
       >
         <div
@@ -1206,9 +1212,19 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
 }
 
 export function serviceMetadata(data: ServicePageData): Metadata {
+  const og = ogImageMeta(data.slug.slice(1));
   return {
     title: data.metaTitle,
     description: data.metaDescription,
     alternates: { canonical: data.slug },
+    openGraph: {
+      title: data.h1,
+      description: data.metaDescription,
+      url: data.slug,
+      type: "website",
+      siteName: "Hyprr Brands",
+      ...og.openGraph,
+    },
+    twitter: og.twitter,
   };
 }

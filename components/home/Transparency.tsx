@@ -35,10 +35,17 @@ export default function Transparency() {
     <section className="bg-white border-t border-line">
       <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(60px,7vw,104px)]">
         <Reveal className="mb-[clamp(30px,4vw,48px)]">
-          <h2 className="font-display type-h2 text-ink m-0 max-w-[16ch]">
+          <h2 className="font-display type-h2 text-ink m-0 mb-4 max-w-[16ch]">
             Nothing important is{" "}
             <span className="bg-bone px-2 rounded-sm">hidden</span>.
           </h2>
+          <p className="type-lead text-body m-0 max-w-[62ch]">
+            Everything a client would want to check before signing is stated
+            on this site before the first conversation: who owns what, how
+            approval works, how we are paid, and what we refuse to promise.
+            The rows below are the summary; each links to the page that
+            carries the detail.
+          </p>
         </Reveal>
         <Reveal className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-[clamp(16px,2vw,24px)] mb-[clamp(28px,4vw,40px)]">
           {CARDS.map(([label, text]) => (

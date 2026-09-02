@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ogImageMeta } from "@/lib/og-pages";
 import Link from "next/link";
 import SitePageShell from "@/components/SitePageShell";
 import { isLive } from "@/lib/site-map";
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
   description:
     "You decide. We execute. What happens in an engagement, who decides, what gets written down, and how we are paid — the mechanic, no figures.",
   alternates: { canonical: "/how-we-work" },
+  ...ogImageMeta("how-we-work"),
 };
 
 /**
@@ -84,15 +86,18 @@ export default function Page() {
       {/* White: hero + the four-step sequence */}
       <section className="bg-white">
         <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(40px,6vw,72px)]">
-          <nav
-            aria-label="Breadcrumb"
-            className="font-mono type-label text-label normal-case tracking-normal flex gap-2"
-          >
-            <Link href="/" className="text-label hover:text-ink">
-              Home
-            </Link>
-            <span>/</span>
-            <span className="text-ink">How we work</span>
+          <nav aria-label="Breadcrumb">
+            <ol className="font-mono type-label text-label normal-case tracking-normal flex gap-2 list-none m-0 p-0">
+              <li>
+                <Link href="/" className="text-label hover:text-ink">
+                  Home
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li aria-current="page" className="text-ink">
+                How we work
+              </li>
+            </ol>
           </nav>
           <h1 className="font-display type-h1 text-ink m-0 mt-[18px] max-w-[14ch] text-balance">
             You decide. We execute.
@@ -228,6 +233,12 @@ export default function Page() {
               <h2 className="font-display type-h3 text-ink m-0">
                 Who we say no to
               </h2>
+              <p className="type-body text-body m-0 max-w-[52ch]">
+                The model only works for people who want to own a business
+                and make its decisions. Saying who it does not fit, before a
+                conversation starts, saves both sides a bad engagement — and
+                these three refusals are structural, not negotiable.
+              </p>
               {NO_TO.map((n) => (
                 <div
                   key={n}
@@ -242,6 +253,12 @@ export default function Page() {
               <h2 className="font-display type-h3 text-ink m-0">
                 What we don&apos;t guarantee
               </h2>
+              <p className="type-body text-body m-0 max-w-[52ch]">
+                Outcomes in ecommerce depend on capital, market conditions
+                and marketplace policy — things no provider controls. Rather
+                than promise around that, we name what is outside anyone&apos;s
+                control, in the same list form the agreement uses.
+              </p>
               {NO_GUARANTEE.map((n) => (
                 <div
                   key={n}

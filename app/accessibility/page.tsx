@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ogImageMeta } from "@/lib/og-pages";
 import LegalPage from "@/components/LegalPage";
 
 export const metadata: Metadata = {
@@ -6,6 +7,7 @@ export const metadata: Metadata = {
   description:
     "The accessibility standard this site is built to, what that means in practice, and how to report a problem.",
   alternates: { canonical: "/accessibility" },
+  ...ogImageMeta("accessibility"),
 };
 
 export default function Page() {

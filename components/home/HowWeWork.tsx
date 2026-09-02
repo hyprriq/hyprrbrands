@@ -36,7 +36,11 @@ export default function HowWeWork() {
             From decision to operation.
           </h2>
           <p className="type-lead text-body m-0 max-w-[62ch]">
-            Strategy sits inside the work. It isn&apos;t a separate invoice.
+            Strategy sits inside the work — it isn&apos;t a separate invoice.
+            Every engagement runs the same four steps, because each one
+            produces what the next needs: the commercial read decides whether
+            to plan, the plan decides what gets executed, and the operation
+            produces the record the next decision is made on.
           </p>
         </Reveal>
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ogImageMeta } from "@/lib/og-pages";
 import LegalPage from "@/components/LegalPage";
 
 export const metadata: Metadata = {
@@ -6,6 +7,7 @@ export const metadata: Metadata = {
   description:
     "Hyprr publishes no earnings figures and promises no results. This page is the policy behind that, in writing.",
   alternates: { canonical: "/earnings-claims" },
+  ...ogImageMeta("earnings-claims"),
 };
 
 export default function Page() {

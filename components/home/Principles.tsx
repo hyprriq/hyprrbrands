@@ -40,7 +40,10 @@ export default function Principles() {
             Built differently.
           </h2>
           <p className="type-lead text-body m-0 max-w-[62ch]">
-            The operating model is the product. These are the terms it runs on.
+            The operating model is the product, and these are the terms it
+            runs on. They are not values on a wall: each one is a working
+            rule you can check against the agreement, the approval records
+            and the weekly report — and hold us to when it matters.
           </p>
         </Reveal>
         <Reveal className="bg-ink text-white rounded-lg p-[clamp(24px,3vw,44px)]">

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ogImageMeta } from "@/lib/og-pages";
 import LegalPage from "@/components/LegalPage";
 
 export const metadata: Metadata = {
@@ -6,6 +7,7 @@ export const metadata: Metadata = {
   description:
     "What this site collects, what the contact form is used for, and how to reach us about your data.",
   alternates: { canonical: "/privacy" },
+  ...ogImageMeta("privacy"),
 };
 
 export default function Page() {

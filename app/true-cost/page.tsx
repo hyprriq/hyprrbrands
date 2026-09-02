@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ogImageMeta } from "@/lib/og-pages";
 import Link from "next/link";
 import SitePageShell from "@/components/SitePageShell";
 import TrueCostCalculator from "@/components/TrueCostCalculator";
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
   description:
     "Ten inputs, one total, and an explanation of every line. It calculates what you will spend to launch a product. It does not project what you might make.",
   alternates: { canonical: "/true-cost" },
+  ...ogImageMeta("true-cost"),
 };
 
 /**
@@ -22,15 +24,18 @@ export default function Page() {
     <SitePageShell>
       <section className="bg-white">
         <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] pt-[clamp(40px,6vw,72px)] pb-[clamp(24px,3vw,40px)]">
-          <nav
-            aria-label="Breadcrumb"
-            className="font-mono type-label text-label normal-case tracking-normal flex gap-2"
-          >
-            <Link href="/" className="text-label hover:text-ink">
-              Home
-            </Link>
-            <span>/</span>
-            <span className="text-ink">True cost</span>
+          <nav aria-label="Breadcrumb">
+            <ol className="font-mono type-label text-label normal-case tracking-normal flex gap-2 list-none m-0 p-0">
+              <li>
+                <Link href="/" className="text-label hover:text-ink">
+                  Home
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li aria-current="page" className="text-ink">
+                True cost
+              </li>
+            </ol>
           </nav>
           <h1 className="font-display type-h1 text-ink m-0 mt-[18px] max-w-[16ch] text-balance">
             The true cost of launching a product

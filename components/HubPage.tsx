@@ -1,6 +1,7 @@
 import SitePageShell from "@/components/SitePageShell";
 import Link from "next/link";
 import { pagesByEngine, type Engine } from "@/lib/site-map";
+import { ogImageMeta } from "@/lib/og-pages";
 
 /**
  * Hub page template — design system HubPage: the engine band hero is
@@ -133,15 +134,18 @@ export default function HubPage({ engine }: { engine: Exclude<Engine, null> }) {
       {/* Engine band hero: the whole colour budget */}
       <section className={hub.band}>
         <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(40px,6vw,80px)]">
-          <nav
-            aria-label="Breadcrumb"
-            className="font-mono type-label text-label normal-case tracking-normal flex gap-2"
-          >
-            <Link href="/" className="text-label hover:text-ink">
-              Home
-            </Link>
-            <span>/</span>
-            <span className="text-ink">{hub.name}</span>
+          <nav aria-label="Breadcrumb">
+            <ol className="font-mono type-label text-label normal-case tracking-normal flex gap-2 list-none m-0 p-0">
+              <li>
+                <Link href="/" className="text-label hover:text-ink">
+                  Home
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li aria-current="page" className="text-ink">
+                {hub.name}
+              </li>
+            </ol>
           </nav>
           <h1 className="font-display type-h1 text-ink m-0 mt-4 max-w-[16ch] text-balance">
             {hub.h1}
@@ -251,9 +255,19 @@ export default function HubPage({ engine }: { engine: Exclude<Engine, null> }) {
 
 export function hubMetadata(engine: Exclude<Engine, null>) {
   const hub = HUBS[engine];
+  const og = ogImageMeta(engine);
   return {
     title: hub.title,
     description: hub.meta,
     alternates: { canonical: `/${engine}` },
+    openGraph: {
+      title: hub.h1,
+      description: hub.meta,
+      url: `/${engine}`,
+      type: "website" as const,
+      siteName: "Hyprr Brands",
+      ...og.openGraph,
+    },
+    twitter: og.twitter,
   };
 }
