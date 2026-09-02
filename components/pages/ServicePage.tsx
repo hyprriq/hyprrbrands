@@ -4,10 +4,17 @@ import SitePageShell from "@/components/SitePageShell";
 import { isLive } from "@/lib/site-map";
 import { ogImageMeta } from "@/lib/og-pages";
 import JsonLd from "@/components/JsonLd";
-import MechanismDiagram from "@/components/pages/MechanismDiagram";
+import MechanismDiagram, {
+  CapitalCycleDiagram,
+  HeroFigure,
+} from "@/components/pages/MechanismDiagram";
+import ServiceChooser from "@/components/pages/ServiceChooser";
+import ConnectedStack from "@/components/pages/ConnectedStack";
+import { PUBLISH_SPLIT } from "@/lib/fees";
 import { breadcrumbLd, faqLd, serviceLd, webPageLd } from "@/lib/schema";
 import {
   ENGINE_META,
+  LAYOUT_META,
   SERVICE_SECTIONS,
   TONE_DOT,
   VERDICTS,
@@ -30,7 +37,14 @@ const CONTAINER = "mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)]";
 const SECTION_PAD = "py-[clamp(40px,5vw,72px)]";
 const ANCHOR = "[scroll-margin-top:140px]";
 
-function PetrolCta({ note }: { note?: string }) {
+function PetrolCta({
+  note,
+  extra,
+}: {
+  note?: string;
+  /** 17 §5 — the low-commitment second CTA beside "Let's talk". */
+  extra?: { label: string; href: string };
+}) {
   return (
     <div className="flex gap-[22px] items-center mt-9 flex-wrap">
       <a
@@ -39,12 +53,64 @@ function PetrolCta({ note }: { note?: string }) {
       >
         Let&apos;s talk
       </a>
+      {extra && (
+        <a
+          href={extra.href}
+          className="text-ink hover:text-ink type-body font-medium"
+        >
+          {extra.label} →
+        </a>
+      )}
       {note && (
         <span className="font-mono type-label text-label normal-case tracking-normal">
           {note}
         </span>
       )}
     </div>
+  );
+}
+
+/** 17 §3 — the money box: arithmetic the reader can follow, without
+ *  reinstating a price list. The scenario is the fee mechanic's own
+ *  worked example, shortened, with the same arbitrary-numbers label;
+ *  the step-down mirrors /how-we-work#fees verbatim. The stated
+ *  minimum is owner data and renders nothing until it exists (the
+ *  optional-and-omitted rule). check-copy exempts figures inside
+ *  [data-worked-example] blocks that carry the arbitrary label. */
+function MoneyBox({ data }: { data: ServicePageData }) {
+  return (
+    <figure
+      data-worked-example
+      className="m-0 mt-2 border border-line rounded-md p-[clamp(20px,2.4vw,28px)] grid gap-3 max-w-[68ch]"
+    >
+      <figcaption className="font-mono type-label text-label uppercase m-0">
+        The arithmetic, shortened — the fee mechanic&apos;s own worked example
+      </figcaption>
+      <p className="type-body text-body m-0">
+        A line sells 400 units in a month at $30. Settlement after
+        marketplace fees and returns is $9,000; cost of goods on the units
+        that sold is $7,200; advertising against the line is $600. Realised
+        margin is $1,200
+        {PUBLISH_SPLIT
+          ? " — Hyprr's share at 30% is $360, and you keep $840."
+          : ", and the share agreed in writing is calculated on that figure."}
+      </p>
+      {PUBLISH_SPLIT && (
+        <p className="type-body text-body m-0">
+          The share steps down as the operation matures: 30% through month
+          12, 25% in months 13 to 24, 20% from month 25 onward — counted
+          from the first sale rather than from signature.
+        </p>
+      )}
+      {data.moneyNote && (
+        <p className="type-body text-ink font-medium m-0">{data.moneyNote}</p>
+      )}
+      <p className="font-mono type-label text-label normal-case tracking-normal m-0">
+        The numbers are arbitrary and demonstrate the calculation only —
+        they are not a projection, and no earnings figure is published
+        anywhere on this site.
+      </p>
+    </figure>
   );
 }
 
@@ -634,6 +700,11 @@ function AtAGlance({ data }: { data: ServicePageData }) {
 
 export default function ServicePage({ data }: { data: ServicePageData }) {
   const e = ENGINE_META[data.engine];
+  const lm = data.layout ? LAYOUT_META[data.layout] : undefined;
+  const sections: [string, string][] = SERVICE_SECTIONS.map(([id, label]) => [
+    id,
+    id === "days" && lm?.daysNav ? lm.daysNav : label,
+  ]);
   const sentences = data.answer.match(/[^.]+\./g) ?? [data.answer];
   const answerFirst = sentences[0].trim();
 
@@ -709,9 +780,16 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
               </p>
               {/* Mobile: the panel sits below the answer, above the rest.
                   It never stacks above the H1. */}
-              <div className="min-[900px]:hidden mt-6">
+              <div className="min-[900px]:hidden mt-6 grid gap-4">
                 <AtAGlance data={data} />
+                {data.layout && <HeroFigure layout={data.layout} />}
               </div>
+              {/* 18 B — one sentence stated early, under the answer */}
+              {data.earlyLine && (
+                <p className="type-body text-ink font-medium mt-4 mb-0 max-w-[62ch]">
+                  {data.earlyLine}
+                </p>
+              )}
               <p className="type-body text-ink font-medium mt-4 mb-0 max-w-[62ch] flex gap-2.5 items-start">
                 <span className="flex-none w-3 h-3 rounded-[2px] bg-ink mt-1.5" />
                 <span>{data.disqualifier}</span>
@@ -734,6 +812,14 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
                 >
                   Let&apos;s talk
                 </a>
+                {data.sampleDoc && (
+                  <a
+                    href={data.sampleDoc.href}
+                    className="text-ink hover:text-ink type-body font-medium"
+                  >
+                    {data.sampleDoc.label} →
+                  </a>
+                )}
                 <a
                   href="/how-we-work"
                   className="text-ink hover:text-ink type-body font-medium"
@@ -741,20 +827,60 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
                   See how we work →
                 </a>
               </div>
-              <a
-                href="/how-we-work"
-                className="min-[900px]:hidden text-ink hover:text-ink type-body font-medium inline-block mt-5"
-              >
-                See how we work →
-              </a>
+              <div className="min-[900px]:hidden grid gap-2.5 mt-5">
+                {data.sampleDoc && (
+                  <a
+                    href={data.sampleDoc.href}
+                    className="text-ink hover:text-ink type-body font-medium"
+                  >
+                    {data.sampleDoc.label} →
+                  </a>
+                )}
+                <a
+                  href="/how-we-work"
+                  className="text-ink hover:text-ink type-body font-medium"
+                >
+                  See how we work →
+                </a>
+              </div>
             </div>
-            {/* Desktop: the at-a-glance panel fills the fold's right half */}
-            <div className="hidden min-[900px]:block flex-none w-[clamp(300px,30vw,400px)] mt-4">
+            {/* Desktop: the at-a-glance panel fills the fold's right half,
+                with the archetype's hero figure beneath it — the page's
+                shape, taught before a word is read (PROMPT_18). */}
+            <div className="hidden min-[900px]:grid gap-4 flex-none w-[clamp(300px,30vw,400px)] mt-4 content-start">
               <AtAGlance data={data} />
+              {data.layout && <HeroFigure layout={data.layout} />}
             </div>
           </div>
         </div>
       </section>
+
+      {/* 18 C — two explicit paths from the hero */}
+      {data.heroPaths && (
+        <section aria-label="Two ways in" className="bg-white border-t border-line">
+          <div className={`${CONTAINER} py-[clamp(22px,3vw,34px)] grid min-[720px]:grid-cols-2 gap-3`}>
+            {data.heroPaths.map((p) => (
+              <a
+                key={p.anchor}
+                href={`#${p.anchor}`}
+                className="border border-line hover:border-ink rounded-md p-[clamp(18px,2vw,24px)] grid gap-1.5 transition-colors"
+              >
+                <span className="font-mono type-label text-label uppercase">
+                  {p.label}
+                </span>
+                <span className="type-body text-ink font-medium">
+                  {p.desc} →
+                </span>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* 17 §1 — the chooser. Highest-impact fix on the site: names the
+          alternative paths in plain English, immediately after the
+          hero's answer. */}
+      {data.chooser && <ServiceChooser current={data.slug} />}
 
       {/* Section nav — sticky ≥900px when the viewport shows it whole */}
       <nav
@@ -764,7 +890,7 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
         <div
           className={`${CONTAINER} flex gap-[22px] overflow-x-auto whitespace-nowrap font-mono type-label text-label normal-case tracking-[.04em]`}
         >
-          {SERVICE_SECTIONS.map(([id, label]) => (
+          {sections.map(([id, label]) => (
             <a
               key={id}
               href={`#${id}`}
@@ -781,7 +907,7 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
           <span>▾</span>
         </summary>
         <div className="grid px-3.5 pb-3 type-meta">
-          {SERVICE_SECTIONS.map(([id, label]) => (
+          {sections.map(([id, label]) => (
             <a
               key={id}
               href={`#${id}`}
@@ -974,7 +1100,10 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
               )}
             </div>
           </div>
-          <PetrolCta note="CTA moment 1 of 3 · scope is now known" />
+          <PetrolCta
+            note="CTA moment 1 of 3 · scope is now known"
+            extra={data.sampleDoc}
+          />
         </div>
       </section>
 
@@ -1033,22 +1162,108 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
               {data.fitNote}
             </p>
           )}
+          {/* 18 A — "what we refuse to buy" as its own band. Naming
+              what is refused is the argument. */}
+          {data.refuse && (
+            <div className="mt-8 bg-ink text-white rounded-lg p-[clamp(24px,3vw,36px)]">
+              <h3 className="font-display type-h3 text-white m-0 mb-4">
+                {data.refuse.title}
+              </h3>
+              <div className="grid gap-2.5 max-w-[62ch]">
+                {data.refuse.items.map((it) => (
+                  <div
+                    key={it}
+                    className="flex gap-3.5 items-start type-body font-medium"
+                  >
+                    <span className="flex-none w-2.5 h-2.5 rounded-[2px] bg-white mt-2" />
+                    {it}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
       {/* Sections 6–9 share a wrapper so the mobile sticky CTA bar
           appears mid-page and leaves before the FAQ — pure CSS. */}
       <div className="relative">
-        {/* 6 · Bone: first 90 days + family insert + CTA 2 */}
+        {/* 6 · Bone: the archetype's middle (PROMPT_18) — a timeline by
+            default, a capital cycle for the trading loop, a normal
+            week for the cadence desk. Same id, same slot, same order. */}
         <section id="days" className={`bg-bone ${ANCHOR}`}>
           <div className={`${CONTAINER} ${SECTION_PAD}`}>
             <h2 className="font-display type-h2 text-ink m-0 max-w-[18ch] text-balance">
-              How we work: the first 90 days
+              {lm?.daysHeading ?? "How we work: the first 90 days"}
             </h2>
+            {/* 18 A — the capital cycle replaces the linear timeline as
+                the section's lead visual */}
+            {data.layout === "trading-loop" && (
+              <figure className="m-0 mt-7 grid gap-3 justify-items-start">
+                <CapitalCycleDiagram />
+                <figcaption className="type-meta text-body max-w-[56ch]">
+                  Money goes out, stock comes back, repeat — every turn of
+                  the loop starts with your approval and ends in the weekly
+                  read.
+                </figcaption>
+              </figure>
+            )}
+            {/* 18 D — a normal week as the board; the desk has no
+                launch arc to narrate */}
+            {data.week && (
+              <div className="grid gap-2 mt-7 max-w-[760px]">
+                {data.week.map((w) => (
+                  <div
+                    key={w.label + w.sub}
+                    className="bg-white border border-line rounded-md px-5 py-3.5 grid min-[560px]:grid-cols-[120px_1fr] gap-x-5 gap-y-1 items-baseline"
+                  >
+                    <span className="font-mono type-label text-label uppercase">
+                      {w.label}
+                    </span>
+                    <span className="type-body text-ink">{w.sub}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+            {/* Trading loop and cadence desk keep the 90-day copy
+                reachable behind a disclosure — the shape of the section
+                is the cycle / the week, not the timeline (PROMPT_18);
+                the copy itself is not deleted. */}
+            {(data.layout === "trading-loop" ||
+              data.layout === "cadence-desk") && (
+              <details className="mt-6 max-w-[760px] border border-line rounded-md bg-white">
+                <summary className="cursor-pointer px-5 py-3.5 font-mono type-label text-ink uppercase flex justify-between">
+                  <span>
+                    {data.layout === "trading-loop"
+                      ? "Standing the loop up — the first 90 days"
+                      : "Taking the desk — the first 90 days"}
+                  </span>
+                  <span>▾</span>
+                </summary>
+                <div className="grid gap-4 px-5 pb-5">
+                  {data.phases.map((ph) => (
+                    <div key={ph.days} className="grid gap-1">
+                      <span className="font-mono type-label text-label tracking-[.08em]">
+                        {ph.days} · {ph.title}
+                      </span>
+                      <p className="type-meta text-body m-0 max-w-[62ch]">
+                        {ph.body}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </details>
+            )}
             {/* Slot 5 · phase timeline (PHASE1_VISUAL_MAP): day ranges
                 in mono above a continuous rule, markers in the engine
                 colour, copy below. Vertical spine under 900px. */}
-            <div className="hidden min-[900px]:grid grid-cols-3 mt-8">
+            <div
+              className={
+                data.layout === "trading-loop" || data.layout === "cadence-desk"
+                  ? "hidden"
+                  : "hidden min-[900px]:grid grid-cols-3 mt-8"
+              }
+            >
               {data.phases.map((ph, i) => (
                 <div key={ph.days} className="pr-8 last:pr-0">
                   <span className="font-mono type-label text-label tracking-[.08em] block mb-3">
@@ -1074,7 +1289,13 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
                 </div>
               ))}
             </div>
-            <div className="min-[900px]:hidden grid grid-cols-[16px_1fr] gap-x-4 mt-7">
+            <div
+              className={
+                data.layout === "trading-loop" || data.layout === "cadence-desk"
+                  ? "hidden"
+                  : "min-[900px]:hidden grid grid-cols-[16px_1fr] gap-x-4 mt-7"
+              }
+            >
               {data.phases.map((ph, i) => (
                 <div key={ph.days} className="contents">
                   <div className="relative flex justify-center">
@@ -1103,6 +1324,38 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
               </div>
               <HwwInsert hww={data.hww} />
             </div>
+            {/* 18 E — "when we recommend stopping" as a named section */}
+            {data.stopping && (
+              <div className="mt-8 max-w-[62ch] border-l-[3px] border-ink pl-5 grid gap-2.5">
+                <h3 className="font-display type-h3 text-ink m-0">
+                  {data.stopping.title}
+                </h3>
+                <p className="type-body text-body m-0">{data.stopping.body}</p>
+              </div>
+            )}
+            {/* 18 B/C — the fork at launch or handover, as the
+                section's climax rather than a footnote */}
+            {data.launchFork && (
+              <div className="mt-8 bg-ink text-white rounded-lg p-[clamp(24px,3vw,36px)] max-w-[820px]">
+                <h3 className="font-display type-h3 text-white m-0 mb-3">
+                  {data.launchFork.title}
+                </h3>
+                <p className="type-body text-on-ink-body m-0 mb-4 max-w-[62ch]">
+                  {data.launchFork.body}
+                </p>
+                <div className="flex gap-[22px] flex-wrap">
+                  {data.launchFork.links.map((l) => (
+                    <a
+                      key={l.href}
+                      href={l.href}
+                      className="text-white hover:text-white type-body font-semibold"
+                    >
+                      {l.label} →
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
             <PetrolCta note="CTA moment 2 of 3 · process is now trusted" />
           </div>
         </section>
@@ -1193,10 +1446,21 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
             <h3 className="font-display type-h3 text-white m-0">
               Evidence, not claims
             </h3>
-            <p className="type-body text-on-field-body mt-3 mb-0 max-w-[60ch]">
-              No figures at soft launch. The evidence on this page is the
-              paperwork the engagement runs on, readable before you speak to
-              anyone.
+            {/* 17 §4 — say the quiet part out loud. Anonymity plus
+                confidence plus no figures reads as the automation-ad
+                pattern; naming the earliness is the counter. */}
+            <p className="type-body text-on-field-body mt-3 mb-0 max-w-[62ch]">
+              No client names appear on this site yet, because Hyprr is
+              early — that is stated rather than dressed up. Who runs the
+              operation, by name and with background, is on the{" "}
+              <a
+                href="/about"
+                className="text-white hover:text-white font-semibold"
+              >
+                About page
+              </a>
+              . The evidence here is the paperwork an engagement runs on,
+              readable before you speak to anyone.
             </p>
             {/* Decision 2 refinement: the label renders once per
                 section, not once per tile. */}
@@ -1269,6 +1533,7 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
                   {p}
                 </p>
               ))}
+              <MoneyBox data={data} />
             </div>
             <a
               href="/how-we-work#fees"
@@ -1327,6 +1592,10 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
           </div>
         </section>
       )}
+
+      {/* 17 §8 — the connected stack, on the pages whose buyers span
+          marketplace and DTC */}
+      {data.connectedStack && <ConnectedStack />}
 
       {/* 12 · Bone: what comes next + related. The nextStep block is
           the engine progression (Build → Grow → Operate → the

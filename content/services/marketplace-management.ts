@@ -53,6 +53,20 @@ const data: ServicePageData = {
       "Proven in the suspension path the daily sweep interrupts.",
   },
 
+  layout: "cadence-desk",
+  week: [
+    {
+      label: "Daily",
+      sub: "The account-health and policy sweep, both marketplaces — a policy change is found by us in a sweep, not by you in a suspension",
+    },
+    { label: "Daily", sub: "Cases opened and worked, clocks tracked" },
+    { label: "Weekly", sub: "The listings sweep and the inventory review" },
+    {
+      label: "Weekly",
+      sub: "The written report, ending in the decisions that need you",
+    },
+  ],
+
   visual: {
     kind: "states",
     title: "Marketplace control room · operational states",

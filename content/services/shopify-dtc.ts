@@ -44,6 +44,22 @@ const data: ServicePageData = {
       "Proven in the operating cadence this page describes.",
   },
 
+  layout: "build-run",
+  chooser: true,
+  connectedStack: true,
+  heroPaths: [
+    {
+      label: "Launching a DTC brand",
+      desc: "The offer, the storefront and the first acquisition, built from zero",
+      anchor: "involves",
+    },
+    {
+      label: "Already running one",
+      desc: "The store operated — merchandising, conversion and retention on a cadence",
+      anchor: "managed",
+    },
+  ],
+
   visual: {
     kind: "journey",
     title: "The customer journey",

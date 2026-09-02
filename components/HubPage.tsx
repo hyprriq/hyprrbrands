@@ -5,6 +5,7 @@ import { ogImageMeta } from "@/lib/og-pages";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbLd, webPageLd } from "@/lib/schema";
 import { ThreeEngineDiagram } from "@/components/pages/MechanismDiagram";
+import ServiceChooser from "@/components/pages/ServiceChooser";
 
 /**
  * Hub page template — design system HubPage: the engine band hero is
@@ -33,6 +34,8 @@ const HUBS: Record<
     connects: string[];
     /** Rendered after the connects paragraphs, with an inline link. */
     connectsLink?: { before: string; href: string; label: string };
+    /** Second such line (grow → /scale, PROMPT_17 §7). */
+    connectsLink2?: { before: string; href: string; label: string };
     /** B1: each hub links to the other two by name, in body copy. */
     hubLinks: { before: string; links: { label: string; href: string }[] };
   }
@@ -86,6 +89,12 @@ const HUBS: Record<
       before: "Direct-to-consumer growth is covered at",
       href: "/shopify-dtc#growth",
       label: "DTC growth",
+    },
+    connectsLink2: {
+      before:
+        "And when the constraint stops being demand and starts being the operation underneath it, the next read is",
+      href: "/scale",
+      label: "Scale",
     },
   },
   operate: {
@@ -234,6 +243,9 @@ export default function HubPage({ engine }: { engine: Exclude<Engine, null> }) {
         </div>
       </section>
 
+      {/* 17 §1 — the chooser, on the hub whose children it compares */}
+      {engine === "build" && <ServiceChooser />}
+
       {/* White: how this engine connects to the other two */}
       <section className="bg-white border-t border-line">
         <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(40px,5vw,64px)]">
@@ -272,16 +284,19 @@ export default function HubPage({ engine }: { engine: Exclude<Engine, null> }) {
               </a>
               .
             </p>
-            {hub.connectsLink && (
-              <p className="type-body text-body m-0">
-                {hub.connectsLink.before}{" "}
-                <a
-                  href={hub.connectsLink.href}
-                  className="text-ink hover:text-ink font-semibold"
-                >
-                  {hub.connectsLink.label} →
-                </a>
-              </p>
+            {[hub.connectsLink, hub.connectsLink2].map(
+              (cl) =>
+                cl && (
+                  <p key={cl.href} className="type-body text-body m-0">
+                    {cl.before}{" "}
+                    <a
+                      href={cl.href}
+                      className="text-ink hover:text-ink font-semibold"
+                    >
+                      {cl.label} →
+                    </a>
+                  </p>
+                )
             )}
           </div>
         </div>

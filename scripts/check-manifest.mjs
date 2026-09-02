@@ -50,8 +50,11 @@ for (const slug of ["/", ...live]) {
 for (const loc of locs)
   if (loc !== "/" && !live.includes(loc)) problems.push(`sitemap lists non-live: ${loc}`);
 
-// /documents and /insights absent from all four surfaces.
-for (const gone of ["/documents", "/insights"]) {
+// Not-yet-shipped routes absent from all four surfaces. /documents
+// left this list when PROMPT_17 §5 shipped its first real content —
+// the prompt-11 rule was that the entry, route and homepage tile
+// return together, and they did.
+for (const gone of ["/insights"]) {
   if (live.includes(gone)) problems.push(`${gone} is live in manifest`);
   if (existsSync(join(ROOT, "app", gone.slice(1), "page.tsx")))
     problems.push(`${gone} route exists`);

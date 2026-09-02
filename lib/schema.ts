@@ -26,11 +26,13 @@ export function organizationLd() {
     description:
       "Ecommerce operations agency. Hyprr builds, grows and operates Amazon (US and UK), Walmart (US) and Shopify businesses on behalf of the people who own them. Clients are in the US, UK, Europe and the Middle East. The client owns the accounts, the inventory and the capital, and approves every material purchase.",
     email: "hello@hyprrbrands.com",
+    // Mirrors /where-we-work — the page and the node must agree.
     areaServed: [
       "United States",
       "United Kingdom",
       "European Union",
       "Middle East",
+      "Singapore",
     ],
   };
 }

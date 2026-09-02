@@ -7,8 +7,11 @@
  *     three approved negations — no negation carve-out in the regex;
  *     the approved list is checked hit by hit, here and by eye.
  *  2. `$` followed by a digit — allowed only on /how-we-work (the
- *     labelled worked example) and /true-cost (the calculator's own
- *     arithmetic, computed from user inputs, not published pricing).
+ *     labelled worked example), /true-cost (the calculator's own
+ *     arithmetic, computed from user inputs, not published pricing),
+ *     and inside [data-worked-example] blocks that visibly carry the
+ *     arbitrary/illustrative label (PROMPT_17 §3 money boxes and the
+ *     /documents samples). An unlabelled worked-example block fails.
  *  3. Unqualified "Amazon and Walmart".
  *  4. "Walmart UK" in any casing, anywhere in the served HTML.
  */
@@ -41,7 +44,17 @@ for (const r of ["/", ...live]) {
   }
   const h = await res.text();
   const main = h.split(/<main[\s>]/)[1]?.split("</main>")[0] ?? "";
+  // Worked-example blocks: figures allowed, but only when the block
+  // itself carries the arbitrary/illustrative label the reader sees.
+  const weBlocks =
+    main.match(/<figure[^>]*data-worked-example[^>]*>[\s\S]*?<\/figure>/g) ??
+    [];
+  for (const b of weBlocks) {
+    if (!/arbitrar|illustrativ/i.test(b))
+      problems.push(`${r}: worked-example block without the arbitrary label`);
+  }
   const text = main
+    .replace(/<figure[^>]*data-worked-example[^>]*>[\s\S]*?<\/figure>/g, " ")
     .replace(/<script[^>]*>[\s\S]*?<\/script>/g, " ")
     .replace(/<[^>]+>/g, " ")
     .replace(/&amp;/g, "&")

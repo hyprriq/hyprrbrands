@@ -36,14 +36,9 @@ export function GET() {
     "",
     "## How we work",
     `- [How we work](${SITE_ORIGIN}/how-we-work): the operating cycle, approval gate and fee mechanic`,
+    ...byGroup("support").map(entry),
   ];
-  if (isLive("/documents")) {
-    lines.push(
-      `- [Documents](${SITE_ORIGIN}/documents): the paperwork, ungated`
-    );
-  }
   lines.push(
-    `- [True cost calculator](${SITE_ORIGIN}/true-cost): what launching a product costs, from your own inputs`,
     "",
     "## Company",
     `- [About](${SITE_ORIGIN}/about): who runs the operation, and the company facts you can check`,

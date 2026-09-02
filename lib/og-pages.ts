@@ -83,6 +83,21 @@ export const OG_PAGES: Record<string, OgPage> = {
     title: "The true cost of launching a product",
     engine: null,
   },
+  scale: {
+    path: "/scale",
+    title: "Scale: what breaks after it works",
+    engine: "grow",
+  },
+  "where-we-work": {
+    path: "/where-we-work",
+    title: "Where we work",
+    engine: null,
+  },
+  documents: {
+    path: "/documents",
+    title: "The documents, ungated",
+    engine: null,
+  },
   privacy: { path: "/privacy", title: "Privacy policy", engine: null },
   terms: { path: "/terms", title: "Terms of service", engine: null },
   accessibility: {

@@ -1,4 +1,5 @@
 import Reveal from "./Reveal";
+import { isLive } from "@/lib/site-map";
 
 /**
  * Proof before promises — A.18. Seven checkable things (numbers
@@ -41,10 +42,12 @@ export default function ProofSection() {
             </div>
           ))}
           <a
-            href="/how-we-work"
+            href={isLive("/documents") ? "/documents" : "/how-we-work"}
             className="bg-operate-field p-6 flex items-end type-body font-semibold text-ink hover:text-ink"
           >
-            See the operating model →
+            {isLive("/documents")
+              ? "Read the documents →"
+              : "See the operating model →"}
           </a>
         </Reveal>
       </div>

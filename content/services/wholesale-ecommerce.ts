@@ -24,13 +24,13 @@ const data: ServicePageData = {
     "Not for you if you want us to hold the account, the capital or the final purchase decision.",
 
   involvesLead:
-    "A wholesale business is a buying system. Find the catalogue, decide what deserves capital, operate the replenishment loop.",
+    "A wholesale business is a buying system. Find the catalogue — the set of product lines you buy and resell on repeat — decide what deserves capital, and operate the replenishment loop: reordering before stock runs out.",
   involvesBody: [
     "Wholesale is not a marketing business. Nothing you do to a listing matters if the buying decision behind it was wrong, and most of the work happens before any inventory exists.",
-    "It starts with supplier access. Brands and distributors decide who they sell to, and getting approved is a process rather than a purchase — a business entity, a resale certificate, a credible reason to be carrying the line, and usually a conversation. Some brands will not open an account for Amazon resale at all. Establishing which will, and on what terms, is the first real piece of work.",
-    "Then the category has to be open to you. Amazon gates many brands and categories, and being approved by a supplier does not mean being approved to list. Ungating needs invoices from an authorised source, sometimes brand permission, and occasionally nothing will open it. A catalogue line that cannot be listed is not a catalogue line, whatever the margin says.",
-    "Only then do the economics decide anything. Landed cost, marketplace fees, storage, returns and advertising come off the price before there is a margin, and the buy box decides whether you sell at that price at all — a line shared with the brand and four other sellers behaves differently from one where you are the only approved reseller. Minimum order quantities and lead times turn a per-unit margin into a capital commitment measured in weeks.",
-    "What follows is a loop rather than a launch: buy, list, sell, read the sell-through, buy again against what actually moved. Stock that does not move is the failure mode of this business — it is capital sitting in a warehouse accruing storage fees, and the honest answer is that it gets marked down, liquidated or written off, which is why the decision at the front matters more than anything downstream.",
+    "It starts with supplier access. Brands and distributors — the maker of a product, or the middleman authorised to sell it on — decide who they sell to, and getting approved is a process rather than a purchase — a business entity, a resale certificate — the state document that lets you buy stock for resale without paying sales tax on it — a credible reason to be carrying the line, and usually a conversation. Some brands will not open an account for Amazon resale at all. Establishing which will, and on what terms, is the first real piece of work.",
+    "Then the category has to be open to you — a second gate, separate from supplier approval, and the two are often confused. Amazon gates many brands and categories, and being approved by a supplier does not mean being approved to list. Ungating needs invoices from an authorised source, sometimes brand permission, and occasionally nothing will open it. A catalogue line that cannot be listed is not a catalogue line, whatever the margin says.",
+    "Only then do the economics decide anything. Landed cost — the unit price plus freight, duties and prep, what a unit actually costs delivered — marketplace fees, storage, returns and advertising come off the price before there is a margin, and the buy box — the default Add to cart slot on a listing, which one seller holds at a time — decides whether you sell at that price at all — a line shared with the brand and four other sellers behaves differently from one where you are the only approved reseller. Minimum order quantities and lead times turn a per-unit margin into a capital commitment measured in weeks.",
+    "What follows is a loop rather than a launch: buy, list, sell, read the sell-through — how fast the stock is actually selling — and buy again against what actually moved. Stock that does not move is the failure mode of this business — it is capital sitting in a warehouse accruing storage fees, and the honest answer is that it gets marked down, liquidated or written off, which is why the decision at the front matters more than anything downstream.",
     "Hyprr does that work. You keep the accounts and the money, and you make the call on every purchase.",
   ],
   toggle: {
@@ -67,6 +67,22 @@ const data: ServicePageData = {
     text: "We do not buy anything we cannot defend.",
     source:
       "Proven in the buying gate above — two of its five steps exist to stop a purchase.",
+  },
+
+  layout: "trading-loop",
+  chooser: true,
+  sampleDoc: {
+    label: "See a sample landed-cost model",
+    href: "/documents#sample-landed-cost",
+  },
+  refuse: {
+    title: "What we refuse to buy",
+    items: [
+      "Lines below the margin floor once landed cost, marketplace fees, storage, returns and advertising are all counted",
+      "Lines we cannot source authorised invoices for — if it cannot be ungated, it is not a catalogue line",
+      "Buy boxes shared past the point of defence, where the only lever left is racing the price down",
+      "Anything we could not defend in writing to the person whose capital it is",
+    ],
   },
 
   visual: {
@@ -174,7 +190,7 @@ const data: ServicePageData = {
     {
       days: "Days 0–30",
       title: "Baseline",
-      body: "Entity, resale certificate and marketplace accounts confirmed in your name. Supplier research begins and the first outreach goes out. If this is a takeover, the existing catalogue is audited against current economics and stranded stock is identified. Nothing is bought in this period, and for most of it nothing visible happens — supplier approval runs on the supplier's timetable, not ours. Expect the first month to look quiet from the outside.",
+      body: "Entity, resale certificate and marketplace accounts confirmed in your name. Supplier research begins and the first outreach goes out. If this is a takeover, the existing catalogue is audited against current economics and stranded stock — inventory sitting in the warehouse with no live listing to sell it — is identified. Nothing is bought in this period, and for most of it nothing visible happens — supplier approval runs on the supplier's timetable, not ours. Expect the first month to look quiet from the outside.",
     },
     {
       days: "Days 31–60",

@@ -48,6 +48,12 @@ const data: ServicePageData = {
       "Proven in the optimisation loop this page runs on both marketplaces.",
   },
 
+  layout: "constraint-lever",
+  stopping: {
+    title: "When we recommend stopping",
+    body: "When the next dollar of ranking work buys risk instead of rank. Reviews are earned through the marketplace's own mechanisms or not at all, artificial ranking velocity is a policy violation that costs the account, and a product whose reviews are poor for a reason has a product problem — we will say so rather than spend your money burying it.",
+  },
+
   visual: {
     kind: "loop",
     title: "The optimisation loop",
@@ -183,8 +189,8 @@ const data: ServicePageData = {
     h3: "Ranking is worth nothing on a suspended account.",
     body: "The work that wins the buy box and the work that keeps the account sellable are different jobs on different clocks. Account health, policy and cases run daily underneath everything on this page.",
     links: [
+      { label: "Scale", href: "/scale" },
       { label: "Marketplace management", href: "/marketplace-management" },
-      { label: "The Operate engine", href: "/operate" },
     ],
   },
   related: [

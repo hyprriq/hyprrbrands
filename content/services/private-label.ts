@@ -18,17 +18,17 @@ const data: ServicePageData = {
 
   h1: "Amazon private label: research, sourcing and launch",
   answer:
-    "Hyprr decides with you whether a product deserves to exist, then takes it to market on Amazon in the US and UK, or Walmart in the US: research, validation, supplier and sample, packaging and compliance, listing and launch. Every product gets a written verdict before money is committed. You fund inventory, testing and trademark; the brand, the listings and the supplier relationships are yours.",
+    "Hyprr decides with you whether a product deserves to exist, then takes it to market on Amazon in the US and UK, or Walmart in the US: research, validation — testing that demand is real before money is committed — supplier and sample, packaging and compliance, listing and launch. Every product gets a written verdict before money is committed. You fund inventory, testing and trademark; the brand, the listings and the supplier relationships are yours.",
   disqualifier:
     "Not for you if you are looking for a product to be picked for you without a verdict you can read.",
 
   involvesLead:
-    "Private label is a decision first and a supply chain second. Most ideas should be rejected before a sample is ordered.",
+    "Private label — creating and branding your own product rather than reselling someone else's — is a decision first and a supply chain second. Most ideas should be rejected before a sample is ordered.",
   involvesBody: [
     "The expensive mistake in private label is not choosing badly. It is choosing quickly and finding out eighteen months later, with the money already in a warehouse.",
     "So the first work is a verdict, not a search. A category gets read on seven or eight axes — real demand rather than search volume, how the incumbents are actually positioned, what the price band tolerates once fees and freight are off it, whether the review counts at the top are reachable, how customers describe the product in their own words, whether the category structure gives a new entrant anywhere to sit, and whether the thing can be shipped and stored without eating the margin. Each axis produces approve, review or reject. A single reject on the wrong axis ends it.",
-    "The categories we decline are worth naming, because they are the ones that look best on a spreadsheet. Anything ingestible or applied to skin, because the testing and liability load changes the economics entirely. Anything electrical or battery-powered without a certification route already established. Anything where a dominant brand owns the category's language, because you are then buying advertising to teach customers a word they already associate with someone else. Anything with a patent thicket. Anything seasonal enough that a single missed window is the whole year.",
-    "If a product survives, the supply chain starts: supplier identification and vetting, samples, a quality specification written before production rather than discovered after it, packaging, and the compliance gates. Those gates are stops rather than steps — product liability insurance, lab testing where the category requires it, certification, an importer of record who is legally responsible for the goods entering the country, and the trademark filed before a brand name goes on anything. Nothing proceeds to production until each is cleared and recorded.",
+    "The categories we decline are worth naming, because they are the ones that look best on a spreadsheet. Anything ingestible or applied to skin, because the testing and liability load changes the economics entirely. Anything electrical or battery-powered without a certification route already established. Anything where a dominant brand owns the category's language, because you are then buying advertising to teach customers a word they already associate with someone else. Anything with a patent thicket — a category so covered by existing patents that a new product invites a claim. Anything seasonal enough that a single missed window is the whole year.",
+    "If a product survives, the supply chain starts: supplier identification and vetting, samples, a quality specification written before production rather than discovered after it, packaging, and the compliance gates. Those gates are stops rather than steps — product liability insurance, lab testing where the category requires it, certification, an importer of record who is legally responsible for the goods entering the country, and the trademark filed before a brand name goes on anything. The importer of record is worth reading twice: that responsibility is legal, not administrative, and it does not transfer to us. Nothing proceeds to production until each gate is cleared and recorded.",
     "Then launch: listing built, A+ content, advertising to establish the initial ranking, and the transition into ongoing operation.",
     "You fund inventory, testing, certification, trademark and advertising directly. Hyprr does the research, the coordination, the build and the launch.",
   ],
@@ -45,6 +45,26 @@ const data: ServicePageData = {
     source:
       "Proven in the verdict sheet every product gets before money is committed.",
   },
+
+  layout: "gated-project",
+  chooser: true,
+  earlyLine:
+    "Most candidate products are rejected at research — a first month that ends in a written No is the process working, not failing.",
+  sampleDoc: {
+    label: "See a sample verdict sheet",
+    href: "/documents#sample-verdict",
+  },
+  launchFork: {
+    title: "The fork at launch",
+    body: "Launch is where this stops being a project. The product either moves into the operating engagement — replenishment against sell-through, listings and advertising judged on margin, account health, weekly reporting — or it is handed to you to run, with everything already in your name either way. The fork is a written handover, not a drift.",
+    links: [
+      { label: "Marketplace growth", href: "/marketplace-growth" },
+      { label: "PPC & paid media", href: "/ppc-paid-media" },
+      { label: "The daily desk", href: "/ecommerce-operations" },
+    ],
+  },
+  moneyNote:
+    "If the research says do not buy, the build fee has still bought its deliverable: the verdict and the reasoning, in writing. You are paying for the decision, not for a launch happening regardless.",
 
   visual: {
     kind: "sequence",
@@ -76,7 +96,7 @@ const data: ServicePageData = {
       ["Search behaviour", "review"],
       ["Category structure", "approve"],
       ["Marketplace fit — assessed per marketplace, separately", "approve"],
-      ["DTC potential", "reject"],
+      ["DTC potential — own-store selling", "reject"],
     ],
   },
   artefactNote:
@@ -107,7 +127,7 @@ const data: ServicePageData = {
     {
       days: "Days 61–90",
       title: "Compliance and build",
-      body: "Compliance gates cleared and recorded one by one. Production order placed against your approval. Listing, imagery and A+ content built while the goods are in transit. Launch plan and advertising structure ready before inventory lands, so nothing waits. The launch surface is decided here on the verdict sheet's marketplace-fit axis rather than by default: Amazon first for most categories, Walmart first where the category is under-served there and the review moat on Amazon is unreachable for a new brand, and both where the catalogue and the inventory support two listings from day one.",
+      body: "Compliance gates cleared and recorded one by one. Production order placed against your approval. Listing, imagery and A+ content built while the goods are in transit. Launch plan and advertising structure ready before inventory lands, so nothing waits. The launch surface is decided here on the verdict sheet's marketplace-fit axis rather than by default: Amazon first for most categories, Walmart first where the category is under-served there and the review moat on Amazon — the pile of incumbent reviews a new product has to compete past — is unreachable for a new brand, and both where the catalogue and the inventory support two listings from day one.",
     },
   ],
   hwwTitle: "Compliance gates · drawn as stops",

@@ -112,6 +112,14 @@ export default function Page() {
               <div className="type-meta text-on-field-body">
                 We work with clients across US, UK, European and Gulf time
                 zones — a working week that includes Sunday is not a problem.
+                The full picture, region by region, is on{" "}
+                <a
+                  href="/where-we-work"
+                  className="text-white hover:text-white font-semibold"
+                >
+                  where we work
+                </a>
+                .
               </div>
               <div className="type-meta text-on-field-body">
                 Or directly:{" "}

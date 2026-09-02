@@ -47,6 +47,26 @@ const data: ServicePageData = {
       "Proven in the comparison this page draws between the two models.",
   },
 
+  layout: "cadence-desk",
+  week: [
+    {
+      label: "Daily",
+      sub: "Fulfilment exceptions, orders and anything a customer is waiting on",
+    },
+    {
+      label: "Weekly",
+      sub: "Catalogue and merchandising worked to the calendar, not to a ticket queue",
+    },
+    {
+      label: "Ongoing",
+      sub: "Theme, apps and performance maintenance — the work nobody thinks to request",
+    },
+    {
+      label: "Weekly",
+      sub: "The written report, ending in the decisions that need you",
+    },
+  ],
+
   visual: {
     kind: "table",
     title: "The store desk · store-scoped",

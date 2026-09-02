@@ -68,6 +68,16 @@ export type DiagramKind =
   | "suspension-path"
   | "reactive-operated";
 
+/** PROMPT_18 — the five page archetypes. The eight-H2 spine, ids and
+ *  grounds stay identical; the archetype changes what fills the middle
+ *  of the page. Unset = the pre-archetype default rendering. */
+export type ServiceLayout =
+  | "trading-loop" // wholesale — capital velocity is the whole game
+  | "gated-project" // private label — linear with stops, fork at launch
+  | "build-run" // shopify-dtc, website-dev — two buyers, two paths
+  | "cadence-desk" // ops, marketplace-mgmt, shopify-mgmt — a normal week
+  | "constraint-lever"; // growth, marketplace-growth, ppc
+
 /** Family insert inside "the first 90 days" — section 6, Bone. */
 export type ServiceHww =
   | { kind: "chain"; items: { label: string; sub: string; dark?: boolean }[] }
@@ -77,6 +87,35 @@ export type ServiceHww =
 export interface ServicePageData {
   slug: string;
   engine: EngineKey;
+  /** PROMPT_18 archetype. Optional: unset renders exactly as before. */
+  layout?: ServiceLayout;
+  /** 17 §1 — render the wholesale / private-label / DTC chooser. */
+  chooser?: boolean;
+  /** 18 B — one sentence stated early, directly under the answer
+   *  (e.g. the rejection rate on private label). */
+  earlyLine?: string;
+  /** 18 C — two explicit paths from the hero, anchoring into the page. */
+  heroPaths?: { label: string; desc: string; anchor: string }[];
+  /** 18 A — "what we refuse to buy" as its own band inside #for. */
+  refuse?: { title: string; items: string[] };
+  /** 18 E — "when we recommend stopping" as a named block in #days. */
+  stopping?: { title: string; body: string };
+  /** 18 B/C — the fork at the end of #days: what happens at launch /
+   *  handover, as the section's climax rather than a footnote. */
+  launchFork?: {
+    title: string;
+    body: string;
+    links: { label: string; href: string }[];
+  };
+  /** 18 D — a normal week, rendered as the #days board. */
+  week?: { label: string; sub: string }[];
+  /** 17 §3 — page-specific line inside the shared money box (e.g. what
+   *  the private-label build fee bought if the verdict is Reject). */
+  moneyNote?: string;
+  /** 17 §5 — the low-commitment second CTA beside "Let's talk". */
+  sampleDoc?: { label: string; href: string };
+  /** 17 §8 — render the connected-stack section after the FAQ. */
+  connectedStack?: boolean;
   /** Schema.org Service.serviceType — from the content files' schema notes. */
   serviceType: string;
   name: string;
@@ -221,6 +260,27 @@ export const TONE_DOT: Record<Tone, string> = {
   ok: "bg-ok",
   warn: "bg-warn",
   crit: "bg-crit",
+};
+
+/** Archetype-specific overrides for the #days slot. Ids, order and
+ *  count never change — only the heading text and nav label, where the
+ *  archetype's mandate says so (PROMPT_18: cadence work has no "first
+ *  90 days"; a trading loop is a cycle, not a timeline). */
+export const LAYOUT_META: Record<
+  ServiceLayout,
+  { daysHeading?: string; daysNav?: string }
+> = {
+  "trading-loop": {
+    daysHeading: "How we work: the capital cycle",
+    daysNav: "Capital cycle",
+  },
+  "gated-project": {},
+  "build-run": {},
+  "cadence-desk": {
+    daysHeading: "How we work: a normal week",
+    daysNav: "A normal week",
+  },
+  "constraint-lever": {},
 };
 
 /** The eight H2s in fixed order — also the section nav. */

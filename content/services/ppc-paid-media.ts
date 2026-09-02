@@ -45,6 +45,12 @@ const data: ServicePageData = {
       "Proven in the six-layer stack above — ads sit on the operation, not beside it.",
   },
 
+  layout: "constraint-lever",
+  stopping: {
+    title: "When we recommend stopping",
+    body: "Inventory wins, every time. If a line is advertising efficiently and cover is falling toward a stockout, spend on it is throttled or stopped — even when the campaign looks like the account's best performer. A stockout costs ranking, ranking is slow and expensive to rebuild, and a few days of foregone orders is cheaper than a quarter of recovery.",
+  },
+
   visual: {
     kind: "stack",
     title: "The two-way stack",
@@ -179,8 +185,8 @@ const data: ServicePageData = {
     h3: "Advertising is the fastest way to find an operations problem.",
     body: "Spend rises and the stockouts, the pricing errors and the case backlog all surface at once. Running ads inside the operation means the budget is capped by what the business can actually ship, not by a target.",
     links: [
+      { label: "Scale", href: "/scale" },
       { label: "Marketplace management", href: "/marketplace-management" },
-      { label: "The Operate engine", href: "/operate" },
     ],
   },
   related: [

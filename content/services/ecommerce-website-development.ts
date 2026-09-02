@@ -48,6 +48,20 @@ const data: ServicePageData = {
       "Proven in the scope boundary above — the disqualifier, drawn as a line.",
   },
 
+  layout: "build-run",
+  heroPaths: [
+    {
+      label: "The build",
+      desc: "Storefront, integrations, payments and data, scoped and finite",
+      anchor: "involves",
+    },
+    {
+      label: "What runs after it",
+      desc: "The operation the build was designed for — or a clean handover",
+      anchor: "managed",
+    },
+  ],
+
   visual: {
     kind: "stack",
     title: "The infrastructure stack",

@@ -211,9 +211,6 @@ export const SITE_MAP: SitePage[] = [
   },
 
   // ---- Support ----
-  // /documents is deferred by the owner and holds no entry: the route,
-  // the nav item and the homepage CONTRACTS row all return together the
-  // day a real document exists (prompt 11).
   {
     slug: "/true-cost",
     title: "True cost calculator",
@@ -223,6 +220,43 @@ export const SITE_MAP: SitePage[] = [
     priority: 2,
     oneLine:
       "Every cost component before a first sale, computed from your own inputs",
+  },
+  {
+    // PROMPT_17 §7 — a page inside Grow, not a fourth engine. Group
+    // "support" keeps it out of the hub's three service cards and the
+    // nav dropdown; the grow pages' nextStep chain links it.
+    slug: "/scale",
+    title: "Scale",
+    engine: "grow",
+    group: "support",
+    status: "live",
+    priority: 14,
+    oneLine:
+      "What breaks when a selling business grows past its systems, and how the constraint is found and released",
+  },
+  {
+    // PROMPT_17 §9 — one global page, not country pages.
+    slug: "/where-we-work",
+    title: "Where we work",
+    engine: null,
+    group: "support",
+    status: "live",
+    priority: 15,
+    oneLine:
+      "The regions Hyprr serves, the marketplaces their sellers reach, and the entity you contract with",
+  },
+  {
+    // PROMPT_17 §5 — returns with its first real content: the sample
+    // verdict sheet and landed-cost model (the prompt-11 rule was that
+    // the route, the entry and the homepage tile return together).
+    slug: "/documents",
+    title: "Documents",
+    engine: null,
+    group: "support",
+    status: "live",
+    priority: 16,
+    oneLine:
+      "The paperwork, ungated — sample documents you can read before any conversation",
   },
 
   // ---- Legal (4) ----

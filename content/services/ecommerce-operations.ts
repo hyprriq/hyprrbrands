@@ -49,6 +49,30 @@ const data: ServicePageData = {
       "Proven in the daily cadence — the desk exists so every day gets looked at.",
   },
 
+  layout: "cadence-desk",
+  week: [
+    {
+      label: "Monday",
+      sub: "Purchase orders raised and sent to you with the economics attached; inventory cover reviewed",
+    },
+    {
+      label: "Tue–Thu",
+      sub: "Orders, cases, exceptions and account health, worked daily",
+    },
+    {
+      label: "Wednesday",
+      sub: "The weekly listings sweep — suppressed listings, attribute errors, content drift",
+    },
+    {
+      label: "Friday",
+      sub: "The written report, five minutes to read, ending in the decisions that need you",
+    },
+    {
+      label: "Any day",
+      sub: "Anything that arrives with a clock on it is handled the day it arrives",
+    },
+  ],
+
   visual: {
     kind: "table",
     title: "The daily operating desk",

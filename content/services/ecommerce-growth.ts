@@ -77,6 +77,13 @@ const data: ServicePageData = {
       "Proven in the five operating questions, in the order they bind.",
   },
 
+  layout: "constraint-lever",
+  connectedStack: true,
+  stopping: {
+    title: "When we recommend stopping",
+    body: "A growth action passes all five constraints or it waits — and frequently the honest answer is that the constraint is not demand at all. An action that would break fulfilment or push a line below its margin floor does not run. The fee follows realised margin rather than activity, which is why the recommendation to stop is one we can afford to make.",
+  },
+
   visual: {
     kind: "panel",
     title: "Growth control panel · questions, not scores",
@@ -230,6 +237,7 @@ const data: ServicePageData = {
     h3: "Growth you cannot fulfil is not growth.",
     body: "Every growth action lands on an operation that has to absorb it — more orders, more stock, more cases, more that can go wrong. The daily desk is what keeps the result from unwinding, and it is why we will recommend waiting.",
     links: [
+      { label: "Scale", href: "/scale" },
       { label: "Ecommerce operations", href: "/ecommerce-operations" },
       { label: "The Operate engine", href: "/operate" },
     ],

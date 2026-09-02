@@ -1,4 +1,4 @@
-import type { ServicePageData } from "@/lib/service-pages";
+import type { ServiceLayout, ServicePageData } from "@/lib/service-pages";
 
 /**
  * Slot 3 — the mechanism diagrams (PHASE1_VISUAL_MAP), one per service
@@ -550,6 +550,189 @@ export default function MechanismDiagram({ data }: { data: ServicePageData }) {
     case "reactive-operated":
       return <ReactiveOperated />;
   }
+}
+
+/* ------------- archetype hero figures (PROMPT_18) ------------------
+   One per archetype, no two alike (acceptance 3): a loop, a gated
+   funnel, a fork, a week, a bar-and-lever. Compact — they sit under
+   the at-a-glance panel and teach the page's shape before a word is
+   read. Same rules as every diagram: real <text>, ink structure,
+   engine colour only as a filled mark. */
+
+function HeroLoop() {
+  const stops: [number, number, string][] = [
+    [180, 22, "Deploy capital"],
+    [296, 90, "Stock inbound"],
+    [180, 158, "Sell"],
+    [64, 90, "Settle · read"],
+  ];
+  return (
+    <svg viewBox="0 0 360 180" className={SVG} role="img" aria-label="The wholesale capital cycle: deploy capital, stock inbound, sell, settle and read, repeat">
+      <Arrowhead id="hl-a" />
+      <ellipse cx="180" cy="90" rx="130" ry="62" fill="none" className="stroke-ink" strokeWidth="1.5" markerEnd="url(#hl-a)" />
+      {stops.map(([cx, cy, label]) => (
+        <g key={label}>
+          <rect x={cx - 54} y={cy - 13} width="108" height="26" rx="6" className="fill-white stroke-line" />
+          <text x={cx} y={cy + 4} fontSize="11.5" fontWeight="600" textAnchor="middle" className="fill-ink">
+            {label}
+          </text>
+        </g>
+      ))}
+      <text x="180" y="94" fontSize="10" textAnchor="middle" className="fill-body font-mono">
+        the loop, weekly
+      </text>
+    </svg>
+  );
+}
+
+function HeroGates() {
+  const gates = ["Idea", "Verdict", "Sample", "Comply", "Launch"];
+  return (
+    <svg viewBox="0 0 360 120" className={SVG} role="img" aria-label="A gated project: idea to launch through verdict, sample and compliance gates — most candidates stop at the verdict">
+      <line x1="16" y1="48" x2="344" y2="48" className="stroke-line" strokeWidth="1.5" />
+      {gates.map((g, i) => {
+        const cx = 32 + i * 74;
+        return (
+          <g key={g}>
+            <circle cx={cx} cy="48" r={i === gates.length - 1 ? 9 : 7} className={i === gates.length - 1 ? "fill-ink" : "fill-white stroke-ink"} strokeWidth="1.5" />
+            <text x={cx} y="78" fontSize="10.5" fontWeight="600" textAnchor="middle" className="fill-ink">
+              {g}
+            </text>
+          </g>
+        );
+      })}
+      <line x1="106" y1="41" x2="106" y2="20" className="stroke-crit" strokeWidth="1.5" />
+      <text x="106" y="14" fontSize="9.5" textAnchor="middle" className="fill-ink font-mono">
+        most stop here
+      </text>
+      <text x="180" y="108" fontSize="10" textAnchor="middle" className="fill-body font-mono">
+        a stop at any gate ends it
+      </text>
+    </svg>
+  );
+}
+
+function HeroFork() {
+  return (
+    <svg viewBox="0 0 360 140" className={SVG} role="img" aria-label="Build then run: one build, then either an operation we keep running or a clean handover">
+      <rect x="8" y="52" width="110" height="34" rx="7" className="fill-white stroke-ink" strokeWidth="1.5" />
+      <text x="63" y="73" fontSize="12.5" fontWeight="600" textAnchor="middle" className="fill-ink">
+        The build
+      </text>
+      <line x1="118" y1="62" x2="216" y2="30" className="stroke-ink" strokeWidth="1.5" />
+      <line x1="118" y1="76" x2="216" y2="108" className="stroke-ink" strokeWidth="1.5" />
+      <rect x="216" y="14" width="136" height="32" rx="7" className="fill-white stroke-line" />
+      <text x="284" y="34" fontSize="11.5" fontWeight="600" textAnchor="middle" className="fill-ink">
+        Run as an operation
+      </text>
+      <rect x="216" y="92" width="136" height="32" rx="7" className="fill-white stroke-line" strokeDasharray="4 4" />
+      <text x="284" y="112" fontSize="11.5" fontWeight="600" textAnchor="middle" className="fill-ink">
+        Clean handover
+      </text>
+      <text x="180" y="76" fontSize="10" textAnchor="middle" className="fill-body font-mono">
+        two ways in
+      </text>
+    </svg>
+  );
+}
+
+function HeroWeek() {
+  const days = ["M", "T", "W", "T", "F"];
+  return (
+    <svg viewBox="0 0 360 120" className={SVG} role="img" aria-label="A cadence desk: the same work on the same days, every week">
+      {days.map((d, i) => {
+        const x = 24 + i * 66;
+        return (
+          <g key={i}>
+            <rect x={x} y="16" width="54" height="64" rx="7" className="fill-white stroke-line" />
+            <text x={x + 27} y="36" fontSize="11" textAnchor="middle" className="fill-body font-mono">
+              {d}
+            </text>
+            <circle cx={x + 27} cy="56" r="5" className="fill-ink" />
+          </g>
+        );
+      })}
+      <text x="180" y="106" fontSize="10" textAnchor="middle" className="fill-body font-mono">
+        the same work on the same days
+      </text>
+    </svg>
+  );
+}
+
+function HeroConstraint() {
+  const bars: [string, number][] = [
+    ["Demand", 62],
+    ["Convert", 46],
+    ["Cover", 22],
+    ["Margin", 50],
+    ["Capacity", 40],
+  ];
+  return (
+    <svg viewBox="0 0 360 140" className={SVG} role="img" aria-label="Constraint and lever: five constraints, the shortest one binds, and the work releases it">
+      {bars.map(([label, h], i) => {
+        const x = 26 + i * 66;
+        const bind = i === 2;
+        return (
+          <g key={label}>
+            <rect x={x} y={92 - h} width="40" height={h} rx="4" className={bind ? "fill-crit" : "fill-ink"} />
+            <text x={x + 20} y="110" fontSize="10" textAnchor="middle" className="fill-ink" fontWeight={bind ? 700 : 400}>
+              {label}
+            </text>
+          </g>
+        );
+      })}
+      <line x1="26" y1="92" x2="352" y2="92" className="stroke-line" strokeWidth="1.5" />
+      <text x="180" y="130" fontSize="10" textAnchor="middle" className="fill-body font-mono">
+        the shortest bar binds — the work releases it
+      </text>
+    </svg>
+  );
+}
+
+export function HeroFigure({ layout }: { layout: ServiceLayout }) {
+  switch (layout) {
+    case "trading-loop":
+      return <HeroLoop />;
+    case "gated-project":
+      return <HeroGates />;
+    case "build-run":
+      return <HeroFork />;
+    case "cadence-desk":
+      return <HeroWeek />;
+    case "constraint-lever":
+      return <HeroConstraint />;
+  }
+}
+
+/** Archetype A's #days centrepiece — the capital cycle drawn full
+ *  size, replacing the linear timeline as the section's lead visual. */
+export function CapitalCycleDiagram() {
+  const stops: [number, number, string, string][] = [
+    [180, 26, "Deploy capital", "your approval first"],
+    [292, 105, "Stock inbound", "landed, prepped"],
+    [180, 184, "Sell", "priced to the buy box"],
+    [68, 105, "Settle & read", "sell-through, weekly"],
+  ];
+  return (
+    <svg viewBox="0 0 360 210" className={SVG} role="img" aria-label="The capital cycle: deploy capital on your approval, stock inbound, sell against the buy box, settle and read sell-through, then redeploy">
+      <Arrowhead id="cc-a" />
+      <ellipse cx="180" cy="105" rx="136" ry="76" fill="none" className="stroke-ink" strokeWidth="1.5" markerEnd="url(#cc-a)" />
+      {stops.map(([cx, cy, label, sub]) => (
+        <g key={label}>
+          <rect x={cx - 62} y={cy - 20} width="124" height="40" rx="7" className="fill-white stroke-line" />
+          <text x={cx} y={cy - 2} fontSize="12.5" fontWeight="600" textAnchor="middle" className="fill-ink">
+            {label}
+          </text>
+          <text x={cx} y={cy + 13} fontSize="9.5" textAnchor="middle" className="fill-body font-mono">
+            {sub}
+          </text>
+        </g>
+      ))}
+      <text x="180" y="109" fontSize="10" textAnchor="middle" className="fill-body font-mono">
+        weekly
+      </text>
+    </svg>
+  );
 }
 
 /** Homepage — the margin-calculation diagram for the pricing strip.
