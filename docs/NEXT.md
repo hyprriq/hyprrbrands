@@ -41,52 +41,59 @@
 > in this queue is a bug: a false sentence, a formula that overcharges, a channel claim that is
 > untrue for half the market, or markup that is missing entirely.
 
-> ### QUEUE ON HOLD — owner ruling, 2 Sep evening
+> ### Both gating decisions are made — queue is live again
 >
-> **Stop taking tickets one at a time.** Findings have been arriving singly and becoming tickets
-> immediately, which is how the pricing went in and came back out inside a day. A full review of
-> all 22 routes has been run instead — content, link graph, metadata — and the remediation will be
-> planned once and executed once.
+> **1 · `/ecommerce-operations` vs `/operate`: differentiate, do not merge.** The keyword map's
+> merge recommendation was half of a two-part fix for a *homepage* collision, and the homepage half
+> already shipped — so the Critical collision it existed to solve is resolved. What is left is a
+> copy problem between a hub and a service page, and merging would destroy 1,564 words to fix it.
+> Full reasoning in `PROMPT_14 §Decision 1`.
 >
-> **Read `docs/SITE_REVIEW_2SEP.md` before starting anything.**
+> **2 · "Publishing soon" stays.** Owner call. One refinement only: it renders forty times, so
+> where two instances fall in the same section, render one.
 >
-> **One thing is safe to build now and it is the only thing:** `PROMPT_13` items **A, B and D** —
-> the hero at-a-glance panel, the mobile artefact reduction, and the sequence scroll-snap. They are
-> component mechanics, they depend on no decision in the review, and nothing in the review can
-> change them.
->
-> **`PROMPT_13 §C` and `§E` are on hold** even though they are written, because the review found
-> the progression problem is larger than that ticket describes — `HubPage.tsx` renders a section
-> headed "How Build connects to Grow and Operate" containing zero hub-to-hub links, and only 4 of
-> 20 `related` edges express the model. `§E` fixes the service pages and would leave the hubs
-> broken. It gets rewritten into Batch A.
->
-> Everything else waits on two owner decisions named at the end of the review.
+> **`PROMPT_14_BATCH_A.md` supersedes `PROMPT_13 §C` and `§E`.** 13's A, B and D still stand and
+> run in parallel — 13 is layout, 14 is data and copy.
 
-## Shipped since the last rewrite
+## Order
 
-`cb50ac7` prompt 12 — pricing out, mechanic stays, all five retractions in the same deploy,
-`PUBLISH_SPLIT` at its default so the 30% is one line from reversible.
-`650ecdf` prompt 11 — `/about` live, `/documents` fully out of the manifest.
+**1 · `PROMPT_14_BATCH_A.md`** — the review's Severity 1 and 2, plus the design-to-content gaps.
+Structural work needs nothing from me: the `/about` inbound links and facts block, the hub-to-hub
+links, the `nextStep` scaffolding, all seven corrected metas (**strings are final and
+character-counted in the ticket — do not trust the annotations in `docs/content/`, they are wrong
+and are being recomputed**), deleting the dead `feesTable` field, `/contact` headings, `/true-cost`
+structure, legal-page links, and deleting two never-imported components carrying broken hrefs.
 
-Both verified. Two judgment calls in 12 were right and worth recording: **keeping the $500
-paragraph without its figure** — the disclosure was the load-bearing part and the number was the
-removable part — and **keeping "Fees are in USD"** while the worked example still shows dollars.
+**2 · `PROMPT_13` A, B and D** — hero at-a-glance panel, mobile artefact reduction, sequence
+scroll-snap. Component mechanics, parallel-safe with 14.
+
+**3 · Copy drop from me, landing in `docs/content/`** — `managedLead` ×9, `artefactNote` ×6,
+`nextStep` ×10, `involvesSubheads` ×10, and the `/about` facts wording. Scaffold the fields in 1
+and 2; the pages fill in when this lands.
+
+### The two design-to-content findings worth naming
+
+**Nine of ten service pages render the H2 "What's fully managed" straight into a bare list** —
+`managedLead` is set on 1/10. That is exactly the §27 defect `PROMPT_8 B3` fixed on the homepage: it
+fails passage extraction for AI answers and reads unfinished to a person.
+
+**Six of ten render their artefact diagram with no prose** — `artefactNote` on 4/10. This is the
+owner's "needs visual and content alignment" with a field name: the diagram is there, the sentence
+saying what to notice in it is not.
 
 ---
 
-## The review, in one paragraph
+## Shipped since the last rewrite
 
-22 routes audited. **No rejected-keyword leaks, no broken links on any live page, the eight-H2
-service spine is identical across all ten, and no service page is more than one click from home.**
-Against that: `/about` shipped yesterday as an orphan at 300 words; `/ecommerce-operations` and
-`/operate` are competing on metas that share a clause verbatim, a collision the keyword map rated
-Critical and prescribed a merge for; the Build → Grow → Operate model is expressed in 20% of the
-edges that could carry it; three metas are over 158 because of an error in `PROMPT_10`; and four
-legal pages are orphans and dead ends with `LegalPage.tsx` rendering no links at all.
+`cb50ac7` prompt 12 — pricing out, mechanic stays, five retractions in the same deploy.
+`650ecdf` prompt 11 — `/about` live, `/documents` out of the manifest.
 
-Full findings, severity-ordered, with what is good and should not be touched:
-**`docs/SITE_REVIEW_2SEP.md`**.
+---
+
+## The review
+
+22 routes audited — content, link graph, metadata. Findings, severity-ordered, including two errors
+of mine and a list of what is good and must not be churned: **`docs/SITE_REVIEW_2SEP.md`**.
 
 ---
 
