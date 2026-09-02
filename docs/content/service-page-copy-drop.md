@@ -108,23 +108,53 @@ Renders above the related grid. Kicker takes the **next** engine's colour, not t
 
 ---
 
-## 4 · `involvesSubheads` — ten pages, two each
+## 4 · `involvesSubheads` — ten pages, two each · **CORRECTED**
 
-H3s before paragraphs 3 and 5 of `involvesBody`, breaking a 298–337-word block into three
-movements. Sentence case, three to five words, no keyword stuffing.
+H3s before paragraphs 3 and 5 of `involvesBody`.
 
-| Page | Before ¶3 | Before ¶5 |
-|---|---|---|
-| `/wholesale-ecommerce` | Where the margin actually is | What we refuse to buy |
-| `/private-label` | Deciding before spending | Where launches fail |
-| `/shopify-dtc` | The journey, not the theme | After the store is live |
-| `/ecommerce-website-development` | Built for an operation | What we do not take on |
-| `/ecommerce-growth` | Finding the binding constraint | Knowing when to stop |
-| `/marketplace-growth` | One catalogue, two rulebooks | Ranking without discounting |
-| `/ppc-paid-media` | Judged on margin, not ACoS | When advertising is the wrong answer |
-| `/ecommerce-operations` | The daily cadence | When something goes wrong |
-| `/marketplace-management` | Keeping the account sellable | Cases and clocks |
-| `/shopify-management` | What a retainer misses | Maintenance nobody asks for |
+> ### Correction, and it matters
+>
+> The first version of this table was written from my model of each page rather than from the
+> paragraphs the subheads actually sit above. **Six of the twenty were wrong** — `/wholesale-ecommerce`
+> P3 is about category gating and I had headed it "Where the margin actually is";
+> `/ecommerce-website-development` P5 is about who owns the code and I had headed it "What we do not
+> take on"; `/ppc-paid-media` P5 lists the channels and I had headed it "When advertising is the
+> wrong answer". Same error class as the character counts: asserted without reading the source.
+>
+> **Every row below has been checked against the first line of the paragraph it heads**, and the
+> paragraph opening is quoted so it can be verified without opening the data file.
+
+These are `<h3>` tags, so they are the most keyword-relevant thing in this drop. Where a page's
+**supporting** keyword is genuinely the subject of the paragraph, it is used. Where it is not, the
+subhead stays editorial — **a keyword in a heading that misdescribes the text below it costs more
+than it gains**, because the passage then fails to answer the query it attracted.
+
+| Page | Position | Paragraph opens | Subhead | Keyword? |
+|---|---|---|---|---|
+| `/wholesale-ecommerce` | P3 | *"Then the category has to be open to you. Amazon gates many brands…"* | **Gating and supplier approval** | ✓ `supplier approval and ungating` |
+| | P5 | *"What follows is a loop rather than a launch: buy, list, sell, read the sell-through…"* | **Replenishment, not launch** | ✓ `replenishment management` |
+| `/private-label` | P3 | *"The categories we decline are worth naming…"* | **Categories we decline** | — |
+| | P5 | *"Then launch: listing built, A+ content, advertising to establish the initial ranking…"* | **Listing, A+ content and launch** | ✓ `A+ content and listing launch` |
+| `/shopify-dtc` | P3 | *"When it is the right move, six things get built as one system…"* | **Six layers, built as one** | — |
+| | P5 | *"Hyprr builds them together, then either hands over with documentation or keeps operating it…"* | **Handover, or we keep operating it** | — |
+| `/ecommerce-website-development` | P3 | *"What is in a build, and what is not…"* | **What a build includes** | — |
+| | P5 | *"Who owns the code and the store. You do…"* | **Who owns the code** | — |
+| `/ecommerce-growth` | P3 | *"So growth runs on five questions, in order…"* | **Five questions, in order** | — |
+| | P5 | *"The work is then run as a loop rather than a campaign…"* | **A loop, not a campaign** | — |
+| `/marketplace-growth` | P3 | *"Listings and content are the input, not the finish…"* | **Listings are the input** | — |
+| | P5 | *"Buy box is the one that surprises people…"* | **Winning the buy box** | ✓ `buy box management` |
+| `/ppc-paid-media` | P3 | *"So an advertising agency working from an ads dashboard is optimising one layer of a six-layer stack…"* | **One layer of six** | — |
+| | P5 | *"Amazon — in the US and UK — and Walmart in the US, plus off-platform…"* | **Where the ads actually run** | — |
+| `/ecommerce-operations` | P3 | *"Inventory, daily. Cover per line, inbound in transit, stranded and aged stock…"* | **Inventory, daily** | — |
+| | P5 | *"Listings, weekly. Suppressed listings, attribute errors, content drift…"* | **Listings and account health, weekly** | — |
+| `/marketplace-management` | P3 | *"Execution third, and only third…"* | **Execution comes third** | — |
+| | P5 | *"The catalogue is shared. Almost nothing else is."* | **One catalogue, two rulebooks** | — |
+| `/shopify-management` | P3 | *"A web agency retainer holds hours for changes you request…"* | **What a retainer misses** | — |
+| | P5 | *"What that cadence covers: catalogue — product data quality, variants, inventory sync…"* | **What the cadence covers** | — |
+
+**Note:** *"One catalogue, two rulebooks"* was in the first version on `/marketplace-growth`, where
+it did not describe the paragraph. It belongs on `/marketplace-management` P5, which is literally
+*"The catalogue is shared. Almost nothing else is."* It has moved.
 
 ---
 
@@ -182,3 +212,38 @@ ships with three lines today and five the day the entity details arrive, with no
 | 4 | Every `nextStep` link target is a live route | 10/10 — `/grow`, `/operate`, `/how-we-work#reporting`, `/how-we-work#fees` and six service pages, all live. |
 | 5 | No `related` entry duplicates that page's `nextStep` | Checked, §5. |
 | 6 | Character counts | **None asserted in this file.** The only counts I publish now are ones I have computed — that failure is in `SITE_REVIEW_2SEP.md`. |
+
+---
+
+## 7 · What in this drop is SEO, and what is not — read before assuming coverage
+
+An honest split, because "it's all SEO content" would be an overstatement.
+
+### Covered by this drop
+
+| Layer | How |
+|---|---|
+| **Heading structure** | 20 new `<h3>`s where ten pages had a 298–337-word block with none. Supporting keywords used on 4 of 20, only where the paragraph is genuinely about them. |
+| **Passage extraction / GEO** | `managedLead` ×9 removes nine H2s that render straight into a bare grid — the §27 defect that fails AI answer extraction and the same one `PROMPT_8 B3` fixed on the homepage. `artefactNote` ×6 gives six diagrams a prose passage that can be quoted. |
+| **Internal linking** | `nextStep` ×10 plus the `related` corrections take forward-progression edges from **4 to 14** and `/ecommerce-operations` from 2 inbound to 5. Anchor text is descriptive, never "learn more". |
+| **E-E-A-T** | The `/about` facts block, plus three inbound links to a page that currently has zero. |
+
+### **Not** covered — do not assume it is
+
+| Gap | Status |
+|---|---|
+| **Title and meta tags** | Nothing in this drop. `PROMPT_14 §C` corrects seven metas and two titles, but those are **length corrections, not keyword work** — they bring over-length metas back under 158 and short ones over 120. No title or meta on the site has been rewritten *to rank* since the original packet. |
+| **The four legal pages** | Have no title/meta spec at all in `docs/content/`. Written to no standard. |
+| **Character counts in `docs/content/*.md`** | Still wrong. Being recomputed. Use the counted strings in `PROMPT_14 §C`. |
+| **Body keyword density** | The `managedLead` and `artefactNote` copy was written for clarity and passage quality, not against a keyword list. That is the right priority for those fields, but it means no keyword placement pass has run on them. |
+| **Two known collisions** | `/marketplace-management` vs `/wholesale-ecommerce` H1s (78% similar) and `/marketplace-growth` vs `/marketplace-management` titles (72%). Both were in the keyword map, both survived the build, neither is fixed here. |
+| **Anything measured** | **This is the real gap.** Every keyword decision on the site traces to one measurement pass in `Hyprr_Keyword_Map_v2.md`. Nothing has been re-measured since. The UK cluster and the Walmart cluster have **never** been measured, and the map's own rule is that an unmeasured cluster does not get writing time. |
+
+### The constraint underneath all of it
+
+**No keyword data source is connected**, so nothing new can be validated — only aligned to a map
+measured once. That is fine for the structural work above, which does not depend on volumes. It is
+not fine for deciding what any *new* page or article should target, which is why `/insights` and
+`/walmart-marketplace-management` stay unwritten rather than being written on assumption.
+
+**Connecting one data source is now the single highest-leverage unblock left on the SEO side.**
