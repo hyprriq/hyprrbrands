@@ -24,8 +24,13 @@ Baseline confirmed against `2c071ef`: thirteen routes live, zero dead links, con
 both viewports. The manifest is doing its job — every anomaly below is content, metadata or
 markup, none is structural.
 
-Four tickets are open. **The order matters more than the contents**, because two of them
+**Five tickets are open.** **The order matters more than the contents**, because two of them
 multiply by page count if the eight remaining service pages land first.
+
+**New on 2 Sep: PROMPT_9 — the fee mechanic is unblocked.** It moves to position 2 for one
+reason: it removes three *false statements* that are live in production right now, and until it
+lands, every service page's fee section links to a placeholder. It is not a feature ticket. See
+below.
 
 ---
 
@@ -47,7 +52,34 @@ name becomes "Private label". The H1 stays long and descriptive — that is corr
 
 ---
 
-## 2 · Step 6 — GREENLIT. Run it.
+## 2 · PROMPT_9_FEES_BOOKACALL_WALMART.md — the retractions are the urgent half
+
+Owner resolved the fee mechanic on 2 Sep. Figures are specified in
+`docs/content/fees-and-pricing.md`; the ticket is `docs/PROMPT_9_FEES_BOOKACALL_WALMART.md`.
+
+**Why this jumps ahead of step 6.** Three sentences currently live on the site stop being true
+the moment a $500 monthly minimum exists — "There is no monthly retainer", "If the margin isn't
+there, neither is our share of it", and "No pricing figures are published while engagements are
+individually scoped". A false claim on the one section a sceptical buyer reads hardest is worth
+more damage than eight unbuilt pages. **Section A of the ticket is the retractions and it can
+ship on its own** if the tables need longer.
+
+It also unblocks the `→ /how-we-work#fees` link that every one of the twelve written service
+pages ends its fee section with. Step 6 lands those pages; landing them into a placeholder
+wastes the link.
+
+Three other things ride along: the homepage `CtaSection` becomes bookable (env-var'd, with a
+`/contact` fallback so an unset scheduler cannot ship a dead button), Walmart is named
+explicitly on `/private-label`, and `FEE_RULES` is replaced.
+
+**Read `docs/content/fees-and-pricing.md` before the ticket.** It carries the reasoning for
+publishing figures at all, the FTC line between a price list and an earnings claim, and the two
+constraints that are easy to get wrong: `$14,999` never renders alone, and the worked example's
+"arbitrary round numbers" label must sit in the same block as the numbers.
+
+---
+
+## 3 · Step 6 — GREENLIT. Run it.
 
 The gate is cleared. Two things before you start:
 
@@ -68,7 +100,7 @@ collide with prompt 7 if 7 lands first.
 
 ---
 
-## 3 · PROMPT_8_SHARE_CARDS_GEO_A11Y.md — parallel with step 6, different files
+## 4 · PROMPT_8_SHARE_CARDS_GEO_A11Y.md — parallel with step 6, different files
 
 Nine findings, none touching `content/services/`.
 
@@ -90,7 +122,7 @@ this, so it is bringing two pages up to the existing standard.
 
 ---
 
-## 4 · PROMPT_6_SCHEMA_AND_METADATA.md — last, deliberately
+## 5 · PROMPT_6_SCHEMA_AND_METADATA.md — last, deliberately
 
 There is **no JSON-LD anywhere on the site**. §M specifies the graph and §N depends on it.
 
@@ -121,8 +153,25 @@ applies only to the surface it was measured on.**
 
 ## Still blocked on the owner — not dev work
 
-The fee mechanic (`/how-we-work#fees` links from every service page) · one real document ·
-the founder paragraph on `/about` · one real person with a LinkedIn profile · confirmation of
-the registered entity name, state and file number.
+Two of the five cleared on 2 Sep. Three remain, and they are narrower than they were.
 
-`/about`, `/documents` and `/insights` stay unshipped until those land. That is correct.
+| # | Blocker | Status |
+|---|---|---|
+| 1 | **The fee mechanic** | **CLEARED.** Figures in `docs/content/fees-and-pricing.md`, ticket is PROMPT_9. |
+| 2 | **Walmart on private label** | **CLEARED.** Content patched; PROMPT_9 §D. |
+| 3 | **Registered entity — state and file number** | **Still open.** Name resolved: legal entity *Hyprr Retail LLC*, trading as *Hyprr Brands*. State and file number outstanding, so §M's `/#organization` node cannot carry them and PROMPT_6 ships without `legalName` / registration. |
+| 4 | **One real person** | **Half open.** Name given: Gautam Naidu. Still needed: role title, one verifiable prior, and a live LinkedIn URL for `sameAs`. An unlinked name is not an E-E-A-T signal — §M wants a `Person` node that resolves to something. |
+| 5 | **One real ungated document** | **Deferred by the owner** pending first clients. See the note below — the deferral may be removable. |
+
+**On the document deferral.** The blocker was read as "we have no client results to show." The
+artefact §O actually asks for is the **blank monthly reporting template** — the structure, the
+field names, the reconciliation columns — which needs zero clients because it contains no client
+data. It is the strongest single trust asset available at this stage precisely because it is
+empty: it shows what will be reported before there is anything to report.
+
+If it stays deferred, **`/documents` comes out of the nav rather than shipping as a
+"coming soon" page.** A trust route that promises and then stalls is worse than a route that
+does not exist — and `CtaSection` step 03 currently promises sample documents, which is why
+PROMPT_9 §B has a fallback for it.
+
+`/about` and `/insights` stay unshipped until 3 and 4 land. That is still correct.
