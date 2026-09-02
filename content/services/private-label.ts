@@ -1,4 +1,5 @@
 import type { ServicePageData } from "@/lib/service-pages";
+import { AT_SPLIT } from "@/lib/fees";
 
 /**
  * /private-label — Build engine, private-label composition.
@@ -134,11 +135,8 @@ const data: ServicePageData = {
     ["Operation", "handover"],
   ],
 
-  // $14,999 ships only here, adjacent to the itemised scope and the
-  // zero-markup pass-through sentence — never alone, never in the
-  // hero, the meta description or a card.
   fees: [
-    "The private label build is $14,999, and it is the only money that reaches Hyprr during the build. Inventory, samples, freight, duties, testing, certification, trademark and advertising are paid by you, directly to the supplier, lab, attorney or marketplace, at the price they invoice — Hyprr takes no margin, no commission and no rebate anywhere in that chain. After launch the operation is paid on realised margin at 30%, the same split as every other Hyprr service and the same at every band.",
+    `The private label build is a scoped fee agreed in writing before it starts, and it is the only money that reaches Hyprr during the build. Inventory, samples, freight, duties, testing, certification, trademark and advertising are paid by you, directly to the supplier, lab, attorney or marketplace, at the price they invoice — Hyprr takes no margin, no commission and no rebate anywhere in that chain. After launch the operation is paid on realised margin ${AT_SPLIT}, the same mechanic as every other Hyprr service.`,
   ],
   faqs: [
     {

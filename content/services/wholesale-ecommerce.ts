@@ -1,4 +1,5 @@
 import type { ServicePageData } from "@/lib/service-pages";
+import { SPLIT, PUBLISH_SPLIT } from "@/lib/fees";
 
 /**
  * /wholesale-ecommerce — Build engine, wholesale composition.
@@ -218,18 +219,14 @@ const data: ServicePageData = {
   ],
 
   fees: [
-    "A build fee, set by the capital you plan to deploy monthly, and 30% of realised margin — what a catalogue line actually made after landed cost, marketplace fees, advertising and returns, once it has sold. Not on revenue, and not on the capital itself: no part of the fee is calculated from what you spend on inventory. That matters here more than in any other service, because a fee tied to purchase volume rewards recommending more buying, which is exactly the incentive this business should not have.",
+    `A build fee, set by the capital you plan to deploy monthly and agreed in writing before anything starts, and ${SPLIT} of realised margin — what a catalogue line actually made after landed cost, marketplace fees, advertising and returns, once it has sold. Not on revenue, and not on the capital itself: no part of the fee is calculated from what you spend on inventory. That matters here more than in any other service, because a fee tied to purchase volume rewards recommending more buying, which is exactly the incentive this business should not have.`,
+    ...(PUBLISH_SPLIT
+      ? [
+          "The split is 30% at every band — a larger build fee buys more work, never a better split.",
+        ]
+      : []),
     "The full mechanic, including how realised margin is calculated and a worked example, is on the how-we-work page.",
   ],
-  feesTable: {
-    header: ["Band", "Monthly deployment", "Build fee", "Share"],
-    rows: [
-      ["Launch", "Up to $25,000/mo", "$2,499", "30%"],
-      ["Scale", "$25,000 – $100,000/mo", "$4,599", "30%"],
-      ["Enterprise", "Above $100,000/mo", "$7,999", "30%"],
-    ],
-    note: "The split is 30% in all three. A larger build fee buys more work — more catalogue, more channels, more people on the account. It never buys a better split. Adding Walmart to an Amazon operation, or the reverse, is $1,999. Taking over an existing account is $1,499, or $2,999 where there is account-health history to resolve first. Fees are in USD.",
-  },
   faqs: [
     {
       q: "Who holds the Amazon and the Walmart seller accounts?",

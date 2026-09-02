@@ -6,6 +6,7 @@
  * word for word.
  */
 import type { ReactNode } from "react";
+import { SPLIT, PUBLISH_SPLIT } from "@/lib/fees";
 
 const FAQS: { q: string; a: ReactNode }[] = [
   {
@@ -40,12 +41,13 @@ const FAQS: { q: string; a: ReactNode }[] = [
     q: "How does Hyprr charge?",
     a: (
       <>
-        A build fee, published, and a 30% share of the margin the business
-        realises after goods actually sell. The split is 30% at every band —
-        a larger build fee buys more work, never a better split. No fee is
-        calculated on the capital you deploy or on your ad spend. A $500
+        A build fee agreed in writing before anything starts, and a {SPLIT}{" "}
+        share of the margin the business realises after goods actually sell.
+        {PUBLISH_SPLIT &&
+          " The split is 30% at every band — a larger build fee buys more work, never a better split."}{" "}
+        No fee is calculated on the capital you deploy or on your ad spend. A
         monthly minimum applies to operating engagements and is credited
-        against the share. Full figures and a worked example are on the{" "}
+        against the share. The full mechanic and a worked example are on the{" "}
         <a href="/how-we-work#fees">How we work page</a>.
       </>
     ),

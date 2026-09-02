@@ -1,3 +1,5 @@
+import { SPLIT, PUBLISH_SPLIT } from "@/lib/fees";
+
 /**
  * How we're paid — A.21. The last sentence is the commercial argument
  * in eleven words; content freeze applies. Grow band ground (fees tied
@@ -13,10 +15,10 @@ export default function PricingBand() {
             How we&apos;re paid.
           </h2>
           <p className="type-body text-body m-0 max-w-[52ch]">
-            A published build fee from $2,499, and 30% of the margin the
-            business realises after goods actually sell. The split is 30% at
-            every band. No fee on the capital you deploy. No fee on your ad
-            spend.
+            A build fee agreed before anything starts, and {SPLIT} of the
+            margin the business realises after goods actually sell.
+            {PUBLISH_SPLIT && " The split is 30% at every band."} No fee on
+            the capital you deploy. No fee on your ad spend.
           </p>
         </div>
         <div className="flex justify-start gap-3.5 flex-wrap">
