@@ -1,136 +1,99 @@
-# Order of work — 2 Sep, after the production audit
+# Order of work — phase 2
 
-> ## Standing protocol — read this once, then it never needs relaying
+> ## Standing protocol — read once, then it never needs relaying
 >
-> **This file is the queue.** Open it at the start of every work session and at the end of
-> every ticket. It is rewritten whenever the order changes, so it is always current — nothing
-> else in `docs/` needs checking for "what next".
+> **This file is the queue.** Open it at the start of every session and at the end of every ticket.
+> It is rewritten whenever the order changes, so it is always current.
 >
-> **Cowork writes to `docs/`, never to `app/`, `components/` or `lib/`.** No commit from the
-> audit side will ever touch code you are working in. Content lands in `docs/content/`,
-> tickets land in `docs/PROMPT_*.md`, and this file says which to do first.
+> **Cowork writes to `docs/`, never to `app/`, `components/` or `lib/`.** Content lands in
+> `docs/content/`, tickets land in `docs/PROMPT_*.md`, and this file says which to do first.
 >
-> **Findings carry their rationale, and are data not orders.** Every item states what was
-> measured and why it matters. If a finding is wrong, say so in a commit message or a report —
-> three specification errors this session were caught that way, and each one was worth more
-> than the instruction it corrected.
+> **Commit by path, not `git add -A`.** Both sides swept each other's files once already.
 >
-> **Report back into the repo.** A commit message naming what shipped and what you disagreed
-> with is enough. Production is audited directly, so there is no need to describe what you
-> built — only what you decided.
->
-> **Commit by path, not `git add -A`** — added 2 Sep after both sides did it within a minute of
-> each other. `b3c78be` swept in three `docs/` files written by the audit side mid-transcription;
-> the audit side's next commit swept back a `Hyprr_Brands_Guidelines.pdf` and a `package.json`
-> change that were sitting untracked in the tree. Nothing was lost and nothing needs undoing, but
-> the commit messages now describe work neither side did. `git add docs/` and `git add app/
-> components/ content/ lib/` keep the two lanes separate, which is the whole point of the split.
-
-
-> ### Owner ruling, 2 Sep — read this before the queue
->
-> **Site first. Compliance and agreements after.** The client meets compliance at agreement
-> stage, not on a service page. Every former owner-blocker is now resolved, deferred or
-> reclassified — see the bottom of this file — and `docs/AGREEMENTS_LATER.md` holds the deferred
-> work so none of it re-enters the queue.
->
-> **Missing owner data is never a launch gate.** The field is optional and omitted; the page
-> renders correctly without it and completes the day it arrives. No placeholders.
->
-> **What holds a page up is something being wrong, not something being absent.** Everything left
-> in this queue is a bug: a false sentence, a formula that overcharges, a channel claim that is
-> untrue for half the market, or markup that is missing entirely.
-
-> ### PHASE 1 REMAINDER — `docs/PROMPT_16_PHASE1_REMAINDER.md`
->
-> **`afd57a1` closed most of `PROMPT_15`.** PROMPT_16 is reconciled against it and covers only what
-> is left, so nothing already shipped is touched twice. **PROMPT_15 is superseded.**
->
-> Four things remain: the 22 keyword metas · visual slots 3, 4 and 5 · logo and header sizing ·
-> and four CI gate scripts.
-
-## Shipped in `afd57a1` — closed, do not revisit
-
-Prompt 14 Batch A in full and prompt 13 A/B/D. `/operate` differentiated with zero shared clauses.
-"Publishing soon" deduped. `/about` at three inbound links with a facts block rendering only
-populated rows. Hub-to-hub links in body copy and `/operate`'s self-referential link gone.
-`nextStep` on all ten with duplicates removed from `related`. `/ecommerce-operations` from zero
-related entries to three. `managedLead` and `artefactNote` at **10/10**. `involvesSubheads` on all
-ten. `feesTable` deleted. `/contact` has a real H2, `/true-cost` has three. Legal pages have
-breadcrumbs and cross-links, `/earnings-claims` has its inbound. Both dead components deleted.
-Hero at-a-glance panel on all ten, mobile tables reduced, sequence scroll-snaps at 375.
-
-## What remains
-
-**1 · The 22 keyword metas — not yet shipped.** The seven that landed were `PROMPT_14 §C`, which
-were **length corrections, not keyword work**. `PHASE1_METADATA_FINAL.md` supersedes them. Verified
-still live in the tree and still colliding: `marketplace-management` and `wholesale-ecommerce` share
-"Amazon … Management" at 78%. The new strings take that to 55%, and the other two collisions to 38%
-and 33%.
-
-**2 · Visual slots 3, 4 and 5**, with one sequencing rule the chroma number produced: the white hero
-panel cost **0.0012** on wholesale (0.0226 → 0.0214). Slots 3 and 5 are also light. **Slot 4 is the
-Petrol band, and it must ship in the same commit as slot 3 or before it** — three more light
-surfaces alone could cross the 0.018 floor. Cheaper to sequence right than to fix after measuring.
-
-**3 · Logo and header.** Confirmed unchanged: wordmark at **17px** in a 72px header. The brand
-guidelines call it "unmistakable" and require clear space of one "h" height, which the markup has
-none of.
-
-**4 · Four CI gate scripts** — links (including **anchor resolution**), manifest both directions,
-metadata measured from served HTML, and the copy gate. This is what makes "no more errors"
-structural.
-
-### Owning the `#reporting` miss
-
-The dev found that my ten `nextStep` links pointed at an anchor that did not exist, and added
-`id="reporting"`. **Third time this session I asserted without checking** — character counts, six
-subheads, now an anchor. The anchor check in `check-links.mjs` is the fix; the pattern is that a
-gate beats a promise every time.
+> **Findings carry their rationale and are data, not orders.** If a finding is wrong, say so — five
+> specification errors this project were caught that way and each was worth more than the
+> instruction it corrected.
 
 ---
 
-## Nothing is blocked — owner ruling, 2 Sep
+## PHASE 1 IS CLOSED
 
-**Build the site first. Compliance and agreements come after.** Every former blocker is resolved,
-deferred or reclassified, and none of them stops a page shipping.
+`cd92930` shipped PROMPT_16 and CI run #1 passed. 22 routes · 22 titles in 30–60 and metas in
+120–158 measured from served HTML · contrast failCount 0 at four viewports · chroma 0.0210–0.0247 on
+service pages and 0.0302 on the homepage · four CI gates green in GitHub Actions.
 
-| Former blocker | Resolution |
+**The gates are the durable part.** `check-links` resolves anchors, so the `#reporting` class of
+error now fails a build rather than reaching production.
+
+---
+
+## The phase 2 queue — three tickets, in this order
+
+### 1 · `PROMPT_17_PHASE2.md` — start with §1, it is the highest-impact item on the site
+
+Ten items. Evidence is `docs/CLIENT_REVIEW_NEW_SELLER.md`, a read of the live pages in the persona
+of a first-time seller with $50k. **Read that before starting.**
+
+**§1 · The chooser.** A first-time buyer cannot tell whether they need wholesale or private label,
+and neither page tries to help. Ship this alone if you want a quick win — it is archetype-independent
+and it is the single biggest reason a qualified visitor leaves.
+
+**§2 · Jargon inline.** `buy box` is used as *"the buy box decides whether you sell at that price at
+all"* and never explained. `landed cost` is defined 800 words after first use. `private label` is
+never defined on its own page.
+
+**§3 · Money.** Not a reinstated price list — a worked example with real arithmetic and a stated
+minimum. Also: `/how-we-work` publishes the step-down and **neither service page mentions it.**
+
+**§4–§5 · Proof and a second CTA.** No client, result, person, year or volume anywhere. Both CTAs
+are "Let's talk" and the pages sell judgement without ever showing a verdict.
+
+**§6 · Visuals to 5–6 per page** with alt text, word-based filenames, dimensions and lazy loading.
+
+**§7 `/scale` · §9 `/where-we-work`** — new pages, independent of the refactor, build whenever.
+
+**§8 · The connected stack** — a visitor currently cannot tell that ads, social, content or CRO
+exist at all.
+
+**§10 · AI visibility** — entity work. The honest limit is stated in the ticket.
+
+### 2 · `PROMPT_18_PAGE_ARCHETYPES.md` — ships with 17, one refactor of `ServicePage.tsx`
+
+Owner ruling: every business model is separate, so the pages should not all be one shape. **Right
+diagnosis, and the answer is five archetypes rather than ten bespoke designs.**
+
+Two independent measurements agree the pages are too alike: the persona could not choose between
+wholesale and private label *because* the pages are structurally identical, and the site review
+measured H1 similarity at 78% on one pair and 72% on two others.
+
+**Trading loop · Gated project · Build-then-run · Cadence desk · Constraint and lever.** The eight-H2
+spine, the ids, the frame and the chroma rules stay identical — archetypes differentiate the middle
+of the page only.
+
+The ticket carries the exact interleaving of 17 and 18 so `ServicePage.tsx` is touched once.
+
+### 3 · Content depth — audit side, not dev
+
+Flagged in the last report and correctly left in my lane: **phase copy is 30–65 words against the
+100–150 spec.** The timeline structure is ready for it. Landing in `docs/content/` with the
+archetype-specific copy.
+
+---
+
+## Blocked on measurement, not on effort
+
+`/walmart-marketplace-management` · `/amazon-agency` · the six-article set. All specified in
+`PHASE2_PLAN.md`. **A keyword data source has to be connected** — Bing Webmaster Tools and Google
+Keyword Planner are both free.
+
+---
+
+## Needed from the owner — none of it blocks the three tickets above
+
+| | Unblocks |
 |---|---|
-| Fee mechanic | **Resolved.** Figures in `docs/content/fees-and-pricing.md`, shipped by PROMPT_9. |
-| Walmart on private label | **Resolved.** Content patched; PROMPT_9 §D re-transcribes it. |
-| Three ownership clauses | **Ship them.** Decided policy. The agreement has to match the site when it is drafted, not the other way round. → `AGREEMENTS_LATER.md` |
-| One real ungated document | **Deferred.** `/documents` does not ship — out of nav, sitemap and manifest, list built from an empty array so it appears the day a document is added. Homepage CONTRACTS row stays cut. |
-| Founder paragraph on `/about` | **Drafted** from positions the owner has stated, marked as a draft to edit. Ships as-is. |
-| One real person | **Ship one card — Gautam Naidu.** `priorEmployer` and `linkedin` are optional fields rendering only when present. |
-| Entity state and file number | **Not a gate.** PROMPT_6 ships `/#organization` without `legalName` and registration; the footer verification strip renders the fields it has. One-line follow-up whenever they arrive. |
-| GDPR / privacy upgrade / Art. 27 | **Out of the build queue entirely.** → `AGREEMENTS_LATER.md` |
-
-### The rule this establishes, and it applies to every page
-
-**Where owner data is missing, the field is optional and omitted — never a placeholder, never a
-launch gate.** A page that renders correctly with less information is worth more than a page
-waiting for all of it.
-
-**What still holds a page up is something being *wrong*, not something being *absent*.** Absent is
-a design problem with a good answer. Wrong is a bug. Everything left in this queue is the second
-kind:
-
-- three live sentences that contradict the prices now being published (PROMPT_9 §A)
-- a fee formula that overcharges UK clients by 5% of gross (PROMPT_10 §A)
-- a channel claim that is false for half the marketplace scope (PROMPT_10 §B)
-- thirteen pages telling every platform to expect a share image that does not exist (PROMPT_8 B1)
-- no JSON-LD anywhere (PROMPT_6)
-
-None of those need anything from the owner.
-
----
-
-## Still needed from the owner — but nothing waits on it
-
-- **Entity state and file number** — adds `legalName` and registration to schema and the footer.
-- **Role, one prior, LinkedIn URL** — completes the `/about` card and enables `Person` schema.
-- **Two minutes editing the founder paragraph** — the biggest quality gain available for the
-  smallest effort anywhere on the site.
-- **A keyword data source** — blocks the UK and Walmart clusters, both unmeasured. Neither is in
-  the build queue.
+| **What was on hyprrbrands.com for its four prior years?** Bing Webmaster shows referring domains free. | How aggressive the phase 2 page plan can be. Age is not authority; links are. |
+| Entity state and file number | `legalName` and registration in `/#organization`, and the `/where-we-work` entity line |
+| Role, one prior, LinkedIn URL | The `/about` card, `Person` schema, and §4's proof problem |
+| **Founder video** — 90s "who runs this", 2–3 min "how the fee works" | The densest proof asset available, and it answers §4 better than any tag |
+| A keyword data source | Two unmeasured clusters and every new page |
