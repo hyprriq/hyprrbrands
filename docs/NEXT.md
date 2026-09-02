@@ -41,59 +41,39 @@
 > in this queue is a bug: a false sentence, a formula that overcharges, a channel claim that is
 > untrue for half the market, or markup that is missing entirely.
 
-> ### Both gating decisions are made — queue is live again
+> ### PHASE 1 CLOSE-OUT — one bundle, send it all at once
 >
-> **1 · `/ecommerce-operations` vs `/operate`: differentiate, do not merge.** The keyword map's
-> merge recommendation was half of a two-part fix for a *homepage* collision, and the homepage half
-> already shipped — so the Critical collision it existed to solve is resolved. What is left is a
-> copy problem between a hub and a service page, and merging would destroy 1,564 words to fix it.
-> Full reasoning in `PROMPT_14 §Decision 1`.
+> **`docs/PROMPT_15_PHASE1_CLOSEOUT.md` is the master ticket and it supersedes `PROMPT_13` and
+> `PROMPT_14`.** Work from its step order; those two stay in the repo as the detail behind steps 3
+> and 4. When its step 9 acceptance passes on production, the website is done.
 >
-> **2 · "Publishing soon" stays.** Owner call. One refinement only: it renders forty times, so
-> where two instances fall in the same section, render one.
->
-> **`PROMPT_14_BATCH_A.md` supersedes `PROMPT_13 §C` and `§E`.** 13's A, B and D still stand and
-> run in parallel — 13 is layout, 14 is data and copy.
+> Nine steps: links working and a link checker in CI · manifest verified both directions · inner
+> pages designed in full · all 22 titles and metas plus the body copy drop · five visuals per inner
+> page · mobile · logo and header sizing · and a definition of done that runs as CI gates rather
+> than a promise.
 
-## Order
+## The four files that make up the bundle
 
-**1 · `PROMPT_14_BATCH_A.md`** — the review's Severity 1 and 2, plus the design-to-content gaps.
-Structural work needs nothing from me: the `/about` inbound links and facts block, the hub-to-hub
-links, the `nextStep` scaffolding, all seven corrected metas (**strings are final and
-character-counted in the ticket — do not trust the annotations in `docs/content/`, they are wrong
-and are being recomputed**), deleting the dead `feesTable` field, `/contact` headings, `/true-cost`
-structure, legal-page links, and deleting two never-imported components carrying broken hrefs.
+| File | What |
+|---|---|
+| **`PROMPT_15_PHASE1_CLOSEOUT.md`** | The master. Step order, and the acceptance gate. |
+| **`PHASE1_METADATA_FINAL.md`** | All 22 titles and metas. **Every count computed with `len()`.** Titles 30–60, metas 120–158, zero banned phrases, zero rejected-keyword leaks, three known collisions broken — 78%→55%, 72%→38%, 71%→33%. |
+| **`PHASE1_VISUAL_MAP.md`** | Five visual slots per page. Slot 3's diagram assigned per page, slot 4's sentence per page. All type-and-token — no photography, no generated imagery, no asset pipeline. |
+| **`content/service-page-copy-drop.md`** | `managedLead` ×9 · `artefactNote` ×6 · `nextStep` ×10 · `involvesSubheads` ×10 · `related` fixes · `/about` facts block. |
 
-**2 · `PROMPT_13` A, B and D** — hero at-a-glance panel, mobile artefact reduction, sequence
-scroll-snap. Component mechanics, parallel-safe with 14.
+### Three things that make this bundle different from the last three
 
-**3 · Copy drop from me, landing in `docs/content/`** — `managedLead` ×9, `artefactNote` ×6,
-`nextStep` ×10, `involvesSubheads` ×10, and the `/about` facts wording. Scaffold the fields in 1
-and 2; the pages fill in when this lands.
+**Metadata is counted, not asserted.** Every previous count in `docs/content/*.md` was wrong — I
+wrote "written to §L limits" without computing it. The ticket tells the dev to ignore those
+annotations entirely and use the counted table.
 
-### The two design-to-content findings worth naming
+**Five visuals per page needs no new assets.** Two of the five slots already exist as content and
+are being upgraded; only three are net-new, and all are inline SVG from existing tokens. That is
+why "3 to 5 visuals per inner page" is a smaller job than it sounds.
 
-**Nine of ten service pages render the H2 "What's fully managed" straight into a bare list** —
-`managedLead` is set on 1/10. That is exactly the §27 defect `PROMPT_8 B3` fixed on the homepage: it
-fails passage extraction for AI answers and reads unfinished to a person.
-
-**Six of ten render their artefact diagram with no prose** — `artefactNote` on 4/10. This is the
-owner's "needs visual and content alignment" with a field name: the diagram is there, the sentence
-saying what to notice in it is not.
-
----
-
-## Shipped since the last rewrite
-
-`cb50ac7` prompt 12 — pricing out, mechanic stays, five retractions in the same deploy.
-`650ecdf` prompt 11 — `/about` live, `/documents` out of the manifest.
-
----
-
-## The review
-
-22 routes audited — content, link graph, metadata. Findings, severity-ordered, including two errors
-of mine and a list of what is good and must not be churned: **`docs/SITE_REVIEW_2SEP.md`**.
+**"No more errors" is built as CI gates.** A link checker, a two-way manifest check and a counted
+metadata gate. The next mistake fails a build instead of reaching production — which is the only
+version of that promise that holds.
 
 ---
 
