@@ -63,6 +63,11 @@ export const OG_PAGES: Record<string, OgPage> = {
     title: "Keep the machine running every day",
     engine: "operate",
   },
+  about: {
+    path: "/about",
+    title: "Who runs the operation",
+    engine: null,
+  },
   "how-we-work": {
     path: "/how-we-work",
     title: "You decide. We execute.",

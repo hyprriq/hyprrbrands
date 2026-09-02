@@ -186,7 +186,7 @@ export const SITE_MAP: SitePage[] = [
     title: "About",
     engine: null,
     group: "company",
-    status: "planned",
+    status: "live",
     priority: 0,
     oneLine: "Who runs Hyprr, and where they worked before",
   },
@@ -210,17 +210,10 @@ export const SITE_MAP: SitePage[] = [
     oneLine: "Tell us where you are and what you are trying to build",
   },
 
-  // ---- Support (2) ----
-  {
-    slug: "/documents",
-    title: "Documents",
-    engine: null,
-    group: "support",
-    status: "planned",
-    priority: 2,
-    oneLine:
-      "Sample agreements, fee schedule and reporting example — ungated",
-  },
+  // ---- Support ----
+  // /documents is deferred by the owner and holds no entry: the route,
+  // the nav item and the homepage CONTRACTS row all return together the
+  // day a real document exists (prompt 11).
   {
     slug: "/true-cost",
     title: "True cost calculator",
