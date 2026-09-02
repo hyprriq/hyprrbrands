@@ -51,7 +51,7 @@ export const SITE_MAP: SitePage[] = [
     title: "Shopify / DTC",
     engine: "build",
     group: "service",
-    status: "planned",
+    status: "live",
     priority: 7,
     oneLine:
       "Direct-to-consumer storefront, customer journey and the operation behind it",
@@ -61,7 +61,7 @@ export const SITE_MAP: SitePage[] = [
     title: "Ecommerce website development",
     engine: "build",
     group: "service",
-    status: "planned",
+    status: "live",
     priority: 10,
     oneLine:
       "The build itself — Shopify and headless storefronts, conversion structure, integrations",
@@ -71,7 +71,7 @@ export const SITE_MAP: SitePage[] = [
     title: "Ecommerce growth",
     engine: "grow",
     group: "service",
-    status: "planned",
+    status: "live",
     priority: 9,
     oneLine: "The cross-channel growth plan, measured on contribution margin",
   },
@@ -80,7 +80,7 @@ export const SITE_MAP: SitePage[] = [
     title: "Marketplace growth",
     engine: "grow",
     group: "service",
-    status: "planned",
+    status: "live",
     priority: 8,
     oneLine:
       "Listings, content, ranking, buy box and channel expansion on Amazon and Walmart",
@@ -93,7 +93,7 @@ export const SITE_MAP: SitePage[] = [
     title: "DTC growth",
     engine: "grow",
     group: "service",
-    status: "planned",
+    status: "live",
     priority: 11,
     oneLine: "Acquisition, conversion and retention on the direct channel",
   },
@@ -102,7 +102,7 @@ export const SITE_MAP: SitePage[] = [
     title: "PPC & paid media",
     engine: "grow",
     group: "service",
-    status: "planned",
+    status: "live",
     priority: 12,
     oneLine:
       "Amazon and Walmart advertising plus off-platform paid acquisition, judged on margin",
@@ -112,7 +112,7 @@ export const SITE_MAP: SitePage[] = [
     title: "Ecommerce operations",
     engine: "operate",
     group: "service",
-    status: "planned",
+    status: "live",
     priority: 6,
     oneLine:
       "Purchasing, inventory, orders, cases and reporting as an ongoing operation",
@@ -122,7 +122,7 @@ export const SITE_MAP: SitePage[] = [
     title: "Marketplace management",
     engine: "operate",
     group: "service",
-    status: "planned",
+    status: "live",
     priority: 4,
     oneLine:
       "Day-to-day Amazon and Walmart account operation and account health",
@@ -132,7 +132,7 @@ export const SITE_MAP: SitePage[] = [
     title: "Shopify management",
     engine: "operate",
     group: "service",
-    status: "planned",
+    status: "live",
     priority: 13,
     oneLine:
       "Day-to-day storefront, catalogue, merchandising and fulfilment operations",

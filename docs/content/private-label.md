@@ -8,7 +8,8 @@
 |---|---|
 | **Primary** | `amazon private label agency` |
 | **Rejected** | `private label brand building agency` — measured: returns white-label/reseller agency services, personal-branding agencies, a company literally named "Private Label", and a local map pack of design studios. The phrase is fine as a *service name* in nav and footer. It is unusable as a keyword. |
-| **Supporting** | private label product research service · amazon brand launch agency · private label sourcing agent · amazon product validation service · A+ content and listing launch |
+| **Supporting** | private label product research service · amazon brand launch agency · private label sourcing agent · amazon product validation service · A+ content and listing launch · walmart private label · launch private label on walmart marketplace |
+| **Walmart note** | The primary stays `amazon private label agency` — Amazon is where the hiring demand is, and the measured SERP is an Amazon SERP. Walmart enters this page as **launch surface and body copy, not as the head term**, so the page covers the second marketplace without diluting the term it is trying to rank for. The Walmart head terms belong to `/walmart-marketplace-management`, which the keyword map calls the weakest competitive field in the whole study. |
 | **Page-type note** | Measured mismatch risk: Amazon's own guide, Helium 10 and Jungle Scout outrank most agency pages, and a YouTube pack and Reddit sit above them. **Do not try to displace the how-to layer.** Win the hiring layer; the companion article carries the informational one. |
 
 **Title** (57) `Amazon Private Label Agency | Research to Launch | Hyprr`
@@ -19,7 +20,7 @@
 ## Hero
 **H1** *(design, keyword-adjusted)* → **Amazon private label: research, sourcing and launch**
 **Answer** *(unchanged, 54 words)*
-> Hyprr decides with you whether a product deserves to exist, then takes it to market: research, validation, supplier and sample, packaging and compliance, listing and launch. Every product gets a written verdict before money is committed. You fund inventory, testing and trademark; the brand, the listings and the supplier relationships are yours.
+> Hyprr decides with you whether a product deserves to exist, then takes it to market on Amazon and Walmart: research, validation, supplier and sample, packaging and compliance, listing and launch. Every product gets a written verdict before money is committed. You fund inventory, testing and trademark; the brand, the listings and the supplier relationships are yours.
 
 **Disqualifier** *(unchanged)* → Not for you if you are looking for a product to be picked for you without a verdict you can read.
 
@@ -45,9 +46,9 @@ You fund inventory, testing, certification, trademark and advertising directly. 
 - A product verdict sheet — Approve, Review or Reject — with the reasoning
 - Supplier, sample and QC coordinated on your behalf
 - Packaging, compliance and listing built to launch
-- Launch run and handed into ongoing operation
+- Launch run on Amazon, Walmart or both, and handed into ongoing operation
 
-**The verdict sheet** — Demand · Competition · Pricing · Reviews · Search behaviour · Category structure · Marketplace fit · DTC potential, each carrying its own verdict.
+**The verdict sheet** — Demand · Competition · Pricing · Reviews · Search behaviour · Category structure · Marketplace fit — assessed for Amazon and Walmart separately · DTC potential, each carrying its own verdict.
 
 **Framing — 45 words.** The sheet is the deliverable, not the product. You are paying for the reasoning, which is what lets you disagree with it. A research service that only ever produces winners is producing marketing, not research.
 
@@ -62,7 +63,7 @@ You fund inventory, testing, certification, trademark and advertising directly. 
 
 **Day 31–60 · Supplier and sample** (115 words) Suppliers identified and vetted for the approved product. Samples ordered against a written specification. QC criteria agreed before production rather than after. Packaging and brand assets begin. Compliance route confirmed: what testing this category needs, who the importer of record will be, what certification applies. Trademark filed.
 
-**Day 61–90 · Compliance and build** (115 words) Compliance gates cleared and recorded one by one. Production order placed against your approval. Listing, imagery and A+ content built while the goods are in transit. Launch plan and advertising structure ready before inventory lands, so nothing waits.
+**Day 61–90 · Compliance and build** (115 words) Compliance gates cleared and recorded one by one. Production order placed against your approval. Listing, imagery and A+ content built while the goods are in transit. Launch plan and advertising structure ready before inventory lands, so nothing waits. The launch surface is decided here on the verdict sheet's marketplace-fit axis rather than by default: Amazon first for most categories, Walmart first where the category is under-served there and the review moat on Amazon is unreachable for a new brand, and both where the catalogue and the inventory support two listings from day one.
 
 **Compliance gates, drawn as stops** — Liability · insurance · Testing · lab · Certification · category · Importer · responsible party · IP/trademark · filed
 
@@ -76,9 +77,9 @@ You fund inventory, testing, certification, trademark and advertising directly. 
 *(unchanged)* Research & verdict · per product · Supplier & sample · coordinated · Compliance gates · tracked · Packaging & listing · built · Launch · run · Operation · handover
 
 ## H2 7 · How we're paid for this
-**110 words, no figures.** Private label runs as a build engagement into an operating one. The build is scoped and priced before it starts; the ongoing operation is paid on realised margin, the same mechanic as every other Hyprr service. No part of either is calculated on what you spend on inventory, testing or advertising — you pay those directly to the people providing them, and we never take a position in that chain. → `/how-we-work#fees`
+**115 words, figures published.** The private label build is **$14,999**, and it is the only money that reaches Hyprr during the build. Inventory, samples, freight, duties, testing, certification, trademark and advertising are paid by you, directly to the supplier, lab, attorney or marketplace, at the price they invoice — Hyprr takes no margin, no commission and no rebate anywhere in that chain. After launch the operation is paid on realised margin at 30%, the same split as every other Hyprr service and the same at every band. → `/how-we-work#fees`
 
-> ⚠️ Links to a placeholder. Blocked on the fee mechanic.
+> ⚠️ **$14,999 never appears alone.** It ships only adjacent to the itemised scope and the zero-markup pass-through sentence above it. Not in the hero, not in the meta description, not in a card. See `fees-and-pricing.md` for the reasoning — the five-figure standalone upfront is the defining pattern on the `is amazon automation a scam` SERP this page's sceptical visitors arrive from.
 
 ## H2 8 · Questions about private label
 
@@ -90,6 +91,9 @@ You fund inventory, testing, certification, trademark and advertising directly. 
 
 **What happens after launch?** (90 words) The product moves from a build engagement into an operating one, and the work changes shape: replenishment against sell-through, listing and content maintenance, advertising managed against margin, account health, and weekly reporting. That transition is a specific handover with a document behind it, not a drift. If you would rather run it yourself from that point, the handover is the same either way — everything is already in your name.
 
+**Do you launch private label products on Walmart as well as Amazon?** (105 words) *— added, Walmart coverage*
+Yes, and the choice is made at research rather than assumed. Marketplace fit is one of the axes on the verdict sheet, assessed for Amazon and Walmart separately, because the same product can be a clear approve on one and a reject on the other. Amazon has the demand; Walmart has thinner competition in a lot of categories and a review moat a new brand can actually cross. Most launches start on Amazon, some start on Walmart because that is where the product has a route, and some run both from day one. The catalogue, the brand and the accounts are yours on either.
+
 **Which categories do you decline, and why?** (95 words) *— added, §O requirement*
 Ingestibles and anything applied to skin, where testing and liability change the economics past the point most first products can carry. Electrical and battery-powered goods without an established certification route. Categories where one brand owns the customer's vocabulary, because your advertising then teaches a word that helps them. Patent-dense categories. And anything seasonal enough that missing one window costs the year. These are declined at research, before a sample is ordered, and the reasoning is written down. Several of them look excellent on demand data alone, which is why the axis test matters.
 
@@ -97,4 +101,4 @@ Ingestibles and anything applied to skin, where testing and liability change the
 Up `/build` · Across `/shopify-dtc`, `/marketplace-growth` · Out `/how-we-work#fees`, `/documents` · Article `/insights/private-label-real-cost` · Tool `/true-cost`
 
 ## Checks
-Banned phrases clean · no figures · 1 H1, 8 H2s in order · 5 FAQs, none duplicated · primary in H1, title, involves body · rejected keyword absent · ~2,080 words · **§O 7 of 7 covered** — "categories declined and why" needed a new FAQ.
+Banned phrases clean · **figures published — $14,999 build and 30% share, both gated to appear only beside the itemised scope** · 1 H1, 8 H2s in order · **6 FAQs**, none duplicated · primary `amazon private label agency` in H1, title, involves body · rejected keyword absent · **Walmart covered in hero answer, deliverables, verdict axis, day 61-90 and a dedicated FAQ, without entering H1 or title** · ~2,300 words · **§O 7 of 7 covered**.

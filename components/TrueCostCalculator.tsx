@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { TRUE_COST_INPUTS } from "@/lib/true-cost";
+import { TRUE_COST_INPUTS, UNDER_TOTAL } from "@/lib/true-cost";
 
 /**
  * /true-cost calculator — ten inputs, one total. The Ink running total
@@ -84,6 +84,9 @@ export default function TrueCostCalculator() {
         <p className="type-meta text-on-ink-mute m-0">
           Your inputs, your currency, nothing stored. No projected return is
           shown anywhere on this page.
+        </p>
+        <p className="type-meta text-on-ink-body m-0 border-t border-line-on-ink pt-4">
+          {UNDER_TOTAL}
         </p>
       </div>
     </div>

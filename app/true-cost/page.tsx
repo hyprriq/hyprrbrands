@@ -6,7 +6,7 @@ import { TRUE_COST_INPUTS } from "@/lib/true-cost";
 import { isLive } from "@/lib/site-map";
 
 export const metadata: Metadata = {
-  title: "True Cost Calculator | Hyprr Brands",
+  title: "The True Cost of Launching a Product | Hyprr Brands",
   description:
     "Ten inputs, one total, and an explanation of every line. It calculates what you will spend to launch a product. It does not project what you might make.",
   alternates: { canonical: "/true-cost" },

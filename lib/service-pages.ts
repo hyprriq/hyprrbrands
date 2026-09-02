@@ -30,6 +30,12 @@ export type ServiceVisual =
       kind: "states"; // Marketplace management control room
       title: string;
       items: { label: string; state: string; tone: Tone }[];
+    }
+  | {
+      kind: "loop"; // Marketplace growth — the optimisation loop
+      title: string;
+      items: string[];
+      back: string;
     };
 
 /** Artefact beside the deliverables — section 4, engine field tint. */
@@ -65,6 +71,8 @@ export interface ServicePageData {
   answer: string;
   /** One line, mirrored from the disqualification column. */
   disqualifier: string;
+  /** The measured objection, named in the hero, anchoring to a section. */
+  heroObjection?: { text: string; anchorLabel: string; anchor: string };
 
   involvesLead: string;
   /** 250–400 words as paragraphs. */
@@ -75,27 +83,50 @@ export interface ServicePageData {
     b: { label: string; items: string[] };
   };
 
+  /** GEO comparison block (matches the AI Overview's own shape). */
+  comparison?: {
+    title: string;
+    note?: string;
+    cols: [string, string];
+    rows: [string, string, string][];
+    closing?: string;
+  };
+
   visual: ServiceVisual;
 
   deliverables: string[];
   artefact: ServiceArtefact;
+  /** Paragraph under the artefact — the framing the design left striped. */
+  artefactNote?: string;
 
+  /** "When to hire one" block, before the fit columns. */
+  whenToHire?: { title: string; body: string[] };
   fitFor: string[];
   notFor: string[];
+  /** Explicit line under the Ink panel. */
+  fitNote?: string;
 
   /** Three phases, 100–150 words each. Titles are fixed by the design. */
   phases: { days: string; title: string; body: string }[];
   hwwTitle: string;
   hww: ServiceHww;
 
+  /** Framing line above / closing line below the two Petrol columns. */
+  yoursIntro?: string;
+  yoursOutro?: string;
   yours: string[];
   hyprrWork: string[];
+  managedLead?: string;
   managed: [string, string][];
 
   /** 100–200 words, no figures. The full mechanic lives at /how-we-work#fees. */
   fees: string[];
+  /** Noun for "Questions about X" when it differs from `short`. */
+  faqShort?: string;
   /** Answers 100–150 words, unique to this page. */
   faqs: { q: string; a: string }[];
+  /** Anchored subsection after the FAQ (e.g. /shopify-dtc#growth). */
+  extraSection?: { id: string; title: string; body: string[] };
 
   related: { name: string; slug: string; engine: EngineKey }[];
   /** Insight title — rendered as text until /insights is live. */

@@ -238,6 +238,22 @@ function Visual({ visual, dot }: { visual: ServiceVisual; dot: string }) {
           ))}
         </div>
       );
+    case "loop":
+      return (
+        <div className="bg-white border border-line rounded-md p-[22px] flex flex-wrap gap-2.5 items-center max-w-[860px]">
+          {visual.items.map((l) => (
+            <span key={l} className="inline-flex gap-2.5 items-center">
+              <b className="text-ink border border-line rounded-sm px-3.5 py-2.5 type-body">
+                {l}
+              </b>
+              <span className="text-label">→</span>
+            </span>
+          ))}
+          <span className="font-mono type-label text-label normal-case tracking-normal">
+            {visual.back}
+          </span>
+        </div>
+      );
   }
 }
 
@@ -314,7 +330,9 @@ function Artefact({ artefact }: { artefact: ServiceArtefact }) {
                   layer {String(i + 1).padStart(2, "0")}
                 </span>
               </summary>
-              <div className="px-5 pb-4 type-meta text-on-ink-body">{desc}</div>
+              <div className="px-5 pb-4 type-meta text-body group-open:text-on-ink-body">
+                {desc}
+              </div>
             </details>
           ))}
         </div>
@@ -348,9 +366,12 @@ function Artefact({ artefact }: { artefact: ServiceArtefact }) {
       );
     case "report":
       return (
-        <div className="bg-white rounded-md overflow-hidden">
+        <div
+          id="reporting"
+          className="bg-white rounded-md overflow-hidden [scroll-margin-top:140px]"
+        >
           <div className="px-[22px] py-3.5 border-b border-line flex justify-between font-mono type-label text-label uppercase">
-            <span>Weekly operating report · sample</span>
+            <span>Operating report · sample</span>
             <span>#reporting</span>
           </div>
           {artefact.rows.map((r) => (
@@ -566,6 +587,17 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
             <span className="flex-none w-3 h-3 rounded-[2px] bg-ink mt-1.5" />
             <span>{data.disqualifier}</span>
           </p>
+          {data.heroObjection && (
+            <p className="type-body text-body mt-4 mb-0 max-w-[62ch]">
+              {data.heroObjection.text}{" "}
+              <a
+                href={`#${data.heroObjection.anchor}`}
+                className="text-ink hover:text-ink font-semibold whitespace-nowrap"
+              >
+                {data.heroObjection.anchorLabel} →
+              </a>
+            </p>
+          )}
           <div className="hidden min-[900px]:flex gap-[22px] items-center mt-7 flex-wrap">
             <a
               href="/contact"
@@ -654,6 +686,47 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
                 </p>
               ))}
             </div>
+            {data.comparison && (
+              <div className="flex-[1_1_100%] min-w-0 max-w-[900px]">
+                <h3 className="font-display type-h3 text-ink m-0 mb-4">
+                  {data.comparison.title}
+                </h3>
+                <div className="overflow-x-auto border border-line rounded-md">
+                  <table className="w-full min-w-[560px] border-collapse type-meta">
+                    <thead>
+                      <tr className="border-b border-line bg-bone/50">
+                        <th className="text-left p-3.5 font-mono type-label text-label uppercase" />
+                        <th className="text-left p-3.5 font-mono type-label text-label uppercase">
+                          {data.comparison.cols[0]}
+                        </th>
+                        <th className="text-left p-3.5 font-mono type-label text-label uppercase">
+                          {data.comparison.cols[1]}
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {data.comparison.rows.map(([k, a, b]) => (
+                        <tr
+                          key={k}
+                          className="border-b border-line/60 last:border-b-0 align-top"
+                        >
+                          <th className="text-left p-3.5 text-ink font-semibold">
+                            {k}
+                          </th>
+                          <td className="p-3.5 text-body">{a}</td>
+                          <td className="p-3.5 text-ink">{b}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                {data.comparison.closing && (
+                  <p className="type-body text-body mt-4 mb-0 max-w-[62ch]">
+                    {data.comparison.closing}
+                  </p>
+                )}
+              </div>
+            )}
             {data.toggle && (
               <div className="cc-tabs flex-[1_1_300px] max-w-[420px] border border-line rounded-md overflow-hidden relative">
                 <input
@@ -722,6 +795,11 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
             </div>
             <div className="flex-[1_1_360px] min-w-0">
               <Artefact artefact={data.artefact} />
+              {data.artefactNote && (
+                <p className="type-meta text-body mt-3.5 mb-0 max-w-[56ch]">
+                  {data.artefactNote}
+                </p>
+              )}
             </div>
           </div>
           <PetrolCta note="CTA moment 1 of 3 · scope is now known" />
@@ -734,6 +812,18 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
           <h2 className="font-display type-h2 text-ink m-0 max-w-[18ch] text-balance">
             Who this is for — and who it isn&apos;t
           </h2>
+          {data.whenToHire && (
+            <div className="mt-6 max-w-[62ch] grid gap-3.5">
+              <h3 className="font-display type-h3 text-ink m-0">
+                {data.whenToHire.title}
+              </h3>
+              {data.whenToHire.body.map((p, i) => (
+                <p key={i} className="type-body text-body m-0">
+                  {p}
+                </p>
+              ))}
+            </div>
+          )}
           <div className="flex flex-wrap gap-6 mt-7 items-stretch">
             <div className="flex-[1_1_300px] grid gap-1 content-start pt-2">
               <div className="font-mono type-label text-label uppercase mb-2">
@@ -766,6 +856,11 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
               ))}
             </div>
           </div>
+          {data.fitNote && (
+            <p className="type-body text-body mt-6 mb-0 max-w-[62ch]">
+              {data.fitNote}
+            </p>
+          )}
         </div>
       </section>
 
@@ -811,6 +906,11 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
             <h2 className="font-display type-h2 text-white m-0">
               What stays yours
             </h2>
+            {data.yoursIntro && (
+              <p className="type-lead text-on-field-body mt-4 mb-0 max-w-[62ch]">
+                {data.yoursIntro}
+              </p>
+            )}
             <div className="flex flex-wrap gap-x-12 gap-y-8 mt-8">
               <div className="flex-[1_1_300px] grid content-start">
                 <div className="font-mono type-label text-on-field-mute uppercase mb-2.5">
@@ -841,6 +941,11 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
                 ))}
               </div>
             </div>
+            {data.yoursOutro && (
+              <p className="type-body text-on-field-body mt-8 mb-0 max-w-[62ch] border-t border-line-on-field pt-6">
+                {data.yoursOutro}
+              </p>
+            )}
           </div>
         </section>
 
@@ -850,6 +955,11 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
             <h2 className="font-display type-h2 text-ink m-0">
               What&apos;s fully managed
             </h2>
+            {data.managedLead && (
+              <p className="type-body text-body mt-4 mb-0 max-w-[62ch]">
+                {data.managedLead}
+              </p>
+            )}
             <div className="flex flex-wrap gap-x-8 gap-y-2 mt-7">
               {data.managed.map(([k, v]) => (
                 <div
@@ -960,7 +1070,7 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
       <section id="faq" className={`bg-white ${ANCHOR}`}>
         <div className={`${CONTAINER} pb-[clamp(40px,5vw,72px)]`}>
           <h2 className="font-display type-h2 text-ink m-0 max-w-[18ch] text-balance">
-            Questions about {data.short}
+            Questions about {data.faqShort ?? data.short}
           </h2>
           <div className="mt-6 border-t border-line max-w-[760px]">
             {data.faqs.map((f) => (
@@ -981,6 +1091,28 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
           </div>
         </div>
       </section>
+
+      {/* Anchored subsection (e.g. /shopify-dtc#growth — the absorbed
+          DTC growth content; chips and footer point here) */}
+      {data.extraSection && (
+        <section
+          id={data.extraSection.id}
+          className={`bg-white border-t border-line ${ANCHOR}`}
+        >
+          <div className={`${CONTAINER} ${SECTION_PAD}`}>
+            <h3 className="font-display type-h3 text-ink m-0">
+              {data.extraSection.title}
+            </h3>
+            <div className="mt-4 max-w-[62ch] grid gap-3.5">
+              {data.extraSection.body.map((p, i) => (
+                <p key={i} className="type-body text-body m-0">
+                  {p}
+                </p>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* 12 · Bone: related */}
       <section className="bg-bone">

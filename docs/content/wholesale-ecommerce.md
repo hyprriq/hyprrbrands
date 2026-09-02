@@ -202,20 +202,33 @@ tells you what was done rather than asking you to go and find out.
 
 ## H2 7 · How we're paid for this
 
-**120 words, no figures.**
-Hyprr is paid on realised margin — what a catalogue line actually made after landed cost,
-marketplace fees, advertising and returns, once it has sold. Not on revenue, and not on the
-capital you deploy: no part of the fee is calculated from what you spend on inventory. That
-matters here more than in any other service, because a fee tied to purchase volume rewards
-recommending more buying, which is exactly the incentive this business should not have.
+**135 words, figures published.**
+A build fee, set by the capital you plan to deploy monthly, and 30% of realised margin — what a
+catalogue line actually made after landed cost, marketplace fees, advertising and returns, once it
+has sold. Not on revenue, and not on the capital itself: no part of the fee is calculated from
+what you spend on inventory. That matters here more than in any other service, because a fee tied
+to purchase volume rewards recommending more buying, which is exactly the incentive this business
+should not have.
+
+| Band | Monthly deployment | Build fee | Share |
+|---|---|---|---|
+| Launch | Up to $25,000/mo | **$2,499** | 30% |
+| Scale | $25,000 - $100,000/mo | **$4,599** | 30% |
+| Enterprise | Above $100,000/mo | **$7,999** | 30% |
+
+**The split is 30% in all three.** A larger build fee buys more work — more catalogue, more
+channels, more people on the account. It never buys a better split. Adding Walmart to an Amazon
+operation, or the reverse, is **$1,999**. Taking over an existing account is **$1,499**, or
+**$2,999** where there is account-health history to resolve first.
 
 The full mechanic, including how realised margin is calculated and a worked example, is on the
 how-we-work page.
 
 → `/how-we-work#fees`
 
-> ⚠️ **Blocked.** The worked example and the calculation detail live on `/how-we-work#fees`,
-> which is still a placeholder. This section is written to link to it, not to substitute for it.
+> **Unblocked as of 2 Sep.** Figures resolved from `Hyprr_Business_Plan_v1.0.html` and specified
+> in `docs/content/fees-and-pricing.md`. The worked example and the refund term stay on
+> `/how-we-work#fees` — this section states the price, that section proves the arithmetic.
 
 ---
 
