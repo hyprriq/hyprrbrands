@@ -41,181 +41,52 @@
 > in this queue is a bug: a false sentence, a formula that overcharges, a channel claim that is
 > untrue for half the market, or markup that is missing entirely.
 
-> ### Owner sequencing, 2 Sep — this governs the order below
+> ### QUEUE ON HOLD — owner ruling, 2 Sep evening
 >
-> **Finish every page first — design and content. Then one change pass covering pricing, visuals
-> and SEO together.** The change work is parked in `docs/CHANGES_PASS.md` and does not enter this
-> queue until `/about` and `/insights` are live.
+> **Stop taking tickets one at a time.** Findings have been arriving singly and becoming tickets
+> immediately, which is how the pricing went in and came back out inside a day. A full review of
+> all 22 routes has been run instead — content, link graph, metadata — and the remediation will be
+> planned once and executed once.
 >
-> This is the right order: design and SEO changes both operate *on* pages, so doing them before
-> the last two exist means doing them twice — an internal-link audit run before `/insights` lands
-> is an audit of the wrong graph.
+> **Read `docs/SITE_REVIEW_2SEP.md` before starting anything.**
 >
-> **Updated later on 2 Sep — two things moved out of the change pass and into the queue:**
+> **One thing is safe to build now and it is the only thing:** `PROMPT_13` items **A, B and D** —
+> the hero at-a-glance panel, the mobile artefact reduction, and the sequence scroll-snap. They are
+> component mechanics, they depend on no decision in the review, and nothing in the review can
+> change them.
 >
-> **Pricing removal is confirmed and goes first.** Owner decision: the published figures come out.
-> `PROMPT_12` — and it is not a delete, because five live strings currently *assert that fees are
-> published* and go false the moment the tables leave. Removal and retractions ship together.
+> **`PROMPT_13 §C` and `§E` are on hold** even though they are written, because the review found
+> the progression problem is larger than that ticket describes — `HubPage.tsx` renders a section
+> headed "How Build connects to Grow and Operate" containing zero hub-to-hub links, and only 4 of
+> 20 `related` edges express the model. `§E` fixes the service pages and would leave the hubs
+> broken. It gets rewritten into Batch A.
 >
-> **Visuals and video are a workstream, not a polish item.** `docs/VISUALS_AND_VIDEO.md`. Tier 2
-> diagrams enter the queue now rather than the change pass, because `PROMPT_12` empties the fees
-> section and the margin-calculation diagram is what should fill it.
->
-> Everything else in `CHANGES_PASS.md` still waits for `/about` and `/insights`.
+> Everything else waits on two owner decisions named at the end of the review.
 
-The audit cycle is **closed**. Six tickets shipped and verified on production: `f7fef9c`
-(prompt 7) · `b3c78be` (step 6) · `3491a0f` (prompt 8) · `bb427b9` (prompt 6) · `0e80289`
-(prompt 9) · `fb04046` (prompt 10).
+## Shipped since the last rewrite
+
+`cb50ac7` prompt 12 — pricing out, mechanic stays, all five retractions in the same deploy,
+`PUBLISH_SPLIT` at its default so the 30% is one line from reversible.
+`650ecdf` prompt 11 — `/about` live, `/documents` fully out of the manifest.
+
+Both verified. Two judgment calls in 12 were right and worth recording: **keeping the $500
+paragraph without its figure** — the disclosure was the load-bearing part and the number was the
+removable part — and **keeping "Fees are in USD"** while the worked example still shows dollars.
 
 ---
 
-## Audit verdict on the five flagged decisions — all five upheld
+## The review, in one paragraph
 
-Checked against the tree, not taken on trust. **Two of the five were my acceptance criteria being
-wrong, not your work**, and both are corrected below so they do not misfire again.
+22 routes audited. **No rejected-keyword leaks, no broken links on any live page, the eight-H2
+service spine is identical across all ten, and no service page is more than one click from home.**
+Against that: `/about` shipped yesterday as an orphan at 300 words; `/ecommerce-operations` and
+`/operate` are competing on metas that share a clause verbatim, a collision the keyword map rated
+Critical and prescribed a merge for; the Build → Grow → Operate model is expressed in 20% of the
+edges that could carry it; three metas are over 158 because of an error in `PROMPT_10`; and four
+legal pages are orphans and dead ends with `LegalPage.tsx` rendering no links at all.
 
-**1 · "and" → "&" in H1s and serviceTypes — upheld, and my check was the defect.**
-My first instinct was that this evaded acceptance #1 rather than satisfying it, because a string
-match on `Amazon and Walmart` is trivially defeated by an ampersand. It does not, and the evidence
-is in the bodies: `wholesale-ecommerce`, `marketplace-growth`, `marketplace-management` and
-`ppc-paid-media` each carry "Walmart in the US" and "in the US and UK" in body copy. That is
-§B rule 3 followed exactly — geography in the body, head terms untouched. Diluting an H1 to
-"Amazon US & UK, Walmart US wholesale management" would have cost the term and read badly.
-
-**The check was wrong and is replaced.** A string match cannot test a claim. The correct check:
-*every page naming Walmart states a geography for it somewhere in the body.* Use that one.
-
-**2 · Two FAQ questions reworded — upheld.** "Do you run Amazon and Walmart advertising?" →
-"Do you run advertising on Amazon and on Walmart?" The question string carried the conjunction
-that implied a shared footprint, so rewording the question rather than only the answer is the
-correct depth of fix. This one I would have missed.
-
-**3 · Table headers `on-field-mute`, not the suggested Aqua accent — upheld, and my suggestion was
-worse.** Re-measured independently: `#b6d6dc` on `#0a4e5c` is **6.04:1**, and `type-label` is 12px
-/ 600, so the threshold is 4.5:1. Passes with room. There is no raised surface anywhere in the
-rebuilt `#fees` section, so the 4.79:1 raised case never arises. Mark-not-text is the right law
-here and chroma is 0.0412 without the accent — the accent would have been decoration solving a
-problem that did not exist.
-
-**4 · `$14,999` three times rather than acceptance #3's "exactly once" — upheld, my criterion was
-stale.** It was written before `private-label.md` was patched to publish the figure too, so
-"exactly once" described a tree that no longer existed by the time you read it. What the rule
-actually protects is **adjacency, not scarcity**: the figure must never appear without the
-itemised scope and the zero-markup sentence beside it. Verified — `how-we-work` has it in the
-table cell with its caption directly below, and `private-label.ts` has it inside the fee body that
-carries the pass-through sentence in the same paragraph. **Corrected criterion: every occurrence
-of `$14,999` has the scope and pass-through adjacent. Count is not the test.**
-
-**5 · Prompt 6 FIX 3 declined as superseded by the chroma ruling — upheld.** Consistent with the
-standing rule that a number validated on one surface does not transfer to another.
-
-### The generalisation worth keeping
-
-Three of my five acceptance criteria this cycle tested a **string** when they meant to test a
-**claim**. A grep is a good gate for a banned phrase, because there the string *is* the thing. It
-is a bad gate for "this page is truthful about geography", because any rewording satisfies it
-while the claim survives. **Where the ticket cares about meaning, the check names the meaning and
-a person reads the hits.**
-
----
-
-## 1 · PROMPT_12_REMOVE_PUBLISHED_PRICING.md — live commercial copy, so it goes first
-
-Owner decision: the published figures come out. **Figures out, mechanic stays** — the
-differentiator was never the number, it is that the fee runs on realised margin with nothing on
-capital, ad spend, tax or a reversed sale, and all of that publishes without a currency figure.
-
-Two things make this more than a deletion:
-
-**Five strings assert that fees are published** and go false on removal — the `#fees` lead,
-`FEE_RULES[0]`, the metaDescription, the og/twitter description and the `PricingBand` body. Same
-failure mode as the last cycle in reverse. They ship in the same deploy.
-
-**The 30% is isolated behind one constant**, `PUBLISH_SPLIT`, defaulting to keep. It is the
-commercial model rather than a proposed price, and with the tables gone *"the split is 30%
-whatever the build fee is"* becomes the whole transparency argument rather than part of it. One
-line to flip if the owner wants it out too.
-
-The worked example stays. Its numbers are arbitrary arithmetic labelled as arbitrary, not prices,
-and it is the most persuasive block in the section.
-
----
-
-## 2 · Tier 2 diagrams — `VISUALS_AND_VIDEO.md`, and #1 is urgent
-
-Measured: **two on-page images across twenty-one routes.** The margin-calculation diagram is
-sequenced with `PROMPT_12` because that ticket removes three tables and leaves a gap — the tables
-stated a price, the diagram proves a method, same section and better content.
-
-The other three (approval gate · operating cycle · what is yours vs what Hyprr does) follow. All
-drawn from existing tokens: no photography, no stock, no delivery-date risk, real text in the SVG
-so it stays crawlable.
-
-**The unlock recorded in that file:** the no-faces rule was against *fake* imagery, never against
-real footage. Founder video is wide open, it is the densest proof available, and it answers
-`/about`'s "one real person" better than a LinkedIn URL does. Tier 1 needs the owner, not the dev.
-
----
-
-## 3 · PROMPT_13_SERVICE_PAGE_VISUALS_AND_MOBILE.md — owner review of production
-
-Six findings from `/wholesale-ecommerce` and `/private-label`, **all six in
-`components/pages/ServicePage.tsx`, which drives all ten service pages.** That is the leverage —
-each fix is written once and lands ten times. Fixing any of them per-page is the mistake.
-
-- **A · The hero has no visual slot on any service page.** Single column, `max-w-[18ch]` H1,
-  roughly half the fold empty above 1440px. Ships as a type-and-token "at a glance" panel built
-  from fields that already exist in `ServicePageData`; the tier-2 diagram replaces it later. Not a
-  placeholder — content that stands alone and gets upgraded.
-- **B · The mobile catalogue artefact responds by showing everything** — five rows × eight fields
-  is ~35 label/value lines. The fix is editorial: the artefact's argument is the *status* column,
-  everything else is texture. Three rows, three fields, rest behind a disclosure, and a caption
-  that says the point instead of making the reader infer it.
-- **C · "What … actually involves" is 298–337 words in one column with no structural break** on
-  every one of the ten pages. Do not cut it — it is load-bearing for the informational SERP and
-  GEO extraction. Break it with subheads, wider spacing and the page's second visual.
-- **D · The `sequence` artefact goes horizontal scroll-snap below 900px**, as the owner suggested.
-- **E · Every Build page dead-ends, and this one is worth the most.** `/private-label` is a launch
-  page with no expression of what follows. The link exists but sits in `related` styled
-  identically to a sibling service — a sibling link and a next-step are not the same thing.
-  **Build → Grow → Operate is the spine of the whole company** and no service page expresses it as
-  a progression; ten pages each present themselves as a terminus. New `nextStep` block, and the
-  next-engine entry comes *out* of `related` so it is not offered twice at different weights.
-- **F ·** All new `ServicePageData` fields optional so the other nine build before their copy lands.
-
-**A, B and D need nothing from me — ship those first.** C and E need copy I am writing now:
-subheads matched to the existing paragraph breaks on all ten pages, and `nextStep` copy for each.
-
----
-
-## 4 · PROMPT_11_ABOUT_SHIPS.md — small, and it is only parked by one commit
-
-`/about` is listed as parked pending role, prior employer and LinkedIn. That was true until
-`f42d764`, which landed after your push and removed it — those are now **optional fields that
-render only when present**, the founder paragraph is drafted and shippable, and the content file
-has been rewritten with both ⚠️ blocks gone.
-
-`/about` is now the only page in the manifest with finished content and no route. The ticket is
-short and the content is written.
-
-**Correctly still parked:** `/documents` (owner-deferred), the homepage CONTRACTS row,
-photographs, and the `Person` JSON-LD node — a `Person` with no `sameAs` is an assertion with
-nothing to resolve to.
-
----
-
-## 5 · `/insights` — the audit side owes you content, not a ticket
-
-Nothing to build until articles exist, and writing them is my job, not yours. Four are specified
-in the keyword map's §7 objection cluster — the account-ownership question, the automation
-question, the fee-model comparison, and the true-cost piece — and the map's own finding is that
-these will out-traffic all ten service pages combined, because the informational SERPs are the
-ones a new domain can actually enter.
-
-**I am writing these next.** They will land in `docs/content/insights/` with a ticket. Do not
-build `/insights` with placeholder cards in the meantime — §A.19's rule stands: four cards linking
-to nothing is worse than removing the section, and a dead "Read article →" is the first broken
-promise a careful visitor finds.
+Full findings, severity-ordered, with what is good and should not be touched:
+**`docs/SITE_REVIEW_2SEP.md`**.
 
 ---
 
