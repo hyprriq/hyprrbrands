@@ -53,6 +53,21 @@ export type ServiceArtefact =
       cols: { name: string; items: [string, string][] }[];
     };
 
+/** Slot 3 — one mechanism diagram per page, assigned in
+ *  docs/PHASE1_VISUAL_MAP.md. The SVG lives in MechanismDiagram.tsx
+ *  keyed by `kind`; the caption is the map's "what it shows" line. */
+export type DiagramKind =
+  | "buy-decision"
+  | "verdict-axes"
+  | "six-layers"
+  | "scope-boundary"
+  | "five-questions"
+  | "two-rulebooks"
+  | "ads-stack"
+  | "cadence-grid"
+  | "suspension-path"
+  | "reactive-operated";
+
 /** Family insert inside "the first 90 days" — section 6, Bone. */
 export type ServiceHww =
   | { kind: "chain"; items: { label: string; sub: string; dark?: boolean }[] }
@@ -98,6 +113,13 @@ export interface ServicePageData {
     rows: [string, string, string][];
     closing?: string;
   };
+
+  /** Slot 3 — rendered inside `involves` after ¶2, with a caption. */
+  diagram: { kind: DiagramKind; caption: string };
+  /** Slot 4 — the full-bleed Petrol rule card between `involves` and
+   *  the fit columns: one sentence promoted from this page's own copy
+   *  (≤15 words), plus one line naming where it is proven. */
+  ruleCard: { text: string; source: string };
 
   visual: ServiceVisual;
 

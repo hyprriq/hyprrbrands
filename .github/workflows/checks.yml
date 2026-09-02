@@ -1,0 +1,28 @@
+# PROMPT_16 step 4 — the four gate scripts, run against the built
+# output on every push and PR. A gate beats a promise.
+name: checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Start server
+        run: |
+          npm run start &
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:3000/ > /dev/null && break
+            sleep 1
+          done
+      - run: npm run check

@@ -14,9 +14,9 @@ const data: ServicePageData = {
   name: "Marketplace management",
   short: "marketplace management",
   faqShort: "seller account management",
-  metaTitle: "Amazon & Walmart Seller Account Management | You Own It",
+  metaTitle: "Amazon Seller Account Management | You Keep the Keys",
   metaDescription:
-    "Day-to-day account health, compliance and execution under permissioned access in your own account. We never hold your credentials.",
+    "Account health, policy, cases and compliance handled daily under permissioned access inside your own Seller Central. We never hold your credentials.",
 
   h1: "Amazon & Walmart seller account management",
   answer:
@@ -41,6 +41,17 @@ const data: ServicePageData = {
   ],
 
   involvesSubheads: ["Keeping the account sellable", "Cases and clocks"],
+
+  diagram: {
+    kind: "suspension-path",
+    caption:
+      "The chain from a policy change to a suspension, and where the daily sweep interrupts it.",
+  },
+  ruleCard: {
+    text: "Ranking is worth nothing on a suspended account.",
+    source:
+      "Proven in the suspension path the daily sweep interrupts.",
+  },
 
   visual: {
     kind: "states",

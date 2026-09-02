@@ -12,9 +12,9 @@ const data: ServicePageData = {
   serviceType: "Private label product development",
   name: "Private label",
   short: "private label",
-  metaTitle: "Amazon Private Label Agency | Research to Launch | Hyprr",
+  metaTitle: "Amazon Private Label Agency | Research to Launch",
   metaDescription:
-    "We decide with you whether a product deserves to exist, then take it to market. Every product gets a written verdict before money is committed.",
+    "Research, validation, supplier and sample, packaging, compliance and launch. Every product gets a written verdict before any money is committed.",
 
   h1: "Amazon private label: research, sourcing and launch",
   answer:
@@ -34,6 +34,17 @@ const data: ServicePageData = {
   ],
 
   involvesSubheads: ["Deciding before spending", "Where launches fail"],
+
+  diagram: {
+    kind: "verdict-axes",
+    caption:
+      "Eight axes, one failing — a reject is a single failed axis, not an average.",
+  },
+  ruleCard: {
+    text: "Most products should be rejected before a sample is ordered.",
+    source:
+      "Proven in the verdict sheet every product gets before money is committed.",
+  },
 
   visual: {
     kind: "sequence",

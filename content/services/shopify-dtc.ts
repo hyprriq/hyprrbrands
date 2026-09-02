@@ -11,9 +11,9 @@ const data: ServicePageData = {
   serviceType: "DTC and Shopify store build and operation",
   name: "Shopify / DTC",
   short: "Shopify and DTC",
-  metaTitle: "DTC & Shopify Ecommerce Agency | Build and Run | Hyprr",
+  metaTitle: "DTC Ecommerce Agency | Shopify Build and Run",
   metaDescription:
-    "We build the direct customer journey around your product — storefront, conversion, acquisition, retention — and you own the store, the code and the data.",
+    "The whole direct customer journey, from offer and storefront to checkout, acquisition and retention. The store, the code and the data stay yours.",
 
   h1: "DTC and Shopify: build the customer journey, not just the store",
   answer:
@@ -32,6 +32,17 @@ const data: ServicePageData = {
   ],
 
   involvesSubheads: ["The journey, not the theme", "After the store is live"],
+
+  diagram: {
+    kind: "six-layers",
+    caption:
+      "Six layers read bottom-up — the offer decides what every layer above it can do.",
+  },
+  ruleCard: {
+    text: "A storefront that is not being changed is quietly getting worse.",
+    source:
+      "Proven in the operating cadence this page describes.",
+  },
 
   visual: {
     kind: "journey",

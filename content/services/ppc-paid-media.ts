@@ -11,9 +11,9 @@ const data: ServicePageData = {
   serviceType: "Amazon & Walmart PPC management",
   name: "PPC & paid media",
   short: "PPC and paid media",
-  metaTitle: "Amazon & Walmart PPC Management | Judged on Margin",
+  metaTitle: "Amazon PPC Management Agency | Judged on Margin",
   metaDescription:
-    "Advertising run inside the operation that also controls inventory, pricing and listings — and reported on contribution margin, not ACoS alone.",
+    "Advertising run inside the operation that also controls inventory, pricing and listings, and reported on contribution margin rather than ACoS alone.",
 
   h1: "Amazon & Walmart PPC, run inside the operation",
   answer:
@@ -33,6 +33,17 @@ const data: ServicePageData = {
   ],
 
   involvesSubheads: ["Judged on margin, not ACoS", "When advertising is the wrong answer"],
+
+  diagram: {
+    kind: "ads-stack",
+    caption:
+      "Ads are the top layer; the five beneath it are what an ads-only agency cannot see.",
+  },
+  ruleCard: {
+    text: "A bid change is worth nothing if the inventory behind it runs out.",
+    source:
+      "Proven in the six-layer stack above — ads sit on the operation, not beside it.",
+  },
 
   visual: {
     kind: "stack",

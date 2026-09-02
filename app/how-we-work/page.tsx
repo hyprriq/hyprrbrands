@@ -8,9 +8,9 @@ import JsonLd from "@/components/JsonLd";
 import { breadcrumbLd, webPageLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "How We Work | You Decide, We Execute | Hyprr Brands",
+  title: "How We Work | You Decide, We Execute | Hyprr",
   description:
-    "You decide. We execute. What happens in an engagement, who decides, what gets written down, and how we are paid — the mechanic and a worked example.",
+    "What happens in an engagement, who decides what, what gets written down, and how the fee follows realised margin rather than hours or activity.",
   alternates: { canonical: "/how-we-work" },
   ...ogImageMeta("how-we-work"),
 };
@@ -92,9 +92,9 @@ export default function Page() {
         nodes={[
           webPageLd({
             path: "/how-we-work",
-            title: "How We Work | You Decide, We Execute | Hyprr Brands",
+            title: "How We Work | You Decide, We Execute | Hyprr",
             description:
-              "You decide. We execute. What happens in an engagement, who decides, what gets written down, and how we are paid — the mechanic and a worked example.",
+              "What happens in an engagement, who decides what, what gets written down, and how the fee follows realised margin rather than hours or activity.",
           }),
           breadcrumbLd([
             { name: "Home", path: "/" },

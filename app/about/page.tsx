@@ -8,7 +8,7 @@ import { ogImageMeta } from "@/lib/og-pages";
 export const metadata: Metadata = {
   title: "About Hyprr Brands | Who Runs the Operation",
   description:
-    "Why Hyprr exists, who is accountable for what, and the company facts you can verify. No stock photography and no team-of-experts copy.",
+    "Who is accountable for what at Hyprr, the company facts you can check, and why the operation is built this way. No stock photography, no invented faces.",
   alternates: { canonical: "/about" },
   ...ogImageMeta("about"),
 };
@@ -64,7 +64,7 @@ export default function Page() {
             path: "/about",
             title: "About Hyprr Brands | Who Runs the Operation",
             description:
-              "Why Hyprr exists, who is accountable for what, and the company facts you can verify. No stock photography and no team-of-experts copy.",
+              "Who is accountable for what at Hyprr, the company facts you can check, and why the operation is built this way. No stock photography, no invented faces.",
           }),
           breadcrumbLd([
             { name: "Home", path: "/" },

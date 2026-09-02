@@ -13,9 +13,9 @@ const data: ServicePageData = {
   serviceType: "Amazon & Walmart marketplace growth",
   name: "Marketplace growth",
   short: "marketplace growth",
-  metaTitle: "Amazon & Walmart Marketplace Growth Agency | Hyprr Brands",
+  metaTitle: "Amazon Marketplace Growth Agency | Ranking & Buy Box",
   metaDescription:
-    "Listings, ranking, buy box and review velocity worked as one loop across Amazon US & UK and Walmart US — one catalogue, two rulebooks, one operation.",
+    "Listings, ranking, buy box and review velocity worked as one loop across Amazon US and UK and Walmart US. One catalogue, two rulebooks, one team.",
 
   h1: "Amazon & Walmart marketplace growth",
   answer:
@@ -36,6 +36,17 @@ const data: ServicePageData = {
   ],
 
   involvesSubheads: ["One catalogue, two rulebooks", "Ranking without discounting"],
+
+  diagram: {
+    kind: "two-rulebooks",
+    caption:
+      "One catalogue splitting into two marketplace paths that diverge, then one team working both.",
+  },
+  ruleCard: {
+    text: "One catalogue, two rulebooks.",
+    source:
+      "Proven in the optimisation loop this page runs on both marketplaces.",
+  },
 
   visual: {
     kind: "loop",

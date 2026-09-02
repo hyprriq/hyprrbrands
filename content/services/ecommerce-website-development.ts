@@ -14,9 +14,9 @@ const data: ServicePageData = {
   serviceType: "Ecommerce website development",
   name: "Ecommerce website development",
   short: "ecommerce website development",
-  metaTitle: "Ecommerce Website Development | For Operations We Run",
+  metaTitle: "Ecommerce Website Development Company | Hyprr",
   metaDescription:
-    "We build storefronts for businesses we also operate. If you need a standalone website project with no operation behind it, we are not the right firm.",
+    "We build storefronts, integrations and payments for operations we also run. If you want a standalone site project with no operation behind it, we pass.",
 
   h1: "Ecommerce website development — for operations we also run",
   answer:
@@ -36,6 +36,17 @@ const data: ServicePageData = {
   ],
 
   involvesSubheads: ["Built for an operation", "What we do not take on"],
+
+  diagram: {
+    kind: "scope-boundary",
+    caption:
+      "The boundary is the point: the left column exists only for operations we also run.",
+  },
+  ruleCard: {
+    text: "We build storefronts for operations we also run.",
+    source:
+      "Proven in the scope boundary above — the disqualifier, drawn as a line.",
+  },
 
   visual: {
     kind: "stack",

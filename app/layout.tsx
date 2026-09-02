@@ -21,14 +21,14 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_ORIGIN),
-  title: "Ecommerce Operations Agency | Hyprr Brands",
+  title: "Ecommerce Operations Agency | You Own It, We Run It",
   description:
-    "Hyprr builds, grows and operates ecommerce businesses on Amazon US & UK, Walmart US and Shopify. You own the accounts and the inventory. We run the operation.",
+    "Hyprr builds, grows and operates ecommerce businesses on Amazon US & UK, Walmart US and Shopify. You own the accounts and inventory; we run the desk.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "You own the business. We run the operation.",
     description:
-      "Ecommerce operations across Amazon US & UK, Walmart US and Shopify — wholesale, private label and DTC.",
+      "Hyprr builds, grows and operates ecommerce businesses on Amazon US & UK, Walmart US and Shopify. You own the accounts and inventory; we run the desk.",
     type: "website",
     url: "/",
     siteName: "Hyprr Brands",

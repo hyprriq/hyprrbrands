@@ -14,9 +14,9 @@ const data: ServicePageData = {
   serviceType: "Ecommerce operations management",
   name: "Ecommerce operations",
   short: "ecommerce operations",
-  metaTitle: "Outsourced Ecommerce Operations | The Daily Desk | Hyprr",
+  metaTitle: "Outsourced Ecommerce Operations for Sellers",
   metaDescription:
-    "Purchase orders, inventory, orders, cases, listings and reporting worked to a fixed cadence — with a written path for when something goes wrong.",
+    "Hire a desk that works your purchase orders, inventory, orders, cases and listings to a fixed daily cadence, on marketplace accounts that stay yours.",
 
   h1: "Ecommerce operations: the daily desk",
   answer:
@@ -37,6 +37,17 @@ const data: ServicePageData = {
   ],
 
   involvesSubheads: ["The daily cadence", "When something goes wrong"],
+
+  diagram: {
+    kind: "cadence-grid",
+    caption:
+      "A week at the desk: what runs daily, what runs weekly, what runs monthly.",
+  },
+  ruleCard: {
+    text: "Most operational damage comes from the day nobody looked.",
+    source:
+      "Proven in the daily cadence — the desk exists so every day gets looked at.",
+  },
 
   visual: {
     kind: "table",

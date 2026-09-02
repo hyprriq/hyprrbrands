@@ -13,9 +13,9 @@ const data: ServicePageData = {
   serviceType: "Ecommerce growth management",
   name: "Ecommerce growth",
   short: "ecommerce growth",
-  metaTitle: "Ecommerce Growth Agency | Growth the Operation Can Deliver",
+  metaTitle: "Ecommerce Growth Agency | Growth You Can Fulfil",
   metaDescription:
-    "Growth run as operating questions — demand, conversion, inventory, margin, capacity — and sequenced against what the business can actually fulfil.",
+    "Demand, conversion, inventory, margin and capacity worked as one set of operating questions, sequenced against what the business can actually ship.",
 
   h1: "Ecommerce growth agency — growth the operation can actually deliver",
   answer:
@@ -65,6 +65,17 @@ const data: ServicePageData = {
   },
 
   involvesSubheads: ["Finding the binding constraint", "Knowing when to stop"],
+
+  diagram: {
+    kind: "five-questions",
+    caption:
+      "Five questions in the order they bind — the work starts at whichever one binds now.",
+  },
+  ruleCard: {
+    text: "Growth you cannot fulfil is not growth.",
+    source:
+      "Proven in the five operating questions, in the order they bind.",
+  },
 
   visual: {
     kind: "panel",

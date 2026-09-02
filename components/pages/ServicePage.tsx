@@ -4,6 +4,7 @@ import SitePageShell from "@/components/SitePageShell";
 import { isLive } from "@/lib/site-map";
 import { ogImageMeta } from "@/lib/og-pages";
 import JsonLd from "@/components/JsonLd";
+import MechanismDiagram from "@/components/pages/MechanismDiagram";
 import { breadcrumbLd, faqLd, serviceLd, webPageLd } from "@/lib/schema";
 import {
   ENGINE_META,
@@ -829,6 +830,16 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
                     </h3>
                   )}
                   <p className="type-body text-body m-0">{p}</p>
+                  {/* Slot 3 · the mechanism diagram, after ¶2
+                      (PHASE1_VISUAL_MAP) */}
+                  {i === 1 && (
+                    <figure className="m-0 mt-2 grid gap-3 justify-items-start">
+                      <MechanismDiagram data={data} />
+                      <figcaption className="type-meta text-body max-w-[52ch]">
+                        {data.diagram.caption}
+                      </figcaption>
+                    </figure>
+                  )}
                 </div>
               ))}
             </div>
@@ -920,6 +931,21 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
               </div>
             )}
           </div>
+        </div>
+      </section>
+
+      {/* Slot 4 · the rule card — full-bleed Petrol, one sentence
+          promoted from this page's own copy. Ships with slot 3 in the
+          same commit by the chroma sequencing rule (PROMPT_16 §2). A
+          <p>, not a heading: the eight-H2 spine stays intact. */}
+      <section className="bg-field text-white">
+        <div className={`${CONTAINER} py-[clamp(44px,6vw,76px)]`}>
+          <p className="font-display type-h2 text-white m-0 max-w-[24ch] text-balance">
+            {data.ruleCard.text}
+          </p>
+          <p className="type-meta text-on-field-body mt-4 mb-0 max-w-[62ch]">
+            {data.ruleCard.source}
+          </p>
         </div>
       </section>
 
@@ -1019,17 +1045,55 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
             <h2 className="font-display type-h2 text-ink m-0 max-w-[18ch] text-balance">
               How we work: the first 90 days
             </h2>
-            <div className="flex flex-wrap gap-3 mt-7">
-              {data.phases.map((ph) => (
-                <div
-                  key={ph.days}
-                  className="flex-[1_1_240px] bg-white border border-line rounded-md p-[22px] grid gap-2.5 content-start"
-                >
-                  <span className="font-mono type-label text-label tracking-[.08em]">
+            {/* Slot 5 · phase timeline (PHASE1_VISUAL_MAP): day ranges
+                in mono above a continuous rule, markers in the engine
+                colour, copy below. Vertical spine under 900px. */}
+            <div className="hidden min-[900px]:grid grid-cols-3 mt-8">
+              {data.phases.map((ph, i) => (
+                <div key={ph.days} className="pr-8 last:pr-0">
+                  <span className="font-mono type-label text-label tracking-[.08em] block mb-3">
                     {ph.days}
                   </span>
-                  <b className="text-ink font-display type-h3">{ph.title}</b>
-                  <p className="type-meta text-body m-0">{ph.body}</p>
+                  {/* -mr-8 bridges the column gap so the rule reads as
+                      one continuous line */}
+                  <div
+                    className={`relative border-t-2 border-ink/15 ${
+                      i < data.phases.length - 1 ? "-mr-8" : ""
+                    }`}
+                  >
+                    <span
+                      className={`absolute -top-[7px] left-0 w-3 h-3 rounded-full ${e.dot} border border-ink/30`}
+                    />
+                  </div>
+                  <b className="block text-ink font-display type-h3 mt-5">
+                    {ph.title}
+                  </b>
+                  <p className="type-meta text-body mt-2 mb-0 max-w-[42ch]">
+                    {ph.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <div className="min-[900px]:hidden grid grid-cols-[16px_1fr] gap-x-4 mt-7">
+              {data.phases.map((ph, i) => (
+                <div key={ph.days} className="contents">
+                  <div className="relative flex justify-center">
+                    <span
+                      className={`w-3 h-3 rounded-full ${e.dot} border border-ink/30 mt-1 flex-none`}
+                    />
+                    {i < data.phases.length - 1 && (
+                      <span className="absolute top-5 bottom-0 w-[2px] bg-ink/15" />
+                    )}
+                  </div>
+                  <div className={i < data.phases.length - 1 ? "pb-7" : ""}>
+                    <span className="font-mono type-label text-label tracking-[.08em] block">
+                      {ph.days}
+                    </span>
+                    <b className="block text-ink font-display type-h3 mt-1.5">
+                      {ph.title}
+                    </b>
+                    <p className="type-meta text-body mt-2 mb-0">{ph.body}</p>
+                  </div>
                 </div>
               ))}
             </div>

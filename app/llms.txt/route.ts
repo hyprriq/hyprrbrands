@@ -8,10 +8,19 @@ import { SITE_MAP, SITE_ORIGIN, isLive } from "@/lib/site-map";
 export const dynamic = "force-static";
 
 export function GET() {
-  const services = SITE_MAP.filter(
-    (p) => p.group === "service" && isLive(p.slug) && !p.slug.includes("#")
-  );
+  const byGroup = (group: string) =>
+    SITE_MAP.filter(
+      (p) => p.group === group && isLive(p.slug) && !p.slug.includes("#")
+    );
+  const entry = (p: { title: string; slug: string; oneLine: string }) =>
+    `- [${p.title}](${SITE_ORIGIN}${p.slug})${
+      p.oneLine
+        ? `: ${p.oneLine.charAt(0).toLowerCase()}${p.oneLine.slice(1)}`
+        : ""
+    }`;
 
+  // PROMPT_16 step 4: check-manifest requires every live route here,
+  // so the file lists all groups — not a curated subset that drifts.
   const lines: string[] = [
     "# Hyprr Brands",
     "",
@@ -19,11 +28,11 @@ export function GET() {
     "> businesses on behalf of the people who own them. The client owns the accounts, the",
     "> inventory and the capital, and approves every material purchase.",
     "",
+    "## The three engines",
+    ...byGroup("hub").map(entry),
+    "",
     "## Services",
-    ...services.map(
-      (p) =>
-        `- [${p.title}](${SITE_ORIGIN}${p.slug}): ${p.oneLine.charAt(0).toLowerCase()}${p.oneLine.slice(1)}`
-    ),
+    ...byGroup("service").map(entry),
     "",
     "## How we work",
     `- [How we work](${SITE_ORIGIN}/how-we-work): the operating cycle, approval gate and fee mechanic`,
@@ -35,6 +44,16 @@ export function GET() {
   }
   lines.push(
     `- [True cost calculator](${SITE_ORIGIN}/true-cost): what launching a product costs, from your own inputs`,
+    "",
+    "## Company",
+    `- [About](${SITE_ORIGIN}/about): who runs the operation, and the company facts you can check`,
+    `- [Contact](${SITE_ORIGIN}/contact): tell us what you are trying to build`,
+    "",
+    "## Policies",
+    `- [Privacy policy](${SITE_ORIGIN}/privacy)`,
+    `- [Terms of service](${SITE_ORIGIN}/terms)`,
+    `- [Accessibility statement](${SITE_ORIGIN}/accessibility)`,
+    `- [Earnings claims policy](${SITE_ORIGIN}/earnings-claims): no income figures, no projected returns, in writing`,
     "",
     "## Notes",
     "- Clients are in the US, UK, Europe and the Middle East, selling on Amazon US, Amazon UK and Walmart US.",

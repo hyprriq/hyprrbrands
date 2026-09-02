@@ -4,6 +4,7 @@ import { pagesByEngine, type Engine } from "@/lib/site-map";
 import { ogImageMeta } from "@/lib/og-pages";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbLd, webPageLd } from "@/lib/schema";
+import { ThreeEngineDiagram } from "@/components/pages/MechanismDiagram";
 
 /**
  * Hub page template — design system HubPage: the engine band hero is
@@ -41,7 +42,7 @@ const HUBS: Record<
     band: "bg-build-band",
     dot: "bg-build",
     title: "Build an Ecommerce Business | Hyprr Brands",
-    meta: "Four ways to build: wholesale, private label, Shopify/DTC, or the infrastructure underneath. Different problems, the same ownership rules.",
+    meta: "Four routes into a business you keep: a wholesale catalogue, a private label product, a Shopify storefront, or the commerce infrastructure beneath them.",
     h1: "Build an ecommerce business that is yours to keep",
     lead: "Four ways to build: buy and operate a catalogue, take a product to market as a brand, build a direct customer journey, or build the commerce infrastructure underneath. Each is a different business problem with the same ownership rules.",
     nodes: ["Wholesale", "Private label", "Shopify / DTC", "Website development"],
@@ -64,7 +65,7 @@ const HUBS: Record<
     band: "bg-grow-band",
     dot: "bg-grow",
     title: "Grow an Ecommerce Business | Hyprr Brands",
-    meta: "Demand, acquisition, conversion, channel, margin — in that order. Growth the operation can actually fulfil, sequenced against its constraints.",
+    meta: "Demand, acquisition, conversion, channel, margin, in that order. Three routes to more revenue, each capped by what the operation behind it can absorb.",
     h1: "Grow demand without breaking the economics",
     lead: "Demand, acquisition, conversion, channel, margin — in that order. Growth that the operation cannot fulfil is not growth.",
     nodes: ["Demand", "Acquisition", "Conversion", "Channel", "Margin"],
@@ -92,7 +93,7 @@ const HUBS: Record<
     band: "bg-operate-band",
     dot: "bg-operate",
     title: "Operate an Ecommerce Business | Hyprr Brands",
-    meta: "Purchasing, inventory, orders, account health and reporting. Four ways to keep an ecommerce operation running, and which one fits where you are.",
+    meta: "Three ways to keep a trading business running after launch: the daily desk, seller account health, or the storefront. Read what each one covers.",
     h1: "Operate: the work that keeps it selling",
     lead: "Purchase, inventory, order, account, report, next decision. Operations is a desk with a cadence and a written path for when something goes wrong.",
     nodes: [
@@ -239,7 +240,16 @@ export default function HubPage({ engine }: { engine: Exclude<Engine, null> }) {
           <h2 className="font-display type-h3 text-ink m-0">
             {hub.connectsTitle}
           </h2>
-          <div className="mt-4 max-w-[62ch] grid gap-3.5">
+          {/* The three-engine diagram (PHASE1_VISUAL_MAP) — its nodes
+              are working hub links; the current hub is the highlight. */}
+          <figure className="m-0 mt-6 grid gap-3 justify-items-start">
+            <ThreeEngineDiagram current={engine} />
+            <figcaption className="type-meta text-body max-w-[52ch]">
+              The three engines in sequence. Reporting from Operate feeds
+              the next Build and Grow decision.
+            </figcaption>
+          </figure>
+          <div className="mt-6 max-w-[62ch] grid gap-3.5">
             {hub.connects.map((p, i) => (
               <p key={i} className="type-body text-body m-0">
                 {p}

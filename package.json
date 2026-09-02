@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "check": "node scripts/check-manifest.mjs && node scripts/check-links.mjs && node scripts/check-meta.mjs && node scripts/check-copy.mjs"
   },
   "dependencies": {
     "next": "16.3.1",

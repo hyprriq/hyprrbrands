@@ -16,6 +16,7 @@ import CostSection from "@/components/home/CostSection";
 import FitSection from "@/components/home/FitSection";
 import ProofSection from "@/components/home/ProofSection";
 import FaqSection from "@/components/home/FaqSection";
+import RuleBand from "@/components/home/RuleBand";
 import PricingBand from "@/components/home/PricingBand";
 import CtaSection from "@/components/home/CtaSection";
 import SiteFooter from "@/components/home/SiteFooter";
@@ -27,9 +28,9 @@ export default function Home() {
         nodes={[
           webPageLd({
             path: "/",
-            title: "Ecommerce Operations Agency | Hyprr Brands",
+            title: "Ecommerce Operations Agency | You Own It, We Run It",
             description:
-              "Hyprr builds, grows and operates ecommerce businesses on Amazon US & UK, Walmart US and Shopify. You own the accounts and the inventory. We run the operation.",
+              "Hyprr builds, grows and operates ecommerce businesses on Amazon US & UK, Walmart US and Shopify. You own the accounts and inventory; we run the desk.",
           }),
         ]}
       />
@@ -50,6 +51,7 @@ export default function Home() {
         <FitSection />
         <ProofSection />
         <FaqSection />
+        <RuleBand />
         <PricingBand />
         <CtaSection />
       </main>

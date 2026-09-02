@@ -1,4 +1,5 @@
 import { SPLIT, PUBLISH_SPLIT } from "@/lib/fees";
+import { MarginCalcDiagram } from "@/components/pages/MechanismDiagram";
 
 /**
  * How we're paid — A.21. The last sentence is the commercial argument
@@ -21,6 +22,16 @@ export default function PricingBand() {
             the capital you deploy. No fee on your ad spend.
           </p>
         </div>
+        {/* The margin-calculation diagram (PHASE1_VISUAL_MAP) — fills
+            the room PROMPT_12's fee-table removal left in this strip,
+            and mirrors the worked example at /how-we-work#fees. */}
+        <figure className="m-0 grid gap-3 justify-items-start">
+          <MarginCalcDiagram />
+          <figcaption className="type-meta text-body max-w-[46ch]">
+            The share is calculated on realised margin — after goods
+            sell, never on the capital you deploy.
+          </figcaption>
+        </figure>
         <div className="flex justify-start gap-3.5 flex-wrap">
           <a
             href="/how-we-work#fees"

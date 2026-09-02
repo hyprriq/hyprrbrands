@@ -15,7 +15,7 @@ const data: ServicePageData = {
   short: "Shopify store management",
   metaTitle: "Shopify Store Management Services | Run, Not Rented",
   metaDescription:
-    "Catalogue, merchandising, fulfilment, apps and theme maintenance run as an operation — not a retainer, and not a gig. The store stays yours.",
+    "Catalogue, merchandising, fulfilment, apps and theme maintenance run to a cadence by a named team you can reach, not a ticket queue. The store is yours.",
 
   h1: "Shopify store management",
   answer:
@@ -35,6 +35,17 @@ const data: ServicePageData = {
   ],
 
   involvesSubheads: ["What a retainer misses", "Maintenance nobody asks for"],
+
+  diagram: {
+    kind: "reactive-operated",
+    caption:
+      "A ticket queue and an operating cadence on the same time axis — one waits, one notices.",
+  },
+  ruleCard: {
+    text: "A retainer waits to be asked. An operation notices.",
+    source:
+      "Proven in the comparison this page draws between the two models.",
+  },
 
   visual: {
     kind: "table",

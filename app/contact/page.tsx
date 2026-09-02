@@ -8,7 +8,7 @@ import ContactForm from "@/components/ContactForm";
 export const metadata: Metadata = {
   title: "Contact Hyprr Brands | Start a Conversation",
   description:
-    "Tell us what you are trying to build. We read the context, come prepared, and tell you whether Hyprr is a fit — including when we are not.",
+    "Tell us what you are trying to build. We read the context first, come prepared, and say plainly whether Hyprr is a fit, including when we are not.",
   alternates: { canonical: "/contact" },
   ...ogImageMeta("contact"),
 };
@@ -46,7 +46,7 @@ export default function Page() {
               path: "/contact",
               title: "Contact Hyprr Brands | Start a Conversation",
               description:
-                "Tell us what you are trying to build. We read the context, come prepared, and tell you whether Hyprr is a fit — including when we are not.",
+                "Tell us what you are trying to build. We read the context first, come prepared, and say plainly whether Hyprr is a fit, including when we are not.",
             }),
             "@type": "ContactPage",
           },

@@ -9,9 +9,9 @@ import JsonLd from "@/components/JsonLd";
 import { breadcrumbLd, webPageLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "The True Cost of Launching a Product | Hyprr Brands",
+  title: "True Cost of Launching a Product | Hyprr Brands",
   description:
-    "Ten inputs, one total, and an explanation of every line. It calculates what you will spend to launch a product. It does not project what you might make.",
+    "Ten inputs, one total, and every line explained. The calculator works out what you will spend to launch. It never projects what you might make.",
   alternates: { canonical: "/true-cost" },
   ...ogImageMeta("true-cost"),
 };
@@ -28,9 +28,9 @@ export default function Page() {
         nodes={[
           webPageLd({
             path: "/true-cost",
-            title: "The True Cost of Launching a Product | Hyprr Brands",
+            title: "True Cost of Launching a Product | Hyprr Brands",
             description:
-              "Ten inputs, one total, and an explanation of every line. It calculates what you will spend. It does not project what you might make.",
+              "Ten inputs, one total, and every line explained. The calculator works out what you will spend to launch. It never projects what you might make.",
           }),
           breadcrumbLd([
             { name: "Home", path: "/" },

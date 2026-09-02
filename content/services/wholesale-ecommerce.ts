@@ -13,9 +13,9 @@ const data: ServicePageData = {
   serviceType: "Amazon wholesale management",
   name: "Wholesale ecommerce",
   short: "wholesale ecommerce",
-  metaTitle: "Amazon Wholesale Management Service | Hyprr Brands",
+  metaTitle: "Amazon Wholesale Management Service | Sourcing to Buy Box",
   metaDescription:
-    "We source, buy and operate wholesale catalogues on Amazon and Walmart. You own the account and approve every purchase. Read the operating model first.",
+    "We source, buy and operate wholesale catalogues on Amazon and Walmart. The account stays in your name and you approve every purchase before it runs.",
 
   h1: "Amazon & Walmart wholesale management",
   answer:
@@ -57,6 +57,17 @@ const data: ServicePageData = {
   },
 
   involvesSubheads: ["Where the margin actually is", "What we refuse to buy"],
+
+  diagram: {
+    kind: "buy-decision",
+    caption:
+      "Supplier to purchase order, with the two places a line stops before any money moves.",
+  },
+  ruleCard: {
+    text: "We do not buy anything we cannot defend.",
+    source:
+      "Proven in the buying gate above — two of its five steps exist to stop a purchase.",
+  },
 
   visual: {
     kind: "table",

@@ -32,7 +32,9 @@ export default function SiteHeader() {
 
   return (
     <>
-      <div className="w-full bg-ink text-on-ink-body type-body py-2.5 px-5 text-center">
+      {/* Announcement bar — kept per PROMPT_16 step 3, at the py-1.5
+          option (no dismiss state, no layout shift, no JS). */}
+      <div className="w-full bg-ink text-on-ink-body type-body py-1.5 px-5 text-center">
         Client-owned accounts. Client-approved purchases. Documented
         operations.{" "}
         <Link
@@ -44,10 +46,16 @@ export default function SiteHeader() {
       </div>
 
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-[14px] border-b border-line">
-        <div className="mx-auto max-w-[1280px] px-[clamp(16px,3vw,40px)] min-h-[72px] flex items-center justify-between gap-4">
+        <div className="mx-auto max-w-[1280px] px-[clamp(16px,3vw,40px)] min-h-[clamp(64px,5vw,80px)] flex items-center justify-between gap-4">
+          {/* Wordmark ≥20px with the guidelines' clear space (one "h"
+              cap height ≈ 0.72em) enforced as padding on the anchor
+              itself; -ml keeps the glyphs on the container's optical
+              edge. The clamp is the PROMPT_16 §3 spec — the wordmark
+              is the logo, not body type, so it sits outside the
+              six-step scale deliberately. */}
           <Link
             href="/"
-            className="font-display font-extrabold type-body tracking-[-.02em] text-ink hover:text-ink flex-none"
+            className="font-display font-extrabold text-[length:clamp(20px,1.6vw,24px)] leading-none tracking-[-.02em] text-ink hover:text-ink flex-none p-[0.72em] -ml-[0.72em]"
             onClick={() => setOpen(false)}
           >
             hyprr <span className="font-normal text-muted">brands</span>
