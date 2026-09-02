@@ -82,6 +82,45 @@ would ever put in a hero.
 
 ---
 
+## The craft bar — this is the actual reference, not the data
+
+The reference is not being copied for its numbers. **It is being copied for its clarity.** Six
+things make it work, and all six are the standard to hit.
+
+**1 · It is a real 3D render, not flat vector illustration.** Dimensional objects, a single light
+source, soft contact shadows where objects meet the ground. That is the quality difference between
+"we have graphics" and "this looks like a company". Flat SVG illustration will not reach this bar and
+should not be attempted as a substitute.
+
+**2 · One centre of gravity.** The monitor anchors the composition and everything else orbits it.
+Every scene needs one object that is unmistakably the subject, and everything else subordinate to
+it in size and position.
+
+**3 · The composition reads left to right as the business runs.**
+> **Inputs on the left · the control surface in the centre · the physical outcome on the right.**
+
+In the reference: channels and spend on the left, the dashboard in the middle, cartons, truck and
+warehouse on the right. **You understand the business before you read a single word.** That is the
+"pattern of clarity" — and it is the part worth stealing.
+
+**4 · Visible connecting paths.** The glowing lines are doing the real work: they turn a pile of
+objects into a *system*. Without them it is a still life; with them it is an operation. Every scene
+needs its flow drawn, not implied.
+
+**5 · Flat UI cards floating in 3D space.** The cards are not illustrated — they are real interface,
+flat, with real type, sitting in a dimensional scene. **That contrast is the whole trick.** It makes
+the image read as a product rather than a drawing, and it is why the scene feels like software
+instead of clip art.
+
+**6 · Restraint, and space.** One accent colour; everything else near-white and grey. The scene
+occupies roughly 60% of the frame and the rest is empty. **That is why it survives at thumbnail
+size** — squint and the three-part story still reads. A busy scene fails this test immediately.
+
+**The test for every scene we commission:** shrink it to 200px wide. If you can still tell what goes
+in, what happens in the middle and what comes out, it works. If not, it is decoration.
+
+---
+
 ## Look and construction
 
 **Palette — this is where Hyprr separates from the reference.** The Ecomersify scene is violet on
