@@ -51,11 +51,17 @@
 > the last two exist means doing them twice — an internal-link audit run before `/insights` lands
 > is an audit of the wrong graph.
 >
-> **Two pages remain. That is the whole of the current queue.**
+> **Updated later on 2 Sep — two things moved out of the change pass and into the queue:**
 >
-> One exception noted in `CHANGES_PASS.md`: a wrong *price* is live and commercial rather than
-> structural, so if any published figure is actually wrong it comes out on its own rather than
-> waiting for the pass. Everything else waits.
+> **Pricing removal is confirmed and goes first.** Owner decision: the published figures come out.
+> `PROMPT_12` — and it is not a delete, because five live strings currently *assert that fees are
+> published* and go false the moment the tables leave. Removal and retractions ship together.
+>
+> **Visuals and video are a workstream, not a polish item.** `docs/VISUALS_AND_VIDEO.md`. Tier 2
+> diagrams enter the queue now rather than the change pass, because `PROMPT_12` empties the fees
+> section and the margin-calculation diagram is what should fill it.
+>
+> Everything else in `CHANGES_PASS.md` still waits for `/about` and `/insights`.
 
 The audit cycle is **closed**. Six tickets shipped and verified on production: `f7fef9c`
 (prompt 7) · `b3c78be` (step 6) · `3491a0f` (prompt 8) · `bb427b9` (prompt 6) · `0e80289`
@@ -113,7 +119,45 @@ a person reads the hits.**
 
 ---
 
-## 1 · PROMPT_11_ABOUT_SHIPS.md — small, and it is only parked by one commit
+## 1 · PROMPT_12_REMOVE_PUBLISHED_PRICING.md — live commercial copy, so it goes first
+
+Owner decision: the published figures come out. **Figures out, mechanic stays** — the
+differentiator was never the number, it is that the fee runs on realised margin with nothing on
+capital, ad spend, tax or a reversed sale, and all of that publishes without a currency figure.
+
+Two things make this more than a deletion:
+
+**Five strings assert that fees are published** and go false on removal — the `#fees` lead,
+`FEE_RULES[0]`, the metaDescription, the og/twitter description and the `PricingBand` body. Same
+failure mode as the last cycle in reverse. They ship in the same deploy.
+
+**The 30% is isolated behind one constant**, `PUBLISH_SPLIT`, defaulting to keep. It is the
+commercial model rather than a proposed price, and with the tables gone *"the split is 30%
+whatever the build fee is"* becomes the whole transparency argument rather than part of it. One
+line to flip if the owner wants it out too.
+
+The worked example stays. Its numbers are arbitrary arithmetic labelled as arbitrary, not prices,
+and it is the most persuasive block in the section.
+
+---
+
+## 2 · Tier 2 diagrams — `VISUALS_AND_VIDEO.md`, and #1 is urgent
+
+Measured: **two on-page images across twenty-one routes.** The margin-calculation diagram is
+sequenced with `PROMPT_12` because that ticket removes three tables and leaves a gap — the tables
+stated a price, the diagram proves a method, same section and better content.
+
+The other three (approval gate · operating cycle · what is yours vs what Hyprr does) follow. All
+drawn from existing tokens: no photography, no stock, no delivery-date risk, real text in the SVG
+so it stays crawlable.
+
+**The unlock recorded in that file:** the no-faces rule was against *fake* imagery, never against
+real footage. Founder video is wide open, it is the densest proof available, and it answers
+`/about`'s "one real person" better than a LinkedIn URL does. Tier 1 needs the owner, not the dev.
+
+---
+
+## 3 · PROMPT_11_ABOUT_SHIPS.md — small, and it is only parked by one commit
 
 `/about` is listed as parked pending role, prior employer and LinkedIn. That was true until
 `f42d764`, which landed after your push and removed it — those are now **optional fields that
@@ -129,7 +173,7 @@ nothing to resolve to.
 
 ---
 
-## 2 · `/insights` — the audit side owes you content, not a ticket
+## 4 · `/insights` — the audit side owes you content, not a ticket
 
 Nothing to build until articles exist, and writing them is my job, not yours. Four are specified
 in the keyword map's §7 objection cluster — the account-ownership question, the automation
