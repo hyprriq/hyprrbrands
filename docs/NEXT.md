@@ -27,51 +27,48 @@ five distinct hero figures. The chooser on four pages.
 
 ---
 
-## 1 · `PROMPT_20_LIVE_VERIFY.md` — **this was written and never queued. My error, and it is why you were idle.**
+## 1 · Phase copy depth — `docs/content/phase-copy-depth.md` · **ready to transcribe**
 
-A read of **production** after `5b6ff82` found nine problems while all five gates and CI were green.
+Sixteen expanded phase bodies for the **eight non-flagship service pages**. Wholesale and private
+label are untouched — they already average 65 and 69.
 
-**Step 1 is verification, not fixing.** The review saw **two different footers live at once** —
-`/scale` and `/where-we-work` serve one carrying the new routes under Resources, while `/`,
-`/private-label` and `/wholesale-ecommerce` serve one without them. That is a stale-edge signature,
-so **confirm or refute each item against a fresh build with cache busted, and fix only what
-survives.** Anything that turns out to be cache is a deploy finding worth reporting.
+**Measured before writing:** 30 phase bodies, mean 42 words, min 22, max 107, 29 of 30 under 100.
+Within the eight, Days 0–30 runs 40–57 and is mostly fine; **phases two and three run 22–37 and are
+where the thinness actually is.** `/shopify-management` Days 61–90 at 22 words is the thinnest body
+on the site.
 
-**The three worst, if they survive:**
-- `/scale`, `/documents` and `/where-we-work` have **zero links from the homepage**
-- **The chooser is absent from `/private-label` and `/wholesale-ecommerce`** — it landed only on
-  `/shopify-dtc` and `/build`. It is missing from the two pages an undecided buyer actually lands
-  on, which is the entire reason it exists.
-- Both those pages still render *"publishing soon — the document room opens with the first real
-  document"* while **`/documents` is live with two real samples.** The site contradicts itself and
-  buries its strongest new trust asset.
+**Not padding — every original sentence survives.** Each body was missing the same two things and
+those are what the expansion adds: **what the client does in that phase**, and **what "done" looks
+like**. A timeline that never says what the client does reads as a description of someone else's
+work, and a phase that ends without a checkable state cannot be verified by the reader.
 
-**The systemic finding, which is worth more than the nine fixes:** the five gates check that links
-resolve, the manifest matches, metas are in range, copy is clean and images are sound. **Not one
-checks that a component actually rendered on the page it was specified for.** The ticket adds
-`check-features.mjs` as gate six. *A ticket that says "put X on pages A, B, C, D" needs a gate that
-says X is on A, B, C and D.*
+Expanded bodies measure min 72, max 107, **mean 89** — short of the 100–150 spec on purpose. Where
+a phase answered both questions in 80 words it was left at 80. **The target is the two questions
+answered, not a word count hit** — which is the same discipline the metadata pass should have had.
 
 ---
 
-## The chroma instrument — ruled
+## PROMPT_20 — closed, and two corrections to me
 
-**The lazy-image force-decode was a real catch and better than my recipe.** A lazy image below the
-fold measuring as nothing is the same blindness in a new place, and I did not anticipate it. Moving
-the instrument into the repo versioned rather than leaving it in a scratchpad is also right — it
-should have been there from the first measurement.
+**Five of my nine findings were false positives, and the cause was my method.** I read production
+without checking `x-vercel-cache` or waiting out the rollout window. The dev then caught the exact
+window live — 90 seconds after their own push, `/documents` served the new generation while
+`/build` served the old.
 
-**Your two flags, ruled:**
+**Standing rule for both sides, from now on:** *a production read is not evidence until the cache
+header is checked and the rollout window has passed.* Anything read inside that window is a
+snapshot of two builds at once. That belongs beside the "any number applies only to the surface it
+was measured on" rule — same class of error, different instrument.
 
-**`/true-cost` at 0.0186 is not below the floor.** 0.0186 > 0.0180. It passes. **No action.**
+**And the chain was not broken.** I wrote *"Build never reaches Scale"* as a defect. The dev was
+right to push back: Build → Grow → Scale → Operate means Build hands to **Grow**, and every hop
+clicks through. A chain that skips its own next hop would be the bug. **No action, and the flag was
+correct.**
 
-**`/documents` at 0.0158 is genuinely below, and it gets a Petrol band** — not because of the
-number, but because it is the page that opens the document room and a band framing that entry is
-right compositionally. Apply the floor once the band lands. **If a page is pale because it is
-mostly white document cards, that is the page being correct** — but `/documents` is the strongest
-new trust asset on the site and it should not read as the palest thing on it.
-
-Add both to `PROMPT_20`'s scope.
+The four real ones — the "Three ways / Four ways" contradiction, phase copy shipping twice,
+`/scale`'s missing next-step block, and the step-down clause — are fixed. Gate six using
+`data-feature` attributes rather than string matching is better than the ticket asked for: rewording
+copy can no longer fail a structural check.
 
 ---
 
