@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "check": "node scripts/check-manifest.mjs && node scripts/check-links.mjs && node scripts/check-meta.mjs && node scripts/check-copy.mjs"
+    "images": "node scripts/build-images.mjs",
+    "check": "node scripts/check-manifest.mjs && node scripts/check-links.mjs && node scripts/check-meta.mjs && node scripts/check-copy.mjs && node scripts/check-images.mjs"
   },
   "dependencies": {
     "next": "16.3.1",
@@ -21,6 +22,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.1",
+    "sharp": "^0.35.4",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

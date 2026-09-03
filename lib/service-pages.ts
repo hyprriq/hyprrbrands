@@ -78,6 +78,20 @@ export type ServiceLayout =
   | "cadence-desk" // ops, marketplace-mgmt, shopify-mgmt — a normal week
   | "constraint-lever"; // growth, marketplace-growth, ppc
 
+/** PROMPT_19 — one photographic image (static, real products). `src`
+ *  is the base path with no width suffix or extension
+ *  (`/images/<page-slug>/<subject>-<variant>`); the build step emits
+ *  `-640/-1280/-1920.webp` beside it and records dimensions in
+ *  lib/image-manifest.json. `card` is the flat-UI overlay from the
+ *  visual plan — a white card with the site's border and radius over
+ *  the image corner. */
+export interface ServiceImage {
+  src: string;
+  alt: string;
+  caption?: string;
+  card?: { k: string; v: string };
+}
+
 /** Family insert inside "the first 90 days" — section 6, Bone. */
 export type ServiceHww =
   | { kind: "chain"; items: { label: string; sub: string; dark?: boolean }[] }
@@ -116,6 +130,15 @@ export interface ServicePageData {
   sampleDoc?: { label: string; href: string };
   /** 17 §8 — render the connected-stack section after the FAQ. */
   connectedStack?: boolean;
+  /** PROMPT_19 — the photographic slots. Optional: every route
+   *  renders unchanged until a page's images land. Clusters of 3+
+   *  never sit on White (the §0 chroma mitigation): midPage renders
+   *  on a Bone band, section on a Petrol band. */
+  images?: {
+    hero?: ServiceImage;
+    midPage?: ServiceImage[];
+    section?: (ServiceImage & { slot: string })[];
+  };
   /** Schema.org Service.serviceType — from the content files' schema notes. */
   serviceType: string;
   name: string;

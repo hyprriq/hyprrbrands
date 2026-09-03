@@ -10,6 +10,11 @@ import MechanismDiagram, {
 } from "@/components/pages/MechanismDiagram";
 import ServiceChooser from "@/components/pages/ServiceChooser";
 import ConnectedStack from "@/components/pages/ConnectedStack";
+import {
+  MidPageImages,
+  Pic,
+  SectionImages,
+} from "@/components/pages/ServiceImage";
 import { PUBLISH_SPLIT } from "@/lib/fees";
 import { breadcrumbLd, faqLd, serviceLd, webPageLd } from "@/lib/schema";
 import {
@@ -852,6 +857,17 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
               {data.layout && <HeroFigure layout={data.layout} />}
             </div>
           </div>
+          {/* PROMPT_19 — the hero photograph: real product, eager,
+              high fetch priority. Single image, so White is fine. */}
+          {data.images?.hero && (
+            <div className="mt-[clamp(24px,3vw,40px)] max-w-[980px]">
+              <Pic
+                img={data.images.hero}
+                sizes="(min-width: 1060px) 980px, 92vw"
+                eager
+              />
+            </div>
+          )}
         </div>
       </section>
 
@@ -1107,6 +1123,9 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
         </div>
       </section>
 
+      {/* PROMPT_19 — mid-page cluster on its Bone band (§0) */}
+      {data.images?.midPage && <MidPageImages images={data.images.midPage} />}
+
       {/* 5 · White + Ink panel: who this is for */}
       <section id="for" className={`bg-white ${ANCHOR}`}>
         <div className={`${CONTAINER} ${SECTION_PAD}`}>
@@ -1184,6 +1203,10 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
           )}
         </div>
       </section>
+
+      {/* PROMPT_19 — section cluster on its Petrol band (§0
+          mitigation 2: the extra dark band each image page buys) */}
+      {data.images?.section && <SectionImages images={data.images.section} />}
 
       {/* Sections 6–9 share a wrapper so the mobile sticky CTA bar
           appears mid-page and leaves before the FAQ — pure CSS. */}

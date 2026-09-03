@@ -48,6 +48,30 @@ const data: ServicePageData = {
 
   layout: "gated-project",
   chooser: true,
+  /* PROMPT_19 step 4 — this page proves the image pipeline first.
+     The block below activates when the owner's photos land in
+     public/images/_inbox/ (named private-label__<subject>-<variant>)
+     and `npm run images` has built them; until then nothing renders
+     and nothing reserves space. Alt text is the audit side's to
+     write — these are structural placeholders for the six slots in
+     VISUAL_PRODUCTION_PLAN, not copy.
+
+  images: {
+    hero: {
+      src: "/images/private-label/product-hero-white",
+      alt: "…",
+    },
+    midPage: [
+      { src: "/images/private-label/packaging-flatlay", alt: "…" },
+      { src: "/images/private-label/sample-vs-final", alt: "…" },
+      { src: "/images/private-label/product-in-use", alt: "…" },
+    ],
+    section: [
+      { src: "/images/private-label/listing-aplus-mockup", alt: "…", slot: "managed" },
+      { src: "/images/private-label/ad-unit", alt: "…", slot: "managed" },
+    ],
+  },
+  */
   earlyLine:
     "Most candidate products are rejected at research — a first month that ends in a written No is the process working, not failing.",
   sampleDoc: {

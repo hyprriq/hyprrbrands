@@ -33,6 +33,10 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# image pipeline (PROMPT_19): heavy source files never commit or
+# deploy — only the built WebP renditions do
+/public/images/_inbox/
+
 # vercel
 .vercel
 
