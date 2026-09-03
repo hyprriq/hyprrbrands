@@ -27,22 +27,30 @@ five distinct hero figures. The chooser on four pages.
 
 ---
 
-## 1 · `PROMPT_19_IMAGE_PIPELINE.md` — buildable now, not blocked on the photos
+## 1 · Fix the chroma tool before the first photographs land — `CHROMA_METRIC_CORRECTION.md`
 
-Source: `docs/VISUAL_PRODUCTION_PLAN.md`. **Static photographic images from the owner's real
-products — no 3D, no animation.**
+**Your caveat was the important finding, and it corrects my ticket.** `PROMPT_19 §0` predicted six
+photographs would push the low pages under the floor and called it arithmetic. It was not — the
+script samples painted surfaces, so photo pixels are never in the number and photographs *cannot*
+lower it. Your own result proves it: 0.0206 with six images, 0.0206 without. **That is the tool not
+seeing the photos, not the bands compensating.**
 
-**Read §0 of the ticket first.** Your own chroma numbers surface a problem that would otherwise be
-found at image six rather than image one: service pages are now **0.0193–0.0235** against the 0.018
-floor, and the refactor's new light surfaces cost about 0.002. Six photographs per page are six more
-light surfaces. The mitigation belongs in the image component from the start, not as a later fix.
+The larger problem is that the metric drifts the wrong way. Photo area is excluded from the
+weighting, so the remaining painted surfaces carry proportionally more weight — **a page with
+photographs over Bone bands will score higher than the same page with none**, while looking
+entirely different. A gate that gets easier as the thing it measures gets harder is worse than no
+gate.
 
-Build steps 1–3 — the optional `images` field, the build-time WebP pipeline, and an alt-text gate —
-**with no images present.** Then wire `/private-label` only, re-measure chroma, and stop.
+**Fix:** for each `<img>`, draw to a 32×32 offscreen canvas, average the pixels, convert to OKLCH,
+weight `C` by rendered area alongside the painted surfaces. Fifteen lines, same formula, same
+output. **Do it before `/private-label`'s photos are wired**, then re-baseline every page — the
+0.018 and 0.030 floors were set against the old instrument and will not transfer. Expect movement;
+it is not a regression.
 
-**Your three flags from `752e848` are all correct and need no changes** — the disclosure instead of
-deletion is better than what the ticket asked for, and worth doing whenever a ticket says delete and
-the content is sound.
+**The band mandate in §0 stands, on different grounds** — ground alternation, photographs needing a
+frame, and it being what the reference does. Keep the bands, the reason in the ticket was wrong.
+
+Everything else in `PROMPT_19` is shipped and correct.
 
 ---
 
