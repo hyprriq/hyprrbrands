@@ -1,3 +1,8 @@
+> **SUPERSEDED by `docs/VISUAL_DIRECTION_v2.md`.** The premise of this document — photograph what is
+> real, extract objects from the uploads, rule out AI-generated and 3D imagery — was wrong and is
+> withdrawn. Kept only for the source-file manifest in its later sections, which are now composite
+> inputs to generated scenes rather than the visuals themselves.
+
 # What to extract from the uploads — a design and architecture read
 
 **Corrected premise.** The uploads are **raw visual material**, not a portfolio. The copy around

@@ -29,46 +29,33 @@ five distinct hero figures. The chooser on four pages.
 
 ## 1 · `PROMPT_21_VISUAL_SYSTEM.md` + the phase-copy drop — **send together**
 
-The owner uploaded raw visual material to `public/images/_inbox/`. **It is source, not deliverable.**
-Read `docs/VISUAL_EXTRACTION_PLAN.md` first — it is the design read behind the ticket.
+**The visual direction changed. Read `docs/VISUAL_DIRECTION_v2.md` first.**
+`docs/VISUAL_EXTRACTION_PLAN.md` is superseded.
 
-> **Any brand name, watermark, footer or attribution in those files belongs to unrelated work and
-> does not reach this site in any form.** Not kept, not credited, not reframed. The copy written
-> around those images is also out of scope.
+The site's visuals are **generated 3D-style scenes**, not photographs and not cropped screenshots.
+The owner's uploads are composite inputs to those scenes, not the visuals themselves.
 
-**The rule that decides everything: a screenshot placed on a page is a screenshot forever.** It
-blurs on retina, its text is unselectable and uncrawlable, it breaks at 375px, and it carries
-whatever was in the original frame. **So almost nothing here is cropped and placed.**
+**The rule that decides everything: three layers, and the image model never writes a word.**
 
-Four treatments, one of which ships as a photograph:
+```
+Layer 3 · BAND      CSS. Petrol / Bone / accent ground. The scene overlaps its edge.
+Layer 2 · PANELS    DOM. Translucent cards, figures, labels, connectors. Real text.
+Layer 1 · SCENE     Generated image. Environment and objects. No readable text in the pixels.
+```
 
-- **Product objects** — cut out to transparent PNG. Ten renders extracted from the PL PDF at native
-  resolution plus the product shots. A cut-out object can overlap a band edge, sit half on Petrol,
-  take a spec card on its corner. **That is the difference between the owner's reference and a stock
-  image**, and it costs one background removal.
-- **Data structures** — **rebuilt native.** The profitability sheet's value is its columns and its
-  **blank `Order` cells**, not its pixels. A real HTML table where two rows visibly say *not bought*
-  argues better than any sentence on the site, and no competitor can copy it without publishing
-  their own buying decisions.
-- **Layout patterns** — **rebuilt as components.** `<CostBar>` is the best find in the folder: one
-  segmented bar showing where a unit's money goes, reusable for landed cost, build fees, marketplace
-  take. Plus `<StatRow>`, `<Panel3>`, and a dimension drawing as inline SVG.
-- **Whole screens** — kept as images inside `<BrowserFrame>`, with `<AnnotatedCrop>` corner chips.
-  **One frame component serves every screenshot this site will ever show.**
+Every number a visitor reads lives in the DOM. That keeps the hero indexable, keeps figures
+editable in one line instead of one re-render, keeps panels sharp at every density, and removes the
+one tell that makes a generated image look generated.
 
-**Six of the eight items are reusable components.** That is the whole reason for doing it this way:
-the folder should produce a **visual system**, not eighteen one-time images.
+**This ticket is the container layer and none of it is blocked on the images existing.** Build
+`<Scene>` and `<Panel>` empty; the scenes drop in behind them one page at a time. The six
+components from the previous version — `<CostBar>`, `<StatRow>`, `<Panel3>`, `<DataArtefact>`,
+`<BrowserFrame>`, `<AnnotatedCrop>` — carry forward unchanged, because they *are* Layer 2.
 
-Excluded: the AI-generated lifestyle frames (they read as generated, and the brand guidelines rule
-that out), the working files, the scripts, the case notes, the MP4, and all three PDFs as documents
-— only the renders inside them are extracted.
+`<DataArtefact>` is still the strongest asset on the site: a real table with blank `Order` cells on
+two rows, because we declined to buy them. No render argues as well as that.
 
-**Queued with it:** `docs/content/phase-copy-depth.md` — sixteen expanded phase bodies for the eight
-non-flagship service pages. Measured first: 30 bodies, mean 42 words, 29 of 30 under 100. Not
-padding — every original sentence survives; what was added is *what the client does* and *what done
-looks like*.
-
----
+Ship it alongside `docs/content/phase-copy-depth.md`.
 
 ## PROMPT_20 — closed, and two corrections to me
 

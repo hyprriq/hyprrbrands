@@ -1,261 +1,163 @@
-# PROMPT 21 — Build the visual system from the uploaded material
+# PROMPT 21 — The scene system
 
-**Ships with `docs/content/phase-copy-depth.md`.** Read `docs/VISUAL_EXTRACTION_PLAN.md` first —
-it is the design read behind every decision here.
+> **Rewritten. The previous version of this ticket was built on extracting visuals from the owner's
+> uploads. That direction is withdrawn.** Read `docs/VISUAL_DIRECTION_v2.md` first — it is the design
+> read behind this ticket and it explains what changed. `docs/VISUAL_EXTRACTION_PLAN.md` is
+> superseded and kept only for the source-file manifest in its later sections.
 
-**The owner uploaded raw visual material to `public/images/_inbox/`. It is source, not deliverable.**
+**The site's visuals are generated 3D-style scenes, not photographs and not screenshots.** The
+uploads are composite inputs to those scenes, not the visuals themselves.
 
-> **Any brand name, watermark, footer or attribution visible in those files belongs to unrelated
-> work and does not reach this site in any form.** Do not keep it, credit it, or reframe it. The
-> copy written around those images is also out of scope — only the visual material is in play.
+**Nothing in this ticket is blocked on the images existing.** Everything here is the container layer.
+Build it empty; the scenes drop in behind it.
 
 ---
 
 ## §0 · The rule that decides everything else
 
-**A screenshot placed on a page is a screenshot forever.** It blurs on retina, its text is
-unselectable and uncrawlable, it breaks at 375px, and it carries whatever was in the original frame.
+**Three layers per visual, and the model never writes a word.**
 
-**So almost nothing here is cropped and placed.** Four treatments, and only one ships as a
-photograph:
+```
+Layer 3 · BAND      CSS. Petrol / Bone / accent ground. The scene overlaps its edge.
+Layer 2 · PANELS    DOM. Translucent cards, figures, labels, connector lines. Real text.
+Layer 1 · SCENE     Generated image. Environment and objects. No readable text in the pixels.
+```
 
-| | Treatment |
-|---|---|
-| **Product objects** | Cut out to transparent PNG — the only image category |
-| **Data structures** | **Rebuild native.** Take the columns; discard the pixels. |
-| **Layout patterns** | **Rebuild as components.** Take the arrangement; discard the artwork. |
-| **Whole screens** | Keep as image, inside a frame component |
+Every number, label and word a visitor is meant to read lives in **Layer 2**, in the DOM. Nothing
+readable is baked into a PNG. That is what keeps the hero indexable, keeps figures editable, keeps
+the panels sharp at every density, and removes the one tell that most reliably makes a generated
+image look generated.
 
-**Six of the eight things built here are reusable components.** That is the point: the folder should
-produce a visual system, not eighteen one-time images.
-
----
-
-## §1 · Product objects — extract and cut out
-
-**Extract the ten renders from the PL PDF at native resolution** — embedded on pages 1, 3, 6, 7,
-8 (×2), 9, 10, 15 (×2). `pdfimages -png`. **Do not screenshot pages.**
-
-Then background-remove to transparent PNG: those ten, the seven Amazon listing shots, the hand
-massager, the neck massager. ~18 objects.
-
-**Build `<FloatingObject>`** — cut-out product, one soft contact shadow, single light direction
-consistent per page, optional `<SpecCard>` overlaid at a corner (real card style, real typeface,
-one fact) with an optional thin leader line to the point it describes.
-
-**Why this and not a placed photo:** a cut-out product can overlap a band edge, sit half on Petrol
-and half on Bone, and take a card on its corner. **That is the difference between the reference the
-owner sent and a stock image**, and it costs one background removal.
-
-**Placement:** `/private-label` hero — the folding mat cut out over Petrol, plus a row of the same
-object at three fold states, which shows the mechanism with no words · `/wholesale-ecommerce`
-mid-page float row · homepage channel band · `/marketplace-growth` with listing fields called out.
+A hero that is a single flat image is a failed hero on this site.
 
 ---
 
-## §2 · `<DataArtefact>` — the strongest material, rebuilt native
+## §1 · `<Scene>` — the container
 
-The profitability sheet's structure is: Product · COGS · Storage · Fulfil · Ship+Prep · BuyBox ·
-Referral · Profit · ROI · **Order**.
+New component. Takes a generated scene and composes the three layers.
 
-**Rebuild as a real HTML table.** Bone or Petrol ground, Hyprr tokens, mono figures. **Five or six
-rows, not thirteen** — chosen to carry the argument.
+```ts
+interface SceneProps {
+  src: string            // base scene, WebP, 640/1280/1920 srcset
+  alt: string            // short and honest — it is decorative, the substance is in panels
+  archetype: "operation" | "working" | "product" | "object"
+  band: "petrol" | "bone" | "build" | "grow" | "operate"
+  overflow?: boolean     // scene breaks the band edge — default true for archetype "object"
+  children?: ReactNode   // the DOM panel layer
+}
+```
 
-**The `Order` column is the entire point.** Some rows carry a number; **some are deliberately
-blank.** A table where two rows say *not bought* argues better than any sentence on the site, and it
-is the one thing a competitor cannot copy without publishing their own buying decisions.
+Requirements:
 
-**Required detail:**
-- a muted or flagged state on the not-bought rows so the eye finds them first
-- **one row annotated in the margin with the reason** — e.g. *"ROI below the floor"*
-- sticky first column at 375px so the product name holds while numbers scroll
-- **figures illustrative and labelled as such** — the structure is the argument, not any figure
-
-**Placement:** `/wholesale-ecommerce` primary artefact · `/scale` with a reduction column ·
-`/ecommerce-operations` and `/marketplace-management` for the PO tracker and reorder sheet ·
-homepage proof band at three rows.
+- `srcset` 640 / 1280 / 1920 · `width`/`height` always set · WebP · under 200KB at 1280
+- Hero scenes `eager` + `fetchpriority="high"`; everything else lazy
+- **Panel children are positioned against the scene's right third**, which every prompt reserves as
+  negative space. On mobile the scene crops to its left two-thirds and panels stack beneath it.
+- **Panels must remain legible if the image fails to load.** Test with images blocked; the hero
+  should still read as a designed block, not a pile of floating text.
+- `overflow` lets an object cut-out cross the band edge. **That overlap is the difference between
+  this and a stock image**, and it costs one `overflow: visible` and a negative margin.
 
 ---
 
-## §3 · Four components lifted from the slide layouts
+## §2 · `<Panel>` — the overlay primitive
 
-**3.1 `<CostBar>` — build this first, it is the best pattern in the folder.** One horizontal bar
-segmented by where money goes, each segment labelled above and below, total at the right. Shows a
-whole unit economic at a glance. Cost segments neutral, retained segment in Lime `#B8F34A`.
-**Reusable for landed cost, where a build fee goes, what a marketplace takes.**
+The translucent floating cards in the reference material. This is the piece that makes a generated
+scene look like an agency site rather than a clip-art drop.
 
-**3.2 `<StatRow>`** — four bordered cards: small label, large mono figure, context line. Already
-close to the existing card style.
+- Background `rgb(255 255 255 / 0.10)` over Petrol, `backdrop-filter: blur(12px)`, 1px
+  `--color-line-on-field` border, radius matching the card system
+- Contents: `type-label` kicker · one large figure or short line · one context line
+- **Contrast is measured against the scene behind it, not against the band.** A blurred panel over a
+  light region of a render can fail 4.5:1 where the same panel over Petrol passes. Either the scene
+  keeps its right third dark — which every prompt specifies — or the panel gets a solid fallback.
+  **Add this to the contrast gate; it will not catch itself.**
+- Optional connector: a 1px line with a small terminal dot, drawn to a point on the scene. Inline
+  SVG, absolutely positioned, `aria-hidden`.
+- `prefers-reduced-motion`: panels do not float or parallax. Static placement only.
+
+---
+
+## §3 · Four components carried forward unchanged
+
+These were right in the previous ticket and they are exactly what Layer 2 needs.
+
+**3.1 `<CostBar>` — build this first.** One horizontal bar segmented by where money goes, each
+segment labelled above and below, total at the right. A whole unit economic at a glance. Cost
+segments neutral, retained segment Lime `#B8F34A`. **Reusable for landed cost, where a build fee
+goes, what a marketplace takes.**
+
+**3.2 `<StatRow>`** — four bordered cards: small label, large mono figure, context line.
 
 **3.3 `<Panel3>`** — three bordered panels, uppercase kicker plus short list each. Fits
-*breakeven / test / verdict* shapes and the "what you get" sections.
+*breakeven / test / verdict* shapes and "what you get" sections.
 
-**3.4 Dimension drawing** — inline SVG, arrows and measurements, from the PL PDF's technical page.
-**Uncommon on the web and reads as engineering rather than marketing.** `/private-label` and
-`/ecommerce-website-development`.
+**3.4 Dimension drawing** — inline SVG, arrows and measurements. **Uncommon on the web and reads as
+engineering rather than marketing.** `/private-label` and `/ecommerce-website-development`.
 
 **All four as SVG or DOM. None as images.**
 
 ---
 
-## §4 · `<BrowserFrame>` and `<AnnotatedCrop>`
+## §4 · `<DataArtefact>`, `<BrowserFrame>`, `<AnnotatedCrop>`
 
-A whole storefront cannot be rebuilt and should not be — the point is that it is a real page.
+**`<DataArtefact>` — still the strongest thing on this site.** A real HTML table where two rows have
+a blank `Order` cell because we declined to buy them. **No generated scene argues as well as a table
+showing products we said no to**, and no competitor can copy it without publishing their own buying
+decisions. Native table, real text, sortable is optional and probably unnecessary.
 
-**`<BrowserFrame>`:** rounded window chrome, three dots, URL bar. Any screenshot inside it reads as
-*a real page* rather than *a picture of a page*. **One component, reusable for every screenshot this
-site will ever show.**
+**`<BrowserFrame>`** — rounded window chrome, three dots, URL bar. A real capture inside it reads as
+*a real page* rather than *a picture of a page*. One component, every screenshot this site will ever
+show. Subtle scroll-fade at the bottom edge of long captures.
 
-**`<AnnotatedCrop>`:** a small labelled chip in the corner of a detail crop. **Turns a screenshot
-into an explanation** — the single best idea in the store-mockup files.
+**`<AnnotatedCrop>`** — a small labelled chip in the corner of a detail crop. **Turns a screenshot
+into an explanation.**
 
-Subtle scroll-fade at the bottom edge of long captures. Lazy-load with a poster; these are the
-heaviest files in the set.
-
-**Placement:** `/shopify-dtc` hero and mid-page · `/ecommerce-website-development` at three
-breakpoints in three frames.
-
----
-
-## §5 · Excluded
-
-The AI-generated lifestyle frames — several read as generated at a glance and the brand guidelines
-rule that out · the `_scrapped/` working files · the `.py` build scripts · the `.md` case notes ·
-the MP4 (no video slot yet) · **all three PDFs as documents** — only the renders inside the private
-label PDF are extracted, as objects.
+A real capture composited into an archetype-C scene's screen plane goes through `<BrowserFrame>`
+too — the frame is what separates it from the render around it.
 
 ---
 
-## §6 · Ground rules that still apply
+## §5 · The archetype-to-page map
 
-- Clusters of three or more images on Bone or Petrol, never White — `PROMPT_19 §0`
-- **Re-measure chroma on `/private-label` first**, before rolling to the rest. The instrument now
-  sees photographs, so that number is real for the first time.
-- Where a PL render is used as a hero, carry a short line noting it is a concept render.
-- No claim about results, clients or performance attaches to any of this.
+Assignments are in `docs/VISUAL_DIRECTION_v2.md §4`. Add to `ServicePageData`:
+
+```ts
+scene?: {
+  src: string
+  alt: string
+  archetype: "operation" | "working" | "product" | "object"
+  band: "petrol" | "bone" | "build" | "grow" | "operate"
+  panels?: { kicker: string; value: string; context?: string; anchor?: "tl"|"tr"|"bl"|"br" }[]
+}
+```
+
+Optional, so all 25 routes render unchanged until scenes exist. **Ship the field and the components
+now; the pages light up as scenes land, one at a time.**
+
+---
+
+## §6 · Ground rules
+
+- **Re-measure chroma after the first two scenes land**, before the rest. The scenes should *raise*
+  the number — a saturated render on a Petrol band adds chroma where a photograph on white removed
+  it. If `/private-label` does not move up, the band logic is wrong. **Report the number.**
+- Clusters of three or more visuals on Bone or Petrol, never White — `PROMPT_19 §0`
 - Everything through the existing pipeline: 640/1280/1920 WebP, under 200KB at 1280, alt text and
-  dimensions per `check-images`.
+  dimensions per `check-images`
+- **`check-images` gets one new rule: a scene's `alt` may not describe data.** If the alt text
+  contains a figure, the figure is in the wrong layer.
+- Where a real product render appears inside a scene, it carries a short note that it is a concept
+  render. No claim about results, clients or performance attaches to any visual.
 
 ---
 
 ## Acceptance
 
-| # | Check |
-|---|---|
-| 1 | **No brand mark, watermark, footer or attribution from the source files appears anywhere** |
-| 2 | Zero spreadsheet chrome shipped — no row numbers, column letters or formula bar |
-| 3 | The profitability data renders as a real HTML table, not an image; text selectable; sticky first column at 375 |
-| 4 | At least two rows in that table are visibly *not bought*, with one annotated reason |
-| 5 | `<CostBar>`, `<StatRow>`, `<Panel3>`, `<BrowserFrame>`, `<AnnotatedCrop>`, `<FloatingObject>` all exist and are used on ≥2 pages each where the content supports it |
-| 6 | PL renders extracted at native resolution, not screenshotted; all product objects transparent PNG |
-| 7 | Dimension drawing is inline SVG with real `<text>` |
-| 8 | Illustrative figures labelled; concept renders disclosed where used as heroes |
-| 9 | All six gates green · chroma re-measured on `/private-label` and reported, not chased |
-| 10 | Contrast AA at 375/768/1024/1440 · no horizontal scroll at 375 |
-
----
-
-# §7 · The extraction manifest — exact files, exact methods
-
-Everything above says *what* and *why*. This section is *which file* and *how*.
-
-## 7.1 · Background removal — two methods, chosen by source
-
-**Do not use one method for everything.** ML matting on a pure-white product is worse than a
-threshold key: it softens straight edges and eats thin details like cables and straps.
-
-**Method A — luminance key.** For anything already on pure white. Threshold at ~242, feather 1px,
-despill the white halo. `sharp` can do this directly; no model, no artefacts, crisp edges.
-
-**Method B — `rembg` (U²-Net) or equivalent.** For products on wood, countertop or textured ground.
-Then **manually check the alpha edge** — ML matting reliably fails on shadow contact points and
-reflective surfaces, and the mat renders have both.
-
-**After either:** trim transparent bounding box, then re-pad to a consistent aspect so objects in a
-row share a baseline. **Objects that do not share a baseline read as pasted.**
-
-## 7.2 · Verified source files, with the method for each
-
-Corner-sampled for white ground and measured for size:
-
-| Source file | Size | Method | Verdict |
-|---|---|---|---|
-| `Private Label/61xKVSBKy9L._AC_SL1500_.jpg` | 1500×1224 | **A** | **Best product shot in the set.** Hero-capable. |
-| `Private Label/61-vL7qMowL._AC_SL1500_.jpg` | 1500×680 | **A** | Hero-capable, wide crop |
-| `Wholesale/51SkG0gHq3L._AC_SL1000_.jpg` | 993×543 | **A** | Good |
-| `Wholesale/51GGz8wdOfL._AC_SL1000_.jpg` | 839×1000 | **B** — only 2/4 corners white | Good |
-| `Wholesale/51BLO-if+AL._AC_SL1200_.jpg` | 546×1166 | **A** | Tall; use in a column |
-| `Shopify/Product photos/5039a4b6-…jpeg` | 701×764 | **A** | Marginal — mid-page only |
-| `Wholesale/$_1.jpeg` | 400×400 | A | **Too small.** Inline chip only, never above 400px |
-| `Shopify/…/51pEuqe3c_L._AC_SX679.jpg` | 505×526 | A | **Too small.** Same limit |
-| `Shopify/…/71JFOPamk3L…jpeg` | 294×300 | A | **Too small to ship.** Skip |
-| **PL PDF renders ×10** | native | **B** | On wood/countertop. **Check every alpha edge.** |
-
-**The resolution constraint is real and is not negotiable.** The pipeline emits 640/1280/1920.
-**Three files cannot reach 640 without upscaling** — an upscaled product shot is visibly soft and
-looks worse than no image. Use them only as inline chips under 400px, or not at all.
-
-**Excluded, confirmed by inspection:** `Private Label/ChatGPT Image Aug 25…png` and the other
-ChatGPT frames — AI-generated lifestyle imagery, ruled out by the brand guidelines.
-
-**Output naming**, straight into the existing pipeline:
-```
-public/images/_inbox/<page-slug>__<subject>-<variant>.png
-private-label__stone-mat-folded.png
-wholesale-ecommerce__climbing-ascender.png
-```
-
-## 7.3 · The dressing spec — raw objects never ship bare
-
-**This is the part that makes a cut-out look designed rather than dropped in.** Every floated
-object gets **all four**:
-
-1. **Contact shadow.** `0px 18px 24px -12px rgba(10,78,92,0.35)` — Petrol-tinted, not black. **One
-   light direction per page, no exceptions.** Two shadow directions on one page is the single
-   fastest way to look assembled from stock.
-2. **A ground.** Never on White. Bone or Petrol, per `PROMPT_19 §0`. Let the object **overlap the
-   band edge by 8–12%** — that overlap is what makes it read as placed in a composition rather than
-   sitting in a box.
-3. **A spec card.** One flat white card at a corner — real card style, real typeface, **one fact**,
-   6–10 words. *"Three panels · folds to a third"*. Never two cards on one object.
-4. **A leader line.** 1px, `--color-line`, from the card to the point it describes. Only when the
-   fact refers to a visible feature.
-
-**Optional fifth, where the object earns it:** the same object repeated at 2–3 states in one row —
-folded, half, open. **Shows a mechanism with no words** and is the strongest single use of the mat
-renders.
-
-**Never:** drop shadow on all four sides · more than one object at full size per section · an
-object over a photograph · a gradient behind an object.
-
-## 7.4 · Consolidated placement — one table, every page
-
-| Page | Hero | Mid-page | Late |
-|---|---|---|---|
-| **Homepage** | `<DataArtefact>` 3 rows, one *not bought* | `<CostBar>` in the fee strip · product row, 3 objects | `<BrowserFrame>` store capture |
-| **`/wholesale-ecommerce`** | `<DataArtefact>` full, on Petrol | Sourced-product float row (ascender, harness, cookware) · `<CostBar>` landed cost | PO tracker table |
-| **`/private-label`** | **Stone mat cut out, floating over Petrol** | **Three fold states in a row** · dimension drawing SVG | Groove-pattern render · `<Panel3>` verdict |
-| **`/shopify-dtc`** | `<BrowserFrame>` store page | `<AnnotatedCrop>` ×3 — problem/solution, detail, reviews | `<StatRow>` |
-| **`/ecommerce-website-development`** | `<BrowserFrame>` ×3 at three breakpoints | Dimension/architecture SVG | — |
-| **`/ppc-paid-media`** | `<CostBar>` — where the sale price goes | `<StatRow>` four ad metrics | `<Panel3>` |
-| **`/marketplace-growth`** | Product object with listing fields called out | `<DataArtefact>` sales columns | — |
-| **`/ecommerce-operations`** | PO tracker `<DataArtefact>` | Reorder table · `<StatRow>` cadence | — |
-| **`/marketplace-management`** | Reorder/health `<DataArtefact>` | `<StatRow>` | — |
-| **`/ecommerce-growth`** · **`/scale`** | `<DataArtefact>` with reduction column | `<CostBar>` | — |
-| **`/shopify-management`** | `<BrowserFrame>` admin | `<StatRow>` | — |
-
-**Six per page is the target; five is acceptable.** Every slot above is either a component or a
-cut-out object — **no slot is a placed screenshot except inside `<BrowserFrame>`.**
-
-## 7.5 · Order of work
-
-1. **Extract the ten PL renders** and background-remove them — highest-value objects, and they
-   unblock the `/private-label` hero
-2. **Build `<DataArtefact>`** and wire `/wholesale-ecommerce` — highest-value component
-3. **Background-remove the six usable product shots**
-4. **Build `<CostBar>`, `<BrowserFrame>`, `<FloatingObject>`**
-5. **Wire `/private-label` fully, then re-measure chroma and stop** before rolling to the rest
-6. `<StatRow>`, `<Panel3>`, `<AnnotatedCrop>`, dimension SVG, remaining pages
-
-**Stop at step 5 and report.** The instrument now sees photographs, so `/private-label` is the first
-page whose post-image chroma is a real measurement.
+1. `<Scene>` and `<Panel>` exist and compose correctly on Petrol, Bone and all three accent bands.
+2. A page using `<Scene>` with the image blocked still reads as a designed hero.
+3. Panel text passes 4.5:1 measured **against the scene**, not the band.
+4. `<CostBar>`, `<StatRow>`, `<Panel3>`, `<DataArtefact>`, `<BrowserFrame>`, `<AnnotatedCrop>` built.
+5. `scene` field added to `ServicePageData`; all 25 routes unchanged without it.
+6. `check-images` rejects a scene alt containing a figure.
+7. All six gates green. Chroma re-measured and reported after the first two scenes.
