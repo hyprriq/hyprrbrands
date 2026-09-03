@@ -152,3 +152,110 @@ label PDF are extracted, as objects.
 | 8 | Illustrative figures labelled; concept renders disclosed where used as heroes |
 | 9 | All six gates green · chroma re-measured on `/private-label` and reported, not chased |
 | 10 | Contrast AA at 375/768/1024/1440 · no horizontal scroll at 375 |
+
+---
+
+# §7 · The extraction manifest — exact files, exact methods
+
+Everything above says *what* and *why*. This section is *which file* and *how*.
+
+## 7.1 · Background removal — two methods, chosen by source
+
+**Do not use one method for everything.** ML matting on a pure-white product is worse than a
+threshold key: it softens straight edges and eats thin details like cables and straps.
+
+**Method A — luminance key.** For anything already on pure white. Threshold at ~242, feather 1px,
+despill the white halo. `sharp` can do this directly; no model, no artefacts, crisp edges.
+
+**Method B — `rembg` (U²-Net) or equivalent.** For products on wood, countertop or textured ground.
+Then **manually check the alpha edge** — ML matting reliably fails on shadow contact points and
+reflective surfaces, and the mat renders have both.
+
+**After either:** trim transparent bounding box, then re-pad to a consistent aspect so objects in a
+row share a baseline. **Objects that do not share a baseline read as pasted.**
+
+## 7.2 · Verified source files, with the method for each
+
+Corner-sampled for white ground and measured for size:
+
+| Source file | Size | Method | Verdict |
+|---|---|---|---|
+| `Private Label/61xKVSBKy9L._AC_SL1500_.jpg` | 1500×1224 | **A** | **Best product shot in the set.** Hero-capable. |
+| `Private Label/61-vL7qMowL._AC_SL1500_.jpg` | 1500×680 | **A** | Hero-capable, wide crop |
+| `Wholesale/51SkG0gHq3L._AC_SL1000_.jpg` | 993×543 | **A** | Good |
+| `Wholesale/51GGz8wdOfL._AC_SL1000_.jpg` | 839×1000 | **B** — only 2/4 corners white | Good |
+| `Wholesale/51BLO-if+AL._AC_SL1200_.jpg` | 546×1166 | **A** | Tall; use in a column |
+| `Shopify/Product photos/5039a4b6-…jpeg` | 701×764 | **A** | Marginal — mid-page only |
+| `Wholesale/$_1.jpeg` | 400×400 | A | **Too small.** Inline chip only, never above 400px |
+| `Shopify/…/51pEuqe3c_L._AC_SX679.jpg` | 505×526 | A | **Too small.** Same limit |
+| `Shopify/…/71JFOPamk3L…jpeg` | 294×300 | A | **Too small to ship.** Skip |
+| **PL PDF renders ×10** | native | **B** | On wood/countertop. **Check every alpha edge.** |
+
+**The resolution constraint is real and is not negotiable.** The pipeline emits 640/1280/1920.
+**Three files cannot reach 640 without upscaling** — an upscaled product shot is visibly soft and
+looks worse than no image. Use them only as inline chips under 400px, or not at all.
+
+**Excluded, confirmed by inspection:** `Private Label/ChatGPT Image Aug 25…png` and the other
+ChatGPT frames — AI-generated lifestyle imagery, ruled out by the brand guidelines.
+
+**Output naming**, straight into the existing pipeline:
+```
+public/images/_inbox/<page-slug>__<subject>-<variant>.png
+private-label__stone-mat-folded.png
+wholesale-ecommerce__climbing-ascender.png
+```
+
+## 7.3 · The dressing spec — raw objects never ship bare
+
+**This is the part that makes a cut-out look designed rather than dropped in.** Every floated
+object gets **all four**:
+
+1. **Contact shadow.** `0px 18px 24px -12px rgba(10,78,92,0.35)` — Petrol-tinted, not black. **One
+   light direction per page, no exceptions.** Two shadow directions on one page is the single
+   fastest way to look assembled from stock.
+2. **A ground.** Never on White. Bone or Petrol, per `PROMPT_19 §0`. Let the object **overlap the
+   band edge by 8–12%** — that overlap is what makes it read as placed in a composition rather than
+   sitting in a box.
+3. **A spec card.** One flat white card at a corner — real card style, real typeface, **one fact**,
+   6–10 words. *"Three panels · folds to a third"*. Never two cards on one object.
+4. **A leader line.** 1px, `--color-line`, from the card to the point it describes. Only when the
+   fact refers to a visible feature.
+
+**Optional fifth, where the object earns it:** the same object repeated at 2–3 states in one row —
+folded, half, open. **Shows a mechanism with no words** and is the strongest single use of the mat
+renders.
+
+**Never:** drop shadow on all four sides · more than one object at full size per section · an
+object over a photograph · a gradient behind an object.
+
+## 7.4 · Consolidated placement — one table, every page
+
+| Page | Hero | Mid-page | Late |
+|---|---|---|---|
+| **Homepage** | `<DataArtefact>` 3 rows, one *not bought* | `<CostBar>` in the fee strip · product row, 3 objects | `<BrowserFrame>` store capture |
+| **`/wholesale-ecommerce`** | `<DataArtefact>` full, on Petrol | Sourced-product float row (ascender, harness, cookware) · `<CostBar>` landed cost | PO tracker table |
+| **`/private-label`** | **Stone mat cut out, floating over Petrol** | **Three fold states in a row** · dimension drawing SVG | Groove-pattern render · `<Panel3>` verdict |
+| **`/shopify-dtc`** | `<BrowserFrame>` store page | `<AnnotatedCrop>` ×3 — problem/solution, detail, reviews | `<StatRow>` |
+| **`/ecommerce-website-development`** | `<BrowserFrame>` ×3 at three breakpoints | Dimension/architecture SVG | — |
+| **`/ppc-paid-media`** | `<CostBar>` — where the sale price goes | `<StatRow>` four ad metrics | `<Panel3>` |
+| **`/marketplace-growth`** | Product object with listing fields called out | `<DataArtefact>` sales columns | — |
+| **`/ecommerce-operations`** | PO tracker `<DataArtefact>` | Reorder table · `<StatRow>` cadence | — |
+| **`/marketplace-management`** | Reorder/health `<DataArtefact>` | `<StatRow>` | — |
+| **`/ecommerce-growth`** · **`/scale`** | `<DataArtefact>` with reduction column | `<CostBar>` | — |
+| **`/shopify-management`** | `<BrowserFrame>` admin | `<StatRow>` | — |
+
+**Six per page is the target; five is acceptable.** Every slot above is either a component or a
+cut-out object — **no slot is a placed screenshot except inside `<BrowserFrame>`.**
+
+## 7.5 · Order of work
+
+1. **Extract the ten PL renders** and background-remove them — highest-value objects, and they
+   unblock the `/private-label` hero
+2. **Build `<DataArtefact>`** and wire `/wholesale-ecommerce` — highest-value component
+3. **Background-remove the six usable product shots**
+4. **Build `<CostBar>`, `<BrowserFrame>`, `<FloatingObject>`**
+5. **Wire `/private-label` fully, then re-measure chroma and stop** before rolling to the rest
+6. `<StatRow>`, `<Panel3>`, `<AnnotatedCrop>`, dimension SVG, remaining pages
+
+**Stop at step 5 and report.** The instrument now sees photographs, so `/private-label` is the first
+page whose post-image chroma is a real measurement.
