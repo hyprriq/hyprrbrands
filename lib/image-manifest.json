@@ -1,1 +1,42 @@
-{}
+{
+  "/images/private-label/faucet-mat": {
+    "w": 1217,
+    "h": 570
+  },
+  "/images/private-label/grill-cover": {
+    "w": 1280,
+    "h": 1062
+  },
+  "/images/private-label/planter-bowl": {
+    "w": 1280,
+    "h": 630
+  },
+  "/images/private-label/sink-caddy": {
+    "w": 1280,
+    "h": 390
+  },
+  "/images/private-label/stone-mat-chevron": {
+    "w": 1036,
+    "h": 893
+  },
+  "/images/private-label/stone-mat-duo": {
+    "w": 1227,
+    "h": 865
+  },
+  "/images/private-label/stone-mat-trio": {
+    "w": 1205,
+    "h": 854
+  },
+  "/images/shopify-dtc/hand-massager": {
+    "w": 591,
+    "h": 707
+  },
+  "/images/wholesale-ecommerce/climbing-ascender": {
+    "w": 634,
+    "h": 1254
+  },
+  "/images/wholesale-ecommerce/pipe-cutter": {
+    "w": 1069,
+    "h": 619
+  }
+}

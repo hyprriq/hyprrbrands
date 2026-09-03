@@ -9,6 +9,11 @@
  * three widths with sizes. Other images (the 46px channel marks) are
  * identity marks — they need only a non-empty alt.
  *
+ * PROMPT_21 (rewritten) §6: a scene's alt may not describe data — if
+ * the alt contains a figure, the figure is in the wrong layer (it
+ * belongs in a DOM panel). Scene images carry the data-scene
+ * attribute; any digit in their alt fails the build.
+ *
  * Also enforces the 200KB budget on every committed 1280 rendition,
  * so a heavy file fails CI even if the build step was skipped.
  */
@@ -43,6 +48,10 @@ for (const r of ["/", ...live]) {
     const srcAttr = attr("src") ?? "";
     if (alt == null || alt.trim() === "")
       problems.push(`${r}: <img> with missing/empty alt (${srcAttr.slice(0, 60)})`);
+    if (/\bdata-scene\b/.test(tag) && alt && /\d/.test(alt))
+      problems.push(
+        `${r}: scene alt contains a figure — data belongs in a DOM panel, not alt text: "${alt}"`
+      );
     const isPipeline = srcAttr.startsWith("/images/") || /\/images\//.test(srcAttr);
     if (!isPipeline) continue;
     pipelineCount++;

@@ -4,6 +4,7 @@ import SitePageShell from "@/components/SitePageShell";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbLd, webPageLd } from "@/lib/schema";
 import { ogImageMeta } from "@/lib/og-pages";
+import { CostBar, DataArtefact } from "@/components/pages/VisualSystem";
 
 /**
  * /scale — PROMPT_17 §7. A page inside Grow, not a fourth engine: no
@@ -140,6 +141,66 @@ export default function Page() {
               activity, the recommendation to wait is one we can afford to
               make.
             </p>
+            <p className="type-body text-body m-0">
+              At volume the read is often subtraction: the catalogue that
+              got you here is carrying lines that no longer earn their
+              working capital, and cutting them funds the ones that do.
+            </p>
+          </div>
+          {/* PROMPT_21 §2 — the reduction read, as a decision column */}
+          <div className="mt-7 max-w-[860px]">
+            <DataArtefact
+              data={{
+                title: "The scale read · four lines, one decision each",
+                ground: "bone",
+                cols: ["Profit / unit", "ROI", "Velocity"],
+                rows: [
+                  {
+                    name: "Line A — carries the catalogue",
+                    cells: ["$29.01", "56.9%", "daily"],
+                    order: "scale up",
+                  },
+                  {
+                    name: "Line B — steady",
+                    cells: ["$17.90", "49.7%", "daily"],
+                    order: "hold",
+                  },
+                  {
+                    name: "Line C — margin thinning",
+                    cells: ["$7.89", "52.6%", "weekly"],
+                    order: "watch",
+                  },
+                  {
+                    name: "Line D — capital parked",
+                    cells: ["$0.38", "14.1%", "monthly"],
+                    note: "working capital freed for the lines that earn it",
+                  },
+                ],
+                orderLabel: "Decision",
+                refusedLabel: "cut",
+                footnote:
+                  "Illustrative figures in the catalogue read's structure — scale work is deciding per line, and one of the honest decisions is cut.",
+              }}
+            />
+          </div>
+          <div className="mt-7 max-w-[860px]">
+            <CostBar
+              data={{
+                title: "The unit that has to survive scaling",
+                total: "$30.00 sale",
+                segments: [
+                  { label: "Landed cost", value: "$21.00", share: 70 },
+                  { label: "Marketplace fees", value: "$4.50", share: 15 },
+                  { label: "Storage & returns", value: "$1.20", share: 4 },
+                  { label: "Advertising", value: "$1.50", share: 5 },
+                  { label: "Margin", value: "$1.80", share: 6, retained: true },
+                ],
+                footnote:
+                  "Arbitrary numbers demonstrating the read — every segment except the last grows with volume unless someone is watching it.",
+              }}
+            />
+          </div>
+          <div className="mt-7 max-w-[62ch] grid gap-3.5">
             <p className="type-body text-body m-0">
               The reads that find the constraint live in{" "}
               <a

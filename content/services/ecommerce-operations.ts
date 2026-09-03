@@ -73,6 +73,55 @@ const data: ServicePageData = {
     },
   ],
 
+  dataArtefactMid: {
+    title: "The purchase-order trail \u00b7 what the desk keeps",
+    ground: "bone",
+    cols: ["Cost / unit", "Qty", "Total", "Invoice", "Status"],
+    rows: [
+      {
+        name: "Power tools \u2014 screwdriver set",
+        cells: ["$28.29", "75", "$2,121.41", "40611", "In stock"],
+        order: "PO-114",
+      },
+      {
+        name: "Power tools \u2014 impact wrench",
+        cells: ["$100.17", "10", "$1,001.71", "40611", "In stock"],
+        order: "PO-114",
+      },
+      {
+        name: "Personal care \u2014 waxing kit",
+        cells: ["$2.25", "1,000", "$2,250.00", "40173", "In stock"],
+        order: "PO-102",
+      },
+      {
+        name: "Personal care \u2014 wax strips",
+        cells: ["$2.25", "600", "$0.00", "40173", "Refunded"],
+        order: "PO-102",
+        tone: "crit",
+        note: "short-shipped \u2014 refund chased and recovered by the desk",
+      },
+      {
+        name: "Inbound shipping & prep",
+        cells: ["\u2014", "\u2014", "$837.00", "3PL", "Billed"],
+        order: "PO-102",
+      },
+    ],
+    orderLabel: "PO",
+    footnote:
+      "Illustrative rows in the tracker's structure \u2014 every purchase traceable to an approval, an invoice and a state, including the one that went wrong.",
+  },
+  statRow: {
+    title: "The cadence, in four fixtures",
+    note:
+      "The desk's fixed points \u2014 illustrative of the standing weekly shape, not a report from a live account.",
+    stats: [
+      { k: "Purchase orders", v: "Mon", sub: "raised and sent for your approval" },
+      { k: "Listings sweep", v: "Wed", sub: "suppressed listings and drift" },
+      { k: "Written report", v: "Fri", sub: "five minutes, ends in decisions" },
+      { k: "Escalation", v: "Same day", sub: "whenever something breaks" },
+    ],
+  },
+
   visual: {
     kind: "table",
     title: "The daily operating desk",
@@ -148,12 +197,12 @@ const data: ServicePageData = {
     {
       days: "Days 31–60",
       title: "Run and correct",
-      body: "The desk runs daily. The backlog found in month one is worked down in priority order. Reporting cadence beds in and you tell us what you want more or less of in it.",
+      body: "The desk runs daily. The backlog found in month one is worked down in priority order — account risk first, then money, then tidiness. Reporting cadence beds in and you tell us what you want more or less of in it, which is the only part of the report we expect to change. Your part is the purchase approvals and any decision that costs money; everything else runs without you. By the end of this phase the backlog should be measurably smaller and you should have stopped being surprised by what is in the weekly.",
     },
     {
       days: "Days 61–90",
       title: "Steady",
-      body: "The desk is routine. Escalation path has usually been tested at least once by now, which is the useful part — you learn what it feels like when something goes wrong before it goes badly wrong.",
+      body: "The desk is routine. The escalation path has usually been tested at least once by now, which is the useful part — you learn what it feels like when something goes wrong before it goes badly wrong. Reporting is monthly on top of the weekly, and ends in a decision rather than a dashboard. By day 90 the checkable state is a negative one: no unknown open cases, no stranded stock nobody has looked at, no listing that quietly stopped selling. Quiet is the deliverable.",
     },
   ],
   hwwTitle: "Signature block · what happens when something goes wrong",

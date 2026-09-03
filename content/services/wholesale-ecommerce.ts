@@ -85,6 +85,80 @@ const data: ServicePageData = {
     ],
   },
 
+  dataArtefact: {
+    title: "The buying decision \u00b7 six lines from the profitability model",
+    ground: "field",
+    cols: ["COGS", "Storage", "Fulfil", "Ship+Prep", "Buy box", "Referral", "Profit", "ROI"],
+    rows: [
+      {
+        name: "Climbing hardware \u2014 ascender",
+        cells: ["$36.00", "$0.02", "$4.08", "$1.50", "$70.00", "$10.50", "$17.90", "49.7%"],
+        order: "240 units",
+      },
+      {
+        name: "Climbing hardware \u2014 belay device",
+        cells: ["$69.00", "$0.07", "$4.75", "$1.50", "$118.00", "$17.70", "$24.98", "36.2%"],
+        order: "120 units",
+      },
+      {
+        name: "Climbing hardware \u2014 harness",
+        cells: ["$51.00", "$0.09", "$5.10", "$1.50", "$102.00", "$15.30", "$29.01", "56.9%"],
+        order: "160 units",
+      },
+      {
+        name: "Kitchen \u2014 slow cooker",
+        cells: ["$37.00", "$0.74", "$15.13", "$1.50", "$89.00", "$13.35", "$21.28", "57.5%"],
+        order: "60 units",
+      },
+      {
+        name: "Garden \u2014 nursery pot, 8 inch",
+        cells: ["$0.60", "$0.08", "$4.60", "$1.50", "$8.01", "$1.20", "$0.03", "4.8%"],
+        note: "ROI 4.8% against a 20% floor",
+      },
+      {
+        name: "Home \u2014 oven mitts, 2-pack",
+        cells: ["$2.00", "$0.06", "$6.10", "$1.50", "$11.70", "$1.76", "$0.29", "14.3%"],
+      },
+    ],
+    orderLabel: "Order",
+    footnote:
+      "Illustrative figures in the real model's structure. The two refused rows are the argument \u2014 nothing here is a claim about any live line.",
+  },
+  costBar: {
+    title: "Where one unit's sale price goes",
+    total: "$30.00 sale",
+    segments: [
+      { label: "Landed cost", value: "$21.00", share: 70 },
+      { label: "Marketplace fees", value: "$4.50", share: 15 },
+      { label: "Storage & returns", value: "$1.20", share: 4 },
+      { label: "Advertising", value: "$1.50", share: 5 },
+      { label: "Margin", value: "$1.80", share: 6, retained: true },
+    ],
+    footnote:
+      "The sample landed-cost model's unit drawn as a bar \u2014 arbitrary numbers demonstrating the read, not a projection.",
+  },
+  objectBands: [
+    {
+      position: "mid",
+      ground: "bone",
+      objects: [
+        {
+          src: "/images/wholesale-ecommerce/pipe-cutter",
+          alt: "Cordless pipe cutter from a sourced tool brand, one approved line in the wholesale catalogue",
+          maxW: 440,
+          specCard: { k: "Catalogue line", v: "Approved \u00b7 replenishing weekly" },
+        },
+        {
+          src: "/images/wholesale-ecommerce/climbing-ascender",
+          alt: "Climbing ascender from a sourced hardware brand, resold through the client's own seller account",
+          maxW: 210,
+        },
+      ],
+      caption:
+        "Sourced catalogue lines \u2014 branded goods bought through authorised suppliers, listed and replenished in your account.",
+    },
+  ],
+
   visual: {
     kind: "table",
     title: "The wholesale operating desk · catalogue",

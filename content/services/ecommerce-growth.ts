@@ -84,6 +84,46 @@ const data: ServicePageData = {
     body: "A growth action passes all five constraints or it waits — and frequently the honest answer is that the constraint is not demand at all. An action that would break fulfilment or push a line below its margin floor does not run. The fee follows realised margin rather than activity, which is why the recommendation to stop is one we can afford to make.",
   },
 
+  costBar: {
+    title: "The unit the growth question starts from",
+    total: "$30.00 sale",
+    segments: [
+      { label: "Landed cost", value: "$21.00", share: 70 },
+      { label: "Marketplace fees", value: "$4.50", share: 15 },
+      { label: "Storage & returns", value: "$1.20", share: 4 },
+      { label: "Advertising", value: "$1.50", share: 5 },
+      { label: "Margin", value: "$1.80", share: 6, retained: true },
+    ],
+    footnote:
+      "Arbitrary numbers demonstrating the read \u2014 a growth action is judged by what it does to the margin segment, not to the top line.",
+  },
+  panel3: {
+    title: "How a growth action is judged",
+    panels: [
+      {
+        kicker: "The read",
+        items: [
+          "Which of the five constraints binds now",
+          "A margin read before anything runs",
+        ],
+      },
+      {
+        kicker: "The action",
+        items: [
+          "Release the constraint, cheapest lever first",
+          "Sequenced against what the operation can absorb",
+        ],
+      },
+      {
+        kicker: "The stop",
+        items: [
+          "An action that would break fulfilment or margin waits",
+          "Doing nothing is a written recommendation here",
+        ],
+      },
+    ],
+  },
+
   visual: {
     kind: "panel",
     title: "Growth control panel · questions, not scores",
@@ -156,12 +196,12 @@ const data: ServicePageData = {
     {
       days: "Days 31–60",
       title: "First loop",
-      body: "The cheapest wins first, which is almost always conversion on traffic you already have. Listing and content work, then traffic, measured against the baseline. Each action carries a margin read before it runs.",
+      body: "The cheapest wins first, which is almost always conversion on traffic you already have. Listing and content work, then traffic, measured against the baseline. Each action carries a margin read before it runs. Your part is one decision per action: whether the margin read is worth acting on, or whether the number is thin enough that the answer is to leave it. We bring the read, you make the call, and both are written down. By the end of this phase you should have seen at least one recommendation to do nothing — if every read came back as \"act\", the reads are not being run honestly.",
     },
     {
       days: "Days 61–90",
       title: "Sequence and cadence",
-      body: "The loop repeats with the constraint that bound last time released or accepted. Monthly written next decision begins. By day 90 you should be able to name your binding constraint without looking it up.",
+      body: "The loop repeats with the constraint that bound last time released or accepted. Monthly written next decision begins. The cadence is the deliverable here, not any single action — a growth programme that depends on someone remembering to look is not a programme. By day 90 you should be able to name your binding constraint without looking it up, and you should know which of the five questions we are currently stuck on. That is the checkable state: not a number, a sentence you can say out loud about your own business.",
     },
   ],
   hwwTitle: "Sequencing growth against operational capacity",

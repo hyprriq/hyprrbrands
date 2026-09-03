@@ -147,12 +147,12 @@ const data: ServicePageData = {
     {
       days: "Days 31–60",
       title: "Clean and stabilise",
-      body: "Catalogue data corrected. App stack reduced where things are unused or duplicated — this is usually the fastest performance gain available. Theme updates applied and tested. Merchandising brought current.",
+      body: "Catalogue data corrected — variants, inventory sync accuracy, and the drift that accumulates as products are added by different people over years. App stack reduced where things are unused or duplicated; this is usually the fastest performance gain available and it costs nothing but the decision. Theme updates applied and tested on a copy first. Merchandising brought current. Your part is approving app removals, since some carry data. By the end of this phase the store should load faster than it did and you should know what every installed app is for.",
     },
     {
       days: "Days 61–90",
       title: "Cadence",
-      body: "The recurring desk runs. Monthly reporting begins. By day 90 there should be no unknowns in the stack and no deferred updates.",
+      body: "The recurring desk runs: catalogue, merchandising, fulfilment exceptions, app hygiene, theme version, performance. The work that happens because the calendar says so rather than because someone raised a ticket is the whole difference from a retainer, and this is the phase where that becomes visible. Monthly reporting begins and ends in a recommendation. By day 90 there should be no unknowns in the stack and no deferred updates — and you should have received at least one thing you did not ask for, which is the point.",
     },
   ],
   hwwTitle: "The recurring desk · from day 90",

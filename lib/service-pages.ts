@@ -92,6 +92,58 @@ export interface ServiceImage {
   card?: { k: string; v: string };
 }
 
+/** PROMPT_21 §3.1 — the segmented cost bar. Sum of segments must be
+ *  the stated total; the retained segment renders in Lime. Figures
+ *  are illustrative and the required footnote says so. */
+export interface CostBarData {
+  title: string;
+  total: string;
+  segments: { label: string; value: string; share: number; retained?: boolean }[];
+  footnote: string;
+}
+
+/** PROMPT_21 — a floated cut-out object with its dressing (§7.3):
+ *  every object gets a Petrol-tinted contact shadow and sits on a
+ *  band; the spec card carries ONE fact in 6–10 words. */
+export interface ObjectImage extends ServiceImage {
+  /** Cap the rendered width (small sources never upscale — §7.2). */
+  maxW?: number;
+  specCard?: { k: string; v: string };
+}
+
+/** PROMPT_21 — a band of floated objects. Bands are the §0 grounds
+ *  rule made structural: never White. */
+export interface ObjectBand {
+  position: "hero" | "mid" | "late";
+  ground: "field" | "bone";
+  objects: ObjectImage[];
+  caption?: string;
+  /** Concept-render disclosure, rendered small beside the caption. */
+  note?: string;
+}
+
+/** PROMPT_21 §2 — the native data artefact. The pixels of the source
+ *  spreadsheet are discarded; this is the structure. `footnote` is
+ *  required because the figures are illustrative and must say so. */
+export interface DataArtefactData {
+  title: string;
+  ground: "field" | "bone";
+  cols: string[];
+  rows: {
+    name: string;
+    cells: string[];
+    /** The Order column — blank means NOT BOUGHT, the whole point. */
+    order?: string;
+    tone?: Tone;
+    /** Margin annotation on one refused row, e.g. the ROI reason. */
+    note?: string;
+  }[];
+  orderLabel: string;
+  /** Text for a blank Order cell (default "not bought"; /scale: "cut"). */
+  refusedLabel?: string;
+  footnote: string;
+}
+
 /** Family insert inside "the first 90 days" — section 6, Bone. */
 export type ServiceHww =
   | { kind: "chain"; items: { label: string; sub: string; dark?: boolean }[] }
@@ -138,6 +190,32 @@ export interface ServicePageData {
     hero?: ServiceImage;
     midPage?: ServiceImage[];
     section?: (ServiceImage & { slot: string })[];
+  };
+  /** PROMPT_21 — floated object bands (hero / mid / late). */
+  objectBands?: ObjectBand[];
+  /** PROMPT_21 §2 — replaces the section-2 visual when set. */
+  dataArtefact?: DataArtefactData;
+  /** PROMPT_21 §2 — a second data artefact rendered mid-page. */
+  dataArtefactMid?: DataArtefactData;
+  /** PROMPT_21 §3 — the cost-breakdown bar, in the fee section. */
+  costBar?: CostBarData;
+  /** PROMPT_21 §3 — four-stat card row, rendered after #managed. */
+  statRow?: { title: string; note?: string; stats: { k: string; v: string; sub: string }[] };
+  /** PROMPT_21 §3 — three-panel breakdown, rendered after the FAQ. */
+  panel3?: { title: string; panels: { kicker: string; items: string[] }[] };
+  /** PROMPT_21 §3.4 — the mat dimension drawing (private label). */
+  dimensionDrawing?: boolean;
+  /** PROMPT_21 (rewritten) §5 — the generated scene, three-layer
+   *  composition. Optional: all 25 routes render unchanged until a
+   *  page's scene lands. The alt is decorative and may not contain a
+   *  figure (check-images enforces it); every readable number lives
+   *  in `panels`, in the DOM. */
+  scene?: {
+    src: string;
+    alt: string;
+    archetype: "operation" | "working" | "product" | "object";
+    band: "petrol" | "bone" | "build" | "grow" | "operate";
+    panels?: { kicker: string; value: string; context?: string; anchor?: "tl" | "tr" | "bl" | "br" }[];
   };
   /** Schema.org Service.serviceType — from the content files' schema notes. */
   serviceType: string;
