@@ -27,30 +27,51 @@ five distinct hero figures. The chooser on four pages.
 
 ---
 
-## 1 · Fix the chroma tool before the first photographs land — `CHROMA_METRIC_CORRECTION.md`
+## 1 · `PROMPT_20_LIVE_VERIFY.md` — **this was written and never queued. My error, and it is why you were idle.**
 
-**Your caveat was the important finding, and it corrects my ticket.** `PROMPT_19 §0` predicted six
-photographs would push the low pages under the floor and called it arithmetic. It was not — the
-script samples painted surfaces, so photo pixels are never in the number and photographs *cannot*
-lower it. Your own result proves it: 0.0206 with six images, 0.0206 without. **That is the tool not
-seeing the photos, not the bands compensating.**
+A read of **production** after `5b6ff82` found nine problems while all five gates and CI were green.
 
-The larger problem is that the metric drifts the wrong way. Photo area is excluded from the
-weighting, so the remaining painted surfaces carry proportionally more weight — **a page with
-photographs over Bone bands will score higher than the same page with none**, while looking
-entirely different. A gate that gets easier as the thing it measures gets harder is worse than no
-gate.
+**Step 1 is verification, not fixing.** The review saw **two different footers live at once** —
+`/scale` and `/where-we-work` serve one carrying the new routes under Resources, while `/`,
+`/private-label` and `/wholesale-ecommerce` serve one without them. That is a stale-edge signature,
+so **confirm or refute each item against a fresh build with cache busted, and fix only what
+survives.** Anything that turns out to be cache is a deploy finding worth reporting.
 
-**Fix:** for each `<img>`, draw to a 32×32 offscreen canvas, average the pixels, convert to OKLCH,
-weight `C` by rendered area alongside the painted surfaces. Fifteen lines, same formula, same
-output. **Do it before `/private-label`'s photos are wired**, then re-baseline every page — the
-0.018 and 0.030 floors were set against the old instrument and will not transfer. Expect movement;
-it is not a regression.
+**The three worst, if they survive:**
+- `/scale`, `/documents` and `/where-we-work` have **zero links from the homepage**
+- **The chooser is absent from `/private-label` and `/wholesale-ecommerce`** — it landed only on
+  `/shopify-dtc` and `/build`. It is missing from the two pages an undecided buyer actually lands
+  on, which is the entire reason it exists.
+- Both those pages still render *"publishing soon — the document room opens with the first real
+  document"* while **`/documents` is live with two real samples.** The site contradicts itself and
+  buries its strongest new trust asset.
 
-**The band mandate in §0 stands, on different grounds** — ground alternation, photographs needing a
-frame, and it being what the reference does. Keep the bands, the reason in the ticket was wrong.
+**The systemic finding, which is worth more than the nine fixes:** the five gates check that links
+resolve, the manifest matches, metas are in range, copy is clean and images are sound. **Not one
+checks that a component actually rendered on the page it was specified for.** The ticket adds
+`check-features.mjs` as gate six. *A ticket that says "put X on pages A, B, C, D" needs a gate that
+says X is on A, B, C and D.*
 
-Everything else in `PROMPT_19` is shipped and correct.
+---
+
+## The chroma instrument — ruled
+
+**The lazy-image force-decode was a real catch and better than my recipe.** A lazy image below the
+fold measuring as nothing is the same blindness in a new place, and I did not anticipate it. Moving
+the instrument into the repo versioned rather than leaving it in a scratchpad is also right — it
+should have been there from the first measurement.
+
+**Your two flags, ruled:**
+
+**`/true-cost` at 0.0186 is not below the floor.** 0.0186 > 0.0180. It passes. **No action.**
+
+**`/documents` at 0.0158 is genuinely below, and it gets a Petrol band** — not because of the
+number, but because it is the page that opens the document room and a band framing that entry is
+right compositionally. Apply the floor once the band lands. **If a page is pale because it is
+mostly white document cards, that is the page being correct** — but `/documents` is the strongest
+new trust asset on the site and it should not read as the palest thing on it.
+
+Add both to `PROMPT_20`'s scope.
 
 ---
 
