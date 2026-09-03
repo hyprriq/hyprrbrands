@@ -27,6 +27,41 @@ five distinct hero figures. The chooser on four pages.
 
 ---
 
+## 1 · `PROMPT_21_REAL_ASSETS.md` + the phase-copy drop — **send together**
+
+The owner uploaded 87MB to `public/images/_inbox/`. **Read `docs/ASSET_AUDIT_AND_PLACEMENT.md`
+first.** It is a portfolio, not a photo folder, and it is better than most of what the twelve
+competitor sites run.
+
+**The finding that outranks every image:** three assets carry *"EcommerceNinjaa · 15 years in
+ecommerce, own Amazon + Shopify stores since 2011"*, and one carries *"my own Shopify store."* The
+live site says *"We are new."* **Both are true and the site tells only one.** The client review's
+worst finding — confident claims with zero evidence, could be one person — is answered by a fact
+already owned. §1 of the ticket is that paragraph, and it is the highest-value change available.
+
+**What arrived:** an 18-page product-development case study **already branded HYPRR BRANDS**, with a
+go/no-go decision log and ten embedded renders — the verdict `/private-label` claims to produce and
+has never shown. Four masked wholesale analytics sheets **with blank ORDER cells on the lines not
+worth buying** — the rarest asset type measured across the twelve competitors, and *"we do not buy
+anything we cannot defend"* as evidence rather than claim. Four finished dropship case studies with
+five slides each. Seven Shopify store mockups of a real store. Three PDFs.
+
+**Nothing ships raw** — §2 is six editing operations: kill the EcommerceNinjaa branding while
+keeping the provenance, recolour to the palette without touching data, background-remove to
+transparent PNG, crop out spreadsheet chrome, extract PL renders at native resolution rather than
+screenshotting, then through the existing pipeline.
+
+**This unblocks four things at once:** proof, `/about`'s missing credential, `/documents` going from
+two samples to five real documents, and `/insights` — **four articles are already written** in the
+dropship case notes, which is why that route stops being blocked on keyword measurement.
+
+Also queued with it: **`docs/content/phase-copy-depth.md`** — sixteen expanded phase bodies for the
+eight non-flagship service pages. Measured first: 30 bodies, mean 42 words, 29 of 30 under 100.
+Not padding — every original sentence survives; what was added is *what the client does* and *what
+done looks like*, which every body was missing.
+
+---
+
 ## 1 · Phase copy depth — `docs/content/phase-copy-depth.md` · **ready to transcribe**
 
 Sixteen expanded phase bodies for the **eight non-flagship service pages**. Wholesale and private
