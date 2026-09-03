@@ -39,7 +39,7 @@ const REGIONS: [string, string][] = [
   ],
   [
     "Middle East",
-    "A growing share of clients. The engagement is identical: your entity, your accounts, your capital, with the operating desk working US and UK marketplace hours as needed.",
+    "The engagement is identical from here: your entity, your accounts, your capital, with the operating desk working US and UK marketplace hours as needed — and a working week that includes Sunday is not a problem.",
   ],
   [
     "Singapore & APAC",

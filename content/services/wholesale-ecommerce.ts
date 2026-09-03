@@ -253,7 +253,7 @@ const data: ServicePageData = {
     `A build fee, set by the capital you plan to deploy monthly and agreed in writing before anything starts, and ${SPLIT} of realised margin — what a catalogue line actually made after landed cost, marketplace fees, advertising and returns, once it has sold. Not on revenue, and not on the capital itself: no part of the fee is calculated from what you spend on inventory. That matters here more than in any other service, because a fee tied to purchase volume rewards recommending more buying, which is exactly the incentive this business should not have.`,
     ...(PUBLISH_SPLIT
       ? [
-          "The split is 30% at every band — a larger build fee buys more work, never a better split.",
+          "The split is 30% at every band, and it steps down over time — a larger build fee buys more work, never a better split.",
         ]
       : []),
     "The full mechanic, including how realised margin is calculated and a worked example, is on the how-we-work page.",

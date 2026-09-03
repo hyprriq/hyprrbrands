@@ -55,12 +55,28 @@ const PATHS: {
   },
 ];
 
-export default function ServiceChooser({ current }: { current?: string }) {
+export default function ServiceChooser({
+  current,
+  note,
+}: {
+  current?: string;
+  /** One line under the grid — /build uses it to reconcile the fourth
+   *  card (website development) with the three-model comparison
+   *  (PROMPT_20 item 6). */
+  note?: string;
+}) {
   return (
-    <section aria-label="Which of these is for you" className="bg-white border-y border-line">
+    <section
+      aria-label="Which of these is for you"
+      data-feature="chooser"
+      className="bg-white border-y border-line"
+    >
       <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(28px,3.5vw,44px)]">
+        {/* Countless phrasing on purpose: /build's cards say "Four ways
+            to build" and this compares the three business MODELS — a
+            numbered kicker read as a contradiction (PROMPT_20 item 6). */}
         <p className="font-mono type-label text-label uppercase m-0 mb-5">
-          Three ways to build — which one is yours?
+          Wholesale, private label or DTC — which one is yours?
         </p>
         <div className="grid grid-cols-1 min-[900px]:grid-cols-3 gap-3">
           {PATHS.filter((p) => isLive(p.slug)).map((p) => {
@@ -106,6 +122,9 @@ export default function ServiceChooser({ current }: { current?: string }) {
             );
           })}
         </div>
+        {note && (
+          <p className="type-meta text-body mt-5 mb-0 max-w-[62ch]">{note}</p>
+        )}
       </div>
     </section>
   );

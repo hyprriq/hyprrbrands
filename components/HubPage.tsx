@@ -243,8 +243,12 @@ export default function HubPage({ engine }: { engine: Exclude<Engine, null> }) {
         </div>
       </section>
 
-      {/* 17 §1 — the chooser, on the hub whose children it compares */}
-      {engine === "build" && <ServiceChooser />}
+      {/* 17 §1 — the chooser, on the hub whose children it compares.
+          The note reconciles the fourth card with the three-model
+          comparison (PROMPT_20 item 6). */}
+      {engine === "build" && (
+        <ServiceChooser note="The fourth way to build — ecommerce website development — is infrastructure for an operation we also run rather than a business model of its own, and it pairs with whichever of the three you choose." />
+      )}
 
       {/* White: how this engine connects to the other two */}
       <section className="bg-white border-t border-line">

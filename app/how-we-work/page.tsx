@@ -67,7 +67,9 @@ const COMMITMENTS: [string, string][] = [
 const FEE_RULES = [
   "Every fee is agreed in writing before the engagement, never discovered inside it",
   ...(PUBLISH_SPLIT
-    ? ["30% at every band — a larger fee buys more work, never a better split"]
+    ? [
+        "30% at every band, stepping down over time — a larger fee buys more work, never a better split",
+      ]
     : []),
   "No fee on your capital, no fee on your ad spend, no markup on anything we buy for you",
   "Every material purchase is approved by you and recorded",
@@ -214,12 +216,14 @@ export default function Page() {
             {PUBLISH_SPLIT && (
               <p className="type-body text-on-field-body m-0">
                 <strong className="text-white">
-                  The split is 30%, at every band.
+                  The split is 30%, at every band — and it steps down over
+                  time, not with the fee.
                 </strong>{" "}
                 A larger build fee buys more work — more catalogue, more
                 channels, more people on the account. It never buys a better
                 split, and a smaller one never costs you a worse one. The
-                number is the same whichever band you are in.
+                number is the same whichever band you are in; the only thing
+                that lowers it is tenure, below.
               </p>
             )}
             <p className="type-lead text-white font-semibold m-0">

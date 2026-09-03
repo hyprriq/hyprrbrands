@@ -44,7 +44,7 @@ const FAQS: { q: string; a: ReactNode }[] = [
         A build fee agreed in writing before anything starts, and a {SPLIT}{" "}
         share of the margin the business realises after goods actually sell.
         {PUBLISH_SPLIT &&
-          " The split is 30% at every band — a larger build fee buys more work, never a better split."}{" "}
+          " The split is 30% at every band, stepping down over time — a larger build fee buys more work, never a better split."}{" "}
         No fee is calculated on the capital you deploy or on your ad spend. A
         monthly minimum applies to operating engagements and is credited
         against the share. The full mechanic and a worked example are on the{" "}

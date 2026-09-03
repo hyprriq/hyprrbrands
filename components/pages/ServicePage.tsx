@@ -787,7 +787,11 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
                   It never stacks above the H1. */}
               <div className="min-[900px]:hidden mt-6 grid gap-4">
                 <AtAGlance data={data} />
-                {data.layout && <HeroFigure layout={data.layout} />}
+                {data.layout && (
+                  <div data-feature="hero-figure" data-layout={data.layout}>
+                    <HeroFigure layout={data.layout} />
+                  </div>
+                )}
               </div>
               {/* 18 B — one sentence stated early, under the answer */}
               {data.earlyLine && (
@@ -854,7 +858,11 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
                 shape, taught before a word is read (PROMPT_18). */}
             <div className="hidden min-[900px]:grid gap-4 flex-none w-[clamp(300px,30vw,400px)] mt-4 content-start">
               <AtAGlance data={data} />
-              {data.layout && <HeroFigure layout={data.layout} />}
+              {data.layout && (
+                <div data-feature="hero-figure" data-layout={data.layout}>
+                  <HeroFigure layout={data.layout} />
+                </div>
+              )}
             </div>
           </div>
           {/* PROMPT_19 — the hero photograph: real product, eager,
@@ -1279,49 +1287,21 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
             )}
             {/* Slot 5 · phase timeline (PHASE1_VISUAL_MAP): day ranges
                 in mono above a continuous rule, markers in the engine
-                colour, copy below. Vertical spine under 900px. */}
-            <div
-              className={
-                data.layout === "trading-loop" || data.layout === "cadence-desk"
-                  ? "hidden"
-                  : "hidden min-[900px]:grid grid-cols-3 mt-8"
-              }
-            >
+                colour, copy below; vertical spine under 900px. ONE DOM
+                copy (PROMPT_20 item 7): only the decorative rails are
+                per-breakpoint — the phase copy itself renders once. */}
+            {data.layout !== "trading-loop" &&
+              data.layout !== "cadence-desk" && (
+            <div className="grid min-[900px]:grid-cols-3 mt-7 min-[900px]:mt-8">
               {data.phases.map((ph, i) => (
-                <div key={ph.days} className="pr-8 last:pr-0">
-                  <span className="font-mono type-label text-label tracking-[.08em] block mb-3">
-                    {ph.days}
-                  </span>
-                  {/* -mr-8 bridges the column gap so the rule reads as
-                      one continuous line */}
-                  <div
-                    className={`relative border-t-2 border-ink/15 ${
-                      i < data.phases.length - 1 ? "-mr-8" : ""
-                    }`}
-                  >
-                    <span
-                      className={`absolute -top-[7px] left-0 w-3 h-3 rounded-full ${e.dot} border border-ink/30`}
-                    />
-                  </div>
-                  <b className="block text-ink font-display type-h3 mt-5">
-                    {ph.title}
-                  </b>
-                  <p className="type-meta text-body mt-2 mb-0 max-w-[42ch]">
-                    {ph.body}
-                  </p>
-                </div>
-              ))}
-            </div>
-            <div
-              className={
-                data.layout === "trading-loop" || data.layout === "cadence-desk"
-                  ? "hidden"
-                  : "min-[900px]:hidden grid grid-cols-[16px_1fr] gap-x-4 mt-7"
-              }
-            >
-              {data.phases.map((ph, i) => (
-                <div key={ph.days} className="contents">
-                  <div className="relative flex justify-center">
+                <div
+                  key={ph.days}
+                  className={`grid grid-cols-[16px_1fr] gap-x-4 min-[900px]:block min-[900px]:pr-8 min-[900px]:last:pr-0 ${
+                    i < data.phases.length - 1 ? "pb-7 min-[900px]:pb-0" : ""
+                  }`}
+                >
+                  {/* mobile rail */}
+                  <div className="relative flex justify-center min-[900px]:hidden">
                     <span
                       className={`w-3 h-3 rounded-full ${e.dot} border border-ink/30 mt-1 flex-none`}
                     />
@@ -1329,18 +1309,32 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
                       <span className="absolute top-5 bottom-0 w-[2px] bg-ink/15" />
                     )}
                   </div>
-                  <div className={i < data.phases.length - 1 ? "pb-7" : ""}>
-                    <span className="font-mono type-label text-label tracking-[.08em] block">
+                  <div>
+                    <span className="font-mono type-label text-label tracking-[.08em] block min-[900px]:mb-3">
                       {ph.days}
                     </span>
-                    <b className="block text-ink font-display type-h3 mt-1.5">
+                    {/* desktop rule — -mr-8 bridges the column gap so
+                        it reads as one continuous line */}
+                    <div
+                      className={`relative border-t-2 border-ink/15 hidden min-[900px]:block ${
+                        i < data.phases.length - 1 ? "-mr-8" : ""
+                      }`}
+                    >
+                      <span
+                        className={`absolute -top-[7px] left-0 w-3 h-3 rounded-full ${e.dot} border border-ink/30`}
+                      />
+                    </div>
+                    <b className="block text-ink font-display type-h3 mt-1.5 min-[900px]:mt-5">
                       {ph.title}
                     </b>
-                    <p className="type-meta text-body mt-2 mb-0">{ph.body}</p>
+                    <p className="type-meta text-body mt-2 mb-0 min-[900px]:max-w-[42ch]">
+                      {ph.body}
+                    </p>
                   </div>
                 </div>
               ))}
             </div>
+            )}
             <div className="mt-7">
               <div className="font-mono type-label text-label tracking-[.08em] mb-3.5">
                 {data.hwwTitle}
@@ -1627,7 +1621,10 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
       <section className="bg-bone">
         <div className={`${CONTAINER} py-[clamp(40px,5vw,64px)]`}>
           {data.nextStep && (
-            <div className="mb-[clamp(28px,4vw,44px)] max-w-[62ch]">
+            <div
+              data-feature="next-step"
+              className="mb-[clamp(28px,4vw,44px)] max-w-[62ch]"
+            >
               <p className="font-mono type-label text-label uppercase m-0 mb-3 flex items-center gap-2.5">
                 <span
                   className={`w-2.5 h-2.5 rounded-full ${ENGINE_META[data.nextStep.engine].dot}`}

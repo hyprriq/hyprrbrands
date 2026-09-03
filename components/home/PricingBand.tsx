@@ -18,7 +18,9 @@ export default function PricingBand() {
           <p className="type-body text-body m-0 max-w-[52ch]">
             A build fee agreed before anything starts, and {SPLIT} of the
             margin the business realises after goods actually sell.
-            {PUBLISH_SPLIT && " The split is 30% at every band."} No fee on
+            {PUBLISH_SPLIT &&
+              " The split is 30% at every band, and it steps down over time."}{" "}
+            No fee on
             the capital you deploy. No fee on your ad spend.
           </p>
         </div>

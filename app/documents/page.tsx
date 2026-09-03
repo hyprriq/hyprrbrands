@@ -90,9 +90,23 @@ export default function Page() {
             gate, no call required.
           </p>
           <p className="type-body text-body mt-4 mb-0 max-w-[58ch]">
-            Both samples are illustrative and labelled as such. Firms that
-            want your money rarely show you the document that says
-            &ldquo;do not buy&rdquo; — that is exactly why these two do.
+            Both samples are illustrative and labelled as such — invented
+            data, real reasoning, the same format a client receives.
+          </p>
+        </div>
+      </section>
+
+      {/* The Petrol band framing the document room (NEXT.md chroma
+          ruling) — the page's own argument promoted, the same trade
+          the service pages' rule cards make. */}
+      <section className="bg-field text-white">
+        <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(44px,6vw,76px)]">
+          <p className="font-display type-h2 text-white m-0 max-w-[24ch] text-balance">
+            Firms that want your money rarely show you the document that
+            says do not buy.
+          </p>
+          <p className="type-meta text-on-field-body mt-4 mb-0 max-w-[62ch]">
+            That is exactly why both samples below end in a No.
           </p>
         </div>
       </section>

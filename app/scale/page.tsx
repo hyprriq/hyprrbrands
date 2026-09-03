@@ -187,6 +187,42 @@ export default function Page() {
         </div>
       </section>
 
+      {/* PROMPT_20 item 8 — the chain's last hop as a proper block:
+          Build → Grow → Scale → Operate closes here, not mid-paragraph. */}
+      <section className="bg-bone">
+        <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(36px,4.5vw,56px)]">
+          <div data-feature="next-step" className="max-w-[62ch]">
+            <p className="font-mono type-label text-label uppercase m-0 mb-3 flex items-center gap-2.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-operate" />
+              What comes next
+            </p>
+            <h2 className="font-display type-h3 text-ink m-0 mb-3">
+              Scale is absorbed by the desk, or it unwinds.
+            </h2>
+            <p className="type-body text-body m-0 mb-4">
+              Every released constraint lands as volume on the operation —
+              more purchase orders, more cover to hold, more cases with
+              clocks. The daily desk is what keeps the result, and its
+              reporting is what finds the next constraint.
+            </p>
+            <div className="flex gap-[22px] flex-wrap">
+              <a
+                href="/ecommerce-operations"
+                className="text-ink hover:text-ink type-body font-semibold"
+              >
+                Ecommerce operations →
+              </a>
+              <a
+                href="/operate"
+                className="text-ink hover:text-ink type-body font-semibold"
+              >
+                The Operate engine →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Petrol: CTA */}
       <section className="bg-field text-white">
         <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(48px,6vw,80px)]">
