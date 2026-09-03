@@ -120,12 +120,12 @@ const data: ServicePageData = {
     {
       days: "Days 31–60",
       title: "Build",
-      body: "Templates, product data structure, checkout and payments. Integrations built one at a time against the inventory, so that when one breaks you know which one. The performance budget is checked at each merge, not at the end, because performance is close to unrecoverable if left — it is designed in, not optimised on afterwards. Your part is content and product data, which is almost always the thing that delays a build. By the end of this phase every template should be built and populated with real data rather than placeholder text.",
+      body: "Templates, product data structure, checkout and payments. Integrations built one at a time against the inventory. The performance budget is checked at each merge, not at the end, because it is unrecoverable if left.",
     },
     {
       days: "Days 61–90",
       title: "Test, launch, document",
-      body: "Migration rehearsed against real data with redirects mapped before launch — a rehearsal that is not run on the real catalogue is not a rehearsal. Accessibility and performance verified against the agreed numbers, not assessed by eye. Runbook and architecture note written, and a handover walkthrough with whoever will actually run it, which is often not the person who commissioned it. By day 90 you should own a store you can change without us, and a document that tells you how.",
+      body: "Migration rehearsed against real data with redirects mapped before launch. Accessibility and performance verified. Runbook and architecture note written. Handover walkthrough with whoever will run it.",
     },
   ],
   hwwTitle: "Build → operate · handover is a step, not the end",

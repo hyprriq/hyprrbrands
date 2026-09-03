@@ -15,15 +15,6 @@ import {
   Pic,
   SectionImages,
 } from "@/components/pages/ServiceImage";
-import {
-  CostBar,
-  DataArtefact,
-  DimensionDrawing,
-  ObjectBandSection,
-  Panel3,
-  StatRow,
-} from "@/components/pages/VisualSystem";
-import Scene from "@/components/pages/Scene";
 import { PUBLISH_SPLIT } from "@/lib/fees";
 import { breadcrumbLd, faqLd, serviceLd, webPageLd } from "@/lib/schema";
 import {
@@ -888,27 +879,6 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
         </div>
       </section>
 
-      {/* PROMPT_21 (rewritten) — the generated scene, when this page's
-          render has landed. Three layers; every readable word in the
-          DOM panels. */}
-      {data.scene && (
-        <Scene
-          src={data.scene.src}
-          alt={data.scene.alt}
-          archetype={data.scene.archetype}
-          band={data.scene.band}
-          panels={data.scene.panels}
-        />
-      )}
-
-      {/* PROMPT_21 archetype D — the cut-out object floating over
-          Petrol or Bone, overlapping the hero's bottom edge. Interim
-          hero visual until this page's archetype scene is generated
-          and approved. */}
-      {data.objectBands
-        ?.filter((b) => b.position === "hero")
-        .map((b, i) => <ObjectBandSection key={`ob-h${i}`} band={b} />)}
-
       {/* 18 C — two explicit paths from the hero */}
       {data.heroPaths && (
         <section aria-label="Two ways in" className="bg-white border-t border-line">
@@ -973,32 +943,16 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
         </div>
       </details>
 
-      {/* 2 · Primary visual. PROMPT_21 §2: when the page carries a
-          native data artefact, it replaces the section-2 visual —
-          the structure from the source sheet, the pixels discarded. */}
-      {data.dataArtefact ? (
-        <section
-          className={
-            data.dataArtefact.ground === "field"
-              ? "bg-field text-white mt-[clamp(20px,3vw,0px)]"
-              : "bg-bone mt-[clamp(20px,3vw,0px)]"
-          }
-        >
-          <div className={`${CONTAINER} py-[clamp(36px,5vw,64px)]`}>
-            <DataArtefact data={data.dataArtefact} />
+      {/* 2 · Bone: primary visual */}
+      <section className="bg-bone mt-[clamp(20px,3vw,0px)]">
+        <div className={`${CONTAINER} py-[clamp(36px,5vw,64px)]`}>
+          <div className="font-mono type-label text-label normal-case tracking-[.08em] mb-[18px] flex gap-2.5 items-center">
+            <span className={`w-2.5 h-2.5 rounded-full ${e.dot}`} />
+            {data.visual.title}
           </div>
-        </section>
-      ) : (
-        <section className="bg-bone mt-[clamp(20px,3vw,0px)]">
-          <div className={`${CONTAINER} py-[clamp(36px,5vw,64px)]`}>
-            <div className="font-mono type-label text-label normal-case tracking-[.08em] mb-[18px] flex gap-2.5 items-center">
-              <span className={`w-2.5 h-2.5 rounded-full ${e.dot}`} />
-              {data.visual.title}
-            </div>
-            <Visual visual={data.visual} dot={e.dot} />
-          </div>
-        </section>
-      )}
+          <Visual visual={data.visual} dot={e.dot} />
+        </div>
+      </section>
 
       {/* 3 · White: what it actually involves */}
       <section id="involves" className={`bg-white ${ANCHOR}`}>
@@ -1033,18 +987,6 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
                       <MechanismDiagram data={data} />
                       <figcaption className="type-meta text-body max-w-[52ch]">
                         {data.diagram.caption}
-                      </figcaption>
-                    </figure>
-                  )}
-                  {/* PROMPT_21 §3.4 — the technical dimension drawing,
-                      beside the quality-spec paragraph: engineering,
-                      not marketing */}
-                  {i === 3 && data.dimensionDrawing && (
-                    <figure className="m-0 mt-2 grid gap-3 justify-items-start">
-                      <DimensionDrawing />
-                      <figcaption className="type-meta text-body max-w-[52ch]">
-                        The specification drawing a supplier quotes
-                        against — drawn before production, not after it.
                       </figcaption>
                     </figure>
                   )}
@@ -1192,25 +1134,6 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
       {/* PROMPT_19 — mid-page cluster on its Bone band (§0) */}
       {data.images?.midPage && <MidPageImages images={data.images.midPage} />}
 
-      {/* PROMPT_21 — mid object bands and the second data artefact */}
-      {data.objectBands
-        ?.filter((b) => b.position === "mid")
-        .map((b, i) => <ObjectBandSection key={`ob-m${i}`} band={b} />)}
-      {data.dataArtefactMid && (
-        <section
-          aria-label="Operating records"
-          className={
-            data.dataArtefactMid.ground === "field"
-              ? "bg-field text-white"
-              : "bg-bone"
-          }
-        >
-          <div className={`${CONTAINER} py-[clamp(36px,4.5vw,60px)]`}>
-            <DataArtefact data={data.dataArtefactMid} />
-          </div>
-        </section>
-      )}
-
       {/* 5 · White + Ink panel: who this is for */}
       <section id="for" className={`bg-white ${ANCHOR}`}>
         <div className={`${CONTAINER} ${SECTION_PAD}`}>
@@ -1292,11 +1215,6 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
       {/* PROMPT_19 — section cluster on its Petrol band (§0
           mitigation 2: the extra dark band each image page buys) */}
       {data.images?.section && <SectionImages images={data.images.section} />}
-
-      {/* PROMPT_21 — late object bands */}
-      {data.objectBands
-        ?.filter((b) => b.position === "late")
-        .map((b, i) => <ObjectBandSection key={`ob-l${i}`} band={b} />)}
 
       {/* Sections 6–9 share a wrapper so the mobile sticky CTA bar
           appears mid-page and leaves before the FAQ — pure CSS. */}
@@ -1535,16 +1453,6 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
                 </div>
               ))}
             </div>
-            {/* PROMPT_21 §3.2 — the four-stat card row */}
-            {data.statRow && (
-              <div className="mt-8">
-                <StatRow
-                  title={data.statRow.title}
-                  note={data.statRow.note}
-                  stats={data.statRow.stats}
-                />
-              </div>
-            )}
           </div>
         </section>
 
@@ -1643,13 +1551,6 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
                 </p>
               ))}
               <MoneyBox data={data} />
-              {/* PROMPT_21 §3.1 — where the sale price goes, at a
-                  glance. The best pattern in the upload. */}
-              {data.costBar && (
-                <div className="mt-4">
-                  <CostBar data={data.costBar} />
-                </div>
-              )}
             </div>
             <a
               href="/how-we-work#fees"
@@ -1686,15 +1587,6 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
           </div>
         </div>
       </section>
-
-      {/* PROMPT_21 §3.3 — the three-panel breakdown */}
-      {data.panel3 && (
-        <section className="bg-white border-t border-line">
-          <div className={`${CONTAINER} py-[clamp(32px,4vw,52px)]`}>
-            <Panel3 title={data.panel3.title} panels={data.panel3.panels} />
-          </div>
-        </section>
-      )}
 
       {/* Anchored subsection (e.g. /shopify-dtc#growth — the absorbed
           DTC growth content; chips and footer point here) */}

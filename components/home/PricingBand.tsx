@@ -1,5 +1,5 @@
 import { SPLIT, PUBLISH_SPLIT } from "@/lib/fees";
-import { CostBar } from "@/components/pages/VisualSystem";
+import { MarginCalcDiagram } from "@/components/pages/MechanismDiagram";
 
 /**
  * How we're paid — A.21. The last sentence is the commercial argument
@@ -24,26 +24,16 @@ export default function PricingBand() {
             the capital you deploy. No fee on your ad spend.
           </p>
         </div>
-        {/* PROMPT_21 §3.1 — the cost bar replaces the margin-calc
-            diagram: the same unit economics, read in one glance. The
-            fee is a share of the Lime segment only. */}
-        <div className="grid gap-3">
-          <CostBar
-            data={{
-              title: "Where one unit's sale price goes",
-              total: "$30.00 sale",
-              segments: [
-                { label: "Landed cost", value: "$21.00", share: 70 },
-                { label: "Marketplace fees", value: "$4.50", share: 15 },
-                { label: "Storage & returns", value: "$1.20", share: 4 },
-                { label: "Advertising", value: "$1.50", share: 5 },
-                { label: "Margin", value: "$1.80", share: 6, retained: true },
-              ],
-              footnote:
-                "Arbitrary numbers demonstrating the read — the fee is a share of the margin segment only, after goods sell, never of the capital you deploy.",
-            }}
-          />
-        </div>
+        {/* The margin-calculation diagram (PHASE1_VISUAL_MAP) — fills
+            the room PROMPT_12's fee-table removal left in this strip,
+            and mirrors the worked example at /how-we-work#fees. */}
+        <figure className="m-0 grid gap-3 justify-items-start">
+          <MarginCalcDiagram />
+          <figcaption className="type-meta text-body max-w-[46ch]">
+            The share is calculated on realised margin — after goods
+            sell, never on the capital you deploy.
+          </figcaption>
+        </figure>
         <div className="flex justify-start gap-3.5 flex-wrap">
           <a
             href="/how-we-work#fees"

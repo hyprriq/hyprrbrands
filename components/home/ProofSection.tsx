@@ -1,6 +1,5 @@
 import Reveal from "./Reveal";
 import { isLive } from "@/lib/site-map";
-import { DataArtefact } from "@/components/pages/VisualSystem";
 
 /**
  * Proof before promises — A.18. Seven checkable things (numbers
@@ -50,39 +49,6 @@ export default function ProofSection() {
               ? "Read the documents →"
               : "See the operating model →"}
           </a>
-        </Reveal>
-        {/* PROMPT_21 §2 — three lines from the buying model, one of
-            them refused. Publishing the refusal is the one asset no
-            competitor copies without publishing their own buying
-            decisions. */}
-        <Reveal className="mt-[clamp(28px,4vw,44px)]">
-          <DataArtefact
-            data={{
-              title: "The buying decision · three lines from the model",
-              ground: "field",
-              cols: ["COGS", "Buy box", "Profit / unit", "ROI"],
-              rows: [
-                {
-                  name: "Climbing hardware — ascender",
-                  cells: ["$36.00", "$70.00", "$17.90", "49.7%"],
-                  order: "240 units",
-                },
-                {
-                  name: "Kitchen — slow cooker",
-                  cells: ["$37.00", "$89.00", "$21.28", "57.5%"],
-                  order: "60 units",
-                },
-                {
-                  name: "Garden — nursery pot, 8 inch",
-                  cells: ["$0.60", "$8.01", "$0.03", "4.8%"],
-                  note: "ROI 4.8% against a 20% floor",
-                },
-              ],
-              orderLabel: "Order",
-              footnote:
-                "Illustrative figures in the real model's structure — the refused row is the point, and nothing here is a claim about a live line.",
-            }}
-          />
         </Reveal>
       </div>
     </section>

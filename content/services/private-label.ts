@@ -48,6 +48,30 @@ const data: ServicePageData = {
 
   layout: "gated-project",
   chooser: true,
+  /* PROMPT_19 step 4 — this page proves the image pipeline first.
+     The block below activates when the owner's photos land in
+     public/images/_inbox/ (named private-label__<subject>-<variant>)
+     and `npm run images` has built them; until then nothing renders
+     and nothing reserves space. Alt text is the audit side's to
+     write — these are structural placeholders for the six slots in
+     VISUAL_PRODUCTION_PLAN, not copy.
+
+  images: {
+    hero: {
+      src: "/images/private-label/product-hero-white",
+      alt: "…",
+    },
+    midPage: [
+      { src: "/images/private-label/packaging-flatlay", alt: "…" },
+      { src: "/images/private-label/sample-vs-final", alt: "…" },
+      { src: "/images/private-label/product-in-use", alt: "…" },
+    ],
+    section: [
+      { src: "/images/private-label/listing-aplus-mockup", alt: "…", slot: "managed" },
+      { src: "/images/private-label/ad-unit", alt: "…", slot: "managed" },
+    ],
+  },
+  */
   earlyLine:
     "Most candidate products are rejected at research — a first month that ends in a written No is the process working, not failing.",
   sampleDoc: {
@@ -65,72 +89,6 @@ const data: ServicePageData = {
   },
   moneyNote:
     "If the research says do not buy, the build fee has still bought its deliverable: the verdict and the reasoning, in writing. You are paying for the decision, not for a launch happening regardless.",
-
-  objectBands: [
-    {
-      position: "hero",
-      ground: "field",
-      objects: [
-        {
-          src: "/images/private-label/stone-mat-trio",
-          alt: "Three-panel stone bath mat with curved water grooves, a private label product developed through this process",
-          specCard: { k: "Verdict", v: "Approve \u00b7 taken to launch" },
-          maxW: 640,
-        },
-      ],
-      caption:
-        "The stone mat this page's process describes: three panels, living hinges, water-routing grooves.",
-      note: "Concept render of the developed product, not photography.",
-    },
-    {
-      position: "mid",
-      ground: "bone",
-      objects: [
-        {
-          src: "/images/private-label/stone-mat-duo",
-          alt: "Two-panel variant of the stone bath mat with wave groove pattern",
-          maxW: 320,
-        },
-        {
-          src: "/images/private-label/stone-mat-chevron",
-          alt: "Three-panel stone bath mat variant with chevron groove pattern",
-          maxW: 280,
-        },
-        {
-          src: "/images/private-label/faucet-mat",
-          alt: "Stone faucet mat variant with wave grooves and a cut-out for the tap",
-          maxW: 340,
-        },
-      ],
-      caption:
-        "One mould logic, three variants \u2014 panel count, groove pattern and cut-out change; the hinge mechanism does not.",
-      note: "Concept renders.",
-    },
-    {
-      position: "late",
-      ground: "bone",
-      objects: [
-        {
-          src: "/images/private-label/grill-cover",
-          alt: "Private label grill cover photographed on white for its marketplace listing",
-          maxW: 330,
-        },
-        {
-          src: "/images/private-label/planter-bowl",
-          alt: "Private label concrete planter bowl photographed on white for its marketplace listing",
-          maxW: 330,
-        },
-        {
-          src: "/images/private-label/sink-caddy",
-          alt: "Stone sink caddy from the same private label range as the bath mats",
-          maxW: 360,
-        },
-      ],
-      caption:
-        "Products from private label ranges this desk has developed \u2014 listing photography and range variants.",
-    },
-  ],
-  dimensionDrawing: true,
 
   visual: {
     kind: "sequence",

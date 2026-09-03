@@ -60,22 +60,6 @@ const data: ServicePageData = {
     },
   ],
 
-  objectBands: [
-    {
-      position: "mid",
-      ground: "bone",
-      objects: [
-        {
-          src: "/images/shopify-dtc/hand-massager",
-          alt: "Compression hand massager sold direct to consumer through its own storefront",
-          maxW: 280,
-        },
-      ],
-      caption:
-        "A DTC product: sold from its own storefront, where the customer relationship and the data belong to the brand.",
-    },
-  ],
-
   visual: {
     kind: "journey",
     title: "The customer journey",
@@ -130,12 +114,12 @@ const data: ServicePageData = {
     {
       days: "Days 31–60",
       title: "Build and test",
-      body: "Storefront built, merchandising in, checkout configured, performance budget enforced at each merge rather than measured at the end. Conversion path tested end to end before any traffic is bought — including the parts nobody tests, like what a returning customer sees and what happens when a variant is out of stock. Email and lifecycle flows written. Creative produced for the acquisition channels. Your part is the offer and pricing sign-off, and the creative approvals. By the end of this phase the store should be transactable and unlaunched.",
+      body: "Storefront built, merchandising in, checkout configured, performance budget enforced. Conversion path tested end to end before traffic. Email and lifecycle flows written. Creative produced for the acquisition channels.",
     },
     {
       days: "Days 61–90",
       title: "Launch and read",
-      body: "Acquisition turns on at a deliberately small spend, and the first read is about the conversion path rather than the return — a poor return on a small spend is information; a poor return on a large one is a loss. Adjust, then scale what the arithmetic supports. Documentation and runbook are written during this period, not after, because a runbook written at handover is written from memory. Your part is the scale decision. By day 90 you should know your cost to acquire and whether the second purchase happens.",
+      body: "Acquisition turns on at a deliberately small spend, and the first read is about the conversion path rather than the return. Adjust, then scale what the arithmetic supports. Documentation and runbook written during this period, not after.",
     },
   ],
   hwwTitle: "Build → operate · handover is a step, not the end",

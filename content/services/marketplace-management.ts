@@ -67,55 +67,6 @@ const data: ServicePageData = {
     },
   ],
 
-  dataArtefactMid: {
-    title: "The reorder sweep \u00b7 stock at rest, read daily",
-    ground: "bone",
-    cols: ["On hand", "COGS / unit", "Inbound / unit", "State"],
-    rows: [
-      {
-        name: "Power tools \u2014 screwdriver set",
-        cells: ["75", "$28.29", "$3.31", "holding"],
-        order: "cover OK",
-      },
-      {
-        name: "Power tools \u2014 tape measure",
-        cells: ["48", "$9.82", "$3.31", "holding"],
-        order: "cover OK",
-      },
-      {
-        name: "Power tools \u2014 pop rivet tool",
-        cells: ["10", "$139.00", "$3.31", "low"],
-        order: "reorder raised",
-        tone: "crit",
-      },
-      {
-        name: "Power tools \u2014 snap knife lock",
-        cells: ["3", "$6.44", "$3.31", "critical"],
-        order: "reorder raised",
-        tone: "crit",
-        note: "found in the sweep \u2014 not in a stockout",
-      },
-      {
-        name: "Power tools \u2014 minibox level",
-        cells: ["40", "$4.55", "$3.31", "holding"],
-        order: "cover OK",
-      },
-    ],
-    orderLabel: "Action",
-    footnote:
-      "Illustrative rows in the reorder sheet's structure \u2014 the red rows are the sweep doing its job before a stockout does it instead.",
-  },
-  statRow: {
-    title: "What the sweep watches",
-    note: "The sweep's standing checklist \u2014 illustrative of the cadence, not a report from a live account.",
-    stats: [
-      { k: "Account health", v: "Daily", sub: "both marketplaces, every day" },
-      { k: "Policy changes", v: "Daily", sub: "found in the sweep, not the inbox" },
-      { k: "Cases", v: "Clocked", sub: "opened, worked, deadline tracked" },
-      { k: "Report", v: "Weekly", sub: "what was swept, found and closed" },
-    ],
-  },
-
   visual: {
     kind: "states",
     title: "Marketplace control room · operational states",
@@ -180,12 +131,12 @@ const data: ServicePageData = {
     {
       days: "Days 31–60",
       title: "Clear and correct",
-      body: "Backlog worked in risk order — policy and health before execution, always, because an account under enforcement does not benefit from better listings. Listings brought to current rules, which change more often than most sellers track. Cases opened where a resolution is available and worth pursuing, and explicitly not opened where the likely outcome is a worse metric. Your part is any decision that touches the account's standing. By the end of this phase every item on the month-one audit should be closed, in progress, or accepted with a written reason.",
+      body: "Backlog worked in risk order — policy and health before execution, always. Listings brought to current rules. Cases opened where a resolution is available and worth pursuing.",
     },
     {
       days: "Days 61–90",
       title: "Steady monitoring",
-      body: "Daily monitoring routine, weekly reporting, escalation path tested rather than documented and hoped for. You should by now have received at least one notification about something you did not need to act on — that is the system working, not noise. By day 90 the account should have no unknown risks, which is a different and more valuable state than having no problems. Problems are normal; unknown ones are what end accounts.",
+      body: "Daily monitoring routine, weekly reporting, escalation path tested. By day 90 the account should have no unknown risks — which is a different and more valuable state than having no problems.",
     },
   ],
   hwwTitle: "Permissioned access model · why credentials are never shared",

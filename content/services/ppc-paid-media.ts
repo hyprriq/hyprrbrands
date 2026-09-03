@@ -51,57 +51,6 @@ const data: ServicePageData = {
     body: "Inventory wins, every time. If a line is advertising efficiently and cover is falling toward a stockout, spend on it is throttled or stopped — even when the campaign looks like the account's best performer. A stockout costs ranking, ranking is slow and expensive to rebuild, and a few days of foregone orders is cheaper than a quarter of recovery.",
   },
 
-  costBar: {
-    title: "Where the sale price goes, with advertising inside it",
-    total: "$30.00 sale",
-    segments: [
-      { label: "Landed cost", value: "$21.00", share: 70 },
-      { label: "Marketplace fees", value: "$4.50", share: 15 },
-      { label: "Storage & returns", value: "$1.20", share: 4 },
-      { label: "Advertising", value: "$1.50", share: 5 },
-      { label: "Margin", value: "$1.80", share: 6, retained: true },
-    ],
-    footnote:
-      "Arbitrary numbers demonstrating the read. Advertising is one segment of the unit \u2014 which is why it is judged against the margin segment beside it, not on its own ratio.",
-  },
-  statRow: {
-    title: "The worked test, in numbers",
-    note:
-      "Illustrative planning inputs for the worked test \u2014 not a performance claim, and not a promise about any account.",
-    stats: [
-      { k: "CPM", v: "$13.48", sub: "assumed media cost per thousand" },
-      { k: "CPC", v: "$0.78", sub: "assumed cost per click" },
-      { k: "CVR", v: "2.6%", sub: "assumed landing conversion" },
-      { k: "CPA", v: "$29.99", sub: "what those three imply per sale" },
-    ],
-  },
-  panel3: {
-    title: "The test that decides it",
-    panels: [
-      {
-        kicker: "Breakeven",
-        items: [
-          "Contribution margin is the maximum cost per sale",
-          "Everything under it is yours, not the platform's",
-        ],
-      },
-      {
-        kicker: "The test",
-        items: [
-          "Small budget, one week, arithmetic first",
-          "Creative tested where conversion is the read",
-        ],
-      },
-      {
-        kicker: "The verdict",
-        items: [
-          "The margin carries the ad cost, or the campaign does not run",
-          "No creative fixes arithmetic",
-        ],
-      },
-    ],
-  },
-
   visual: {
     kind: "stack",
     title: "The two-way stack",
@@ -155,12 +104,12 @@ const data: ServicePageData = {
     {
       days: "Days 31–60",
       title: "Restructure and cap",
-      body: "Campaign structure rebuilt around the catalogue. Bids reset against margin floors. Budgets capped by inventory cover per line — a campaign cannot spend past the stock behind it, which is the single control most accounts are missing. Weekly search term harvest and negation begins. Spend approval process agreed with you, including who can raise a budget and by how much without a conversation. By the end of this phase spend should be flat or lower while contribution holds — the restructure is working when nothing looks like it happened except the wasted spend.",
+      body: "Campaign structure rebuilt around the catalogue. Bids reset against margin floors. Budgets capped by inventory cover per line. Weekly search term harvest and negation begins. Spend approval process agreed with you.",
     },
     {
       days: "Days 61–90",
       title: "Test and report the stack",
-      body: "Creative testing where conversion is measurable, not everywhere. The full-stack report replaces the ACoS report: margin per line, cover, buy box share and listing conversion beside the ad numbers, because four of those five are what actually decides whether a bid change worked. Your part is reading it that way — the first month of the new report usually changes which lines you think are working. By day 90 you should be making advertising decisions against margin and cover rather than against a ratio.",
+      body: "Creative testing where conversion is measurable. The full-stack report replaces the ACoS report. By day 90 you should be reading advertising decisions against margin and cover rather than against a ratio.",
     },
   ],
   hwwTitle: "Why ACoS alone is a poor measure",

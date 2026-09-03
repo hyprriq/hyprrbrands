@@ -20,7 +20,6 @@ import RuleBand from "@/components/home/RuleBand";
 import PricingBand from "@/components/home/PricingBand";
 import CtaSection from "@/components/home/CtaSection";
 import SiteFooter from "@/components/home/SiteFooter";
-import { ObjectBandSection } from "@/components/pages/VisualSystem";
 
 export default function Home() {
   return (
@@ -39,34 +38,6 @@ export default function Home() {
       <main id="main" tabIndex={-1}>
         <Hero />
         <Channels />
-        {/* PROMPT_21 — real products from the operation, floated over
-            the channel band's edge (§7.3 dressing in the component) */}
-        <ObjectBandSection
-          band={{
-            position: "mid",
-            ground: "bone",
-            objects: [
-              {
-                src: "/images/private-label/grill-cover",
-                alt: "Private label grill cover developed and listed through the Hyprr build process",
-                maxW: 320,
-              },
-              {
-                src: "/images/private-label/planter-bowl",
-                alt: "Private label concrete planter bowl photographed for its marketplace listing",
-                maxW: 320,
-              },
-              {
-                src: "/images/wholesale-ecommerce/pipe-cutter",
-                alt: "Cordless pipe cutter from a sourced tool brand in the wholesale catalogue",
-                maxW: 360,
-                specCard: { k: "Sourced line", v: "Bought on approval, resold in your account" },
-              },
-            ],
-            caption:
-              "Real products from the operation — private label goods the build process developed, beside sourced wholesale lines.",
-          }}
-        />
         <ThreeEngines />
         <SystemScroll />
         <CommercePaths />

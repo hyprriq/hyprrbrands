@@ -113,12 +113,12 @@ const data: ServicePageData = {
     {
       days: "Days 31–60",
       title: "First loop",
-      body: "Highest-leverage listings rebuilt, conversion measured before traffic is bought. Buy box position addressed where price or fulfilment is losing it. Backend terms and attributes corrected — the unglamorous work that moves filter visibility. You approve any change that alters price or fulfilment method, because both change your economics and neither is ours to decide. By the end of this phase the rebuilt listings should be converting measurably better than they did, on the same traffic — if conversion has not moved, buying traffic against them is the wrong next step and we will say so.",
+      body: "Highest-leverage listings rebuilt, conversion measured before traffic is bought. Buy box position addressed where price or fulfilment is losing it. Backend terms and attributes corrected — the unglamorous work that moves filter visibility.",
     },
     {
       days: "Days 61–90",
       title: "Expand and repeat",
-      body: "Second loop with the constraint from the first released. Channel expansion where the catalogue supports it, built to each marketplace's rules rather than copied across. Weekly cadence established, monthly written next decision. Your part is the expansion decision — whether a second marketplace is worth the working capital it will tie up, which is a cash question before it is a growth one. By day 90 the loop should be running without prompting and you should know which lines are carrying the catalogue and which are being carried.",
+      body: "Second loop with the constraint from the first released. Channel expansion where the catalogue supports it, built to each marketplace's rules. Weekly cadence established, monthly written next decision.",
     },
   ],
   hwwTitle: "The loop, run weekly",
