@@ -27,59 +27,46 @@ five distinct hero figures. The chooser on four pages.
 
 ---
 
-## 1 · `PROMPT_21_REAL_ASSETS.md` + the phase-copy drop — **send together**
+## 1 · `PROMPT_21_VISUAL_SYSTEM.md` + the phase-copy drop — **send together**
 
-The owner uploaded 87MB to `public/images/_inbox/`. **Read `docs/ASSET_AUDIT_AND_PLACEMENT.md`
-first.** It is a portfolio, not a photo folder, and it is better than most of what the twelve
-competitor sites run.
+The owner uploaded raw visual material to `public/images/_inbox/`. **It is source, not deliverable.**
+Read `docs/VISUAL_EXTRACTION_PLAN.md` first — it is the design read behind the ticket.
 
-**The finding that outranks every image:** three assets carry *"EcommerceNinjaa · 15 years in
-ecommerce, own Amazon + Shopify stores since 2011"*, and one carries *"my own Shopify store."* The
-live site says *"We are new."* **Both are true and the site tells only one.** The client review's
-worst finding — confident claims with zero evidence, could be one person — is answered by a fact
-already owned. §1 of the ticket is that paragraph, and it is the highest-value change available.
+> **Any brand name, watermark, footer or attribution in those files belongs to unrelated work and
+> does not reach this site in any form.** Not kept, not credited, not reframed. The copy written
+> around those images is also out of scope.
 
-**What arrived:** an 18-page product-development case study **already branded HYPRR BRANDS**, with a
-go/no-go decision log and ten embedded renders — the verdict `/private-label` claims to produce and
-has never shown. Four masked wholesale analytics sheets **with blank ORDER cells on the lines not
-worth buying** — the rarest asset type measured across the twelve competitors, and *"we do not buy
-anything we cannot defend"* as evidence rather than claim. Four finished dropship case studies with
-five slides each. Seven Shopify store mockups of a real store. Three PDFs.
+**The rule that decides everything: a screenshot placed on a page is a screenshot forever.** It
+blurs on retina, its text is unselectable and uncrawlable, it breaks at 375px, and it carries
+whatever was in the original frame. **So almost nothing here is cropped and placed.**
 
-**Nothing ships raw** — §2 is six editing operations: kill the EcommerceNinjaa branding while
-keeping the provenance, recolour to the palette without touching data, background-remove to
-transparent PNG, crop out spreadsheet chrome, extract PL renders at native resolution rather than
-screenshotting, then through the existing pipeline.
+Four treatments, one of which ships as a photograph:
 
-**This unblocks four things at once:** proof, `/about`'s missing credential, `/documents` going from
-two samples to five real documents, and `/insights` — **four articles are already written** in the
-dropship case notes, which is why that route stops being blocked on keyword measurement.
+- **Product objects** — cut out to transparent PNG. Ten renders extracted from the PL PDF at native
+  resolution plus the product shots. A cut-out object can overlap a band edge, sit half on Petrol,
+  take a spec card on its corner. **That is the difference between the owner's reference and a stock
+  image**, and it costs one background removal.
+- **Data structures** — **rebuilt native.** The profitability sheet's value is its columns and its
+  **blank `Order` cells**, not its pixels. A real HTML table where two rows visibly say *not bought*
+  argues better than any sentence on the site, and no competitor can copy it without publishing
+  their own buying decisions.
+- **Layout patterns** — **rebuilt as components.** `<CostBar>` is the best find in the folder: one
+  segmented bar showing where a unit's money goes, reusable for landed cost, build fees, marketplace
+  take. Plus `<StatRow>`, `<Panel3>`, and a dimension drawing as inline SVG.
+- **Whole screens** — kept as images inside `<BrowserFrame>`, with `<AnnotatedCrop>` corner chips.
+  **One frame component serves every screenshot this site will ever show.**
 
-Also queued with it: **`docs/content/phase-copy-depth.md`** — sixteen expanded phase bodies for the
-eight non-flagship service pages. Measured first: 30 bodies, mean 42 words, 29 of 30 under 100.
-Not padding — every original sentence survives; what was added is *what the client does* and *what
-done looks like*, which every body was missing.
+**Six of the eight items are reusable components.** That is the whole reason for doing it this way:
+the folder should produce a **visual system**, not eighteen one-time images.
 
----
+Excluded: the AI-generated lifestyle frames (they read as generated, and the brand guidelines rule
+that out), the working files, the scripts, the case notes, the MP4, and all three PDFs as documents
+— only the renders inside them are extracted.
 
-## 1 · Phase copy depth — `docs/content/phase-copy-depth.md` · **ready to transcribe**
-
-Sixteen expanded phase bodies for the **eight non-flagship service pages**. Wholesale and private
-label are untouched — they already average 65 and 69.
-
-**Measured before writing:** 30 phase bodies, mean 42 words, min 22, max 107, 29 of 30 under 100.
-Within the eight, Days 0–30 runs 40–57 and is mostly fine; **phases two and three run 22–37 and are
-where the thinness actually is.** `/shopify-management` Days 61–90 at 22 words is the thinnest body
-on the site.
-
-**Not padding — every original sentence survives.** Each body was missing the same two things and
-those are what the expansion adds: **what the client does in that phase**, and **what "done" looks
-like**. A timeline that never says what the client does reads as a description of someone else's
-work, and a phase that ends without a checkable state cannot be verified by the reader.
-
-Expanded bodies measure min 72, max 107, **mean 89** — short of the 100–150 spec on purpose. Where
-a phase answered both questions in 80 words it was left at 80. **The target is the two questions
-answered, not a word count hit** — which is the same discipline the metadata pass should have had.
+**Queued with it:** `docs/content/phase-copy-depth.md` — sixteen expanded phase bodies for the eight
+non-flagship service pages. Measured first: 30 bodies, mean 42 words, 29 of 30 under 100. Not
+padding — every original sentence survives; what was added is *what the client does* and *what done
+looks like*.
 
 ---
 
