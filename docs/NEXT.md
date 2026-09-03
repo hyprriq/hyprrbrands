@@ -18,44 +18,53 @@
 
 ## SHIPPED
 
-`cd92930` PROMPT_16 · `752e848` PROMPT_17 + 18 as one refactor. **25 routes.** All gates green in CI,
-production verified.
+`cd92930` PROMPT_16 · `752e848` PROMPT_17 + 18 · **`3fcb402` PROMPT_21 v2 + the phase-copy depth
+pass.** 25 routes. CI run #9 green on all six gates, production verified with cache headers checked
+outside the rollout window.
 
-`/documents` is live with real content — a sample verdict sheet ending in Reject and a sample
-landed-cost model ending in Do not buy. `/scale` and `/where-we-work` live. Five archetypes with
-five distinct hero figures. The chooser on four pages.
+`/documents` live with a sample verdict sheet ending in Reject and a landed-cost model ending in
+Do not buy. `/scale` and `/where-we-work` live. Five archetypes, five distinct hero figures.
+
+**The scene system is in, built empty.** `<Scene>` + `<Panel>` composing on all five bands, panels
+in the reserved right third, a designed fallback plane when no render exists, `scene` optional so
+all 25 routes render unchanged. All six Layer-2 components wired: `<DataArtefact>` on five surfaces,
+`<CostBar>` on five fee surfaces, `<StatRow>` ×3, `<Panel3>` ×2, the mat dimension drawing as inline
+SVG. Ten cut-out objects extracted from the PDF's raw XObject streams and dressed. The scene-alt
+digit gate live with its negative path proven.
+
+**The chroma prediction held.** `/private-label` **0.0208** with all seven images in the number —
+the first real post-image measurement — and `/wholesale-ecommerce` rose **0.0193 → 0.0208**.
+`PROMPT_19 §0` feared images would push service pages *under* 0.018; `VISUAL_DIRECTION_v2 §6`
+predicted saturated visuals on accent bands would *raise* it. **It rose. The band logic is right and
+the remaining pages can proceed without a chroma review.**
+
+**`<BrowserFrame>` and `<AnnotatedCrop>` are built but render nowhere** — every store-capture region
+carries the unrelated brand, a stock face, or banned urgency patterns. **That was the right call**
+(standing rule 7) and it is now an owner input, not a defect: they light up on the first clean
+capture.
 
 ---
 
-## 1 · `PROMPT_21_VISUAL_SYSTEM.md` + the phase-copy drop — **send together**
+## 1 · `PROMPT_22_SRCSET_TRUTH.md` — small, and it is softening three heroes
 
-**The visual direction changed. Read `docs/VISUAL_DIRECTION_v2.md` first.**
-`docs/VISUAL_EXTRACTION_PLAN.md` is superseded.
+Found in the repo at `3fcb402`, not in production, so the cache rule does not apply.
 
-The site's visuals are **generated 3D-style scenes**, not photographs and not cropped screenshots.
-The owner's uploads are composite inputs to those scenes, not the visuals themselves.
+`WIDTHS = [640, 1280, 1920]` is hardcoded in `Scene.tsx:27` and `VisualSystem.tsx:24` and every
+image gets all three `w` descriptors. Sharp correctly refuses to upscale, so for a narrow source the
+"1920" file is a byte copy — but the descriptor still claims 1920. Three files are byte-identical at
+all three widths; three more at 1280 and 1920.
 
-**The rule that decides everything: three layers, and the image model never writes a word.**
+`sizes="(min-width: 900px) 62vw"` on a 1440 viewport at DPR 2 asks for ~1786px, so the browser picks
+the 1920 candidate: `/private-label` gets a **1217px** file, `/shopify-dtc` a **591px** file,
+`/wholesale-ecommerce` a **634px** file. **No bandwidth cost, so no performance gate sees it — the
+whole cost is a soft hero on three of the most important pages.**
 
-```
-Layer 3 · BAND      CSS. Petrol / Bone / accent ground. The scene overlaps its edge.
-Layer 2 · PANELS    DOM. Translucent cards, figures, labels, connectors. Real text.
-Layer 1 · SCENE     Generated image. Environment and objects. No readable text in the pixels.
-```
+The truth is already in `lib/image-manifest.json`. Fix is a `variants` array from the pipeline, both
+components building srcset from it, and **one new gate rule: fail a `w` descriptor wider than the
+real file.** The three narrow files are fine at native size and must not be re-sourced or upscaled —
+the bug is the claim, not the pixel count.
 
-Every number a visitor reads lives in the DOM. That keeps the hero indexable, keeps figures
-editable in one line instead of one re-render, keeps panels sharp at every density, and removes the
-one tell that makes a generated image look generated.
-
-**This ticket is the container layer and none of it is blocked on the images existing.** Build
-`<Scene>` and `<Panel>` empty; the scenes drop in behind them one page at a time. The six
-components from the previous version — `<CostBar>`, `<StatRow>`, `<Panel3>`, `<DataArtefact>`,
-`<BrowserFrame>`, `<AnnotatedCrop>` — carry forward unchanged, because they *are* Layer 2.
-
-`<DataArtefact>` is still the strongest asset on the site: a real table with blank `Order` cells on
-two rows, because we declined to buy them. No render argues as well as that.
-
-Ship it alongside `docs/content/phase-copy-depth.md`.
+---
 
 ## PROMPT_20 — closed, and two corrections to me
 
@@ -81,10 +90,13 @@ copy can no longer fail a structural check.
 
 ---
 
-## 2 · Content-depth pass — audit side
+## 2 · Content-depth pass — audit side, partly done
 
-Mine, not yours: phase copy at 30–65 words against the 100–150 spec · the chooser's capital lines ·
-`/scale` and `/where-we-work` bodies · the archetype-specific copy. Landing in `docs/content/`.
+**Phase copy shipped in `3fcb402`** (`content/phase-copy-depth.md`, mean 42 → 89 words). Still mine:
+the chooser's capital lines · `/scale` and `/where-we-work` bodies · the archetype-specific copy.
+Landing in `docs/content/`.
+
+## 3 · Scene generation — blocked on the owner, see below
 
 ---
 
@@ -96,7 +108,15 @@ Keyword Planner are both free.
 
 ---
 
-## Needed from the owner — none of it blocks the three tickets above
+## Needed from the owner
+
+**Two of these now block real work rather than sitting on a wish list.**
+
+| | Unblocks |
+|---|---|
+| **The five reference images into `public/images/_refs/`** — still empty, they exist only in chat | **scene generation. Nothing starts without them.** |
+| **A go / no-go on Kling spend** — 14 free credits against a ~50–80 generation job | scenes 5–21. Four style frames first, then judge |
+| **One clean store capture** — no unrelated brand, no stock face, no urgency banner | `<BrowserFrame>` and `<AnnotatedCrop>`, built and currently rendering nowhere |
 
 | | Unblocks |
 |---|---|

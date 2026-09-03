@@ -1,6 +1,6 @@
 # Hyprr Brands — project state
 
-**Written 3 Sep 2026 at commit `a7feaf0`.** This is the cold-start file. Read it first in a new
+**Written 3 Sep 2026, updated at commit `3fcb402`.** This is the cold-start file. Read it first in a new
 chat and you will not need the old transcript. It says what this is, what is built, what was
 decided and must not be re-argued, what is queued, what is blocked, what is being spent, and what
 is needed from the owner.
@@ -110,7 +110,9 @@ canvas. **Floors: ≥0.018 service pages, ≥0.030 homepage.** Service pages cur
 0.0193–0.0235, which is tight.
 
 `npm run images` runs the pipeline: `public/images/_inbox/<page>__<subject>-<variant>` → sharp →
-640/1280/1920 WebP, dimensions written to `lib/image-manifest.json` (currently `{}`, empty).
+640/1280/1920 WebP, dimensions written to `lib/image-manifest.json` (now holds ten entries).
+**The three widths are emitted unconditionally even when the source is narrower — see
+`PROMPT_22`.**
 
 ---
 
@@ -169,8 +171,9 @@ archetype-C scenes as the object on the surface.
 | `NEXT.md` | **the queue.** Always current. Start here. |
 | `PROJECT_STATE.md` | this file |
 | `VISUAL_DIRECTION_v2.md` | **current visual strategy.** Archetypes, style contract, page map, production route |
-| `PROMPT_21_VISUAL_SYSTEM.md` | **queued ticket** — `<Scene>`, `<Panel>` and the six overlay components |
-| `content/phase-copy-depth.md` | **written, not yet sent** — 16 expanded phase bodies, mean 42→89 words |
+| `PROMPT_21_VISUAL_SYSTEM.md` | **shipped `3fcb402`** — `<Scene>`, `<Panel>` and the six overlay components |
+| `PROMPT_22_SRCSET_TRUTH.md` | **queued** — lying `w` descriptors softening three heroes |
+| `content/phase-copy-depth.md` | **shipped `3fcb402`** — 16 expanded phase bodies, mean 42→89 words |
 | `PHASE2_PLAN.md` | the phase 2 page plan |
 | `PHASE1_METADATA_FINAL.md` | all 22 titles/metas, every count computed with `len()` |
 | `CLIENT_REVIEW_NEW_SELLER.md` | persona review — the proof problem, read this before writing copy |
@@ -186,12 +189,18 @@ archetype-C scenes as the object on the surface.
 
 ## 8 · The queue — what happens next
 
-**1 · `PROMPT_21_VISUAL_SYSTEM.md` + `content/phase-copy-depth.md` — send to dev together.**
-Not sent yet. **Nothing in it is blocked on images existing** — it is the container layer. Build
-`<Scene>` and `<Panel>` empty; scenes drop in behind them one page at a time.
+**PROMPT_21 v2 and the phase-copy pass shipped at `3fcb402`** — CI run #9 green, production
+verified. `<Scene>` + `<Panel>` are in, built empty, with all six Layer-2 components wired and ten
+cut-out objects live. The chroma prediction held: `/private-label` **0.0208** with seven images in
+the number, `/wholesale-ecommerce` **0.0193 → 0.0208**. Images *raise* chroma on accent bands, as
+`VISUAL_DIRECTION_v2 §6` predicted and against what `PROMPT_19 §0` feared.
 
-**2 · Content-depth pass (audit lane).** Phase copy at 30–65 words against a 100–150 spec · the
-chooser's capital lines · `/scale` and `/where-we-work` bodies · archetype-specific copy.
+**1 · `PROMPT_22_SRCSET_TRUTH.md`** — queued. Hardcoded `[640, 1280, 1920]` descriptors on files
+that are narrower than they claim, softening the `/private-label`, `/shopify-dtc` and
+`/wholesale-ecommerce` heroes. Costs no bandwidth, so no gate sees it. Fix plus a new gate rule.
+
+**2 · Content-depth pass (audit lane), partly done.** Phase copy shipped. Remaining: the chooser's
+capital lines · `/scale` and `/where-we-work` bodies · archetype-specific copy.
 
 **3 · Style-frame generation** — four images, on the owner's go. See §9.
 
@@ -216,6 +225,11 @@ unblocks this. Nothing else is stopping these pages.
   frames gets generated without a go.
 - **Owner action:** drop the five reference images into `public/images/_refs/` — they exist only in
   chat and cannot be passed to the generator as references.
+
+### Blocked on the owner — the frame components
+`<BrowserFrame>` and `<AnnotatedCrop>` are built and render nowhere. Every store capture in the
+uploads carries the unrelated brand, a stock face, or banned urgency patterns, so standing rule 7
+keeps them out. **One clean capture lights both components up.**
 
 ### Open copy bug
 `PROMPT_10_GEOGRAPHIC_SCOPE.md` — **16 files say "Amazon and Walmart" where Walmart has no UK
