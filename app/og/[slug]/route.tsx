@@ -4,18 +4,11 @@ import path from "node:path";
 import { OG_PAGES } from "@/lib/og-pages";
 
 /**
- * Share card — prompt 8 B1. One design, generated per page from its
- * own H1: Petrol ground, a 6px engine rule (all three engines for
- * non-engine pages), the H1 in Archivo ExtraBold, the wordmark and
- * the URL path. No stock imagery, no gradients, no generated faces.
+ * Share card — one design, generated per page from its own H1.
+ * v4 skin: petrol ground, citrus rule, Space Grotesk. No stock
+ * imagery, no gradients, no generated faces.
  */
 export const dynamic = "force-static";
-
-const ENGINE_COLOR = {
-  build: "#FFC84A",
-  grow: "#B8F34A",
-  operate: "#45D8C0",
-} as const;
 
 export function generateStaticParams() {
   return Object.keys(OG_PAGES).map((slug) => ({ slug }));
@@ -29,29 +22,12 @@ export async function GET(
   const page = OG_PAGES[slug];
   if (!page) return new Response("Not found", { status: 404 });
 
-  const [archivo, mono] = await Promise.all([
-    readFile(path.join(process.cwd(), "assets/fonts/Archivo-ExtraBold.ttf")),
+  const [grotesk, mono] = await Promise.all([
+    readFile(path.join(process.cwd(), "assets/fonts/SpaceGrotesk-Bold.ttf")),
     readFile(
       path.join(process.cwd(), "assets/fonts/JetBrainsMono-Regular.ttf")
     ),
   ]);
-
-  const rule = page.engine ? (
-    <div
-      style={{
-        width: "100%",
-        height: 6,
-        background: ENGINE_COLOR[page.engine],
-        display: "flex",
-      }}
-    />
-  ) : (
-    <div style={{ width: "100%", height: 6, display: "flex" }}>
-      <div style={{ flex: 1, background: ENGINE_COLOR.build }} />
-      <div style={{ flex: 1, background: ENGINE_COLOR.grow }} />
-      <div style={{ flex: 1, background: ENGINE_COLOR.operate }} />
-    </div>
-  );
 
   return new ImageResponse(
     (
@@ -61,10 +37,10 @@ export async function GET(
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          background: "#0A4E5C",
+          background: "#123F46",
         }}
       >
-        {rule}
+        <div style={{ width: "100%", height: 8, background: "#D7F04A" }} />
         <div
           style={{
             flex: 1,
@@ -76,12 +52,12 @@ export async function GET(
         >
           <div
             style={{
-              fontFamily: "Archivo",
-              fontSize: 72,
-              fontWeight: 800,
+              fontFamily: "Space Grotesk",
+              fontSize: 68,
+              fontWeight: 700,
               color: "#FFFFFF",
-              lineHeight: 1.05,
-              letterSpacing: "-0.02em",
+              lineHeight: 1.02,
+              letterSpacing: "-0.03em",
               maxWidth: 1040,
             }}
           >
@@ -98,20 +74,20 @@ export async function GET(
         >
           <div
             style={{
-              fontFamily: "Archivo",
+              fontFamily: "Space Grotesk",
               fontSize: 32,
-              fontWeight: 800,
+              fontWeight: 700,
               color: "#FFFFFF",
               letterSpacing: "-0.02em",
             }}
           >
-            hyprr brands
+            hyprr. brands
           </div>
           <div
             style={{
               fontFamily: "JetBrains Mono",
               fontSize: 24,
-              color: "#B6D6DC",
+              color: "#9FBCB9",
             }}
           >
             {page.path}
@@ -123,7 +99,7 @@ export async function GET(
       width: 1200,
       height: 630,
       fonts: [
-        { name: "Archivo", data: archivo, weight: 800, style: "normal" },
+        { name: "Space Grotesk", data: grotesk, weight: 700, style: "normal" },
         { name: "JetBrains Mono", data: mono, weight: 400, style: "normal" },
       ],
     }

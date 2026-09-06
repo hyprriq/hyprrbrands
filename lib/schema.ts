@@ -23,17 +23,13 @@ export function organizationLd() {
     "@id": ORG_ID,
     name: "Hyprr Brands",
     url: `${SITE_ORIGIN}/`,
+    logo: `${SITE_ORIGIN}/hyprr-brands-logo-transparent.png`,
     description:
-      "Ecommerce operations agency. Hyprr builds, grows and operates Amazon (US and UK), Walmart (US) and Shopify businesses on behalf of the people who own them. Clients are in the US, UK, Europe and the Middle East. The client owns the accounts, the inventory and the capital, and approves every material purchase.",
+      "Amazon and Walmart marketplace operations. Private label, wholesale, listing optimization and account management.",
     email: "hello@hyprrbrands.com",
-    // Mirrors /where-we-work — the page and the node must agree.
-    areaServed: [
-      "United States",
-      "United Kingdom",
-      "European Union",
-      "Middle East",
-      "Singapore",
-    ],
+    // v4 graph (docs/v4/hyprr-homepage-v3-4.html): US, UK, Gulf,
+    // Singapore. Walmart itself is US-only and the pages say so.
+    areaServed: ["US", "GB", "AE", "SG"],
   };
 }
 
@@ -85,6 +81,7 @@ export function serviceLd(service: {
   serviceType: string;
   path: string;
   description: string;
+  areaServed?: string[];
 }) {
   return {
     "@context": "https://schema.org",
@@ -95,9 +92,26 @@ export function serviceLd(service: {
     url: `${SITE_ORIGIN}${service.path}`,
     description: service.description,
     provider: { "@id": ORG_ID },
-    // Marketplaces are US and UK; client regions live on the
-    // Organization node.
-    areaServed: ["US", "GB"],
+    areaServed: service.areaServed ?? ["US", "GB", "AE", "SG"],
+  };
+}
+
+/** Person node — /about only (SEARCH_TERMS §8). Fields render
+ *  conditionally; publish only what is verified. */
+export function personLd(person: {
+  name: string;
+  jobTitle: string;
+  sameAs?: string[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${SITE_ORIGIN}/about#person`,
+    name: person.name,
+    jobTitle: person.jobTitle,
+    worksFor: { "@id": ORG_ID },
+    url: `${SITE_ORIGIN}/about`,
+    ...(person.sameAs && person.sameAs.length ? { sameAs: person.sameAs } : {}),
   };
 }
 
