@@ -23,7 +23,7 @@ export function organizationLd() {
     "@id": ORG_ID,
     name: "Hyprr Brands",
     url: `${SITE_ORIGIN}/`,
-    logo: `${SITE_ORIGIN}/hyprr-brands-logo-transparent.png`,
+    logo: `${SITE_ORIGIN}/brand/hyprr-logo-primary-1024.png`,
     description:
       "Amazon and Walmart marketplace operations. Private label, wholesale, listing optimization and account management.",
     email: "hello@hyprrbrands.com",

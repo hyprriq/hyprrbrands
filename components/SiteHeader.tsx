@@ -61,9 +61,9 @@ export default function SiteHeader() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             className="logo"
-            src="/hyprr-brands-logo-transparent.png"
+            src="/brand/hyprr-logo-primary.svg"
             alt="Hyprr Brands"
-            width={167}
+            width={140}
             height={34}
           />
         </a>

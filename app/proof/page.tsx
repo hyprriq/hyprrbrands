@@ -81,6 +81,7 @@ export default function Page() {
       {/* 02 · THE ARTEFACTS, ONE PER ROW */}
       <section className="buildband" style={{ paddingTop: 30 }} id="artefacts">
         <div className="wrap">
+          <h2 className="sr-only">The documents, one per row</h2>
           <div className="artrows">
             {/* Verdict sheet */}
             <div className="artrow" id="verdict-sheet">
@@ -288,6 +289,30 @@ export default function Page() {
                   <b>REQUIRED · BLANK UNTIL SIGNED</b>
                 </div>
               </div>
+            </div>
+
+            {/* One product family, two SKUs */}
+            <div className="artrow" id="product-family">
+              <div>
+                <span className="label-note">Product render</span>
+                <h3>One product family, two SKUs</h3>
+                <p className="cap">
+                  The dish mat and the faucet mat share the same stone and
+                  groove design — designed once, extended deliberately. This
+                  is what &ldquo;expand into new products&rdquo; looks like in
+                  practice.
+                </p>
+              </div>
+              <figure className="strip" style={{ margin: 0 }}>
+                <img
+                  src="/img/pl-family-1600.webp"
+                  width={1600}
+                  height={900}
+                  loading="lazy"
+                  decoding="async"
+                  alt="The dish mat and faucet mat, one product family sharing the same stone and groove design"
+                />
+              </figure>
             </div>
 
             {/* Product and packaging */}

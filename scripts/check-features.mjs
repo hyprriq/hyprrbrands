@@ -43,8 +43,9 @@ for (const id of ["growth", "walmart", "listings"]) {
     problems.push(`#${id} anchor missing on /amazon-walmart-management`);
 }
 
-// 3 · Snippet answers where SEARCH_TERMS places them.
+// 3 · Snippet answers where SEARCH_TERMS + ASSETS_HANDOFF place them.
 for (const p of [
+  "/amazon-private-label",
   "/amazon-wholesale-management",
   "/amazon-walmart-management",
   "/how-we-work",

@@ -75,6 +75,7 @@ export default function Page() {
             service you buy. The fee structure is at the bottom, in plain
             language, because that is the question you actually came with.
           </p>
+          <h2 className="sr-only">The five steps in full</h2>
           <div className="how-grid" style={{ marginTop: 30 }}>
             <ol className="method">
               <li>

@@ -37,6 +37,14 @@ export const metadata: Metadata = {
     "We build, operate and scale Amazon and Walmart businesses. You own the accounts, the stock and every buying decision. Book a call.",
   openGraph: { type: "website", siteName: "Hyprr Brands" },
   twitter: { card: "summary_large_image" },
+  icons: {
+    icon: [
+      { url: "/brand/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/brand/favicon-16.png", sizes: "16x16", type: "image/png" },
+    ],
+    shortcut: "/brand/favicon.ico",
+    apple: "/brand/hyprr-icon-petrol-180.png",
+  },
   // Vercel previews must never compete with the domain.
   ...(process.env.VERCEL_ENV && process.env.VERCEL_ENV !== "production"
     ? { robots: { index: false, follow: false } }

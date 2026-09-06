@@ -97,22 +97,28 @@ export default function Page() {
               </a>
             </div>
           </div>
-          <div className="product-visual">
-            <div className="packshot">
-              <div className="box">
-                KNOWN
-                <br />
-                LINES
-              </div>
-            </div>
-            <div className="artlabels">
-              <span>SUPPLIERS</span>
-              <span>CATALOGUE</span>
-              <span>BUYING</span>
-              <span>INVENTORY</span>
-              <span>REPLENISH</span>
-            </div>
-          </div>
+          <figure className="heroimg" style={{ margin: 0 }}>
+            <picture>
+              <source
+                media="(max-width: 760px)"
+                srcSet="/img/wh-catalogue-mobile-1080.webp"
+                type="image/webp"
+              />
+              <source srcSet="/img/wh-catalogue-1600.webp" type="image/webp" />
+              <img
+                src="/img/wh-catalogue-1600.png"
+                width={1600}
+                height={900}
+                fetchPriority="high"
+                decoding="async"
+                alt="A buying catalogue showing six supplier lines with landed cost, fees, margin and a buy or no decision on each"
+              />
+            </picture>
+            <figcaption>
+              Representative buying catalogue. Figures illustrate the model,
+              not a client account.
+            </figcaption>
+          </figure>
         </div>
       </section>
 
@@ -165,9 +171,9 @@ export default function Page() {
             </div>
           </div>
           <div className="snippet" style={{ marginTop: 28 }}>
-            <h3 style={{ marginBottom: 8 }}>
+            <h2 style={{ marginBottom: 8, fontSize: "clamp(20px,4vw,26px)" }}>
               What does an Amazon wholesale agency do?
-            </h3>
+            </h2>
             <p>
               It runs the wholesale operation on your behalf: supplier approval
               and terms, landed-cost modelling on every line, purchase orders

@@ -410,7 +410,7 @@ footer.site .cols b {
   font: 500 10.5px var(--font-mono-stack);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #6f767a;
+  color: #9aa2a4; /* 6.8:1 on ink — #6f767a measured 3.9:1 and failed AA */
   margin-bottom: 10px;
 }
 footer.site .cols a {
@@ -491,11 +491,27 @@ footer.site .base {
   top: -100px;
   background: rgba(102, 215, 208, 0.16);
 }
-.visual h3 {
+.visual .vh {
+  font-family: var(--font-display-stack);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin: 0;
   font-size: clamp(22px, 5vw, 32px);
   max-width: 380px;
   position: relative;
   color: #fff;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 .visual .caption {
   position: absolute;
@@ -1995,6 +2011,60 @@ details .a {
   letter-spacing: 0.06em;
   color: var(--muted);
   text-transform: uppercase;
+}
+
+/* ---- handoff imagery (6 Sep) ---- */
+.heroimg {
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  display: block;
+  min-width: 0;
+}
+.heroimg img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.heroimg figcaption {
+  font: 500 11px var(--font-mono-stack);
+  letter-spacing: 0.05em;
+  color: #9fbcb9;
+  margin-top: 10px;
+  text-transform: uppercase;
+}
+figure.strip {
+  margin: 34px 0 0;
+  padding: 0;
+  min-width: 0;
+}
+figure.strip img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--r-md);
+}
+figure.strip figcaption {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-top: 12px;
+  max-width: 66ch;
+}
+a.strip-link {
+  display: block;
+  margin-top: 14px;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  border: 1px solid #c6e3dc;
+  transition: border-color 180ms ease;
+}
+a.strip-link:hover {
+  border-color: #8ec9bd;
+}
+a.strip-link img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 /* ---- reduced motion ---- */

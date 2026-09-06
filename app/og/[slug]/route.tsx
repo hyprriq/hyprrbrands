@@ -4,14 +4,27 @@ import path from "node:path";
 import { OG_PAGES } from "@/lib/og-pages";
 
 /**
- * Share card — one design, generated per page from its own H1.
- * v4 skin: petrol ground, citrus rule, Space Grotesk. No stock
- * imagery, no gradients, no generated faces.
+ * Share card — replicates the 6 Sep handoff card design so the
+ * dynamic route can ship instead of the static PNG folder: petrol
+ * gradient ground, mono eyebrow, Space Grotesk headline (final
+ * sentence in citrus, citrus dash under it), logo bottom left,
+ * "Amazon · Walmart" bottom right. PNG out, per the handoff.
  */
 export const dynamic = "force-static";
 
 export function generateStaticParams() {
   return Object.keys(OG_PAGES).map((slug) => ({ slug }));
+}
+
+/** Last sentence renders citrus, everything before it white —
+ *  matching og-home / og-private-label in the handoff. */
+function splitHeadline(title: string): { white: string; citrus: string } {
+  const sentences = title.match(/[^.!?]+[.!?]+(?:\s|$)/g)?.map((s) => s.trim());
+  if (!sentences || sentences.length < 2) return { white: title, citrus: "" };
+  return {
+    white: sentences.slice(0, -1).join(" "),
+    citrus: sentences[sentences.length - 1],
+  };
 }
 
 export async function GET(
@@ -22,12 +35,17 @@ export async function GET(
   const page = OG_PAGES[slug];
   if (!page) return new Response("Not found", { status: 404 });
 
-  const [grotesk, mono] = await Promise.all([
+  const [grotesk, mono, logo] = await Promise.all([
     readFile(path.join(process.cwd(), "assets/fonts/SpaceGrotesk-Bold.ttf")),
     readFile(
       path.join(process.cwd(), "assets/fonts/JetBrainsMono-Regular.ttf")
     ),
+    readFile(
+      path.join(process.cwd(), "public/brand/hyprr-logo-on-petrol-512.png")
+    ),
   ]);
+  const logoSrc = `data:image/png;base64,${logo.toString("base64")}`;
+  const { white, citrus } = splitHeadline(page.title);
 
   return new ImageResponse(
     (
@@ -37,52 +55,69 @@ export async function GET(
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          background: "#123F46",
+          justifyContent: "space-between",
+          background: "linear-gradient(135deg, #0B2D33 0%, #123F46 55%, #0B2D33 100%)",
+          padding: "72px 76px",
         }}
       >
-        <div style={{ width: "100%", height: 8, background: "#D7F04A" }} />
         <div
           style={{
-            flex: 1,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            padding: "0 80px",
+            fontFamily: "JetBrains Mono",
+            fontSize: 22,
+            letterSpacing: "0.12em",
+            color: "#8FADAB",
           }}
         >
+          {page.eyebrow}
+        </div>
+        <div style={{ display: "flex", flexDirection: "column" }}>
           <div
             style={{
               fontFamily: "Space Grotesk",
-              fontSize: 68,
+              fontSize: 64,
               fontWeight: 700,
               color: "#FFFFFF",
-              lineHeight: 1.02,
-              letterSpacing: "-0.03em",
-              maxWidth: 1040,
+              lineHeight: 1.12,
+              letterSpacing: "-0.02em",
+              maxWidth: 1000,
             }}
           >
-            {page.title}
+            {white}
           </div>
+          {citrus ? (
+            <div
+              style={{
+                fontFamily: "Space Grotesk",
+                fontSize: 64,
+                fontWeight: 700,
+                color: "#D7F04A",
+                lineHeight: 1.12,
+                letterSpacing: "-0.02em",
+                maxWidth: 1000,
+              }}
+            >
+              {citrus}
+            </div>
+          ) : null}
+          <div
+            style={{
+              width: 96,
+              height: 8,
+              background: "#D7F04A",
+              borderRadius: 4,
+              marginTop: 28,
+            }}
+          />
         </div>
         <div
           style={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            padding: "0 80px 56px",
           }}
         >
-          <div
-            style={{
-              fontFamily: "Space Grotesk",
-              fontSize: 32,
-              fontWeight: 700,
-              color: "#FFFFFF",
-              letterSpacing: "-0.02em",
-            }}
-          >
-            hyprr. brands
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={logoSrc} width={236} height={60} alt="" />
           <div
             style={{
               fontFamily: "JetBrains Mono",
@@ -90,7 +125,7 @@ export async function GET(
               color: "#9FBCB9",
             }}
           >
-            {page.path}
+            Amazon · Walmart
           </div>
         </div>
       </div>

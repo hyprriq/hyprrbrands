@@ -73,7 +73,7 @@ export default function Page() {
             </div>
           </div>
           <div className="visual">
-            <h3>Product → Marketplace → Growth</h3>
+            <p className="vh">Product → Marketplace → Growth</p>
             <div className="mock-photo">
               PRODUCT / PACKAGING / MARKETPLACE VISUAL
             </div>
@@ -465,6 +465,24 @@ export default function Page() {
               </div>
             </a>
           </div>
+          <a className="strip-link" href="/proof" aria-label="The product development trail, on the proof page">
+            <picture>
+              <source
+                media="(max-width: 760px)"
+                srcSet="/img/pl-process-mobile-1080.webp"
+                type="image/webp"
+              />
+              <source srcSet="/img/pl-process-1600.webp" type="image/webp" />
+              <img
+                src="/img/pl-process-1600.png"
+                width={1600}
+                height={900}
+                loading="lazy"
+                decoding="async"
+                alt="Four stages of product development: dimension drawing, hinge mechanism, groove studies, finished product"
+              />
+            </picture>
+          </a>
           <div className="video">
             <div className="play" aria-hidden="true">
               ▶

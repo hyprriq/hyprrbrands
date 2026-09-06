@@ -107,22 +107,19 @@ export default function Page() {
               </a>
             </div>
           </div>
-          <div className="product-visual">
-            <div className="packshot">
-              <div className="box">
-                YOUR
-                <br />
-                PRODUCT
-              </div>
-            </div>
-            <div className="artlabels">
-              <span>RESEARCH</span>
-              <span>SOURCING</span>
-              <span>PACKAGING</span>
-              <span>LISTING</span>
-              <span>LAUNCH</span>
-            </div>
-          </div>
+          <figure className="heroimg" style={{ margin: 0 }}>
+            <picture>
+              <source srcSet="/img/pl-hero-1600.webp" type="image/webp" />
+              <img
+                src="/img/pl-hero-1600.png"
+                width={1600}
+                height={900}
+                fetchPriority="high"
+                decoding="async"
+                alt="The finished three-panel foldable stone dish mat, a Hyprr private label product"
+              />
+            </picture>
+          </figure>
         </div>
       </section>
 
@@ -221,6 +218,29 @@ export default function Page() {
               </div>
             </div>
           </div>
+          <figure className="strip">
+            <picture>
+              <source
+                media="(max-width: 760px)"
+                srcSet="/img/pl-process-mobile-1080.webp"
+                type="image/webp"
+              />
+              <source srcSet="/img/pl-process-1600.webp" type="image/webp" />
+              <img
+                src="/img/pl-process-1600.png"
+                width={1600}
+                height={900}
+                loading="lazy"
+                decoding="async"
+                alt="Four stages of product development: dimension drawing, hinge mechanism, groove studies, finished product"
+              />
+            </picture>
+            <figcaption>
+              The development trail of a live Hyprr product — the dimension
+              drawing with its rejected measurement, the hinge study, the
+              groove iterations, the finished object.
+            </figcaption>
+          </figure>
         </div>
       </section>
 
@@ -362,6 +382,20 @@ export default function Page() {
               <span>Operations and capacity behind the winners</span>
             </div>
           </div>
+          <figure className="strip">
+            <img
+              src="/img/pl-family-1600.webp"
+              width={1600}
+              height={900}
+              loading="lazy"
+              decoding="async"
+              alt="The dish mat and faucet mat, one product family sharing the same stone and groove design"
+            />
+            <figcaption>
+              One product family, two SKUs — designed once, extended
+              deliberately.
+            </figcaption>
+          </figure>
         </div>
       </section>
 
@@ -431,6 +465,22 @@ export default function Page() {
                 marketplaces from outside the country.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SNIPPET — ASSETS_HANDOFF §5.1, verbatim, directly above the FAQ */}
+      <section className="buildband" id="what-an-agency-does">
+        <div className="wrap">
+          <h2>What does an Amazon private label agency do?</h2>
+          <div className="snippet">
+            <p>
+              An Amazon private label agency researches product opportunities,
+              verifies the unit economics, sources a manufacturer, builds the
+              brand and packaging, creates the listing, and launches the
+              product. After launch it runs advertising, inventory and account
+              operations.
+            </p>
           </div>
         </div>
       </section>
