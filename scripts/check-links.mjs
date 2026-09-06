@@ -72,7 +72,10 @@ for (const r of routes) {
   }
 }
 for (const r of routes) {
-  if (inbound[r] === 0) problems.push(`zero inbound body links: ${r}`);
+  // "/" is exempt from the inbound rule: the logo links home from the
+  // chrome on every page, and body copy never needs to say "homepage".
+  if (r !== "/" && inbound[r] === 0)
+    problems.push(`zero inbound body links: ${r}`);
   if (outbound[r] === 0) problems.push(`zero outbound body links: ${r}`);
 }
 

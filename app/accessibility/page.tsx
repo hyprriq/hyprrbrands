@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
-import { ogImageMeta } from "@/lib/og-pages";
 import LegalPage from "@/components/LegalPage";
+import { ogImageMeta } from "@/lib/og-pages";
+
+const TITLE = "Accessibility Statement | Hyprr Brands Website";
+const DESC =
+  "The standard this site is built to, WCAG 2.1 AA, the gaps we already know about, and how to report a barrier you hit on any page of it.";
 
 export const metadata: Metadata = {
-  title: "Accessibility Statement | Hyprr Brands",
-  description:
-    "The standard this site is built to, WCAG 2.2 AA, the gaps we already know about, and how to report a barrier you hit on any page of it.",
+  title: TITLE,
+  description: DESC,
   alternates: { canonical: "/accessibility" },
   ...ogImageMeta("accessibility"),
 };
@@ -14,11 +17,13 @@ export default function Page() {
   return (
     <LegalPage
       path="/accessibility"
-      description="The standard this site is built to, WCAG 2.2 AA, the gaps we already know about, and how to report a barrier you hit on any page of it."
-      title="Accessibility" version="v0.1 · 2 September 2026">
+      description={DESC}
+      title="Accessibility statement"
+      version="v0.2 · 6 September 2026"
+    >
       <p>
-        This site is built to WCAG 2.1 AA as a working target, and the
-        checks run against every release rather than once at launch.
+        This site is built to WCAG 2.1 AA as a working target, and the checks
+        run against every release rather than once at launch.
       </p>
       <h2>What that means here</h2>
       <ul>

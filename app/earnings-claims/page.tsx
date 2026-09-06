@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
-import { ogImageMeta } from "@/lib/og-pages";
 import LegalPage from "@/components/LegalPage";
+import { ogImageMeta } from "@/lib/og-pages";
+
+const TITLE = "Earnings Claims Policy | Hyprr Brands in Writing";
+const DESC =
+  "Hyprr publishes no income figures, no projected returns and no results promises. This is that policy in writing, and what it commits the firm to.";
 
 export const metadata: Metadata = {
-  title: "Earnings Claims Policy | Hyprr Brands",
-  description:
-    "Hyprr publishes no income figures, no projected returns and no results promises. This is that policy in writing, and what it commits the firm to.",
+  title: TITLE,
+  description: DESC,
   alternates: { canonical: "/earnings-claims" },
   ...ogImageMeta("earnings-claims"),
 };
@@ -14,15 +17,14 @@ export default function Page() {
   return (
     <LegalPage
       path="/earnings-claims"
-      description="Hyprr publishes no income figures, no projected returns and no results promises. This is that policy in writing, and what it commits the firm to."
+      description={DESC}
       title="Earnings claims policy"
-      version="v0.1 · 2 September 2026"
+      version="v0.2 · 6 September 2026"
     >
       <p>
-        This site publishes no earnings figures, income examples,
-        projections or typical-results claims — not in copy, not in
-        testimonials, not in case studies, and not in conversation before an
-        engagement.
+        This site publishes no earnings figures, income examples, projections
+        or typical-results claims — not in copy, not in testimonials, not in
+        case studies, and not in conversation before an engagement.
       </p>
       <h2>Why</h2>
       <p>
@@ -40,8 +42,9 @@ export default function Page() {
           figures, at /how-we-work.
         </li>
         <li>
-          The true cost calculator computes what you will spend from your
-          own inputs. It shows no revenue side at all.
+          Sample documents — a verdict sheet, a landed-cost model, a monthly
+          report — are published ungated at /proof, clearly labelled as
+          illustrative.
         </li>
         <li>
           Where case studies appear in future, they will be publishable

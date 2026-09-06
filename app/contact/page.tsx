@@ -91,7 +91,8 @@ export default function Page() {
               <span className="when">WITHIN A WORKING DAY</span>
               <b>A person replies</b>
               <span>
-                The operator reads every message — no sales team, no sequence.
+                <a href="/about">The operator</a> reads every message — no
+                sales team, no sequence.
               </span>
             </div>
             <div>

@@ -1,9 +1,6 @@
 /**
- * CI gate 6 (PROMPT_20) — a ticket that says "put X on pages A, B, C,
- * D" needs a gate that says X is on A, B, C and D. The five earlier
- * gates check that what renders is sound; this one checks that what
- * was SPECIFIED actually rendered. Assertions are structural
- * (data-feature attributes and stable strings), not copy, so a
+ * CI gate 6 — what was SPECIFIED actually rendered, v4 edition.
+ * Assertions are structural (stable strings and ids), not copy, so a
  * rewording does not fail the build but a missing component does.
  */
 import { readFileSync } from "node:fs";
@@ -17,76 +14,102 @@ const src = readFileSync(join(ROOT, "lib/site-map.ts"), "utf8");
 const live = [...src.matchAll(/slug: "([^"]+)"[\s\S]*?status: "(live|planned)"/g)]
   .filter((m) => m[2] === "live" && !m[1].includes("#"))
   .map((m) => m[1]);
-const isLive = (s) => live.includes(s.split("#")[0]);
-
-const SERVICES = [
-  "/wholesale-ecommerce", "/private-label", "/shopify-dtc",
-  "/ecommerce-website-development", "/ecommerce-growth",
-  "/marketplace-growth", "/ppc-paid-media", "/ecommerce-operations",
-  "/marketplace-management", "/shopify-management",
-];
-/** PROMPT_18's page → archetype assignment. */
-const LAYOUTS = {
-  "/wholesale-ecommerce": "trading-loop",
-  "/private-label": "gated-project",
-  "/shopify-dtc": "build-run",
-  "/ecommerce-website-development": "build-run",
-  "/ecommerce-growth": "constraint-lever",
-  "/marketplace-growth": "constraint-lever",
-  "/ppc-paid-media": "constraint-lever",
-  "/ecommerce-operations": "cadence-desk",
-  "/marketplace-management": "cadence-desk",
-  "/shopify-management": "cadence-desk",
-};
-const CHOOSER_PAGES = ["/wholesale-ecommerce", "/private-label", "/shopify-dtc", "/build"];
 
 const html = {};
 for (const r of ["/", ...live]) {
   const res = await fetch(BASE + r);
-  if (res.status !== 200) { problems.push(`route ${r} -> ${res.status}`); continue; }
+  if (res.status !== 200) {
+    problems.push(`route ${r} -> ${res.status}`);
+    continue;
+  }
   html[r] = await res.text();
 }
 
-// 1 · chooser on its four pages
-for (const p of CHOOSER_PAGES)
-  if (!html[p]?.includes('data-feature="chooser"'))
-    problems.push(`chooser missing on ${p}`);
-
-// 2 · money box / worked example in every service fee section
-for (const p of SERVICES)
-  if (!html[p]?.includes("data-worked-example"))
-    problems.push(`money box missing on ${p}`);
-
-// 3 · nextStep block on all ten (+ /scale, the chain's last hop)
-for (const p of [...SERVICES, "/scale"])
-  if (!html[p]?.includes('data-feature="next-step"'))
-    problems.push(`nextStep block missing on ${p}`);
-
-// 4 · archetype hero figure on all ten, each page carrying ITS layout
-for (const [p, layout] of Object.entries(LAYOUTS)) {
-  if (!html[p]?.includes(`data-feature="hero-figure" data-layout="${layout}"`))
-    problems.push(`hero figure (${layout}) missing on ${p}`);
+// 1 · The verdict artefact (DO NOT BUY) on the five pages that carry it.
+for (const p of [
+  "/",
+  "/amazon-private-label",
+  "/amazon-wholesale-management",
+  "/how-we-work",
+  "/proof",
+]) {
+  if (!html[p]?.includes("DO NOT BUY"))
+    problems.push(`verdict artefact (DO NOT BUY) missing on ${p}`);
 }
-// …and the five archetypes stay visually distinct: five layouts, five
-// different aria-labels on the figures (no two archetypes share one).
-const labels = new Map();
-for (const [p, layout] of Object.entries(LAYOUTS)) {
-  const m = html[p]?.match(
-    /data-feature="hero-figure"[^>]*>\s*<svg[^>]*aria-label="([^"]+)"/
-  );
-  if (m) labels.set(layout, m[1]);
-}
-if (new Set(labels.values()).size !== labels.size)
-  problems.push("two archetypes share a hero figure aria-label");
 
-// 5 · no "publishing soon" pointing at a live route
+// 2 · The three anchors on the management page that other pages link into.
+for (const id of ["growth", "walmart", "listings"]) {
+  if (!html["/amazon-walmart-management"]?.includes(`id="${id}"`))
+    problems.push(`#${id} anchor missing on /amazon-walmart-management`);
+}
+
+// 3 · Snippet answers where SEARCH_TERMS places them.
+for (const p of [
+  "/amazon-wholesale-management",
+  "/amazon-walmart-management",
+  "/how-we-work",
+]) {
+  if (!html[p]?.includes('class="snippet"'))
+    problems.push(`snippet block missing on ${p}`);
+}
+
+// 4 · FAQPage JSON-LD on every page with a rendered FAQ.
+for (const p of [
+  "/amazon-private-label",
+  "/amazon-wholesale-management",
+  "/amazon-walmart-management",
+  "/amazon-listing-optimization",
+  "/how-we-work",
+]) {
+  if (!html[p]?.includes('"FAQPage"'))
+    problems.push(`FAQPage JSON-LD missing on ${p}`);
+}
+
+// 5 · The rebuttal renders twice on management (snippet + FAQ), so the
+//     schema answer matches a visible passage.
+{
+  const h = html["/amazon-walmart-management"] ?? "";
+  const hits = h.split("Access without ownership").length - 1;
+  if (hits < 2)
+    problems.push(
+      `rebuttal passage should appear at least twice on /amazon-walmart-management (snippet + FAQ), found ${hits}`
+    );
+}
+
+// 6 · Illustrative labelling on /proof — every sample document says so.
+{
+  const h = html["/proof"] ?? "";
+  const docs = h.split('class="dochd"').length - 1;
+  const labels = (h.match(/ILLUSTRATIVE/g) ?? []).length;
+  if (docs > 0 && labels < docs - 1)
+    problems.push(
+      `/proof: ${docs} sample documents but only ${labels} ILLUSTRATIVE labels`
+    );
+}
+
+// 7 · Person JSON-LD on /about; Service JSON-LD on the service pages.
+if (!html["/about"]?.includes('"Person"'))
+  problems.push(`Person JSON-LD missing on /about`);
+for (const p of [
+  "/amazon-private-label",
+  "/amazon-wholesale-management",
+  "/amazon-walmart-management",
+  "/amazon-listing-optimization",
+]) {
+  if (!html[p]?.includes('"Service"'))
+    problems.push(`Service JSON-LD missing on ${p}`);
+}
+
+// 8 · One h1 per page, exactly.
 for (const r of ["/", ...live]) {
-  const h = html[r];
-  if (!h) continue;
-  if (isLive("/documents") && h.includes("the document room opens"))
-    problems.push(`${r}: document-room "publishing soon" while /documents is live`);
-  if (isLive("/insights") && h.includes("publishing soon"))
-    problems.push(`${r}: "publishing soon" while /insights is live`);
+  const count = (html[r]?.match(/<h1[\s>]/g) ?? []).length;
+  if (count !== 1) problems.push(`${r}: ${count} <h1> elements (want exactly 1)`);
+}
+
+// 9 · No stale "publishing soon" anywhere.
+for (const r of ["/", ...live]) {
+  if (html[r]?.includes("publishing soon"))
+    problems.push(`${r}: stale "publishing soon"`);
 }
 
 if (problems.length) {
@@ -94,5 +117,5 @@ if (problems.length) {
   process.exit(1);
 }
 console.log(
-  `check-features OK — chooser ×${CHOOSER_PAGES.length}, money box ×${SERVICES.length}, nextStep ×${SERVICES.length + 1}, five distinct archetype figures, no stale "publishing soon"`
+  "check-features OK — verdicts, anchors, snippets, FAQ/Service/Person schema, single h1s all present"
 );

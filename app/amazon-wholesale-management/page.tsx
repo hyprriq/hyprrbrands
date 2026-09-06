@@ -14,7 +14,7 @@ import { ogImageMeta } from "@/lib/og-pages";
  */
 const TITLE = "Amazon Wholesale Management Service — Hyprr Brands";
 const DESC =
-  "Wholesale operations on Amazon and Walmart. Authorised distributors only, landed-cost models on every line, purchase orders you approve, and the daily work of keeping those lines selling.";
+  "Wholesale operations on Amazon and Walmart. Authorised distributors only, a landed-cost model on every line, purchase orders you approve. Fixed monthly fee.";
 const PATH = "/amazon-wholesale-management";
 
 export const metadata: Metadata = {
