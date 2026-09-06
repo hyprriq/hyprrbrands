@@ -65,3 +65,21 @@ The titles and bullets are the real argument. Before: a keyword-stuffed title wi
 and three generic bullets. After: the format named, the size stated, and bullets that each carry
 one fact a buyer needs. The footer line on each panel — 3 images, no A+, 19 indexed terms against
 7 images, A+ live, 64 indexed terms — is illustrative and should carry that caption on `/proof`.
+
+## Homepage hero — added 6 Sep, replaces a live placeholder
+
+| File | Where | Alt text |
+|---|---|---|
+| `home-hero-1600` | `/` hero, right column. `fetchpriority="high"`, no lazy | Hyprr's operations view on screen beside a live product listing showing buy box, stock cover and margin |
+| `home-hero-mobile-1080` | same, under 760px | as above |
+
+**This replaces the two placeholder strings currently live in production** — "PRODUCT / PACKAGING /
+MARKETPLACE VISUAL" and "HERO COMPOSITE · PRODUCT + AMAZON + WALMART". Both are rendering as visible
+text on the homepage right now.
+
+The same treatment works for the management page hero if you want it; say so and it will be cut.
+
+## Also fixed
+
+`favicon.ico` was carrying only a 16×16. Rebuilt from the 256px master and now contains
+16, 32, 48 and 64. Replace the one already deployed.

@@ -72,15 +72,24 @@ export default function Page() {
               </a>
             </div>
           </div>
-          <div className="visual">
-            <p className="vh">Product → Marketplace → Growth</p>
-            <div className="mock-photo">
-              PRODUCT / PACKAGING / MARKETPLACE VISUAL
-            </div>
-            <span className="caption">
-              HERO COMPOSITE · PRODUCT + AMAZON + WALMART
-            </span>
-          </div>
+          <figure className="heroimg" style={{ margin: 0 }}>
+            <picture>
+              <source
+                media="(max-width: 760px)"
+                srcSet="/img/home-hero-mobile-1080.webp"
+                type="image/webp"
+              />
+              <source srcSet="/img/home-hero-1600.webp" type="image/webp" />
+              <img
+                src="/img/home-hero-1600.png"
+                width={1600}
+                height={900}
+                fetchPriority="high"
+                decoding="async"
+                alt="Hyprr's operations view on screen beside a live product listing showing buy box, stock cover and margin"
+              />
+            </picture>
+          </figure>
         </div>
       </section>
 
