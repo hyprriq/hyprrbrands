@@ -341,6 +341,27 @@ export default function Page() {
               </p>
             </div>
           </div>
+          <figure className="strip">
+            <picture>
+              <source
+                media="(max-width: 760px)"
+                srcSet="/img/listing-before-after-mobile-1080.webp"
+                type="image/webp"
+              />
+              <source
+                srcSet="/img/listing-before-after-1600.webp"
+                type="image/webp"
+              />
+              <img
+                src="/img/listing-before-after-1600.png"
+                width={1600}
+                height={900}
+                loading="lazy"
+                decoding="async"
+                alt="The same product listing before and after optimization: a dim, badly cropped photo with a thin title beside a clean product shot with a full title and bullets"
+              />
+            </picture>
+          </figure>
         </div>
       </section>
 

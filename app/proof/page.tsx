@@ -188,32 +188,31 @@ export default function Page() {
                   has the scope.
                 </p>
               </div>
-              <div className="doc">
-                <div className="dochd">
-                  <span>LISTING · BEFORE → AFTER</span>
-                  <span>14 DAYS · ILLUSTRATIVE</span>
-                </div>
-                <div className="docr">
-                  <span>Indexed search terms</span>
-                  <b>212 → 638</b>
-                </div>
-                <div className="docr">
-                  <span>Title</span>
-                  <b>REWRITTEN</b>
-                </div>
-                <div className="docr">
-                  <span>Bullets and description</span>
-                  <b>REWRITTEN</b>
-                </div>
-                <div className="docr">
-                  <span>Image stack and A+</span>
-                  <b>REBRIEFED</b>
-                </div>
-                <div className="docr yes">
-                  <span>Delivered as</span>
-                  <b>A DOCUMENT YOU KEEP</b>
-                </div>
-              </div>
+              <figure className="strip" style={{ margin: 0 }}>
+                <picture>
+                  <source
+                    media="(max-width: 760px)"
+                    srcSet="/img/listing-before-after-mobile-1080.webp"
+                    type="image/webp"
+                  />
+                  <source
+                    srcSet="/img/listing-before-after-1600.webp"
+                    type="image/webp"
+                  />
+                  <img
+                    src="/img/listing-before-after-1600.png"
+                    width={1600}
+                    height={900}
+                    loading="lazy"
+                    decoding="async"
+                    alt="The same product listing before and after optimization: a dim, badly cropped photo with a thin title beside a clean product shot with a full title and bullets"
+                  />
+                </picture>
+                <figcaption>
+                  The footer figures on each panel — images, A+ status,
+                  indexed terms — are illustrative.
+                </figcaption>
+              </figure>
             </div>
 
             {/* Monthly report */}

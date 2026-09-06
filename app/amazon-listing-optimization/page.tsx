@@ -95,39 +95,27 @@ export default function Page() {
               </a>
             </div>
           </div>
-          <div className="product-visual">
-            <div
-              className="vsheet"
-              style={{ marginTop: 0, background: "rgba(255,255,255,.04)" }}
-            >
-              <div className="hd">
-                <span>LISTING · BEFORE → AFTER</span>
-                <span>14 DAYS</span>
-              </div>
-              <div className="r">
-                <span>Indexed search terms</span>
-                <b>212 → 638</b>
-              </div>
-              <div className="r">
-                <span>Title, bullets, description</span>
-                <b>REWRITTEN</b>
-              </div>
-              <div className="r">
-                <span>Images and A+ layout</span>
-                <b>REBRIEFED</b>
-              </div>
-              <div className="r out">
-                <span>You keep</span>
-                <b>THE DOCUMENT</b>
-              </div>
-            </div>
-            <div className="artlabels">
-              <span>RESEARCH</span>
-              <span>CONTENT</span>
-              <span>CONVERSION</span>
-              <span>INDEXING</span>
-            </div>
-          </div>
+          <figure className="heroimg" style={{ margin: 0 }}>
+            <picture>
+              <source
+                media="(max-width: 760px)"
+                srcSet="/img/listing-before-after-mobile-1080.webp"
+                type="image/webp"
+              />
+              <source
+                srcSet="/img/listing-before-after-1600.webp"
+                type="image/webp"
+              />
+              <img
+                src="/img/listing-before-after-1600.png"
+                width={1600}
+                height={900}
+                fetchPriority="high"
+                decoding="async"
+                alt="The same product listing before and after optimization: a dim, badly cropped photo with a thin title beside a clean product shot with a full title and bullets"
+              />
+            </picture>
+          </figure>
         </div>
       </section>
 
@@ -179,27 +167,26 @@ export default function Page() {
               <span className="tag">BEFORE</span>
               <h3>The listing as it arrived</h3>
               <ul>
-                <li>Title stuffed with commas, indexed for 212 terms</li>
-                <li>Bullets describe the factory, not the buyer</li>
-                <li>Six near-identical product photos, no infographic</li>
-                <li>Backend search terms repeat the title</li>
+                <li>Keyword-stuffed title with no dimensions</li>
+                <li>Three generic bullets that fit any product</li>
+                <li>3 images, no A+ content</li>
+                <li>Indexed for 19 search terms</li>
               </ul>
             </div>
             <div className="after">
               <span className="tag">AFTER · 14 DAYS</span>
               <h3>The same listing, rebuilt</h3>
               <ul>
-                <li>Title carries the two terms buyers actually type</li>
-                <li>Bullets answer the five questions shoppers ask</li>
-                <li>Image stack rebriefed: use, scale, comparison, proof</li>
-                <li>Indexed for 638 terms, none of them wasted</li>
+                <li>The format named and the size stated in the title</li>
+                <li>Bullets that each carry one fact a buyer needs</li>
+                <li>7 images, A+ live</li>
+                <li>Indexed for 64 search terms, none of them wasted</li>
               </ul>
             </div>
           </div>
           <p style={{ marginTop: 18, marginBottom: 0 }}>
             <span className="label-note">
-              Illustrative sample — numbers shown are from the sample document
-              on{" "}
+              Illustrative sample — the full pair is on{" "}
             </span>
             <a href="/proof" style={{ fontWeight: 600 }}>
               the proof page →

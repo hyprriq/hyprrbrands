@@ -48,3 +48,20 @@ product, it gets the same treatment.
 All images graded to petrol `#123F46` with citrus and aqua accents. Product cards sit on
 `#F7F8F3` so the renders keep their own light. Every file under 100KB in WebP. Set `width` and
 `height` in the markup, `fetchpriority="high"` on heroes, `loading="lazy"` below the fold.
+
+## Listing optimization — added 6 Sep
+
+| File | Where | Alt text |
+|---|---|---|
+| `listing-before-after-1600` | `/amazon-listing-optimization` hero, `/amazon-walmart-management#listings`, `/proof` | The same product listing before and after optimization: a dim, badly cropped photo with a thin title beside a clean product shot with a full title and bullets |
+| `listing-before-after-mobile-1080` | same, under 760px | as above |
+
+**Both panels use the same product render.** The "before" is that render degraded the way a
+seller's own phone photo usually is — off-centre crop with the product running off the edge, warm
+indoor cast, underexposed, soft, sensor noise, uneven shadow. The "after" is the same object shot
+to spec on white.
+
+The titles and bullets are the real argument. Before: a keyword-stuffed title with no dimensions
+and three generic bullets. After: the format named, the size stated, and bullets that each carry
+one fact a buyer needs. The footer line on each panel — 3 images, no A+, 19 indexed terms against
+7 images, A+ live, 64 indexed terms — is illustrative and should carry that caption on `/proof`.
