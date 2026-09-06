@@ -28,11 +28,17 @@ proven live plus 30 days.
 
 ## QUEUE
 
-1. **Owner review of `feat/v4`** — copy drafted where the brief had no strings (wholesale +
-   management FAQ answers, contact/about connective copy) is flagged in the build report and needs
-   owner sign-off before merge.
-2. **Merge `feat/v4` → main as one swap** (DEV_BRIEF §1: do not ship pages one at a time), then
-   the launch-day Search Console sequence in `docs/v4/BUILD_SHEET.md` §4.
-3. **Owner-gated inputs** (unchanged, none block merge): booking URL · `RESEND_API_KEY` ·
-   photograph, prior role and LinkedIn for `/about` · the six generated scenes (site reads well
-   with none, by design) · the homepage video slot decision.
+**MERGED AND LIVE — 6 Sep 2026.** The owner delivered the 6 Sep asset handoff (docs/v4/handoff/),
+approved the drafted copy (§6 of ASSETS_HANDOFF), and ordered the deployment. `feat/v4` merged to
+main at `64662db`; CI run green; production verified on hyprrbrands.vercel.app with cache headers
+checked (canonical reads https://hyprrbrands.com, redirects one hop, sitemap 13 locs, Lighthouse
+a11y 100 on / and /amazon-private-label).
+
+1. **Owner: connect the domain.** Point hyprrbrands.com at the Vercel project — canonicals
+   already point there. Then BUILD_SHEET §4: Search Console (DNS TXT, domain property), submit
+   sitemap, request indexing on / + four service pages, re-confirm the 18 redirects on the live
+   domain, add Bing Webmaster Tools.
+2. **Owner-gated inputs** (none block anything): booking URL · `RESEND_API_KEY` · /about
+   photograph, prior role, LinkedIn · warehouse/shipment stock picks · video + poster.
+3. **`_archive/v3/` deletion**: only after the redirects are confirmed on hyprrbrands.com and 30
+   days have passed.
