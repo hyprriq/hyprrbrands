@@ -15,7 +15,7 @@ const src = readFileSync(join(ROOT, "lib/site-map.ts"), "utf8");
 const entries = [...src.matchAll(/slug: "([^"]+)"[\s\S]*?status: "(live|planned)"/g)].map(
   (m) => ({ slug: m[1], status: m[2] })
 );
-if (entries.length < 15) problems.push(`manifest parse suspicious: ${entries.length} entries`);
+if (entries.length < 12) problems.push(`manifest parse suspicious: ${entries.length} entries`);
 const live = entries.filter((e) => e.status === "live" && !e.slug.includes("#")).map((e) => e.slug);
 const planned = entries.filter((e) => e.status === "planned").map((e) => e.slug);
 

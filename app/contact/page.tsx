@@ -1,139 +1,112 @@
 import type { Metadata } from "next";
-import { ogImageMeta } from "@/lib/og-pages";
-import SitePageShell from "@/components/SitePageShell";
 import JsonLd from "@/components/JsonLd";
-import { breadcrumbLd, webPageLd } from "@/lib/schema";
 import ContactForm from "@/components/ContactForm";
-
-export const metadata: Metadata = {
-  title: "Contact Hyprr Brands | Start a Conversation",
-  description:
-    "Tell us what you are trying to build. We read the context first, come prepared, and say plainly whether Hyprr is a fit, including when we are not.",
-  alternates: { canonical: "/contact" },
-  ...ogImageMeta("contact"),
-};
+import { breadcrumbLd, webPageLd } from "@/lib/schema";
+import { ogImageMeta } from "@/lib/og-pages";
 
 /**
- * /contact — Template 4, exactly as §18: White form, Petrol "what
- * happens next" beside it on desktop, below it on mobile. No closing
- * CTA band — the page is the CTA. One primary control: Send.
+ * Contact — the only page whose job is a single action. Booking
+ * first, form second (wireframe 01–03). The booking block renders
+ * only when NEXT_PUBLIC_BOOKING_URL is set.
  */
-const NEXT: [string, string, string][] = [
-  [
-    "01",
-    "We review the context",
-    "Someone reads what you wrote, looks at your accounts if you shared them, and prepares.",
-  ],
-  [
-    "02",
-    "We come prepared",
-    "The first conversation starts from your situation, not from a pitch.",
-  ],
-  [
-    "03",
-    "We tell you whether Hyprr is a fit",
-    "And if it isn't, we say so and point you somewhere useful.",
-  ],
-];
+const TITLE = "Book a Call | Amazon & Walmart Agency — Hyprr Brands";
+const DESC =
+  "Book a twenty-minute call, or send context through the form. A person reads it, you hear back within one working day, and the call comes with a view.";
+const PATH = "/contact";
+
+export const metadata: Metadata = {
+  title: TITLE,
+  description: DESC,
+  alternates: { canonical: PATH },
+  openGraph: {
+    title: TITLE,
+    description: DESC,
+    url: PATH,
+    siteName: "Hyprr Brands",
+    type: "website",
+    ...ogImageMeta("contact").openGraph,
+  },
+  ...{ twitter: ogImageMeta("contact").twitter },
+};
+
+const BOOKING = process.env.NEXT_PUBLIC_BOOKING_URL;
 
 export default function Page() {
   return (
-    <SitePageShell>
+    <main id="main">
       <JsonLd
         nodes={[
-          {
-            ...webPageLd({
-              path: "/contact",
-              title: "Contact Hyprr Brands | Start a Conversation",
-              description:
-                "Tell us what you are trying to build. We read the context first, come prepared, and say plainly whether Hyprr is a fit, including when we are not.",
-            }),
-            "@type": "ContactPage",
-          },
+          webPageLd({ path: PATH, title: TITLE, description: DESC }),
           breadcrumbLd([
             { name: "Home", path: "/" },
-            { name: "Contact", path: "/contact" },
+            { name: "Contact", path: PATH },
           ]),
         ]}
       />
-      <section className="bg-white">
-        <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(40px,6vw,72px)]">
-          <h1 className="font-display type-h1 text-ink m-0 max-w-[16ch] text-balance">
-            Tell us what you&apos;re trying to build.
-          </h1>
-          <p className="type-lead text-body m-0 mt-[18px] max-w-[52ch]">
-            The more context you give, the more useful the first conversation
-            is. We read everything before we reply.
+
+      <section className="start">
+        <div className="wrap">
+          <span className="eyebrow">Contact</span>
+          <h1>Book a call</h1>
+          <p style={{ maxWidth: "56ch" }}>
+            Twenty minutes. Send what you have first —{" "}
+            <a href="/proof">or read the work</a> — and we come with a view
+            rather than a questionnaire.
           </p>
 
-          <div className="flex flex-wrap gap-x-14 gap-y-10 mt-10 items-start">
-            <ContactForm />
-
-            {/* Petrol: what happens next — the conversion block */}
-            <div className="flex-[1_1_300px] max-w-[420px] bg-field text-white rounded-lg p-[clamp(24px,3vw,36px)] grid gap-[22px] content-start">
-              <h2 className="font-mono type-label text-on-field-mute uppercase m-0 font-semibold">
-                What happens next
+          {BOOKING ? (
+            <div className="booking">
+              <h2 style={{ fontSize: "clamp(20px,4vw,26px)" }}>
+                Pick a time that suits you
               </h2>
-              {NEXT.map(([n, title, desc]) => (
-                <div
-                  key={n}
-                  className="grid grid-cols-[32px_1fr] gap-3.5 items-start"
-                >
-                  <span className="font-mono type-label text-on-field-mute pt-1">
-                    {n}
-                  </span>
-                  <div className="grid gap-1">
-                    <b className="type-lead font-bold leading-tight tracking-[-.01em]">
-                      {title}
-                    </b>
-                    <span className="text-on-field-body type-meta">{desc}</span>
-                  </div>
-                </div>
-              ))}
-              <div className="border-t border-line-on-field pt-[18px] type-meta text-on-field-body">
-                Prefer to read first?{" "}
-                <a
-                  href="/how-we-work"
-                  className="text-white hover:text-white font-semibold"
-                >
-                  How we work →
-                </a>
-              </div>
-              <div className="type-meta text-on-field-body">
-                Who you will be talking to is on{" "}
-                <a
-                  href="/about"
-                  className="text-white hover:text-white font-semibold"
-                >
-                  the About page
-                </a>
-                .
-              </div>
-              <div className="type-meta text-on-field-body">
-                We work with clients across US, UK, European and Gulf time
-                zones — a working week that includes Sunday is not a problem.
-                The full picture, region by region, is on{" "}
-                <a
-                  href="/where-we-work"
-                  className="text-white hover:text-white font-semibold"
-                >
-                  where we work
-                </a>
-                .
-              </div>
-              <div className="type-meta text-on-field-body">
-                Or directly:{" "}
-                <a
-                  href="mailto:hello@hyprrbrands.com"
-                  className="text-white hover:text-white font-semibold"
-                >
-                  hello@hyprrbrands.com
-                </a>
-              </div>
+              <p>
+                The calendar shows live availability across US, UK, Gulf and
+                Singapore hours.
+              </p>
+              <a className="btn dark" href={BOOKING}>
+                Open the calendar →
+              </a>
+            </div>
+          ) : null}
+
+          <div id="form">
+            <h2 style={{ fontSize: "clamp(20px,4vw,26px)", marginTop: 26 }}>
+              Or send context first
+            </h2>
+            <ContactForm />
+          </div>
+        </div>
+      </section>
+
+      <section className="buildband" style={{ paddingTop: 0 }}>
+        <div className="wrap">
+          <span className="eyebrow">What happens next</span>
+          <div className="timeline" style={{ marginTop: 18 }}>
+            <div>
+              <span className="when">WITHIN A MINUTE</span>
+              <b>A confirmation</b>
+              <span>An auto-reply confirms your message arrived.</span>
+            </div>
+            <div>
+              <span className="when">WITHIN A WORKING DAY</span>
+              <b>A person replies</b>
+              <span>
+                <a href="/about">The operator</a> reads every message — no
+                sales team, no sequence.
+              </span>
+            </div>
+            <div>
+              <span className="when">ON THE CALL</span>
+              <b>A view, not a pitch</b>
+              <span>
+                What we would do with your situation, including when the honest
+                answer is not us. <a href="/how-we-work">How we work</a> covers
+                the fees.
+              </span>
             </div>
           </div>
         </div>
       </section>
-    </SitePageShell>
+    </main>
   );
 }

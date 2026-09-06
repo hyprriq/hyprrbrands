@@ -1,17 +1,15 @@
-import { SITE_MAP, SITE_ORIGIN, isLive } from "@/lib/site-map";
+import { SITE_MAP, SITE_ORIGIN } from "@/lib/site-map";
 
 /**
- * /llms.txt — §N. Generated from the site manifest, like the sitemap,
- * so it lists only live pages and cannot drift. The robots.txt AI
+ * /llms.txt — generated from the site manifest, like the sitemap, so
+ * it lists only live pages and cannot drift. The robots.txt AI
  * crawler policy is the companion piece.
  */
 export const dynamic = "force-static";
 
 export function GET() {
   const byGroup = (group: string) =>
-    SITE_MAP.filter(
-      (p) => p.group === group && isLive(p.slug) && !p.slug.includes("#")
-    );
+    SITE_MAP.filter((p) => p.group === group && p.status === "live");
   const entry = (p: { title: string; slug: string; oneLine: string }) =>
     `- [${p.title}](${SITE_ORIGIN}${p.slug})${
       p.oneLine
@@ -19,42 +17,33 @@ export function GET() {
         : ""
     }`;
 
-  // PROMPT_16 step 4: check-manifest requires every live route here,
-  // so the file lists all groups — not a curated subset that drifts.
   const lines: string[] = [
     "# Hyprr Brands",
     "",
-    "> Ecommerce operations agency. We build, grow and operate Amazon (US and UK), Walmart (US) and Shopify",
-    "> businesses on behalf of the people who own them. The client owns the accounts, the",
-    "> inventory and the capital, and approves every material purchase.",
+    "> Amazon and Walmart marketplace operations. We build, operate and scale",
+    "> businesses on Amazon and Walmart — private label, wholesale, listing",
+    "> optimization and account management. The client owns the accounts, the",
+    "> stock and every buying decision, and approves every material purchase.",
     "",
-    "## The three engines",
-    ...byGroup("hub").map(entry),
+    `- [Home](${SITE_ORIGIN}/): build it, run it, scale it — on Amazon and Walmart`,
     "",
     "## Services",
     ...byGroup("service").map(entry),
     "",
-    "## How we work",
-    `- [How we work](${SITE_ORIGIN}/how-we-work): the operating cycle, approval gate and fee mechanic`,
-    ...byGroup("support").map(entry),
-  ];
-  lines.push(
-    "",
     "## Company",
-    `- [About](${SITE_ORIGIN}/about): who runs the operation, and the company facts you can check`,
-    `- [Contact](${SITE_ORIGIN}/contact): tell us what you are trying to build`,
+    ...byGroup("company").map(entry),
     "",
     "## Policies",
-    `- [Privacy policy](${SITE_ORIGIN}/privacy)`,
-    `- [Terms of service](${SITE_ORIGIN}/terms)`,
-    `- [Accessibility statement](${SITE_ORIGIN}/accessibility)`,
-    `- [Earnings claims policy](${SITE_ORIGIN}/earnings-claims): no income figures, no projected returns, in writing`,
+    ...byGroup("legal").map(
+      (p) => `- [${p.h1}](${SITE_ORIGIN}${p.slug})`
+    ),
     "",
     "## Notes",
-    "- Clients are in the US, UK, Europe and the Middle East, selling on Amazon US, Amazon UK and Walmart US.",
+    "- Amazon in the US, UK, Europe and the Gulf. Walmart in the US.",
     "- Hyprr publishes no earnings claims, income figures or projected returns.",
-    ""
-  );
+    "- Fees are fixed — never a percentage of advertising spend or of capital.",
+    "",
+  ];
 
   return new Response(lines.join("\n"), {
     headers: { "Content-Type": "text/plain; charset=utf-8" },

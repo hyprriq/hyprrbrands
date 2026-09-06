@@ -3,214 +3,230 @@
 import { useState } from "react";
 
 /**
- * Contact form — §18 + prompt 8 B4. Required: name, email, and "What
- * would you like to discuss?". Optional: company and the two context
- * fields. The five-option radio set has no default and is not
- * required — forcing a category before someone knows which one they
- * are is the wrong friction. No backend at soft launch: Send composes
- * an email to hello@ with the structured context in the body.
+ * Contact form — six fields, a real backend (/api/contact → Resend),
+ * a success state, an auto-reply. When the backend returns 503 (no
+ * RESEND_API_KEY yet) the send falls back to composing an email so
+ * nothing breaks before the owner adds the key.
  */
-const KINDS = [
-  "Wholesale",
-  "Private label",
-  "Shopify / DTC",
-  "Growth",
-  "Operations",
+const MARKETPLACES = [
+  "Amazon US",
+  "Amazon UK",
+  "Amazon Europe",
+  "Amazon Gulf",
+  "Walmart US",
+  "Not sure yet",
 ];
 
-const LONGS: [string, string, string, boolean][] = [
-  [
-    "Current situation",
-    "Where the business is today: selling, pre-launch, stuck.",
-    "Two or three sentences is plenty.",
-    false,
-  ],
-  [
-    "What have you already tried?",
-    "Agencies, tools, courses, doing it yourself.",
-    "This saves the first twenty minutes.",
-    false,
-  ],
-  [
-    "What would you like to discuss?",
-    "The decision you are trying to make.",
-    "",
-    true,
-  ],
+const SITUATIONS = [
+  "Launching a brand",
+  "Already selling — want it run properly",
+  "Starting wholesale",
+  "Listings underperforming",
+  "Existing brand adding a marketplace",
+  "Something else",
 ];
+
+type Status = "idle" | "sending" | "sent" | "fallback";
 
 export default function ContactForm() {
-  const [kind, setKind] = useState<number | null>(null);
-  const [basics, setBasics] = useState(["", "", ""]);
-  const [longs, setLongs] = useState(["", "", ""]);
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    marketplace: "",
+    situation: "",
+    tried: "",
+    message: "",
+  });
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [status, setStatus] = useState<Status>("idle");
+
+  const set = (key: keyof typeof form) => (value: string) =>
+    setForm((f) => ({ ...f, [key]: value }));
 
   const validate = () => {
     const e: Record<string, string> = {};
-    if (!basics[0].trim()) e.name = "Add your name so we know who to reply to.";
-    if (!basics[1].trim()) {
+    if (!form.name.trim()) e.name = "Add your name so we know who to reply to.";
+    if (!form.email.trim())
       e.email = "Add the email address the reply should go to.";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(basics[1].trim())) {
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim()))
       e.email = "That email address doesn't look complete — check the domain.";
-    }
-    if (!longs[2].trim())
-      e.discuss =
-        "Tell us what you'd like to discuss — one sentence is enough.";
+    if (!form.message.trim())
+      e.message = "Tell us what you'd like to discuss — one sentence is enough.";
     setErrors(e);
     return Object.keys(e).length === 0;
   };
 
-  const send = () => {
-    if (!validate()) return;
+  const mailtoFallback = () => {
     const body = [
-      `Name: ${basics[0]}`,
-      `Company: ${basics[2] || "—"}`,
-      `Looking to build: ${kind === null ? "—" : KINDS[kind]}`,
+      `Name: ${form.name}`,
+      `Marketplace: ${form.marketplace || "—"}`,
+      `Situation: ${form.situation || "—"}`,
       "",
-      `Current situation:\n${longs[0] || "—"}`,
+      `Already tried:\n${form.tried || "—"}`,
       "",
-      `Already tried:\n${longs[1] || "—"}`,
-      "",
-      `Would like to discuss:\n${longs[2]}`,
+      `Message:\n${form.message}`,
     ].join("\n");
-    const subject = `Context from ${basics[0]}${kind === null ? "" : ` · ${KINDS[kind]}`}`;
-    window.location.href = `mailto:hello@hyprrbrands.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:hello@hyprrbrands.com?subject=${encodeURIComponent(
+      `Context from ${form.name}`
+    )}&body=${encodeURIComponent(body)}`;
+    setStatus("fallback");
   };
 
-  const errorText = (key: string) =>
-    errors[key] ? (
-      <span role="alert" className="type-meta text-crit">
-        {errors[key]}
-      </span>
-    ) : null;
+  const send = async () => {
+    if (!validate()) return;
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) {
+        setStatus("sent");
+        return;
+      }
+      if (res.status === 422) {
+        const data = await res.json();
+        setErrors(data.errors ?? {});
+        setStatus("idle");
+        return;
+      }
+      // 503 / 502 — no key or delivery failure: compose an email instead.
+      mailtoFallback();
+    } catch {
+      mailtoFallback();
+    }
+  };
+
+  if (status === "sent") {
+    return (
+      <div className="form-ok" role="status">
+        <b>Sent. A person reads it next.</b>
+        <p style={{ marginBottom: 0 }}>
+          You will hear back within one working day — usually sooner. A
+          confirmation is on its way to {form.email.trim()}.
+        </p>
+      </div>
+    );
+  }
 
   return (
-    <div className="flex-[1_1_380px] grid gap-[22px] max-w-[620px]">
-      <div className="flex flex-wrap gap-4">
-        {(
-          [
-            ["Name", "text", "name", "Your name", "name", true],
-            ["Email", "email", "email", "you@company.com", "email", true],
-            [
-              "Company",
-              "text",
-              "organization",
-              "Company or brand",
-              "company",
-              false,
-            ],
-          ] as const
-        ).map(([label, type, auto, ph, key, req], i) => (
-          <label key={label} className="flex-[1_1_180px] grid gap-1.5">
-            <span className="font-mono type-label text-label uppercase">
-              {label}
-              {!req && (
-                <span className="normal-case tracking-normal font-normal">
-                  {" "}
-                  · optional
-                </span>
-              )}
-            </span>
-            <input
-              type={type}
-              autoComplete={auto}
-              placeholder={ph}
-              required={req}
-              aria-invalid={!!errors[key]}
-              value={basics[i]}
-              onChange={(e) =>
-                setBasics((b) => b.map((v, j) => (j === i ? e.target.value : v)))
-              }
-              className={`h-12 border rounded-sm px-3.5 text-ink bg-white w-full box-border type-body ${
-                errors[key] ? "border-crit" : "border-line"
-              }`}
-            />
-            {errorText(key)}
-          </label>
-        ))}
-      </div>
-
-      <fieldset className="grid gap-2.5 border-0 p-0 m-0">
-        <legend className="font-mono type-label text-label uppercase mb-2.5 p-0">
-          What are you looking to build?{" "}
-          <span className="normal-case tracking-normal font-normal">
-            · optional
-          </span>
-        </legend>
-        <div className="flex flex-wrap gap-2">
-          {KINDS.map((label, i) => {
-            const on = kind === i;
-            return (
-              <button
-                key={label}
-                type="button"
-                aria-pressed={on}
-                onClick={() => setKind(on ? null : i)}
-                className={`flex gap-2.5 items-center min-h-11 px-4 rounded-sm border cursor-pointer text-ink font-medium type-body ${
-                  on ? "border-ink bg-bone/50" : "border-line bg-white"
-                }`}
-              >
-                <span
-                  className={`w-3.5 h-3.5 rounded-full border-2 border-ink box-border ${
-                    on ? "bg-ink" : "bg-white"
-                  }`}
-                />
-                {label}
-              </button>
-            );
-          })}
-        </div>
-      </fieldset>
-
-      {LONGS.map(([label, ph, help, req], i) => (
-        <label key={label} className="grid gap-1.5">
-          <span className="font-mono type-label text-label uppercase">
-            {label}
-            {!req && (
-              <span className="normal-case tracking-normal font-normal">
-                {" "}
-                · optional
-              </span>
-            )}
-          </span>
-          <textarea
-            rows={3}
-            placeholder={ph}
-            required={req}
-            aria-invalid={i === 2 && !!errors.discuss}
-            value={longs[i]}
-            onChange={(e) =>
-              setLongs((l) => l.map((v, j) => (j === i ? e.target.value : v)))
-            }
-            className={`border rounded-sm px-3.5 py-3 text-ink bg-white resize-y w-full box-border type-body ${
-              i === 2 && errors.discuss ? "border-crit" : "border-line"
-            }`}
+    <form
+      className="cform"
+      onSubmit={(e) => {
+        e.preventDefault();
+        void send();
+      }}
+      noValidate
+    >
+      <div className="row2">
+        <label>
+          <span className="flabel">Name</span>
+          <input
+            type="text"
+            autoComplete="name"
+            value={form.name}
+            aria-invalid={!!errors.name}
+            onChange={(e) => set("name")(e.target.value)}
+            required
           />
-          {help && <span className="type-meta text-muted">{help}</span>}
-          {i === 2 && errorText("discuss")}
+          {errors.name && (
+            <span className="err" role="alert">
+              {errors.name}
+            </span>
+          )}
         </label>
-      ))}
-
-      <p className="type-meta text-muted m-0">
+        <label>
+          <span className="flabel">Email</span>
+          <input
+            type="email"
+            autoComplete="email"
+            value={form.email}
+            aria-invalid={!!errors.email}
+            onChange={(e) => set("email")(e.target.value)}
+            required
+          />
+          {errors.email && (
+            <span className="err" role="alert">
+              {errors.email}
+            </span>
+          )}
+        </label>
+      </div>
+      <div className="row2">
+        <label>
+          <span className="flabel">Which marketplace · optional</span>
+          <select
+            value={form.marketplace}
+            onChange={(e) => set("marketplace")(e.target.value)}
+          >
+            <option value="">Choose one</option>
+            {MARKETPLACES.map((m) => (
+              <option key={m} value={m}>
+                {m}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label>
+          <span className="flabel">Closest situation · optional</span>
+          <select
+            value={form.situation}
+            onChange={(e) => set("situation")(e.target.value)}
+          >
+            <option value="">Choose one</option>
+            {SITUATIONS.map((s) => (
+              <option key={s} value={s}>
+                {s}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+      <label>
+        <span className="flabel">What have you already tried · optional</span>
+        <textarea
+          rows={3}
+          value={form.tried}
+          onChange={(e) => set("tried")(e.target.value)}
+          placeholder="Agencies, tools, courses, doing it yourself. This saves the first twenty minutes."
+        />
+      </label>
+      <label>
+        <span className="flabel">Message</span>
+        <textarea
+          rows={4}
+          value={form.message}
+          aria-invalid={!!errors.message}
+          onChange={(e) => set("message")(e.target.value)}
+          placeholder="The decision you are trying to make."
+          required
+        />
+        {errors.message && (
+          <span className="err" role="alert">
+            {errors.message}
+          </span>
+        )}
+      </label>
+      <p style={{ fontSize: 13.5, color: "var(--muted)", margin: 0 }}>
         What you send here is used to reply to you, and for nothing else —{" "}
-        <a href="/privacy" className="hover:text-ink">
-          the privacy policy
-        </a>{" "}
-        says so in writing.
+        <a href="/privacy">the privacy policy</a> says so in writing.
       </p>
-
-      <div className="flex gap-[18px] items-center flex-wrap">
-        <button
-          type="button"
-          onClick={send}
-          className="bg-field text-white font-semibold px-6 py-[15px] rounded-sm cursor-pointer border-0 type-body min-h-12"
-        >
-          Send
+      <div className="cta-row">
+        <button type="submit" className="btn dark" disabled={status === "sending"}>
+          {status === "sending" ? "Sending…" : "Send"}
         </button>
-        <span className="type-meta text-muted">
+        <span style={{ fontSize: 13.5, color: "var(--muted)" }}>
           No newsletter. No sales sequence. One reply.
         </span>
       </div>
-    </div>
+      {status === "fallback" && (
+        <p style={{ fontSize: 13.5, color: "var(--muted)", margin: 0 }} role="status">
+          Direct sending is not switched on yet, so your email app opened with
+          the message ready to go — press send there and it reaches us the
+          same way.
+        </p>
+      )}
+    </form>
   );
 }

@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Amazon Private Label Agency | Product to Launch — Hyprr Brands</title>
+<meta name="description" content="We find the product, prove the numbers, build the brand and launch it on Amazon and Walmart. Then we run it. A written verdict before you spend.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --petrol:#123F46;--deep:#0B2D33;--citrus:#D7F04A;--aqua:#66D7D0;
+  --ink:#17171A;--paper:#F7F8F3;--body:#485458;--muted:#5b6668;--line:#d8dfdc;
+  --r-sm:12px;--r-md:18px;--r-lg:26px;--r-pill:999px;
+  --ease:cubic-bezier(.16,1,.3,1);--pad:20px;--dock:64px;
+}
+@media(min-width:760px){:root{--pad:28px}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);overflow-x:hidden;
+  font-family:Inter,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;
+  padding-bottom:var(--dock)}
+@media(min-width:760px){body{padding-bottom:0}}
+img,svg{max-width:100%}
+.wrap{max-width:1180px;margin:auto;padding:0 var(--pad)}
+h1,h2,h3{font-family:"Space Grotesk",sans-serif;font-weight:700;margin:0}
+h1{font-size:clamp(34px,7.6vw,68px);line-height:.98;letter-spacing:-.045em;margin:16px 0}
+h2{font-size:clamp(26px,5.2vw,46px);line-height:1.02;letter-spacing:-.04em;margin:10px 0 16px}
+h3{font-size:21px;letter-spacing:-.03em;margin:0 0 8px}
+p{font-size:16.5px;line-height:1.6;color:var(--body);margin:0 0 16px}
+a{color:inherit}
+section{padding:52px 0}
+@media(min-width:760px){section{padding:86px 0}}
+.eyebrow{font:500 11px/1 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);display:block;margin-bottom:14px}
+nav{background:rgba(247,248,243,.96);backdrop-filter:saturate(160%) blur(8px);
+  border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
+.navin{display:flex;align-items:center;justify-content:space-between;gap:16px;height:70px}
+.logo{height:30px;width:auto;display:block}
+@media(min-width:760px){.navin{height:82px}.logo{height:34px}}
+.links{display:none;gap:24px;font-size:14px;font-weight:600}
+.links a{text-decoration:none;color:var(--body)}
+.links a:hover{color:var(--petrol)}
+@media(min-width:940px){.links{display:flex}}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 20px;
+  border-radius:var(--r-pill);font:700 14px/1 Inter,sans-serif;border:1px solid transparent;
+  text-decoration:none;cursor:pointer;transition:transform 140ms var(--ease),filter 140ms ease}
+.btn:hover{filter:brightness(1.06)}.btn:active{transform:scale(.975)}
+.btn.dark{background:var(--ink);color:#fff}
+.btn.cit{background:var(--citrus);color:var(--ink)}
+.btn.ghost{background:none;border-color:var(--line);color:var(--ink)}
+.btn.line-l{background:none;border-color:rgba(255,255,255,.35);color:#fff}
+.navin .btn{min-height:40px;padding:0 16px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--petrol);
+  outline-offset:2px;border-radius:8px}
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(255,255,255,.97);
+  border-top:1px solid var(--line);display:flex;gap:12px;align-items:center;
+  padding:9px var(--pad);padding-bottom:calc(9px + env(safe-area-inset-bottom))}
+.dock .btn{flex:1}.dock small{font-size:12px;color:var(--muted);white-space:nowrap}
+@media(min-width:760px){.dock{display:none}}
+
+/* hero */
+.plhero{background:var(--petrol);color:#fff}
+.plhero h1,.plhero h3{color:#fff}
+.plhero p{color:#d5e2e0;max-width:56ch}
+.plhero .eyebrow{color:#9fbcb9}
+.plhero-grid{display:grid;gap:34px}
+@media(min-width:900px){.plhero-grid{grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}}
+.plchips{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 24px}
+.chip{padding:7px 11px;border-radius:var(--r-pill);background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.22);font:500 11px "JetBrains Mono",monospace;letter-spacing:.04em}
+.product-visual{min-height:330px;border-radius:var(--r-lg);background:#174b51;border:1px solid #3d7678;
+  padding:20px;position:relative;overflow:hidden}
+@media(min-width:760px){.product-visual{min-height:420px;padding:22px}}
+.packshot{height:210px;border-radius:var(--r-md);background:linear-gradient(135deg,#eef9f5,#fff);
+  display:grid;place-items:center}
+@media(min-width:760px){.packshot{height:245px}}
+.box{width:130px;height:150px;background:#fff;border:1px solid #b9c0bd;border-radius:10px;
+  display:grid;place-items:center;text-align:center;font:700 14px/1.3 "Space Grotesk",sans-serif;
+  letter-spacing:-.03em;color:var(--ink);box-shadow:14px 14px 0 rgba(215,240,74,.9)}
+.artlabels{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}
+.artlabels span{background:#fff;color:var(--ink);border-radius:var(--r-pill);padding:7px 10px;
+  font:500 10px "JetBrains Mono",monospace;letter-spacing:.05em}
+
+/* two starting points */
+.start{background:#fff}
+.start-grid{display:grid;gap:14px;margin-top:24px}
+@media(min-width:820px){.start-grid{grid-template-columns:1fr 1fr}}
+.start-card{border:1px solid var(--line);border-radius:var(--r-lg);padding:24px;min-width:0}
+.start-card.new{border-top:6px solid var(--citrus)}
+.start-card.existing{border-top:6px solid var(--aqua)}
+.start-card .tag{font:500 10px "JetBrains Mono",monospace;color:var(--muted);letter-spacing:.08em}
+.start-card h3{font-size:clamp(24px,5vw,30px);margin-top:14px}
+.start-card ul{padding-left:18px;line-height:1.8;font-size:14.5px;color:var(--body);margin:12px 0 0}
+.start-card .go{display:inline-block;margin-top:16px;font-weight:600;font-size:14.5px;
+  text-decoration:none;border-bottom:2px solid var(--citrus);padding-bottom:2px}
+
+/* build path */
+.buildband{background:var(--paper)}
+.build-grid{display:grid;gap:28px}
+@media(min-width:900px){.build-grid{grid-template-columns:.9fr 1.1fr;gap:44px;align-items:start}}
+.steps{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:520px){.steps{grid-template-columns:1fr 1fr}}
+.step{background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:16px;min-width:0}
+.step b{display:block;font-family:"Space Grotesk",sans-serif;font-size:16px;margin-bottom:5px}
+.step span{font:500 10px "JetBrains Mono",monospace;color:var(--muted);letter-spacing:.05em;
+  line-height:1.5;display:block}
+
+/* verdict — ADDED */
+.gate{background:var(--deep);color:#d5e2e0}
+.gate h2{color:#fff;max-width:20ch}
+.gate p{color:#a9c2c0}
+.gate-grid{display:grid;gap:26px;margin-top:22px}
+@media(min-width:860px){.gate-grid{grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}}
+.vsheet{border:1px solid rgba(255,255,255,.18);border-radius:var(--r-md);overflow:hidden}
+.vsheet .hd{display:flex;justify-content:space-between;padding:11px 14px;
+  border-bottom:1px solid rgba(255,255,255,.14);font:500 10.5px "JetBrains Mono",monospace;
+  color:#8faDab;letter-spacing:.06em}
+.vsheet div.r{display:flex;justify-content:space-between;gap:14px;padding:12px 14px;
+  border-bottom:1px solid rgba(255,255,255,.12);font-size:13.5px;color:#a9c2c0}
+.vsheet div.r:last-child{border-bottom:0}
+.vsheet b{font-family:"JetBrains Mono",monospace;font-weight:500;color:#fff}
+.vsheet .out b{color:var(--citrus)}
+
+/* run */
+.run{background:var(--ink);color:#fff}
+.run h2,.run h3{color:#fff}
+.run p{color:#c8cccf}
+.run-grid{display:grid;gap:28px}
+@media(min-width:900px){.run-grid{grid-template-columns:1fr 1fr;gap:40px;align-items:center}}
+.ops{display:grid;grid-template-columns:1fr;gap:9px}
+@media(min-width:520px){.ops{grid-template-columns:1fr 1fr}}
+.op{border:1px solid #3b3d42;background:#202125;border-radius:var(--r-sm);padding:16px;min-width:0}
+.op b{display:block;font-family:"Space Grotesk",sans-serif;margin-bottom:5px;font-size:16px}
+.op span{font-size:13px;color:#aeb4b6;line-height:1.5}
+
+/* scale */
+.scale{background:#e8f7f3}
+.scale-flow{display:grid;grid-template-columns:1fr;gap:9px;margin-top:24px}
+@media(min-width:560px){.scale-flow{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.scale-flow{grid-template-columns:repeat(4,1fr)}}
+.scale-flow div{background:#fff;border:1px solid #c6e3dc;border-top:4px solid var(--petrol);
+  border-radius:var(--r-sm);padding:16px;min-width:0}
+.scale-flow b{display:block;font-family:"Space Grotesk",sans-serif;margin-bottom:5px;font-size:16px}
+.scale-flow span{font-size:13px;color:#4d6462;line-height:1.5}
+
+/* fees — ADDED */
+.fees{background:#fff}
+.fee-grid{display:grid;gap:16px;margin-top:22px}
+@media(min-width:760px){.fee-grid{grid-template-columns:1fr 1fr;gap:30px}}
+.fee b{display:block;font-family:"Space Grotesk",sans-serif;font-size:18px;margin-bottom:5px}
+.fee span{font-size:15px;color:var(--body);line-height:1.6}
+
+/* seo body */
+.seo{background:var(--paper)}
+.seo .cols{display:grid;gap:24px;margin-top:8px}
+@media(min-width:860px){.seo .cols{grid-template-columns:1fr 1fr;gap:40px}}
+.seo p{max-width:62ch}
+
+/* faq */
+.faq{background:#fff}
+details{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;display:flex;gap:14px;align-items:center;
+  padding:17px 0;min-height:58px;font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:17px}
+summary::-webkit-details-marker{display:none}
+.plus{width:20px;height:20px;flex:0 0 20px;position:relative}
+.plus::before,.plus::after{content:"";position:absolute;background:var(--ink);border-radius:2px;
+  transition:transform 240ms var(--ease)}
+.plus::before{left:0;top:9px;width:20px;height:1.6px}
+.plus::after{left:9px;top:0;width:1.6px;height:20px}
+details[open] .plus::after{transform:rotate(90deg)}
+details .a{padding:0 0 18px 34px;font-size:15px;color:var(--body);line-height:1.65;max-width:62ch}
+
+/* cta */
+.cta{background:var(--petrol);color:#fff}
+.cta h2{color:#fff}.cta p{color:#d2dfdd;max-width:58ch}
+.cta .eyebrow{color:#9fbcb9}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap}
+footer{background:var(--ink);color:#9aa2a4;padding:28px 0;font:500 11px "JetBrains Mono",monospace}
+footer .wrap{display:grid;gap:8px}
+@media(min-width:640px){footer .wrap{grid-auto-flow:column;justify-content:space-between}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto}}
+</style></head>
+<body>
+
+<nav><div class="wrap navin">
+  <a href="/" aria-label="Hyprr Brands home">
+    <img class="logo" src="hyprr-brands-logo-transparent.png" alt="Hyprr Brands"></a>
+  <div class="links">
+    <a href="/">Home</a><a href="#journey">Private label</a><a href="#operate">Operations</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <a class="btn dark" href="#contact">Let's talk →</a>
+</div></nav>
+
+<main>
+
+<!-- HERO -->
+<section class="plhero"><div class="wrap plhero-grid">
+  <div>
+    <span class="eyebrow">Private label / Amazon + Walmart</span>
+    <h1>Launch a brand. Or run the one you already have.</h1>
+    <p>We take a private label business from product opportunity and sourcing through marketplace
+      launch, then run it every day afterwards. If the product does not work on paper, we tell you
+      before you spend.</p>
+    <div class="plchips">
+      <span class="chip">PRODUCT RESEARCH</span><span class="chip">SOURCING</span>
+      <span class="chip">DEVELOPMENT</span><span class="chip">PACKAGING</span>
+      <span class="chip">AMAZON</span><span class="chip">WALMART</span>
+    </div>
+    <div class="cta-row">
+      <a class="btn cit" href="#contact">Book a call</a>
+      <a class="btn line-l" href="#gate">See a product verdict</a>
+    </div>
+  </div>
+  <div class="product-visual">
+    <div class="packshot"><div class="box">YOUR<br>PRODUCT</div></div>
+    <div class="artlabels"><span>RESEARCH</span><span>SOURCING</span><span>PACKAGING</span>
+      <span>LISTING</span><span>LAUNCH</span></div>
+  </div>
+</div></section>
+
+<!-- TWO STARTING POINTS -->
+<section class="start" id="journey"><div class="wrap">
+  <span class="eyebrow">Two starting points</span>
+  <h2>Same destination. Different starting point.</h2>
+  <div class="start-grid">
+    <div class="start-card new"><span class="tag">01 — LAUNCHING</span>
+      <h3>You have the idea. Build the brand.</h3>
+      <p style="margin:10px 0 0">For founders, investors and businesses entering private label.</p>
+      <ul><li>Research the category and the product opportunity</li>
+        <li>Product development, samples and quality spec</li>
+        <li>Sourcing, unit cost and a written verdict</li>
+        <li>Packaging, compliance and brand</li>
+        <li>Listing, launch and first advertising</li></ul>
+      <a class="go" href="#build">See the build path →</a></div>
+    <div class="start-card existing"><span class="tag">02 — ALREADY SELLING</span>
+      <h3>You have the brand. Improve and run it.</h3>
+      <p style="margin:10px 0 0">For brands with products, listings or marketplace sales already
+        in place.</p>
+      <ul><li>Listing and catalogue optimization</li>
+        <li>Inventory, replenishment and stock cover</li>
+        <li>Amazon and Walmart account operations</li>
+        <li>Advertising, ranking and buy box</li>
+        <li>Growth, then expansion into new products</li></ul>
+      <a class="go" href="#operate">See what we operate →</a></div>
+  </div>
+</div></section>
+
+<!-- BUILD PATH -->
+<section class="buildband" id="build"><div class="wrap">
+  <span class="eyebrow">Build / launch</span>
+  <h2>From product opportunity to marketplace-ready.</h2>
+  <div class="build-grid">
+    <div>
+      <p>Six stages, in order. Research and development take weeks. Sampling and manufacturing take
+        months and depend on the supplier. Plan on a first purchase order somewhere between day 60
+        and day 90, and treat anyone promising faster as optimistic.</p>
+      <p style="margin-bottom:0"><b>This stage is a launch project.</b> Fixed scope, priced and
+        agreed in writing before anything starts, and it ends at launch.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><b>01 Research</b><span>MARKET + PRODUCT OPPORTUNITY</span></div>
+      <div class="step"><b>02 Develop</b><span>PRODUCT + DESIGN + R&amp;D</span></div>
+      <div class="step"><b>03 Source</b><span>SUPPLIER + SAMPLE + COST</span></div>
+      <div class="step"><b>04 Package</b><span>PACKAGING + RETAIL READINESS</span></div>
+      <div class="step"><b>05 Launch</b><span>LISTING + AMAZON + WALMART</span></div>
+      <div class="step"><b>06 Stabilize</b><span>INVENTORY + OPERATIONS</span></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- THE GATE — ADDED -->
+<section class="gate" id="gate"><div class="wrap">
+  <span class="eyebrow" style="color:#8faDab">The decision</span>
+  <h2>Between research and sourcing, there is a verdict.</h2>
+  <div class="gate-grid">
+    <div>
+      <p>Every product candidate is scored on landed cost, marketplace fees, returns, competition
+        and demand. You get one page that says buy or do not buy, and the reason. You can read it
+        and disagree with it.</p>
+      <p>Most candidates fail. We send you the sheet that shows why, and we do not buy them. That
+        is the part that protects your money, and it happens before any of it moves.</p>
+      <p style="margin-bottom:0"><b style="color:#fff">Nothing is ordered without your approval, in
+        writing.</b></p>
+    </div>
+    <div class="vsheet">
+      <div class="hd"><span>PRODUCT VERDICT · CANDIDATE 0412</span><span>4 SEP</span></div>
+      <div class="r"><span>Landed unit cost</span><b>11.40</b></div>
+      <div class="r"><span>Marketplace fees</span><b>6.85</b></div>
+      <div class="r"><span>Returns and advertising</span><b>3.10</b></div>
+      <div class="r"><span>Competing offers</span><b>14</b></div>
+      <div class="r out"><span>Margin against a 20% floor</span><b>4.8% · DO NOT BUY</b></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- RUN -->
+<section class="run" id="operate"><div class="wrap">
+  <span class="eyebrow" style="color:#9aa2a4">Run / operate</span>
+  <h2>After launch, we keep the business moving.</h2>
+  <div class="run-grid">
+    <div>
+      <p>Ongoing marketplace management connects catalogue, inventory, account operations,
+        advertising and growth, run by the same people who chose the product.</p>
+      <p style="margin-bottom:0"><b style="color:#fff">This stage is managed operations.</b> Monthly
+        and continuous, with a written report showing margin by product.</p>
+    </div>
+    <div class="ops">
+      <div class="op"><b>Catalog</b><span>Listings, A+ content, attributes, variations and
+        compliance</span></div>
+      <div class="op"><b>Inventory</b><span>Stock cover, replenishment, stranded stock and
+        planning</span></div>
+      <div class="op"><b>Marketplace</b><span>Amazon and Walmart account operations, cases and
+        account health</span></div>
+      <div class="op"><b>Advertising</b><span>PPC, search terms, bids, ranking and buy box</span></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- GROW / SCALE -->
+<section class="scale"><div class="wrap">
+  <span class="eyebrow">Grow → scale</span>
+  <h2>Build the feedback loop.</h2>
+  <p>Operations create the data. Optimization finds the opportunities. Scale puts more behind what
+    already works, and only when the cash, the stock and the margin can carry it.</p>
+  <div class="scale-flow">
+    <div><b>Measure</b><span>Sales, margin and marketplace signals</span></div>
+    <div><b>Improve</b><span>Listing, advertising and price</span></div>
+    <div><b>Expand</b><span>More products, then Walmart</span></div>
+    <div><b>Scale</b><span>Operations and capacity behind the winners</span></div>
+  </div>
+</div></section>
+
+<!-- FEES — ADDED -->
+<section class="fees"><div class="wrap">
+  <span class="eyebrow">What it costs</span>
+  <h2>Two fees, both agreed in writing first.</h2>
+  <div class="fee-grid">
+    <div class="fee"><b>The launch project</b><span>A fixed fee, scoped before anything starts. It
+      depends on the category, the number of products and whether Walmart is included. Stock,
+      tooling and advertising are your costs, paid by you directly to the supplier and the
+      marketplace.</span></div>
+    <div class="fee"><b>Managed operations</b><span>A monthly fee once the brand is live. Nothing is
+      charged on your advertising spend and nothing on your capital, so growing the account never
+      makes us more money for spending yours.</span></div>
+  </div>
+  <p style="margin-top:20px"><a href="/how-we-work" style="font-weight:600">How we charge, in full
+    →</a></p>
+</div></section>
+
+<!-- SEO body copy — replaces the keyword pill row -->
+<section class="seo"><div class="wrap">
+  <h2 style="font-size:clamp(22px,4.4vw,32px)">Amazon and Walmart private label services</h2>
+  <div class="cols">
+    <div>
+      <p>Private label means having a product manufactured and sold under your own brand rather
+        than reselling someone else's. You own the listing, the reviews and the margin. You also
+        carry the risk if the product does not sell, which is why the research has to be honest
+        before the money moves.</p>
+      <p>Our private label service covers product and market research, product development,
+        supplier sourcing, samples and quality specification, packaging and compliance, listing
+        creation with A+ content, and the Amazon and Walmart launch itself.</p>
+    </div>
+    <div>
+      <p>After launch, the same team runs the account: inventory and replenishment, advertising and
+        ranking, cases and account health, and a monthly report showing margin by product rather
+        than revenue by product.</p>
+      <p>We work on Amazon in the US, UK, Europe and the Gulf, and on Walmart in the US. Clients
+        include brand owners, manufacturers selling direct, and investors placing capital into US
+        marketplaces from outside the country.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- FAQ -->
+<section class="faq" id="faq"><div class="wrap">
+  <span class="eyebrow">FAQ</span>
+  <h2>Clear answers before the call.</h2>
+  <div style="margin-top:20px;border-top:1px solid var(--line)">
+    <details open><summary><span class="plus"></span>Is Amazon private label still profitable?</summary>
+      <div class="a">On products where the economics survive fees, advertising and returns, yes.
+        Most do not. We score each candidate on landed cost, fees, competition and demand, and give
+        you a written verdict before any money is committed. Profitability is a per-product
+        question, never a category one.</div></details>
+    <details><summary><span class="plus"></span>How long does a launch take?</summary>
+      <div class="a">Research and the verdict take weeks. Sampling and manufacturing take months and
+        depend on your supplier. Plan on a first purchase order somewhere between day 60 and day
+        90. Anyone promising faster is either using stock inventory or being optimistic.</div></details>
+    <details><summary><span class="plus"></span>Can you take over a brand that already sells?</summary>
+      <div class="a">Yes. Existing brands usually start with listing and catalogue work, then move
+        into full managed operations. You keep the account in your name and we work under
+        permissioned access you can revoke in one click.</div></details>
+    <details><summary><span class="plus"></span>FBA or FBM for a new product?</summary>
+      <div class="a">Most private label products start on FBA, because Prime eligibility and the
+        buy box matter for a listing with no history. FBM makes sense for oversized items, slow
+        movers, or where you already have fulfilment you trust.</div></details>
+    <details><summary><span class="plus"></span>Do you work on Walmart as well as Amazon?</summary>
+      <div class="a">Yes, in the US. Walmart has a different advertising platform, a different fee
+        structure and slower review velocity, so we launch on Amazon first and add Walmart once the
+        product has proven it sells.</div></details>
+    <details><summary><span class="plus"></span>Who owns the brand and the accounts?</summary>
+      <div class="a">You do. The trademark, the brand registry, the seller account and the stock are
+        all in your name. Suppliers invoice you directly. Nothing is ordered without your written
+        approval.</div></details>
+  </div>
+</div></section>
+
+</main>
+
+<section class="cta" id="contact"><div class="wrap">
+  <span class="eyebrow">Next step</span>
+  <h2>Launching, or already selling?</h2>
+  <p>Tell us the category you are thinking about, or the brand you already run. We will tell you
+    honestly whether it is worth the money before you spend any.</p>
+  <div class="cta-row">
+    <a class="btn cit" href="#">Book a call</a>
+    <a class="btn line-l" href="#">Send context instead</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <span>HYPRR BRANDS — AMAZON + WALMART COMMERCE</span>
+  <span>PRIVATE LABEL · WHOLESALE · MANAGEMENT · LISTINGS</span>
+</div></footer>
+
+<div class="dock">
+  <a class="btn dark" href="#contact">Book a call</a>
+  <small>20 min, no deck</small>
+</div>
+
+<script>
+document.querySelectorAll('img.logo').forEach(function(img){
+  img.addEventListener('error',function(){
+    var s=document.createElement('span');
+    s.textContent='hyprr. brands';
+    s.style.cssText='font:700 19px "Space Grotesk",sans-serif;letter-spacing:-.04em';
+    img.replaceWith(s);
+  });
+});
+</script>
+</body></html>

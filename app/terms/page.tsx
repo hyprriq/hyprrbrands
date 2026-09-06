@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
-import { ogImageMeta } from "@/lib/og-pages";
 import LegalPage from "@/components/LegalPage";
+import { ogImageMeta } from "@/lib/og-pages";
+
+const TITLE = "Terms of Service | Hyprr Brands Website Terms";
+const DESC =
+  "The terms that apply to using this website. Engagement terms live in the written agreement each client signs, and are not set out on this page.";
 
 export const metadata: Metadata = {
-  title: "Website Terms of Service | Hyprr Brands",
-  description:
-    "The terms that apply to using this website. Engagement terms live in the written agreement each client signs, and are not set out on this page.",
+  title: TITLE,
+  description: DESC,
   alternates: { canonical: "/terms" },
   ...ogImageMeta("terms"),
 };
@@ -14,18 +17,20 @@ export default function Page() {
   return (
     <LegalPage
       path="/terms"
-      description="The terms that apply to using this website. Engagement terms live in the written agreement each client signs, and are not set out on this page."
-      title="Terms of service" version="v0.1 · 2 September 2026 · under owner review">
+      description={DESC}
+      title="Terms of service"
+      version="v0.2 · 6 September 2026 · under owner review"
+    >
       <p>
         These terms cover the use of this website. The terms of an actual
-        engagement with Hyprr Retail LLC are set out in the written
-        agreement each client signs — nothing on this site forms part of
-        that agreement or amends it.
+        engagement with Hyprr Retail LLC are set out in the written agreement
+        each client signs — nothing on this site forms part of that agreement
+        or amends it.
       </p>
       <h2>What this site is</h2>
       <p>
-        The site describes how Hyprr works and what its services involve.
-        It is informational: nothing here is legal, tax, accounting or
+        The site describes how Hyprr works and what its services involve. It
+        is informational: nothing here is legal, tax, accounting or
         investment advice, and nothing here is an offer capable of
         acceptance. Whether a service fits your situation is established in
         conversation and recorded in writing, not inferred from a web page.
@@ -39,10 +44,9 @@ export default function Page() {
       </p>
       <h2>Content and marks</h2>
       <p>
-        The content and branding on this site belong to Hyprr Retail LLC.
-        You may quote it with attribution; you may not present it as your
-        own or use the Hyprr name to imply a relationship that does not
-        exist.
+        The content and branding on this site belong to Hyprr Retail LLC. You
+        may quote it with attribution; you may not present it as your own or
+        use the Hyprr name to imply a relationship that does not exist.
       </p>
       <h2>Contact</h2>
       <p>Questions about these terms: hello@hyprrbrands.com.</p>

@@ -1,13 +1,25 @@
 import type { MetadataRoute } from "next";
 import { SITE_ORIGIN } from "@/lib/site-map";
 
-/** Allow everything — including AI crawlers explicitly, per the GEO
- *  requirements (a default-deny silently removes the site from every
- *  AI answer). No blanket noindex on production. */
+/**
+ * DEV_BRIEF §5: allow everything, disallow /api/, declare the sitemap.
+ * AI crawlers stay explicitly allowed (a default-deny silently removes
+ * the site from every AI answer). Vercel preview deployments get a
+ * blanket disallow so the subdomain never competes with the domain —
+ * belt and braces on top of the layout's noindex meta and Vercel's
+ * own X-Robots-Tag.
+ */
 export default function robots(): MetadataRoute.Robots {
+  const preview =
+    !!process.env.VERCEL_ENV && process.env.VERCEL_ENV !== "production";
+
+  if (preview) {
+    return { rules: [{ userAgent: "*", disallow: "/" }] };
+  }
+
   return {
     rules: [
-      { userAgent: "*", allow: "/" },
+      { userAgent: "*", allow: "/", disallow: "/api/" },
       { userAgent: "GPTBot", allow: "/" },
       { userAgent: "OAI-SearchBot", allow: "/" },
       { userAgent: "ChatGPT-User", allow: "/" },

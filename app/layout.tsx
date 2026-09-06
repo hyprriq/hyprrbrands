@@ -1,61 +1,71 @@
 import type { Metadata } from "next";
-import { Archivo, JetBrains_Mono } from "next/font/google";
+import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import { SITE_ORIGIN } from "@/lib/site-map";
 import JsonLd from "@/components/JsonLd";
 import { organizationLd, websiteLd } from "@/lib/schema";
+import SiteHeader from "@/components/SiteHeader";
+import SiteFooter from "@/components/SiteFooter";
+import Dock from "@/components/Dock";
 import "./globals.css";
 
-const archivo = Archivo({
-  variable: "--font-archivo",
+/* Self-hosted via next/font — the browser never contacts Google.
+   DEV_BRIEF step 1: Space Grotesk display, Inter body, JetBrains Mono
+   for small labels and numerals. */
+const display = Space_Grotesk({
+  variable: "--font-display",
   subsets: ["latin"],
-  axes: ["wdth"],
+  weight: ["500", "700"],
   display: "swap",
 });
-
-const jetbrains = JetBrains_Mono({
-  variable: "--font-jetbrains",
+const body = Inter({
+  variable: "--font-body",
   subsets: ["latin"],
-  weight: ["400", "600"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+const mono = JetBrains_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["500"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_ORIGIN),
-  title: "Ecommerce Operations Agency | You Own It, We Run It",
+  title: "Amazon & Walmart Agency | Build, Operate, Scale — Hyprr",
   description:
-    "Hyprr builds, grows and operates ecommerce businesses on Amazon US & UK, Walmart US and Shopify. You own the accounts and inventory; we run the desk.",
-  alternates: { canonical: "/" },
-  openGraph: {
-    title: "You own the business. We run the operation.",
-    description:
-      "Hyprr builds, grows and operates ecommerce businesses on Amazon US & UK, Walmart US and Shopify. You own the accounts and inventory; we run the desk.",
-    type: "website",
-    url: "/",
-    siteName: "Hyprr Brands",
-    images: [
-      {
-        url: "/og/home",
-        width: 1200,
-        height: 630,
-        alt: "You own the business. We run the operation.",
-      },
+    "We build, operate and scale Amazon and Walmart businesses. You own the accounts, the stock and every buying decision. Book a call.",
+  openGraph: { type: "website", siteName: "Hyprr Brands" },
+  twitter: { card: "summary_large_image" },
+  icons: {
+    icon: [
+      { url: "/brand/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/brand/favicon-16.png", sizes: "16x16", type: "image/png" },
     ],
+    shortcut: "/brand/favicon.ico",
+    apple: "/brand/hyprr-icon-petrol-180.png",
   },
-  twitter: { card: "summary_large_image", images: ["/og/home"] },
+  // Vercel previews must never compete with the domain.
+  ...(process.env.VERCEL_ENV && process.env.VERCEL_ENV !== "production"
+    ? { robots: { index: false, follow: false } }
+    : {}),
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en-US"
-      className={`${archivo.variable} ${jetbrains.variable} h-full antialiased`}
+      className={`${display.variable} ${body.variable} ${mono.variable}`}
     >
-      <body className="min-h-full flex flex-col">
+      <body>
         <JsonLd nodes={[organizationLd(), websiteLd()]} />
         <a href="#main" className="skip-link">
           Skip to content
         </a>
+        <SiteHeader />
         {children}
+        <SiteFooter />
+        <Dock />
       </body>
     </html>
   );

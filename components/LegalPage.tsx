@@ -1,35 +1,34 @@
 import type { ReactNode } from "react";
-import Link from "next/link";
-import SitePageShell from "@/components/SitePageShell";
-import JsonLd from "@/components/JsonLd";
+import JsonLd from "./JsonLd";
 import { breadcrumbLd, webPageLd } from "@/lib/schema";
 
-const LEGAL_PAGES: [string, string][] = [
-  ["/privacy", "Privacy policy"],
-  ["/terms", "Terms of service"],
-  ["/accessibility", "Accessibility"],
-  ["/earnings-claims", "Earnings claims policy"],
+/**
+ * Legal page shell — v4. Footer-only pages: one H1, a version line,
+ * prose, and a related-policies row so the legal set cross-links in
+ * the body (the footer does not count as body links).
+ */
+const POLICIES = [
+  { href: "/privacy", label: "Privacy" },
+  { href: "/terms", label: "Terms" },
+  { href: "/accessibility", label: "Accessibility" },
+  { href: "/earnings-claims", label: "Earnings claims" },
 ];
 
-/**
- * Legal pages — White only, the article type stack with a version and
- * date line. No template beyond that; flat URLs.
- */
 export default function LegalPage({
-  title,
-  version,
   path,
+  title,
   description,
+  version,
   children,
 }: {
-  title: string;
-  version: string;
   path: string;
+  title: string;
   description: string;
+  version: string;
   children: ReactNode;
 }) {
   return (
-    <SitePageShell>
+    <main id="main">
       <JsonLd
         nodes={[
           webPageLd({ path, title, description }),
@@ -39,43 +38,26 @@ export default function LegalPage({
           ]),
         ]}
       />
-      <section className="bg-white">
-        <div className="mx-auto max-w-[1280px] px-[clamp(20px,3vw,40px)] py-[clamp(40px,6vw,72px)]">
-          <nav aria-label="Breadcrumb">
-            <ol className="font-mono type-label text-label normal-case tracking-normal flex gap-2 list-none m-0 p-0 mb-[18px]">
-              <li>
-                <Link href="/" className="text-label hover:text-ink">
-                  Home
-                </Link>
-              </li>
-              <li aria-hidden="true">/</li>
-              <li aria-current="page" className="text-ink">
-                {title}
-              </li>
-            </ol>
-          </nav>
-          <h1 className="font-display type-h1 text-ink m-0 max-w-[18ch] text-balance">
-            {title}
-          </h1>
-          <p className="font-mono type-label text-label normal-case tracking-normal mt-4 mb-0">
-            {version}
-          </p>
-          <div className="mt-8 max-w-[68ch] grid gap-4 [&_h2]:font-display [&_h2]:type-h3 [&_h2]:text-ink [&_h2]:m-0 [&_h2]:mt-4 [&_p]:type-body [&_p]:text-body [&_p]:m-0 [&_ul]:type-body [&_ul]:text-body [&_ul]:m-0 [&_ul]:pl-5 [&_li]:mb-1.5">
-            {children}
-          </div>
-          <p className="type-meta text-muted mt-10 mb-0 border-t border-line pt-5 max-w-[68ch]">
-            The other policies:{" "}
-            {LEGAL_PAGES.filter(([p]) => p !== path).map(([p, label], i, arr) => (
-              <span key={p}>
-                <a href={p} className="hover:text-ink">
-                  {label}
+      <section className="legal-band">
+        <div className="wrap">
+          <span className="eyebrow">Legal</span>
+          <h1>{title}</h1>
+          <p className="legal-meta">{version}</p>
+          <div className="prose">{children}</div>
+          <p style={{ marginTop: 34, fontSize: 14.5 }}>
+            Related:{" "}
+            {POLICIES.filter((p) => p.href !== path).map((p, i, arr) => (
+              <span key={p.href}>
+                <a href={p.href} style={{ fontWeight: 600 }}>
+                  {p.label}
                 </a>
                 {i < arr.length - 1 ? " · " : ""}
               </span>
-            ))}
+            ))}{" "}
+            · <a href="/contact" style={{ fontWeight: 600 }}>Contact</a>
           </p>
         </div>
       </section>
-    </SitePageShell>
+    </main>
   );
 }

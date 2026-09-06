@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hyprr — wireframes, remaining seven pages</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F7F8F3;--ink:#17171A;--petrol:#123F46;--citrus:#D7F04A;--aqua:#66D7D0;
+ --coral:#FF806D;--line:#d8dfdc;--body:#485458;--muted:#5b6668;--pad:18px}
+@media(min-width:760px){:root{--pad:30px}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+ font:400 15px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:auto;padding:0 var(--pad)}
+h1,h2,h3{font-family:"Space Grotesk",sans-serif;font-weight:700;margin:0;letter-spacing:-.035em}
+h1{font-size:clamp(28px,5.4vw,40px);line-height:1.05}
+h2{font-size:clamp(21px,3.4vw,27px);margin:0 0 6px}
+p{margin:0 0 12px;color:var(--body)}
+.mono{font-family:"JetBrains Mono",monospace}
+.intro{padding:36px 0 8px}
+.page{background:#fff;border:1px solid var(--line);border-radius:20px;margin:26px 0;overflow:hidden}
+.phead{padding:18px 20px;border-bottom:1px solid var(--line);background:#fbfcfa}
+.phead .u{font:500 11.5px "JetBrains Mono",monospace;color:var(--petrol);letter-spacing:.04em}
+.phead h2{margin-top:8px}
+.phead .kw{font-size:12.5px;color:var(--muted);margin-top:6px}
+.sec{display:grid;grid-template-columns:34px 1fr;gap:14px;padding:16px 20px;border-bottom:1px solid #eef1ee}
+.sec:last-child{border-bottom:0}
+.n{font:500 11px "JetBrains Mono",monospace;color:var(--muted);padding-top:4px}
+.sec b{font-family:"Space Grotesk",sans-serif;font-size:16.5px;display:block;margin-bottom:4px}
+.sec p{font-size:14px;margin:0 0 8px;max-width:64ch}
+.sec .copy{background:#f6f8f5;border-radius:10px;padding:11px 13px;font-size:14px;color:var(--ink);
+ margin:0 0 8px;max-width:66ch}
+.sec .copy em{font-style:italic;color:var(--muted);display:block;font-size:12.5px;margin-top:5px}
+.meta{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font:500 10.5px "JetBrains Mono",monospace;letter-spacing:.04em;border:1px solid var(--line);
+ border-radius:20px;padding:3px 9px;color:var(--muted);background:#fff}
+.tag.re{border-color:#9fd8cf;color:#0f6a63}
+.tag.new{border-color:#e0c98a;color:#7a5c12}
+.tag.seo{border-color:#c2b6e8;color:#4b3a8f}
+.key{background:var(--petrol);color:#fff;border-radius:16px;padding:20px;margin:26px 0}
+.key h2{color:#fff}
+.key p{color:#cfe0de}
+.key ul{margin:8px 0 0;padding-left:18px;color:#cfe0de;font-size:14.5px;line-height:1.75}
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 0}
+footer{padding:40px 0 60px;color:var(--muted);font-size:13px}
+</style></head><body>
+
+<div class="wrap intro">
+  <h1>Wireframes — the seven remaining pages</h1>
+  <p style="max-width:66ch">Section order, copy direction and which component to reuse. The private
+  label page is the structural reference: same design system, different composition per page. Nothing
+  here needs a new component except where marked NEW.</p>
+  <div class="legend">
+    <span class="tag re">REUSE — component exists on home or PL</span>
+    <span class="tag new">NEW — build once, reused later</span>
+    <span class="tag seo">SEO — carries a target term or measured PAA</span>
+  </div>
+</div>
+
+<div class="key wrap" style="max-width:1080px">
+  <h2>The wholesale page carries the most weight. Read this first.</h2>
+  <p>Three things have to be true on that page or the whole offer reads like an automation pitch:</p>
+  <ul>
+    <li><b style="color:#fff">Authorised distributors only</b>, stated as a rule you operate under
+      rather than a promise. Brand approval, distributor terms, invoices in the client's name.</li>
+    <li><b style="color:#fff">An honest timeline.</b> First purchase order around day 60–90, volume
+      later. Publishing the slow part is what separates you from the people who hide it.</li>
+    <li><b style="color:#fff">A service, not an investment product.</b> Client owns the entity,
+      accounts and stock. Fixed fee regardless of outcome. No return promised, nothing bought
+      without written approval.</li>
+  </ul>
+</div>
+
+<!-- ============ WHOLESALE ============ -->
+<div class="wrap"><div class="page">
+  <div class="phead"><span class="u">/amazon-wholesale-management</span>
+    <h2>Wholesale</h2>
+    <p class="kw">Primary: <b>amazon wholesale management service</b> · MEASURED — no AI Overview,
+      and only 3 of 8 results are agency pages. Google rewards explanation here, so the marketplace
+      explainer is required, not optional.</p></div>
+
+  <div class="sec"><span class="n">01</span><div>
+    <b>Hero</b>
+    <div class="copy">We run wholesale operations on Amazon and Walmart.<br>
+      Sourcing from authorised distributors, purchase orders you approve, and the daily work of
+      keeping those lines selling.
+      <em>Two buttons: Book a call · See a buying decision. Chip: “managed operations”.</em></div>
+    <div class="meta"><span class="tag re">PL hero</span><span class="tag seo">H1</span></div>
+  </div></div>
+
+  <div class="sec"><span class="n">02</span><div>
+    <b>How wholesale actually works — the opportunity</b>
+    <p>The explainer the SERP demands, and the section that makes the business legible to an
+      investor who has never sold on Amazon.</p>
+    <div class="copy">Every brand sells its products through more than one route. Some sell direct
+      to Amazon. Some sell through distributors. Most also sell on their own website. Those routes
+      do not cover every listing, every region or every moment of demand, and that gap is where a
+      wholesale seller operates: buying genuine stock through an approved channel and selling it
+      where the brand is not already serving the customer well.
+      <em>Diagram: Brand → direct · distributor · own site → the gap → your account.</em></div>
+    <div class="meta"><span class="tag new">RouteDiagram</span><span class="tag seo">authorised distributor · buy box</span></div>
+  </div></div>
+
+  <div class="sec"><span class="n">03</span><div>
+    <b>Two ways in</b>
+    <p>Same split as private label, different content. This is where the investor and the operator
+      separate.</p>
+    <div class="copy"><b>Starting from zero.</b> You have capital and no operation. We open supplier
+      accounts in your name, build the catalogue, model every line and run it.<br><br>
+      <b>Already operating.</b> You have suppliers and sales. We take over the daily work, tighten
+      buying and replenishment, and grow the catalogue.
+      <em>Two cards, citrus and aqua top borders. Each links down the page.</em></div>
+    <div class="meta"><span class="tag re">PL start-cards</span></div>
+  </div></div>
+
+  <div class="sec"><span class="n">04</span><div>
+    <b>Authorised distributors only</b>
+    <p>Its own band, not a bullet. This is the credibility section.</p>
+    <div class="copy">We buy from brands and their authorised distributors. That means brand
+      approval, real distributor terms, and invoices issued to you. It is slower to set up than
+      buying wherever stock is cheapest, and it is the reason accounts survive their second year.
+      <em>Petrol or ink band. Three sub-points: brand approval · distributor terms · invoices in
+      your name.</em></div>
+    <div class="meta"><span class="tag new">RuleBand</span><span class="tag seo">supplier approval · ungating</span></div>
+  </div></div>
+
+  <div class="sec"><span class="n">05</span><div>
+    <b>The buying decision</b>
+    <div class="copy">Every line is modelled to landed cost before it is bought. Most fail. You get
+      the sheet that shows why, and we do not buy them.
+      <em>Reuse the PL verdict block verbatim, with a wholesale line instead of a product
+      candidate. ROI 4.8% against a 20% floor, DO NOT BUY.</em></div>
+    <div class="meta"><span class="tag re">PL gate band</span></div>
+  </div></div>
+
+  <div class="sec"><span class="n">06</span><div>
+    <b>The operating cycle</b>
+    <p>The daily and weekly work. A loop rather than a line, because it repeats.</p>
+    <div class="copy">Suppliers → Catalogue → Buying → Inventory → Amazon &amp; Walmart →
+      Replenishment → back to catalogue.
+      <em>Under it: what is included every month, as a four-column label grid.</em></div>
+    <div class="meta"><span class="tag re">PL ops grid</span><span class="tag new">Loop</span></div>
+  </div></div>
+
+  <div class="sec"><span class="n">07</span><div>
+    <b>What the first year looks like</b>
+    <p>The honesty section. It costs one screen and it buys the whole page its credibility.</p>
+    <div class="copy"><b>Weeks 1–4</b> Accounts, supplier applications, catalogue modelling.<br>
+      <b>Day 60–90</b> First purchase order, once lines clear the margin floor.<br>
+      <b>Months 3–6</b> Reorder rhythm, buy box share, the first lines that repeat.<br>
+      <b>Months 6–12</b> More suppliers, more lines, and Walmart alongside Amazon.<br>
+      This is a business that compounds. It is not fast, and anyone describing it as fast is
+      selling something else.
+      <em>Four-step horizontal timeline. Reuse the scale staircase pattern.</em></div>
+    <div class="meta"><span class="tag re">Staircase</span><span class="tag new">Timeline copy</span></div>
+  </div></div>
+
+  <div class="sec"><span class="n">08</span><div>
+    <b>Scale — to your budget and your goals</b>
+    <div class="copy">How far this goes depends on the capital you want working and what you want
+      the business to be. More lines from suppliers already open. More suppliers. Then the same
+      catalogue on Walmart. We size that with you on the first call rather than publishing a plan
+      that fits nobody.
+      <em>Four tiles. The last one links to the call.</em></div>
+    <div class="meta"><span class="tag re">Scale flow</span></div>
+  </div></div>
+
+  <div class="sec"><span class="n">09</span><div>
+    <b>Run it with us, or build your own team</b>
+    <p>NEW and worth more than it looks. Removes the dependency fear every investor has.</p>
+    <div class="copy">Some clients want us running it permanently. Others want an in-house team
+      eventually. We will hire, train and hand over to that team, and document the operation so it
+      survives the handover. Saying so at the start is how you know the work is being done properly
+      rather than kept deliberately opaque.
+      <em>Two-column block, ink ground. Not a service card — a statement.</em></div>
+    <div class="meta"><span class="tag new">HandoverBlock</span></div>
+  </div></div>
+
+  <div class="sec"><span class="n">10</span><div>
+    <b>Ownership and fees</b>
+    <div class="copy">The accounts, the stock and the supplier relationships are yours. Suppliers
+      invoice you directly. Nothing is ordered without your written approval. We charge a fixed
+      monthly fee, with a setup project if you are starting from zero. Nothing on your capital and
+      nothing on your ad spend.
+      <em>Links to /how-we-work.</em></div>
+    <div class="meta"><span class="tag re">PL fees</span></div>
+  </div></div>
+
+  <div class="sec"><span class="n">11</span><div>
+    <b>FAQ — four, collapsed</b>
+    <div class="copy">How does Amazon wholesale work? · Is FBA still profitable? · Does FBA cost
+      money? · How much stock do I need to start?
+      <em>All four read on the live SERP. FAQPage JSON-LD.</em></div>
+    <div class="meta"><span class="tag re">PL FAQ</span><span class="tag seo">measured PAA</span></div>
+  </div></div>
+
+  <div class="sec"><span class="n">12</span><div><b>CTA</b>
+    <div class="copy">Send us a supplier list or a product list. We will model three lines and tell
+      you what we would do with them.</div>
+    <div class="meta"><span class="tag re">PL CTA</span></div></div></div>
+</div></div>
+
+<!-- ============ MANAGEMENT ============ -->
+<div class="wrap"><div class="page">
+  <div class="phead"><span class="u">/amazon-walmart-management</span>
+    <h2>Amazon &amp; Walmart management</h2>
+    <p class="kw">Primary: <b>amazon marketplace management agency</b>. Not “seller account
+      management” — Amazon holds the top two slots there and a measured AI Overview argues against
+      outsourcing. That term is answered in the FAQ instead.</p></div>
+
+  <div class="sec"><span class="n">01</span><div><b>Hero</b>
+    <div class="copy">You already sell. We run it properly.<br>Amazon and Walmart account
+      operations, run daily. Your account stays in your name and you can revoke our access in one
+      click.</div>
+    <div class="meta"><span class="tag re">PL hero</span></div></div></div>
+
+  <div class="sec"><span class="n">02</span><div><b>Should you let an agency manage your account?</b>
+    <p>The rebuttal. Highest-value 45 words on the site, because Google is currently publishing the
+      objection above every competitor.</p>
+    <div class="copy">Not if the agency holds the account. The safe arrangement is that the account
+      stays registered to you, the agency works under permissioned user access you can revoke, and
+      every purchase is approved by you in writing. Access without ownership.</div>
+    <div class="meta"><span class="tag new">SnippetAnswer</span><span class="tag seo">amazon seller account management</span></div></div></div>
+
+  <div class="sec"><span class="n">03</span><div><b>Four live areas</b>
+    <div class="copy">Catalogue · Growth · Inventory · Account. Areas, not stages — nothing on this
+      page is numbered.</div>
+    <div class="meta"><span class="tag re">PL ops grid</span></div></div></div>
+
+  <div class="sec"><span class="n">04</span><div><b>A week inside your account</b>
+    <div class="copy">Mon catalogue · Tue PPC · Wed inventory · Thu account · Fri reporting.
+      <em>Answers the real question behind a retainer: what am I paying for every month.</em></div>
+    <div class="meta"><span class="tag new">WeekStrip</span></div></div></div>
+
+  <div class="sec"><span class="n">05</span><div><b>Growth · id="growth"</b>
+    <div class="copy">Conversion first, then traffic. Convert, rank, advertise, hold.
+      Agencies paid on ad spend do this backwards. We are not paid on ad spend.</div>
+    <div class="meta"><span class="tag re">Home levers</span><span class="tag seo">amazon ppc management</span></div></div></div>
+
+  <div class="sec"><span class="n">06</span><div><b>Adding Walmart · id="walmart"</b>
+    <div class="copy">The same catalogue on a second marketplace, with the differences named:
+      different advertising platform, different fee structure, slower review velocity, no FBA
+      equivalent by default.</div>
+    <div class="meta"><span class="tag new">WalmartBlock</span><span class="tag seo">walmart marketplace management</span></div></div></div>
+
+  <div class="sec"><span class="n">07</span><div><b>Listings · id="listings"</b>
+    <div class="copy">If the listings are the problem, start there. Available as a one-off project.
+      <em>Links to /amazon-listing-optimization.</em></div>
+    <div class="meta"><span class="tag re">Two-col block</span></div></div></div>
+
+  <div class="sec"><span class="n">08</span><div><b>Monthly report + ownership + FAQ + CTA</b>
+    <div class="copy">Margin by product, not revenue by product. Then ownership, then four measured
+      PAA questions, then: give us read access for a week and we will send you what we found.</div>
+    <div class="meta"><span class="tag re">PL fees · FAQ · CTA</span></div></div></div>
+</div></div>
+
+<!-- ============ LISTING OPTIMIZATION ============ -->
+<div class="wrap"><div class="page">
+  <div class="phead"><span class="u">/amazon-listing-optimization</span>
+    <h2>Listing optimization</h2>
+    <p class="kw">Primary: <b>amazon listing optimization service</b> · REASONED — <b>no measured
+      SERP row exists. Read this SERP before writing the page.</b> The only page in the set without
+      evidence behind it.</p></div>
+  <div class="sec"><span class="n">01</span><div><b>Hero</b>
+    <div class="copy">Your listing is where traffic becomes revenue.<br>Fixed price, two weeks.
+      <em>Chip: project. Hero visual is the before-and-after.</em></div>
+    <div class="meta"><span class="tag re">PL hero</span></div></div></div>
+  <div class="sec"><span class="n">02</span><div><b>What we optimize</b>
+    <div class="copy">Research · Content · Conversion · Indexing. Four cards, one line each.</div>
+    <div class="meta"><span class="tag re">Ops grid</span></div></div></div>
+  <div class="sec"><span class="n">03</span><div><b>Before and after</b>
+    <div class="copy">The whole page rests on this. Annotated, with indexed search terms before and
+      after.</div>
+    <div class="meta"><span class="tag new">BeforeAfter</span></div></div></div>
+  <div class="sec"><span class="n">04</span><div><b>What you receive · snippet block · upgrade path · FAQ · CTA</b>
+    <div class="copy">Audit → recommendations → revised listing → implementation. A document you
+      keep either way. Then: if listings are not the only problem, management picks up the account.</div>
+    <div class="meta"><span class="tag re">PL fees · FAQ · CTA</span><span class="tag seo">snippet H2</span></div></div></div>
+</div></div>
+
+<!-- ============ HOW WE WORK ============ -->
+<div class="wrap"><div class="page">
+  <div class="phead"><span class="u">/how-we-work</span>
+    <h2>How we work</h2>
+    <p class="kw">Primary: <b>amazon agency pricing</b> · MEASURED — <b>no AI Overview</b>, so the
+      click is still available. The strongest ranking target on the site.</p></div>
+  <div class="sec"><span class="n">01</span><div><b>Hero + the five steps in full</b>
+    <div class="copy">Check the numbers · write a verdict · you approve · we do the work · you get
+      the report. Each expanded to a short paragraph rather than one line.</div>
+    <div class="meta"><span class="tag re">Home method</span></div></div></div>
+  <div class="sec"><span class="n">02</span><div><b>What you own, what you approve</b>
+    <div class="copy">Accounts, stock, capital, supplier relationships, brand. Written approval on
+      every material purchase. Access revocable in one click.</div>
+    <div class="meta"><span class="tag new">TwoColumnSplit</span></div></div></div>
+  <div class="sec"><span class="n">03</span><div><b>How much does an Amazon agency charge?</b>
+    <div class="copy">Most charge a retainer, a percentage of ad spend, or a percentage of revenue.
+      A percentage of ad spend pays the agency more when you spend more, which is the conflict we
+      avoid. We charge a fixed project fee for launch work and a monthly fee for managed
+      operations, agreed in writing before anything starts.
+      <em>Snippet-targeted. Answer in the first 45 words under the H2.</em></div>
+    <div class="meta"><span class="tag new">SnippetAnswer</span><span class="tag seo">measured PAA</span></div></div></div>
+  <div class="sec"><span class="n">04</span><div><b>What happens if it does not work · FAQ · CTA</b>
+    <div class="copy">You keep the accounts, the stock, the listings and the documents. No lock-in
+      that survives the relationship.</div>
+    <div class="meta"><span class="tag re">PL FAQ · CTA</span></div></div></div>
+</div></div>
+
+<!-- ============ PROOF ============ -->
+<div class="wrap"><div class="page">
+  <div class="phead"><span class="u">/proof</span><h2>Proof</h2>
+    <p class="kw">No keyword target. This page exists to be linked from everywhere else.</p></div>
+  <div class="sec"><span class="n">01</span><div><b>Intro</b>
+    <div class="copy">One short paragraph. What these documents are and what they are not.
+      Illustrative examples say so; real client work is anonymised and says that too.</div>
+    <div class="meta"><span class="tag new">Label rule</span></div></div></div>
+  <div class="sec"><span class="n">02</span><div><b>The artefacts, one per row</b>
+    <div class="copy">Verdict sheet ending in DO NOT BUY · landed-cost model · listing before and
+      after · monthly report page · purchase order with the approval line · product and packaging.
+      <em>Each opens full size. Each has a caption saying what it shows.</em></div>
+    <div class="meta"><span class="tag new">ArtefactRow</span></div></div></div>
+  <div class="sec"><span class="n">03</span><div><b>Results slot — build it now, fill it when ready</b>
+    <div class="copy">Real numbers from live accounts, anonymised. Category, starting position, what
+      changed, what happened, over what period.
+      <em>Design the card now so nothing has to be rebuilt when the data arrives.</em></div>
+    <div class="meta"><span class="tag new">ResultCard</span></div></div></div>
+</div></div>
+
+<!-- ============ ABOUT ============ -->
+<div class="wrap"><div class="page">
+  <div class="phead"><span class="u">/about</span><h2>About</h2>
+    <p class="kw">Carries the Person schema. The single most valuable page for a cautious buyer.</p></div>
+  <div class="sec"><span class="n">01</span><div><b>The operator</b>
+    <div class="copy">Photograph, name, role, one prior role, LinkedIn link. Written in first
+      person. <em>Fields already exist in the old build and render conditionally.</em></div>
+    <div class="meta"><span class="tag new">PersonCard</span></div></div></div>
+  <div class="sec"><span class="n">02</span><div><b>How the work is covered</b>
+    <div class="copy">Who does what, and what happens when someone is unavailable. Short and
+      specific. This is the question every buyer asks and nobody answers on a website.</div>
+    <div class="meta"><span class="tag new">Short block</span></div></div></div>
+  <div class="sec"><span class="n">03</span><div><b>Where we work · CTA</b>
+    <div class="copy">Amazon in the US, UK, Europe and the Gulf. Walmart in the US. Time zones
+      covered.</div>
+    <div class="meta"><span class="tag re">CTA</span></div></div></div>
+</div></div>
+
+<!-- ============ CONTACT ============ -->
+<div class="wrap"><div class="page">
+  <div class="phead"><span class="u">/contact</span><h2>Contact</h2>
+    <p class="kw">The only page whose job is a single action.</p></div>
+  <div class="sec"><span class="n">01</span><div><b>Booking first, form second</b>
+    <div class="copy">Twenty minutes. Send what you have first and we come with a view.
+      <em>Booking link above the form when NEXT_PUBLIC_BOOKING_URL is set.</em></div>
+    <div class="meta"><span class="tag new">BookingBlock</span></div></div></div>
+  <div class="sec"><span class="n">02</span><div><b>The form</b>
+    <div class="copy">Name · email · which marketplace · closest situation (six options, including
+      “existing brand adding a marketplace”) · what you have already tried · message.
+      <em>Real backend, success state, auto-reply within a minute. Not a mailto link.</em></div>
+    <div class="meta"><span class="tag re">ContactForm</span><span class="tag new">/api/contact</span></div></div></div>
+  <div class="sec"><span class="n">03</span><div><b>What happens next</b>
+    <div class="copy">Three lines. Who reads it, how fast you hear back, what the call covers.</div>
+    <div class="meta"><span class="tag re">Three-line block</span></div></div></div>
+</div></div>
+
+<div class="wrap"><footer>
+  Eleven new components across seven pages. Everything else reuses the private label page.
+  Build order: wholesale → management → contact → listing optimization → how we work → proof → about.
+</footer></div>
+</body></html>
