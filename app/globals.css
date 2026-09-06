@@ -1345,6 +1345,17 @@ ol.method span {
   color: #aeb4b6;
   line-height: 1.5;
 }
+/* light variant — ops grid on a light band */
+.ops.light .op {
+  background: #fff;
+  border-color: var(--line);
+}
+.ops.light .op b {
+  color: var(--ink);
+}
+.ops.light .op span {
+  color: var(--muted);
+}
 
 /* grow / scale */
 .scaleband {
