@@ -266,6 +266,26 @@ export default function Page() {
               </span>
             </div>
           </div>
+          <figure className="strip">
+            <picture>
+              <source
+                media="(max-width: 760px)"
+                srcSet="/img/wh-warehouse-mobile-1080.webp"
+                type="image/webp"
+                width={1080}
+                height={1350}
+              />
+              <source srcSet="/img/wh-warehouse-1600.webp" type="image/webp" />
+              <img
+                src="/img/wh-warehouse-1600.png"
+                width={1600}
+                height={900}
+                loading="lazy"
+                decoding="async"
+                alt="Cartons stacked and shrink-wrapped on pallets in a distribution warehouse"
+              />
+            </picture>
+          </figure>
         </div>
       </section>
 
@@ -364,6 +384,16 @@ export default function Page() {
               </span>
             </div>
           </div>
+          <figure className="strip">
+            <img
+              src="/img/wh-shipment-1600.webp"
+              width={1600}
+              height={900}
+              loading="lazy"
+              decoding="async"
+              alt="A carton being taped and labelled ready for a marketplace shipment"
+            />
+          </figure>
         </div>
       </section>
 

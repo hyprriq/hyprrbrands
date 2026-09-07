@@ -177,6 +177,21 @@ export default function Page() {
         <div className="wrap">
           <span className="eyebrow">Build / launch</span>
           <h2>From product opportunity to marketplace-ready.</h2>
+          <figure className="strip" style={{ margin: "26px 0 34px" }}>
+            <img
+              src="/img/pl-categories-1600.webp"
+              width={1600}
+              height={900}
+              loading="lazy"
+              decoding="async"
+              alt="Three product categories Hyprr works in: supplements, homeware, and kids and toys"
+            />
+            <figcaption>
+              Illustrative of category, not of Hyprr products — each carries a
+              different compliance burden, and we price that in before
+              anything is ordered.
+            </figcaption>
+          </figure>
           <div className="build-grid">
             <div>
               <p>

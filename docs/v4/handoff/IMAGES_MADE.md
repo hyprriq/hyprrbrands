@@ -96,3 +96,25 @@ catalogue table used on the homepage — the two pages should not share a compos
 appears in it, which also breaks the run of stone-mat imagery.
 
 Figures are illustrative. If any caption is added, it should say so.
+
+## Stock composites — added 7 Sep
+
+All three are licensed Canva Pro stock, graded onto the palette (desaturated, brightened, shadows
+tinted petrol) so they sit with the built images rather than looking bought.
+
+| File | Where | Alt text |
+|---|---|---|
+| `wh-warehouse-1600` | `/amazon-wholesale-management` — the authorised-distributor band | Cartons stacked and shrink-wrapped on pallets in a distribution warehouse |
+| `wh-warehouse-mobile-1080` | same, under 760px | as above |
+| `wh-shipment-1600` | `/amazon-wholesale-management` — the replenishment section | A carton being taped and labelled ready for a marketplace shipment |
+| `pl-categories-1600` | `/amazon-private-label` — above the build path | Three product categories Hyprr works in: supplements, homeware, and kids and toys |
+
+**Where each earns its place.** The warehouse sits under "Stock you own, in your name," because the
+picture of pallets is the argument that this is real inventory bought through an approved channel
+rather than arbitrage. The shipment shot belongs with replenishment. The category strip finally
+answers "what do you actually develop," and the caption does real work: *each carries a different
+compliance burden, and we price that in before anything is ordered.*
+
+**A note on the category strip.** These are illustrative of category, not of Hyprr products. If a
+caption is added anywhere it should say so — the stone mat is the only real product on the site and
+that distinction is worth protecting.
