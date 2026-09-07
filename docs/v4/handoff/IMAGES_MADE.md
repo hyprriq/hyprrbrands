@@ -118,3 +118,20 @@ compliance burden, and we price that in before anything is ordered.*
 **A note on the category strip.** These are illustrative of category, not of Hyprr products. If a
 caption is added anywhere it should say so — the stone mat is the only real product on the site and
 that distinction is worth protecting.
+
+## Corrections — 7 Sep
+
+Two mobile files were wrong and are replaced. **Same filenames — overwrite the deployed versions.**
+
+| File | What was wrong |
+|---|---|
+| `pl-process-mobile-1080` | All four cards were laid out in a single row at two-column width, so cards 3 and 4 ran off the canvas. Now a true 2×2 grid |
+| `wh-catalogue-mobile-1080` | Font scaled off height while columns scaled off width, so at 4:5 the product names collided with the LANDED column. Rebuilt as a narrow two-column layout — line and margin only, with the buy/no chip. The dropped columns are still in the desktop version |
+
+**Third issue is a build fault, not an image fault.** On the wholesale page, `wh-shipment-1600`
+renders as alt text in an empty box — the file is not resolving. Check the path and that it was
+included in the deploy. The reserved space is why there is a large blank gap above "What the first
+year looks like".
+
+**Fourth, also for the dev:** the caption under the wholesale hero still runs past both screen
+edges on mobile. It needs the same container constraint applied to the other captions.
