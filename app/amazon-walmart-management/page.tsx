@@ -103,22 +103,27 @@ export default function Page() {
               </a>
             </div>
           </div>
-          <div className="product-visual">
-            <div className="packshot">
-              <div className="box">
-                YOUR
-                <br />
-                ACCOUNT
-              </div>
-            </div>
-            <div className="artlabels">
-              <span>CATALOGUE</span>
-              <span>GROWTH</span>
-              <span>INVENTORY</span>
-              <span>ACCOUNT</span>
-              <span>REPORTING</span>
-            </div>
-          </div>
+          <figure className="heroimg" style={{ margin: 0 }}>
+            <picture>
+              <source
+                media="(max-width: 760px)"
+                srcSet="/img/mgmt-hero-mobile-1080.webp"
+                type="image/webp"
+                width={1080}
+                height={1350}
+              />
+              <source srcSet="/img/mgmt-hero-1600.webp" type="image/webp" />
+              <img
+                src="/img/mgmt-hero-1600.png"
+                width={1600}
+                height={900}
+                fetchPriority="high"
+                decoding="async"
+                alt="An account health panel showing catalogue, growth, inventory and account figures for a marketplace seller"
+              />
+            </picture>
+            <figcaption>Figures are illustrative.</figcaption>
+          </figure>
         </div>
       </section>
 
@@ -232,7 +237,8 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 05 · GROWTH */}
+      {/* 05 · GROWTH — a short block; the full treatment lives on the
+          dedicated PPC page (PPC_AND_CLOSING_BLOCK.md) */}
       <section className="gate" id="growth">
         <div className="wrap">
           <span className="eyebrow">Growth</span>
@@ -246,30 +252,14 @@ export default function Page() {
               </p>
               <p style={{ marginBottom: 0 }}>
                 Agencies paid on ad spend do this backwards.{" "}
-                <b style={{ color: "#fff" }}>We are not paid on ad spend.</b>
+                <b style={{ color: "#fff" }}>We are not paid on ad spend.</b>{" "}
+                <a
+                  href="/amazon-ppc-management"
+                  style={{ color: "#d5e2e0", fontWeight: 600 }}
+                >
+                  Amazon PPC management →
+                </a>
               </p>
-            </div>
-            <div className="vsheet">
-              <div className="hd">
-                <span>THE GROWTH ORDER</span>
-                <span>WHY IT HOLDS</span>
-              </div>
-              <div className="r">
-                <span>1 · Convert</span>
-                <b>fix the page first</b>
-              </div>
-              <div className="r">
-                <span>2 · Rank</span>
-                <b>indexing + relevance</b>
-              </div>
-              <div className="r">
-                <span>3 · Advertise</span>
-                <b>paid on a page that converts</b>
-              </div>
-              <div className="r out">
-                <span>4 · Hold</span>
-                <b>defend buy box + position</b>
-              </div>
             </div>
           </div>
         </div>
@@ -347,6 +337,8 @@ export default function Page() {
                 media="(max-width: 760px)"
                 srcSet="/img/listing-before-after-mobile-1080.webp"
                 type="image/webp"
+                width={1080}
+                height={1350}
               />
               <source
                 srcSet="/img/listing-before-after-1600.webp"

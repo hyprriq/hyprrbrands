@@ -83,3 +83,16 @@ The same treatment works for the management page hero if you want it; say so and
 
 `favicon.ico` was carrying only a 16×16. Rebuilt from the 256px master and now contains
 16, 32, 48 and 64. Replace the one already deployed.
+
+## Management hero — added 6 Sep
+
+| File | Where | Alt text |
+|---|---|---|
+| `mgmt-hero-1600` | `/amazon-walmart-management` hero, right column, `fetchpriority="high"` | An account health panel showing catalogue, growth, inventory and account figures for a marketplace seller |
+| `mgmt-hero-mobile-1080` | same, under 760px | as above |
+
+Replaces the styled "YOUR ACCOUNT" mock. Deliberately a **four-area status panel**, not the
+catalogue table used on the homepage — the two pages should not share a composition. No product
+appears in it, which also breaks the run of stone-mat imagery.
+
+Figures are illustrative. If any caption is added, it should say so.

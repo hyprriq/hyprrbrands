@@ -19,6 +19,7 @@ const EYEBROWS: Record<string, string> = {
   "amazon-wholesale-management": "WHOLESALE",
   "amazon-walmart-management": "MANAGEMENT",
   "amazon-listing-optimization": "LISTING OPTIMIZATION",
+  "amazon-ppc-management": "PPC",
   "how-we-work": "METHOD AND FEES",
   proof: "PROOF",
   about: "ABOUT",

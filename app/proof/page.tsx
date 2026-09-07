@@ -194,6 +194,8 @@ export default function Page() {
                     media="(max-width: 760px)"
                     srcSet="/img/listing-before-after-mobile-1080.webp"
                     type="image/webp"
+                    width={1080}
+                    height={1350}
                   />
                   <source
                     srcSet="/img/listing-before-after-1600.webp"

@@ -48,6 +48,7 @@ for (const p of [
   "/amazon-private-label",
   "/amazon-wholesale-management",
   "/amazon-walmart-management",
+  "/amazon-ppc-management",
   "/how-we-work",
 ]) {
   if (!html[p]?.includes('class="snippet"'))
@@ -60,6 +61,7 @@ for (const p of [
   "/amazon-wholesale-management",
   "/amazon-walmart-management",
   "/amazon-listing-optimization",
+  "/amazon-ppc-management",
   "/how-we-work",
 ]) {
   if (!html[p]?.includes('"FAQPage"'))
@@ -96,6 +98,7 @@ for (const p of [
   "/amazon-wholesale-management",
   "/amazon-walmart-management",
   "/amazon-listing-optimization",
+  "/amazon-ppc-management",
 ]) {
   if (!html[p]?.includes('"Service"'))
     problems.push(`Service JSON-LD missing on ${p}`);

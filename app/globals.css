@@ -2031,6 +2031,14 @@ details .a {
   color: #9fbcb9;
   margin-top: 10px;
   text-transform: uppercase;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+@media (max-width: 759px) {
+  .heroimg figcaption {
+    font-size: 10px;
+    letter-spacing: 0.03em;
+  }
 }
 figure.strip {
   margin: 34px 0 0;
@@ -2065,6 +2073,32 @@ a.strip-link img {
   display: block;
   width: 100%;
   height: auto;
+}
+
+/* closing block — plain prose above the footer, not a keyword list */
+.closing {
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+  padding: 40px 0 48px;
+}
+.closing h2 {
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+.closing p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 76ch;
+  margin-bottom: 12px;
+}
+.closing a {
+  color: var(--body);
+  font-weight: 600;
+}
+.closing a:hover {
+  color: var(--petrol);
 }
 
 /* ---- reduced motion ---- */

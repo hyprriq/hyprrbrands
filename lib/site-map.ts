@@ -62,6 +62,19 @@ export const SITE_MAP: SitePage[] = [
     oneLine:
       "Research, content, conversion and indexing on the listings you already have. Fixed price, two weeks",
   },
+  {
+    // Fifth service page (PPC_AND_CLOSING_BLOCK.md, 6 Sep). Nav stays
+    // at five items — reached from the homepage growth card, the
+    // footer, and #growth on the management page.
+    slug: "/amazon-ppc-management",
+    title: "PPC",
+    h1: "Advertising that answers to margin, not to spend.",
+    group: "service",
+    status: "live",
+    priority: 9,
+    oneLine:
+      "Amazon and Walmart advertising run against inventory, price and margin. Never paid on your ad spend",
+  },
 
   // ---- Company ----
   {
@@ -173,7 +186,10 @@ export const REDIRECTS: { source: string; destination: string }[] = [
   { source: "/shopify-management", destination: "/amazon-walmart-management" },
   { source: "/marketplace-growth", destination: "/amazon-walmart-management#growth" },
   { source: "/ecommerce-growth", destination: "/amazon-walmart-management#growth" },
-  { source: "/ppc-paid-media", destination: "/amazon-walmart-management#growth" },
+  // /ppc-paid-media originally pointed at the management #growth
+  // anchor; retargeted to the dedicated PPC page the day it shipped
+  // (still one hop, and a closer content match).
+  { source: "/ppc-paid-media", destination: "/amazon-ppc-management" },
   { source: "/build", destination: "/how-we-work" },
   { source: "/grow", destination: "/how-we-work" },
   { source: "/operate", destination: "/how-we-work" },

@@ -7,6 +7,7 @@ const SERVICES = [
   { href: "/amazon-wholesale-management", label: "Amazon wholesale management" },
   { href: "/amazon-walmart-management", label: "Amazon and Walmart management" },
   { href: "/amazon-listing-optimization", label: "Amazon listing optimization" },
+  { href: "/amazon-ppc-management", label: "Amazon PPC management" },
 ];
 
 const COMPANY = [

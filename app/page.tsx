@@ -78,6 +78,8 @@ export default function Page() {
                 media="(max-width: 760px)"
                 srcSet="/img/home-hero-mobile-1080.webp"
                 type="image/webp"
+                width={1080}
+                height={1350}
               />
               <source srcSet="/img/home-hero-1600.webp" type="image/webp" />
               <img
@@ -281,7 +283,7 @@ export default function Page() {
               </span>
               <em>Wholesale management →</em>
             </a>
-            <a className="service" href="/amazon-walmart-management#growth">
+            <a className="service" href="/amazon-ppc-management">
               <span className="bar" style={{ background: "var(--petrol)" }} />
               <b>Growth and scale</b>
               <span>
@@ -480,6 +482,8 @@ export default function Page() {
                 media="(max-width: 760px)"
                 srcSet="/img/pl-process-mobile-1080.webp"
                 type="image/webp"
+                width={1080}
+                height={1350}
               />
               <source srcSet="/img/pl-process-1600.webp" type="image/webp" />
               <img
@@ -492,12 +496,6 @@ export default function Page() {
               />
             </picture>
           </a>
-          <div className="video">
-            <div className="play" aria-hidden="true">
-              ▶
-            </div>
-            <small>PLACEHOLDER · 60–75 SEC OVERVIEW FILM · NOT YET SHOT</small>
-          </div>
         </div>
       </section>
 
@@ -560,6 +558,54 @@ export default function Page() {
             Sellers who already have an account and need it run. We work across
             US, UK, Gulf and Singapore hours.
           </div>
+        </div>
+      </section>
+
+      {/* CLOSING BLOCK — PPC_AND_CLOSING_BLOCK.md §2, verbatim. Plain
+          prose above the footer; not a keyword list. */}
+      <section className="closing">
+        <div className="wrap">
+          <h2>Amazon and Walmart operations, end to end</h2>
+          <p>
+            Hyprr Brands builds, operates and scales marketplace businesses on
+            Amazon and Walmart. We work with brand owners launching a first
+            product, investors putting capital into US marketplaces from
+            outside the country, manufacturers selling direct, and established
+            sellers who need an account run properly rather than watched
+            occasionally.
+          </p>
+          <p>
+            Our <a href="/amazon-private-label">Amazon private label</a>{" "}
+            service covers product research, supplier sourcing, packaging and
+            compliance, listing creation and the marketplace launch itself.
+            Our{" "}
+            <a href="/amazon-wholesale-management">
+              Amazon wholesale management
+            </a>{" "}
+            service opens supplier accounts in your name, models every line to
+            landed cost before it is bought, and runs the replenishment cycle
+            afterwards.{" "}
+            <a href="/amazon-walmart-management">
+              Amazon and Walmart management
+            </a>{" "}
+            covers the daily operation of an account that already sells —
+            catalogue, inventory, cases and account health.{" "}
+            <a href="/amazon-listing-optimization">Listing optimization</a>{" "}
+            rebuilds the content and images on a catalogue you already own,
+            and <a href="/amazon-ppc-management">Amazon PPC management</a> runs
+            the advertising against inventory and margin rather than against
+            spend.
+          </p>
+          <p>
+            We operate Amazon in the United States, United Kingdom, Europe and
+            the Gulf, and Walmart in the United States. Every account stays
+            registered to its owner. Every purchase is approved in writing
+            before it is placed.{" "}
+            <a href="/how-we-work">How we work and what we charge</a> is
+            published in full, and the{" "}
+            <a href="/proof">documents we produce</a> are on the site to read
+            before you talk to us.
+          </p>
         </div>
       </section>
     </main>

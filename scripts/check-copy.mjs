@@ -73,7 +73,8 @@ for (const r of ["/", ...live]) {
   for (const sentence of fullText.split(/(?<=[.!?])\s+/)) {
     if (!/walmart/i.test(sentence)) continue;
     if (!GEO.test(sentence)) continue;
-    if (/Walmart(?:,| is)? (?:only )?in the US/i.test(sentence)) continue;
+    if (/Walmart(?:,| is)? (?:only )?in the (US\b|United States)/i.test(sentence))
+      continue;
     if (/Walmart US\b/.test(sentence)) continue;
     problems.push(
       `${r}: "Walmart" beside a non-US geography: …${sentence.trim().slice(0, 120)}…`
