@@ -85,10 +85,10 @@ export default function Page() {
               <img
                 src="/img/home-hero-1600.png"
                 width={1600}
-                height={900}
+                height={1000}
                 fetchPriority="high"
                 decoding="async"
-                alt="Hyprr's operations view on screen beside a live product listing showing buy box, stock cover and margin"
+                alt="Eight areas of a marketplace operation — sourcing, listings, advertising, inventory, orders, margin, Amazon and Walmart — connected to Hyprr at the centre"
               />
             </picture>
           </figure>
@@ -476,26 +476,6 @@ export default function Page() {
               </div>
             </a>
           </div>
-          <a className="strip-link" href="/proof" aria-label="The product development trail, on the proof page">
-            <picture>
-              <source
-                media="(max-width: 760px)"
-                srcSet="/img/pl-process-mobile-1080.webp"
-                type="image/webp"
-                width={1080}
-                height={1350}
-              />
-              <source srcSet="/img/pl-process-1600.webp" type="image/webp" />
-              <img
-                src="/img/pl-process-1600.png"
-                width={1600}
-                height={900}
-                loading="lazy"
-                decoding="async"
-                alt="Four stages of product development: dimension drawing, hinge mechanism, groove studies, finished product"
-              />
-            </picture>
-          </a>
         </div>
       </section>
 

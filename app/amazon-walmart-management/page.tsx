@@ -110,13 +110,13 @@ export default function Page() {
                 srcSet="/img/mgmt-hero-mobile-1080.webp"
                 type="image/webp"
                 width={1080}
-                height={1350}
+                height={1080}
               />
               <source srcSet="/img/mgmt-hero-1600.webp" type="image/webp" />
               <img
                 src="/img/mgmt-hero-1600.png"
                 width={1600}
-                height={900}
+                height={1200}
                 fetchPriority="high"
                 decoding="async"
                 alt="An account health panel showing catalogue, growth, inventory and account figures for a marketplace seller"

@@ -7,8 +7,10 @@ import { NextResponse } from "next/server";
  * cleanly (mailto compose) and nothing breaks before the owner adds
  * the key.
  */
-const TO = "hello@hyprrbrands.com";
-const FROM = "Hyprr Brands <hello@hyprrbrands.com>";
+/* DEV_NOTES_NEXT §1: notifications land at hyprr@; Resend is verified
+   on send.hyprrbrands.com, so the from address lives there. */
+const TO = "hyprr@hyprrbrands.com";
+const FROM = "Hyprr Brands <hello@send.hyprrbrands.com>";
 
 interface Payload {
   name?: string;
@@ -93,9 +95,11 @@ export async function POST(req: Request) {
   }
 
   // Auto-reply — best effort; a failure here must not fail the submit.
+  // reply_to points at the real inbox so a lead replying lands there.
   await send({
     from: FROM,
     to: [email],
+    reply_to: TO,
     subject: "Received — Hyprr Brands",
     text: [
       `Hi ${name},`,

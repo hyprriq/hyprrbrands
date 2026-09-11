@@ -66,7 +66,7 @@ export default function ContactForm() {
       "",
       `Message:\n${form.message}`,
     ].join("\n");
-    window.location.href = `mailto:hello@hyprrbrands.com?subject=${encodeURIComponent(
+    window.location.href = `mailto:hyprr@hyprrbrands.com?subject=${encodeURIComponent(
       `Context from ${form.name}`
     )}&body=${encodeURIComponent(body)}`;
     setStatus("fallback");

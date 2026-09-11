@@ -30,7 +30,7 @@ export default function Page() {
       <p>
         The contact form asks for your name, email address and the context
         you choose to write. Sending it delivers your message to
-        hello@hyprrbrands.com through our email provider, Resend, and sends
+        hyprr@hyprrbrands.com through our email provider, Resend, and sends
         you a confirmation copy; if delivery is not configured, the form
         opens an email from your own mail client instead and the site stores
         nothing. Our hosting provider keeps standard server logs (IP address,
