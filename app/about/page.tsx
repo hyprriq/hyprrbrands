@@ -60,7 +60,6 @@ export default function Page() {
       {/* 01 · THE OPERATOR */}
       <section className="start">
         <div className="wrap">
-          <span className="eyebrow">About</span>
           <h1>Who runs Hyprr Brands</h1>
           <div className="person">
             <div className="photo">
@@ -118,7 +117,6 @@ export default function Page() {
       {/* 02 · HOW THE WORK IS COVERED */}
       <section className="buildband" id="coverage">
         <div className="wrap">
-          <span className="eyebrow">The question nobody answers</span>
           <h2>How the work is covered</h2>
           <div className="fee-grid">
             <div className="fee">
@@ -147,7 +145,6 @@ export default function Page() {
       {/* 03 · WHERE WE WORK */}
       <section className="path" id="where">
         <div className="wrap">
-          <span className="eyebrow">Where we work</span>
           <h2>Marketplaces and hours</h2>
           <div className="fee-grid">
             <div className="fee">
@@ -175,7 +172,6 @@ export default function Page() {
       {/* CTA */}
       <section className="cta" id="contact">
         <div className="wrap">
-          <span className="eyebrow">Next step</span>
           <h2>Talk to the person who does the work.</h2>
           <p>
             Twenty minutes, no deck, no handoff to a sales team — there is no

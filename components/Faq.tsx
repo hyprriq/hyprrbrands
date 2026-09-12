@@ -9,17 +9,14 @@ import { faqLd } from "@/lib/schema";
 export default function Faq({
   items,
   heading = "Clear answers before the call.",
-  eyebrow = "FAQ",
 }: {
   items: { q: string; a: string }[];
   heading?: string;
-  eyebrow?: string;
 }) {
   return (
     <section className="faq" id="faq">
       <div className="wrap">
         <JsonLd nodes={[faqLd(items)]} />
-        <span className="eyebrow">{eyebrow}</span>
         <h2>{heading}</h2>
         <div className="faq-list">
           {items.map((f, i) => (

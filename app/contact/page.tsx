@@ -46,7 +46,6 @@ export default function Page() {
 
       <section className="start">
         <div className="wrap">
-          <span className="eyebrow">Contact</span>
           <h1>Book a call</h1>
           <p style={{ maxWidth: "56ch" }}>
             Twenty minutes. Send what you have first —{" "}
@@ -80,7 +79,7 @@ export default function Page() {
 
       <section className="buildband" style={{ paddingTop: 0 }}>
         <div className="wrap">
-          <span className="eyebrow">What happens next</span>
+          <h2 style={{ fontSize: "clamp(22px,2.4vw,28px)" }}>What happens next</h2>
           <div className="timeline" style={{ marginTop: 18 }}>
             <div>
               <span className="when">WITHIN A MINUTE</span>

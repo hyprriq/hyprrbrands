@@ -68,7 +68,6 @@ export default function Page() {
       {/* 01 · HERO + THE FIVE STEPS IN FULL */}
       <section className="start">
         <div className="wrap">
-          <span className="eyebrow">Method and fees</span>
           <h1>How we charge and how we work</h1>
           <p style={{ maxWidth: "60ch" }}>
             The same five steps run on every product we touch, whichever
@@ -161,7 +160,6 @@ export default function Page() {
       {/* 02 · WHAT YOU OWN, WHAT YOU APPROVE */}
       <section className="buildband" id="ownership">
         <div className="wrap">
-          <span className="eyebrow">The split that keeps you safe</span>
           <h2>What you own, and what you approve</h2>
           <div className="fee-grid">
             <div className="fee">
@@ -188,7 +186,6 @@ export default function Page() {
       {/* 03 · THE PRICING SNIPPET */}
       <section className="start" id="pricing">
         <div className="wrap">
-          <span className="eyebrow">The fee structure</span>
           <h2>How much does an Amazon agency charge?</h2>
           <div className="snippet">
             <p>
@@ -232,7 +229,6 @@ export default function Page() {
       {/* 04 · IF IT DOES NOT WORK */}
       <section className="gate" id="exit">
         <div className="wrap">
-          <span className="eyebrow">The exit</span>
           <h2>What happens if it does not work</h2>
           <div className="gate-grid">
             <div>
@@ -305,7 +301,6 @@ export default function Page() {
       {/* CTA */}
       <section className="cta" id="contact">
         <div className="wrap">
-          <span className="eyebrow">Next step</span>
           <h2>Get the number in writing.</h2>
           <p>
             Twenty minutes, your situation, and a fixed quote that does not

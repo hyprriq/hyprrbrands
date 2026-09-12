@@ -40,7 +40,6 @@ export default function LegalPage({
       />
       <section className="legal-band">
         <div className="wrap">
-          <span className="eyebrow">Legal</span>
           <h1>{title}</h1>
           <p className="legal-meta">{version}</p>
           <div className="prose">{children}</div>

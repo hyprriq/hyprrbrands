@@ -124,7 +124,6 @@ export default function Page() {
       {/* 02 · WHAT WE OPTIMIZE */}
       <section className="start" id="scope">
         <div className="wrap">
-          <span className="eyebrow">The scope</span>
           <h2>What we optimize</h2>
           <div className="ops light" style={{ marginTop: 22 }}>
             <div className="op">
@@ -162,7 +161,6 @@ export default function Page() {
       {/* 03 · BEFORE AND AFTER */}
       <section className="buildband" id="before-after">
         <div className="wrap">
-          <span className="eyebrow">The whole page rests on this</span>
           <h2>Before and after, annotated.</h2>
           <div className="ba">
             <div className="before">
@@ -200,7 +198,6 @@ export default function Page() {
       {/* 04a · WHAT YOU RECEIVE */}
       <section className="path" id="deliverables">
         <div className="wrap">
-          <span className="eyebrow">What you receive</span>
           <h2>A document you keep either way.</h2>
           <div className="path-grid">
             <div className="path-item">
@@ -230,7 +227,6 @@ export default function Page() {
       {/* 04b · UPGRADE PATH */}
       <section className="handover" id="upgrade">
         <div className="wrap">
-          <span className="eyebrow">If listings are not the only problem</span>
           <div className="handover-grid">
             <div>
               <h2>Management picks up where the project ends.</h2>
@@ -261,7 +257,6 @@ export default function Page() {
       {/* CTA */}
       <section className="cta" id="contact">
         <div className="wrap">
-          <span className="eyebrow">Next step</span>
           <h2>Send us the listing.</h2>
           <p>
             An ASIN is enough. We will tell you what we would change and what

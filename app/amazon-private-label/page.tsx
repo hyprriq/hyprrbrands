@@ -126,7 +126,6 @@ export default function Page() {
       {/* TWO STARTING POINTS */}
       <section className="start" id="journey">
         <div className="wrap">
-          <span className="eyebrow">Two starting points</span>
           <h2>Same destination. Different starting point.</h2>
           <div className="start-grid">
             <div className="start-card new">
@@ -175,7 +174,6 @@ export default function Page() {
       {/* BUILD PATH */}
       <section className="buildband" id="build">
         <div className="wrap">
-          <span className="eyebrow">Build / launch</span>
           <h2>From product opportunity to marketplace-ready.</h2>
           <figure className="strip" style={{ margin: "26px 0 34px" }}>
             <img
@@ -264,7 +262,6 @@ export default function Page() {
       {/* THE GATE */}
       <section className="gate" id="gate">
         <div className="wrap">
-          <span className="eyebrow">The decision</span>
           <h2>Between research and sourcing, there is a verdict.</h2>
           <div className="gate-grid">
             <div>
@@ -321,7 +318,6 @@ export default function Page() {
       {/* RUN */}
       <section className="run" id="operate">
         <div className="wrap">
-          <span className="eyebrow">Run / operate</span>
           <h2>After launch, we keep the business moving.</h2>
           <div className="run-grid">
             <div>
@@ -374,7 +370,6 @@ export default function Page() {
       {/* GROW / SCALE */}
       <section className="scaleband">
         <div className="wrap">
-          <span className="eyebrow">Grow → scale</span>
           <h2>Build the feedback loop.</h2>
           <p>
             Operations create the data. Optimization finds the opportunities.
@@ -419,7 +414,6 @@ export default function Page() {
       {/* FEES */}
       <section className="fees">
         <div className="wrap">
-          <span className="eyebrow">What it costs</span>
           <h2>Two fees, both agreed in writing first.</h2>
           <div className="fee-grid">
             <div className="fee">
@@ -508,7 +502,6 @@ export default function Page() {
       {/* CTA */}
       <section className="cta" id="contact">
         <div className="wrap">
-          <span className="eyebrow">Next step</span>
           <h2>Launching, or already selling?</h2>
           <p>
             Tell us the category you are thinking about, or the brand you

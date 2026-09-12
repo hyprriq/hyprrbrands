@@ -112,7 +112,6 @@ export default function Page() {
       {/* BUSINESS PATH */}
       <section className="path" id="path">
         <div className="wrap">
-          <span className="eyebrow">The business path</span>
           <h2 className="h2-lg">Wherever you start, the route is clear.</h2>
           <p>
             Some clients are launching. Others already sell. The operating path
@@ -146,7 +145,9 @@ export default function Page() {
       {/* WHERE ARE YOU TODAY — situation router */}
       <section className="router-band">
         <div className="wrap">
-          <span className="eyebrow">Where are you today</span>
+          <h2 style={{ fontSize: "clamp(22px,2.4vw,28px)", marginTop: 0 }}>
+            Where are you today
+          </h2>
           <div className="router">
             <a href="/amazon-private-label">
               <span className="k">START</span>
@@ -192,9 +193,6 @@ export default function Page() {
       {/* CHOOSE MODEL + ENGAGEMENT MODELS */}
       <section className="choice">
         <div className="wrap">
-          <span className="eyebrow" style={{ color: "#9aa2a4" }}>
-            Choose your business model
-          </span>
           <h2 className="h2-lg">Start with what you need.</h2>
           <p>
             Two ways to build a marketplace business. Both end in the same
@@ -252,7 +250,6 @@ export default function Page() {
       {/* CORE SERVICES · six capabilities, four pages */}
       <section className="services" id="services">
         <div className="wrap">
-          <span className="eyebrow">Core services</span>
           <h2 className="h2-lg">Everything important is visible.</h2>
           <div className="service-grid">
             <a className="service" href="/amazon-walmart-management">
@@ -312,7 +309,6 @@ export default function Page() {
       {/* HOW WE WORK */}
       <section className="how" id="how">
         <div className="wrap">
-          <span className="eyebrow">How we work</span>
           <h2 className="h2-lg">Five steps, on every product we touch.</h2>
           <div className="how-grid">
             <div>
@@ -388,7 +384,6 @@ export default function Page() {
       {/* PROOF */}
       <section className="proof" id="proof">
         <div className="wrap">
-          <span className="eyebrow">Proof</span>
           <h2 className="h2-lg">Look at the work before you talk to us.</h2>
           <p>
             We are new, and we are not going to show you someone else&apos;s
@@ -497,9 +492,6 @@ export default function Page() {
       <section className="why">
         <div className="wrap why-grid">
           <div>
-            <span className="eyebrow" style={{ color: "#4a5520" }}>
-              Why Hyprr
-            </span>
             <h2 className="h2-lg">
               Two places a marketplace business loses money.
             </h2>
@@ -530,7 +522,6 @@ export default function Page() {
       {/* CTA */}
       <section className="cta" id="contact">
         <div className="wrap">
-          <span className="eyebrow">Next step</span>
           <h2 className="h2-lg">Tell us where you are starting.</h2>
           <p>
             Launching a brand, running an existing one, starting wholesale, or

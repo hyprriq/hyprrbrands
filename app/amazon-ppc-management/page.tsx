@@ -124,7 +124,6 @@ export default function Page() {
       {/* WHY MOST AMAZON ADVERTISING LOSES MONEY */}
       <section className="start" id="why">
         <div className="wrap">
-          <span className="eyebrow">The diagnosis</span>
           <h2>Why most Amazon advertising loses money</h2>
           <p style={{ maxWidth: "62ch" }}>
             Two reasons, and neither is the bidding.
@@ -171,7 +170,6 @@ export default function Page() {
       {/* HOW WE RUN IT */}
       <section className="run" id="how-we-run-it">
         <div className="wrap">
-          <span className="eyebrow">The work</span>
           <h2>How we run it</h2>
           <div className="ops" style={{ marginTop: 24 }}>
             <div className="op">
@@ -221,7 +219,6 @@ export default function Page() {
       {/* ADDING WALMART */}
       <section className="buildband" id="walmart-advertising">
         <div className="wrap">
-          <span className="eyebrow">The second marketplace</span>
           <h2>Adding Walmart</h2>
           <p style={{ maxWidth: "66ch" }}>
             Walmart advertising is a different platform with different auction
@@ -243,7 +240,6 @@ export default function Page() {
       {/* WHAT IT COSTS */}
       <section className="fees" id="fees">
         <div className="wrap">
-          <span className="eyebrow">What it costs</span>
           <h2>A monthly fee, agreed in writing first.</h2>
           <p style={{ maxWidth: "66ch" }}>
             <b>Nothing is charged on your advertising spend.</b> An agency
@@ -264,7 +260,6 @@ export default function Page() {
       {/* CLOSE */}
       <section className="cta" id="contact">
         <div className="wrap">
-          <span className="eyebrow">Next step</span>
           <h2>Send us your search-term report and one month of advertising data.</h2>
           <p>
             We will tell you where the spend is going and what we would change

@@ -130,7 +130,6 @@ export default function Page() {
       {/* 02 · THE REBUTTAL */}
       <section className="start" id="rebuttal">
         <div className="wrap">
-          <span className="eyebrow">The question to ask first</span>
           <h2>Should you let an agency manage your Amazon account?</h2>
           <div className="snippet">
             <p>{REBUTTAL}</p>
@@ -141,7 +140,6 @@ export default function Page() {
       {/* 03 · FOUR LIVE AREAS — areas, not stages; nothing numbered */}
       <section className="run" id="areas">
         <div className="wrap">
-          <span className="eyebrow">The work</span>
           <h2>Four live areas, one operation.</h2>
           <div className="run-grid">
             <div>
@@ -195,7 +193,6 @@ export default function Page() {
       {/* 04 · A WEEK INSIDE YOUR ACCOUNT */}
       <section className="path" id="week">
         <div className="wrap">
-          <span className="eyebrow">What a retainer buys</span>
           <h2>A week inside your account</h2>
           <p style={{ maxWidth: "62ch" }}>
             The real question behind a retainer is what you are paying for
@@ -241,7 +238,6 @@ export default function Page() {
           dedicated PPC page (PPC_AND_CLOSING_BLOCK.md) */}
       <section className="gate" id="growth">
         <div className="wrap">
-          <span className="eyebrow">Growth</span>
           <h2>Conversion first, then traffic.</h2>
           <div className="gate-grid">
             <div>
@@ -268,7 +264,6 @@ export default function Page() {
       {/* 06 · ADDING WALMART */}
       <section className="buildband" id="walmart">
         <div className="wrap">
-          <span className="eyebrow">The second marketplace</span>
           <h2>Adding Walmart</h2>
           <div className="build-grid">
             <div>
@@ -309,7 +304,6 @@ export default function Page() {
       {/* 07 · LISTINGS */}
       <section className="handover" id="listings">
         <div className="wrap">
-          <span className="eyebrow">Where to start</span>
           <div className="handover-grid">
             <div>
               <h2>If the listings are the problem, start there.</h2>
@@ -360,7 +354,6 @@ export default function Page() {
       {/* 08 · REPORT + OWNERSHIP */}
       <section className="fees" id="ownership">
         <div className="wrap">
-          <span className="eyebrow">The report, and what stays yours</span>
           <h2>Margin by product, not revenue by product.</h2>
           <div className="fee-grid">
             <div className="fee">
@@ -394,7 +387,6 @@ export default function Page() {
       {/* CTA */}
       <section className="cta" id="contact">
         <div className="wrap">
-          <span className="eyebrow">Next step</span>
           <h2>Give us read access for a week.</h2>
           <p>
             We will look at the catalogue, the advertising, the inventory and

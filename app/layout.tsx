@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import { SITE_ORIGIN } from "@/lib/site-map";
 import JsonLd from "@/components/JsonLd";
 import { organizationLd, websiteLd } from "@/lib/schema";
@@ -9,14 +9,9 @@ import Dock from "@/components/Dock";
 import "./globals.css";
 
 /* Self-hosted via next/font — the browser never contacts Google.
-   DEV_BRIEF step 1: Space Grotesk display, Inter body, JetBrains Mono
-   for small labels and numerals. */
-const display = Space_Grotesk({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["500", "700"],
-  display: "swap",
-});
+   TYPOGRAPHY_TICKET §1: one family. Inter carries headings and body;
+   Space Grotesk survives only inside the logo SVG (outlined paths,
+   no webfont needed). JetBrains Mono stays for data. */
 const body = Inter({
   variable: "--font-body",
   subsets: ["latin"],
@@ -55,7 +50,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en-US"
-      className={`${display.variable} ${body.variable} ${mono.variable}`}
+      className={`${body.variable} ${mono.variable}`}
     >
       <body>
         <JsonLd nodes={[organizationLd(), websiteLd()]} />

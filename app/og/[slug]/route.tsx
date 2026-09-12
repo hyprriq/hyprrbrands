@@ -36,7 +36,7 @@ export async function GET(
   if (!page) return new Response("Not found", { status: 404 });
 
   const [grotesk, mono, logo] = await Promise.all([
-    readFile(path.join(process.cwd(), "assets/fonts/SpaceGrotesk-Bold.ttf")),
+    readFile(path.join(process.cwd(), "assets/fonts/Inter-Bold.ttf")),
     readFile(
       path.join(process.cwd(), "assets/fonts/JetBrainsMono-Regular.ttf")
     ),
@@ -73,7 +73,7 @@ export async function GET(
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div
             style={{
-              fontFamily: "Space Grotesk",
+              fontFamily: "Inter",
               fontSize: 64,
               fontWeight: 700,
               color: "#FFFFFF",
@@ -87,7 +87,7 @@ export async function GET(
           {citrus ? (
             <div
               style={{
-                fontFamily: "Space Grotesk",
+                fontFamily: "Inter",
                 fontSize: 64,
                 fontWeight: 700,
                 color: "#D7F04A",
@@ -134,7 +134,7 @@ export async function GET(
       width: 1200,
       height: 630,
       fonts: [
-        { name: "Space Grotesk", data: grotesk, weight: 700, style: "normal" },
+        { name: "Inter", data: grotesk, weight: 700, style: "normal" },
         { name: "JetBrains Mono", data: mono, weight: 400, style: "normal" },
       ],
     }

@@ -127,7 +127,6 @@ export default function Page() {
       {/* 02 · HOW WHOLESALE WORKS — the explainer the SERP demands */}
       <section className="start" id="how-it-works">
         <div className="wrap">
-          <span className="eyebrow">The opportunity</span>
           <h2>How wholesale actually works</h2>
           <p style={{ maxWidth: "66ch" }}>
             Every brand sells its products through more than one route. Some
@@ -190,7 +189,6 @@ export default function Page() {
       {/* 03 · TWO WAYS IN */}
       <section className="buildband" id="two-ways">
         <div className="wrap">
-          <span className="eyebrow">Two ways in</span>
           <h2>Starting from zero, or already operating.</h2>
           <div className="start-grid">
             <div className="start-card new">
@@ -234,7 +232,6 @@ export default function Page() {
       {/* 04 · AUTHORISED DISTRIBUTORS ONLY — the credibility band */}
       <section className="ruleband" id="authorised">
         <div className="wrap">
-          <span className="eyebrow">The rule we operate under</span>
           <h2>Authorised distributors only.</h2>
           <p>
             We buy from brands and their authorised distributors. That means
@@ -292,7 +289,6 @@ export default function Page() {
       {/* 05 · THE BUYING DECISION */}
       <section className="gate" id="buying">
         <div className="wrap">
-          <span className="eyebrow">The decision</span>
           <h2>Every line is modelled before it is bought.</h2>
           <div className="gate-grid">
             <div>
@@ -339,7 +335,6 @@ export default function Page() {
       {/* 06 · THE OPERATING CYCLE */}
       <section className="path" id="cycle">
         <div className="wrap">
-          <span className="eyebrow">The daily and weekly work</span>
           <h2>The operating cycle</h2>
           <p style={{ maxWidth: "62ch" }}>
             A loop rather than a line, because it repeats. This is what is
@@ -400,7 +395,6 @@ export default function Page() {
       {/* 07 · THE FIRST YEAR — the honesty section */}
       <section className="buildband" id="first-year">
         <div className="wrap">
-          <span className="eyebrow">The honest timeline</span>
           <h2>What the first year looks like</h2>
           <div className="timeline">
             <div>
@@ -438,7 +432,6 @@ export default function Page() {
       {/* 08 · SCALE */}
       <section className="scaleband" id="scale">
         <div className="wrap">
-          <span className="eyebrow">Scale</span>
           <h2>To your budget and your goals.</h2>
           <p style={{ maxWidth: "66ch" }}>
             How far this goes depends on the capital you want working and what
@@ -469,7 +462,6 @@ export default function Page() {
       {/* 09 · HANDOVER */}
       <section className="handover" id="handover">
         <div className="wrap">
-          <span className="eyebrow">No dependency</span>
           <div className="handover-grid">
             <div>
               <h2>Run it with us, or build your own team.</h2>
@@ -490,7 +482,6 @@ export default function Page() {
       {/* 10 · OWNERSHIP AND FEES */}
       <section className="fees" id="fees">
         <div className="wrap">
-          <span className="eyebrow">Ownership and fees</span>
           <h2>Yours: the accounts, the stock, the suppliers.</h2>
           <div className="fee-grid">
             <div className="fee">
@@ -524,7 +515,6 @@ export default function Page() {
       {/* 12 · CTA */}
       <section className="cta" id="contact">
         <div className="wrap">
-          <span className="eyebrow">Next step</span>
           <h2>Send us a supplier list or a product list.</h2>
           <p>
             We will model three lines and tell you what we would do with them.

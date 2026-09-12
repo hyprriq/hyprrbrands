@@ -3,7 +3,6 @@ export default function NotFound() {
     <main id="main">
       <section>
         <div className="wrap">
-          <span className="eyebrow">404</span>
           <h1>That page is not here.</h1>
           <p style={{ maxWidth: "56ch" }}>
             The site was rebuilt in September 2026 and every old address now

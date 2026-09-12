@@ -66,7 +66,6 @@ export default function Page() {
       {/* 01 · INTRO */}
       <section className="start" style={{ paddingBottom: 30 }}>
         <div className="wrap">
-          <span className="eyebrow">Proof</span>
           <h1>The work</h1>
           <p style={{ maxWidth: "62ch" }}>
             These are the documents the method produces — read them before you
@@ -359,7 +358,6 @@ export default function Page() {
       {/* 03 · RESULTS SLOT */}
       <section className="scaleband" id="results">
         <div className="wrap">
-          <span className="eyebrow">Results</span>
           <h2>Real numbers, when they are real.</h2>
           <p style={{ maxWidth: "62ch" }}>
             This slot holds anonymised results from live accounts: category,
@@ -406,7 +404,6 @@ export default function Page() {
       {/* CTA */}
       <section className="cta" id="contact">
         <div className="wrap">
-          <span className="eyebrow">Next step</span>
           <h2>Read enough?</h2>
           <p>
             Tell us where you are starting and we will produce one of these
