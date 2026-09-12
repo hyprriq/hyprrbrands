@@ -59,12 +59,14 @@ export default function SiteHeader() {
       <div className="wrap navin">
         <a href="/" aria-label="Hyprr Brands home">
           {/* eslint-disable-next-line @next/next/no-img-element */}
+          {/* Tight-cropped variant (DEV_NOTES §6) — the padded original
+              keeps its built-in clear space for standalone use. */}
           <img
             className="logo"
-            src="/brand/hyprr-logo-primary.svg"
+            src="/brand/hyprr-logo-primary-tight.svg"
             alt="Hyprr Brands"
-            width={140}
-            height={34}
+            width={183}
+            height={28}
           />
         </a>
         <div className="links">

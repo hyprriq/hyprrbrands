@@ -73,7 +73,16 @@ export default function Page() {
             </div>
           </div>
           <figure className="heroimg" style={{ margin: 0 }}>
+            {/* Animated on desktop (DEV_NOTES §7); reduced-motion and
+                mobile stay on the static files. */}
             <picture>
+              <source
+                media="(prefers-reduced-motion: reduce)"
+                srcSet="/img/home-hero-1600.webp"
+                type="image/webp"
+                width={1600}
+                height={1000}
+              />
               <source
                 media="(max-width: 760px)"
                 srcSet="/img/home-hero-mobile-1080.webp"
@@ -81,7 +90,12 @@ export default function Page() {
                 width={1080}
                 height={1350}
               />
-              <source srcSet="/img/home-hero-1600.webp" type="image/webp" />
+              <source
+                srcSet="/img/home-hero-animated.webp"
+                type="image/webp"
+                width={1200}
+                height={750}
+              />
               <img
                 src="/img/home-hero-1600.png"
                 width={1600}

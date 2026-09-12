@@ -119,3 +119,52 @@ before-and-after, and the homepage proof row. Five placements of one product rea
 **Recommendation:** keep it on `/amazon-private-label` and `/proof`, where it proves design
 capability and is the point. **Remove the process strip from the homepage proof row** — the
 homepage already has three proof cards without it. One change, and the impression goes.
+
+---
+
+## 6 · Header logo reads small — my file, my fix
+
+The SVG currently in the header has **half the cap height of clear space built into its viewBox**.
+At a 34px rendered height the letters are only about 17px tall, which is why it looks undersized
+next to the nav and the button. The header sizing is not wrong; the file is padded.
+
+**Tight-cropped variants added**, roughly 6% padding instead of 50%:
+
+| Use | File |
+|---|---|
+| Header, light ground | `/brand/hyprr-logo-primary-tight.svg` |
+| Header, dark ground | `/brand/hyprr-logo-reversed-tight.svg` |
+| On petrol | `/brand/hyprr-logo-on-petrol-tight.svg` |
+
+Aspect changes from 4.11:1 to **6.55:1**, so set the height and let width auto. Suggested
+`height: 28px` desktop, `24px` mobile — that gives roughly the same optical weight as a 44px
+padded version. Adjust by eye against the nav text; it should sit slightly larger than the nav
+labels but not compete with the button.
+
+**Keep the padded originals** for anything standalone — email signatures, PDFs, slides — where the
+built-in clear space is correct and stops the mark being crowded. Only the header and footer should
+use the tight files.
+
+---
+
+## 7 · Enabling the hero animation
+
+The animated file is already in `/img/home-hero-animated.webp` (1200×750, 149KB). It is not broken;
+the static version was shipped on purpose. To switch it on, keep the static image as the
+reduced-motion fallback:
+
+```html
+<picture>
+  <source media="(prefers-reduced-motion: reduce)" srcset="/img/home-hero-1600.webp" type="image/webp">
+  <source media="(max-width: 760px)" srcset="/img/home-hero-mobile-1080.webp" type="image/webp" width="1080" height="1350">
+  <source srcset="/img/home-hero-animated.webp" type="image/webp" width="1200" height="750">
+  <img src="/img/home-hero-1600.png" width="1600" height="1000" fetchpriority="high"
+       alt="Eight areas of a marketplace operation — sourcing, listings, advertising, inventory, orders, margin, Amazon and Walmart — connected to Hyprr at the centre.">
+</picture>
+```
+
+**Mobile stays static.** The animation is 1200×750 and would be scaled down on a phone, costing
+149KB of a mobile connection for motion nobody watches. Desktop only.
+
+**Measure Largest Contentful Paint before and after.** If it moves more than about 0.3s, revert to
+static — the motion is not worth a slower hero.

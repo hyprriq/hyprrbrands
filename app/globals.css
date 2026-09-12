@@ -223,7 +223,9 @@ nav.site {
   height: 70px;
 }
 .logo {
-  height: 30px;
+  /* tight-cropped mark (6.55:1) — 24/28px gives the optical weight a
+     44px padded version had (DEV_NOTES §6) */
+  height: 24px;
   width: auto;
   display: block;
 }
@@ -232,7 +234,7 @@ nav.site {
     height: 82px;
   }
   .logo {
-    height: 34px;
+    height: 28px;
   }
 }
 .logo-fallback {
