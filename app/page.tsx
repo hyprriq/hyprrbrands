@@ -659,6 +659,7 @@ export default function Page() {
       <section className="closing">
         <div className="wrap">
           <h2>Amazon and Walmart operations, end to end</h2>
+          <div className="cols2">
           <p>
             Hyprr Brands builds, operates and scales marketplace businesses on
             Amazon and Walmart. We work with brand owners launching a first
@@ -699,6 +700,7 @@ export default function Page() {
             <a href="/proof">documents we produce</a> are on the site to read
             before you talk to us.
           </p>
+          </div>
         </div>
       </section>
     </main>

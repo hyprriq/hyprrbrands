@@ -42,6 +42,11 @@
     --pad: 28px;
   }
 }
+@media (min-width: 1200px) {
+  :root {
+    --pad: 40px;
+  }
+}
 
 /* ---- base ---- */
 * {
@@ -70,7 +75,9 @@ svg {
   max-width: 100%;
 }
 .wrap {
-  max-width: 1180px;
+  /* widened 1180 -> 1520 (16 Sep): large screens were mostly margin
+     and the hero visual read small */
+  max-width: 1520px;
   margin: auto;
   padding: 0 var(--pad);
 }
@@ -126,11 +133,11 @@ a {
   color: inherit;
 }
 section {
-  padding: 52px 0;
+  padding: 48px 0;
 }
 @media (min-width: 760px) {
   section {
-    padding: 86px 0;
+    padding: 68px 0;
   }
 }
 .eyebrow {
@@ -457,7 +464,7 @@ footer.site .base {
 }
 @media (min-width: 900px) {
   .hero {
-    padding: 72px 0 80px;
+    padding: 56px 0 56px;
   }
   /* 15 Sep hero brief: ~45% copy / ~55% visual */
   .hero-grid {
@@ -801,9 +808,13 @@ footer.site .base {
     grid-template-columns: repeat(3, 1fr);
   }
   /* §4: break the six-identical-rectangles pattern — the first card
-     spans two columns on desktop. */
+     spans two columns on desktop, and the last spans the full row so
+     the grid closes without an empty cell. */
   .service-grid .service:first-child {
     grid-column: span 2;
+  }
+  .service-grid .service:last-child {
+    grid-column: 1 / -1;
   }
 }
 .service {
@@ -2048,6 +2059,18 @@ a.strip-link img {
   color: var(--muted);
   max-width: 76ch;
   margin-bottom: 12px;
+}
+/* wide screens: the prose runs in two columns so the block uses the
+   full container width instead of leaving the right half empty */
+@media (min-width: 1000px) {
+  .closing .cols2 {
+    column-count: 2;
+    column-gap: 56px;
+  }
+  .closing .cols2 p {
+    max-width: none;
+    break-inside: avoid-column;
+  }
 }
 .closing a {
   color: var(--body);
