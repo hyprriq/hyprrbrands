@@ -164,6 +164,43 @@ export default function Page() {
                   </circle>
                 ))}
               </svg>
+              {/* Mobile overlay — separate calibration for the 3:4
+                  composition, ~50% of desktop intensity (brief). */}
+              <svg
+                className="hero-op-anim-m"
+                viewBox="0 0 1092 1440"
+                aria-hidden="true"
+              >
+                {(
+                  [
+                    ["M543 400 V560", "#66D7D0", "0s"],
+                    ["M310 703 H395", "#D7F04A", "2.4s"],
+                    ["M543 862 V950", "#6947FF", "4.8s"],
+                    ["M693 703 H768", "#D7F04A", "7.2s"],
+                    ["M378 415 V540", "#66D7D0", "9.6s"],
+                  ] as const
+                ).map(([d, fill, begin]) => (
+                  <circle key={d} r="4.5" fill={fill} opacity="0">
+                    <animateMotion
+                      dur="12s"
+                      repeatCount="indefinite"
+                      begin={begin}
+                      calcMode="linear"
+                      keyPoints="0;1;1"
+                      keyTimes="0;0.16;1"
+                      path={d}
+                    />
+                    <animate
+                      attributeName="opacity"
+                      dur="12s"
+                      repeatCount="indefinite"
+                      begin={begin}
+                      values="0;0.85;0.85;0;0"
+                      keyTimes="0;0.025;0.13;0.16;1"
+                    />
+                  </circle>
+                ))}
+              </svg>
               <span className="hero-op-breath" aria-hidden="true" />
             </div>
           </figure>

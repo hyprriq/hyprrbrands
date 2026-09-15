@@ -475,12 +475,17 @@ footer.site .base {
   width: 100%;
   height: auto;
 }
-.hero-op-anim {
+.hero-op-anim,
+.hero-op-anim-m {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
+}
+/* one overlay per composition: desktop svg above 760px, mobile below */
+.hero-op-anim-m {
+  display: none;
 }
 .hero-op-breath {
   position: absolute;
@@ -509,16 +514,36 @@ footer.site .base {
     transform: scale(1.015);
   }
 }
-/* mobile serves a different composition — overlay off until the
-   dedicated mobile artwork lands; reduced-motion gets the still. */
 @media (max-width: 760px) {
-  .hero-op-anim,
-  .hero-op-breath {
+  .hero-op-anim {
     display: none;
+  }
+  .hero-op-anim-m {
+    display: block;
+  }
+  /* hub sits elsewhere in the 3:4 composition; breathe softer */
+  .hero-op-breath {
+    left: 36.4%;
+    top: 39.2%;
+    width: 26.7%;
+    height: 20.5%;
+    animation-name: hub-breath-m;
+  }
+}
+@keyframes hub-breath-m {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.1;
+    transform: scale(1.01);
   }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-op-anim,
+  .hero-op-anim-m,
   .hero-op-breath {
     display: none;
   }
