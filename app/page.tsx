@@ -72,39 +72,92 @@ export default function Page() {
               </a>
             </div>
           </div>
-          <figure className="heroimg" style={{ margin: 0 }}>
-            {/* Animated on desktop (DEV_NOTES §7); reduced-motion and
-                mobile stay on the static files. */}
-            <picture>
-              <source
-                media="(prefers-reduced-motion: reduce)"
-                srcSet="/img/home-hero-1600.webp"
-                type="image/webp"
-                width={1600}
-                height={1000}
-              />
-              <source
-                media="(max-width: 760px)"
-                srcSet="/img/home-hero-mobile-1080.webp"
-                type="image/webp"
-                width={1080}
-                height={1350}
-              />
-              <source
-                srcSet="/img/home-hero-animated.webp"
-                type="image/webp"
-                width={1200}
-                height={750}
-              />
-              <img
-                src="/img/home-hero-1600.png"
-                width={1600}
-                height={1000}
-                fetchPriority="high"
-                decoding="async"
-                alt="Eight areas of a marketplace operation — sourcing, listings, advertising, inventory, orders, margin, Amazon and Walmart — connected to Hyprr at the centre"
-              />
-            </picture>
+          {/* 15 Sep hero brief: static artwork base + lightweight
+              animation layers (no GIF). Pulses ride the artwork's own
+              connector lines; the hub breathes very slightly. Overlay
+              is desktop-only and vanishes under prefers-reduced-motion.
+              Mobile serves the previous 4:5 composition until the
+              designer's dedicated mobile artwork arrives. */}
+          <link
+            rel="preload"
+            as="image"
+            href="/img/home-hero-operation-1586.webp"
+            media="(min-width: 761px)"
+          />
+          <link
+            rel="preload"
+            as="image"
+            href="/img/home-hero-mobile-1080.webp"
+            media="(max-width: 760px)"
+          />
+          <figure className="heroimg hero-op" style={{ margin: 0 }}>
+            <div className="hero-op-stage">
+              <picture>
+                <source
+                  media="(max-width: 760px)"
+                  srcSet="/img/home-hero-mobile-1080.webp"
+                  type="image/webp"
+                  width={1080}
+                  height={1350}
+                />
+                <source
+                  srcSet="/img/home-hero-operation-1586.avif"
+                  type="image/avif"
+                  width={1586}
+                  height={992}
+                />
+                <img
+                  src="/img/home-hero-operation-1586.webp"
+                  width={1586}
+                  height={992}
+                  fetchPriority="high"
+                  decoding="async"
+                  alt="The Hyprr Brands operation — sourcing, private label, wholesale, product customization, account management, marketplaces, inventory and growth — connected to one hub"
+                />
+              </picture>
+              {/* Traveling pulses along the artwork's connector routes.
+                  Paths are calibrated to the 1586×992 composition. */}
+              <svg
+                className="hero-op-anim"
+                viewBox="0 0 1586 992"
+                aria-hidden="true"
+              >
+                {(
+                  [
+                    // [path, colour, begin] — inbound feeds, outbound results
+                    ["M505 215 H548 V390 H652", "#66D7D0", "0s"],
+                    ["M785 602 V648", "#6947FF", "1.2s"],
+                    ["M928 472 H1100", "#D7F04A", "2.4s"],
+                    ["M765 298 V342", "#66D7D0", "3.6s"],
+                    ["M928 548 H1025 V645", "#6947FF", "4.8s"],
+                    ["M505 472 H652", "#D7F04A", "6s"],
+                    ["M1010 318 V390 H928", "#66D7D0", "7.2s"],
+                    ["M652 548 H572 V640", "#6947FF", "8.4s"],
+                  ] as const
+                ).map(([d, fill, begin]) => (
+                  <circle key={d} r="5.5" fill={fill} opacity="0">
+                    <animateMotion
+                      dur="10s"
+                      repeatCount="indefinite"
+                      begin={begin}
+                      calcMode="linear"
+                      keyPoints="0;1;1"
+                      keyTimes="0;0.22;1"
+                      path={d}
+                    />
+                    <animate
+                      attributeName="opacity"
+                      dur="10s"
+                      repeatCount="indefinite"
+                      begin={begin}
+                      values="0;0.9;0.9;0;0"
+                      keyTimes="0;0.03;0.18;0.22;1"
+                    />
+                  </circle>
+                ))}
+              </svg>
+              <span className="hero-op-breath" aria-hidden="true" />
+            </div>
           </figure>
         </div>
       </section>
