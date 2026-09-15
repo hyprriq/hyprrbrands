@@ -132,37 +132,43 @@ export default function Page() {
               >
                 {(
                   [
-                    // [path, colour, begin] — inbound feeds, outbound results
-                    ["M505 215 H548 V390 H652", "#66D7D0", "0s"],
-                    ["M785 602 V648", "#6947FF", "1.2s"],
-                    ["M928 472 H1100", "#D7F04A", "2.4s"],
-                    ["M765 298 V342", "#66D7D0", "3.6s"],
-                    ["M928 548 H1025 V645", "#6947FF", "4.8s"],
-                    ["M505 472 H652", "#D7F04A", "6s"],
-                    ["M1010 318 V390 H928", "#66D7D0", "7.2s"],
-                    ["M652 548 H572 V640", "#6947FF", "8.4s"],
+                    // [path, colour, first-fire] — inbound feeds,
+                    // outbound results. Each route fires twice per 12s
+                    // loop (offset +6s) so 2–3 pulses are always live.
+                    ["M505 215 H548 V390 H652", "#66D7D0", 0],
+                    ["M785 602 V648", "#6947FF", 0.75],
+                    ["M928 472 H1100", "#D7F04A", 1.5],
+                    ["M765 298 V342", "#66D7D0", 2.25],
+                    ["M928 548 H1025 V645", "#6947FF", 3],
+                    ["M505 472 H652", "#D7F04A", 3.75],
+                    ["M1010 318 V390 H928", "#66D7D0", 4.5],
+                    ["M652 548 H572 V640", "#6947FF", 5.25],
                   ] as const
-                ).map(([d, fill, begin]) => (
-                  <circle key={d} r="5.5" fill={fill} opacity="0">
-                    <animateMotion
-                      dur="10s"
-                      repeatCount="indefinite"
-                      begin={begin}
-                      calcMode="linear"
-                      keyPoints="0;1;1"
-                      keyTimes="0;0.22;1"
-                      path={d}
-                    />
-                    <animate
-                      attributeName="opacity"
-                      dur="10s"
-                      repeatCount="indefinite"
-                      begin={begin}
-                      values="0;0.9;0.9;0;0"
-                      keyTimes="0;0.03;0.18;0.22;1"
-                    />
-                  </circle>
-                ))}
+                ).flatMap(([d, fill, b]) =>
+                  [b, b + 6].map((begin) => (
+                    <g key={`${d}-${begin}`} opacity="0">
+                      <circle r="12" fill={fill} opacity="0.22" />
+                      <circle r="7" fill={fill} />
+                      <animateMotion
+                        dur="12s"
+                        repeatCount="indefinite"
+                        begin={`${begin}s`}
+                        calcMode="linear"
+                        keyPoints="0;1;1"
+                        keyTimes="0;0.2;1"
+                        path={d}
+                      />
+                      <animate
+                        attributeName="opacity"
+                        dur="12s"
+                        repeatCount="indefinite"
+                        begin={`${begin}s`}
+                        values="0;1;1;0;0"
+                        keyTimes="0;0.02;0.17;0.2;1"
+                      />
+                    </g>
+                  ))
+                )}
               </svg>
               {/* Mobile overlay — separate calibration for the 3:4
                   composition, ~50% of desktop intensity (brief). */}
@@ -173,33 +179,37 @@ export default function Page() {
               >
                 {(
                   [
-                    ["M543 400 V560", "#66D7D0", "0s"],
-                    ["M310 703 H395", "#D7F04A", "2.4s"],
-                    ["M543 862 V950", "#6947FF", "4.8s"],
-                    ["M693 703 H768", "#D7F04A", "7.2s"],
-                    ["M378 415 V540", "#66D7D0", "9.6s"],
+                    ["M543 400 V560", "#66D7D0", 0],
+                    ["M310 703 H395", "#D7F04A", 1.2],
+                    ["M543 862 V950", "#6947FF", 2.4],
+                    ["M693 703 H768", "#D7F04A", 3.6],
+                    ["M378 415 V540", "#66D7D0", 4.8],
                   ] as const
-                ).map(([d, fill, begin]) => (
-                  <circle key={d} r="4.5" fill={fill} opacity="0">
-                    <animateMotion
-                      dur="12s"
-                      repeatCount="indefinite"
-                      begin={begin}
-                      calcMode="linear"
-                      keyPoints="0;1;1"
-                      keyTimes="0;0.16;1"
-                      path={d}
-                    />
-                    <animate
-                      attributeName="opacity"
-                      dur="12s"
-                      repeatCount="indefinite"
-                      begin={begin}
-                      values="0;0.85;0.85;0;0"
-                      keyTimes="0;0.025;0.13;0.16;1"
-                    />
-                  </circle>
-                ))}
+                ).flatMap(([d, fill, b]) =>
+                  [b, b + 6].map((begin) => (
+                    <g key={`${d}-${begin}`} opacity="0">
+                      <circle r="10" fill={fill} opacity="0.22" />
+                      <circle r="6" fill={fill} />
+                      <animateMotion
+                        dur="12s"
+                        repeatCount="indefinite"
+                        begin={`${begin}s`}
+                        calcMode="linear"
+                        keyPoints="0;1;1"
+                        keyTimes="0;0.18;1"
+                        path={d}
+                      />
+                      <animate
+                        attributeName="opacity"
+                        dur="12s"
+                        repeatCount="indefinite"
+                        begin={`${begin}s`}
+                        values="0;1;1;0;0"
+                        keyTimes="0;0.02;0.15;0.18;1"
+                      />
+                    </g>
+                  ))
+                )}
               </svg>
               <span className="hero-op-breath" aria-hidden="true" />
             </div>
