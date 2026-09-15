@@ -214,7 +214,8 @@ textarea:focus-visible {
 
 /* ---- nav ---- */
 nav.site {
-  background: rgba(247, 248, 243, 0.96);
+  /* trial 15 Sep: white with the hero (was the paper tint) */
+  background: rgba(255, 255, 255, 0.96);
   backdrop-filter: saturate(160%) blur(8px);
   border-bottom: 1px solid var(--line);
   position: sticky;
@@ -446,6 +447,9 @@ footer.site .base {
    ============================================================ */
 .hero {
   padding: 36px 0 44px;
+  /* trial 15 Sep: full-white hero ground (was the paper token) —
+     easy to scale back by removing this line */
+  background: #fff;
 }
 .hero-grid {
   display: grid;
