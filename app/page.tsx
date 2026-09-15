@@ -76,8 +76,9 @@ export default function Page() {
               animation layers (no GIF). Pulses ride the artwork's own
               connector lines; the hub breathes very slightly. Overlay
               is desktop-only and vanishes under prefers-reduced-motion.
-              Mobile serves the previous 4:5 composition until the
-              designer's dedicated mobile artwork arrives. */}
+              Mobile serves the dedicated 3:4 composition of the same
+              artwork (its connector geometry differs, so pulses stay
+              desktop-only for now). */}
           <link
             rel="preload"
             as="image"
@@ -87,7 +88,7 @@ export default function Page() {
           <link
             rel="preload"
             as="image"
-            href="/img/home-hero-mobile-1080.webp"
+            href="/img/home-hero-operation-mobile-1092.webp"
             media="(max-width: 760px)"
           />
           <figure className="heroimg hero-op" style={{ margin: 0 }}>
@@ -95,10 +96,17 @@ export default function Page() {
               <picture>
                 <source
                   media="(max-width: 760px)"
-                  srcSet="/img/home-hero-mobile-1080.webp"
+                  srcSet="/img/home-hero-operation-mobile-1092.avif"
+                  type="image/avif"
+                  width={1092}
+                  height={1440}
+                />
+                <source
+                  media="(max-width: 760px)"
+                  srcSet="/img/home-hero-operation-mobile-1092.webp"
                   type="image/webp"
-                  width={1080}
-                  height={1350}
+                  width={1092}
+                  height={1440}
                 />
                 <source
                   srcSet="/img/home-hero-operation-1586.avif"
