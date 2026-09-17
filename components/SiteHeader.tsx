@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { NAV } from "@/lib/site-map";
 import NavDropdown from "./NavDropdown";
+import Logo from "./Logo";
 
 /**
  * Header — renders from NAV in lib/site-map.ts. Plain items are
  * links; items with children are dropdowns on desktop and accordions
- * in the mobile menu (collapsed by default). Book a call uses the
+ * in the mobile menu (collapsed by default). The logo is the v2.0
+ * outlined wordmark, inline (PROMPT_24 §11). Book a call uses the
  * booking URL when the env var is set, otherwise the contact page.
  */
 const BOOKING = process.env.NEXT_PUBLIC_BOOKING_URL || "/contact";
@@ -26,15 +28,8 @@ export default function SiteHeader() {
   return (
     <nav className="site" aria-label="Main">
       <div className="wrap navin">
-        <a href="/" aria-label="Hyprr Brands home">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className="logo"
-            src="/brand/hyprr-logo-primary-tight.svg"
-            alt="Hyprr Brands"
-            width={183}
-            height={28}
-          />
+        <a href="/" aria-label="Hyprr Brands home" className="logo-link">
+          <Logo className="logo" />
         </a>
         <div className="links">
           {NAV.map((item) =>
@@ -44,6 +39,7 @@ export default function SiteHeader() {
                 label={item.label}
                 items={item.children}
                 pathname={pathname}
+                feature={item.group ? `nav-${item.group}-group` : undefined}
               />
             ) : (
               <a

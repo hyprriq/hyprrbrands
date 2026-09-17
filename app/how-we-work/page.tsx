@@ -12,9 +12,9 @@ import { ogImageMeta } from "@/lib/og-pages";
  * H2. Every service page's fee line links here rather than repeating
  * it.
  */
-const TITLE = "Amazon Agency Pricing | How We Charge & Work — Hyprr";
+const TITLE = "Amazon Agency Fees and How We Work | Hyprr Brands";
 const DESC =
-  "Most agencies charge a retainer, a percentage of ad spend or of revenue. We charge fixed fees agreed in writing first — here is the full structure.";
+  "Fixed fees agreed in writing, never a share of ad spend. Onboarding, access, your first 30 days and how an engagement ends, set out in full.";
 const PATH = "/how-we-work";
 
 export const metadata: Metadata = {
@@ -36,12 +36,12 @@ const BOOKING = process.env.NEXT_PUBLIC_BOOKING_URL || "/contact";
 
 const FAQS = [
   {
-    q: "How much does an Amazon agency typically charge?",
-    a: "Across the market: monthly retainers, a percentage of advertising spend, a percentage of revenue, or some combination. Percentage-of-ad-spend is the most common and the most conflicted, because the agency earns more when you spend more, whether or not it worked.",
+    q: "What does the fee not cover?",
+    a: "Stock, tooling, testing, freight, duty, insurance and ad spend. Those are paid by you, directly to the supplier or the marketplace.",
   },
   {
     q: "What do you charge?",
-    a: "A fixed project fee for launch work — private label launches, account setup, listing optimization, Walmart expansion — and a fixed monthly fee for managed operations. Both are scoped and agreed in writing before anything starts. The number depends on the scope, which is why it is quoted, not published.",
+    a: "A fixed project fee for launch work — private label launches, account setup, listing optimization, Walmart US expansion — and a fixed monthly fee for managed operations. Both are scoped and agreed in writing before anything starts. The number depends on the scope, which is why it is quoted, not published.",
   },
   {
     q: "Do you take a percentage of ad spend?",
@@ -49,7 +49,7 @@ const FAQS = [
   },
   {
     q: "What happens if it does not work?",
-    a: "You keep the accounts, the stock, the listings and the documents, and you can revoke our access in one click. There is no lock-in that survives the relationship. The verdict sheets exist so that most failures happen on paper, before your money moves.",
+    a: "You keep the accounts, the stock, the listings and the documents, and you can remove our access at any time from your own User Permissions page. There is no lock-in that survives the relationship. The verdict sheets exist so that most failures happen on paper, before your money moves.",
   },
 ];
 
@@ -77,9 +77,9 @@ export default function Page() {
           </p>
           <Visual
             name="how-we-work/execution-swimlane"
-            alt="Six steps in two lanes: Hyprr researches, analyses, executes and reports; the client decides in writing and reads the report; plus the escalation path when something goes wrong"
+            alt="Five client decisions in two lanes: Hyprr researches, analyzes, executes and reports; the client decides in writing and reads the report; plus the escalation path when something goes wrong"
           />
-          <h2 className="sr-only">The five steps in full</h2>
+          <h2 className="sr-only">Five steps on every buying decision</h2>
           <div className="how-grid" style={{ marginTop: 30 }}>
             <ol className="method">
               <li>
@@ -87,7 +87,7 @@ export default function Page() {
                   <b>We check the numbers</b>
                   <span>
                     Landed cost, marketplace fees, returns, competition and
-                    demand — modelled per product, before anything else
+                    demand — modeled per product, before anything else
                     happens. Most ideas end here, which is the point.
                   </span>
                 </div>
@@ -139,26 +139,39 @@ export default function Page() {
                 money.
               </p>
               <div className="vsheet">
+                <div className="hd">
+                  <span>CANDIDATE 0412 · SEP</span>
+                  <span>ILLUSTRATIVE</span>
+                </div>
                 <div className="r">
-                  <span>Line 0412 · landed cost</span>
+                  <span>Landed unit cost</span>
                   <b>11.40</b>
                 </div>
                 <div className="r">
-                  <span>Fees and returns</span>
-                  <b>9.95</b>
+                  <span>Marketplace fees</span>
+                  <b>6.85</b>
+                </div>
+                <div className="r">
+                  <span>Returns and advertising</span>
+                  <b>3.10</b>
                 </div>
                 <div className="r out">
-                  <span>Verdict</span>
-                  <b>DO NOT BUY</b>
+                  <span>Margin against a 20% floor</span>
+                  <b>4.8% · DO NOT BUY</b>
                 </div>
               </div>
               <p style={{ marginTop: 14 }}>
-                <a href="/proof" style={{ color: "#d5e2e0", fontWeight: 600 }}>
+                <a href="/proof#verdict" style={{ color: "#d5e2e0", fontWeight: 600 }}>
                   Read a full sample on the proof page →
                 </a>
               </p>
             </div>
           </div>
+          <p style={{ maxWidth: "62ch", marginTop: 26, marginBottom: 0 }}>
+            For management, listing and advertising work, the same rule
+            applies differently: nothing changes in your account until you
+            have approved the written plan.
+          </p>
         </div>
       </section>
 
@@ -180,16 +193,32 @@ export default function Page() {
               <b>You approve</b>
               <span>
                 Every material purchase, in writing, before it happens. We
-                work under permissioned user access you can revoke in one
-                click. Access without ownership, on both sides.
+                work under permissioned user access you can remove at any
+                time from your own User Permissions page. Access without
+                ownership, on both sides.
               </span>
             </div>
           </div>
         </div>
       </section>
 
+      {/* 02b · RESPONSE TIMES AND DATA — [owner B6] service levels to
+          confirm; if unsure, ship the first and third sentences only */}
+      <section className="start" id="response-times">
+        <div className="wrap">
+          <h2>Response times and data.</h2>
+          <p style={{ maxWidth: "70ch", marginBottom: 0 }}>
+            Messages are answered within one working day. Account health
+            notices are picked up the same working day. Weekly notes arrive on
+            Fridays. Our users on your accounts have two-step verification and
+            only the permissions the work needs. Your data is used only for
+            your account.
+          </p>
+        </div>
+      </section>
+
       {/* 03 · THE PRICING SNIPPET */}
-      <section className="start" id="pricing">
+      <section className="buildband" id="pricing">
         <div className="wrap">
           <h2>How much does an Amazon agency charge?</h2>
           <div className="snippet">
@@ -197,8 +226,9 @@ export default function Page() {
               Most charge a retainer, a percentage of ad spend, or a
               percentage of revenue. A percentage of ad spend pays the agency
               more when you spend more, which is the conflict we avoid. We
-              charge a fixed project fee for launch work and a monthly fee for
-              managed operations, agreed in writing before anything starts.
+              charge a fixed project fee for launch work and a fixed monthly
+              fee for managed operations, agreed in writing before anything
+              starts.
             </p>
           </div>
           <div className="fee-grid" style={{ marginTop: 26 }}>
@@ -206,7 +236,7 @@ export default function Page() {
               <b>Launch projects — fixed fee</b>
               <span>
                 Private label launch, account setup, listing optimization,
-                Walmart expansion. Scoped, priced and paid before we start,
+                Walmart US expansion. Scoped, priced and paid before we start,
                 finishing on a date. Stock, tooling and advertising are your
                 costs, paid by you directly.
               </span>
@@ -226,7 +256,8 @@ export default function Page() {
             <a href="/contact" style={{ fontWeight: 600 }}>
               a twenty-minute call
             </a>
-            , in writing, and does not change afterwards.
+            , in writing. It changes only if the scope changes, and any change
+            is agreed in writing first.
           </p>
         </div>
       </section>
@@ -270,6 +301,13 @@ export default function Page() {
                   style={{ color: "#d5e2e0", fontWeight: 600 }}
                 >
                   listing optimization
+                </a>{" "}
+                and{" "}
+                <a
+                  href="/amazon-ppc-management"
+                  style={{ color: "#d5e2e0", fontWeight: 600 }}
+                >
+                  PPC
                 </a>
                 .
               </p>
@@ -293,7 +331,7 @@ export default function Page() {
               </div>
               <div className="r out">
                 <span>Our access</span>
-                <b>REVOKED IN ONE CLICK</b>
+                <b>REMOVED BY YOU, ANY TIME</b>
               </div>
             </div>
           </div>
@@ -308,8 +346,7 @@ export default function Page() {
         <div className="wrap">
           <h2>Get the number in writing.</h2>
           <p>
-            Twenty minutes, your situation, and a fixed quote that does not
-            change afterwards.
+            Twenty minutes, your situation, and a fixed quote in writing.
           </p>
           <div className="cta-row">
             <a className="btn onpetrol" href={BOOKING}>

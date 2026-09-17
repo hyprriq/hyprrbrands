@@ -9,6 +9,9 @@
  */
 
 export type Group = "service" | "company" | "legal";
+/** Nav grouping (PROMPT_24 §10): the three seller-side services sit
+ *  under one "Management ▾" trigger. */
+export type NavGroup = "management";
 
 export interface SitePage {
   slug: string; // leading slash, no trailing slash
@@ -18,6 +21,7 @@ export interface SitePage {
   status: "live" | "planned";
   priority: number; // build order (lower = sooner)
   oneLine: string;
+  navGroup?: NavGroup;
 }
 
 export const SITE_MAP: SitePage[] = [
@@ -40,40 +44,42 @@ export const SITE_MAP: SitePage[] = [
     status: "live",
     priority: 3,
     oneLine:
-      "Sourcing from authorised distributors, purchase orders you approve, and the daily work of keeping those lines selling",
+      "Sourcing from authorized distributors, purchase orders you approve, and the daily work of keeping those lines selling",
   },
   {
     slug: "/amazon-walmart-management",
     title: "Management",
     h1: "You already sell. We run it properly.",
     group: "service",
+    navGroup: "management",
     status: "live",
     priority: 4,
     oneLine:
-      "Amazon and Walmart account operations, run daily — catalogue, growth, inventory and account health",
+      "Amazon and Walmart account operations, run daily — catalog, growth, inventory and account health",
   },
   {
     slug: "/amazon-listing-optimization",
-    title: "Listings",
+    title: "Listing optimization",
     h1: "Your listing is where traffic becomes revenue.",
     group: "service",
+    navGroup: "management",
     status: "live",
     priority: 6,
     oneLine:
       "Research, content, conversion and indexing on the listings you already have. Fixed price, two weeks",
   },
   {
-    // Fifth service page (PPC_AND_CLOSING_BLOCK.md, 6 Sep). Nav stays
-    // at five items — reached from the homepage growth card, the
-    // footer, and #growth on the management page.
+    // Fifth service page (PPC_AND_CLOSING_BLOCK.md, 6 Sep); in the
+    // nav under Management ▾ since PROMPT_24.
     slug: "/amazon-ppc-management",
     title: "PPC",
-    h1: "Advertising that answers to margin, not to spend.",
+    h1: "Amazon PPC management that answers to margin, not to spend.",
     group: "service",
+    navGroup: "management",
     status: "live",
     priority: 9,
     oneLine:
-      "Amazon and Walmart advertising run against inventory, price and margin. Never paid on your ad spend",
+      "Amazon and Walmart US advertising judged on contribution margin, with bids tied to stock cover. Never paid on your ad spend",
   },
 
   // ---- Company ----
@@ -147,8 +153,7 @@ export const SITE_MAP: SitePage[] = [
   },
   {
     // Not in SITEMAP.md's three, but the URL exists and the policy is
-    // real — kept live rather than deleted (nothing is deleted before
-    // the redirects are proven). Footer-omitted; flagged to the owner.
+    // real. In the footer Legal column since PROMPT_24 §7.3.
     slug: "/earnings-claims",
     title: "Earnings claims policy",
     h1: "Earnings claims policy",
@@ -204,11 +209,12 @@ export const REDIRECTS: { source: string; destination: string }[] = [
 ];
 
 /**
- * Navigation — nav ticket, 18 Sep. The header, the mobile menu and
- * the footer render from these so a label can only be changed in one
- * place. Top nav: Private label · Wholesale · Management ▾ · How we
- * work · Company ▾. "Management" groups the three services for
- * sellers who already sell; the footer still lists all five.
+ * Navigation — PROMPT_24 §10 (folds in the nav ticket). The header
+ * and the mobile menu render from NAV; the footer from FOOTER; both
+ * live here so a label can only be changed in one place. Top nav:
+ * Private label · Wholesale · Management ▾ · How we work · Book a
+ * call. "Management" groups the three services for sellers who
+ * already sell (navGroup: "management" on their SITE_MAP entries).
  */
 export interface NavChild {
   href: string;
@@ -219,6 +225,7 @@ export interface NavItem {
   label: string;
   href?: string; // a plain link…
   children?: NavChild[]; // …or a dropdown / mobile accordion
+  group?: NavGroup; // data-feature="nav-<group>-group" on the trigger
 }
 
 export const NAV: NavItem[] = [
@@ -226,36 +233,29 @@ export const NAV: NavItem[] = [
   { label: "Wholesale", href: "/amazon-wholesale-management" },
   {
     label: "Management",
+    group: "management",
     children: [
       {
         href: "/amazon-walmart-management",
         label: "Amazon & Walmart management",
-        desc: "Daily account operations: catalogue, inventory, cases, account health",
+        desc: "Daily operation of the accounts you already have",
       },
       {
         href: "/amazon-listing-optimization",
         label: "Listing optimization",
-        desc: "Fixed price, two weeks. Titles, content, images, indexing",
+        desc: "Fixed-price rebuild of titles, images and A+",
       },
       {
         href: "/amazon-ppc-management",
         label: "PPC management",
-        desc: "Advertising run against margin and stock, not spend",
+        desc: "Advertising judged on margin, not spend",
       },
     ],
   },
   { label: "How we work", href: "/how-we-work" },
-  {
-    label: "Company",
-    children: [
-      { href: "/proof", label: "Proof", desc: "The documents we produce, ungated" },
-      { href: "/about", label: "About", desc: "Who runs Hyprr Brands" },
-      { href: "/contact", label: "Contact", desc: "Book a call, or send context first" },
-    ],
-  },
 ];
 
-/** Footer columns — unchanged by the nav ticket: all five services. */
+/** Footer columns — all five services; Legal carries the four policies (§7.3). */
 export const FOOTER = {
   services: [
     { href: "/amazon-private-label", label: "Amazon private label" },
@@ -274,6 +274,7 @@ export const FOOTER = {
     { href: "/privacy", label: "Privacy" },
     { href: "/terms", label: "Terms" },
     { href: "/accessibility", label: "Accessibility" },
+    { href: "/earnings-claims", label: "Earnings claims" },
   ],
 };
 

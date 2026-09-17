@@ -9,12 +9,12 @@ import { ogImageMeta } from "@/lib/og-pages";
  * Proof — the verdict sheet, the cost model, the before-and-after.
  * No keyword target; this page exists to be linked from everywhere
  * else. The label rule from the wireframe: illustrative examples say
- * so; real client work is anonymised and says that too. The results
- * slot is designed now and fills when there is something real.
+ * so; real client work is anonymized and says that too. The results
+ * slot is a single line until a full reporting period closes (PROMPT_24).
  */
-const TITLE = "The Work | Verdict Sheets & Cost Models — Hyprr Brands";
+const TITLE = "Sample Work: Verdicts, Reports, Listings | Hyprr Brands";
 const DESC =
-  "Sample documents ungated: a verdict sheet ending in Do not buy, a landed-cost model, a listing before and after, and a monthly report you can read.";
+  "Documents clients get from us, as labeled samples: a verdict sheet, a landed-cost model, a monthly report, a listing rebuild and a purchase order.";
 const PATH = "/proof";
 
 export const metadata: Metadata = {
@@ -71,7 +71,7 @@ export default function Page() {
           <p style={{ maxWidth: "62ch" }}>
             These are the documents the method produces — read them before you
             talk to us. Where a document is an illustrative sample it says so
-            on the document; real client work appears here anonymised, and
+            on the document; real client work appears here anonymized, and
             says that too. The method behind them is on{" "}
             <a href="/how-we-work">the how-we-work page</a>.
           </p>
@@ -88,7 +88,7 @@ export default function Page() {
           <h2 className="sr-only">The documents, one per row</h2>
           <div className="artrows">
             {/* Verdict sheet */}
-            <div className="artrow" id="verdict-sheet">
+            <div className="artrow" id="verdict">
               <div>
                 <span className="label-note">Illustrative sample</span>
                 <h3>The verdict sheet, ending in Do not buy</h3>
@@ -102,23 +102,31 @@ export default function Page() {
               </div>
               <div className="doc">
                 <div className="dochd">
-                  <span>PRODUCT VERDICT · CANDIDATE 0412</span>
-                  <span>4 SEP · ILLUSTRATIVE</span>
+                  <span>PRODUCT VERDICT · CANDIDATE 0412 · SEP</span>
+                  <span>ILLUSTRATIVE</span>
+                </div>
+                <div className="docr">
+                  <span>Stackable kitchen storage set · sell price</span>
+                  <b>22.43</b>
                 </div>
                 <div className="docr">
                   <span>Landed unit cost</span>
                   <b>11.40</b>
                 </div>
                 <div className="docr">
-                  <span>Marketplace fees, per unit</span>
+                  <span>Marketplace fees (referral 3.36 + fulfillment 3.49)</span>
                   <b>6.85</b>
                 </div>
                 <div className="docr">
-                  <span>Returns and advertising allowance</span>
+                  <span>Returns and advertising allowance (0.90 + 2.20)</span>
                   <b>3.10</b>
                 </div>
                 <div className="docr">
-                  <span>Competing offers on the listing</span>
+                  <span>Left per unit</span>
+                  <b>1.08</b>
+                </div>
+                <div className="docr">
+                  <span>Competing offers</span>
                   <b>14</b>
                 </div>
                 <div className="docr">
@@ -138,46 +146,62 @@ export default function Page() {
                 <span className="label-note">Illustrative sample</span>
                 <h3>The landed-cost model, ending in Do not buy</h3>
                 <p className="cap">
-                  The arithmetic under the verdict. Every cost between the
-                  factory and the customer, per unit, before a cent moves.
+                  The arithmetic under the verdict. Landed cost means what the
+                  unit costs you on arrival; it excludes marketplace fees.
                   The number that kills most products is rarely the unit
                   price — it is what stacks on top of it.
                 </p>
               </div>
               <div className="doc">
                 <div className="dochd">
-                  <span>LANDED COST · PER UNIT</span>
+                  <span>LANDED COST · CANDIDATE 0412 · PER UNIT</span>
                   <span>ILLUSTRATIVE</span>
                 </div>
                 <div className="docr">
-                  <span>Ex-factory unit price</span>
-                  <b>6.20</b>
+                  <span>Ex-factory price</span>
+                  <b>7.20</b>
                 </div>
                 <div className="docr">
-                  <span>Freight, duty and prep</span>
-                  <b>2.90</b>
+                  <span>Freight</span>
+                  <b>1.35</b>
                 </div>
                 <div className="docr">
-                  <span>Fulfilment and storage</span>
-                  <b>4.35</b>
+                  <span>Duty and customs</span>
+                  <b>1.90</b>
                 </div>
                 <div className="docr">
-                  <span>Referral fee at the target price</span>
-                  <b>3.60</b>
+                  <span>Testing and inspection</span>
+                  <b>0.40</b>
                 </div>
                 <div className="docr">
-                  <span>Returns allowance</span>
-                  <b>0.95</b>
+                  <span>Prep and inbound</span>
+                  <b>0.55</b>
+                </div>
+                <div className="docr">
+                  <span>Landed unit cost</span>
+                  <b>11.40</b>
+                </div>
+                <div className="docr">
+                  <span>Marketplace fees</span>
+                  <b>6.85</b>
+                </div>
+                <div className="docr">
+                  <span>Returns and advertising allowance</span>
+                  <b>3.10</b>
+                </div>
+                <div className="docr">
+                  <span>Left from a 22.43 sell price</span>
+                  <b>1.08</b>
                 </div>
                 <div className="docr no">
-                  <span>Left from a 19.99 price</span>
-                  <b>1.99 · DO NOT BUY</b>
+                  <span>Margin against a 20% floor</span>
+                  <b>4.8% · DO NOT BUY</b>
                 </div>
               </div>
             </div>
 
             {/* Listing before and after */}
-            <div className="artrow" id="before-after">
+            <div className="artrow" id="listing">
               <div>
                 <span className="label-note">Illustrative sample</span>
                 <h3>A listing before and after</h3>
@@ -192,33 +216,10 @@ export default function Page() {
                   has the scope.
                 </p>
               </div>
-              <figure className="strip" style={{ margin: 0 }}>
-                <picture>
-                  <source
-                    media="(max-width: 760px)"
-                    srcSet="/img/listing-before-after-mobile-1080.webp"
-                    type="image/webp"
-                    width={1080}
-                    height={1350}
-                  />
-                  <source
-                    srcSet="/img/listing-before-after-1600.webp"
-                    type="image/webp"
-                  />
-                  <img
-                    src="/img/listing-before-after-1600.png"
-                    width={1600}
-                    height={900}
-                    loading="lazy"
-                    decoding="async"
-                    alt="The same product listing before and after optimization: a dim, badly cropped photo with a thin title beside a clean product shot with a full title and bullets"
-                  />
-                </picture>
-                <figcaption>
-                  The footer figures on each panel — images, A+ status,
-                  indexed terms — are illustrative.
-                </figcaption>
-              </figure>
+              <Visual
+                name="amazon-listing-optimization/before-after-annotated"
+                alt="The same Amazon listing before and after: a dim photo, stuffed title and three generic bullets, rebuilt with a clear title, five factual bullets, seven images and A+ content; indexed terms rise from 19 to 64"
+              />
             </div>
 
             {/* Monthly report */}
@@ -279,7 +280,7 @@ export default function Page() {
                 </div>
                 <div className="docr">
                   <span>Supplier</span>
-                  <b>AUTHORISED DISTRIBUTOR</b>
+                  <b>AUTHORIZED DISTRIBUTOR</b>
                 </div>
                 <div className="docr">
                   <span>Lines / units</span>
@@ -296,28 +297,22 @@ export default function Page() {
               </div>
             </div>
 
-            {/* One product family, two SKUs */}
+            {/* One product family (illustrative) — visual 03 */}
             <div className="artrow" id="product-family">
               <div>
-                <span className="label-note">Product render</span>
-                <h3>One product family, two SKUs</h3>
+                <span className="label-note">Illustrative sample</span>
+                <h3>One product family (illustrative)</h3>
                 <p className="cap">
-                  The dish mat and the faucet mat share the same stone and
-                  groove design — designed once, extended deliberately. This
-                  is what &ldquo;expand into new products&rdquo; looks like in
-                  practice.
+                  One proven product, extended into the adjacent products the
+                  sales data supports — designed once, extended deliberately.
+                  This is what &ldquo;expand into new products&rdquo; looks
+                  like in practice.
                 </p>
               </div>
-              <figure className="strip" style={{ margin: 0 }}>
-                <img
-                  src="/img/pl-family-1600.webp"
-                  width={1600}
-                  height={900}
-                  loading="lazy"
-                  decoding="async"
-                  alt="The dish mat and faucet mat, one product family sharing the same stone and groove design"
-                />
-              </figure>
+              <Visual
+                name="amazon-private-label/product-family"
+                alt="One proven body wash with its box at the center, expanding into a hand wash, lotion, scrub, refill pouch and bar soap, beside the measure, improve, expand and scale loop"
+              />
             </div>
 
             {/* Product and packaging */}
@@ -344,7 +339,7 @@ export default function Page() {
                 </div>
                 <div className="docr">
                   <span>Print</span>
-                  <b>2 COLOUR + SOFT TOUCH</b>
+                  <b>2 COLOR + SOFT TOUCH</b>
                 </div>
                 <div className="docr">
                   <span>Compliance</span>
@@ -364,45 +359,10 @@ export default function Page() {
       <section className="scaleband" id="results">
         <div className="wrap">
           <h2>Real numbers, when they are real.</h2>
-          <p style={{ maxWidth: "62ch" }}>
-            This slot holds anonymised results from live accounts: category,
-            starting position, what changed, what happened, over what period.
-            It is empty on purpose — we are new, and we are not going to show
-            you someone else&apos;s results. The documents above are how we
-            work; this is where what happened goes.
+          <p style={{ maxWidth: "62ch", marginBottom: 0 }}>
+            No client results are published yet. The first will appear here,
+            anonymized and dated, when a full reporting period closes.
           </p>
-          <div className="artrow" style={{ background: "#fff" }}>
-            <div>
-              <span className="label-note">Reserved — the result card</span>
-              <h3>Category · starting position · what changed</h3>
-              <p className="cap">
-                What happened, over what period, with the number that mattered
-                and the number that did not. Anonymised, dated, and updated
-                when the period closes.
-              </p>
-            </div>
-            <div className="doc">
-              <div className="dochd">
-                <span>RESULT · PENDING FIRST PUBLISHABLE PERIOD</span>
-              </div>
-              <div className="docr">
-                <span>Category</span>
-                <b>—</b>
-              </div>
-              <div className="docr">
-                <span>Period</span>
-                <b>—</b>
-              </div>
-              <div className="docr">
-                <span>What changed</span>
-                <b>—</b>
-              </div>
-              <div className="docr">
-                <span>Outcome</span>
-                <b>—</b>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 

@@ -3,6 +3,7 @@ import JsonLd from "@/components/JsonLd";
 import Visual from "@/components/Visual";
 import { serviceLd, webPageLd } from "@/lib/schema";
 import { ogImageMeta } from "@/lib/og-pages";
+import { SITE_ORIGIN } from "@/lib/site-map";
 
 /**
  * Homepage — ported from docs/v4/hyprr-homepage-v3-4.html (final
@@ -10,18 +11,22 @@ import { ogImageMeta } from "@/lib/og-pages";
  * changes are wiring: real hrefs on the CTA buttons and one link to
  * /how-we-work per SITEMAP.md's link map.
  */
-const TITLE = "Amazon & Walmart Agency | Build, Operate, Scale — Hyprr";
+/* Keyword Map v2: the home page targets "ecommerce operations agency";
+   "account management" belongs to /amazon-walmart-management. */
+const TITLE = "Amazon and Walmart Ecommerce Operations Agency | Hyprr";
 const DESC =
-  "We build, operate and scale Amazon and Walmart businesses. You own the accounts, the stock and every buying decision. Book a call.";
+  "We run Amazon (US, UK, EU, Gulf) and Walmart US accounts that stay in your name. Listings, PPC and operations for a fixed fee.";
 
+/* §7.1: the home canonical and og:url must be the origin WITH the
+   trailing slash, matching the sitemap. Next's metadata resolver
+   strips it for the root, so those two tags are rendered in the
+   page tree (React hoists them into <head>) instead of via metadata. */
 export const metadata: Metadata = {
   title: TITLE,
   description: DESC,
-  alternates: { canonical: "/" },
   openGraph: {
     title: TITLE,
     description: DESC,
-    url: "/",
     siteName: "Hyprr Brands",
     type: "website",
     ...ogImageMeta("home").openGraph,
@@ -34,15 +39,17 @@ const BOOKING = process.env.NEXT_PUBLIC_BOOKING_URL || "/contact";
 export default function Page() {
   return (
     <main id="main">
+      <link rel="canonical" href={`${SITE_ORIGIN}/`} />
+      <meta property="og:url" content={`${SITE_ORIGIN}/`} />
       <JsonLd
         nodes={[
           webPageLd({ path: "/", title: TITLE, description: DESC }),
           serviceLd({
-            name: "Amazon and Walmart marketplace management",
+            name: "Amazon and Walmart US account management",
             serviceType: "Marketplace management",
             path: "/amazon-walmart-management",
             description:
-              "Amazon and Walmart account operations, run daily — catalogue, growth, inventory and account health.",
+              "Amazon and Walmart account operations, run daily: catalog, growth, inventory and account health.",
           }),
         ]}
       />
@@ -52,10 +59,13 @@ export default function Page() {
         <div className="wrap hero-grid">
           <div className="hero-copy">
             <span className="eyebrow">
-              Amazon + Walmart / Private label + Wholesale
+              Amazon + Walmart US · Management · Listings · PPC · Private label
+              · Wholesale
             </span>
+            {/* §6.1: text-wrap balance plus non-breaking spaces so "it."
+                never wraps alone at 1280–1440 */}
             <h1>
-              Build it. Run it. Scale it.
+              Build&nbsp;it. Run&nbsp;it. Scale&nbsp;it.
               <br />
               <span className="h1-sub">On Amazon and Walmart.</span>
             </h1>
@@ -121,7 +131,7 @@ export default function Page() {
                   height={992}
                   fetchPriority="high"
                   decoding="async"
-                  alt="The Hyprr Brands operation — sourcing, private label, wholesale, product customization, account management, marketplaces, inventory and growth — connected to one hub"
+                  alt="The Hyprr Brands operation — sourcing, private label, wholesale, advertising (PPC), account management, marketplaces, inventory and growth — connected to one hub"
                 />
               </picture>
               {/* Traveling pulses along the artwork's connector routes.
@@ -221,12 +231,12 @@ export default function Page() {
       {/* BUSINESS PATH */}
       <section className="path" id="path">
         <div className="wrap">
-          <h2 className="h2-lg">Wherever you start, the route is clear.</h2>
+          <h2 className="h2-lg">Where do you start?</h2>
           <p>
             Some clients are launching. Others already sell. The operating path
             connects the two.
           </p>
-          <div className="path-grid">
+          <div className="path-grid three">
             <div className="path-item">
               <div className="dot">01</div>
               <b>Build</b>
@@ -234,18 +244,16 @@ export default function Page() {
             </div>
             <div className="path-item">
               <div className="dot">02</div>
-              <b>Operate</b>
+              <b>Run</b>
               <p>Catalog, inventory, account and day-to-day marketplace work.</p>
             </div>
             <div className="path-item">
               <div className="dot">03</div>
-              <b>Grow</b>
-              <p>Optimization, advertising, merchandising and conversion.</p>
-            </div>
-            <div className="path-item">
-              <div className="dot">04</div>
               <b>Scale</b>
-              <p>Winning products, new channels and stronger operations.</p>
+              <p>
+                Optimization, advertising, conversion, winning products, new
+                channels and stronger operations.
+              </p>
             </div>
           </div>
         </div>
@@ -270,8 +278,16 @@ export default function Page() {
             <a href="/amazon-walmart-management">
               <span className="k">RUN</span>
               <span className="s">
-                I already sell and want it run properly
-                <em>Management · Wholesale</em>
+                I already sell and want it run properly<em>Management</em>
+              </span>
+              <span className="arw" aria-hidden="true">
+                →
+              </span>
+            </a>
+            <a href="/amazon-wholesale-management">
+              <span className="k">RUN</span>
+              <span className="s">
+                I want a wholesale operation run for me<em>Wholesale</em>
               </span>
               <span className="arw" aria-hidden="true">
                 →
@@ -289,7 +305,7 @@ export default function Page() {
             <a href="/amazon-walmart-management#walmart">
               <span className="k">SCALE</span>
               <span className="s">
-                I want to expand<em>Walmart · new products</em>
+                I want to expand<em>Walmart US</em>
               </span>
               <span className="arw" aria-hidden="true">
                 →
@@ -314,7 +330,7 @@ export default function Page() {
               <ul>
                 <li>Product and market research</li>
                 <li>Sourcing, development and packaging</li>
-                <li>Amazon and Walmart launch</li>
+                <li>Amazon and Walmart US launch</li>
                 <li>Ongoing marketplace operation</li>
               </ul>
               <a className="go" href="/amazon-private-label">
@@ -326,8 +342,8 @@ export default function Page() {
               <h3>Start or operate wholesale</h3>
               <ul>
                 <li>Supplier approval and terms</li>
-                <li>Catalogue and landed-cost models</li>
-                <li>Amazon and Walmart operations</li>
+                <li>Catalog and line models</li>
+                <li>Amazon and Walmart US operations</li>
                 <li>Replenishment, growth and scale</li>
               </ul>
               <a className="go" href="/amazon-wholesale-management">
@@ -341,7 +357,7 @@ export default function Page() {
               <span>
                 Fixed scope, priced and paid before we start, finishing on a
                 date. Private label launch, account setup, listing
-                optimization, Walmart expansion.
+                optimization, Walmart US expansion.
               </span>
             </div>
             <div>
@@ -359,7 +375,7 @@ export default function Page() {
       {/* CORE SERVICES · six capabilities, four pages */}
       <section className="services" id="services">
         <div className="wrap">
-          <h2 className="h2-lg">Everything important is visible.</h2>
+          <h2 className="h2-lg">What we run, and where.</h2>
           <div className="service-grid">
             <a className="service" href="/amazon-walmart-management">
               <span className="bar" style={{ background: "var(--petrol)" }} />
@@ -372,7 +388,7 @@ export default function Page() {
             </a>
             <a className="service" href="/amazon-walmart-management#walmart">
               <span className="bar" style={{ background: "var(--petrol)" }} />
-              <b>Walmart marketplace</b>
+              <b>Walmart US</b>
               <span>
                 Setup, catalog, compliance and ongoing marketplace management.
               </span>
@@ -405,11 +421,9 @@ export default function Page() {
             </a>
             <a className="service" href="/amazon-ppc-management">
               <span className="bar" style={{ background: "var(--petrol)" }} />
-              <b>Growth and scale</b>
-              <span>
-                Advertising, ranking, buy box and expansion after launch.
-              </span>
-              <em>Growth and PPC →</em>
+              <b>Advertising (PPC)</b>
+              <span>Amazon and Walmart US campaigns judged on margin.</span>
+              <em>PPC management →</em>
             </a>
           </div>
         </div>
@@ -470,21 +484,29 @@ export default function Page() {
                 why, and we do not buy them. That is what protects your money.
               </p>
               <div className="vsheet">
+                <div className="hd">
+                  <span>CANDIDATE 0412 · SEP</span>
+                  <span>ILLUSTRATIVE</span>
+                </div>
                 <div className="r">
-                  <span>Line 0412 · landed cost</span>
+                  <span>Landed unit cost</span>
                   <b>11.40</b>
                 </div>
                 <div className="r">
-                  <span>Fees and returns</span>
-                  <b>9.95</b>
+                  <span>Marketplace fees</span>
+                  <b>6.85</b>
+                </div>
+                <div className="r">
+                  <span>Returns and advertising</span>
+                  <b>3.10</b>
                 </div>
                 <div className="r">
                   <span>Competing offers</span>
                   <b>14</b>
                 </div>
                 <div className="r out">
-                  <span>Verdict</span>
-                  <b>DO NOT BUY</b>
+                  <span>Margin against a 20% floor</span>
+                  <b>4.8% · DO NOT BUY</b>
                 </div>
               </div>
             </div>
@@ -503,11 +525,11 @@ export default function Page() {
           <h2 className="h2-lg">Look at the work before you talk to us.</h2>
           <p>
             We are new, and we are not going to show you someone else&apos;s
-            results. These are ours.
+            results. These are our documents, shown as labeled samples.
           </p>
           <div className="visual-side-grid">
           <div className="artefacts artefacts-stack">
-            <a className="art" href="/proof">
+            <a className="art" href="/proof#verdict">
               <div className="fr">
                 <svg
                   viewBox="0 0 160 110"
@@ -543,7 +565,7 @@ export default function Page() {
                 <span>with the arithmetic that refused it</span>
               </div>
             </a>
-            <a className="art" href="/proof">
+            <a className="art" href="/proof#listing">
               <div className="fr">
                 <svg
                   viewBox="0 0 160 110"
@@ -580,7 +602,7 @@ export default function Page() {
                 <span>with what changed marked</span>
               </div>
             </a>
-            <a className="art" href="/proof">
+            <a className="art" href="/proof#packaging">
               <div className="fr">
                 <svg
                   viewBox="0 0 160 110"
@@ -666,10 +688,10 @@ export default function Page() {
           </div>
           <div className="who">
             <b>Who we work with</b>
-            Brand owners. Investors putting capital into marketplaces, wherever
-            they are based. Manufacturers selling direct. Wholesale businesses.
-            Sellers who already have an account and need it run. We work across
-            US, UK, Gulf and Singapore hours.
+            Brand owners. Investors putting capital into Amazon and Walmart
+            businesses, wherever they are based. Manufacturers selling direct.
+            Wholesale businesses. Sellers who already have an account and need
+            it run. We work across US, UK, Gulf and Asia-Pacific hours.
           </div>
         </div>
       </section>
@@ -682,9 +704,10 @@ export default function Page() {
           <div className="cols2">
           <p>
             Hyprr Brands builds, operates and scales marketplace businesses on
-            Amazon and Walmart. We work with brand owners launching a first
-            product, investors putting capital into US marketplaces from
-            outside the country, manufacturers selling direct, and established
+            Amazon and Walmart US. We work with brand owners launching a first
+            product, investors putting capital into Amazon and Walmart
+            businesses, wherever they are based, manufacturers selling direct,
+            and established
             sellers who need an account run properly rather than watched
             occasionally.
           </p>
@@ -702,10 +725,10 @@ export default function Page() {
             <a href="/amazon-walmart-management">
               Amazon and Walmart management
             </a>{" "}
-            covers the daily operation of an account that already sells —
-            catalogue, inventory, cases and account health.{" "}
+            covers the daily operation of an account that already sells:
+            catalog, inventory, cases and account health.{" "}
             <a href="/amazon-listing-optimization">Listing optimization</a>{" "}
-            rebuilds the content and images on a catalogue you already own,
+            rebuilds the content and images on a catalog you already own,
             and <a href="/amazon-ppc-management">Amazon PPC management</a> runs
             the advertising against inventory and margin rather than against
             spend.
@@ -715,8 +738,8 @@ export default function Page() {
             the Gulf, and Walmart in the United States. Every account stays
             registered to its owner. Every purchase is approved in writing
             before it is placed.{" "}
-            <a href="/how-we-work">How we work and what we charge</a> is
-            published in full, and the{" "}
+            <a href="/how-we-work">How we work and how we charge</a> is set
+            out in full, and the{" "}
             <a href="/proof">documents we produce</a> are on the site to read
             before you talk to us.
           </p>

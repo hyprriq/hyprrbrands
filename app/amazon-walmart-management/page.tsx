@@ -6,16 +6,15 @@ import { breadcrumbLd, serviceLd, webPageLd } from "@/lib/schema";
 import { ogImageMeta } from "@/lib/og-pages";
 
 /**
- * Amazon & Walmart management — built from the wireframes (sections
- * 01–08, copy blocks verbatim where given). Carries the #growth,
- * #walmart and #listings anchors that the homepage cards and two
- * service pages link into. The rebuttal passage is the
- * highest-value 45 words on the site — rendered as a snippet block
- * AND as the first FAQ answer, same string.
+ * Amazon & Walmart management — v4 structure from the wireframes,
+ * copy and section order per PROMPT_24 §4.4 (final, edited). Carries
+ * the #growth, #walmart and #listings anchors that the homepage cards
+ * and two service pages link into. The rebuttal renders as the
+ * snippet block; the FAQ that repeated it word for word is gone.
  */
-const TITLE = "Amazon Marketplace Management Agency — Hyprr Brands";
+const TITLE = "Amazon Seller Account Management | Walmart US | Hyprr";
 const DESC =
-  "You already sell — we run it properly. Catalogue, growth, inventory and account health on Amazon and Walmart, daily. Your account stays in your name.";
+  "Daily Amazon and Walmart US account operations, run in your name. Listings, PPC, inventory and account health for a fixed monthly fee.";
 const PATH = "/amazon-walmart-management";
 
 export const metadata: Metadata = {
@@ -35,27 +34,30 @@ export const metadata: Metadata = {
 
 const BOOKING = process.env.NEXT_PUBLIC_BOOKING_URL || "/contact";
 
-/** The rebuttal — one string, rendered visibly twice (snippet + FAQ)
- *  so the FAQPage schema matches the visible text exactly. */
+/** The rebuttal — the snippet answer under the first H2. */
 const REBUTTAL =
   "Not if the agency holds the account. The safe arrangement is that the account stays registered to you, the agency works under permissioned user access you can revoke, and every purchase is approved by you in writing. Access without ownership.";
 
 const FAQS = [
   {
-    q: "Should you let an agency manage your Amazon account?",
-    a: REBUTTAL,
+    q: "Do you need my Seller Central password?",
+    a: "No. You add us as a user with limited permissions, and you can remove us yourself at any time.",
   },
   {
-    q: "What is Amazon account management?",
-    a: "The daily operation of a Seller Central account: catalogue and listings, advertising, inventory and replenishment, cases, reimbursements and account health. It is operational work, not consulting — the measure of it is a monthly report showing margin by product.",
+    q: "Can you fix a suspended account?",
+    a: "Listing-level notices, yes. For a full deactivation, you hear on day one whether we should write the appeal or whether you need a specialist. We don't charge for that assessment.",
   },
   {
-    q: "Business account or seller account?",
-    a: "They are different products. An Amazon Business account is for buying — procurement with business pricing. A seller account, through Seller Central, is for selling. Marketplace management works inside a seller account; if you sell, that is the account being managed.",
+    q: "Do you take a percentage of FBA reimbursements?",
+    a: "No. Claims are filed as part of the fixed monthly fee.",
   },
   {
-    q: "Can you manage Walmart as well as Amazon?",
-    a: "Yes, in the US. The same catalogue runs on both marketplaces from one operation, with the differences handled for you: a different advertising platform, a different fee structure and slower review velocity.",
+    q: "Do I have to use WFS to sell on Walmart?",
+    a: "No. WFS is optional. We model it against your own fulfillment per SKU first.",
+  },
+  {
+    q: "How do I end the arrangement?",
+    a: "Give notice under your agreement and remove our user access. There is no handover fee, and the listings, reports and documents stay with you.",
   },
 ];
 
@@ -70,7 +72,7 @@ export default function Page() {
             { name: "Management", path: PATH },
           ]),
           serviceLd({
-            name: "Amazon and Walmart marketplace management",
+            name: "Amazon and Walmart US account management",
             serviceType: "Marketplace account management",
             path: PATH,
             description: DESC,
@@ -78,19 +80,21 @@ export default function Page() {
         ]}
       />
 
-      {/* 01 · HERO */}
+      {/* 1 · HERO — visual 06 (master in a card: petrol band) */}
       <section className="plhero">
         <div className="wrap plhero-grid">
           <div>
-            <span className="eyebrow">Management / Amazon + Walmart</span>
+            <span className="eyebrow">Management / Amazon + Walmart US</span>
             <h1>You already sell. We run it properly.</h1>
             <p>
-              Amazon and Walmart account operations, run daily. Your account
-              stays in your name and you can revoke our access in one click.
+              We run Amazon accounts in the US, UK, Europe and the Gulf, and
+              Walmart accounts in the US. The account stays registered to you,
+              and you can remove our access from your own User Permissions
+              page at any time.
             </p>
             <div className="plchips">
               <span className="chip">MANAGED OPERATIONS</span>
-              <span className="chip">CATALOGUE</span>
+              <span className="chip">CATALOG</span>
               <span className="chip">GROWTH</span>
               <span className="chip">INVENTORY</span>
               <span className="chip">ACCOUNT</span>
@@ -108,12 +112,12 @@ export default function Page() {
             variant="hero"
             onDark
             name="amazon-walmart-management/hero-operator-view"
-            alt="One operations console covering catalogue, growth, inventory and account health across Amazon US, Amazon UK and Walmart US, with margin by product and the Monday-to-Friday weekly rhythm"
+            alt="One operations console covering catalog, growth, inventory and account health across Amazon US, Amazon UK and Walmart US, with margin by product and the Monday-to-Friday weekly rhythm"
           />
         </div>
       </section>
 
-      {/* 02 · THE REBUTTAL */}
+      {/* 2 · THE REBUTTAL */}
       <section className="start" id="rebuttal">
         <div className="wrap">
           <h2>Should you let an agency manage your Amazon account?</h2>
@@ -123,18 +127,18 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 03 · FOUR LIVE AREAS — areas, not stages; nothing numbered */}
+      {/* 3 · FOUR LIVE AREAS — areas, not stages; nothing numbered */}
       <section className="run" id="areas">
         <div className="wrap">
           <h2>Four live areas, one operation.</h2>
           <div className="run-grid">
             <div>
               <p>
-                Catalogue, growth, inventory and account are areas, not stages
-                — all four are live every week, and each one feeds the others.
-                A suppressed listing is an account problem that becomes a
-                growth problem; a late reorder is an inventory problem that
-                becomes a ranking problem.
+                Catalog, growth, inventory and account are areas, not stages.
+                All four are live every week, and each one feeds the others. A
+                suppressed listing is an account problem that becomes a growth
+                problem; a late reorder is an inventory problem that becomes a
+                ranking problem.
               </p>
               <p style={{ marginBottom: 0 }}>
                 <b style={{ color: "#fff" }}>
@@ -145,7 +149,7 @@ export default function Page() {
             </div>
             <div className="ops">
               <div className="op">
-                <b>Catalogue</b>
+                <b>Catalog</b>
                 <span>
                   Listings, A+ content, attributes, variations, suppressed
                   listings and compliance
@@ -154,8 +158,8 @@ export default function Page() {
               <div className="op">
                 <b>Growth</b>
                 <span>
-                  Advertising, search terms, bids, ranking, buy box and
-                  conversion
+                  Advertising, search terms, bids, ranking, the featured offer
+                  and conversion
                 </span>
               </div>
               <div className="op">
@@ -176,18 +180,57 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 04 · A WEEK INSIDE YOUR ACCOUNT */}
+      {/* 4 · WHAT WE RUN ON AMAZON */}
+      <section className="buildband" id="amazon">
+        <div className="wrap">
+          <h2>What we run on Amazon.</h2>
+          <ul className="facts">
+            <li>
+              <b>Account health.</b> Account Health Rating and policy notices
+              checked every week. Listing-level notices get a written response
+              with the evidence you hold. If the whole account is deactivated,
+              you hear on day one whether we are the right people to write the
+              appeal.
+            </li>
+            <li>
+              <b>Inventory and capacity.</b> Shipments planned against
+              Amazon&apos;s FBA capacity limits, with excess and stranded stock
+              flagged before it costs storage fees.
+            </li>
+            <li>
+              {/* [verify] reimbursement basis and claim windows (B7) */}
+              <b>Reimbursements.</b> Amazon reimburses lost or damaged FBA
+              stock at your cost, not your sale price, and claim windows are
+              short. Inventory is reconciled every month so claims go in on
+              time. Claims are part of the monthly fee, with no percentage of
+              what is recovered.
+            </li>
+            <li>
+              <b>Brand Registry tools.</b> If you own the brand: A+ content,
+              Brand Story, Brand Analytics search data, Manage Your Experiments
+              and Sponsored Brands.
+            </li>
+            <li>
+              <b>Vine.</b> For brand-registered FBA products with few reviews,
+              where Amazon&apos;s enrolment fee makes sense, recommended product
+              by product. We never ask for reviews any other way.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      {/* 5 · A WEEK INSIDE YOUR ACCOUNT */}
       <section className="path" id="week">
         <div className="wrap">
           <h2>A week inside your account</h2>
           <p style={{ maxWidth: "62ch" }}>
-            The real question behind a retainer is what you are paying for
+            The real question behind a monthly fee is what you are paying for
             every month. This is the shape of a normal week.
           </p>
           <div className="week">
             <div>
               <span className="d">MON</span>
-              <b>Catalogue</b>
+              <b>Catalog</b>
               <span>
                 Listings swept: suppressions, attributes, content, variations.
               </span>
@@ -203,7 +246,7 @@ export default function Page() {
             <div>
               <span className="d">WED</span>
               <b>Inventory</b>
-              <span>Stock cover, reorders and shipments — before they are
+              <span>Stock cover, reorders and shipments, before they are
                 urgent.</span>
             </div>
             <div>
@@ -214,14 +257,14 @@ export default function Page() {
             <div>
               <span className="d">FRI</span>
               <b>Reporting</b>
-              <span>The week written down — what moved and what is next.</span>
+              <span>The week written down: what moved and what is next.</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 05 · GROWTH — a short block; the full treatment lives on the
-          dedicated PPC page (PPC_AND_CLOSING_BLOCK.md) */}
+      {/* 6 · GROWTH — a short block; the full treatment lives on the
+          dedicated PPC page */}
       <section className="gate" id="growth">
         <div className="wrap">
           <h2>Conversion first, then traffic.</h2>
@@ -247,51 +290,147 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 06 · ADDING WALMART */}
+      {/* 7 · WALMART US — visual 14 above the four bullets */}
       <section className="buildband" id="walmart">
         <div className="wrap">
-          <h2>Adding Walmart</h2>
+          <h2>Walmart US: the same catalog, different rules.</h2>
+          <p style={{ maxWidth: "70ch" }}>We run Walmart Marketplace in the US only.</p>
           <Visual
             name="amazon-walmart-management/adding-walmart"
-            alt="The same product on Amazon and Walmart, four Walmart setup steps, and how the two platforms differ on ads, fulfilment, fees, reviews and markets"
+            alt="The same product on Amazon and Walmart, four Walmart setup steps, and how the two platforms differ on ads, fulfillment, fees, reviews and markets"
           />
-          <div className="build-grid" style={{ marginTop: 28 }}>
+          <ul className="facts two-col" style={{ marginTop: 28 }}>
+            <li>
+              <b>Listing Quality.</b> Walmart scores each listing on content,
+              discoverability, offer, and ratings and reviews. The
+              lowest-scoring items with the most traffic are worked first.
+            </li>
+            <li>
+              <b>Seller performance.</b> On-time delivery, cancellations and
+              responsiveness checked weekly, and reported against
+              Walmart&apos;s Pro Seller thresholds. Walmart awards the badge,
+              so we don&apos;t promise it.
+            </li>
+            <li>
+              <b>WFS.</b> Walmart&apos;s own fulfillment network is optional. We
+              model it against your own fulfillment per SKU before any stock
+              ships.
+            </li>
+            <li>
+              <b>Walmart Connect.</b> Sponsored Products, Sponsored Brands and
+              Sponsored Videos, with their own budget and their own report.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      {/* 8 · FIRST 30 DAYS AND ACCESS — visual 21 */}
+      <section className="start" id="first-30-days">
+        <div className="wrap">
+          <h2>Your first 30 days, and the access we ask for.</h2>
+          <p style={{ maxWidth: "70ch" }}>A standard plan, not a promise of results.</p>
+          <Visual
+            name="amazon-walmart-management/first-30-days"
+            alt="A 30-day onboarding plan from access to first report, beside a user permissions panel where inventory, advertising, pricing, reports and cases are granted and payments, account settings and user permissions are not"
+          />
+          <ul className="facts" style={{ marginTop: 28 }}>
+            <li>
+              <b>Days 1–3, access.</b> You add us as a user. We confirm what we
+              can and cannot see.
+            </li>
+            <li>
+              <b>Days 4–10, audit.</b> Catalog, advertising, inventory and
+              account health, written up with costs.
+            </li>
+            <li>
+              <b>Days 11–14, plan.</b> A fix list in priority order. Nothing
+              changes until you approve it.
+            </li>
+            <li>
+              <b>Days 15–30, work.</b> The fix list is worked. Weekly notes
+              every Friday.
+            </li>
+            <li>
+              <b>Day 30, first report.</b> Margin by product, what changed and
+              what happens next month.
+            </li>
+          </ul>
+          <p style={{ maxWidth: "70ch", marginTop: 22, marginBottom: 0 }}>
+            We ask to be added as a user in Seller Central and Walmart Seller
+            Center, with permissions limited to the areas we run. Advertising
+            access is granted separately in Amazon Ads and Walmart Connect. We
+            never ask for your primary login, password, bank details or
+            verification codes.
+          </p>
+        </div>
+      </section>
+
+      {/* 9 · WHAT WE WILL NOT DO */}
+      <section className="handover" id="will-not">
+        <div className="wrap">
+          <div className="handover-grid">
             <div>
-              <p>
-                The same catalogue on a second marketplace, with the
-                differences named: a different advertising platform, a
-                different fee structure, slower review velocity, and no FBA
-                equivalent by default.
-              </p>
-              <p style={{ marginBottom: 0 }}>
-                We run both from one operation, so a product that proves
-                itself on Amazon can be live on Walmart without a second
-                team, a second agency or a second process.
-              </p>
+              <h2>What we will not do.</h2>
             </div>
-            <div className="steps">
-              <div className="step">
-                <b>Setup</b>
-                <span>ACCOUNT + COMPLIANCE + CATALOGUE</span>
-              </div>
-              <div className="step">
-                <b>Listings</b>
-                <span>CONTENT MAPPED + RELISTED</span>
-              </div>
-              <div className="step">
-                <b>Fulfilment</b>
-                <span>WFS OR YOUR OWN — MODELLED FIRST</span>
-              </div>
-              <div className="step">
-                <b>Advertising</b>
-                <span>WALMART CONNECT, SEPARATELY RUN</span>
-              </div>
+            <div>
+              <p style={{ marginBottom: 0 }}>
+                We do not buy reviews, offer incentives for them, or ask for
+                them outside Amazon&apos;s own programs. We do not guarantee the
+                outcome of an appeal. We do not take a percentage of ad spend,
+                revenue or reimbursements. We do not hold your account, your
+                stock or your supplier relationships.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 07 · LISTINGS */}
+      {/* 10 · REPORT + OWNERSHIP */}
+      <section className="fees" id="ownership">
+        <div className="wrap">
+          <h2>Margin by product, not revenue by product.</h2>
+          <div className="fee-grid">
+            <div className="fee">
+              <b>The monthly report</b>
+              <span>
+                Every product, its sales, its costs and its margin, plus what
+                changed, what we did about it, and what happens next month.
+                Revenue is a vanity number; margin is the business.
+              </span>
+            </div>
+            <div className="fee">
+              <b>Ownership</b>
+              <span>
+                The account is registered to you. We work under permissioned
+                user access you can remove at any time from your own User
+                Permissions page. A fixed monthly fee: nothing on your ad
+                spend, nothing on your revenue.
+              </span>
+            </div>
+          </div>
+          <p style={{ marginTop: 20 }}>
+            <a href="/how-we-work" style={{ fontWeight: 600 }}>
+              How we charge, in full →
+            </a>
+          </p>
+        </div>
+      </section>
+
+      {/* 11 · HOW IT ENDS — [owner B6] "the notice period written into
+          your agreement" becomes "[30] days' notice" once confirmed */}
+      <section className="buildband" id="how-it-ends">
+        <div className="wrap">
+          <h2>How it ends.</h2>
+          <p style={{ maxWidth: "70ch", marginBottom: 0 }}>
+            The arrangement runs month to month, with the notice period
+            written into your agreement. When it ends, you remove our access
+            and keep everything we produced: listings, reports and documents.
+            There is no handover fee.
+          </p>
+        </div>
+      </section>
+
+      {/* 12 · LISTINGS */}
       <section className="handover" id="listings">
         <div className="wrap">
           <div className="handover-grid">
@@ -300,7 +439,7 @@ export default function Page() {
             </div>
             <div>
               <p>
-                Listing optimization is available as a one-off project — fixed
+                Listing optimization is available as a one-off project: fixed
                 price, two weeks, and you keep the document either way. If the
                 account needs more than listings, this page is what picks up
                 afterwards.
@@ -315,72 +454,19 @@ export default function Page() {
               </p>
             </div>
           </div>
-          <figure className="strip">
-            <picture>
-              <source
-                media="(max-width: 760px)"
-                srcSet="/img/listing-before-after-mobile-1080.webp"
-                type="image/webp"
-                width={1080}
-                height={1350}
-              />
-              <source
-                srcSet="/img/listing-before-after-1600.webp"
-                type="image/webp"
-              />
-              <img
-                src="/img/listing-before-after-1600.png"
-                width={1600}
-                height={900}
-                loading="lazy"
-                decoding="async"
-                alt="The same product listing before and after optimization: a dim, badly cropped photo with a thin title beside a clean product shot with a full title and bullets"
-              />
-            </picture>
-          </figure>
         </div>
       </section>
 
-      {/* 08 · REPORT + OWNERSHIP */}
-      <section className="fees" id="ownership">
-        <div className="wrap">
-          <h2>Margin by product, not revenue by product.</h2>
-          <div className="fee-grid">
-            <div className="fee">
-              <b>The monthly report</b>
-              <span>
-                Every product, its sales, its costs and its margin — plus what
-                changed, what we did about it, and what happens next month.
-                Revenue is a vanity number; margin is the business.
-              </span>
-            </div>
-            <div className="fee">
-              <b>Ownership</b>
-              <span>
-                The account is registered to you. We work under permissioned
-                user access you can revoke in one click. A fixed monthly fee —
-                nothing on your ad spend, nothing on your revenue.
-              </span>
-            </div>
-          </div>
-          <p style={{ marginTop: 20 }}>
-            <a href="/how-we-work" style={{ fontWeight: 600 }}>
-              How we charge, in full →
-            </a>
-          </p>
-        </div>
-      </section>
-
-      {/* FAQ */}
+      {/* 13 · FAQ */}
       <Faq items={FAQS} />
 
-      {/* CTA */}
+      {/* 14 · CTA */}
       <section className="cta" id="contact">
         <div className="wrap">
           <h2>Give us read access for a week.</h2>
           <p>
-            We will look at the catalogue, the advertising, the inventory and
-            the account health, and send you what we found — whether or not
+            We will look at the catalog, the advertising, the inventory and
+            the account health, and send you what we found, whether or not
             you hire us.
           </p>
           <div className="cta-row">

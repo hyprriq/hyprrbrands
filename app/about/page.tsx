@@ -2,16 +2,17 @@ import type { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbLd, personLd, webPageLd } from "@/lib/schema";
 import { ogImageMeta } from "@/lib/og-pages";
+import { entityLine } from "@/lib/company";
 
 /**
  * About — one named operator (wireframe 01–03). Written in first
- * person. Photograph, prior role and LinkedIn are owner-gated and
- * render conditionally the day they arrive — no reserved empty
- * frames, no stock photography, no generated faces.
+ * person. Photograph, prior role and LinkedIn are owner-gated (B2)
+ * and render conditionally the day they arrive — no placeholder, no
+ * stock photography, no generated faces (PROMPT_24 §1 #1).
  */
-const TITLE = "Who Runs Hyprr Brands | Amazon & Walmart Operator";
+const TITLE = "About Hyprr Brands | Founder Gautam Naidu";
 const DESC =
-  "One named operator, in first person: who does the work, how it is covered when I am not available, and where we work. No team-page theatre.";
+  "Hyprr Brands is run by founder Gautam Naidu, operated by Hyprr Retail LLC in Easton, PA. Who does the work, where the team is, how to reach us.";
 const PATH = "/about";
 
 export const metadata: Metadata = {
@@ -61,19 +62,13 @@ export default function Page() {
       <section className="start">
         <div className="wrap">
           <h1>Who runs Hyprr Brands</h1>
-          <div className="person">
-            <div className="photo">
-              {OPERATOR.photo ? (
-                // eslint-disable-next-line @next/next/no-img-element
+          <div className={OPERATOR.photo ? "person" : "person no-photo"}>
+            {OPERATOR.photo ? (
+              <div className="photo">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={OPERATOR.photo} alt={OPERATOR.photoAlt} />
-              ) : (
-                <span>
-                  PHOTOGRAPH TO COME —
-                  <br />
-                  NO STOCK FACES, NO GENERATED ONES
-                </span>
-              )}
-            </div>
+              </div>
+            ) : null}
             <div>
               <h2 style={{ fontSize: "clamp(22px,4.4vw,32px)" }}>
                 {OPERATOR.name}
@@ -132,10 +127,11 @@ export default function Page() {
             <div className="fee">
               <b>When I am not available</b>
               <span>
-                The operation runs on documented procedures and a shared desk,
-                not on one person&apos;s inbox. Buying pauses rather than
-                proceeding without approval — nothing is ever bought to keep a
-                schedule. You are told, not left wondering.
+                The operation runs on documented procedures and a team across
+                US, Asia-Pacific and Gulf time zones, so the work continues
+                when I am not available. Buying pauses rather than proceeding
+                without approval — nothing is ever bought to keep a schedule.
+                You are told, not left wondering.
               </span>
             </div>
           </div>
@@ -156,16 +152,16 @@ export default function Page() {
             <div className="fee">
               <b>Hours</b>
               <span>
-                Clients across US, UK, Gulf and Singapore time zones — calls
+                Clients across US, UK, Gulf and Asia-Pacific time zones — calls
                 are scheduled in yours.
               </span>
             </div>
           </div>
-          <p style={{ marginTop: 20, marginBottom: 0 }}>
-            Legal entity: Hyprr Retail LLC, trading as Hyprr Brands. The
-            registration details join this page as filings complete — facts
-            worth checking before a conversation, not after one.
+          <p style={{ marginTop: 20 }}>
+            The team works from Easton and California in the US, Bangkok,
+            Singapore, Hyderabad and Dubai.
           </p>
+          <p style={{ marginBottom: 0 }}>{entityLine}</p>
         </div>
       </section>
 

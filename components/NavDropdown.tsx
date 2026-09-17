@@ -4,20 +4,24 @@ import { useEffect, useId, useRef, useState } from "react";
 import type { NavChild } from "@/lib/site-map";
 
 /**
- * Top-nav dropdown (Management ▾, Company ▾). The trigger is a
- * <button>, never a link. Opens on hover and on click; Escape closes;
- * arrow keys move between rows; aria-expanded / aria-haspopup /
- * aria-controls are set. Shows the active underline when the current
- * route is one of its children.
+ * Top-nav dropdown (Management ▾) — PROMPT_24 §10. The trigger is a
+ * <button>, never a link. Opens on hover (150ms hover-out grace) and
+ * on click; Escape closes and refocuses the trigger; arrow keys move
+ * between rows; Tab past the last row closes it. aria-expanded /
+ * aria-haspopup / aria-controls are set, and the trigger shows the
+ * active underline when the current route is one of its children.
  */
 export default function NavDropdown({
   label,
   items,
   pathname,
+  feature,
 }: {
   label: string;
   items: NavChild[];
   pathname: string;
+  /** data-feature on the trigger, e.g. "nav-management-group" */
+  feature?: string;
 }) {
   const [open, setOpen] = useState(false);
   const root = useRef<HTMLDivElement>(null);
@@ -76,10 +80,16 @@ export default function NavDropdown({
           list[list.length - 1]?.focus();
         }
         break;
+      case "Tab":
+        // Tab past the last row (or Shift+Tab off the trigger) closes
+        // the panel so focus does not leave a menu hanging open.
+        if (open && !e.shiftKey && idx === list.length - 1) setOpen(false);
+        if (open && e.shiftKey && idx < 0) setOpen(false);
+        break;
     }
   };
 
-  // Hover with a short grace so moving from button to panel never closes it.
+  // Hover with a 150ms grace so moving from button to panel never closes it.
   const hoverOpen = () => {
     hovering.current = true;
     if (closeTimer.current) window.clearTimeout(closeTimer.current);
@@ -87,7 +97,7 @@ export default function NavDropdown({
   };
   const hoverClose = () => {
     hovering.current = false;
-    closeTimer.current = window.setTimeout(() => setOpen(false), 120);
+    closeTimer.current = window.setTimeout(() => setOpen(false), 150);
   };
   // A click on a hover-opened menu must not snap it shut; it only
   // toggles when the pointer is not resting on the trigger.
@@ -111,6 +121,7 @@ export default function NavDropdown({
         aria-controls={panelId}
         aria-current={active ? "page" : undefined}
         className={active ? "is-active" : undefined}
+        data-feature={feature}
         onClick={onClick}
       >
         {label}{" "}
@@ -118,7 +129,7 @@ export default function NavDropdown({
           ▾
         </span>
       </button>
-      <div
+      <ul
         id={panelId}
         role="menu"
         aria-label={label}
@@ -126,17 +137,18 @@ export default function NavDropdown({
         hidden={!open}
       >
         {items.map((i) => (
-          <a
-            key={i.href}
-            href={i.href}
-            role="menuitem"
-            aria-current={pathname === i.href ? "page" : undefined}
-          >
-            <b>{i.label}</b>
-            <span>{i.desc}</span>
-          </a>
+          <li key={i.href} role="none">
+            <a
+              href={i.href}
+              role="menuitem"
+              aria-current={pathname === i.href ? "page" : undefined}
+            >
+              <b>{i.label}</b>
+              <span>{i.desc}</span>
+            </a>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }

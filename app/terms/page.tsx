@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/LegalPage";
 import { ogImageMeta } from "@/lib/og-pages";
+import { email, legalName } from "@/lib/company";
 
 const TITLE = "Terms of Service | Hyprr Brands Website Terms";
 const DESC =
@@ -19,13 +20,14 @@ export default function Page() {
       path="/terms"
       description={DESC}
       title="Terms of service"
-      version="v0.2 · 6 September 2026 · under owner review"
+      version="v0.3 · 17 September 2026"
     >
       <p>
-        These terms cover the use of this website. The terms of an actual
-        engagement with Hyprr Retail LLC are set out in the written agreement
-        each client signs — nothing on this site forms part of that agreement
-        or amends it.
+        These terms cover the use of this website, operated by {legalName}, a
+        Wyoming company based in Easton, Pennsylvania, USA. The terms of an
+        actual engagement with {legalName} are set out in the written
+        agreement each client signs — nothing on this site forms part of that
+        agreement or amends it.
       </p>
       <h2>What this site is</h2>
       <p>
@@ -44,12 +46,12 @@ export default function Page() {
       </p>
       <h2>Content and marks</h2>
       <p>
-        The content and branding on this site belong to Hyprr Retail LLC. You
-        may quote it with attribution; you may not present it as your own or
-        use the Hyprr name to imply a relationship that does not exist.
+        The content and branding on this site belong to {legalName}. You may
+        quote it with attribution; you may not present it as your own or use
+        the Hyprr name to imply a relationship that does not exist.
       </p>
       <h2>Contact</h2>
-      <p>Questions about these terms: hello@hyprrbrands.com.</p>
+      <p>Questions about these terms: {email}.</p>
     </LegalPage>
   );
 }

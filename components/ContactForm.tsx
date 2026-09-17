@@ -1,12 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import { email as CONTACT_EMAIL } from "@/lib/company";
 
 /**
- * Contact form — six fields, a real backend (/api/contact → Resend),
- * a success state, an auto-reply. When the backend returns 503 (no
- * RESEND_API_KEY yet) the send falls back to composing an email so
- * nothing breaks before the owner adds the key.
+ * Contact form — a real backend (/api/contact → Resend), a success
+ * state, an auto-reply. Fields (PROMPT_24 §4.8): name, email, brand or
+ * company (optional), store or ASIN link (optional), marketplaces
+ * (multi-select, optional), situation (optional), what you've tried
+ * (optional), message. /privacy lists the same set. When the backend
+ * returns 503 (no RESEND_API_KEY) the send falls back to composing an
+ * email so nothing breaks before the owner adds the key.
  */
 const MARKETPLACES = [
   "Amazon US",
@@ -32,7 +36,9 @@ export default function ContactForm() {
   const [form, setForm] = useState({
     name: "",
     email: "",
-    marketplace: "",
+    company: "",
+    link: "",
+    marketplaces: [] as string[],
     situation: "",
     tried: "",
     message: "",
@@ -42,6 +48,13 @@ export default function ContactForm() {
 
   const set = (key: keyof typeof form) => (value: string) =>
     setForm((f) => ({ ...f, [key]: value }));
+  const toggleMarketplace = (m: string) =>
+    setForm((f) => ({
+      ...f,
+      marketplaces: f.marketplaces.includes(m)
+        ? f.marketplaces.filter((x) => x !== m)
+        : [...f.marketplaces, m],
+    }));
 
   const validate = () => {
     const e: Record<string, string> = {};
@@ -59,14 +72,16 @@ export default function ContactForm() {
   const mailtoFallback = () => {
     const body = [
       `Name: ${form.name}`,
-      `Marketplace: ${form.marketplace || "—"}`,
+      `Brand or company: ${form.company || "—"}`,
+      `Store or ASIN link: ${form.link || "—"}`,
+      `Marketplaces: ${form.marketplaces.join(", ") || "—"}`,
       `Situation: ${form.situation || "—"}`,
       "",
       `Already tried:\n${form.tried || "—"}`,
       "",
       `Message:\n${form.message}`,
     ].join("\n");
-    window.location.href = `mailto:hyprr@hyprrbrands.com?subject=${encodeURIComponent(
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
       `Context from ${form.name}`
     )}&body=${encodeURIComponent(body)}`;
     setStatus("fallback");
@@ -155,34 +170,56 @@ export default function ContactForm() {
       </div>
       <div className="row2">
         <label>
-          <span className="flabel">Which marketplace · optional</span>
-          <select
-            value={form.marketplace}
-            onChange={(e) => set("marketplace")(e.target.value)}
-          >
-            <option value="">Choose one</option>
-            {MARKETPLACES.map((m) => (
-              <option key={m} value={m}>
-                {m}
-              </option>
-            ))}
-          </select>
+          <span className="flabel">Brand or company · optional</span>
+          <input
+            type="text"
+            autoComplete="organization"
+            value={form.company}
+            onChange={(e) => set("company")(e.target.value)}
+          />
         </label>
         <label>
-          <span className="flabel">Closest situation · optional</span>
-          <select
-            value={form.situation}
-            onChange={(e) => set("situation")(e.target.value)}
-          >
-            <option value="">Choose one</option>
-            {SITUATIONS.map((s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
-            ))}
-          </select>
+          <span className="flabel">Store or ASIN link · optional</span>
+          <input
+            type="text"
+            inputMode="url"
+            value={form.link}
+            onChange={(e) => set("link")(e.target.value)}
+            placeholder="An ASIN, a storefront or a product URL"
+          />
         </label>
       </div>
+      <fieldset className="fchecks">
+        <legend className="flabel">Which marketplaces · optional</legend>
+        <div className="fcheck-grid">
+          {MARKETPLACES.map((m) => (
+            <label key={m} className="fcheck">
+              <input
+                type="checkbox"
+                name="marketplaces"
+                value={m}
+                checked={form.marketplaces.includes(m)}
+                onChange={() => toggleMarketplace(m)}
+              />
+              <span>{m}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+      <label>
+        <span className="flabel">Closest situation · optional</span>
+        <select
+          value={form.situation}
+          onChange={(e) => set("situation")(e.target.value)}
+        >
+          <option value="">Choose one</option>
+          {SITUATIONS.map((s) => (
+            <option key={s} value={s}>
+              {s}
+            </option>
+          ))}
+        </select>
+      </label>
       <label>
         <span className="flabel">What have you already tried · optional</span>
         <textarea

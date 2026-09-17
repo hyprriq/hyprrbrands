@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/LegalPage";
 import { ogImageMeta } from "@/lib/og-pages";
+import { email } from "@/lib/company";
 
 const TITLE = "Earnings Claims Policy | Hyprr Brands in Writing";
 const DESC =
-  "Hyprr publishes no income figures, no projected returns and no results promises. This is that policy in writing, and what it commits the firm to.";
+  "Hyprr publishes no income figures, no projected returns and no results promises. What we say instead, and how to report a breach.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -19,7 +20,7 @@ export default function Page() {
       path="/earnings-claims"
       description={DESC}
       title="Earnings claims policy"
-      version="v0.2 · 6 September 2026"
+      version="v0.3 · 17 September 2026"
     >
       <p>
         This site publishes no earnings figures, income examples, projections
@@ -39,12 +40,12 @@ export default function Page() {
       <ul>
         <li>
           We describe the work and the mechanic of how we are paid, without
-          figures, at /how-we-work.
+          figures, at <a href="/how-we-work">/how-we-work</a>.
         </li>
         <li>
           Sample documents — a verdict sheet, a landed-cost model, a monthly
-          report — are published ungated at /proof, clearly labelled as
-          illustrative.
+          report — are published ungated at <a href="/proof">/proof</a>,
+          clearly labeled as illustrative.
         </li>
         <li>
           Where case studies appear in future, they will be publishable
@@ -55,8 +56,8 @@ export default function Page() {
       <h2>If you see us break it</h2>
       <p>
         If anything on this site or said by anyone representing Hyprr reads
-        as a promised or implied result, report it to hello@hyprrbrands.com.
-        It will be corrected, not defended.
+        as a promised or implied result, report it to {email}. It will be
+        corrected, not defended.
       </p>
     </LegalPage>
   );

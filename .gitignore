@@ -43,3 +43,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# the owner's brand kit lives beside the repo on his machine; the site
+# copies what it needs into app/ and public/ (PROMPT_24 §11)
+/hyprr_brand_kit/
+/_to_delete/

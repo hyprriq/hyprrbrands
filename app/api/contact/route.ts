@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { email as CONTACT_EMAIL } from "@/lib/company";
 
 /**
  * Contact form backend — DEV_BRIEF step 2. Server-side validation,
@@ -6,16 +7,22 @@ import { NextResponse } from "next/server";
  * from env; returns 503 when unset so the client can fall back
  * cleanly (mailto compose) and nothing breaks before the owner adds
  * the key.
+ *
+ * PROMPT_24 §1 #13: notifications land at hello@ (the one address,
+ * lib/company.ts). Resend is verified on send.hyprrbrands.com, so the
+ * from address lives there. Fields per §4.8: name, email, company,
+ * store/ASIN link, marketplaces (list), situation, tried, message.
  */
-/* DEV_NOTES_NEXT §1: notifications land at hyprr@; Resend is verified
-   on send.hyprrbrands.com, so the from address lives there. */
-const TO = "hyprr@hyprrbrands.com";
+const TO = CONTACT_EMAIL;
 const FROM = "Hyprr Brands <hello@send.hyprrbrands.com>";
 
 interface Payload {
   name?: string;
   email?: string;
-  marketplace?: string;
+  company?: string;
+  link?: string;
+  marketplaces?: unknown;
+  marketplace?: string; // legacy single value
   situation?: string;
   tried?: string;
   message?: string;
@@ -35,7 +42,11 @@ export async function POST(req: Request) {
 
   const name = clean(data.name, 200);
   const email = clean(data.email, 320);
-  const marketplace = clean(data.marketplace, 100);
+  const company = clean(data.company, 200);
+  const link = clean(data.link, 500);
+  const marketplaces = Array.isArray(data.marketplaces)
+    ? data.marketplaces.map((m) => clean(m, 60)).filter(Boolean).slice(0, 10)
+    : [clean(data.marketplace, 100)].filter(Boolean);
   const situation = clean(data.situation, 200);
   const tried = clean(data.tried);
   const message = clean(data.message);
@@ -71,7 +82,9 @@ export async function POST(req: Request) {
   const lines = [
     `Name: ${name}`,
     `Email: ${email}`,
-    `Marketplace: ${marketplace || "—"}`,
+    `Brand or company: ${company || "—"}`,
+    `Store or ASIN link: ${link || "—"}`,
+    `Marketplaces: ${marketplaces.join(", ") || "—"}`,
     `Situation: ${situation || "—"}`,
     "",
     `Already tried:\n${tried || "—"}`,
@@ -110,7 +123,8 @@ export async function POST(req: Request) {
       "If it is time-sensitive, reply to this email and say so.",
       "",
       "Hyprr Brands",
-      "Amazon + Walmart commerce",
+      "Amazon + Walmart US commerce",
+      CONTACT_EMAIL,
     ].join("\n"),
   }).catch(() => {});
 

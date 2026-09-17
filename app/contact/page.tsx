@@ -1,17 +1,21 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
 import ContactForm from "@/components/ContactForm";
+import Locations from "@/components/Locations";
 import { breadcrumbLd, webPageLd } from "@/lib/schema";
 import { ogImageMeta } from "@/lib/og-pages";
+import { email } from "@/lib/company";
 
 /**
  * Contact — the only page whose job is a single action. Booking
- * first, form second (wireframe 01–03). The booking block renders
- * only when NEXT_PUBLIC_BOOKING_URL is set.
+ * first, form second (wireframe 01–03), then "Where we work"
+ * (PROMPT_24 §12.1). The booking block renders only when
+ * NEXT_PUBLIC_BOOKING_URL is set. The email address is shown here
+ * and in the footer; there is no phone number.
  */
-const TITLE = "Book a Call | Amazon & Walmart Agency — Hyprr Brands";
+const TITLE = "Contact Hyprr Brands | Book a 20-Minute Call";
 const DESC =
-  "Book a twenty-minute call, or send context through the form. A person reads it, you hear back within one working day, and the call comes with a view.";
+  "Book a 20-minute call or send your ASIN or store link. A person replies within one working day. Email hello@hyprrbrands.com.";
 const PATH = "/contact";
 
 export const metadata: Metadata = {
@@ -50,7 +54,11 @@ export default function Page() {
           <p style={{ maxWidth: "56ch" }}>
             Twenty minutes. Send what you have first —{" "}
             <a href="/proof">or read the work</a> — and we come with a view
-            rather than a questionnaire.
+            rather than a questionnaire. Or email{" "}
+            <a href={`mailto:${email}`} style={{ fontWeight: 600 }}>
+              {email}
+            </a>
+            .
           </p>
 
           {BOOKING ? (
@@ -58,10 +66,7 @@ export default function Page() {
               <h2 style={{ fontSize: "clamp(20px,4vw,26px)" }}>
                 Pick a time that suits you
               </h2>
-              <p>
-                The calendar shows live availability across US, UK, Gulf and
-                Singapore hours.
-              </p>
+              <p>Open the calendar to see live times.</p>
               <a className="btn dark" href={BOOKING}>
                 Open the calendar →
               </a>
@@ -106,6 +111,8 @@ export default function Page() {
           </div>
         </div>
       </section>
+
+      <Locations />
     </main>
   );
 }

@@ -3,8 +3,10 @@
  * SERVED body copy (<main>, scripts stripped).
  *
  *  1. Banned-phrase grep — the scam-adjacent vocabulary. Any hit
- *     fails (the v3 approved-negation carve-outs shipped with copy
- *     that no longer exists).
+ *     fails, except inside the approved NEGATIONS below (PROMPT_24
+ *     §4.2 puts "Not for anyone looking for passive income or a
+ *     guaranteed return." under the wholesale H1 — the phrase is the
+ *     refusal, not the pitch).
  *  2. `$` followed by a digit — allowed only inside
  *     [data-worked-example] blocks that visibly carry an
  *     arbitrary/illustrative label. v4 copy publishes no $-figures.
@@ -23,6 +25,12 @@ const problems = [];
 
 const BANNED =
   /guaranteed (profit|sales|roi|return|ranking)|passive income|risk-free|hands-free|turnkey|set and forget|done.for.you|we do everything|unlock|seamless|effortless|elevate|transform|holistic|end-to-end solution|supercharge|[0-9]+% (roi|return|growth|increase)/gi;
+
+/** Exact sentences allowed to contain a banned phrase, because they
+ *  refuse it. Anything else that matches still fails. */
+const NEGATIONS = [
+  "Not for anyone looking for passive income or a guaranteed return.",
+];
 
 const src = readFileSync(join(ROOT, "lib/site-map.ts"), "utf8");
 const live = [...src.matchAll(/slug: "([^"]+)"[\s\S]*?status: "(live|planned)"/g)]
@@ -55,8 +63,10 @@ for (const r of ["/", ...live]) {
     .replace(/&#x27;/g, "'")
     .replace(/\s+/g, " ");
 
-  for (const m of text.matchAll(BANNED)) {
-    const ctx = text.slice(Math.max(0, m.index - 40), m.index + 50).trim();
+  let scanned = text;
+  for (const n of NEGATIONS) scanned = scanned.split(n).join(" ");
+  for (const m of scanned.matchAll(BANNED)) {
+    const ctx = scanned.slice(Math.max(0, m.index - 40), m.index + 50).trim();
     problems.push(`${r}: banned phrase "${m[0]}" in: …${ctx}…`);
   }
 
@@ -65,15 +75,20 @@ for (const r of ["/", ...live]) {
 
   // Walmart geography — per sentence, over the full served HTML text
   // (metas and JSON-LD included: the v3 bug shipped in sixteen files).
+  // Block boundaries end a sentence, so a footer column or a list of
+  // city names never runs into the sentence before it.
   const fullText = h
     .replace(/<script[^>]*>[\s\S]*?<\/script>/g, " ")
+    .replace(/<\/(p|li|h[1-6]|div|dd|dt|td|th|figcaption|summary|ul|ol|section|nav|footer)>/g, ". ")
     .replace(/<[^>]+>/g, " ")
     .replace(/&amp;/g, "&")
     .replace(/\s+/g, " ");
   for (const sentence of fullText.split(/(?<=[.!?])\s+/)) {
     if (!/walmart/i.test(sentence)) continue;
     if (!GEO.test(sentence)) continue;
-    if (/Walmart(?:,| is)? (?:only )?in the (US\b|United States)/i.test(sentence))
+    // "Walmart in the US", "Walmart accounts in the US", "Walmart
+    // Marketplace in the US", "Walmart is only in the US" all scope it.
+    if (/Walmart(?: \w+)?(?:,| is)? (?:only )?in the (US\b|United States)/i.test(sentence))
       continue;
     if (/Walmart US\b/.test(sentence)) continue;
     problems.push(

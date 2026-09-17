@@ -1,4 +1,5 @@
 import { SITE_ORIGIN } from "@/lib/site-map";
+import { address, brandName, email, legalName } from "@/lib/company";
 
 /**
  * JSON-LD graph — Build Spec §M, prompt 6. ONE shared graph: the
@@ -7,29 +8,36 @@ import { SITE_ORIGIN } from "@/lib/site-map";
  * FAQPage appears ONLY where an FAQ is visibly rendered with text
  * matching the visible answers character for character.
  *
- * Publish only what is verified (§P.07 open): no legalName, address,
- * telephone, foundingDate or logo until confirmed; sameAs omitted
- * rather than pointed at empty profiles. No aggregateRating, Review,
- * offers or priceRange anywhere — there are none to describe.
+ * Publish only what is verified. PROMPT_24 §12.6 confirmed the legal
+ * name, the Easton locality and the one email address, so those are
+ * in; there is still no telephone (none exists), no foundingDate, no
+ * street address and no LocalBusiness. sameAs is omitted rather than
+ * pointed at empty profiles. No aggregateRating, Review, offers or
+ * priceRange anywhere — there are none to describe.
  */
 
 const ORG_ID = `${SITE_ORIGIN}/#organization`;
 const SITE_ID = `${SITE_ORIGIN}/#website`;
+
+/** Amazon is run in the US, UK, EU and the Gulf; Walmart in the US only. */
+export const AMAZON_AREAS = ["US", "GB", "EU", "AE"];
+export const WALMART_AREAS = ["US"];
 
 export function organizationLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": ORG_ID,
-    name: "Hyprr Brands",
+    name: brandName,
+    legalName,
     url: `${SITE_ORIGIN}/`,
-    logo: `${SITE_ORIGIN}/brand/hyprr-logo-primary-1024.png`,
+    logo: `${SITE_ORIGIN}/brand/hyprr-mark-tile-ink-1024.png`,
     description:
-      "Amazon and Walmart marketplace operations. Private label, wholesale, listing optimization and account management.",
-    email: "hello@hyprrbrands.com",
-    // v4 graph (docs/v4/hyprr-homepage-v3-4.html): US, UK, Gulf,
-    // Singapore. Walmart itself is US-only and the pages say so.
-    areaServed: ["US", "GB", "AE", "SG"],
+      "Amazon and Walmart US marketplace operations. Private label, wholesale, listing optimization, PPC and account management.",
+    email,
+    address: { "@type": "PostalAddress", ...address },
+    areaServed: AMAZON_AREAS,
+    contactPoint: { "@type": "ContactPoint", contactType: "sales", email },
   };
 }
 
@@ -92,7 +100,7 @@ export function serviceLd(service: {
     url: `${SITE_ORIGIN}${service.path}`,
     description: service.description,
     provider: { "@id": ORG_ID },
-    areaServed: service.areaServed ?? ["US", "GB", "AE", "SG"],
+    areaServed: service.areaServed ?? AMAZON_AREAS,
   };
 }
 

@@ -8,9 +8,11 @@
     "start": "next start",
     "lint": "eslint",
     "images": "node scripts/build-images.mjs",
-    "check": "node scripts/check-manifest.mjs && node scripts/check-links.mjs && node scripts/check-meta.mjs && node scripts/check-copy.mjs && node scripts/check-images.mjs && node scripts/check-features.mjs"
+    "dates": "node scripts/page-dates.mjs",
+    "check": "node scripts/page-dates.mjs --check && node scripts/check-manifest.mjs && node scripts/check-links.mjs && node scripts/check-meta.mjs && node scripts/check-copy.mjs && node scripts/check-images.mjs && node scripts/check-features.mjs"
   },
   "dependencies": {
+    "country-flag-icons": "^1.6.20",
     "next": "16.3.1",
     "react": "19.2.8",
     "react-dom": "19.2.8"

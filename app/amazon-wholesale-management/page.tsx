@@ -6,16 +6,17 @@ import { breadcrumbLd, serviceLd, webPageLd } from "@/lib/schema";
 import { ogImageMeta } from "@/lib/og-pages";
 
 /**
- * Wholesale — built from docs/v4/hyprr-wireframes-remaining.html
- * (sections 01–12, copy blocks used verbatim where given). The three
- * non-negotiables from the wireframe key: authorised distributors as
- * a rule, an honest timeline, a service not an investment product.
- * FAQ answers are drafted in the site voice pending owner strings —
- * flagged in the build report.
+ * Wholesale — v4 structure from docs/v4/hyprr-wireframes-remaining.html,
+ * copy and section order per PROMPT_24 §4.2 (final, edited). The
+ * three non-negotiables from the wireframe key stand: authorized
+ * distributors as a rule, an honest timeline, a service not an
+ * investment product. New sections: brand risk (W1), gated brands
+ * (W3), compliance on resold stock (W4), unsold stock (W5), Walmart
+ * US (W6). Line model per §1a: line 04128.
  */
-const TITLE = "Amazon Wholesale Management Service — Hyprr Brands";
+const TITLE = "Amazon Wholesale Management Service | Your Accounts | Hyprr";
 const DESC =
-  "Wholesale operations on Amazon and Walmart. Authorised distributors only, a landed-cost model on every line, purchase orders you approve. Fixed monthly fee.";
+  "Amazon wholesale management in your own accounts. Authorized suppliers, brand-risk checks and a costed model on every line before you approve an order.";
 const PATH = "/amazon-wholesale-management";
 
 export const metadata: Metadata = {
@@ -37,20 +38,24 @@ const BOOKING = process.env.NEXT_PUBLIC_BOOKING_URL || "/contact";
 
 const FAQS = [
   {
-    q: "How does Amazon wholesale work?",
-    a: "You buy branded products in bulk from the brand or its authorised distributors, at wholesale prices, and resell them on an existing Amazon listing. There is no brand to build and no listing to create — the work is supplier approval, buying decisions, pricing and replenishment, done well and repeatedly.",
+    q: "Can a brand file a complaint even when my stock is genuine?",
+    a: "Yes. A complaint can be filed against authentic goods, and Amazon may remove the offer while it is resolved. That is why brands are screened for complaint history and reseller policy before an account is opened. If a complaint arrives, we respond with your invoices and supplier records. Brands that keep filing are dropped.",
   },
   {
-    q: "Is FBA still profitable?",
-    a: "On lines that clear a margin floor after every fee, yes — and most lines do not. That is why every candidate is modelled to landed cost before a purchase order is raised. Profitability in wholesale comes from the buying discipline, not from the fulfilment method.",
+    q: "How do you get approval for gated brands and categories?",
+    a: "We apply to Amazon with invoices from the brand or its authorized distributor, issued to your business. We don't buy invoices or use approval services that supply them. Some brands never approve resellers, and you hear that before a supplier account is opened.",
   },
   {
-    q: "Does FBA cost money?",
-    a: "Yes. Amazon charges fulfilment fees per unit, monthly storage fees, and long-term storage fees for stock that sits. Those costs are in our landed-cost model for every line before we recommend buying it, so nothing about the fee structure arrives as a surprise.",
+    q: "What happens if a line stops selling?",
+    a: "You get the options with the cost of each: reprice within the brand's policy, return to the supplier where terms allow, move the stock to your own warehouse, list it on Walmart US, or liquidate. The decision is yours. First orders are deliberately small.",
   },
   {
-    q: "How much stock do I need to start?",
-    a: "Less than most people expect. First purchase orders are deliberately small — enough to prove a line sells and reorders, not to fill a warehouse. Volume follows the lines that repeat. We size the starting budget with you on the first call.",
+    q: "Is wholesale on Walmart the same as on Amazon?",
+    a: "No. Walmart has its own seller vetting and brand restrictions, and some distributors authorize one marketplace but not the other. We add Walmart US line by line, only where the supplier and Walmart both allow it.",
+  },
+  {
+    q: "Do resold products still need compliance documents and insurance?",
+    a: "Yes. Amazon can ask any seller of a children's product for the manufacturer's certificate. Supplements have to pass Amazon's verification, and batteries or aerosols need a hazmat review. Liability cover is required above Amazon's monthly sales threshold.",
   },
 ];
 
@@ -73,21 +78,27 @@ export default function Page() {
         ]}
       />
 
-      {/* 01 · HERO */}
+      {/* 1 · HERO — visual 04 (master in a card: petrol band) */}
       <section className="plhero">
         <div className="wrap plhero-grid">
           <div>
-            <span className="eyebrow">Wholesale / Amazon + Walmart</span>
+            <span className="eyebrow">Wholesale / Amazon + Walmart US</span>
             <h1>We run wholesale operations on Amazon and Walmart.</h1>
             <p>
-              Sourcing from authorised distributors, purchase orders you
+              <b style={{ color: "#fff" }}>
+                Not for anyone looking for passive income or a guaranteed
+                return.
+              </b>
+            </p>
+            <p>
+              Sourcing from authorized distributors, purchase orders you
               approve, and the daily work of keeping those lines selling.
             </p>
             <div className="plchips">
               <span className="chip">MANAGED OPERATIONS</span>
-              <span className="chip">AUTHORISED DISTRIBUTORS</span>
+              <span className="chip">AUTHORIZED DISTRIBUTORS</span>
               <span className="chip">AMAZON</span>
-              <span className="chip">WALMART</span>
+              <span className="chip">WALMART US</span>
             </div>
             <div className="cta-row">
               <a className="btn cit" href={BOOKING}>
@@ -102,12 +113,12 @@ export default function Page() {
             variant="hero"
             onDark
             name="amazon-wholesale-management/hero-buying-decisions"
-            alt="Distributor line sheet with six products modelled for sell price, landed cost, fees, ROI and buy box, three marked buy, two do not buy and one watch, with line 04124 broken down to a 4.8% ROI and a do-not-buy stamp"
+            alt="Distributor line sheet with six products modeled for sell price, landed cost, fees, ROI and buy box, three marked buy, two do not buy and one watch, with line 04128 broken down to a 4.8% ROI and a do-not-buy stamp"
           />
         </div>
       </section>
 
-      {/* 02 · HOW WHOLESALE WORKS — the explainer the SERP demands */}
+      {/* 2 · HOW WHOLESALE WORKS — visual 15 replaces the HTML diagram */}
       <section className="start" id="how-it-works">
         <div className="wrap">
           <h2>How wholesale actually works</h2>
@@ -123,24 +134,25 @@ export default function Page() {
           <Visual
             name="amazon-wholesale-management/how-wholesale-works"
             caption={null}
-            alt="Three routes from a brand to the customer: direct to Amazon, through distributors to authorised wholesale sellers (highlighted), and the brand's own website"
+            alt="Three routes from a brand to the customer: direct to Amazon, through distributors to authorized wholesale sellers (highlighted), and the brand's own website"
           />
+          {/* 3 · SNIPPET */}
           <div className="snippet" style={{ marginTop: 28 }}>
             <h2 style={{ marginBottom: 8, fontSize: "clamp(20px,4vw,26px)" }}>
               What does an Amazon wholesale agency do?
             </h2>
             <p>
               It runs the wholesale operation on your behalf: supplier approval
-              and terms, landed-cost modelling on every line, purchase orders
-              raised for your written approval, listings, pricing, buy box and
-              replenishment — under accounts and supplier relationships that
+              and terms, line modeling on every product, purchase orders raised
+              for your written approval, listings, pricing, the featured offer
+              and replenishment, under accounts and supplier relationships that
               stay in your name.
             </p>
           </div>
         </div>
       </section>
 
-      {/* 03 · TWO WAYS IN */}
+      {/* 4 · TWO WAYS IN */}
       <section className="buildband" id="two-ways">
         <div className="wrap">
           <h2>Starting from zero, or already operating.</h2>
@@ -149,12 +161,12 @@ export default function Page() {
               <span className="tag">01 — STARTING FROM ZERO</span>
               <h3>You have capital and no operation.</h3>
               <p style={{ margin: "10px 0 0" }}>
-                We open supplier accounts in your name, build the catalogue,
+                We open supplier accounts in your name, build the catalog,
                 model every line and run it.
               </p>
               <ul>
                 <li>Seller account and supplier applications</li>
-                <li>Catalogue built and modelled to landed cost</li>
+                <li>Catalog built and modeled to landed cost</li>
                 <li>First purchase orders, sized deliberately small</li>
                 <li>The daily operation from day one</li>
               </ul>
@@ -167,12 +179,12 @@ export default function Page() {
               <h3>You have suppliers and sales.</h3>
               <p style={{ margin: "10px 0 0" }}>
                 We take over the daily work, tighten buying and replenishment,
-                and grow the catalogue.
+                and grow the catalog.
               </p>
               <ul>
-                <li>Catalogue and margin review, line by line</li>
+                <li>Catalog and margin review, line by line</li>
                 <li>Buying and replenishment discipline</li>
-                <li>Buy box, pricing and account health</li>
+                <li>Featured offer, pricing and account health</li>
                 <li>New suppliers and new lines</li>
               </ul>
               <a className="go" href="#cycle">
@@ -183,71 +195,132 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 04 · AUTHORISED DISTRIBUTORS ONLY — the credibility band */}
-      <section className="ruleband" id="authorised">
+      {/* 5 · W1 · BRAND RISK — visual 20 */}
+      <section className="start" id="brand-risk">
         <div className="wrap">
-          <h2>Authorised distributors only.</h2>
+          <h2>Brand risk is checked before a supplier account is opened.</h2>
+          <p style={{ maxWidth: "70ch" }}>
+            An authorized supplier does not make a brand safe to sell. We check
+            how the brand behaves on Amazon first, and drop brands that would
+            put your account at risk.
+          </p>
+          <Visual
+            name="amazon-wholesale-management/brand-risk-screen"
+            alt="Brand risk screen for five example brands across IP complaint history, reseller policy, pricing policy, Amazon on the listing, gating and listing match, then the order it happens in: supplier invoice, brand screen, Amazon approval, line model"
+          />
+          <ul className="facts two-col" style={{ marginTop: 28 }}>
+            <li>
+              <b>Complaint history:</b> brands known to file IP complaints
+              against resellers, even over genuine stock.
+            </li>
+            <li>
+              <b>Reseller policy:</b> whether the brand limits marketplace sales
+              to named sellers.
+            </li>
+            <li>
+              <b>Pricing policy:</b> minimum advertised price terms and how
+              strictly the brand enforces them.
+            </li>
+            <li>
+              <b>Amazon on the listing:</b> whether Amazon itself sells the
+              product and holds the featured offer.
+            </li>
+            <li>
+              <b>Approval status:</b> whether the brand or category is gated,
+              and what Amazon will ask for.
+            </li>
+            <li>
+              <b>Listing condition:</b> whether the listing matches what the
+              supplier actually ships.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      {/* 6 · AUTHORIZED DISTRIBUTORS ONLY — W2 bullets; visual 05 master in a card */}
+      <section className="ruleband" id="authorized">
+        <div className="wrap">
+          <h2>Authorized distributors only.</h2>
           <p>
-            We buy from brands and their authorised distributors. That means
-            brand approval, real distributor terms, and invoices issued to you.
-            It is slower to set up than buying wherever stock is cheapest, and
-            it is the reason accounts survive their second year.
+            We buy from brands and their authorized distributors. That means
+            channel permission, real distributor terms, and invoices issued to
+            you. It is slower to set up than buying wherever stock is cheapest,
+            and it is the reason accounts survive their second year.
           </p>
           <div className="rulepoints">
             <div>
-              <b>Brand approval</b>
+              <b>Channel permission</b>
               <span>
-                The brand, or its named distributor, knows the stock is being
-                sold and approved the channel — including ungating where a
-                category needs it.
+                The brand or its named distributor confirms in writing that the
+                stock may be sold on Amazon. Amazon approval for gated brands
+                and categories is a separate step.
               </span>
             </div>
             <div>
               <b>Distributor terms</b>
               <span>
-                Real trade accounts with real terms, opened in your name —
-                not gray-market stock from wherever it was cheapest this week.
+                Real trade accounts with real terms, opened in your name. No
+                grey-market stock from whoever was cheapest this week.
               </span>
             </div>
             <div>
               <b>Invoices in your name</b>
               <span>
-                Every invoice is issued to you. When Amazon asks for proof of
-                supply, you have it, and it is yours.
+                Every invoice is issued to your business at the address on
+                your seller account. When Amazon asks for proof of supply, you
+                have it.
               </span>
             </div>
           </div>
           <Visual
+            onDark
             name="amazon-wholesale-management/supply-fulfilment"
-            alt="Supply chain from brand to authorised distributor, pallets, prep, FBA or 3PL and live Amazon and Walmart listings, with the letter of authorisation, distributor terms and an invoice in the client's name"
+            alt="Supply chain from brand to authorized distributor, pallets, prep, FBA or 3PL and live Amazon and Walmart listings, with the letter of authorization, distributor terms and an invoice in the client's name"
           />
         </div>
       </section>
 
-      {/* 05 · THE BUYING DECISION */}
+      {/* 7 · W3 · GATED BRANDS */}
+      <section className="start" id="gated">
+        <div className="wrap">
+          <h2>Gated brands and categories are approved on evidence.</h2>
+          <p style={{ maxWidth: "70ch", marginBottom: 0 }}>
+            Amazon restricts some brands and categories until a seller shows
+            where the stock comes from. We apply with invoices from the brand
+            or its authorized distributor, in your business name. We don&apos;t
+            buy invoices or use approval shortcuts. Some brands never approve
+            resellers, and you hear that before a supplier account is opened.
+          </p>
+        </div>
+      </section>
+
+      {/* 8 · THE BUYING DECISION — line 04128 (§1a) */}
       <section className="gate" id="buying">
         <div className="wrap">
-          <h2>Every line is modelled before it is bought.</h2>
+          <h2>Every line is modeled before it is bought.</h2>
           <div className="gate-grid">
             <div>
               <p>
-                Every line is modelled to landed cost before it is bought.
-                Most fail. You get the sheet that shows why, and we do not buy
-                them.
+                Every line is modeled to landed cost before it is bought. Most
+                fail. You get the sheet that shows why, and we do not buy them.
               </p>
               <p style={{ marginBottom: 0 }}>
                 <b style={{ color: "#fff" }}>
                   Nothing is ordered without your approval, in writing.
                 </b>{" "}
-                <a href="/proof" style={{ color: "#d5e2e0", fontWeight: 600 }}>
+                <a href="/proof#verdict" style={{ color: "#d5e2e0", fontWeight: 600 }}>
                   See a sample buying decision →
                 </a>
               </p>
             </div>
             <div className="vsheet">
               <div className="hd">
-                <span>BUYING DECISION · LINE 0412</span>
-                <span>4 SEP</span>
+                <span>BUYING DECISION · LINE 04128 · SEP</span>
+                <span>ILLUSTRATIVE</span>
+              </div>
+              <div className="r">
+                <span>Sell price</span>
+                <b>18.80</b>
               </div>
               <div className="r">
                 <span>Landed unit cost</span>
@@ -258,8 +331,16 @@ export default function Page() {
                 <b>6.85</b>
               </div>
               <div className="r">
-                <span>Competing offers on the listing</span>
-                <b>14</b>
+                <span>Left per unit</span>
+                <b>0.55</b>
+              </div>
+              <div className="r">
+                <span>Brand risk</span>
+                <b>CLEAR</b>
+              </div>
+              <div className="r">
+                <span>Amazon approval</span>
+                <b>NOT REQUIRED</b>
               </div>
               <div className="r out">
                 <span>ROI against a 20% floor</span>
@@ -270,7 +351,46 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 06 · THE OPERATING CYCLE */}
+      {/* 9 · W4 · COMPLIANCE ON RESOLD STOCK */}
+      <section className="buildband" id="resold-compliance">
+        <div className="wrap">
+          <h2>Resold stock still has compliance rules.</h2>
+          <p style={{ maxWidth: "70ch" }}>
+            An authorized supplier proves where the stock came from. It does
+            not cover what Amazon and Walmart require of the seller.
+          </p>
+          <ul className="facts two-col">
+            <li>
+              <b>Dangerous goods:</b> aerosols, batteries and flammables need
+              Amazon&apos;s hazmat review and a safety data sheet.
+            </li>
+            <li>
+              <b>Expiry dates:</b> Amazon rejects stock with too little shelf
+              life left, so dates are checked before buying.
+            </li>
+            <li>
+              <b>Heat-sensitive stock:</b> Amazon limits meltable products in
+              FBA during warm months.
+            </li>
+            <li>
+              <b>Children&apos;s products:</b> Amazon can ask any seller for the
+              manufacturer&apos;s certificate, so we collect it from the
+              supplier first.
+            </li>
+            <li>
+              <b>Supplements and cosmetics:</b> listings must pass Amazon&apos;s
+              verification and claims rules, whoever wrote the label.
+            </li>
+            <li>
+              <b>Insurance:</b> cover is required above Amazon&apos;s monthly
+              sales threshold. From 2 November 2026, it is required from the
+              first sale in 11 categories.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      {/* 10 · THE OPERATING CYCLE */}
       <section className="path" id="cycle">
         <div className="wrap">
           <h2>The operating cycle</h2>
@@ -278,16 +398,16 @@ export default function Page() {
             A loop rather than a line, because it repeats. This is what is
             included every month.
           </p>
-          <div className="loop" role="img" aria-label="The wholesale operating loop: suppliers, catalogue, buying, inventory, Amazon and Walmart, replenishment, back to catalogue">
+          <div className="loop" role="img" aria-label="The wholesale operating loop: suppliers, catalog, buying, inventory, Amazon and Walmart US, replenishment, back to catalog">
             <span>SUPPLIERS</span>
             <i aria-hidden="true">→</i>
-            <span>CATALOGUE</span>
+            <span>CATALOG</span>
             <i aria-hidden="true">→</i>
             <span>BUYING</span>
             <i aria-hidden="true">→</i>
             <span>INVENTORY</span>
             <i aria-hidden="true">→</i>
-            <span>AMAZON + WALMART</span>
+            <span>AMAZON + WALMART US</span>
             <i aria-hidden="true">→</i>
             <span>REPLENISHMENT</span>
             <i aria-hidden="true">↺</i>
@@ -296,13 +416,13 @@ export default function Page() {
             <div className="op">
               <b>Suppliers and buying</b>
               <span>
-                Applications, terms, landed-cost models and purchase orders for
-                your approval
+                Applications, terms, line models and purchase orders for your
+                approval
               </span>
             </div>
             <div className="op">
-              <b>Catalogue and pricing</b>
-              <span>Listings, offers, buy box share and repricing rules</span>
+              <b>Catalog and pricing</b>
+              <span>Listings, offers, featured offer share and repricing rules</span>
             </div>
             <div className="op">
               <b>Inventory and replenishment</b>
@@ -313,25 +433,36 @@ export default function Page() {
             <div className="op">
               <b>Account and reporting</b>
               <span>
-                Cases, account health, and the monthly report — margin by line
+                Cases, account health, and the monthly report: margin by line
               </span>
             </div>
           </div>
-          <figure className="strip">
-            <img
-              src="/img/wh-shipment-1600.webp"
-              width={1600}
-              height={900}
-              loading="lazy"
-              decoding="async"
-              alt="A carton being taped and labelled ready for a marketplace shipment"
-            />
-          </figure>
         </div>
       </section>
 
-      {/* 07 · THE FIRST YEAR — the honesty section */}
-      <section className="buildband" id="first-year">
+      {/* 11 · W5 · UNSOLD STOCK */}
+      <section className="buildband" id="unsold">
+        <div className="wrap">
+          <h2>What happens to stock that does not sell.</h2>
+          <p style={{ maxWidth: "70ch" }}>
+            Every line has a planned exit before it is bought. When a line
+            stalls, you get each option with its cost, and you choose.
+          </p>
+          <ul className="facts">
+            <li>Reprice within the brand&apos;s pricing policy.</li>
+            <li>Return it to the supplier where the terms allow.</li>
+            <li>Move it to your own warehouse before aged-stock surcharges build.</li>
+            <li>List it on Walmart US where the brand and Walmart both allow it.</li>
+            <li>Liquidate it through Amazon&apos;s liquidation program.</li>
+          </ul>
+          <p style={{ marginTop: 20, marginBottom: 0 }}>
+            First orders are kept small, so a stalled line is a small problem.
+          </p>
+        </div>
+      </section>
+
+      {/* 12 · THE FIRST YEAR — visual 13 */}
+      <section className="start" id="first-year">
         <div className="wrap">
           <h2>What the first year looks like</h2>
           <Visual
@@ -342,7 +473,7 @@ export default function Page() {
             <div>
               <span className="when">WEEKS 1–4</span>
               <b>Set up</b>
-              <span>Accounts, supplier applications, catalogue modelling.</span>
+              <span>Accounts, supplier applications, catalog modeling.</span>
             </div>
             <div>
               <span className="when">DAY 60–90</span>
@@ -353,14 +484,15 @@ export default function Page() {
               <span className="when">MONTHS 3–6</span>
               <b>Rhythm</b>
               <span>
-                Reorder rhythm, buy box share, the first lines that repeat.
+                Reorder rhythm, featured offer share, the first lines that
+                repeat.
               </span>
             </div>
             <div>
               <span className="when">MONTHS 6–12</span>
               <b>Compound</b>
               <span>
-                More suppliers, more lines, and Walmart alongside Amazon.
+                More suppliers, more lines, and Walmart US alongside Amazon.
               </span>
             </div>
           </div>
@@ -371,7 +503,37 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 08 · SCALE */}
+      {/* 13 · W6 · WALMART US */}
+      <section className="buildband" id="walmart">
+        <div className="wrap">
+          <h2>Walmart US is a separate approval, not a copy of Amazon.</h2>
+          <p style={{ maxWidth: "70ch" }}>
+            Walmart Marketplace has its own seller vetting, brand restrictions
+            and fulfillment rules. A line approved on Amazon is not
+            automatically sellable on Walmart.
+          </p>
+          <ul className="facts two-col">
+            <li>
+              <b>Supplier permission:</b> some distributors authorize Amazon but
+              not Walmart, so each channel is confirmed in writing.
+            </li>
+            <li>
+              <b>Item matching:</b> Walmart matches offers by GTIN, so the
+              supplier&apos;s barcode must match the listing.
+            </li>
+            <li>
+              <b>Fulfillment:</b> Walmart Fulfillment Services has its own
+              prep, labeling and prohibited-item rules.
+            </li>
+            <li>
+              <b>Advertising:</b> Walmart Connect is a separate platform with
+              its own bidding.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      {/* 14 · SCALE */}
       <section className="scaleband" id="scale">
         <div className="wrap">
           <h2>To your budget and your goals.</h2>
@@ -390,8 +552,8 @@ export default function Page() {
               <span>New applications, new categories</span>
             </div>
             <div>
-              <b>Walmart</b>
-              <span>The same catalogue on a second marketplace</span>
+              <b>Walmart US</b>
+              <span>Line by line, where the supplier and Walmart allow it</span>
             </div>
             <a href="/contact">
               <b>Your sizing →</b>
@@ -401,7 +563,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 09 · HANDOVER */}
+      {/* 15 · HANDOVER */}
       <section className="handover" id="handover">
         <div className="wrap">
           <div className="handover-grid">
@@ -421,7 +583,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 10 · OWNERSHIP AND FEES */}
+      {/* 16 · OWNERSHIP AND FEES */}
       <section className="fees" id="fees">
         <div className="wrap">
           <h2>Yours: the accounts, the stock, the suppliers.</h2>
@@ -451,10 +613,10 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 11 · FAQ */}
+      {/* 17 · FAQ */}
       <Faq items={FAQS} />
 
-      {/* 12 · CTA */}
+      {/* 18 · CTA */}
       <section className="cta" id="contact">
         <div className="wrap">
           <h2>Send us a supplier list or a product list.</h2>

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { SITE_ORIGIN } from "@/lib/site-map";
 import JsonLd from "@/components/JsonLd";
@@ -25,25 +25,25 @@ const mono = JetBrains_Mono({
   display: "swap",
 });
 
+/* Icons come from the file conventions — app/favicon.ico, app/icon.svg
+   and app/apple-icon.png are the v2.0 kit files (PROMPT_24 §11.2);
+   the manifest and its 192/512/maskable icons sit in public/. */
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_ORIGIN),
-  title: "Amazon & Walmart Agency | Build, Operate, Scale — Hyprr",
+  title: "Amazon and Walmart Ecommerce Operations Agency | Hyprr",
   description:
-    "We build, operate and scale Amazon and Walmart businesses. You own the accounts, the stock and every buying decision. Book a call.",
+    "We run Amazon (US, UK, EU, Gulf) and Walmart US accounts that stay in your name. Listings, PPC and operations for a fixed fee.",
   openGraph: { type: "website", siteName: "Hyprr Brands" },
   twitter: { card: "summary_large_image" },
-  icons: {
-    icon: [
-      { url: "/brand/favicon-32.png", sizes: "32x32", type: "image/png" },
-      { url: "/brand/favicon-16.png", sizes: "16x16", type: "image/png" },
-    ],
-    shortcut: "/brand/favicon.ico",
-    apple: "/brand/hyprr-icon-petrol-180.png",
-  },
+  manifest: "/site.webmanifest",
   // Vercel previews must never compete with the domain.
   ...(process.env.VERCEL_ENV && process.env.VERCEL_ENV !== "production"
     ? { robots: { index: false, follow: false } }
     : {}),
+};
+
+export const viewport: Viewport = {
+  themeColor: "#17151F",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

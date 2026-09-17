@@ -2181,7 +2181,7 @@ a.strip-link img {
   color: var(--petrol);
 }
 
-/* ---- PROMPT_23 infographic slots ---- */
+/* ---- infographic slots (PROMPT_24 §2; plates on light bands) ---- */
 .visual {
   margin: 0;
   min-width: 0;
@@ -2193,10 +2193,13 @@ a.strip-link img {
 .visual-scroll {
   contain: inline-size;
 }
+/* Plates sit directly on the band at their own ratio: no border, no
+   radius, no card, no forced aspect box. */
 .visual img {
   display: block;
   width: 100%;
   height: auto;
+  object-fit: contain;
 }
 .visual-wide,
 .visual-side {
@@ -2205,25 +2208,12 @@ a.strip-link img {
 .visual-wide {
   max-width: 1200px;
 }
-/* The infographics ship with a transparent ground (owner call, 17
-   Sep) so they float on whatever band they sit in. Only a hero on a
-   dark band gets the white card, for legibility. */
+/* Dark bands carry the 16:10 master inside a card (§2.2). */
 .visual-card .visual-scroll {
   border-radius: 16px;
   overflow: hidden;
+  border: 1px solid #e8e6ea;
   background: #fff;
-  padding: 10px;
-}
-/* hero: 16:10 contain box from 768px; below that the figure scrolls
-   at its natural ratio like every other slot */
-@media (min-width: 768px) {
-  .visual-hero .visual-scroll {
-    aspect-ratio: 16 / 10;
-  }
-  .visual-hero img {
-    object-fit: contain;
-    height: 100%;
-  }
 }
 .visual figcaption {
   font-size: 12px;
@@ -2318,4 +2308,652 @@ a.strip-link img {
   html {
     scroll-behavior: auto;
   }
+}
+
+/* ============================================================
+   PROMPT_24 — final sweep
+   ============================================================ */
+
+/* §6.1 — the home H1 balances its lines; nbsp keeps "it." attached */
+.hero h1 {
+  text-wrap: balance;
+}
+
+/* §11 — inline v2.0 wordmark (outlined SVG, 1202×180) */
+.logo-link {
+  display: block;
+  line-height: 0;
+}
+.logo {
+  height: 24px;
+  width: auto;
+  display: block;
+}
+@media (min-width: 760px) {
+  .logo {
+    height: 28px;
+  }
+}
+.footer-logo {
+  display: block;
+  line-height: 0;
+}
+.footer-logo svg {
+  height: 22px;
+  width: auto;
+  display: block;
+}
+
+/* §12.3 — footer locations strip, entity line, email */
+.locations-strip {
+  display: grid;
+  gap: 18px;
+  padding: 22px 0;
+  border-bottom: 1px solid #2c2d31;
+}
+@media (min-width: 900px) {
+  .locations-strip {
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 36px;
+  }
+}
+.locations-strip ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+}
+.locations-strip li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #c3c8ca;
+  white-space: nowrap;
+}
+footer.site .base .entity {
+  color: #9aa2a4;
+  max-width: 62ch;
+  line-height: 1.6;
+  font: 400 12.5px var(--font-body-stack);
+}
+footer.site .base a {
+  color: #c3c8ca;
+  text-decoration: none;
+  font: 500 12.5px var(--font-mono-stack);
+}
+footer.site .base a:hover {
+  color: #fff;
+}
+@media (min-width: 640px) {
+  footer.site .base {
+    align-items: start;
+  }
+}
+
+/* §12.2 — flags: 3:2 SVG, 4px radius, 1px ink ring */
+.flag {
+  display: inline-flex;
+  line-height: 0;
+  flex: none;
+}
+.flag svg {
+  display: block;
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px rgba(23, 21, 31, 0.12);
+}
+.flag-card svg {
+  width: 34px;
+  height: 23px;
+}
+.flag-strip svg {
+  width: 20px;
+  height: 13px;
+}
+
+/* §12.1 — /contact "Where we work" */
+.locations {
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+}
+.loc-cards {
+  display: grid;
+  gap: 14px;
+  margin-top: 8px;
+}
+@media (min-width: 768px) {
+  .loc-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+}
+.loc-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 20px 22px;
+  min-width: 0;
+}
+.loc-card > b {
+  display: block;
+  font: 500 10.5px var(--font-mono-stack);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.loc-card ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.loc-card li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+.loc-card li:last-child {
+  border-bottom: 0;
+  padding-bottom: 4px;
+}
+.loc-name {
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--ink);
+  min-width: 0;
+}
+.loc-name small {
+  display: block;
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 1px;
+}
+.loc-card .hq {
+  margin-left: auto;
+  background: var(--citrus);
+  color: var(--ink);
+  font: 600 11px var(--font-mono-stack);
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: var(--r-pill);
+}
+.loc-facts {
+  display: grid;
+  gap: 18px;
+  margin: 18px 0 0;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 20px 22px;
+}
+@media (min-width: 768px) {
+  .loc-facts {
+    grid-template-columns: repeat(3, auto);
+    justify-content: start;
+    gap: 48px;
+  }
+}
+.loc-facts dt {
+  font: 500 10.5px var(--font-mono-stack);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.loc-facts dd {
+  margin: 0;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--ink);
+}
+.loc-facts a {
+  text-decoration: none;
+}
+.loc-facts a:hover {
+  color: var(--petrol);
+}
+
+/* §4 — bullet facts with a bold lead (new copy sections) */
+.facts {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+  max-width: 76ch;
+}
+.facts li {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--body);
+  padding-left: 18px;
+  border-left: 2px solid var(--line);
+  min-width: 0;
+}
+.facts li b {
+  color: var(--ink);
+}
+@media (min-width: 860px) {
+  .facts.two-col {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 40px;
+    max-width: none;
+  }
+}
+/* the seven launch steps (§4.1 P2) */
+.launch-steps {
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+  display: grid;
+  gap: 12px;
+  max-width: 76ch;
+}
+.launch-steps li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 46px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--body);
+  min-width: 0;
+}
+.launch-steps li::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--citrus);
+  color: var(--ink);
+  display: grid;
+  place-items: center;
+  font: 500 11px var(--font-mono-stack);
+}
+.launch-steps li b {
+  color: var(--ink);
+}
+.launch-steps li em {
+  font-style: normal;
+  color: var(--petrol);
+  font-weight: 600;
+}
+/* the six questions to ask any PPC agency (§4.3) */
+.questions {
+  margin: 20px 0 0;
+  padding: 0 0 0 26px;
+  max-width: 70ch;
+  display: grid;
+  gap: 10px;
+}
+.questions li {
+  font-size: 16.5px;
+  line-height: 1.55;
+  color: var(--ink);
+  font-weight: 500;
+  padding-left: 6px;
+}
+.questions li::marker {
+  color: var(--muted);
+  font: 500 13px var(--font-mono-stack);
+}
+/* two-column prose (merged private label definition, §6.4) */
+.cols {
+  display: grid;
+  gap: 24px;
+}
+@media (min-width: 860px) {
+  .cols {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+.faq-intro {
+  max-width: 62ch;
+  margin-top: -6px;
+}
+/* three-stage business path on the home page */
+@media (min-width: 820px) {
+  .path-grid.three {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+/* /about without the portrait: no reserved frame */
+.person.no-photo {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 76ch;
+}
+
+/* §4.1 P0 — compliance matrix: table from 768px, cards below */
+.compliance {
+  margin-top: 26px;
+}
+.compliance table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--petrol);
+  color: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  font-size: 13px;
+}
+.compliance thead th {
+  text-align: left;
+  font: 500 10.5px var(--font-mono-stack);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #9fbcb9;
+  padding: 18px 10px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+.compliance thead th:first-child {
+  padding-left: 22px;
+}
+.compliance tbody th {
+  text-align: left;
+  font-weight: 600;
+  font-size: 14.5px;
+  color: #fff;
+  padding: 12px 10px 12px 22px;
+  vertical-align: middle;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  min-width: 150px;
+}
+.compliance tbody tr:last-child th,
+.compliance tbody tr:last-child td {
+  border-bottom: 0;
+}
+.compliance td {
+  padding: 8px 5px;
+  vertical-align: middle;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.compliance td .cl {
+  display: none;
+}
+.compliance td b,
+.compliance td span {
+  display: block;
+}
+.compliance td.req > b,
+.compliance td.dep > b,
+.compliance td.no > b {
+  padding: 9px 12px 0;
+  border-radius: 10px 10px 0 0;
+  font-size: 13px;
+}
+.compliance td.req > span,
+.compliance td.dep > span,
+.compliance td.no > span {
+  padding: 2px 12px 9px;
+  border-radius: 0 0 10px 10px;
+  font-size: 12.5px;
+}
+.compliance td.req > b,
+.compliance td.req > span {
+  background: var(--citrus);
+  color: var(--ink);
+}
+.compliance td.dep > b,
+.compliance td.dep > span {
+  background: #f4f5d9;
+  color: var(--ink);
+}
+.compliance td.no > b,
+.compliance td.no > span {
+  background: #e6ebe9;
+  color: #485458;
+}
+.compliance td.effect em {
+  font-style: normal;
+  display: inline-block;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: var(--r-pill);
+  padding: 5px 12px;
+  font-size: 12.5px;
+  white-space: nowrap;
+}
+.compliance-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin: 12px 0 0;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.compliance-key span::before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  margin-right: 7px;
+  vertical-align: -1px;
+  border: 1px solid var(--line);
+}
+.compliance-key .req::before {
+  background: var(--citrus);
+}
+.compliance-key .dep::before {
+  background: #f4f5d9;
+}
+.compliance-key .no::before {
+  background: #e6ebe9;
+}
+@media (max-width: 767px) {
+  .compliance table,
+  .compliance tbody,
+  .compliance tr,
+  .compliance th,
+  .compliance td {
+    display: block;
+  }
+  .compliance thead {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+  }
+  .compliance table {
+    background: none;
+    color: var(--ink);
+    border-radius: 0;
+    overflow: visible;
+  }
+  .compliance tbody tr {
+    background: var(--petrol);
+    color: #fff;
+    border-radius: 14px;
+    padding: 16px 16px 12px;
+    margin-bottom: 12px;
+  }
+  .compliance tbody th {
+    padding: 0 0 10px;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    margin-bottom: 8px;
+    min-width: 0;
+  }
+  .compliance td {
+    display: grid;
+    grid-template-columns: 116px minmax(0, 1fr);
+    align-items: start;
+    gap: 2px 10px;
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .compliance td .cl {
+    display: block;
+    font: 500 10px var(--font-mono-stack);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #9fbcb9;
+    grid-row: 1 / span 2;
+    padding-top: 3px;
+  }
+  .compliance td.req > b,
+  .compliance td.dep > b,
+  .compliance td.no > b,
+  .compliance td.req > span,
+  .compliance td.dep > span,
+  .compliance td.no > span {
+    background: none;
+    color: #fff;
+    padding: 0;
+    border-radius: 0;
+  }
+  .compliance td.req > b::before,
+  .compliance td.dep > b::before,
+  .compliance td.no > b::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    margin-right: 7px;
+    vertical-align: 0;
+  }
+  .compliance td.req > b::before {
+    background: var(--citrus);
+  }
+  .compliance td.dep > b::before {
+    background: #f4f5d9;
+  }
+  .compliance td.no > b::before {
+    background: #e6ebe9;
+  }
+  .compliance td > span:not(.cl) {
+    color: #c9d8d6;
+    font-size: 12.5px;
+  }
+  .compliance td.effect {
+    border-bottom: 0;
+  }
+  .compliance td.effect em {
+    justify-self: start;
+    grid-column: 2;
+  }
+}
+
+/* §4.3 — contribution margin worked example (HTML table, labelled) */
+figure.acos {
+  margin: 22px 0;
+  max-width: 640px;
+}
+figure.acos figcaption {
+  font: 500 11px var(--font-mono-stack);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+figure.acos table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  font-size: 14.5px;
+}
+figure.acos th,
+figure.acos td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+figure.acos thead th {
+  font: 500 10.5px var(--font-mono-stack);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--paper);
+}
+figure.acos tbody th {
+  font-weight: 500;
+  color: var(--body);
+}
+figure.acos td {
+  font-family: var(--font-mono-stack);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+figure.acos tr:last-child th,
+figure.acos tr:last-child td {
+  border-bottom: 0;
+  font-weight: 600;
+}
+figure.acos td.yes {
+  color: #1f6b3a;
+}
+figure.acos td.no {
+  color: #b93e23;
+}
+
+/* §4.8 — contact form: checkbox group for the marketplaces */
+.cform .fchecks {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+.cform .fchecks legend {
+  padding: 0;
+  margin-bottom: 8px;
+}
+.fcheck-grid {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (min-width: 560px) {
+  .fcheck-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.cform .fcheck {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: #fff;
+  padding: 10px 12px;
+  min-height: 44px;
+  font-size: 14.5px;
+  cursor: pointer;
+}
+.cform .fcheck:has(input:checked) {
+  border-color: var(--petrol);
+  background: #eef7f5;
+}
+.cform .fcheck input {
+  width: 18px;
+  height: 18px;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  accent-color: var(--petrol);
+  flex: none;
+}
+/* long section headlines from the sweep copy stay a readable measure */
+h2 {
+  max-width: 34ch;
+}
+.hero .eyebrow {
+  text-wrap: balance;
+  max-width: 44ch;
+}
+.navin .btn {
+  white-space: nowrap;
 }

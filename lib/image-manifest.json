@@ -1,57 +1,105 @@
 {
   "/images/amazon-listing-optimization/before-after-annotated": {
     "w": 1280,
-    "h": 800
+    "h": 713
   },
   "/images/amazon-ppc-management/hero-profitability-engine": {
     "w": 1280,
-    "h": 800
+    "h": 645
   },
   "/images/amazon-private-label/hero-six-stages": {
     "w": 1280,
-    "h": 800
+    "h": 730
   },
   "/images/amazon-private-label/product-family": {
     "w": 1280,
-    "h": 800
+    "h": 791
   },
   "/images/amazon-walmart-management/adding-walmart": {
     "w": 1280,
-    "h": 800
+    "h": 757
   },
   "/images/amazon-walmart-management/hero-operator-view": {
     "w": 1280,
-    "h": 800
+    "h": 799
   },
   "/images/amazon-wholesale-management/first-year": {
     "w": 1280,
-    "h": 800
+    "h": 767
   },
   "/images/amazon-wholesale-management/hero-buying-decisions": {
     "w": 1280,
-    "h": 800
+    "h": 661
   },
   "/images/amazon-wholesale-management/how-wholesale-works": {
     "w": 1280,
-    "h": 800
+    "h": 672
   },
   "/images/amazon-wholesale-management/supply-fulfilment": {
     "w": 1280,
-    "h": 800
+    "h": 653
   },
   "/images/home/verdict-buy-or-do-not-buy": {
     "w": 1280,
-    "h": 800
+    "h": 713
   },
   "/images/home/where-money-is-lost": {
     "w": 1280,
-    "h": 800
+    "h": 698
   },
   "/images/how-we-work/execution-swimlane": {
     "w": 1280,
-    "h": 800
+    "h": 727
   },
   "/images/proof/operating-documents": {
+    "w": 1280,
+    "h": 710
+  },
+  "/images/amazon-listing-optimization/hero-listing-anatomy-full": {
+    "w": 1280,
+    "h": 800
+  },
+  "/images/amazon-listing-optimization/hero-listing-anatomy": {
+    "w": 1280,
+    "h": 638
+  },
+  "/images/amazon-ppc-management/hero-profitability-engine-full": {
+    "w": 1280,
+    "h": 800
+  },
+  "/images/amazon-ppc-management/monthly-report": {
+    "w": 1280,
+    "h": 631
+  },
+  "/images/amazon-private-label/hero-six-stages-full": {
+    "w": 1280,
+    "h": 800
+  },
+  "/images/amazon-private-label/launch-timeline": {
+    "w": 1280,
+    "h": 549
+  },
+  "/images/amazon-walmart-management/first-30-days": {
+    "w": 1280,
+    "h": 540
+  },
+  "/images/amazon-walmart-management/hero-operator-view-full": {
+    "w": 1280,
+    "h": 800
+  },
+  "/images/amazon-wholesale-management/brand-risk-screen": {
+    "w": 1280,
+    "h": 523
+  },
+  "/images/amazon-wholesale-management/hero-buying-decisions-full": {
+    "w": 1280,
+    "h": 800
+  },
+  "/images/amazon-wholesale-management/supply-fulfilment-full": {
+    "w": 1280,
+    "h": 800
+  },
+  "/images/home/verdict-buy-or-do-not-buy-full": {
     "w": 1280,
     "h": 800
   }
