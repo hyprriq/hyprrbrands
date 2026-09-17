@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
 import Faq from "@/components/Faq";
+import Visual from "@/components/Visual";
 import { breadcrumbLd, serviceLd, webPageLd } from "@/lib/schema";
 import { ogImageMeta } from "@/lib/og-pages";
 
@@ -97,30 +98,12 @@ export default function Page() {
               </a>
             </div>
           </div>
-          <figure className="heroimg" style={{ margin: 0 }}>
-            <picture>
-              <source
-                media="(max-width: 760px)"
-                srcSet="/img/wh-catalogue-mobile-1080.webp"
-                type="image/webp"
-                width={1080}
-                height={1350}
-              />
-              <source srcSet="/img/wh-catalogue-1600.webp" type="image/webp" />
-              <img
-                src="/img/wh-catalogue-1600.png"
-                width={1600}
-                height={900}
-                fetchPriority="high"
-                decoding="async"
-                alt="A buying catalogue showing six supplier lines with landed cost, fees, margin and a buy or no decision on each"
-              />
-            </picture>
-            <figcaption>
-              Representative buying catalogue. Figures illustrate the model,
-              not a client account.
-            </figcaption>
-          </figure>
+          <Visual
+            variant="hero"
+            onDark
+            name="amazon-wholesale-management/hero-buying-decisions"
+            alt="Distributor line sheet with six products modelled for sell price, landed cost, fees, ROI and buy box, three marked buy, two do not buy and one watch, with line 04124 broken down to a 4.8% ROI and a do-not-buy stamp"
+          />
         </div>
       </section>
 
@@ -137,40 +120,11 @@ export default function Page() {
             channel and selling it where the brand is not already serving the
             customer well.
           </p>
-          <div className="routediag" role="img" aria-label="Diagram: a brand sells through direct supply, distributors and its own site; the gap those routes leave is where your wholesale account operates">
-            <div className="row">
-              <div className="node" style={{ gridColumn: "1 / -1" }}>
-                The brand
-                <em>one product, several routes to the customer</em>
-              </div>
-            </div>
-            <div className="down" aria-hidden="true">
-              ↓ ↓ ↓
-            </div>
-            <div className="row">
-              <div className="node">
-                Direct to Amazon<em>first-party supply</em>
-              </div>
-              <div className="node">
-                Distributors<em>approved wholesale channel</em>
-              </div>
-              <div className="node">
-                Own website<em>direct to consumer</em>
-              </div>
-            </div>
-            <div className="down" aria-hidden="true">
-              ↓
-            </div>
-            <div className="row">
-              <div className="node gap" style={{ gridColumn: "1 / -1" }}>
-                The gap
-                <em>
-                  listings, regions and demand those routes leave uncovered —
-                  served from your account, with genuine approved stock
-                </em>
-              </div>
-            </div>
-          </div>
+          <Visual
+            name="amazon-wholesale-management/how-wholesale-works"
+            caption={null}
+            alt="Three routes from a brand to the customer: direct to Amazon, through distributors to authorised wholesale sellers (highlighted), and the brand's own website"
+          />
           <div className="snippet" style={{ marginTop: 28 }}>
             <h2 style={{ marginBottom: 8, fontSize: "clamp(20px,4vw,26px)" }}>
               What does an Amazon wholesale agency do?
@@ -263,26 +217,10 @@ export default function Page() {
               </span>
             </div>
           </div>
-          <figure className="strip">
-            <picture>
-              <source
-                media="(max-width: 760px)"
-                srcSet="/img/wh-warehouse-mobile-1080.webp"
-                type="image/webp"
-                width={1080}
-                height={1350}
-              />
-              <source srcSet="/img/wh-warehouse-1600.webp" type="image/webp" />
-              <img
-                src="/img/wh-warehouse-1600.png"
-                width={1600}
-                height={900}
-                loading="lazy"
-                decoding="async"
-                alt="Cartons stacked and shrink-wrapped on pallets in a distribution warehouse"
-              />
-            </picture>
-          </figure>
+          <Visual
+            name="amazon-wholesale-management/supply-fulfilment"
+            alt="Supply chain from brand to authorised distributor, pallets, prep, FBA or 3PL and live Amazon and Walmart listings, with the letter of authorisation, distributor terms and an invoice in the client's name"
+          />
         </div>
       </section>
 
@@ -396,6 +334,10 @@ export default function Page() {
       <section className="buildband" id="first-year">
         <div className="wrap">
           <h2>What the first year looks like</h2>
+          <Visual
+            name="amazon-wholesale-management/first-year"
+            alt="Twelve months of active product lines building up after the first purchase order, above set up, first order, rhythm and compound phases"
+          />
           <div className="timeline">
             <div>
               <span className="when">WEEKS 1–4</span>

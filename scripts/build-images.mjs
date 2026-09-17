@@ -63,7 +63,10 @@ for (const file of sources) {
       info = await src
         .clone()
         .resize({ width, withoutEnlargement: true })
-        .webp({ quality })
+        // alphaQuality: transparent-ground infographics (PROMPT_23)
+        // triple in size at the default lossless alpha; a soft edge
+        // does not need it.
+        .webp({ quality, alphaQuality: 60 })
         .toFile(outPath);
       if (w !== 1280 || info.size <= BUDGET || quality <= 50) break;
       quality = quality === 80 ? 65 : 50;

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
 import Faq from "@/components/Faq";
+import Visual from "@/components/Visual";
 import { breadcrumbLd, serviceLd, webPageLd } from "@/lib/schema";
 import { ogImageMeta } from "@/lib/og-pages";
 
@@ -103,27 +104,12 @@ export default function Page() {
               </a>
             </div>
           </div>
-          <figure className="heroimg" style={{ margin: 0 }}>
-            <picture>
-              <source
-                media="(max-width: 760px)"
-                srcSet="/img/mgmt-hero-mobile-1080.webp"
-                type="image/webp"
-                width={1080}
-                height={1080}
-              />
-              <source srcSet="/img/mgmt-hero-1600.webp" type="image/webp" />
-              <img
-                src="/img/mgmt-hero-1600.png"
-                width={1600}
-                height={1200}
-                fetchPriority="high"
-                decoding="async"
-                alt="An account health panel showing catalogue, growth, inventory and account figures for a marketplace seller"
-              />
-            </picture>
-            <figcaption>Figures are illustrative.</figcaption>
-          </figure>
+          <Visual
+            variant="hero"
+            onDark
+            name="amazon-walmart-management/hero-operator-view"
+            alt="One operations console covering catalogue, growth, inventory and account health across Amazon US, Amazon UK and Walmart US, with margin by product and the Monday-to-Friday weekly rhythm"
+          />
         </div>
       </section>
 
@@ -265,7 +251,11 @@ export default function Page() {
       <section className="buildband" id="walmart">
         <div className="wrap">
           <h2>Adding Walmart</h2>
-          <div className="build-grid">
+          <Visual
+            name="amazon-walmart-management/adding-walmart"
+            alt="The same product on Amazon and Walmart, four Walmart setup steps, and how the two platforms differ on ads, fulfilment, fees, reviews and markets"
+          />
+          <div className="build-grid" style={{ marginTop: 28 }}>
             <div>
               <p>
                 The same catalogue on a second marketplace, with the

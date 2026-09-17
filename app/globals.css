@@ -2080,6 +2080,126 @@ a.strip-link img {
   color: var(--petrol);
 }
 
+/* ---- PROMPT_23 infographic slots ---- */
+.visual {
+  margin: 0;
+  min-width: 0;
+}
+.visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.visual-wide,
+.visual-side {
+  margin: 26px auto 0;
+}
+.visual-wide {
+  max-width: 1200px;
+}
+/* The infographics ship with a transparent ground (owner call, 17
+   Sep) so they float on whatever band they sit in. Only a hero on a
+   dark band gets the white card, for legibility. */
+.visual-card .visual-scroll {
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  padding: 10px;
+}
+/* hero: 16:10 contain box from 768px; below that the figure scrolls
+   at its natural ratio like every other slot */
+@media (min-width: 768px) {
+  .visual-hero .visual-scroll {
+    aspect-ratio: 16 / 10;
+  }
+  .visual-hero img {
+    object-fit: contain;
+    height: 100%;
+  }
+}
+.visual figcaption {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 8px;
+}
+.visual-card figcaption {
+  color: #9fbcb9;
+}
+/* under 768px the figure scrolls sideways, never the page */
+.visual-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+}
+.visual-scroll img {
+  min-width: 900px;
+}
+.visual-swipe {
+  display: block;
+  font: 500 11px var(--font-mono-stack);
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  margin-top: 8px;
+}
+@media (min-width: 768px) {
+  .visual-scroll {
+    overflow: visible;
+  }
+  .visual-card .visual-scroll {
+    overflow: hidden;
+  }
+  .visual-scroll img {
+    min-width: 0;
+  }
+  .visual-swipe {
+    display: none;
+  }
+}
+/* S — side-by-side: existing content 5/12, image 7/12 from 1024px */
+.visual-side-grid {
+  display: grid;
+  gap: 26px;
+  margin-top: 24px;
+}
+@media (min-width: 1024px) {
+  .visual-side-grid {
+    grid-template-columns: 5fr 7fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .visual-side-grid > .visual-side {
+    margin-top: 0;
+  }
+}
+.visual-side-grid > * {
+  min-width: 0;
+}
+/* homepage proof tiles stacked as rows beside visual 10 */
+.artefacts.artefacts-stack {
+  grid-template-columns: 1fr;
+  margin-top: 0;
+  gap: 10px;
+}
+.artefacts-stack .art,
+.artefacts-stack .art:first-child {
+  grid-template-columns: 104px minmax(0, 1fr);
+}
+.artefacts-stack .art .fr,
+.artefacts-stack .art:first-child .fr {
+  height: auto;
+  border-right: 1px solid #dcefe9;
+  border-bottom: 0;
+}
+/* homepage "why" value points as one row under visual 12 */
+.points-row {
+  margin-top: 26px;
+}
+@media (min-width: 900px) {
+  .points-row {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 /* ---- reduced motion ---- */
 @media (prefers-reduced-motion: reduce) {
   * {

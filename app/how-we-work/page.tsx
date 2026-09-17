@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
 import Faq from "@/components/Faq";
+import Visual from "@/components/Visual";
 import { breadcrumbLd, webPageLd } from "@/lib/schema";
 import { ogImageMeta } from "@/lib/og-pages";
 
@@ -74,6 +75,10 @@ export default function Page() {
             service you buy. The fee structure is at the bottom, in plain
             language, because that is the question you actually came with.
           </p>
+          <Visual
+            name="how-we-work/execution-swimlane"
+            alt="Six steps in two lanes: Hyprr researches, analyses, executes and reports; the client decides in writing and reads the report; plus the escalation path when something goes wrong"
+          />
           <h2 className="sr-only">The five steps in full</h2>
           <div className="how-grid" style={{ marginTop: 30 }}>
             <ol className="method">

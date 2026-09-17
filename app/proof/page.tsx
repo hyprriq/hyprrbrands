@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
+import Visual from "@/components/Visual";
 import { breadcrumbLd, webPageLd } from "@/lib/schema";
 import { SITE_ORIGIN } from "@/lib/site-map";
 import { ogImageMeta } from "@/lib/og-pages";
@@ -74,6 +75,10 @@ export default function Page() {
             says that too. The method behind them is on{" "}
             <a href="/how-we-work">the how-we-work page</a>.
           </p>
+          <Visual
+            name="proof/operating-documents"
+            alt="Six working documents: verdict sheet, landed-cost model, monthly report, purchase order with a blank approval line, listing analysis and packaging spec"
+          />
         </div>
       </section>
 

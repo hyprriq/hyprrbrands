@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
+import Visual from "@/components/Visual";
 import { serviceLd, webPageLd } from "@/lib/schema";
 import { ogImageMeta } from "@/lib/og-pages";
 
@@ -419,7 +420,7 @@ export default function Page() {
         <div className="wrap">
           <h2 className="h2-lg">Five steps, on every product we touch.</h2>
           <div className="how-grid">
-            <div>
+            <div style={{ gridColumn: "1 / -1", maxWidth: 760 }}>
               <ol className="method">
                 <li>
                   <div>
@@ -460,6 +461,8 @@ export default function Page() {
                 </a>
               </p>
             </div>
+          </div>
+          <div className="visual-side-grid">
             <div className="verdict">
               <h3>Buy, or do not buy.</h3>
               <p>
@@ -485,6 +488,11 @@ export default function Page() {
                 </div>
               </div>
             </div>
+            <Visual
+              variant="side"
+              name="home/verdict-buy-or-do-not-buy"
+              alt="Two one-page product verdict sheets, one marked buy and one on top marked do not buy at 4.8% margin against a 20% floor"
+            />
           </div>
         </div>
       </section>
@@ -497,7 +505,8 @@ export default function Page() {
             We are new, and we are not going to show you someone else&apos;s
             results. These are ours.
           </p>
-          <div className="artefacts">
+          <div className="visual-side-grid">
+          <div className="artefacts artefacts-stack">
             <a className="art" href="/proof">
               <div className="fr">
                 <svg
@@ -593,13 +602,20 @@ export default function Page() {
               </div>
             </a>
           </div>
+          <Visual
+            variant="side"
+            href="/proof"
+            name="proof/operating-documents"
+            alt="Six working documents: verdict sheet, landed-cost model, monthly report, purchase order with a blank approval line, listing analysis and packaging spec"
+          />
+          </div>
         </div>
       </section>
 
       {/* WHY */}
       <section className="why">
-        <div className="wrap why-grid">
-          <div>
+        <div className="wrap">
+          <div style={{ maxWidth: "70ch" }}>
             <h2 className="h2-lg">
               Two places a marketplace business loses money.
             </h2>
@@ -616,7 +632,11 @@ export default function Page() {
               You lose it a little every week.
             </p>
           </div>
-          <div className="points">
+          <Visual
+            name="home/where-money-is-lost"
+            alt="Risks before and after money moves, split by the client's approval: a written verdict prevents the first set, the weekly operation prevents the second"
+          />
+          <div className="points points-row">
             <div className="point">A written verdict before you spend</div>
             <div className="point">The daily operation after you do</div>
             <div className="point">

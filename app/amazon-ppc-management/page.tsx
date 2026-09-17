@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
 import Faq from "@/components/Faq";
+import Visual from "@/components/Visual";
 import { breadcrumbLd, serviceLd, webPageLd } from "@/lib/schema";
 import { ogImageMeta } from "@/lib/og-pages";
 
@@ -95,29 +96,12 @@ export default function Page() {
               </a>
             </div>
           </div>
-          <figure className="heroimg" style={{ margin: 0 }}>
-            <picture>
-              <source
-                media="(max-width: 760px)"
-                srcSet="/img/listing-before-after-mobile-1080.webp"
-                type="image/webp"
-                width={1080}
-                height={1350}
-              />
-              <source
-                srcSet="/img/listing-before-after-1600.webp"
-                type="image/webp"
-              />
-              <img
-                src="/img/listing-before-after-1600.png"
-                width={1600}
-                height={900}
-                fetchPriority="high"
-                decoding="async"
-                alt="The same product listing before and after optimization: a dim, badly cropped photo with a thin title beside a clean product shot with a full title and bullets"
-              />
-            </picture>
-          </figure>
+          <Visual
+            variant="hero"
+            onDark
+            name="amazon-ppc-management/hero-profitability-engine"
+            alt="Advertising funnel from impressions to contribution, a waterfall showing where a $20 sale goes with a 40.5% break-even ACoS, and two products at the same 30% ACoS, one profitable and one losing money"
+          />
         </div>
       </section>
 

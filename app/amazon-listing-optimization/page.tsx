@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
 import Faq from "@/components/Faq";
+import Visual from "@/components/Visual";
 import { breadcrumbLd, serviceLd, webPageLd } from "@/lib/schema";
 import { ogImageMeta } from "@/lib/og-pages";
 
@@ -162,6 +163,10 @@ export default function Page() {
       <section className="buildband" id="before-after">
         <div className="wrap">
           <h2>Before and after, annotated.</h2>
+          <Visual
+            name="amazon-listing-optimization/before-after-annotated"
+            alt="The same Amazon listing before and after: a dim photo, stuffed title and three generic bullets, rebuilt with a clear title, five factual bullets, seven images and A+ content; indexed terms rise from 19 to 64"
+          />
           <div className="ba">
             <div className="before">
               <span className="tag">BEFORE</span>

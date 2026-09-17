@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
 import Faq from "@/components/Faq";
+import Visual from "@/components/Visual";
 import { breadcrumbLd, serviceLd, webPageLd } from "@/lib/schema";
 import { ogImageMeta } from "@/lib/og-pages";
 
@@ -107,19 +108,12 @@ export default function Page() {
               </a>
             </div>
           </div>
-          <figure className="heroimg" style={{ margin: 0 }}>
-            <picture>
-              <source srcSet="/img/pl-hero-1600.webp" type="image/webp" />
-              <img
-                src="/img/pl-hero-1600.png"
-                width={1600}
-                height={900}
-                fetchPriority="high"
-                decoding="async"
-                alt="The finished three-panel foldable stone dish mat, a Hyprr private label product"
-              />
-            </picture>
-          </figure>
+          <Visual
+            variant="hero"
+            onDark
+            name="amazon-private-label/hero-six-stages"
+            alt="Private label journey for an example brand: sketch, technical drawing, prototype, finished bottle and retail box, listed on Amazon and Walmart, above six stages from research to stabilize and a timeline with the first order at day 60–90"
+          />
         </div>
       </section>
 
@@ -263,7 +257,7 @@ export default function Page() {
       <section className="gate" id="gate">
         <div className="wrap">
           <h2>Between research and sourcing, there is a verdict.</h2>
-          <div className="gate-grid">
+          <div className="visual-side-grid">
             <div>
               <p>
                 Every product candidate is scored on landed cost, marketplace
@@ -284,7 +278,6 @@ export default function Page() {
                   See a sample verdict →
                 </a>
               </p>
-            </div>
             <div className="vsheet">
               <div className="hd">
                 <span>PRODUCT VERDICT · CANDIDATE 0412</span>
@@ -311,6 +304,13 @@ export default function Page() {
                 <b>4.8% · DO NOT BUY</b>
               </div>
             </div>
+            </div>
+            <Visual
+              variant="side"
+              onDark
+              name="home/verdict-buy-or-do-not-buy"
+              alt="Two one-page product verdict sheets, one marked buy and one on top marked do not buy at 4.8% margin against a 20% floor"
+            />
           </div>
         </div>
       </section>
@@ -394,20 +394,10 @@ export default function Page() {
               <span>Operations and capacity behind the winners</span>
             </div>
           </div>
-          <figure className="strip">
-            <img
-              src="/img/pl-family-1600.webp"
-              width={1600}
-              height={900}
-              loading="lazy"
-              decoding="async"
-              alt="The dish mat and faucet mat, one product family sharing the same stone and groove design"
-            />
-            <figcaption>
-              One product family, two SKUs — designed once, extended
-              deliberately.
-            </figcaption>
-          </figure>
+          <Visual
+            name="amazon-private-label/product-family"
+            alt="One proven body wash with its box at the centre, expanding into a hand wash, lotion, scrub, refill pouch and bar soap, beside the measure, improve, expand and scale loop"
+          />
         </div>
       </section>
 

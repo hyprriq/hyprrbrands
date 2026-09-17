@@ -104,6 +104,23 @@ for (const p of [
     problems.push(`Service JSON-LD missing on ${p}`);
 }
 
+// 7b · PROMPT_23 — every infographic slot renders inside the mobile
+//      scroll wrapper, and the expected count is on each route.
+const VISUAL_SLOTS = {
+  "/": 3,
+  "/amazon-private-label": 3,
+  "/amazon-wholesale-management": 4,
+  "/amazon-walmart-management": 2,
+  "/amazon-listing-optimization": 1,
+  "/amazon-ppc-management": 1,
+  "/how-we-work": 1,
+  "/proof": 1,
+};
+for (const [p, n] of Object.entries(VISUAL_SLOTS)) {
+  const got = (html[p]?.match(/data-feature="visual-scroll"/g) ?? []).length;
+  if (got !== n) problems.push(`${p}: ${got} visual-scroll slots (want ${n})`);
+}
+
 // 8 · One h1 per page, exactly.
 for (const r of ["/", ...live]) {
   const count = (html[r]?.match(/<h1[\s>]/g) ?? []).length;
