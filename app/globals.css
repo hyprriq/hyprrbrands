@@ -2208,10 +2208,12 @@ a.strip-link img {
 .visual-wide {
   max-width: 1200px;
 }
-/* Dark bands carry the 16:10 master inside a card (§2.2). */
+/* Dark bands carry the 16:10 master inside a card (§2.2). The card
+   must not clip under 768px — that is the swipe container, and the
+   card selector outranks .visual-scroll's overflow-x: auto. */
 .visual-card .visual-scroll {
   border-radius: 16px;
-  overflow: hidden;
+  overflow-x: auto;
   border: 1px solid #e8e6ea;
   background: #fff;
 }
