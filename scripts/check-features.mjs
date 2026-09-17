@@ -130,6 +130,11 @@ for (const [p, n] of Object.entries(VISUAL_SLOTS)) {
     problems.push("nav: Management dropdown button missing");
   if (!nav.includes('data-feature="nav-management-group"'))
     problems.push("nav: data-feature=nav-management-group missing from the trigger");
+  // PROMPT_24.1 #1 — Company ▾ (Proof, About, Contact) after Management ▾.
+  if (!/<button[^>]*aria-haspopup="menu"[^>]*data-feature="nav-company-group"[^>]*>Company/.test(nav))
+    problems.push("nav: Company dropdown button missing");
+  for (const href of ["/proof", "/about", "/contact"])
+    if (!nav.includes(`href="${href}"`)) problems.push(`nav: ${href} missing from the Company menu`);
   for (const href of ["/amazon-walmart-management", "/amazon-listing-optimization", "/amazon-ppc-management"])
     if (!nav.includes(`href="${href}"`)) problems.push(`nav: ${href} missing from the Management menu`);
   if (new RegExp('<a[^>]*href="/amazon-listing-optimization"[^>]*>Listings<').test(nav))

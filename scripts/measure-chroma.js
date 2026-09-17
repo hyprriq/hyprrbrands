@@ -29,6 +29,11 @@
  * against the painted-surfaces-only instrument. The first run of THIS
  * instrument re-baselines every page; movement is re-calibration, not
  * regression. Report the number, do not chase it.
+ *
+ * PROMPT_24.1 #3 (17 Sep 2026): the 0.018 service-page floor is
+ * RETIRED — the page visuals are ink-on-transparent plates by design,
+ * so service pages measure 0.007–0.014 and that is correct. The only
+ * floor that remains is the homepage at 0.030 (last measured 0.032).
  */
 async function measureChroma() {
   const P = (s) => {

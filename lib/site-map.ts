@@ -11,7 +11,7 @@
 export type Group = "service" | "company" | "legal";
 /** Nav grouping (PROMPT_24 §10): the three seller-side services sit
  *  under one "Management ▾" trigger. */
-export type NavGroup = "management";
+export type NavGroup = "management" | "company";
 
 export interface SitePage {
   slug: string; // leading slash, no trailing slash
@@ -209,12 +209,14 @@ export const REDIRECTS: { source: string; destination: string }[] = [
 ];
 
 /**
- * Navigation — PROMPT_24 §10 (folds in the nav ticket). The header
- * and the mobile menu render from NAV; the footer from FOOTER; both
- * live here so a label can only be changed in one place. Top nav:
- * Private label · Wholesale · Management ▾ · How we work · Book a
- * call. "Management" groups the three services for sellers who
- * already sell (navGroup: "management" on their SITE_MAP entries).
+ * Navigation — PROMPT_24 §10 + 24.1 #1. The header and the mobile
+ * menu render from NAV; the footer from FOOTER; both live here so a
+ * label can only be changed in one place. Top nav: Private label ·
+ * Wholesale · Management ▾ · How we work · Company ▾ · Book a call.
+ * "Management" groups the three services for sellers who already
+ * sell (navGroup: "management" on their SITE_MAP entries); "Company"
+ * groups Proof, About and Contact (restored by PROMPT_24.1 — §10 had
+ * dropped it by mistake).
  */
 export interface NavChild {
   href: string;
@@ -253,6 +255,15 @@ export const NAV: NavItem[] = [
     ],
   },
   { label: "How we work", href: "/how-we-work" },
+  {
+    label: "Company",
+    group: "company",
+    children: [
+      { href: "/proof", label: "Proof", desc: "The documents we produce, ungated" },
+      { href: "/about", label: "About", desc: "Who runs Hyprr Brands" },
+      { href: "/contact", label: "Contact", desc: "Book a call, or send context first" },
+    ],
+  },
 ];
 
 /** Footer columns — all five services; Legal carries the four policies (§7.3). */
