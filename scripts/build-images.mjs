@@ -25,7 +25,7 @@ const ROOT = new URL("..", import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, "
 const INBOX = join(ROOT, "public/images/_inbox");
 const OUT = join(ROOT, "public/images");
 const MANIFEST = join(ROOT, "lib/image-manifest.json");
-const WIDTHS = [640, 1280, 1920];
+const WIDTHS = [640, 1280, 1920, 2400];
 const BUDGET = 200 * 1024;
 
 if (!existsSync(INBOX)) {
@@ -57,7 +57,9 @@ for (const file of sources) {
   for (const w of WIDTHS) {
     const outPath = join(dir, `${name}-${w}.webp`);
     const width = Math.min(w, meta.width ?? w);
-    let quality = 80;
+    // 1280 carries the budget; the larger renditions are what a 3x
+    // phone or a 2x desktop actually paints, so they stay crisper.
+    let quality = w === 1280 ? 80 : 88;
     let info;
     for (;;) {
       info = await src

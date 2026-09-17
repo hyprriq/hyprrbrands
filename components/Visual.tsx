@@ -17,10 +17,12 @@ const MANIFEST = manifest as Record<string, { w: number; h: number }>;
 
 type Variant = "hero" | "wide" | "side";
 
+// Under 768px the image is laid out at 900px inside the swipe
+// container, so the browser must pick for 900px × DPR, not 100vw.
 const SIZES: Record<Variant, string> = {
-  hero: "(min-width: 1024px) 55vw, 100vw",
-  wide: "(min-width: 1280px) 1200px, 100vw",
-  side: "(min-width: 1024px) 58vw, 100vw",
+  hero: "(max-width: 767px) 900px, (min-width: 1024px) 55vw, 100vw",
+  wide: "(max-width: 767px) 900px, (min-width: 1280px) 1200px, 100vw",
+  side: "(max-width: 767px) 900px, (min-width: 1024px) 58vw, 100vw",
 };
 
 export default function Visual({
@@ -49,7 +51,7 @@ export default function Visual({
     // eslint-disable-next-line @next/next/no-img-element
     <img
       src={`${base}-1280.webp`}
-      srcSet={`${base}-640.webp 640w, ${base}-1280.webp 1280w, ${base}-1920.webp 1920w`}
+      srcSet={`${base}-640.webp 640w, ${base}-1280.webp 1280w, ${base}-1920.webp 1920w, ${base}-2400.webp 2400w`}
       sizes={SIZES[variant]}
       width={dims.w}
       height={dims.h}
