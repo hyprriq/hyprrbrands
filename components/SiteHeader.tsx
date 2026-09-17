@@ -1,66 +1,33 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { NAV } from "@/lib/site-map";
+import NavDropdown from "./NavDropdown";
 
 /**
- * Header — SITEMAP.md navigation. Short labels in the nav; the full
- * keyword-bearing names live in each page's H1. Company ▾ holds
- * Proof · About · Contact. Book a call uses the booking URL when the
- * env var is set, otherwise the contact page.
+ * Header — renders from NAV in lib/site-map.ts. Plain items are
+ * links; items with children are dropdowns on desktop and accordions
+ * in the mobile menu (collapsed by default). Book a call uses the
+ * booking URL when the env var is set, otherwise the contact page.
  */
-const LINKS = [
-  { href: "/amazon-private-label", label: "Private label" },
-  { href: "/amazon-wholesale-management", label: "Wholesale" },
-  { href: "/amazon-walmart-management", label: "Management" },
-  { href: "/amazon-listing-optimization", label: "Listings" },
-  { href: "/how-we-work", label: "How we work" },
-];
-
-const COMPANY = [
-  { href: "/proof", label: "Proof" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-];
-
 const BOOKING = process.env.NEXT_PUBLIC_BOOKING_URL || "/contact";
 
 export default function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [drop, setDrop] = useState(false);
-  const dropRef = useRef<HTMLDivElement>(null);
+  const [expanded, setExpanded] = useState<string | null>(null);
 
-  // Close menus on route change.
   useEffect(() => {
     setOpen(false);
-    setDrop(false);
+    setExpanded(null);
   }, [pathname]);
-
-  // Close the dropdown on outside click / Escape.
-  useEffect(() => {
-    if (!drop) return;
-    const onClick = (e: MouseEvent) => {
-      if (!dropRef.current?.contains(e.target as Node)) setDrop(false);
-    };
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setDrop(false);
-    };
-    document.addEventListener("click", onClick);
-    document.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("click", onClick);
-      document.removeEventListener("keydown", onKey);
-    };
-  }, [drop]);
 
   return (
     <nav className="site" aria-label="Main">
       <div className="wrap navin">
         <a href="/" aria-label="Hyprr Brands home">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          {/* Tight-cropped variant (DEV_NOTES §6) — the padded original
-              keeps its built-in clear space for standalone use. */}
           <img
             className="logo"
             src="/brand/hyprr-logo-primary-tight.svg"
@@ -70,34 +37,24 @@ export default function SiteHeader() {
           />
         </a>
         <div className="links">
-          {LINKS.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              aria-current={pathname === l.href ? "page" : undefined}
-            >
-              {l.label}
-            </a>
-          ))}
-          <div className="navdrop" ref={dropRef}>
-            <button
-              type="button"
-              aria-expanded={drop}
-              aria-haspopup="true"
-              onClick={() => setDrop((d) => !d)}
-            >
-              Company <span aria-hidden="true">▾</span>
-            </button>
-            {drop && (
-              <div className="navdrop-panel">
-                {COMPANY.map((l) => (
-                  <a key={l.href} href={l.href}>
-                    {l.label}
-                  </a>
-                ))}
-              </div>
-            )}
-          </div>
+          {NAV.map((item) =>
+            item.children ? (
+              <NavDropdown
+                key={item.label}
+                label={item.label}
+                items={item.children}
+                pathname={pathname}
+              />
+            ) : (
+              <a
+                key={item.href}
+                href={item.href}
+                aria-current={pathname === item.href ? "page" : undefined}
+              >
+                {item.label}
+              </a>
+            )
+          )}
         </div>
         <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
           <a className="btn dark" href={BOOKING}>
@@ -107,6 +64,7 @@ export default function SiteHeader() {
             type="button"
             className="mtoggle"
             aria-expanded={open}
+            aria-controls="mobile-menu"
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((o) => !o)}
           >
@@ -130,17 +88,49 @@ export default function SiteHeader() {
         </div>
       </div>
       {open && (
-        <div className="mmenu">
-          {LINKS.map((l) => (
-            <a key={l.href} href={l.href}>
-              {l.label}
-            </a>
-          ))}
-          {COMPANY.map((l) => (
-            <a key={l.href} href={l.href} className="sub">
-              {l.label}
-            </a>
-          ))}
+        <div className="mmenu" id="mobile-menu">
+          {NAV.map((item) => {
+            if (!item.children) {
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  aria-current={pathname === item.href ? "page" : undefined}
+                >
+                  {item.label}
+                </a>
+              );
+            }
+            const isOpen = expanded === item.label;
+            const id = `macc-${item.label.toLowerCase()}`;
+            return (
+              <div className="macc" key={item.label}>
+                <button
+                  type="button"
+                  aria-expanded={isOpen}
+                  aria-controls={id}
+                  onClick={() => setExpanded(isOpen ? null : item.label)}
+                >
+                  {item.label}
+                  <span aria-hidden="true" className="caret">
+                    ▾
+                  </span>
+                </button>
+                <div id={id} className="macc-panel" hidden={!isOpen}>
+                  {item.children.map((c) => (
+                    <a
+                      key={c.href}
+                      href={c.href}
+                      aria-current={pathname === c.href ? "page" : undefined}
+                    >
+                      <b>{c.label}</b>
+                      <span>{c.desc}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
         </div>
       )}
     </nav>

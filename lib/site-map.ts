@@ -203,6 +203,80 @@ export const REDIRECTS: { source: string; destination: string }[] = [
   { source: "/insights", destination: "/" },
 ];
 
+/**
+ * Navigation — nav ticket, 18 Sep. The header, the mobile menu and
+ * the footer render from these so a label can only be changed in one
+ * place. Top nav: Private label · Wholesale · Management ▾ · How we
+ * work · Company ▾. "Management" groups the three services for
+ * sellers who already sell; the footer still lists all five.
+ */
+export interface NavChild {
+  href: string;
+  label: string;
+  desc: string;
+}
+export interface NavItem {
+  label: string;
+  href?: string; // a plain link…
+  children?: NavChild[]; // …or a dropdown / mobile accordion
+}
+
+export const NAV: NavItem[] = [
+  { label: "Private label", href: "/amazon-private-label" },
+  { label: "Wholesale", href: "/amazon-wholesale-management" },
+  {
+    label: "Management",
+    children: [
+      {
+        href: "/amazon-walmart-management",
+        label: "Amazon & Walmart management",
+        desc: "Daily account operations: catalogue, inventory, cases, account health",
+      },
+      {
+        href: "/amazon-listing-optimization",
+        label: "Listing optimization",
+        desc: "Fixed price, two weeks. Titles, content, images, indexing",
+      },
+      {
+        href: "/amazon-ppc-management",
+        label: "PPC management",
+        desc: "Advertising run against margin and stock, not spend",
+      },
+    ],
+  },
+  { label: "How we work", href: "/how-we-work" },
+  {
+    label: "Company",
+    children: [
+      { href: "/proof", label: "Proof", desc: "The documents we produce, ungated" },
+      { href: "/about", label: "About", desc: "Who runs Hyprr Brands" },
+      { href: "/contact", label: "Contact", desc: "Book a call, or send context first" },
+    ],
+  },
+];
+
+/** Footer columns — unchanged by the nav ticket: all five services. */
+export const FOOTER = {
+  services: [
+    { href: "/amazon-private-label", label: "Amazon private label" },
+    { href: "/amazon-wholesale-management", label: "Amazon wholesale management" },
+    { href: "/amazon-walmart-management", label: "Amazon and Walmart management" },
+    { href: "/amazon-listing-optimization", label: "Amazon listing optimization" },
+    { href: "/amazon-ppc-management", label: "Amazon PPC management" },
+  ],
+  company: [
+    { href: "/how-we-work", label: "How we work" },
+    { href: "/proof", label: "Proof" },
+    { href: "/about", label: "About" },
+    { href: "/contact", label: "Contact" },
+  ],
+  legal: [
+    { href: "/privacy", label: "Privacy" },
+    { href: "/terms", label: "Terms" },
+    { href: "/accessibility", label: "Accessibility" },
+  ],
+};
+
 /** The production origin. Canonicals, OG URLs, sitemap and llms.txt
  *  all derive from this. DEV_BRIEF step 2: the real domain, not the
  *  Vercel subdomain. */

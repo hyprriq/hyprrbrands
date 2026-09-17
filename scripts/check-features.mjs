@@ -121,6 +121,19 @@ for (const [p, n] of Object.entries(VISUAL_SLOTS)) {
   if (got !== n) problems.push(`${p}: ${got} visual-scroll slots (want ${n})`);
 }
 
+// 7c · Nav ticket — "Management" is a dropdown button holding the
+//      three seller-side services; "Listings" is no longer top-level.
+{
+  const h = html["/"] ?? "";
+  const nav = h.split("<nav")[1]?.split("</nav>")[0] ?? "";
+  if (!/<button[^>]*aria-haspopup="menu"[^>]*>Management/.test(nav))
+    problems.push("nav: Management dropdown button missing");
+  for (const href of ["/amazon-walmart-management", "/amazon-listing-optimization", "/amazon-ppc-management"])
+    if (!nav.includes(`href="${href}"`)) problems.push(`nav: ${href} missing from the Management menu`);
+  if (new RegExp('<a[^>]*href="/amazon-listing-optimization"[^>]*>Listings<').test(nav))
+    problems.push("nav: Listings still a top-level link");
+}
+
 // 8 · One h1 per page, exactly.
 for (const r of ["/", ...live]) {
   const count = (html[r]?.match(/<h1[\s>]/g) ?? []).length;

@@ -19,6 +19,7 @@
   --muted: #5b6668;
   --line: #d8dfdc;
   --white: #fff;
+  --violet: #6947ff; /* the logo dot — focus rings (nav ticket) */
   /* TYPOGRAPHY_TICKET §4–5: 12px cards, 8px buttons. Pill survives
      only on status labels (.chip, .loop). */
   --r-sm: 12px;
@@ -294,35 +295,80 @@ nav.site {
   padding: 4px 0;
   min-height: 44px;
 }
-.navdrop > button:hover {
+.navdrop > button:hover,
+.navdrop > button[aria-expanded="true"] {
   color: var(--petrol);
+}
+/* the same underline the plain links show when current */
+.navdrop > button {
+  border-bottom: 1px solid transparent;
+  border-radius: 0;
+}
+.navdrop > button.is-active {
+  color: var(--petrol);
+  border-bottom-color: var(--line);
+}
+.navdrop .caret {
+  font-size: 11px;
+  transition: transform 160ms var(--ease);
+}
+.navdrop > button[aria-expanded="true"] .caret {
+  transform: rotate(180deg);
 }
 .navdrop-panel {
   position: absolute;
-  top: 100%;
-  right: 0;
-  min-width: 180px;
+  top: calc(100% + 6px);
+  left: 0;
+  min-width: 320px;
   background: #fff;
   border: 1px solid var(--line);
   border-radius: var(--r-sm);
   padding: 8px;
   display: grid;
   box-shadow: 0 14px 34px rgba(23, 23, 26, 0.1);
+  z-index: 40;
+}
+.navdrop-panel[hidden],
+.mmenu .macc-panel[hidden] {
+  display: none;
+}
+/* keep the right-most menu inside the viewport */
+.navdrop:last-child .navdrop-panel {
+  left: auto;
+  right: 0;
 }
 .navdrop-panel a {
   text-decoration: none;
-  padding: 11px 12px;
+  padding: 10px 12px;
   border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
   color: var(--body);
   min-height: 44px;
-  display: flex;
-  align-items: center;
+  display: grid;
+  gap: 2px;
 }
-.navdrop-panel a:hover {
+.navdrop-panel a b {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.navdrop-panel a span {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--muted);
+  font-weight: 400;
+}
+.navdrop-panel a:hover,
+.navdrop-panel a:focus-visible {
   background: var(--paper);
+}
+.navdrop-panel a:hover b,
+.navdrop-panel a[aria-current="page"] b {
   color: var(--petrol);
+}
+.navdrop > button:focus-visible,
+.navdrop-panel a:focus-visible {
+  outline: 3px solid var(--violet);
+  outline-offset: 2px;
 }
 /* mobile menu */
 .mtoggle {
@@ -361,9 +407,62 @@ nav.site {
 .mmenu a:last-child {
   border-bottom: 0;
 }
-.mmenu .sub {
+.mmenu .macc > button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  padding: 13px 4px;
+  min-height: 48px;
+  font: 600 16px var(--font-body-stack);
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+}
+.mmenu .macc > button .caret {
+  font-size: 12px;
   color: var(--muted);
-  font-size: 14px;
+  transition: transform 160ms var(--ease);
+}
+.mmenu .macc > button[aria-expanded="true"] .caret {
+  transform: rotate(180deg);
+}
+.mmenu .macc-panel {
+  display: grid;
+  background: #fff;
+  border-radius: 8px;
+  margin: 8px 0 10px;
+  padding: 4px 6px;
+}
+.mmenu .macc-panel a {
+  display: grid;
+  gap: 2px;
+  padding: 11px 10px;
+  border-bottom: 1px solid var(--line);
+  min-height: 48px;
+}
+.mmenu .macc-panel a:last-child {
+  border-bottom: 0;
+}
+.mmenu .macc-panel a b {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.mmenu .macc-panel a span {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--muted);
+  font-weight: 400;
+}
+.mmenu .macc > button:focus-visible,
+.mmenu a:focus-visible {
+  outline: 3px solid var(--violet);
+  outline-offset: 2px;
+  border-radius: 8px;
 }
 @media (min-width: 1040px) {
   .mmenu {
