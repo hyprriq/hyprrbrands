@@ -467,6 +467,7 @@ export default function Page() {
           <h2>What the first year looks like</h2>
           <Visual
             name="amazon-wholesale-management/first-year"
+            card
             alt="Twelve months of active product lines building up after the first purchase order, above set up, first order, rhythm and compound phases"
           />
           <div className="timeline five">

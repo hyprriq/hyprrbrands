@@ -38,6 +38,7 @@ export default function Visual({
   caption = "Illustrative example.",
   onDark = false,
   href,
+  card = false,
 }: {
   /** manifest key without the leading /images/, e.g. "home/verdict-buy-or-do-not-buy" */
   name: string;
@@ -49,6 +50,9 @@ export default function Visual({
   onDark?: boolean;
   /** wrap the image in a link (proof row on the homepage) */
   href?: string;
+  /** frame a master that keeps its own ground inside the bordered card
+   *  without switching to the `-full` key (PROMPT_32 re-exports) */
+  card?: boolean;
 }) {
   const key = onDark ? `${name}-full` : name;
   const dims = MANIFEST[`/images/${key}`];
@@ -70,7 +74,7 @@ export default function Visual({
   );
   return (
     <figure
-      className={`visual visual-${variant}${onDark ? " visual-card" : ""}`}
+      className={`visual visual-${variant}${onDark || card ? " visual-card" : ""}`}
     >
       <div className="visual-scroll" data-feature="visual-scroll">
         {href ? <a href={href}>{img}</a> : img}

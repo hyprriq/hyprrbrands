@@ -4125,3 +4125,45 @@ div.facts {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }
+
+/* ---- PROMPT_32 — private label hero in two columns; §6.3 column images ---- */
+.plhero-lite {
+  padding-bottom: clamp(40px, 5vw, 64px);
+}
+.plhero-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 32px;
+  align-items: center;
+}
+@media (min-width: 1040px) {
+  .plhero-cols {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 56px;
+  }
+}
+.plhero-cols .plhero-art {
+  margin: 0;
+  max-width: none;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.scope-cols > div {
+  display: flex;
+  flex-direction: column;
+}
+.scope-img {
+  margin-top: auto;
+  padding-top: 24px;
+  border-radius: 12px;
+  overflow: hidden;
+  line-height: 0;
+}
+.scope-img img {
+  height: 320px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+  display: block;
+}

@@ -108,7 +108,7 @@ for (const p of [
 //      scroll wrapper, and the expected count is on each route.
 const VISUAL_SLOTS = {
   "/": 0,
-  "/amazon-private-label": 4,
+  "/amazon-private-label": 3,
   "/amazon-wholesale-management": 5,
   "/amazon-walmart-management": 4,
   "/amazon-listing-optimization": 2,
@@ -204,11 +204,12 @@ for (const r of ["/", ...live]) {
   const phasesHtml = h.split('data-feature="home-phases"')[1]?.split("</section>")[0] ?? "";
   if (/<img|<picture/.test(phasesHtml)) problems.push("/: an image renders inside the home phases section");
   if (!h.includes('data-feature="home-who-runs"')) problems.push("/: home-who-runs missing");
-  if (!h.includes('data-feature="footer-faq"')) problems.push("/: footer FAQ missing");
-  if (!h.includes('"FAQPage"')) problems.push("/: footer FAQPage JSON-LD missing");
-  const faqQs = (h.match(/"@type":"Question"/g) ?? []).length;
-  const faqH3 = (h.split('data-feature="footer-faq"')[1]?.split("</div></div>")[0]?.match(/<h3/g) ?? []).length;
-  if (faqQs !== 5 || faqH3 !== 5) problems.push(`/: ${faqH3} footer FAQ questions / ${faqQs} in FAQPage (want 5 / 5)`);
+  // PROMPT_32 §1 — the footer FAQ and its FAQPage are gone from every
+  // page; the home page carries no FAQ and no FAQPage at all.
+  for (const r of ["/", ...live]) {
+    if (html[r]?.includes('data-feature="footer-faq"')) problems.push(`${r}: footer FAQ still renders`);
+  }
+  if (h.includes('"FAQPage"')) problems.push("/: a FAQPage JSON-LD renders on the home page");
   for (const [text, where] of [
     ["13,000", "track record"],
     ["upwork.com", "Upwork link"],

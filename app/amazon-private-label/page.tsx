@@ -210,41 +210,44 @@ export default function Page() {
         ]}
       />
 
-      {/* 6.1 · HERO — DOM copy, then the supplied artwork as a full-bleed
-          band on #F6F4F2 (asset A1). The H1 and CTAs are real text. */}
+      {/* 6.1 · HERO — two columns: DOM copy (real H1 and CTAs) beside the
+          product-scene crop supplied with PROMPT_32, on the image's own
+          ground so its edges do not show a seam. */}
       <section className="plhero-lite" id="top">
-        <div className="wrap tight">
-          <div className="kicker">Private label</div>
-          <h1>Build a brand, not a listing.</h1>
-          <p className="sub">
-            We develop private label products around real customer demand,
-            then build the brand, the supply chain and the operation that turn
-            one product into a business. Amazon is one of the fastest
-            real-world reads on whether the market will pay for a product. It
-            is not the whole plan.
-          </p>
-          <p className="line">
-            Bring an idea, a product you already sell, a market you understand
-            &mdash; or nothing but the capital and the intent.
-          </p>
-          <div className="cta-row">
-            <a className="btn dark" href={BOOKING}>
-              Book a call
-            </a>
-            <a className="btn ghost" href="#lifecycle">
-              See the lifecycle
-            </a>
+        <div className="wrap tight plhero-cols">
+          <div>
+            <div className="kicker">Private label</div>
+            <h1>Build a brand, not a listing.</h1>
+            <p className="sub">
+              We develop private label products around real customer demand,
+              then build the brand, the supply chain and the operation that
+              turn one product into a business. Amazon is one of the fastest
+              real-world reads on whether the market will pay for a product.
+              It is not the whole plan.
+            </p>
+            <p className="line">
+              Bring an idea, a product you already sell, a market you
+              understand &mdash; or nothing but the capital and the intent.
+            </p>
+            <div className="cta-row">
+              <a className="btn dark" href={BOOKING}>
+                Book a call
+              </a>
+              <a className="btn ghost" href="#lifecycle">
+                See the lifecycle
+              </a>
+            </div>
           </div>
-        </div>
-        <div className="plhero-art">
-          <Image
-            src="/img/pl-hero.webp"
-            width={1586}
-            height={992}
-            priority
-            sizes="(min-width: 1600px) 1600px, 100vw"
-            alt="A private label brand on a desk: a bottle, cartons, a laptop and a phone showing the brand's store, with four starting points — an idea, a product, a market, a brand — and the eight steps from opportunity to expand."
-          />
+          <div className="plhero-art">
+            <Image
+              src="/img/pl-hero.webp"
+              width={946}
+              height={748}
+              priority
+              sizes="(min-width: 1040px) 46vw, 100vw"
+              alt="A private label product range on a desk — bottle, cartons, a cap, and a laptop and phone showing the brand's own store — beside the marketplaces it sells in."
+            />
+          </div>
         </div>
       </section>
 
@@ -320,6 +323,16 @@ export default function Page() {
                 seller with one strong idea &middot; testing a market before
                 committing to it.
               </p>
+              <div className="scope-img">
+                <Image
+                  src="/img/pl-one-product.webp"
+                  width={372}
+                  height={425}
+                  loading="lazy"
+                  sizes="280px"
+                  alt="A single product built properly: one bottle, photographed on its own."
+                />
+              </div>
             </div>
             <div>
               <div className="kicker">A brand</div>
@@ -336,6 +349,16 @@ export default function Page() {
                 investors backing a category &middot; an existing catalog that
                 needs a spine.
               </p>
+              <div className="scope-img">
+                <Image
+                  src="/img/pl-a-brand.webp"
+                  width={500}
+                  height={360}
+                  loading="lazy"
+                  sizes="444px"
+                  alt="Five products in one brand's range — a jar, a pouch, a bottle, a carton and a tube in the same design language."
+                />
+              </div>
             </div>
           </div>
           <p className="third-path">
@@ -344,21 +367,6 @@ export default function Page() {
             will not survive, then re-enter the lifecycle at whichever stage
             the next product needs.
           </p>
-          <figure className="visual pl-card">
-            <div className="visual-scroll" data-feature="visual-scroll">
-              <Image
-                src="/img/pl-product-vs-brand.webp"
-                width={1536}
-                height={1024}
-                loading="lazy"
-                sizes="(max-width: 767px) 900px, (min-width: 1148px) 1100px, 100vw"
-                alt="One product beside a family of products in the same brand, the two routes set side by side, with the marketplace, owned store, Walmart and other channels the brand can sell in."
-              />
-            </div>
-            <span className="visual-swipe" aria-hidden="true">
-              Swipe to see the full view &rarr;
-            </span>
-          </figure>
           <p className="after-cards">
             A brand is not a logo on a product. It is a promise to a specific
             customer, and a reason for the second purchase. That is why it is
@@ -441,6 +449,7 @@ export default function Page() {
           </div>
           <Visual
             name="amazon-private-label/selection-tests-plate"
+            card
             caption={null}
             alt="Seven tests a product has to pass in order — category, niche entry, keyword spread, competitor gaps, returns, advantage and unit economics — narrowing to a written verdict of approve, review or reject."
           />
