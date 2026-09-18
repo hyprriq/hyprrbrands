@@ -66,7 +66,9 @@ const FAQS = [
 const SELECTION_TESTS = [
   {
     title: "The category has to be one we will take",
-    body: "Some categories we decline outright: ingestibles and topicals, children's products and toys, electricals needing safety certification, medical devices, and anything making a health or safety claim. The compliance and liability load is not worth it for a first brand.",
+    // PROMPT_27 §1: the compliance matrix is right; this body replaced the
+    // "decline outright" version that contradicted it.
+    body: "Regulated categories go ahead only when the certification is real and budgeted before production: children's products and toys, supplements, cosmetics, certified electricals. Anything needing FDA drug approval or medical device clearance we decline, along with claims we could not substantiate. If the testing budget is not in the plan, the answer is no.",
   },
   {
     title: "The niche has to be enterable",

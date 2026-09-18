@@ -85,11 +85,11 @@ export default function Page() {
           <div className="sec-head">
             <div>
               <div className="kicker">Track record</div>
-              <h2>Fifteen years of ecommerce work.</h2>
+              <h2>Ecommerce work since 2010.</h2>
             </div>
             <p>
-              Fifteen years of ecommerce work, most of it delivered for clients
-              who found us through someone they trust. The public record is one
+              Ecommerce work since 2010, most of it delivered for clients who
+              found us through someone they trust. The public record is one
               click away: over 13,000 client hours on Upwork, and operating in
               ecommerce since 2010.
             </p>
