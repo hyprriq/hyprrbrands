@@ -41,7 +41,7 @@ export function GET() {
     "## Notes",
     "- Amazon in the US, UK, Europe and the Middle East. Walmart in the US.",
     "- Hyprr publishes no earnings claims, income figures or projected returns.",
-    "- Fees are fixed — never a percentage of advertising spend or of capital.",
+    "- Fees are quoted in writing before anything starts — never a percentage of advertising spend or of capital.",
     "",
   ];
 

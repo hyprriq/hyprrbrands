@@ -54,7 +54,7 @@ const FAQS = [
   },
   {
     q: "How are the fees set?",
-    a: "By scope, after the diagnosis. There are three structures: a fixed-price project, monthly management from $800 a month, or a launch fee plus a share of the profit. We never take a share of your ad spend, revenue or capital.",
+    a: "By scope, after the diagnosis. There are three structures: a fixed-price project, monthly management from $800 a month, or a launch quoted to your plan. We never take a share of your ad spend, revenue or capital.",
   },
 ];
 
@@ -560,11 +560,11 @@ export default function Page() {
               <p>We run the account or the store. From $800 a month, terms apply.</p>
             </div>
             <div className="cell">
-              <b>A launch fee, then a share of the profit</b>
+              <b>A launch, quoted to the plan</b>
               <p>
-                For a new brand or a new wholesale operation: a fee to build
-                it, then a share of the profit once it is selling. Quoted after
-                the call.
+                For a new brand or a new wholesale operation: the fee depends
+                on the plan we agree after the diagnosis. Quoted after the
+                call, in writing before anything starts.
               </p>
             </div>
           </div>

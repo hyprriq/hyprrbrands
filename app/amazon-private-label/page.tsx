@@ -653,9 +653,9 @@ export default function Page() {
             <div className="fee">
               <b>The launch project</b>
               <span>
-                A fixed fee, scoped before anything starts. It depends on the
-                category, the number of products and whether Walmart US is
-                included. Stock, tooling and advertising are your costs, paid
+                Quoted to your plan, in writing, before anything starts. It
+                depends on the category, the number of products and whether
+                Walmart US is included. Stock, tooling and advertising are your costs, paid
                 by you directly to the supplier and the marketplace.
               </span>
             </div>

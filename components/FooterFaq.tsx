@@ -17,7 +17,7 @@ import { faqLd } from "@/lib/schema";
 export const FOOTER_FAQS = [
   {
     q: "What does it cost?",
-    a: "Three structures: a fixed-price project, monthly management from $800 a month, or a launch fee plus a share of the profit. Quoted after the call, in writing before anything starts.",
+    a: "Three structures: a fixed-price project, monthly management from $800 a month, or a launch quoted to your plan. Quoted after the call, in writing before anything starts.",
   },
   {
     q: "Do you need my Seller Central password?",
