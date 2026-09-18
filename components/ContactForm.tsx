@@ -16,7 +16,7 @@ const MARKETPLACES = [
   "Amazon US",
   "Amazon UK",
   "Amazon Europe",
-  "Amazon Gulf",
+  "Amazon Middle East",
   "Walmart US",
   "Not sure yet",
 ];

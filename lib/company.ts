@@ -84,5 +84,5 @@ export const locations: Location[] = [
 export const regions = ["United States", "Asia-Pacific", "Middle East"] as const;
 
 /** The three facts under the location cards (§12.1). */
-export const hoursCovered = "US · UK · Gulf · Asia-Pacific";
-export const marketplaces = "Amazon US, UK, EU, Gulf · Walmart US";
+export const hoursCovered = "US · UK · Middle East · Asia-Pacific";
+export const marketplaces = "Amazon US, UK, EU, Middle East · Walmart US";

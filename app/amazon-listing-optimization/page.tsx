@@ -281,9 +281,9 @@ export default function Page() {
           translation promise */}
       <section className="start" id="marketplaces">
         <div className="wrap">
-          <h2>UK, Europe, the Gulf and Walmart US.</h2>
+          <h2>UK, Europe, the Middle East and Walmart US.</h2>
           <p style={{ maxWidth: "70ch", marginBottom: 0 }}>
-            Listings for Amazon UK, Europe and the Gulf are written for each
+            Listings for Amazon UK, Europe and the Middle East are written for each
             marketplace, not copied across. On Walmart US, listings are rebuilt
             against Walmart&apos;s Listing Quality score, which weighs content,
             discoverability, offer, and ratings and reviews.

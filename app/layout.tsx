@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_ORIGIN),
   title: "Amazon and Walmart Ecommerce Operations Agency | Hyprr",
   description:
-    "We run Amazon (US, UK, EU, Gulf) and Walmart US accounts that stay in your name. Listings, PPC and operations for a fixed fee.",
+    "We build, run and grow businesses on Amazon (US, UK, EU) and Walmart US that stay in your name: private label, wholesale, management, listings and PPC.",
   openGraph: { type: "website", siteName: "Hyprr Brands" },
   twitter: { card: "summary_large_image" },
   manifest: "/site.webmanifest",

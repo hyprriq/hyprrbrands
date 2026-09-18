@@ -19,7 +19,7 @@ import { address, brandName, email, legalName } from "@/lib/company";
 const ORG_ID = `${SITE_ORIGIN}/#organization`;
 const SITE_ID = `${SITE_ORIGIN}/#website`;
 
-/** Amazon is run in the US, UK, EU and the Gulf; Walmart in the US only. */
+/** Amazon is run in the US, UK, EU and the Middle East; Walmart in the US only. */
 export const AMAZON_AREAS = ["US", "GB", "EU", "AE"];
 export const WALMART_AREAS = ["US"];
 

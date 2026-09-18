@@ -9,7 +9,13 @@
  *     refusal, not the pitch).
  *  2. `$` followed by a digit — allowed only inside
  *     [data-worked-example] blocks that visibly carry an
- *     arbitrary/illustrative label. v4 copy publishes no $-figures.
+ *     arbitrary/illustrative label. v4 copy publishes no $-figures,
+ *     with one exception since PROMPT_26 §2: the exact phrase
+ *     "$800 a month" (management from). Any other $-figure fails.
+ *  1b. PROMPT_26 §2 global deletions — "Gulf" (say Middle East), any
+ *     founder name, "since 2013", "We are new", "Fixed fees, agreed in
+ *     writing first" and its variants. Checked over the full served
+ *     HTML so metas, alt text and JSON-LD are covered too.
  *  3. Walmart geography — Walmart is US-only. Fail any sentence that
  *     contains "Walmart" together with UK, Europe, EU, Gulf, UAE or
  *     Singapore, unless the sentence itself scopes it with
@@ -28,8 +34,14 @@ const BANNED =
 
 /** Exact sentences allowed to contain a banned phrase, because they
  *  refuse it. Anything else that matches still fails. */
+/** PROMPT_26 §2 — phrases that must not appear anywhere in served HTML. */
+const P26_BANNED =
+  /\bGulf\b|since 2013|\bWe are new\b|Fixed fees,? agreed in writing( first)?|\bGautam\b|\bNaidu\b/gi;
+
 const NEGATIONS = [
   "Not for anyone looking for passive income or a guaranteed return.",
+  // PROMPT_26 §4.10 — the /how-we-work "Who we are not a fit for" list.
+  "Anyone looking for passive income or a guaranteed return",
 ];
 
 const src = readFileSync(join(ROOT, "lib/site-map.ts"), "utf8");
@@ -70,7 +82,7 @@ for (const r of ["/", ...live]) {
     problems.push(`${r}: banned phrase "${m[0]}" in: …${ctx}…`);
   }
 
-  if (/\$[0-9]/.test(text))
+  if (/\$[0-9]/.test(text.split("$800 a month").join(" ")))
     problems.push(`${r}: $-figure in body copy outside a labelled worked example`);
 
   // Walmart geography — per sentence, over the full served HTML text
@@ -83,6 +95,11 @@ for (const r of ["/", ...live]) {
     .replace(/<[^>]+>/g, " ")
     .replace(/&amp;/g, "&")
     .replace(/\s+/g, " ");
+  for (const m of fullText.matchAll(P26_BANNED)) {
+    const ctx = fullText.slice(Math.max(0, m.index - 40), m.index + 50).trim();
+    problems.push(`${r}: PROMPT_26 banned "${m[0]}" in: …${ctx}…`);
+  }
+
   for (const sentence of fullText.split(/(?<=[.!?])\s+/)) {
     if (!/walmart/i.test(sentence)) continue;
     if (!GEO.test(sentence)) continue;
@@ -102,5 +119,5 @@ if (problems.length) {
   process.exit(1);
 }
 console.log(
-  "check-copy OK — no banned phrases, no unlabelled figures, Walmart stays US-only"
+  "check-copy OK — no banned phrases, no unlabelled figures, PROMPT_26 deletions clean, Walmart stays US-only"
 );
