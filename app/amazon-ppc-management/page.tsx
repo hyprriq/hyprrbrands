@@ -38,7 +38,7 @@ const BOOKING = process.env.NEXT_PUBLIC_BOOKING_URL || "/contact";
 const FAQS = [
   {
     q: "How much does an Amazon PPC agency charge?",
-    a: "Most charge a monthly retainer, a percentage of ad spend, or a percentage of revenue. Retainers are commonly in the low thousands per month. A percentage of ad spend pays the agency more when you spend more, which is the arrangement we avoid.",
+    a: "An agency paid a percentage of your ad spend earns more when you spend more. We are paid a monthly fee that does not move with the budget, so the advice you get is about margin rather than volume.",
   },
   {
     q: "What is a good ACoS?",

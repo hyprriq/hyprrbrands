@@ -29,12 +29,12 @@ export const SITE_MAP: SitePage[] = [
   {
     slug: "/amazon-private-label",
     title: "Private label",
-    h1: "Launch a brand. Or run the one you already have.",
+    h1: "Build a brand, not a listing.",
     group: "service",
     status: "live",
     priority: 2,
     oneLine:
-      "Product research, sourcing, packaging and marketplace launch, then the daily operation after it",
+      "Private label brands from an idea, an existing product or an opportunity we find: research, development, sourcing, launch and the operation afterwards",
   },
   {
     slug: "/amazon-wholesale-management",

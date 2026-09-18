@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import JsonLd from "@/components/JsonLd";
 import Faq from "@/components/Faq";
 import Visual from "@/components/Visual";
@@ -7,14 +8,18 @@ import { breadcrumbLd, serviceLd, webPageLd } from "@/lib/schema";
 import { ogImageMeta } from "@/lib/og-pages";
 
 /**
- * Private label — v4 structure from docs/v4/hyprr-private-label-v3-3.html,
- * copy and section order per PROMPT_24 §4.1 (final, edited; the
- * compliance gates, direct costs, launch timeline, import and declined
- * products sections are new). Strings verbatim; wiring only.
+ * Private label — rebuilt around the brand lifecycle per PROMPT_31 §6
+ * (rev B). Copy is final and pasted as written. Order: hero · four ways
+ * in · product or brand · the eight-stage lifecycle (DOM) · stage 02 in
+ * detail (seven tests, PROMPT_26/27) · decisions · stage 05 in detail
+ * (factory chain) · compliance matrix (PROMPT_24, kept — PROMPT_27
+ * depends on it) · floors · channels · range · value · timing · the
+ * kept PROMPT_24 sections · the definition snippet · FAQ (5 + 2) · CTA.
+ * The URL and the title keyword do not change.
  */
-const TITLE = "Amazon Private Label Agency | Research, Test, Launch | Hyprr";
+const TITLE = "Private Label Brand Development | Amazon and DTC | Hyprr";
 const DESC =
-  "Amazon private label agency. We research, source, test and launch on Amazon and Walmart US. If the numbers or compliance fail, you hear it before you buy.";
+  "We build private label brands from an idea, an existing product or an opportunity we find: research, development, sourcing, launch and the operation after.";
 const PATH = "/amazon-private-label";
 
 export const metadata: Metadata = {
@@ -60,6 +65,14 @@ const FAQS = [
     q: "How do you get the first reviews?",
     a: "Through Amazon's own programs, such as Vine where the listing qualifies, and through a product that earns them. We don't use review groups, rebates, or giveaways in exchange for reviews. They put the account at risk, and the account is yours.",
   },
+  {
+    q: "I already have a brand that sells. Is this still for me?",
+    a: "Yes, and it starts differently: a diagnosis of the catalog and the economics before anything is built, then the products and channels that the existing business has earned.",
+  },
+  {
+    q: "Who owns the brand, the IP and the accounts?",
+    a: "You do, from the first day. The trademark is filed in your name, the marketplace accounts are registered to you, and the supplier relationships are yours. You can remove our access yourself at any time.",
+  },
 ];
 
 /** PROMPT_26 §7 — the seven selection tests, verbatim. */
@@ -96,6 +109,88 @@ const SELECTION_TESTS = [
   },
 ];
 
+/** §6.2 — the four ways in. */
+const WAYS_IN = [
+  {
+    tag: "You have the idea",
+    accent: "var(--violet)",
+    h3: "\u201cI know what I want to build.\u201d",
+    body: "We pressure-test it before you spend: the demand behind it, who already owns that demand, what it costs landed, and what would have to be true for it to work. If it survives, we build it. If it doesn\u2019t, you get the reasoning and the closest opportunity that does.",
+    foot: "Starts at validation",
+  },
+  {
+    tag: "You have a product",
+    accent: "var(--citrus)",
+    h3: "\u201cI already sell it, or I have the supplier.\u201d",
+    body: "An existing product, a supplier relationship or a concept that never became a brand. We assess the opportunity as it stands, fix what the numbers or the positioning will not survive, and build the brand around it.",
+    foot: "Starts at the assessment",
+  },
+  {
+    tag: "You have the market",
+    accent: "var(--aqua)",
+    h3: "\u201cI know the customer. I don\u2019t know the product.\u201d",
+    body: "You bring the category, the audience or the channel you understand. We come back with a shortlist inside it \u2014 each with its demand read, the gaps in what is already selling, and the unit economics \u2014 and you choose.",
+    foot: "Starts at research",
+  },
+  {
+    tag: "You have a brand",
+    accent: "var(--sky)",
+    h3: "\u201cIt sells. It should be bigger.\u201d",
+    body: "A catalog, customers and history already exist. We read the economics by product, find what is being left on the table, and build the next products and channels on the foundation you have.",
+    foot: "Starts at the diagnosis",
+  },
+];
+
+/** §6.4 — the eight stages. No durations here: timing lives in §6.11.
+ *  Accents in the ticket's order; "lime" is not a site token, so stage
+ *  04 carries petrol (reported). */
+const LIFECYCLE = [
+  { stage: "Opportunity", accent: "var(--violet)", what: "Demand, not products. We read what customers are already searching for, buying and complaining about in the space, and where the market is being served badly. Your idea is tested here as one candidate among the others.", get: "A shortlist of opportunities with the demand behind each one", stops: "Nothing in the space clears the demand or the competition read" },
+  { stage: "Validate", accent: "var(--aqua)", what: "The seven tests below, run properly: category and compliance, barrier to entry, keyword spread, gaps in the leaders, returns behaviour, the advantage we could build, and the unit economics down to margin and return on the money tied up.", get: "A written verdict: approve, review or reject, with the numbers it was based on", stops: "The economics do not clear the floor at a price the market already pays" },
+  { stage: "Product", accent: "var(--citrus)", what: "The specification: what the product has to do better, and what that costs. Suppliers identified and compared, samples ordered, tested and changed. Usually more than one round, and the round that finds the problem is the one that pays for itself.", get: "The specification, the sample record and the costed bill of materials", stops: "Samples cannot hit the specification at a cost that leaves margin" },
+  { stage: "Brand", accent: "var(--petrol)", what: "Name, trademark filing, Brand Registry, identity, packaging and the content set \u2014 photography, copy and assets produced once, for every channel the brand will sell in.", get: "The brand system, the IP filings and the content library", stops: "A name or a mark that cannot be cleared, or a claim we could not substantiate" },
+  { stage: "Supply chain", accent: "var(--sky)", what: "Supplier agreement and terms, compliance and testing for the category, production, inspection before the goods ship, freight, duty and the importer-of-record file. Your business is the importer, so the documents are yours and they are filed correctly from the first order.", get: "The production, inspection, compliance and import file", stops: "Inspection fails, or a certificate the category needs cannot be obtained" },
+  { stage: "Launch", accent: "var(--coral)", what: "Listing, A+ content, brand store, inventory plan and advertising built for margin rather than rank. Deliberately small first order, because the market has not paid for the product yet \u2014 it has only been researched.", get: "The live listing, the launch plan, the advertising budget with what it is expected to buy, and the first read on real demand", stops: "Conversion or cost per sale says the offer is wrong before more stock is committed" },
+  { stage: "Operate", accent: "var(--violet)", what: "Margin by product after fees, freight, returns and advertising. Inventory and the cash cycle managed against the reorder date rather than the stockout. Reviews and returns read as product feedback, not as reputation management.", get: "A monthly report, a quarterly plan, and the numbers behind the next decision", stops: "A product that will not reach the margin floor is discontinued rather than propped up" },
+  { stage: "Expand", accent: "var(--aqua)", what: "The second product, the third, and the channels the brand has earned \u2014 each decided by what the ones before it taught us, not by what is trending.", get: "The next product or channel, with the case for it in writing", stops: "Expanding before the first product clears its floor, which is how a range becomes a warehouse" },
+];
+
+/** §6.6a — the factory chain; the eight steps match the supplied image. */
+const CHAIN = [
+  { step: "Supplier", what: "Manufacturers found and compared on capability, not on the first quote. Trading companies identified as trading companies. Terms, minimums, lead time and who owns the tooling agreed before a sample is paid for.", artifact: "Supplier comparison and supply agreement" },
+  { step: "Sample", what: "Rounds until the sample meets the written specification, with every change recorded against the version that failed. One sample is approved and kept as the reference for everything after it.", artifact: "Technical specification and approved golden sample" },
+  { step: "QC / testing", what: "The testing the category requires, at an accredited lab, on the product that will actually be made \u2014 not on a sample built to pass.", artifact: "Test reports and certificates" },
+  { step: "Production", what: "The order placed against the approved sample, with the specification attached to the purchase order rather than assumed.", artifact: "Purchase order and production schedule" },
+  { step: "Documentation", what: "Inspection before the goods leave the factory, on a defined sampling plan, with the report in hand before the balance is paid. Carton labels, barcodes and country-of-origin marking checked while the run can still be corrected.", artifact: "Pre-shipment inspection report, compliance file, label approval" },
+  { step: "Freight", what: "Booking and mode chosen as a margin decision, then duty and customs entry in your company\u2019s name. Your business is the importer of record, so the file belongs to you.", artifact: "Commercial invoice, packing list, bill of lading, customs entry" },
+  { step: "Warehouse", what: "Receipt, prep and inbound \u2014 to the marketplace, to a third-party warehouse, or to your own. Counted against the purchase order rather than assumed to have arrived.", artifact: "Inbound plan and receipt reconciliation" },
+  { step: "Customer", what: "The first units in customers\u2019 hands, and the first honest read on the product. Reviews and returns come back into stage 02 of the next product.", artifact: "The first reviews and return reasons, read as product feedback" },
+];
+
+/** §6.7 — the floors are fields, not figures. */
+const FLOORS = [
+  { field: "Margin floor", line: "A minimum net margin per unit after fees, freight, returns and advertising, set per category before sourcing starts." },
+  { field: "Return on the money tied up", line: "What the cash in stock has to earn per cycle for the line to be worth holding." },
+  { field: "Cost of acquisition against value", line: "What a customer may cost against what a customer is worth, measured once there is repeat data rather than assumed at launch." },
+  { field: "No single product carrying the brand", line: "A ceiling on how much of revenue one product may represent before the second one becomes urgent." },
+  { field: "No single channel carrying the business", line: "The same ceiling by channel. A brand that only exists on one marketplace is worth less, and is one policy change from zero." },
+];
+
+/** §6.11 — timing bands and what sets the clock. */
+const BANDS = [
+  { band: "Existing product, your brand", range: "3\u20135 months", text: "A product that already exists in the market and needs your brand, your packaging and a better offer. No tooling, no new certification path." },
+  { band: "Modified product", range: "5\u20139 months", text: "A real change to what is on the market: materials, sizing, a component, a set rather than a single unit. Extra sample rounds, and testing if the change touches a regulated attribute." },
+  { band: "Developed product", range: "9\u201315 months", text: "Tooling, engineering drawings, several sample rounds, lab testing and certification. The longest stretch is rarely the making \u2014 it is the waiting between rounds." },
+];
+const CLOCK = [
+  { k: "Sample rounds", v: "Two to six weeks each, including freight, and two rounds is optimistic. The round that finds the problem is the one that saves the launch." },
+  { k: "Tooling", v: "Weeks to months, and it is paid before it is proven. This is why the specification is settled first." },
+  { k: "Testing and certification", v: "The category decides this, not us. Some certificates take days, some take a quarter." },
+  { k: "Factory queue and minimums", v: "A factory\u2019s calendar and its minimum order both move dates. Chinese New Year and peak season move them further." },
+  { k: "Freight", v: "Sea is weeks and cheap, air is days and expensive. Which one you use is a margin decision, and it is made with the numbers in front of you." },
+  { k: "Marketplace setup", v: "Brand Registry, category approval and listing review run in parallel, and occasionally they are the thing everyone is waiting on." },
+];
+
 export default function Page() {
   return (
     <main id="main">
@@ -107,110 +202,237 @@ export default function Page() {
             { name: "Private label", path: PATH },
           ]),
           serviceLd({
-            name: "Amazon private label agency",
-            serviceType: "Private label product launch and operations",
+            name: "Private label brand development",
+            serviceType: "Private label product development, launch and operations",
             path: PATH,
             description: DESC,
           }),
         ]}
       />
 
-      {/* 1 · HERO — visual 02 (master in a card: petrol band) */}
-      <section className="plhero">
-        <div className="wrap plhero-grid">
-          <div>
-            <span className="eyebrow">Private label / Amazon + Walmart US</span>
-            <h1>Launch a brand. Or run the one you already have.</h1>
-            <p>
-              We take a private label business from product opportunity and
-              sourcing through marketplace launch, then run it every day
-              afterwards. If the product does not work on paper, we tell you
-              before you spend.
-            </p>
-            <div className="plchips">
-              <span className="chip">PRODUCT RESEARCH</span>
-              <span className="chip">SOURCING</span>
-              <span className="chip">DEVELOPMENT</span>
-              <span className="chip">PACKAGING</span>
-              <span className="chip">AMAZON</span>
-              <span className="chip">WALMART US</span>
-            </div>
-            <div className="cta-row">
-              <a className="btn cit" href={BOOKING}>
-                Book a call
-              </a>
-              <a className="btn line-l" href="#gate">
-                See a product verdict
-              </a>
-            </div>
+      {/* 6.1 · HERO — DOM copy, then the supplied artwork as a full-bleed
+          band on #F6F4F2 (asset A1). The H1 and CTAs are real text. */}
+      <section className="plhero-lite" id="top">
+        <div className="wrap tight">
+          <div className="kicker">Private label</div>
+          <h1>Build a brand, not a listing.</h1>
+          <p className="sub">
+            We develop private label products around real customer demand,
+            then build the brand, the supply chain and the operation that turn
+            one product into a business. Amazon is one of the fastest
+            real-world reads on whether the market will pay for a product. It
+            is not the whole plan.
+          </p>
+          <p className="line">
+            Bring an idea, a product you already sell, a market you understand
+            &mdash; or nothing but the capital and the intent.
+          </p>
+          <div className="cta-row">
+            <a className="btn dark" href={BOOKING}>
+              Book a call
+            </a>
+            <a className="btn ghost" href="#lifecycle">
+              See the lifecycle
+            </a>
           </div>
-          <Visual
-            variant="hero"
-            onDark
-            name="amazon-private-label/hero-six-stages"
-            alt="Private label journey for an example brand: sketch, technical drawing, prototype, finished bottle and retail box, listed on Amazon and Walmart, above six stages from research to stabilize and a timeline with the first order at day 60–90"
+        </div>
+        <div className="plhero-art">
+          <Image
+            src="/img/pl-hero.webp"
+            width={1586}
+            height={992}
+            priority
+            sizes="(min-width: 1600px) 1600px, 100vw"
+            alt="A private label brand on a desk: a bottle, cartons, a laptop and a phone showing the brand's store, with four starting points — an idea, a product, a market, a brand — and the eight steps from opportunity to expand."
           />
         </div>
       </section>
 
-      {/* 2 · TWO STARTING POINTS */}
-      <section className="start" id="journey">
-        <div className="wrap">
-          <h2>Same destination. Different starting point.</h2>
-          <div className="start-grid">
-            <div className="start-card new">
-              <span className="tag">01 — LAUNCHING</span>
-              <h3>You have the idea. Build the brand.</h3>
-              <p style={{ margin: "10px 0 0" }}>
-                For founders, investors and businesses entering private label.
-              </p>
-              <ul>
-                <li>Research the category and the product opportunity</li>
-                <li>Product development, samples and quality spec</li>
-                <li>Sourcing, unit cost and a written verdict</li>
-                <li>Packaging, compliance and brand</li>
-                <li>Listing, launch and first advertising</li>
-              </ul>
-              <a className="go" href="#build">
-                See the build path →
-              </a>
+      {/* 6.2 · START WITH WHAT YOU HAVE */}
+      <section className="sec band-paper" id="ways-in" data-feature="ways-in">
+        <div className="wrap tight">
+          <div className="sec-head">
+            <div>
+              <div className="kicker">Where you start</div>
+              <h2>Four ways in. The same discipline after that.</h2>
             </div>
-            <div className="start-card existing">
-              <span className="tag">02 — ALREADY SELLING</span>
-              <h3>You have the brand. Improve and run it.</h3>
-              <p style={{ margin: "10px 0 0" }}>
-                For brands with products, listings or marketplace sales already
-                in place.
-              </p>
-              <ul>
-                <li>
-                  <a href="/amazon-listing-optimization">
-                    Listing and catalog optimization
-                  </a>
-                </li>
-                <li>Inventory, replenishment and stock cover</li>
-                <li>Amazon and Walmart US account operations</li>
-                <li>Advertising, ranking and the featured offer</li>
-                <li>Growth, then expansion into new products</li>
-              </ul>
-              <a className="go" href="#operate">
-                See what we operate →
-              </a>
+            <p>
+              Most people arrive with one of four things. None of them is a
+              disadvantage &mdash; they just change where the work begins.
+            </p>
+          </div>
+          <div className="routes4">
+            {WAYS_IN.map((w) => (
+              <article
+                key={w.tag}
+                className="route"
+                style={{ ["--accent" as string]: w.accent }}
+              >
+                <div className="tag-row">
+                  <span className="sq" aria-hidden="true" />
+                  <span className="kicker">{w.tag}</span>
+                </div>
+                <h3>{w.h3}</h3>
+                <p className="route-body">{w.body}</p>
+                <div className="spacer" />
+                <div className="foot">
+                  <div className="kicker">{w.foot}</div>
+                </div>
+              </article>
+            ))}
+          </div>
+          <p className="after-cards">
+            Whichever door you come through, nothing is ordered until the
+            decision is written down and you have approved it.
+          </p>
+        </div>
+      </section>
+
+      {/* 6.3 · A PRODUCT, OR A BRAND */}
+      <section className="sec" id="scope" data-feature="scope">
+        <div className="wrap tight">
+          <div className="sec-head">
+            <div>
+              <div className="kicker">Scope</div>
+              <h2>One product can be the business. Or it can be the beginning of a brand.</h2>
+              <p className="pull">We build for either.</p>
             </div>
+            <p>
+              Some clients want one product built properly. Others want a brand
+              &mdash; a position in a market, with a family of products behind
+              it. The difference is not the method. It is how many times the
+              method runs, and what decides the next product.
+            </p>
+          </div>
+          <div className="scope-cols">
+            <div>
+              <div className="kicker">One product</div>
+              <p>
+                You want a specific product made and sold well. We run the
+                lifecycle once, end to end, and operate it afterwards. The
+                brand exists to carry that product properly: a name that can
+                be owned, packaging that holds up, a listing that converts. If
+                the product works and you later want a second, the foundation
+                is already built and stage 01 starts again.
+              </p>
+              <p className="fits">
+                <b>Where it fits:</b> a manufacturer going direct &middot; a
+                seller with one strong idea &middot; testing a market before
+                committing to it.
+              </p>
+            </div>
+            <div>
+              <div className="kicker">A brand</div>
+              <p>
+                You want a business in a market, not a single item. We start
+                from the customer and the position rather than from a product:
+                who it is for, what it stands against, what price band it
+                lives in, what it must never sell. Then we run the lifecycle
+                for the first product, and again for the second and third
+                &mdash; each decided by what the first one taught us.
+              </p>
+              <p className="fits">
+                <b>Where it fits:</b> brand owners building a range &middot;
+                investors backing a category &middot; an existing catalog that
+                needs a spine.
+              </p>
+            </div>
+          </div>
+          <p className="third-path">
+            <b>An existing brand starts at 07 and works backwards</b> &mdash;
+            we read the catalog and the economics first, fix what the numbers
+            will not survive, then re-enter the lifecycle at whichever stage
+            the next product needs.
+          </p>
+          <figure className="visual pl-card">
+            <div className="visual-scroll" data-feature="visual-scroll">
+              <Image
+                src="/img/pl-product-vs-brand.webp"
+                width={1536}
+                height={1024}
+                loading="lazy"
+                sizes="(max-width: 767px) 900px, (min-width: 1148px) 1100px, 100vw"
+                alt="One product beside a family of products in the same brand, the two routes set side by side, with the marketplace, owned store, Walmart and other channels the brand can sell in."
+              />
+            </div>
+            <span className="visual-swipe" aria-hidden="true">
+              Swipe to see the full view &rarr;
+            </span>
+          </figure>
+          <p className="after-cards">
+            A brand is not a logo on a product. It is a promise to a specific
+            customer, and a reason for the second purchase. That is why it is
+            decided before the first product, not after the third.
+          </p>
+        </div>
+      </section>
+
+      {/* 6.4 · THE LIFECYCLE — DOM, no image, no durations */}
+      <section className="sec band-paper" id="lifecycle" data-feature="lifecycle">
+        <div className="wrap tight">
+          <div className="sec-head">
+            <div>
+              <div className="kicker">The lifecycle</div>
+              <h2>From an opportunity to a brand that runs without you.</h2>
+            </div>
+            <p>
+              Eight stages. Each one ends in a decision, and each one can end
+              the project &mdash; which is the point. The cheapest failure is
+              the one that happens before a purchase order.
+            </p>
+          </div>
+          <div className="rows5 lc-rows">
+            {LIFECYCLE.map((s, i) => (
+              <div className="row5 lc-row" key={s.stage}>
+                <div>
+                  <div className="lbl">Step {String(i + 1).padStart(2, "0")}</div>
+                  <div className="lc-num" style={{ color: s.accent }} aria-hidden="true">
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <h3>{s.stage}</h3>
+                </div>
+                <div>
+                  <div className="lbl">What happens</div>
+                  <p className="lead">{s.what}</p>
+                </div>
+                <div className="facts">
+                  <div>
+                    <div className="lbl">You get</div>
+                    {s.get}
+                  </div>
+                  <div>
+                    <div className="lbl">What stops it</div>
+                    {s.stops}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="loop-row">
+            <svg width="220" height="24" viewBox="0 0 220 24" aria-hidden="true">
+              <path d="M214 12 H12" stroke="var(--violet)" strokeWidth="1.5" strokeDasharray="4 4" fill="none" />
+              <path d="M18 5 L8 12 L18 19" stroke="var(--violet)" strokeWidth="1.5" fill="none" />
+            </svg>
+            <span>
+              Each product teaches the next one. Stage 08 is where the next
+              opportunity comes from.
+            </span>
           </div>
         </div>
       </section>
 
-      {/* 2b · PRODUCT SELECTION — PROMPT_26 §7. Seven tests, then a
-          verdict. No client, brand or product name appears here. */}
-      <section className="sec" id="selection" data-feature="selection-tests">
+      {/* 6.5 · STAGE 02 IN DETAIL — the seven tests (PROMPT_26 §7 content,
+          PROMPT_27 test 01), demoted under the lifecycle per PROMPT_31 §6.5.
+          No client, brand or product name appears here. */}
+      <section className="sec band-paper stage-detail" id="selection" data-feature="selection-tests">
         <div className="wrap tight">
           <div className="sec-head">
             <div>
-              <div className="kicker">Product selection</div>
-              <h2>How we choose a product.</h2>
+              <div className="kicker">Stage 02 in detail</div>
+              <h3 className="h2-demoted">How we choose a product.</h3>
             </div>
             <p>
+              <b>Most candidates fail here, and that is what the stage is for.</b>{" "}
               Most private label failures are decided before anything is
               ordered — the wrong product, in a niche that cannot be entered,
               at a cost that never leaves a margin. Every product we take on
@@ -228,13 +450,13 @@ export default function Page() {
                 <div className="n" aria-hidden="true">
                   {String(i + 1).padStart(2, "0")}
                 </div>
-                <h3>{t.title}</h3>
+                <h4>{t.title}</h4>
                 <p>{t.body}</p>
               </div>
             ))}
           </div>
           <div className="verdict-block">
-            <h3>Then a written verdict: approve, review or reject.</h3>
+            <h4>Then a written verdict: approve, review or reject.</h4>
             <p>
               You get the research, the competitor matrix, the cost model and
               the recommendation, in writing. A reject is a result — it is the
@@ -248,54 +470,52 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 3 · BUILD PATH — six stages (compliance moved into Source, §4.1) */}
-      <section className="buildband" id="build">
-        <div className="wrap">
-          <h2>From product opportunity to marketplace-ready.</h2>
-          <div className="build-grid">
+      {/* 6.6 · EVERY STAGE ENDS IN A DECISION */}
+      <section className="sec" id="decisions" data-feature="decisions">
+        <div className="wrap tight">
+          <div className="sec-head">
             <div>
+              <div className="kicker">How decisions get made</div>
+              <h2>Every investment starts with a decision, in writing.</h2>
+            </div>
+            <p>
+              The same document at every gate: what we looked at, what it
+              costs, what we recommend, and what would change the answer. It
+              is the record that makes the next decision faster, and the one
+              an investor or a buyer can read later.
+            </p>
+          </div>
+          <div className="cells3">
+            <div className="cell">
+              <b>Approve</b>
               <p>
-                Six stages, in order. Research and development take weeks.
-                Sampling and manufacturing take months and depend on the
-                supplier. Plan on a first purchase order somewhere between day
-                60 and day 90, and treat anyone promising faster as optimistic.
-              </p>
-              <p style={{ marginBottom: 0 }}>
-                <b>This stage is a launch project.</b> Fixed scope, priced and
-                agreed in writing before anything starts, and it ends at
-                launch.
+                The numbers clear the floor and the risks are named. We proceed
+                to the next stage, with the budget for it agreed.
               </p>
             </div>
-            <div className="steps">
-              <div className="step">
-                <b>01 Research</b>
-                <span>MARKET + PRODUCT OPPORTUNITY</span>
-              </div>
-              <div className="step">
-                <b>02 Develop</b>
-                <span>PRODUCT + DESIGN + R&amp;D</span>
-              </div>
-              <div className="step">
-                <b>03 Source</b>
-                <span>
-                  SUPPLIERS, SAMPLES, TESTING SCOPE AND COST, AGREED BEFORE THE
-                  PURCHASE ORDER
-                </span>
-              </div>
-              <div className="step">
-                <b>04 Package</b>
-                <span>PACKAGING, LABELS AND RETAIL READINESS</span>
-              </div>
-              <div className="step">
-                <b>05 Launch</b>
-                <span>LISTING + AMAZON + WALMART US</span>
-              </div>
-              <div className="step">
-                <b>06 Stabilize</b>
-                <span>INVENTORY + OPERATIONS</span>
-              </div>
+            <div className="cell">
+              <b>Review</b>
+              <p>
+                Something is unresolved &mdash; a cost, a certificate, a
+                supplier. We say what would have to be true, and what it will
+                take to find out.
+              </p>
+            </div>
+            <div className="cell">
+              <b>Reject</b>
+              <p>
+                We recommend stopping, and say why. A reject costs a fee.
+                Continuing past one costs the inventory.
+              </p>
             </div>
           </div>
+          <p className="after-cards">
+            You approve every stage and every purchase order in writing. We
+            never buy anything in our own name.{" "}
+            <a className="link-arrow" href="/proof">
+              See a verdict template &rarr;
+            </a>
+          </p>
         </div>
       </section>
 
@@ -369,6 +589,61 @@ export default function Page() {
         </div>
       </section>
 
+      {/* 6.6a · STAGE 05 IN DETAIL — the factory chain, then the supplied
+          photographic band (asset A3) on #F9F8F6 */}
+      <section className="sec band-paper stage-detail" id="factory-chain" data-feature="factory-chain">
+        <div className="wrap tight">
+          <div className="sec-head">
+            <div>
+              <div className="kicker">Stage 05 in detail</div>
+              <h3 className="h2-demoted">
+                From a specification to stock you own, with a document at
+                every handover.
+              </h3>
+            </div>
+            <p>
+              This is the part clients have usually been burned on, and the
+              part a buyer or an investor examines first. A supplier
+              relationship that exists only in a chat history is not a supply
+              chain.
+            </p>
+          </div>
+          <ol className="chain">
+            {CHAIN.map((c, i) => (
+              <li className="chain-row" key={c.step}>
+                <span className="chain-num mono" aria-hidden="true">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="chain-step">{c.step}</span>
+                <span className="chain-what">{c.what}</span>
+                <span className="chain-artifact">{c.artifact}</span>
+              </li>
+            ))}
+          </ol>
+          <p className="after-cards">
+            Nothing here is exotic. It is the ordinary chain done in the
+            ordinary order, and it is the difference between owning a product
+            and renting one from a supplier who could sell the same mould to
+            the next buyer.
+          </p>
+        </div>
+        <figure className="visual pl-bleed">
+          <div className="visual-scroll" data-feature="visual-scroll">
+            <Image
+              src="/img/pl-factory-chain.webp"
+              width={1656}
+              height={950}
+              loading="lazy"
+              sizes="(max-width: 767px) 900px, (min-width: 1700px) 1700px, 100vw"
+              alt="Eight photographed steps from supplier and sample through testing, production, documentation, freight and warehouse to the customer, with the document each step produces."
+            />
+          </div>
+          <span className="visual-swipe wrap tight" aria-hidden="true">
+            Swipe to see the full view &rarr;
+          </span>
+        </figure>
+      </section>
+
       {/* 5 · P0 · COMPLIANCE GATES — replaces the categories photos */}
       <section className="start" id="compliance">
         <div className="wrap">
@@ -429,6 +704,243 @@ export default function Page() {
         </div>
       </section>
 
+      {/* 6.7 · THE NUMBERS WE RUN TO */}
+      <section className="sec" id="floors" data-feature="floors">
+        <div className="wrap tight">
+          <div className="sec-head">
+            <div>
+              <div className="kicker">Operating discipline</div>
+              <h2>The floors, stated before the money moves.</h2>
+            </div>
+            <p>
+              These are the thresholds a product has to clear to stay in the
+              plan. They are agreed at the start of the engagement and they do
+              not move because a launch is exciting.
+            </p>
+          </div>
+          <div className="floors">
+            {FLOORS.map((f) => (
+              <div className="floor" key={f.field}>
+                <div className="floor-field mono">{f.field}</div>
+                <p>{f.line}</p>
+              </div>
+            ))}
+          </div>
+          <p className="after-cards">
+            These are also the fundamentals an investor or an acquirer will
+            eventually examine. Building them correctly from the beginning is
+            cheaper than retrofitting them later.
+          </p>
+        </div>
+      </section>
+
+      {/* 6.8 · WHERE THE BRAND SELLS */}
+      <section className="sec band-paper" id="channels" data-feature="channels">
+        <div className="wrap tight">
+          <div className="sec-head">
+            <div>
+              <div className="kicker">Channels</div>
+              <h2>Build once. Make the brand work everywhere.</h2>
+            </div>
+            <p>
+              Amazon can give you one of the fastest real-world reads on
+              whether the market will pay for the product, at a cost of entry
+              no other channel matches. It is a proving ground and a revenue
+              line &mdash; not a business on its own.
+            </p>
+          </div>
+          <div className="cells4">
+            <div className="cell">
+              <b>Amazon &mdash; demand and discovery</b>
+              <p>
+                Where demand is tested first, and where the catalog, the
+                reviews and the advertising are run day to day. US, UK and
+                Europe.
+              </p>
+            </div>
+            <div className="cell">
+              <b>Your own store &mdash; the owned relationship</b>
+              <p>
+                Where the margin, the customer and the data are yours. Built
+                once the product has proven it sells.
+              </p>
+            </div>
+            <div className="cell">
+              <b>Walmart US &mdash; retail scale</b>
+              <p>
+                A separate approval and its own catalog discipline, run from
+                the same content.
+              </p>
+            </div>
+            <div className="cell">
+              <b>Where the category lives &mdash; chosen, not assumed</b>
+              <p>
+                Some products belong in a retail buyer&apos;s hands, some in
+                short-form video, some in neither. The mix follows the product,
+                the customer and the economics, and no brand launches
+                everywhere at once.
+              </p>
+            </div>
+          </div>
+          <p className="after-cards">
+            The photography, the copy and the packaging are produced once and
+            used everywhere. Doing it channel by channel is how brands end up
+            paying three times for the same asset.
+          </p>
+        </div>
+      </section>
+
+      {/* 6.9 · ONE PRODUCT IS NOT A BRAND */}
+      <section className="sec" id="range" data-feature="range">
+        <div className="wrap tight">
+          <div className="sec-head">
+            <div>
+              <div className="kicker">The range</div>
+              <h2>The second product is planned before the first one ships.</h2>
+            </div>
+            <p>
+              The first product proves the demand. The range is what makes the
+              economics work: shared tooling, shared freight, shared audience,
+              and a reason for a buyer to come back.
+            </p>
+          </div>
+          <div className="cells4">
+            <div className="cell">
+              <b>Product 01</b>
+              <p>proves the demand and pays for the learning.</p>
+            </div>
+            <div className="cell">
+              <b>Product 02</b>
+              <p>
+                sells to the same customer, usually decided by what the reviews
+                on product 01 ask for.
+              </p>
+            </div>
+            <div className="cell">
+              <b>Product 03</b>
+              <p>widens the range or the price band.</p>
+            </div>
+            <div className="cell">
+              <b>The range</b>
+              <p>
+                shared costs, a reason to return, and a business that does not
+                rest on one listing.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6.10 · BUILT TO BE WORTH SOMETHING */}
+      <section className="sec band-paper" id="value" data-feature="value">
+        <div className="wrap tight">
+          <div className="sec-head">
+            <div>
+              <div className="kicker">Value</div>
+              <h2>Build it so it can stand on its own.</h2>
+              <p className="sub-line">
+                Built so it can be sold, or kept, on your terms rather than a
+                buyer&apos;s.
+              </p>
+            </div>
+            <p>
+              Most ecommerce businesses are built to produce income, and then
+              discovered years later to be hard to value. The difference is
+              not luck. It is a handful of things that are cheap to do from
+              the start and expensive to add afterwards.
+            </p>
+          </div>
+          <div className="two-cols value-cols">
+            <div>
+              <div className="lbl">What gets a brand valued</div>
+              <ul className="facts valued">
+                <li>
+                  <b>The IP is yours and it is clean.</b> Trademark in your
+                  name, Brand Registry enrolled, designs and content owned
+                  rather than borrowed from a supplier&apos;s catalog.
+                </li>
+                <li>
+                  <b>The numbers are auditable.</b> Margin by product and by
+                  channel, from the first order, in a form someone outside the
+                  business can follow without taking your word for it.
+                </li>
+                <li>
+                  <b>The supply chain is documented.</b> Agreements, invoices,
+                  certificates and inspection records, filed per product. A
+                  supplier relationship that exists only in a chat history is
+                  worth less than one on paper.
+                </li>
+                <li>
+                  <b>The business is not one thing.</b> Not one product
+                  carrying the revenue, not one channel carrying the product,
+                  not one person carrying the operation.
+                </li>
+              </ul>
+            </div>
+            <div>
+              <div className="lbl">What gets a brand discounted</div>
+              <ul className="list2 one-col">
+                <li>A single product doing most of the revenue</li>
+                <li>A single marketplace doing all of it</li>
+                <li>
+                  No customer list and no repeat purchase, so every sale is
+                  rented from an algorithm
+                </li>
+                <li>Records that cannot survive a question</li>
+              </ul>
+            </div>
+          </div>
+          <p className="after-cards">
+            We are not promising you an exit, and nobody credible can. The
+            same work that makes a brand valuable to a buyer is the work that
+            makes it stable to own &mdash; and we do it in the order that
+            costs least.
+          </p>
+        </div>
+      </section>
+
+      {/* 6.11 · HOW LONG IT TAKES — ranges by product type, no launch date */}
+      <section className="sec" id="timing" data-feature="timing">
+        <div className="wrap tight">
+          <div className="sec-head">
+            <div>
+              <div className="kicker">Timing</div>
+              <h2>It takes as long as the product takes.</h2>
+            </div>
+            <p>
+              We can tell you what sets the schedule and what a realistic
+              range looks like for the kind of product you are building. We
+              cannot tell you a date before we know whether it needs a tool, a
+              lab or a certificate &mdash; and anyone who does is guessing.
+            </p>
+          </div>
+          <div className="cells3">
+            {BANDS.map((b) => (
+              <div className="cell band-card" key={b.band}>
+                <div className="lbl">{b.band}</div>
+                <div className="band-range mono">{b.range}</div>
+                <p>{b.text}</p>
+              </div>
+            ))}
+          </div>
+          <div className="lbl" style={{ marginTop: 34 }}>
+            What actually sets the clock
+          </div>
+          <ul className="facts two-col">
+            {CLOCK.map((c) => (
+              <li key={c.k}>
+                <b>{c.k}:</b> {c.v}
+              </li>
+            ))}
+          </ul>
+          <p className="after-cards">
+            What we will commit to is this: every stage has a date when we
+            start it, and if it slips you hear in the week it slips &mdash;
+            not at the end.
+          </p>
+        </div>
+      </section>
+
       {/* 6 · P1 · WHAT YOU PAY FOR DIRECTLY */}
       <section className="buildband" id="direct-costs">
         <div className="wrap">
@@ -467,57 +979,6 @@ export default function Page() {
               marketplace. We never take a share of it.
             </li>
           </ul>
-        </div>
-      </section>
-
-      {/* 7 · P2 · THE LAUNCH TIMELINE — visual 17 */}
-      <section className="start" id="timeline">
-        <div className="wrap">
-          <h2>What you receive at each step.</h2>
-          <p style={{ maxWidth: "70ch" }}>
-            Most of a launch is spent waiting on factories, labs and ships.
-            Every step ends with something you can read.
-          </p>
-          <Visual
-            name="amazon-private-label/launch-timeline"
-            alt="Seven launch steps from research to live listing, what the client receives at each step, and the four points where the client makes the call: go or no-go, sign the spec, approve the purchase order, release the balance"
-          />
-          <ol className="launch-steps">
-            <li>
-              <b>Research and verdict.</b> A written verdict with the numbers
-              and the compliance cost. <em>Your call: go or no-go.</em>
-            </li>
-            <li>
-              <b>Samples and specification.</b> Sample photos, our notes and a
-              spec to sign. <em>Your call: sign the spec.</em>
-            </li>
-            <li>
-              <b>Purchase order.</b> The PO, the payment schedule and the
-              landed-cost model behind it, usually between day 60 and day 90.{" "}
-              <em>Your call: approve it in writing.</em>
-            </li>
-            <li>
-              <b>Production.</b> Factory updates. This is usually the longest
-              quiet stretch.
-            </li>
-            <li>
-              <b>Testing and inspection.</b> Lab reports and the inspection
-              result. A failed test stops the shipment.{" "}
-              <em>Your call: release the balance.</em>
-            </li>
-            <li>
-              <b>Freight and customs.</b> Tracking, the customs entry and the
-              duty bill.
-            </li>
-            <li>
-              <b>Live.</b> Stock received, listing live, launch advertising
-              starts.
-            </li>
-          </ol>
-          <p style={{ marginTop: 20, marginBottom: 0 }}>
-            Plan for the listing to go live months after the purchase order,
-            not days.
-          </p>
         </div>
       </section>
 
@@ -614,39 +1075,6 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 11 · THE FEEDBACK LOOP — visual 03 */}
-      <section className="scaleband">
-        <div className="wrap">
-          <h2>Build the feedback loop.</h2>
-          <p style={{ maxWidth: "70ch" }}>
-            Sales data shows which product earns its place. The next product is
-            chosen from that data, not from a trend list.
-          </p>
-          <Visual
-            name="amazon-private-label/product-family"
-            alt="One proven body wash with its box at the center, expanding into a hand wash, lotion, scrub, refill pouch and bar soap, beside the measure, improve, expand and scale loop"
-          />
-          <div className="scale-flow" style={{ marginTop: 26 }}>
-            <div>
-              <b>Measure</b>
-              <span>Sales, margin and marketplace signals</span>
-            </div>
-            <div>
-              <b>Improve</b>
-              <span>Listing, advertising and price</span>
-            </div>
-            <div>
-              <b>Expand</b>
-              <span>More products, then Walmart US</span>
-            </div>
-            <div>
-              <b>Scale</b>
-              <span>Operations and capacity behind the winners</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* 12 · FEES */}
       <section className="fees">
         <div className="wrap">
@@ -728,7 +1156,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 14 · FAQ */}
+      {/* 6.13 · FAQ — five kept, two added; JSON-LD from the same strings */}
       <Faq items={FAQS} />
 
       {/* 15 · CTA */}

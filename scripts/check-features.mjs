@@ -108,7 +108,7 @@ for (const p of [
 //      scroll wrapper, and the expected count is on each route.
 const VISUAL_SLOTS = {
   "/": 0,
-  "/amazon-private-label": 5,
+  "/amazon-private-label": 4,
   "/amazon-wholesale-management": 5,
   "/amazon-walmart-management": 4,
   "/amazon-listing-optimization": 2,
@@ -157,8 +157,10 @@ for (const p of [
   const h = html[p] ?? "";
   const visible = (h.match(/<details/g) ?? []).length;
   const schema = (h.match(/"@type":"Question"/g) ?? []).length;
-  if (visible !== 5 || schema !== 5)
-    problems.push(`${p}: ${visible} visible FAQs / ${schema} in FAQPage (want 5 / 5)`);
+  // PROMPT_31 §6.13 adds two to private label: seven there, five elsewhere.
+  const want = p === "/amazon-private-label" ? 7 : 5;
+  if (visible !== want || schema !== want)
+    problems.push(`${p}: ${visible} visible FAQs / ${schema} in FAQPage (want ${want} / ${want})`);
 }
 
 // 7f · PROMPT_24 §12 — the header wordmark is the inline outlined SVG,
@@ -242,7 +244,28 @@ for (const r of ["/", ...live]) {
   if (!pl.includes('data-feature="selection-tests"')) problems.push("/amazon-private-label: selection section missing");
   const tests = (pl.split('data-feature="selection-tests"')[1]?.split("</section>")[0]?.match(/<div class="test"/g) ?? []).length;
   if (tests !== 7) problems.push(`/amazon-private-label: ${tests} selection tests (want 7)`);
-  if (pl.indexOf('id="selection"') > pl.indexOf('id="build"')) problems.push("/amazon-private-label: selection must sit above #build");
+  // PROMPT_31 §6 — the lifecycle is DOM (eight rows, no image, no
+  // durations), the seven tests sit directly under it as stage 02 in
+  // detail, the factory chain is a numbered rail with an artifact on
+  // every row, the timing section replaces any ninety-day claim, and the
+  // hero H1 and CTAs are real text.
+  if (!pl.includes('id="lifecycle"')) problems.push("/amazon-private-label: #lifecycle missing");
+  const lc = pl.split('id="lifecycle"')[1]?.split("</section>")[0] ?? "";
+  const stages = (lc.match(/class="row5 lc-row"/g) ?? []).length;
+  if (stages !== 8) problems.push(`/amazon-private-label: ${stages} lifecycle rows (want 8)`);
+  for (const name of ["Opportunity", "Validate", "Product", "Brand", "Supply chain", "Launch", "Operate", "Expand"])
+    if (!lc.includes(`<h3>${name}</h3>`)) problems.push(`/amazon-private-label: lifecycle stage "${name}" missing`);
+  if (/<img/.test(lc)) problems.push("/amazon-private-label: the lifecycle must be DOM, not an image");
+  if (/\b(weeks?|months?|days?)\b/i.test(lc.replace(/<[^>]+>/g, " ")))
+    problems.push("/amazon-private-label: a duration appears inside the lifecycle");
+  if (pl.indexOf('id="lifecycle"') > pl.indexOf('id="selection"')) problems.push("/amazon-private-label: the seven tests must sit under the lifecycle");
+  const chain = (pl.match(/class="chain-row"/g) ?? []).length;
+  const artifacts = (pl.match(/class="chain-artifact"/g) ?? []).length;
+  if (chain !== 8 || artifacts !== 8) problems.push(`/amazon-private-label: factory chain ${chain} rows / ${artifacts} artifacts (want 8 / 8)`);
+  if (/ninety[- ]day|90[- ]day|60[–-]90|day 60/i.test(pl.replace(/<[^>]+>/g, " ")))
+    problems.push("/amazon-private-label: a ninety-day / launch-date claim renders");
+  if (!/<h1[^>]*>Build a brand, not a listing\.<\/h1>/.test(pl)) problems.push("/amazon-private-label: hero H1 is not DOM text");
+  if (!pl.includes('href="#lifecycle"')) problems.push("/amazon-private-label: hero CTA to #lifecycle missing");
 }
 
 // 8 · One h1 per page, exactly.

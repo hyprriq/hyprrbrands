@@ -137,7 +137,7 @@ export default function Page() {
             alt="Three routes from a brand to the customer: direct to Amazon, through distributors to authorized wholesale sellers (highlighted), and the brand's own website"
           />
           {/* 3 · SNIPPET */}
-          <div className="snippet" style={{ marginTop: 28 }}>
+          <div className="snippet" style={{ marginTop: 28, maxWidth: "none" }}>
             <h2 style={{ marginBottom: 8, fontSize: "clamp(20px,4vw,26px)" }}>
               What does an Amazon wholesale agency do?
             </h2>
@@ -469,14 +469,24 @@ export default function Page() {
             name="amazon-wholesale-management/first-year"
             alt="Twelve months of active product lines building up after the first purchase order, above set up, first order, rhythm and compound phases"
           />
-          <div className="timeline">
+          <div className="timeline five">
             <div>
               <span className="when">WEEKS 1–4</span>
               <b>Set up</b>
               <span>Accounts, supplier applications, catalog modeling.</span>
             </div>
             <div>
-              <span className="when">DAY 60–90</span>
+              <span className="when">WEEKS 5–8</span>
+              <b>Approvals</b>
+              <span>
+                Brand and distributor approvals, credit terms, and the
+                documents each brand asks for before it will sell to you.
+                This is the part that sets the date, and it is not in our
+                hands.
+              </span>
+            </div>
+            <div>
+              <span className="when">DAYS 60–90</span>
               <b>First purchase order</b>
               <span>Once lines clear the margin floor.</span>
             </div>
