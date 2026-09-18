@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/JsonLd";
 import Visual from "@/components/Visual";
+import Phases from "@/components/home/Phases";
+import StartRoutes from "@/components/home/StartRoutes";
+import WhoRuns from "@/components/home/WhoRuns";
 import { serviceLd, webPageLd } from "@/lib/schema";
 import { ogImageMeta } from "@/lib/og-pages";
 import { SITE_ORIGIN } from "@/lib/site-map";
@@ -15,7 +18,7 @@ import { SITE_ORIGIN } from "@/lib/site-map";
    "account management" belongs to /amazon-walmart-management. */
 const TITLE = "Amazon and Walmart Ecommerce Operations Agency | Hyprr";
 const DESC =
-  "We run Amazon (US, UK, EU, Gulf) and Walmart US accounts that stay in your name. Listings, PPC and operations for a fixed fee.";
+  "We build, run and grow businesses on Amazon (US, UK, EU) and Walmart US that stay in your name: private label, wholesale, management, listings and PPC.";
 
 /* §7.1: the home canonical and og:url must be the origin WITH the
    trailing slash, matching the sitemap. Next's metadata resolver
@@ -75,7 +78,7 @@ export default function Page() {
               accounts, the stock and every buying decision.
             </p>
             <div className="cta-row">
-              <a className="btn dark" href="#services">
+              <a className="btn dark" href="#start">
                 See services →
               </a>
               <a className="btn ghost" href="#how">
@@ -228,444 +231,38 @@ export default function Page() {
         </div>
       </section>
 
-      {/* BUSINESS PATH */}
-      <section className="path" id="path">
-        <div className="wrap">
-          <h2 className="h2-lg">Where do you start?</h2>
-          <p>
-            Some clients are launching. Others already sell. The operating path
-            connects the two.
+      {/* §3.1 · one router replaces path, router-band, choice and services */}
+      <StartRoutes />
+
+      {/* §3.2 · the five phases replace "Five steps"; verdict sample and
+          the loss section left the home page */}
+      <Phases />
+
+      {/* §3.3 · who runs Hyprr replaces the proof section */}
+      <WhoRuns />
+
+      {/* CLOSING BLOCK — kept, moved above the CTA per the target state */}
+      <section className="closing">
+        <div className="wrap tight">
+          <h2>Amazon and Walmart operations, end to end</h2>
+          <p style={{ maxWidth: "78ch", lineHeight: 1.7 }}>
+            Hyprr Brands is an ecommerce operations team working across Amazon
+            and Walmart US. We build{" "}
+            <a href="/amazon-private-label">private label brands</a> from
+            product research through sourcing, compliance and launch; we build
+            and run <a href="/amazon-wholesale-management">Amazon wholesale</a>{" "}
+            operations with authorized suppliers opened in the client&rsquo;s
+            name; and we take over accounts that already sell through{" "}
+            <a href="/amazon-walmart-management">Amazon and Walmart management</a>,
+            covering catalog, inventory, pricing, cases and account health.
+            Where one part is not working we run fixed-scope projects:{" "}
+            <a href="/amazon-listing-optimization">listing optimization</a> and{" "}
+            <a href="/amazon-ppc-management">PPC management</a> judged on margin
+            rather than spend. We work with brand owners, manufacturers going
+            direct, wholesale businesses and investors, on Amazon US, UK and
+            Europe and on Walmart US, with a team across the United States,
+            Asia-Pacific and the Middle East.
           </p>
-          <div className="path-grid three">
-            <div className="path-item">
-              <div className="dot">01</div>
-              <b>Build</b>
-              <p>Product, sourcing, listing and marketplace launch.</p>
-            </div>
-            <div className="path-item">
-              <div className="dot">02</div>
-              <b>Run</b>
-              <p>Catalog, inventory, account and day-to-day marketplace work.</p>
-            </div>
-            <div className="path-item">
-              <div className="dot">03</div>
-              <b>Scale</b>
-              <p>
-                Optimization, advertising, conversion, winning products, new
-                channels and stronger operations.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* WHERE ARE YOU TODAY — situation router */}
-      <section className="router-band">
-        <div className="wrap">
-          <h2 style={{ fontSize: "clamp(22px,2.4vw,28px)", marginTop: 0 }}>
-            Where are you today
-          </h2>
-          <div className="router">
-            <a href="/amazon-private-label">
-              <span className="k">START</span>
-              <span className="s">
-                I want to launch a brand<em>Private label</em>
-              </span>
-              <span className="arw" aria-hidden="true">
-                →
-              </span>
-            </a>
-            <a href="/amazon-walmart-management">
-              <span className="k">RUN</span>
-              <span className="s">
-                I already sell and want it run properly<em>Management</em>
-              </span>
-              <span className="arw" aria-hidden="true">
-                →
-              </span>
-            </a>
-            <a href="/amazon-wholesale-management">
-              <span className="k">RUN</span>
-              <span className="s">
-                I want a wholesale operation run for me<em>Wholesale</em>
-              </span>
-              <span className="arw" aria-hidden="true">
-                →
-              </span>
-            </a>
-            <a href="/amazon-listing-optimization">
-              <span className="k">IMPROVE</span>
-              <span className="s">
-                I sell, but it is not performing<em>Listing optimization</em>
-              </span>
-              <span className="arw" aria-hidden="true">
-                →
-              </span>
-            </a>
-            <a href="/amazon-walmart-management#walmart">
-              <span className="k">SCALE</span>
-              <span className="s">
-                I want to expand<em>Walmart US</em>
-              </span>
-              <span className="arw" aria-hidden="true">
-                →
-              </span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* CHOOSE MODEL + ENGAGEMENT MODELS */}
-      <section className="choice">
-        <div className="wrap">
-          <h2 className="h2-lg">Start with what you need.</h2>
-          <p>
-            Two ways to build a marketplace business. Both end in the same
-            place: an operation that runs every day and reports every month.
-          </p>
-          <div className="cards">
-            <div className="card pl">
-              <span className="tag">PRIVATE LABEL</span>
-              <h3>Launch or run a brand</h3>
-              <ul>
-                <li>Product and market research</li>
-                <li>Sourcing, development and packaging</li>
-                <li>Amazon and Walmart US launch</li>
-                <li>Ongoing marketplace operation</li>
-              </ul>
-              <a className="go" href="/amazon-private-label">
-                Private label →
-              </a>
-            </div>
-            <div className="card wh">
-              <span className="tag">WHOLESALE</span>
-              <h3>Start or operate wholesale</h3>
-              <ul>
-                <li>Supplier approval and terms</li>
-                <li>Catalog and line models</li>
-                <li>Amazon and Walmart US operations</li>
-                <li>Replenishment, growth and scale</li>
-              </ul>
-              <a className="go" href="/amazon-wholesale-management">
-                Wholesale →
-              </a>
-            </div>
-          </div>
-          <div className="models">
-            <div>
-              <b>Launch projects</b>
-              <span>
-                Fixed scope, priced and paid before we start, finishing on a
-                date. Private label launch, account setup, listing
-                optimization, Walmart US expansion.
-              </span>
-            </div>
-            <div>
-              <b>Managed operations</b>
-              <span>
-                Monthly and continuous, with a written report every month.
-                Sourcing, listings, advertising, inventory, cases and account
-                health.
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CORE SERVICES · six capabilities, four pages */}
-      <section className="services" id="services">
-        <div className="wrap">
-          <h2 className="h2-lg">What we run, and where.</h2>
-          <div className="service-grid">
-            <a className="service" href="/amazon-walmart-management">
-              <span className="bar" style={{ background: "var(--petrol)" }} />
-              <b>Amazon operations</b>
-              <span>
-                Catalog, listings, account workflows, inventory and marketplace
-                execution.
-              </span>
-              <em>Amazon management →</em>
-            </a>
-            <a className="service" href="/amazon-walmart-management#walmart">
-              <span className="bar" style={{ background: "var(--petrol)" }} />
-              <b>Walmart US</b>
-              <span>
-                Setup, catalog, compliance and ongoing marketplace management.
-              </span>
-              <em>Walmart management →</em>
-            </a>
-            <a className="service" href="/amazon-listing-optimization">
-              <span className="bar" style={{ background: "var(--aqua)" }} />
-              <b>Listing optimization</b>
-              <span>
-                Content, images, attributes, variations and conversion. Fixed
-                price, two weeks.
-              </span>
-              <em>Listings →</em>
-            </a>
-            <a className="service" href="/amazon-private-label">
-              <span className="bar" style={{ background: "var(--citrus)" }} />
-              <b>Private label</b>
-              <span>
-                Research, sourcing, development, packaging, launch and growth.
-              </span>
-              <em>Private label →</em>
-            </a>
-            <a className="service" href="/amazon-wholesale-management">
-              <span className="bar" style={{ background: "var(--coral)" }} />
-              <b>Wholesale</b>
-              <span>
-                Build and operate a repeatable wholesale marketplace business.
-              </span>
-              <em>Wholesale management →</em>
-            </a>
-            <a className="service" href="/amazon-ppc-management">
-              <span className="bar" style={{ background: "var(--petrol)" }} />
-              <b>Advertising (PPC)</b>
-              <span>Amazon and Walmart US campaigns judged on margin.</span>
-              <em>PPC management →</em>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* HOW WE WORK */}
-      <section className="how" id="how">
-        <div className="wrap">
-          <h2 className="h2-lg">Five steps, on every product we touch.</h2>
-          <div className="how-grid">
-            <div style={{ gridColumn: "1 / -1", maxWidth: 760 }}>
-              <ol className="method">
-                <li>
-                  <div>
-                    <b>We check the numbers</b>
-                    <span>Landed cost, fees, competition, demand.</span>
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <b>We write a verdict</b>
-                    <span>One page. Buy or do not buy, and the reason.</span>
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <b>You approve the money</b>
-                    <span>Nothing is ordered without your yes, in writing.</span>
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <b>We do the work</b>
-                    <span>
-                      Sourcing, listings, advertising, inventory, cases.
-                    </span>
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <b>You get the report</b>
-                    <span>Margin by product, every month.</span>
-                  </div>
-                </li>
-              </ol>
-              <p style={{ marginTop: 18, marginBottom: 0 }}>
-                <a href="/how-we-work" style={{ fontWeight: 600 }}>
-                  How we charge and how we work, in full →
-                </a>
-              </p>
-            </div>
-          </div>
-          <div className="visual-side-grid">
-            <div className="verdict">
-              <h3>Buy, or do not buy.</h3>
-              <p>
-                Most products we look at fail. We send you the sheet that shows
-                why, and we do not buy them. That is what protects your money.
-              </p>
-              <div className="vsheet">
-                <div className="hd">
-                  <span>CANDIDATE 0412 · SEP</span>
-                  <span>ILLUSTRATIVE</span>
-                </div>
-                <div className="r">
-                  <span>Landed unit cost</span>
-                  <b>11.40</b>
-                </div>
-                <div className="r">
-                  <span>Marketplace fees</span>
-                  <b>6.85</b>
-                </div>
-                <div className="r">
-                  <span>Returns and advertising</span>
-                  <b>3.10</b>
-                </div>
-                <div className="r">
-                  <span>Competing offers</span>
-                  <b>14</b>
-                </div>
-                <div className="r out">
-                  <span>Margin against a 20% floor</span>
-                  <b>4.8% · DO NOT BUY</b>
-                </div>
-              </div>
-            </div>
-            <Visual
-              variant="side"
-              name="home/verdict-buy-or-do-not-buy"
-              alt="Two one-page product verdict sheets, one marked buy and one on top marked do not buy at 4.8% margin against a 20% floor"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* PROOF */}
-      <section className="proof" id="proof">
-        <div className="wrap">
-          <h2 className="h2-lg">Look at the work before you talk to us.</h2>
-          <p>
-            We are new, and we are not going to show you someone else&apos;s
-            results. These are our documents, shown as labeled samples.
-          </p>
-          <div className="visual-side-grid">
-          <div className="artefacts artefacts-stack">
-            <a className="art" href="/proof#verdict">
-              <div className="fr">
-                <svg
-                  viewBox="0 0 160 110"
-                  role="img"
-                  aria-label="Verdict sheet ending in reject"
-                >
-                  <rect
-                    x="10"
-                    y="8"
-                    width="140"
-                    height="94"
-                    rx="7"
-                    fill="#fff"
-                    stroke="#c6e3dc"
-                  />
-                  <rect x="24" y="24" width="62" height="6" rx="3" fill="#bcd6cf" />
-                  <rect x="24" y="40" width="100" height="5" rx="2.5" fill="#e6f2ee" />
-                  <rect x="24" y="52" width="86" height="5" rx="2.5" fill="#e6f2ee" />
-                  <rect
-                    x="24"
-                    y="70"
-                    width="112"
-                    height="18"
-                    rx="5"
-                    fill="#fff3f0"
-                    stroke="#f3c8bf"
-                  />
-                  <rect x="32" y="76" width="44" height="6" rx="3" fill="#c1452c" />
-                </svg>
-              </div>
-              <div className="t">
-                A product we refused
-                <span>with the arithmetic that refused it</span>
-              </div>
-            </a>
-            <a className="art" href="/proof#listing">
-              <div className="fr">
-                <svg
-                  viewBox="0 0 160 110"
-                  role="img"
-                  aria-label="Listing before and after"
-                >
-                  <rect
-                    x="8"
-                    y="10"
-                    width="66"
-                    height="90"
-                    rx="6"
-                    fill="#fff"
-                    stroke="#c6e3dc"
-                  />
-                  <rect
-                    x="86"
-                    y="10"
-                    width="66"
-                    height="90"
-                    rx="6"
-                    fill="#fff"
-                    stroke="#8ec9bd"
-                  />
-                  <rect x="18" y="24" width="40" height="5" rx="2.5" fill="#e6f2ee" />
-                  <rect x="18" y="36" width="30" height="5" rx="2.5" fill="#e6f2ee" />
-                  <rect x="96" y="24" width="46" height="5" rx="2.5" fill="#bde6db" />
-                  <rect x="96" y="36" width="40" height="5" rx="2.5" fill="#bde6db" />
-                  <rect x="96" y="48" width="44" height="5" rx="2.5" fill="#bde6db" />
-                </svg>
-              </div>
-              <div className="t">
-                A listing before and after
-                <span>with what changed marked</span>
-              </div>
-            </a>
-            <a className="art" href="/proof#packaging">
-              <div className="fr">
-                <svg
-                  viewBox="0 0 160 110"
-                  role="img"
-                  aria-label="Product and packaging"
-                >
-                  <ellipse cx="80" cy="96" rx="38" ry="5" fill="#123f46" opacity=".12" />
-                  <path
-                    d="M53 34 L80 22 L107 34 L107 89 L80 101 L53 89 Z"
-                    fill="#123F46"
-                  />
-                  <path d="M53 34 L80 46 L107 34 L80 22 Z" fill="#1c5b63" />
-                  <rect x="63" y="58" width="20" height="4" rx="2" fill="#D7F04A" />
-                </svg>
-              </div>
-              <div className="t">
-                A product and its packaging
-                <span>for a category we chose on purpose</span>
-              </div>
-            </a>
-          </div>
-          <Visual
-            variant="side"
-            href="/proof"
-            name="proof/operating-documents"
-            alt="Six working documents: verdict sheet, landed-cost model, monthly report, purchase order with a blank approval line, listing analysis and packaging spec"
-          />
-          </div>
-        </div>
-      </section>
-
-      {/* WHY */}
-      <section className="why">
-        <div className="wrap">
-          <div style={{ maxWidth: "70ch" }}>
-            <h2 className="h2-lg">
-              Two places a marketplace business loses money.
-            </h2>
-            <p>
-              <b>Before the money moves.</b> The wrong product, a supplier
-              price that leaves nothing after fees, a category that was a price
-              war before you arrived. You lose it once, and it is usually most
-              of it.
-            </p>
-            <p style={{ marginBottom: 0 }}>
-              <b>After the money moves.</b> A suppressed listing, stock that
-              runs out before the reorder lands, a case unanswered for eleven
-              days, advertising against a page that was never built to convert.
-              You lose it a little every week.
-            </p>
-          </div>
-          <Visual
-            name="home/where-money-is-lost"
-            alt="Risks before and after money moves, split by the client's approval: a written verdict prevents the first set, the weekly operation prevents the second"
-          />
-          <div className="points points-row">
-            <div className="point">A written verdict before you spend</div>
-            <div className="point">The daily operation after you do</div>
-            <div className="point">
-              Paid on a fixed fee, never on your ad spend
-            </div>
-            <div className="point">Your accounts, your stock, your approvals</div>
-          </div>
         </div>
       </section>
 
@@ -691,61 +288,11 @@ export default function Page() {
             Brand owners. Investors putting capital into Amazon and Walmart
             businesses, wherever they are based. Manufacturers selling direct.
             Wholesale businesses. Sellers who already have an account and need
-            it run. We work across US, UK, Gulf and Asia-Pacific hours.
+            it run. We work across US, UK, Middle East and Asia-Pacific hours.
           </div>
         </div>
       </section>
 
-      {/* CLOSING BLOCK — PPC_AND_CLOSING_BLOCK.md §2, verbatim. Plain
-          prose above the footer; not a keyword list. */}
-      <section className="closing">
-        <div className="wrap">
-          <h2>Amazon and Walmart operations, end to end</h2>
-          <div className="cols2">
-          <p>
-            Hyprr Brands builds, operates and scales marketplace businesses on
-            Amazon and Walmart US. We work with brand owners launching a first
-            product, investors putting capital into Amazon and Walmart
-            businesses, wherever they are based, manufacturers selling direct,
-            and established
-            sellers who need an account run properly rather than watched
-            occasionally.
-          </p>
-          <p>
-            Our <a href="/amazon-private-label">Amazon private label</a>{" "}
-            service covers product research, supplier sourcing, packaging and
-            compliance, listing creation and the marketplace launch itself.
-            Our{" "}
-            <a href="/amazon-wholesale-management">
-              Amazon wholesale management
-            </a>{" "}
-            service opens supplier accounts in your name, models every line to
-            landed cost before it is bought, and runs the replenishment cycle
-            afterwards.{" "}
-            <a href="/amazon-walmart-management">
-              Amazon and Walmart management
-            </a>{" "}
-            covers the daily operation of an account that already sells:
-            catalog, inventory, cases and account health.{" "}
-            <a href="/amazon-listing-optimization">Listing optimization</a>{" "}
-            rebuilds the content and images on a catalog you already own,
-            and <a href="/amazon-ppc-management">Amazon PPC management</a> runs
-            the advertising against inventory and margin rather than against
-            spend.
-          </p>
-          <p>
-            We operate Amazon in the United States, United Kingdom, Europe and
-            the Gulf, and Walmart in the United States. Every account stays
-            registered to its owner. Every purchase is approved in writing
-            before it is placed.{" "}
-            <a href="/how-we-work">How we work and how we charge</a> is set
-            out in full, and the{" "}
-            <a href="/proof">documents we produce</a> are on the site to read
-            before you talk to us.
-          </p>
-          </div>
-        </div>
-      </section>
     </main>
   );
 }

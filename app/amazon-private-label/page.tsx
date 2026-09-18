@@ -62,6 +62,38 @@ const FAQS = [
   },
 ];
 
+/** PROMPT_26 §7 — the seven selection tests, verbatim. */
+const SELECTION_TESTS = [
+  {
+    title: "The category has to be one we will take",
+    body: "Some categories we decline outright: ingestibles and topicals, children's products and toys, electricals needing safety certification, medical devices, and anything making a health or safety claim. The compliance and liability load is not worth it for a first brand.",
+  },
+  {
+    title: "The niche has to be enterable",
+    body: "We read the barrier to entry across the best sellers: how many are strong, how old their listings are, how many reviews stand between a new brand and page one. A niche where every leading listing is years old with thousands of reviews is not an opportunity, however good the demand looks.",
+  },
+  {
+    title: "Demand has to be spread, not owned",
+    body: "We break the niche into keyword roots — the repeated phrases behind every search. A niche needs several genuine roots, and the top two must not hold most of the search volume. One dominant phrase means one dominant brand, and a new listing has nowhere to rank.",
+  },
+  {
+    title: "The leaders have to have gaps",
+    body: "We build a matrix of the top competitors: price, sales, rating, review count, fulfilment, listing age, how many keywords each one holds on page one and how much of the total search volume that covers. What we are looking for is a niche selling well where nobody has covered the keywords properly. That gap is where a new brand ranks.",
+  },
+  {
+    title: "The product has to behave",
+    body: "Return rate and out-of-stock rate across the niche. A high return rate is a product problem that marketing cannot fix, and it comes straight out of the margin.",
+  },
+  {
+    title: "There has to be a real advantage",
+    body: "Not a colour change. A specific improvement we can name, source and put on the listing — and that the reviews on the leading products show buyers actually want.",
+  },
+  {
+    title: "The numbers have to work before anything is ordered",
+    body: "Production, freight, duty, FBA fees, referral fees, storage, returns and advertising, against a realistic selling price — down to unit profit, net margin and the return on the money tied up. The product has to clear our floor on both, at a price the market is already paying.",
+  },
+];
+
 export default function Page() {
   return (
     <main id="main">
@@ -163,6 +195,53 @@ export default function Page() {
                 See what we operate →
               </a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 2b · PRODUCT SELECTION — PROMPT_26 §7. Seven tests, then a
+          verdict. No client, brand or product name appears here. */}
+      <section className="sec" id="selection" data-feature="selection-tests">
+        <div className="wrap tight">
+          <div className="sec-head">
+            <div>
+              <div className="kicker">Product selection</div>
+              <h2>How we choose a product.</h2>
+            </div>
+            <p>
+              Most private label failures are decided before anything is
+              ordered — the wrong product, in a niche that cannot be entered,
+              at a cost that never leaves a margin. Every product we take on
+              goes through the same seven tests, and most products do not pass.
+            </p>
+          </div>
+          <Visual
+            name="amazon-private-label/selection-tests-plate"
+            caption={null}
+            alt="Seven tests a product has to pass in order — category, niche entry, keyword spread, competitor gaps, returns, advantage and unit economics — narrowing to a written verdict of approve, review or reject."
+          />
+          <div className="tests">
+            {SELECTION_TESTS.map((t, i) => (
+              <div className="test" key={t.title}>
+                <div className="n" aria-hidden="true">
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+                <h3>{t.title}</h3>
+                <p>{t.body}</p>
+              </div>
+            ))}
+          </div>
+          <div className="verdict-block">
+            <h3>Then a written verdict: approve, review or reject.</h3>
+            <p>
+              You get the research, the competitor matrix, the cost model and
+              the recommendation, in writing. A reject is a result — it is the
+              cheapest one available, and it is the reason clients come back
+              for the second product.
+            </p>
+            <a className="link-arrow" href="/proof">
+              See a verdict template →
+            </a>
           </div>
         </div>
       </section>
@@ -569,14 +648,14 @@ export default function Page() {
       {/* 12 · FEES */}
       <section className="fees">
         <div className="wrap">
-          <h2>Two fees, both agreed in writing first.</h2>
+          <h2>How the fees work.</h2>
           <div className="fee-grid">
             <div className="fee">
               <b>The launch project</b>
               <span>
-                A fixed fee, scoped before anything starts. It depends on the
-                category, the number of products and whether Walmart US is
-                included. Stock, tooling and advertising are your costs, paid
+                Quoted to your plan, in writing, before anything starts. It
+                depends on the category, the number of products and whether
+                Walmart US is included. Stock, tooling and advertising are your costs, paid
                 by you directly to the supplier and the marketplace.
               </span>
             </div>
@@ -637,7 +716,7 @@ export default function Page() {
                 than revenue by product.
               </p>
               <p style={{ marginBottom: 0 }}>
-                We work on Amazon in the US, UK, Europe and the Gulf, and on
+                We work on Amazon in the US, UK, Europe and the Middle East, and on
                 Walmart in the US. Clients include brand owners, manufacturers
                 selling direct, and investors putting capital into Amazon and
                 Walmart businesses, wherever they are based.

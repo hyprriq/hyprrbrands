@@ -87,8 +87,8 @@ export default function Page() {
             <span className="eyebrow">Management / Amazon + Walmart US</span>
             <h1>You already sell. We run it properly.</h1>
             <p>
-              We run Amazon accounts in the US, UK, Europe and the Gulf, and
-              Walmart accounts in the US. The account stays registered to you,
+              We run Amazon accounts in the US, UK, Europe and the Middle East,
+              and Walmart accounts in the US. The account stays registered to you,
               and you can remove our access from your own User Permissions
               page at any time.
             </p>
@@ -113,6 +113,41 @@ export default function Page() {
             onDark
             name="amazon-walmart-management/hero-operator-view"
             alt="One operations console covering catalog, growth, inventory and account health across Amazon US, Amazon UK and Walmart US, with margin by product and the Monday-to-Friday weekly rhythm"
+          />
+        </div>
+      </section>
+
+      {/* 1b · WHERE A RUNNING ACCOUNT LOSES MONEY — moved from the home
+          page (PROMPT_26 §6). Same two-column copy, same plate. */}
+      <section className="sec band-paper" id="losses" data-feature="loss-section">
+        <div className="wrap tight">
+          <div className="sec-head">
+            <div>
+              <div className="kicker">Where to look first</div>
+              <h2>Where a running account loses money.</h2>
+            </div>
+            <p>
+              These are the two places we look first when we take an account
+              over.
+            </p>
+          </div>
+          <div className="loss-cols">
+            <p>
+              <b>Before the money moves.</b> The wrong product, a supplier
+              price that leaves nothing after fees, a category that was a price
+              war before you arrived. You lose it once, and it is usually most
+              of it.
+            </p>
+            <p>
+              <b>After the money moves.</b> A suppressed listing, stock that
+              runs out before the reorder lands, a case unanswered for eleven
+              days, advertising against a page that was never built to convert.
+              You lose it a little every week.
+            </p>
+          </div>
+          <Visual
+            name="home/where-money-is-lost"
+            alt="Risks before and after money moves, split by the client's approval: a written verdict prevents the first set, the weekly operation prevents the second"
           />
         </div>
       </section>

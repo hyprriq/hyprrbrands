@@ -9,6 +9,7 @@ import Link from "next/link";
 import { FOOTER } from "@/lib/site-map";
 import { email, entityLine, locations } from "@/lib/company";
 import Flag from "./Flag";
+import FooterFaq from "./FooterFaq";
 import Logo from "./Logo";
 
 const { services: SERVICES, company: COMPANY, legal: LEGAL } = FOOTER;
@@ -17,6 +18,7 @@ export default function SiteFooter() {
   return (
     <footer className="site">
       <div className="wrap">
+        <FooterFaq />
         <div className="cols">
           <div>
             <b>Services</b>

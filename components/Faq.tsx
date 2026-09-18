@@ -10,16 +10,20 @@ export default function Faq({
   items,
   heading = "Clear answers before the call.",
   intro,
+  kicker,
 }: {
   items: { q: string; a: string }[];
   heading?: string;
   /** optional one-line lead under the heading */
   intro?: string;
+  /** optional mono label above the heading (PROMPT_26 pages) */
+  kicker?: string;
 }) {
   return (
     <section className="faq" id="faq">
       <div className="wrap">
         <JsonLd nodes={[faqLd(items)]} />
+        {kicker ? <div className="kicker">{kicker}</div> : null}
         <h2>{heading}</h2>
         {intro ? <p className="faq-intro">{intro}</p> : null}
         <div className="faq-list">
