@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion, type Transition } from "motion/react";
-import { useEffect, useState, type ReactNode } from "react";
+import { type ReactNode, useSyncExternalStore } from "react";
 
 /**
  * Motion primitives for the private label page (PL_DESIGN_BRIEF §6).
@@ -21,10 +21,12 @@ const VIEW = { once: true, amount: 0.35 } as const;
 /** true on the server, on the first client render, and whenever the
  *  visitor prefers reduced motion — every case that must show the
  *  finished state. */
+const subscribeNoop = () => () => {};
 function useStatic() {
   const reduce = useReducedMotion();
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  // false on the server and during hydration, true once mounted —
+  // without a setState-in-effect (react-hooks/set-state-in-effect).
+  const mounted = useSyncExternalStore(subscribeNoop, () => true, () => false);
   return !mounted || reduce;
 }
 

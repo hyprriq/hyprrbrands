@@ -19,7 +19,7 @@ const MONO = { fontFamily: "var(--pl-mono)", fontWeight: 500 } as const;
    Four ways in converge into one discipline (below the four rows).
    --------------------------------------------------------------- */
 export function Converge() {
-  const cols = [CITRUS, CORAL, AQUA, SKY];
+  const cols = [CITRUS, AQUA, CORAL, SKY]; // reads top to bottom in the order of the four ways in
   return (
     <svg viewBox="0 0 1216 110" className="pl-converge" aria-hidden="true">
       {cols.map((c, i) => (

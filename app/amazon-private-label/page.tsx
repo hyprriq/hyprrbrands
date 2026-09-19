@@ -23,8 +23,8 @@ import "./pl.css";
 
 /**
  * Private label — v4 design build (PL_DESIGN_BRIEF, 19 Sep 2026).
- * Copy is the locked content: hero, four ways in, selection, the
- * lifecycle (#lifecycle), economics, channels, timing (stages, no
+ * Copy is the locked content: hero, four ways in, the lifecycle
+ * (#lifecycle), selection, economics, channels, timing (stages, no
  * durations), end to end, then the definition snippet, the FAQ
  * (seven, FAQPage from the same strings) and the CTA. The URL, title,
  * meta and H1 do not change. Every section has its own shape; the
@@ -102,9 +102,9 @@ const FAQS = [
 /** The four ways in — label, colour, quote, body. The colours return
  *  as the four converging lines and the four marks at the CTA. */
 const WAYS_IN = [
-  { tag: "You have the idea", color: "var(--pl-citrus)", q: "“I know what I want to build.”", body: "We pressure-test it before you spend: the demand behind it, who already owns that demand, what it costs landed, and what would have to be true for it to work." },
+  { tag: "No product yet", color: "var(--pl-citrus)", q: "“I want to build something. I don’t know what yet.”", body: "We find it. Demand and keyword research across the categories you could realistically own, what the leaders have left open, and the unit economics on each — then a shortlist with the numbers attached, and you choose." },
+  { tag: "You have the idea", color: "var(--pl-aqua)", q: "“I know what I want to build.”", body: "We pressure-test it before you spend: the demand behind it, who already owns that demand, what it costs landed, and what would have to be true for it to work." },
   { tag: "You have a product", color: "var(--pl-coral)", q: "“I already sell it, or I have the supplier.”", body: "An existing product, a supplier relationship or a concept that never became a brand. We assess it as it stands, fix what the numbers will not survive, and build the brand around it." },
-  { tag: "You have the market", color: "var(--pl-aqua)", q: "“I know the customer. I don’t know the product.”", body: "You bring the category, the audience or the channel you understand. We come back with a shortlist inside it, each with its demand read and its unit economics — and you choose." },
   { tag: "You have a brand", color: "var(--pl-sky)", q: "“It sells. It should be bigger.”", body: "A catalog, customers and history already exist. We read the economics by product, find what is being left on the table, and build the next products and channels on the foundation you have." },
 ];
 
@@ -221,28 +221,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 3 · SELECTION */}
-      <section id="selection" data-feature="selection-tests">
-        <div className="wrap pl-stack">
-          <p className="pl-d" style={{ maxWidth: 1040 }}>
-            The expensive mistake is never the launch. <span className="pl-violet">It&apos;s the product.</span>
-          </p>
-          <div className="pl-select">
-            <div className="pl-select-copy">
-              <h2 className="pl-h2-sm">Most of what we look at, we don&apos;t build.</h2>
-              <p>
-                Seven tests, run before anything is ordered: the category, the barrier to entry, where the demand actually sits, what the leaders have left open, how the product behaves on returns, the advantage we could build, and the arithmetic at a price the market already pays. Most candidates fail. A reject costs a fee. Continuing past one costs the inventory.
-              </p>
-              <a className="pl-link" href="/proof">
-                See a written verdict <span className="pl-mono" aria-hidden="true">&rarr;</span>
-              </a>
-            </div>
-            <Gates />
-          </div>
-        </div>
-      </section>
-
-      {/* 4 · THE LIFECYCLE */}
+      {/* 3 · THE LIFECYCLE */}
       <section id="lifecycle">
         <div className="wrap pl-stack">
           <div className="pl-lab">
@@ -307,6 +286,27 @@ export default function Page() {
           </div>
           <p className="pl-d7 pl-stage08">Stage 08 is where the next opportunity comes from.</p>
           <p className="pl-closing">Same eight stages either way. Only the number of times we run them changes.</p>
+        </div>
+      </section>
+
+      {/* 4 · SELECTION */}
+      <section id="selection" data-feature="selection-tests">
+        <div className="wrap pl-stack">
+          <p className="pl-d" style={{ maxWidth: 1040 }}>
+            The expensive mistake is never the launch. <span className="pl-violet">It&apos;s the product.</span>
+          </p>
+          <div className="pl-select">
+            <div className="pl-select-copy">
+              <h2 className="pl-h2-sm">Most of what we look at, we don&apos;t build.</h2>
+              <p>
+                Seven tests, run before anything is ordered: the category, the barrier to entry, where the demand actually sits, what the leaders have left open, how the product behaves on returns, the advantage we could build, and the arithmetic at a price the market already pays. Most candidates fail. A reject costs a fee. Continuing past one costs the inventory.
+              </p>
+              <a className="pl-link" href="/proof">
+                See a written verdict <span className="pl-mono" aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+            <Gates />
+          </div>
         </div>
       </section>
 
@@ -446,7 +446,7 @@ export default function Page() {
               <p className="pl-d7">In your name from the first day: the trademark, the accounts, the suppliers, the data. Remove our access whenever you like.</p>
               <div className="pl-own-side">
                 <p>Operating is its own service. Brands we build get it from launch; brands we take over start there.</p>
-                <a className="pl-btn pl-sm" href="/amazon-walmart-management">
+                <a className="pl-btn pl-primary" href="/amazon-walmart-management">
                   How we run accounts <span className="pl-mono" aria-hidden="true">&rarr;</span>
                 </a>
               </div>
