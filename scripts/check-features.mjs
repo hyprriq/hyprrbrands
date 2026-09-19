@@ -108,7 +108,7 @@ for (const p of [
 //      scroll wrapper, and the expected count is on each route.
 const VISUAL_SLOTS = {
   "/": 0,
-  "/amazon-private-label": 1,
+  "/amazon-private-label": 0,
   "/amazon-wholesale-management": 5,
   "/amazon-walmart-management": 4,
   "/amazon-listing-optimization": 2,
@@ -248,10 +248,11 @@ for (const r of ["/", ...live]) {
   // text; the factory chain, the seven-test rows, the decisions cards,
   // the floors, the value section and the fee sections are gone.
   if (!pl.includes('data-feature="selection-tests"')) problems.push("/amazon-private-label: selection section missing");
-  if (!pl.includes("selection-tests-plate")) problems.push("/amazon-private-label: seven-tests plate missing");
+  // PL_DESIGN_BRIEF (19 Sep): the seven tests are drawn as gates, not a plate.
+  if (!pl.includes('data-feature="seven-gates"')) problems.push("/amazon-private-label: seven-gates diagram missing");
   if (!pl.includes('id="lifecycle"')) problems.push("/amazon-private-label: #lifecycle missing");
   const stagesHtml = pl.split('data-feature="stages"')[1]?.split("</ol>")[0] ?? "";
-  const stages = (stagesHtml.match(/class="stage-row"/g) ?? []).length;
+  const stages = (stagesHtml.match(/class="stage-row[ "]/g) ?? []).length;
   if (stages !== 8) problems.push(`/amazon-private-label: ${stages} stage rows (want 8)`);
   for (const name of ["Opportunity", "Validate", "Product", "Brand", "Supply chain", "Launch", "Operate", "Expand"])
     if (!stagesHtml.includes(`<h3>${name}</h3>`)) problems.push(`/amazon-private-label: stage "${name}" missing`);
