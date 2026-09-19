@@ -4167,3 +4167,62 @@ div.facts {
   border-radius: 12px;
   display: block;
 }
+
+/* ---- PROMPT_33 — private label: eight stages as name + one line; images above labels; channel chips ---- */
+.scope-imgs > div {
+  display: block;
+}
+.scope-imgs .scope-img {
+  margin: 0 0 14px;
+  padding-top: 0;
+}
+.scope-imgs p {
+  margin: 6px 0 0;
+}
+.stages {
+  list-style: none;
+  margin: 36px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+.stage-row {
+  display: grid;
+  grid-template-columns: 64px 2fr 5fr;
+  gap: 12px 24px;
+  align-items: baseline;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+@media (max-width: 700px) {
+  .stage-row {
+    grid-template-columns: 64px 1fr;
+  }
+  .stage-row p {
+    grid-column: 2;
+  }
+}
+.stage-num {
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: -0.02em;
+}
+.stage-row h3 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+.stage-row p {
+  margin: 0;
+  font-size: 15.5px;
+  line-height: 1.5;
+  color: var(--body);
+}
+.channel-chips {
+  margin-top: 4px;
+}
+.timing .band-card p,
+#timing .band-card p {
+  color: var(--ink);
+  font-weight: 600;
+}

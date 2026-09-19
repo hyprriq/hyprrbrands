@@ -28,8 +28,8 @@ for (const r of ["/", ...live]) {
 // 1 · The verdict artefact (DO NOT BUY) on the pages that carry it.
 //     PROMPT_26 moved it off "/" and /how-we-work (no image in the home
 //     phases section; /how-we-work links to /proof for the template).
+//     PROMPT_33 moved the private label verdict behind the /proof link.
 for (const p of [
-  "/amazon-private-label",
   "/amazon-wholesale-management",
   "/proof",
 ]) {
@@ -108,7 +108,7 @@ for (const p of [
 //      scroll wrapper, and the expected count is on each route.
 const VISUAL_SLOTS = {
   "/": 0,
-  "/amazon-private-label": 3,
+  "/amazon-private-label": 1,
   "/amazon-wholesale-management": 5,
   "/amazon-walmart-management": 4,
   "/amazon-listing-optimization": 2,
@@ -141,9 +141,9 @@ for (const [p, n] of Object.entries(VISUAL_SLOTS)) {
     problems.push("nav: Listings still a top-level link");
 }
 
-// 7d · PROMPT_24 §4.1 P0 — the compliance gates are an HTML table.
-if (!/<table[^>]*>/.test(html["/amazon-private-label"]?.split('data-feature="compliance-matrix"')[1] ?? ""))
-  problems.push("/amazon-private-label: compliance-matrix table missing");
+// 7d · PROMPT_33 §2.6 — the compliance matrix left the private label page.
+if (html["/amazon-private-label"]?.includes('data-feature="compliance-matrix"'))
+  problems.push("/amazon-private-label: compliance matrix still renders");
 
 // 7e · PROMPT_24 §3 — every service page shows exactly five FAQs, and
 //      the FAQPage JSON-LD carries the same five.
@@ -242,31 +242,32 @@ for (const r of ["/", ...live]) {
   if (!html["/amazon-walmart-management"]?.includes('data-feature="loss-section"'))
     problems.push("/amazon-walmart-management: loss section missing");
   const pl = html["/amazon-private-label"] ?? "";
+  // PROMPT_33 — seven sections. Selection keeps the plate and links to
+  // /proof; the eight stages are name + one line, no columns, no
+  // durations, no image inside the rows; the hero H1 and CTAs are DOM
+  // text; the factory chain, the seven-test rows, the decisions cards,
+  // the floors, the value section and the fee sections are gone.
   if (!pl.includes('data-feature="selection-tests"')) problems.push("/amazon-private-label: selection section missing");
-  const tests = (pl.split('data-feature="selection-tests"')[1]?.split("</section>")[0]?.match(/<div class="test"/g) ?? []).length;
-  if (tests !== 7) problems.push(`/amazon-private-label: ${tests} selection tests (want 7)`);
-  // PROMPT_31 §6 — the lifecycle is DOM (eight rows, no image, no
-  // durations), the seven tests sit directly under it as stage 02 in
-  // detail, the factory chain is a numbered rail with an artifact on
-  // every row, the timing section replaces any ninety-day claim, and the
-  // hero H1 and CTAs are real text.
+  if (!pl.includes("selection-tests-plate")) problems.push("/amazon-private-label: seven-tests plate missing");
   if (!pl.includes('id="lifecycle"')) problems.push("/amazon-private-label: #lifecycle missing");
-  const lc = pl.split('id="lifecycle"')[1]?.split("</section>")[0] ?? "";
-  const stages = (lc.match(/class="row5 lc-row"/g) ?? []).length;
-  if (stages !== 8) problems.push(`/amazon-private-label: ${stages} lifecycle rows (want 8)`);
+  const stagesHtml = pl.split('data-feature="stages"')[1]?.split("</ol>")[0] ?? "";
+  const stages = (stagesHtml.match(/class="stage-row"/g) ?? []).length;
+  if (stages !== 8) problems.push(`/amazon-private-label: ${stages} stage rows (want 8)`);
   for (const name of ["Opportunity", "Validate", "Product", "Brand", "Supply chain", "Launch", "Operate", "Expand"])
-    if (!lc.includes(`<h3>${name}</h3>`)) problems.push(`/amazon-private-label: lifecycle stage "${name}" missing`);
-  if (/<img/.test(lc)) problems.push("/amazon-private-label: the lifecycle must be DOM, not an image");
-  if (/\b(weeks?|months?|days?)\b/i.test(lc.replace(/<[^>]+>/g, " ")))
-    problems.push("/amazon-private-label: a duration appears inside the lifecycle");
-  if (pl.indexOf('id="lifecycle"') > pl.indexOf('id="selection"')) problems.push("/amazon-private-label: the seven tests must sit under the lifecycle");
-  const chain = (pl.match(/class="chain-row"/g) ?? []).length;
-  const artifacts = (pl.match(/class="chain-artifact"/g) ?? []).length;
-  if (chain !== 8 || artifacts !== 8) problems.push(`/amazon-private-label: factory chain ${chain} rows / ${artifacts} artifacts (want 8 / 8)`);
-  if (/ninety[- ]day|90[- ]day|60[–-]90|day 60/i.test(pl.replace(/<[^>]+>/g, " ")))
+    if (!stagesHtml.includes(`<h3>${name}</h3>`)) problems.push(`/amazon-private-label: stage "${name}" missing`);
+  if (/<img/.test(stagesHtml)) problems.push("/amazon-private-label: an image renders inside the stage rows");
+  if (/\b(weeks?|months?|days?)\b/i.test(stagesHtml.replace(/<[^>]+>/g, " ")))
+    problems.push("/amazon-private-label: a duration appears inside the stage rows");
+  for (const gone of ['data-feature="factory-chain"', 'class="chain-row"', 'class="test"', 'data-feature="decisions"', 'data-feature="floors"', 'data-feature="value"', 'id="direct-costs"', 'id="import"', 'id="declined"', 'id="operate"', "pl-factory-chain"])
+    if (pl.includes(gone)) problems.push(`/amazon-private-label: deleted block still renders (${gone})`);
+  const plText = pl.replace(/<script[^>]*>[\s\S]*?<\/script>/g, " ").replace(/<[^>]+>/g, " ")
+    .split("There is no ninety-day private label launch.").join(" ");
+  if (/ninety[- ]day|90[- ]day|60[\u2013-]90|day 60/i.test(plText))
     problems.push("/amazon-private-label: a ninety-day / launch-date claim renders");
   if (!/<h1[^>]*>Build a brand, not a listing\.<\/h1>/.test(pl)) problems.push("/amazon-private-label: hero H1 is not DOM text");
+  if ((pl.match(/Build a brand, not a listing\.<\/h1>/g) ?? []).length !== 1) problems.push("/amazon-private-label: the H1 must appear exactly once");
   if (!pl.includes('href="#lifecycle"')) problems.push("/amazon-private-label: hero CTA to #lifecycle missing");
+  if (!pl.includes('class="snippet"')) problems.push("/amazon-private-label: the search-answer block is missing");
 }
 
 // 8 · One h1 per page, exactly.
