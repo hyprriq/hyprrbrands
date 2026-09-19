@@ -4,13 +4,14 @@ import JsonLd from "@/components/JsonLd";
 import Faq from "@/components/Faq";
 import { breadcrumbLd, serviceLd, webPageLd } from "@/lib/schema";
 import { ogImageMeta } from "@/lib/og-pages";
-import { Reveal, Stair } from "@/components/pl/Motion";
+import { Reveal, Stair, Sweep } from "@/components/pl/Motion";
 import {
   ChannelsRail,
   ChannelsTop,
   Converge,
   Gates,
   Junction,
+  ListingBuild,
   Merge,
   OneSpine,
   RangeSpines,
@@ -124,13 +125,9 @@ const STAGES = [
  *  range on the right. Renditions come from public/images/_inbox via
  *  `npm run images`; swap the sources there when the packaging is
  *  final and nothing else moves. */
-const RANGE = [
-  { name: "range-moisturiser", alt: "Daily moisturiser jar beside its retail carton", h: 150 },
-  { name: "range-face-mask", alt: "Clay face mask jar beside its sage-green retail carton", h: 150 },
-  { name: "range-shower-gel", alt: "Shower gel pump bottle beside its aqua retail carton", h: 203 },
-  { name: "range-sunscreen", alt: "SPF 50 sunscreen tube beside its citrus retail carton", h: 173 },
-  { name: "range-hair-gel", alt: "Hair gel jar beside its coral retail carton", h: 149 },
-];
+/** Where the five products sit in the range image, as fractions of
+ *  its width — the spines under it point at them. */
+const RANGE_AT = [0.11, 0.32, 0.54, 0.72, 0.89];
 
 const CHANNELS = [
   ["Amazon", "discovery and demand", "var(--pl-citrus)"],
@@ -242,7 +239,7 @@ export default function Page() {
                 <p>Built properly, operated properly, and able to stand on its own.</p>
               </div>
               <Reveal className="pl-shelf">
-                <Product name="range-moisturiser" alt="Daily moisturiser jar beside its retail carton, one product on its own" height={234} priority />
+                <Product name="range-moisturiser" alt="Daily moisturiser jar beside its retail carton, one product on its own" height={224} priority />
               </Reveal>
               <OneSpine width={300} />
               <Reveal className="pl-tags" delay={0.8}><span className="pl-tag">Amazon</span></Reveal>
@@ -253,14 +250,10 @@ export default function Page() {
                 <div className="pl-m pl-ink">A brand</div>
                 <p>A customer, a position, and a range where each product earns the next.</p>
               </div>
-              <div className="pl-shelf-row">
-                {RANGE.map((p, i) => (
-                  <Reveal key={p.name} className="pl-slot" delay={0.2 + i * 0.7}>
-                    <Product name={p.name} alt={p.alt} height={p.h} />
-                  </Reveal>
-                ))}
-              </div>
-              <RangeSpines n={5} width={876} />
+              <Sweep className="pl-shelf-row">
+                <Product name="range-family" alt="Five-product skincare range, each product beside its retail carton, in one design language" height={240} priority />
+              </Sweep>
+              <RangeSpines n={5} width={876} at={RANGE_AT} />
               <Reveal className="pl-tags" delay={3.8}>
                 {CHANNELS.map(([c], i) => (
                   <span key={c} className={`pl-tag${i === 3 ? " v" : ""}`}>{c}</span>
@@ -286,6 +279,21 @@ export default function Page() {
           </div>
           <p className="pl-d7 pl-stage08">Stage 08 is where the next opportunity comes from.</p>
           <p className="pl-closing">Same eight stages either way. Only the number of times we run them changes.</p>
+        </div>
+      </section>
+
+      {/* 3b · THE LISTING — a block, not a section: the listing page owns this subject */}
+      <section id="listing" className="pl-listing-sec">
+        <div className="wrap pl-listing">
+          <div className="pl-listing-copy">
+            <div className="pl-m">Launch</div>
+            <h3>The listing is built from the research, not decorated with it.</h3>
+            <p>Photography, infographics, A+ and the copy, produced once against the keyword set &mdash; then rewritten per marketplace.</p>
+            <a className="pl-link" href="/amazon-listing-optimization">
+              How we build listings <span className="pl-mono" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+          <ListingBuild />
         </div>
       </section>
 

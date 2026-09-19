@@ -137,10 +137,10 @@ export function OneSpine({ width }: { width: number }) {
 
 /** A range: n identical spines, each 08 arcing into the next 01, the
  *  last arc running off the edge. */
-export function RangeSpines({ n, width, pitch = 12, depth = 40 }: { n: number; width: number; pitch?: number; depth?: number }) {
+export function RangeSpines({ n, width, pitch = 12, depth = 40, at }: { n: number; width: number; pitch?: number; depth?: number; /** product centres as fractions of width, when the range image is not evenly spaced */ at?: number[] }) {
   const half = (pitch * 7) / 2;
   const cell = width / n;
-  const centres = Array.from({ length: n }, (_, i) => cell * i + cell / 2);
+  const centres = Array.from({ length: n }, (_, i) => (at ? at[i] * width : cell * i + cell / 2));
   return (
     <svg viewBox={`0 0 ${width} 96`} className="pl-spines" aria-hidden="true">
       {centres.map((c, i) => (
@@ -291,6 +291,87 @@ export function Merge() {
       <Draw d="M1 0 C 1 40, 175 20, 175 60" stroke={INK} width={2.5} />
       <Draw d="M184 0 C 184 40, 175 20, 175 60" stroke={SKY} width={2.5} delay={0.15} />
       <Pop delay={0.8}><circle cx="175" cy="60" r="4" fill={VIOLET} /></Pop>
+    </svg>
+  );
+}
+
+/* ---------------------------------------------------------------
+   The listing is built from the research (Launch). Keyword bars on
+   the left feed the blocks of one listing; the image block is the
+   biggest by a wide margin; the same listing leaves as two, ordered
+   differently for Amazon and for Walmart. Smaller than the gates on
+   purpose — it is a block, not a section.
+   --------------------------------------------------------------- */
+const KW = [72, 48, 88, 56, 80, 40, 64];
+export function ListingBuild() {
+  const kwY = (i: number) => 34 + i * 24;
+  // where each keyword line lands on the listing's left edge
+  const land = [46, 62, 78, 94, 128, 150, 172];
+  return (
+    <svg
+      viewBox="0 0 680 232"
+      className="pl-listing-svg"
+      role="img"
+      aria-label="Keyword research feeds the blocks of one listing, images largest; the listing is then rewritten as an Amazon version and a Walmart version"
+    >
+      {/* keyword set */}
+      <g fill={LINE}>
+        {KW.map((w, i) => <rect key={i} x={0} y={kwY(i) - 3} width={w} height="6" rx="3" />)}
+      </g>
+      {KW.map((w, i) => (
+        <Draw key={i} d={`M${w} ${kwY(i)} C ${w + 60} ${kwY(i)}, 150 ${land[i]}, 206 ${land[i]}`} stroke={INK} width={1.5} delay={0.1 + i * 0.08} duration={0.8} />
+      ))}
+      {/* one listing */}
+      <rect x="206" y="24" width="168" height="184" rx="6" fill="none" stroke={LINE} strokeWidth="1.5" />
+      <Pop delay={0.9}><rect x="218" y="36" width="144" height="72" rx="3" fill={VIOLET} /></Pop>
+      <Pop delay={1.05}><rect x="218" y="120" width="96" height="8" rx="2" fill={INK} /></Pop>
+      <Pop delay={1.15}>
+        <g fill={MUTED}>
+          <rect x="218" y="140" width="144" height="4" rx="2" />
+          <rect x="218" y="150" width="120" height="4" rx="2" />
+          <rect x="218" y="160" width="132" height="4" rx="2" />
+        </g>
+      </Pop>
+      <Pop delay={1.25}><rect x="218" y="176" width="144" height="18" rx="3" fill={LIME} /></Pop>
+      {/* rewritten per marketplace */}
+      <Draw d="M374 116 C 410 116, 420 62, 466 62" stroke={INK} width={1.5} delay={1.5} duration={0.7} />
+      <Draw d="M374 116 C 410 116, 420 170, 466 170" stroke={INK} width={1.5} delay={1.6} duration={0.7} />
+      {/* Amazon: images first, title, bullets, A+ */}
+      <g>
+        <rect x="466" y="24" width="120" height="76" rx="5" fill="none" stroke={LINE} strokeWidth="1.5" />
+        <Pop delay={2.1}>
+          <g>
+            <rect x="474" y="31" width="104" height="30" rx="2" fill={VIOLET} />
+            <rect x="474" y="67" width="60" height="5" rx="2" fill={INK} />
+            <rect x="474" y="77" width="104" height="3" rx="1.5" fill={MUTED} />
+            <rect x="474" y="84" width="88" height="3" rx="1.5" fill={MUTED} />
+            <rect x="474" y="91" width="104" height="5" rx="2" fill={LIME} />
+          </g>
+        </Pop>
+      </g>
+      {/* Walmart: title and attributes weigh more, images still lead */}
+      <g>
+        <rect x="466" y="132" width="120" height="76" rx="5" fill="none" stroke={LINE} strokeWidth="1.5" />
+        <Pop delay={2.2}>
+          <g>
+            <rect x="474" y="139" width="60" height="26" rx="2" fill={VIOLET} />
+            <rect x="540" y="139" width="38" height="5" rx="2" fill={INK} />
+            <rect x="540" y="148" width="38" height="3" rx="1.5" fill={LIME} />
+            <rect x="540" y="154" width="38" height="3" rx="1.5" fill={LIME} />
+            <rect x="540" y="160" width="38" height="3" rx="1.5" fill={LIME} />
+            <rect x="474" y="172" width="104" height="3" rx="1.5" fill={MUTED} />
+            <rect x="474" y="179" width="88" height="3" rx="1.5" fill={MUTED} />
+            <rect x="474" y="186" width="104" height="3" rx="1.5" fill={MUTED} />
+            <rect x="474" y="193" width="72" height="3" rx="1.5" fill={MUTED} />
+          </g>
+        </Pop>
+      </g>
+      <g fontSize="10" fill={MUTED} letterSpacing="1" style={MONO}>
+        <text x="0" y="224">KEYWORD SET</text>
+        <text x="290" y="224" textAnchor="middle">ONE LISTING · IMAGES FIRST</text>
+        <text x="596" y="66">AMAZON</text>
+        <text x="596" y="174">WALMART</text>
+      </g>
     </svg>
   );
 }

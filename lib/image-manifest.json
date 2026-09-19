@@ -111,24 +111,12 @@
     "w": 1280,
     "h": 633
   },
-  "/images/amazon-private-label/range-face-mask": {
-    "w": 732,
-    "h": 651
-  },
-  "/images/amazon-private-label/range-hair-gel": {
-    "w": 741,
-    "h": 648
-  },
   "/images/amazon-private-label/range-moisturiser": {
-    "w": 714,
-    "h": 651
+    "w": 1130,
+    "h": 844
   },
-  "/images/amazon-private-label/range-shower-gel": {
-    "w": 637,
-    "h": 882
-  },
-  "/images/amazon-private-label/range-sunscreen": {
-    "w": 607,
-    "h": 752
+  "/images/amazon-private-label/range-family": {
+    "w": 1280,
+    "h": 332
   }
 }

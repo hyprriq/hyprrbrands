@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion, type Transition } from "motion/react";
-import { type ReactNode, useSyncExternalStore } from "react";
+import { motion, useInView, useReducedMotion, type Transition } from "motion/react";
+import { type ReactNode, useRef, useSyncExternalStore } from "react";
 
 /**
  * Motion primitives for the private label page (PL_DESIGN_BRIEF §6).
@@ -154,6 +154,37 @@ export function Stair() {
           </motion.div>
         );
       })}
+    </div>
+  );
+}
+
+/** The range appears left to right, in the order the range grew —
+ *  one image, revealed with a clip so the products still arrive one
+ *  after another. The clip sits on an inner element: a fully clipped
+ *  box has no intersection, so observing it would never fire (and
+ *  would hold back a lazy image). Finished state without JS or with
+ *  reduced motion. */
+export function Sweep({ children, className, delay = 0.2, duration = 3.2 }: { children: ReactNode; className?: string; delay?: number; duration?: number }) {
+  const still = useStatic();
+  if (still) return <div className={className}>{children}</div>;
+  return <SweepLive className={className} delay={delay} duration={duration}>{children}</SweepLive>;
+}
+
+/* Mounted only once the page is live, so useInView attaches to a real
+   element (a hook that first ran against a null ref never observes). */
+function SweepLive({ children, className, delay, duration }: { children: ReactNode; className?: string; delay: number; duration: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.35 });
+  return (
+    <div ref={ref} className={className}>
+      <motion.div
+        style={{ display: "flex", alignItems: "flex-end", maxWidth: "100%" }}
+        initial={{ clipPath: "inset(0 100% 0 0)" }}
+        animate={{ clipPath: inView ? "inset(0 0% 0 0)" : "inset(0 100% 0 0)" }}
+        transition={{ duration, delay, ease: "linear" }}
+      >
+        {children}
+      </motion.div>
     </div>
   );
 }
